@@ -1095,8 +1095,8 @@ body.stretched #header.full-header .container {
 	opacity: 0;
 	pointer-events: none;
 	cursor: pointer;
-	font-size: 14px;
-	position: absolute;
+	font-size: 15px;
+	position: absolute;  
 	top: 50%;
 	margin-top: -25px;
 	width: 50px;
@@ -13011,4 +13011,3 @@ body:not(.no-transition) #wrapper,
 	margin:0!important;
 	padding:0!important
 }
-

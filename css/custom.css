@@ -6,5 +6,44 @@
 -----------------------------------------------------------------*/
 
 
+div#slide-18-layer-5 {
+	background: transparent;
+	color: #000;
+}
 
+div#slide-18-layer-6 {
+	background: transparent;
+	color: #000;
+}
 
+div#slide-18-layer-7 {
+	background: transparent;
+	color: #000;
+}
+
+div#slide-18-layer-8 {
+	background: transparent;
+	color: #000;
+}
+
+div#slide-18-layer-5:selection {
+	background: black;
+	color: #fff;
+}
+
+#header.transparent-header.full-header #header-wrap {
+	border-bottom: none;
+}
+
+#header.transparent-header.full-header #logo {
+	border-right-color: transparent;
+}
+
+#header.transparent-header.full-header #primary-menu > ul {
+	border-right-color: transparent;
+}
+
+#primary-menu ul li > a {
+	font-weight: 500;
+	font-size: 15px;
+}
