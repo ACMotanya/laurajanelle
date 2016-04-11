@@ -41,9 +41,22 @@ div#slide-18-layer-5:selection {
 
 #header.transparent-header.full-header #primary-menu > ul {
 	border-right-color: transparent;
+	font-align: right;
 }
 
 #primary-menu ul li > a {
 	font-weight: 500;
 	font-size: 15px;
+	font-align: right;
+}
+
+#header.full-header #primary-menu > ul {
+	width: 200px;
+	margin-bottom: -500px;
+	font-align: right;
+}
+
+#primary-menu ul li > a {
+	padding: 10px;
+	font-align: right;
 }
