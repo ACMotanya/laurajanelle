@@ -60,3 +60,140 @@ div#slide-18-layer-5:selection {
 	padding: 10px;
 	font-align: right;
 }
+
+
+
+
+
+
+
+/* I think I am the great and everything I love seems to make perfect sense to me */
+
+
+.demos-filter {
+	margin: 0;
+	text-align: right;
+}
+
+.demos-filter li {
+	list-style: none;
+	margin: 10px 0px;
+}
+
+.demos-filter li a {
+	display: block;
+	border: 0;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	color: #444;
+}
+
+.demos-filter li a:hover,
+.demos-filter li.activeFilter a { color: #1ABC9C; }
+
+@media (max-width: 991px) {
+	.demos-filter { text-align: center; }
+
+	.demos-filter li {
+		float: left;
+		width: 33.3%;
+		padding: 0 20px;
+	}
+}
+
+@media (max-width: 767px) {
+	.demos-filter li { width: 50%; }
+}
+
+.revo-slider-emphasis-text {
+	font-size: 64px;
+	font-weight: 700;
+	letter-spacing: -1px;
+	font-family: 'Raleway', sans-serif;
+	padding: 15px 20px;
+	border-top: 2px solid #FFF;
+	border-bottom: 2px solid #FFF;
+}
+
+.revo-slider-desc-text {
+	font-size: 20px;
+	font-family: 'Lato', sans-serif;
+	width: 650px;
+	text-align: center;
+	line-height: 1.5;
+}
+
+.revo-slider-caps-text {
+	font-size: 16px;
+	font-weight: 400;
+	letter-spacing: 3px;
+	font-family: 'Raleway', sans-serif;
+}
+.tp-video-play-button { display: none !important; }
+
+.tp-caption { white-space: nowrap; }
+
+
+
+
+.rotator {
+  position: relative;
+  width: 80%;
+  list-style: none;
+  text-align: center;
+  padding: 0;
+  margin: 10%;
+}
+
+.rotator > li {
+	position: absolute;
+  font-weight: 800;
+  opacity: 0;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.rotator > li:first-child {
+  -webkit-animation: loop 11s infinite;
+}
+
+.rotator > li:nth-child(2) {
+  -webkit-animation: opsecond 11s infinite;
+}
+
+.rotator > li:nth-child(3) {
+  -webkit-animation: opthird 11s infinite;
+}
+
+.rotator > li:last-child {
+  -webkit-animation: oplast 11s infinite;
+}
+
+@-webkit-keyframes loop {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+	17% { opacity: 1; }
+  25% { opacity: 0; }
+}
+
+@-webkit-keyframes opsecond {
+  17% { opacity: 0; }
+  25% { opacity: 1; }
+  35% { opacity: 1; }
+  55% { opacity: 0; }
+}
+
+@-webkit-keyframes opthird {
+  35% { opacity: 0; }
+  55% { opacity: 1; }
+  65% { opacity: 1; }
+  77% { opacity: 0; }
+}
+
+@-webkit-keyframes oplast {
+  66% { opacity: 0; }
+  77% { opacity: 1; }
+  100% { opacity: 1; }
+  0% { opacity: 1; }
+  10% { opacity: 0; }
+}
