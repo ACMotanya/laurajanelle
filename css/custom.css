@@ -47,18 +47,25 @@ div#slide-18-layer-5:selection {
 #primary-menu ul li > a {
 	font-weight: 500;
 	font-size: 15px;
-	font-align: right;
+	padding: 2px;
+}
+
+#primary-menu ul li > a:hover {
+	color: #999;
+}
+
+#primary-menu > ul > li:first-child {
+	padding-top: 7px;
 }
 
 #header.full-header #primary-menu > ul {
-	width: 200px;
+	width: 175px;
 	margin-bottom: -500px;
 	font-align: right;
 }
 
-#primary-menu ul li > a {
-	padding: 10px;
-	font-align: right;
+#primary-menu ul > li {
+	float: right;
 }
 
 
