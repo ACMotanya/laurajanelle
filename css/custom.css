@@ -2,31 +2,6 @@
 	Custom CSS
 -----------------------------------------------------------------*/
 
-div#slide-18-layer-5 {
-	background: transparent;
-	color: #000;
-}
-
-div#slide-18-layer-6 {
-	background: transparent;
-	color: #000;
-}
-
-div#slide-18-layer-7 {
-	background: transparent;
-	color: #000;
-}
-
-div#slide-18-layer-8 {
-	background: transparent;
-	color: #000;
-}
-
-div#slide-18-layer-5:selection {
-	background: black;
-	color: #fff;
-}
-
 #header.transparent-header.full-header #header-wrap {
 	border-bottom: none;
 }
