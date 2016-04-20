@@ -42,8 +42,9 @@ div#slide-18-layer-5:selection {
 
 #primary-menu ul li > a {
 	font-weight: 500;
-	font-size: 15px;
+	font-size: 19px;
 	padding: 2px;
+	font-family: Bodoni-Sans;
 }
 
 #primary-menu ul li > a:hover {
@@ -55,7 +56,7 @@ div#slide-18-layer-5:selection {
 }
 
 #header.full-header #primary-menu > ul {
-	width: 175px;
+	width: 200px;
 	margin-bottom: -500px;
 	font-align: right;
 }
@@ -63,7 +64,6 @@ div#slide-18-layer-5:selection {
 #primary-menu ul > li {
 	float: right;
 }
-
 
 
 
@@ -139,17 +139,18 @@ div#slide-18-layer-5:selection {
 
 
 
+
+/* The scroller on the bottom Empower Entice and Stuff */
+
 .rotator {
-  position: relative;
   width: 80%;
   list-style: none;
-  text-align: center;
   padding: 0;
   margin: 10%;
+	text-align: right;
 }
 
 .rotator > li {
-	position: absolute;
   font-weight: 800;
   opacity: 0;
   margin: 0 auto;
