@@ -40,8 +40,17 @@
 	float: right;
 }
 
+@media (min-width: 768px) and (max-width: 991px) {
+	#primary-menu-trigger {
+		left: 675px;
+	}
+}
 
-
+@media (max-width: 1239px) {
+	.looks {
+		text-align: right;
+	}
+}
 
 
 
