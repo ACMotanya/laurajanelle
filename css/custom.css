@@ -16,10 +16,12 @@
 }
 
 #primary-menu ul li > a {
-	font-weight: 500;
-	font-size: 19px;
-	padding: 2px;
+	font-weight: 900;
+	font-size: 13px;
+	padding: 0px;
+	line-height: 16px;
 	font-family: Bodoni-Sans;
+	letter-spacing: 1px;
 }
 
 #primary-menu ul li > a:hover {
@@ -27,11 +29,11 @@
 }
 
 #primary-menu > ul > li:first-child {
-	padding-top: 7px;
+	padding-top: 12px;
 }
 
 #header.full-header #primary-menu > ul {
-	width: 200px;
+	width: 160px;
 	margin-bottom: -500px;
 	font-align: right;
 }
