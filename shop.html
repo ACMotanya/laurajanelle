@@ -21,9 +21,47 @@
 		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 	<![endif]-->
 
+	<!-- SLIDER REVOLUTION 5.x CSS SETTINGS -->
+	<link rel="stylesheet" type="text/css" href="include/rs-plugin/css/settings.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="include/rs-plugin/css/layers.css">
+	<link rel="stylesheet" type="text/css" href="include/rs-plugin/css/navigation.css">
+
 	<!-- Document Title
 	============================================= -->
-	<title>Checkout | Canvas</title>
+	<title>Home - Shop | Laura Janelle</title>
+
+	<style>
+
+		.revo-slider-emphasis-text {
+			font-size: 58px;
+			font-weight: 700;
+			letter-spacing: 1px;
+			font-family: 'Raleway', sans-serif;
+			padding: 15px 20px;
+			border-top: 2px solid #FFF;
+			border-bottom: 2px solid #FFF;
+		}
+
+		.revo-slider-desc-text {
+			font-size: 20px;
+			font-family: 'Lato', sans-serif;
+			width: 650px;
+			text-align: center;
+			line-height: 1.5;
+		}
+
+		.revo-slider-caps-text {
+			font-size: 16px;
+			font-weight: 400;
+			letter-spacing: 3px;
+			font-family: 'Raleway', sans-serif;
+		}
+
+		.tp-video-play-button { display: none !important; }
+
+		.tp-caption { white-space: nowrap; }
+
+	</style>
 
 </head>
 
@@ -33,9 +71,25 @@
 	============================================= -->
 	<div id="wrapper" class="clearfix">
 
+		<!-- Top Bar
+		============================================= -->
+		<div id="top-bar" class="hidden-xs">
+
+			<div class="container clearfix">
+
+				<div class="col_half nobottommargin">
+
+					<p class="nobottommargin"><strong>Call:</strong> 866 366-6900 | <strong>Email:</strong> info@LauraJanelle.com</p>
+
+				</div>
+
+			</div>
+
+		</div><!-- #top-bar end -->
+
 		<!-- Header
 		============================================= -->
-		<header id="header" class="full-header">
+		<header id="header">
 
 			<div id="header-wrap">
 
@@ -46,8 +100,8 @@
 					<!-- Logo
 					============================================= -->
 					<div id="logo">
-						<a href="index.html" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="images/logo.png" alt="Canvas Logo"></a>
-						<a href="index.html" class="retina-logo" data-dark-logo="images/logo-dark@2x.png"><img src="images/logo@2x.png" alt="Canvas Logo"></a>
+						<a href="index.html" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="one-page/images/lj-bw-1.png" alt="Laura Janelle Logo"></a>
+						<a href="index.html" class="retina-logo" data-dark-logo="images/logo-dark@2x.png"><img src="one-page/images/lj-bw-1.png" alt="laura Janelle Logo"></a>
 					</div><!-- #logo end -->
 
 					<!-- Primary Navigation
@@ -55,569 +109,49 @@
 					<nav id="primary-menu">
 
 						<ul>
-							<li><a href="index.html"><div>Home</div></a>
+							<li><a href="index.html"><div>Shop</div></a>
 								<ul>
-									<li><a href="index-corporate.html"><div>Home - Corporate</div></a>
+									<li><a href="index-corporate.html"><div>Sleek</div></a>
 										<ul>
-											<li><a href="index-corporate.html"><div>Corporate - Layout 1</div></a></li>
-											<li><a href="index-corporate-2.html"><div>Corporate - Layout 2</div></a></li>
-											<li><a href="index-corporate-3.html"><div>Corporate - Layout 3</div></a></li>
-											<li><a href="index-corporate-4.html"><div>Corporate - Layout 4</div></a></li>
+											<li><a href="index-corporate.html"><div>Earrings</div></a></li>
+											<li><a href="index-corporate-2.html"><div>Bracelets</div></a></li>
+											<li><a href="index-corporate-3.html"><div>Bangles</div></a></li>
+											<li><a href="index-corporate-4.html"><div>Charms</div></a></li>
 										</ul>
 									</li>
-									<li><a href="index-portfolio.html"><div>Home - Portfolio</div></a>
+									<li><a href="index-portfolio.html"><div>enCharming</div></a>
 										<ul>
-											<li><a href="index-portfolio.html"><div>Portfolio - Layout 1</div></a></li>
-											<li><a href="index-portfolio-2.html"><div>Portfolio - Layout 2</div></a></li>
-											<li><a href="index-portfolio-3.html"><div>Portfolio - Masonry</div></a></li>
-											<li><a href="index-portfolio-4.html"><div>Portfolio - AJAX</div></a></li>
+											<li><a href="index-portfolio.html"><div>Lanyards</div></a></li>
+											<li><a href="index-portfolio-2.html"><div>Focal Bands</div></a></li>
+											<li><a href="index-portfolio-3.html"><div>Necklace</div></a></li>
 										</ul>
 									</li>
-									<li><a href="index-blog.html"><div>Home - Blog</div></a>
+									<li><a href="index-blog.html"><div>RGLB</div></a>
 										<ul>
-											<li><a href="index-blog.html"><div>Blog - Layout 1</div></a></li>
-											<li><a href="index-blog-2.html"><div>Blog - Layout 2</div></a></li>
-											<li><a href="index-blog-3.html"><div>Blog - Layout 3</div></a></li>
+											<li><a href="index-blog.html"><div>Focal Beads</div></a></li>
+											<li><a href="index-blog-2.html"><div>Bands</div></a></li>
+											<li><a href="index-blog-3.html"><div>Bracelets</div></a></li>
 										</ul>
 									</li>
-									<li><a href="index-shop.html"><div>Home - Shop</div></a>
+									<li><a href="index-shop.html"><div>inDentify</div></a>
 										<ul>
-											<li><a href="index-shop.html"><div>Shop - Layout 1</div></a></li>
-											<li><a href="index-shop-2.html"><div>Shop - Layout 2</div></a></li>
+											<li><a href="index-shop.html"><div>Lanyards</div></a></li>
+											<li><a href="index-shop-2.html"><div>Straps</div></a></li>
 										</ul>
 									</li>
-									<li><a href="index-magazine.html"><div>Home - Magazine</div></a>
-										<ul>
-											<li><a href="index-magazine.html"><div>Magazine - Layout 1</div></a></li>
-											<li><a href="index-magazine-2.html"><div>Magazine - Layout 2</div></a></li>
-											<li><a href="index-magazine-3.html"><div>Magazine - Layout 3</div></a></li>
-										</ul>
-									</li>
-									<li><a href="landing.html"><div>Home - Landing Page</div></a>
-										<ul>
-											<li><a href="landing.html"><div>Landing Page - Layout 1</div></a></li>
-											<li><a href="landing-2.html"><div>Landing Page - Layout 2</div></a></li>
-											<li><a href="landing-3.html"><div>Landing Page - Layout 3</div></a></li>
-											<li><a href="landing-4.html"><div>Landing Page - Layout 4</div></a></li>
-											<li><a href="landing-5.html"><div>Landing Page - Layout 5</div></a></li>
-										</ul>
-									</li>
-									<li><a href="index-fullscreen-image.html"><div>Home - Full Screen</div></a>
-										<ul>
-											<li><a href="index-fullscreen-image.html"><div>Full Screen - Image</div></a></li>
-											<li><a href="index-fullscreen-slider.html"><div>Full Screen - Slider</div></a></li>
-											<li><a href="index-fullscreen-video.html"><div>Full Screen - Video</div></a></li>
-										</ul>
-									</li>
-									<li><a href="index-onepage.html"><div>Home - One Page</div></a>
-										<ul>
-											<li><a href="index-onepage.html"><div>One Page - Default</div></a></li>
-											<li><a href="index-onepage-2.html"><div>One Page - Submenu</div></a></li>
-											<li><a href="index-onepage-3.html"><div>One Page - Dots Style</div></a></li>
-										</ul>
-									</li>
-									<li><a href="index-wedding.html"><div>Home - Wedding</div></a></li>
-									<li><a href="index-restaurant.html"><div>Home - Restaurant</div></a></li>
-									<li><a href="index-events.html"><div>Home - Events</div></a></li>
-									<li><a href="index-parallax.html"><div>Home - Parallax</div></a></li>
-									<li><a href="index-app-showcase.html"><div>Home - App Showcase</div></a></li>
 								</ul>
 							</li>
-							<li><a href="#"><div>Features</div></a>
+							<li><a href="#"><div>Collections</div></a>
 								<ul>
-									<li><a href="#"><div><i class="icon-stack"></i>Sliders</div></a>
+									<li><a href="#"><div><i class="icon-stack"></i>Catalogs</div></a>
 										<ul>
-											<li><a href="slider-revolution.html"><div>Revolution Slider</div></a>
-												<ul>
-													<li><a href="rs-demo-premium-concept.html"><div>Premium Templates</div></a></li>
-													<li><a href="slider-revolution.html"><div>Full Screen</div></a></li>
-													<li><a href="slider-revolution-fullwidth.html"><div>Full Width</div></a></li>
-													<li><a href="slider-revolution-kenburns.html"><div>Kenburns Effect</div></a></li>
-													<li><a href="slider-revolution-html5-videos.html"><div>HTML5 Video</div></a></li>
-												</ul>
-											</li>
-											<li><a href="slider-canvas.html"><div>Canvas Slider</div></a>
-												<ul>
-													<li><a href="slider-canvas.html"><div>Full Width</div></a></li>
-													<li><a href="slider-canvas-3.html"><div>3 Columns</div></a></li>
-													<li><a href="slider-canvas-4.html"><div>4 Columns</div></a></li>
-													<li><a href="slider-canvas-5.html"><div>5 Columns</div></a></li>
-												</ul>
-											</li>
-											<li><a href="slider-flex.html"><div>Flex Slider</div></a>
-												<ul>
-													<li><a href="slider-flex.html"><div>Default Layout</div></a></li>
-													<li><a href="slider-flex-thumbs.html"><div>with Thumbs</div></a></li>
-												</ul>
-											</li>
-											<li><a href="slider-owl.html"><div>Owl Slider</div></a>
-												<ul>
-													<li><a href="slider-owl-full.html"><div>Full Width</div></a></li>
-													<li><a href="slider-owl.html"><div>Boxed Width</div></a></li>
-													<li><a href="slider-owl-videos.html"><div>Video Slider</div></a></li>
-												</ul>
-											</li>
-											<li><a href="static-parallax.html"><div>Static Media</div></a>
-												<ul>
-													<li><a href="static-parallax.html"><div>Static - Parallax</div></a></li>
-													<li><a href="static-image.html"><div>Static - Image</div></a></li>
-													<li><a href="static-thumbs-grid.html"><div>Static - Thumb Gallery</div></a></li>
-													<li><a href="static-html5-video.html"><div>Static - HTML5 Video</div></a></li>
-													<li><a href="static-embed-video.html"><div>Static - Embedded Video</div></a></li>
-												</ul>
-											</li>
-											<li><a href="slider-camera.html"><div>Camera Slider</div></a></li>
-											<li><a href="slider-elastic.html"><div>Elastic Slider</div></a></li>
-											<li><a href="slider-nivo.html"><div>Nivo Slider</div></a></li>
-										</ul>
-									</li>
-									<li><a href="widgets.html"><div><i class="icon-gift"></i>Widgets</div></a>
-										<ul>
-											<li><a href="widgets.html"><div>Links</div></a></li>
-											<li><a href="widgets.html"><div>Flickr Photostream</div></a></li>
-											<li><a href="widgets.html"><div>Dribbble Shots</div></a></li>
-											<li><a href="widgets.html"><div>Instagram Feed</div></a></li>
-											<li><a href="widgets.html"><div>Posts List</div></a></li>
-											<li><a href="widgets.html"><div>Twitter Feed</div></a></li>
-											<li><a href="widgets.html"><div>Tabbed Widgets</div></a></li>
-											<li><a href="widgets.html"><div>Carousel</div></a></li>
-											<li><a href="widgets.html"><div>Subscribers</div></a></li>
-											<li><a href="widgets.html"><div>Social Icons</div></a></li>
-											<li><a href="widgets.html"><div>Testimonials</div></a></li>
-											<li><a href="widgets.html"><div>Quick Contact</div></a></li>
-											<li><a href="widgets.html"><div>Tags Cloud</div></a></li>
-											<li><a href="widgets.html"><div>Video Embeds</div></a></li>
-											<li><a href="widgets.html"><div>Raw Text/HTML</div></a></li>
-										</ul>
-									</li>
-									<li><a href="#"><div><i class="icon-umbrella"></i>Headers</div></a>
-										<ul>
-											<li><a href="header-light.html"><div>Light Version</div></a></li>
-											<li><a href="header-dark.html"><div>Dark Version</div></a></li>
-											<li><a href="header-transparent.html"><div>Transparent</div></a></li>
-											<li><a href="header-semi-transparent.html"><div>Semi Transparent</div></a>
-												<ul>
-													<li><a href="header-semi-transparent.html"><div>Light Version</div></a></li>
-													<li><a href="header-semi-transparent-dark.html"><div>Dark Version</div></a></li>
-												</ul>
-											</li>
-											<li><a href="header-side-left.html"><div>Left Side Header</div></a>
-												<ul>
-													<li><a href="header-side-left.html"><div>Fixed Position</div></a></li>
-													<li><a href="header-side-left-open.html"><div>OnClick Open</div></a></li>
-													<li><a href="header-side-left-open-push.html"><div>Push Content</div></a></li>
-												</ul>
-											</li>
-											<li><a href="header-side-right.html"><div>Right Side Header</div></a>
-												<ul>
-													<li><a href="header-side-right.html"><div>Fixed Position</div></a></li>
-													<li><a href="header-side-right-open.html"><div>OnClick Open</div></a></li>
-													<li><a href="header-side-right-open-push.html"><div>Push Content</div></a></li>
-												</ul>
-											</li>
-											<li><a href="header-floating.html"><div>Floating Version</div></a></li>
-											<li><a href="static-sticky.html"><div>Static Sticky</div></a></li>
-											<li><a href="responsive-sticky.html"><div>Responsive Sticky</div></a></li>
-											<li><a href="logo-changer.html"><div>Alternate Logos</div></a></li>
-											<li><a href="alternate-mobile-menu.html"><div>Alternate Mobile Menu</div></a></li>
-										</ul>
-									</li>
-									<li><a href="#"><div><i class="icon-align-justify2"></i>Menu Styles</div></a>
-										<ul>
-											<li><a href="header-light.html"><div>Menu - Style 1</div></a></li>
-											<li><a href="menu-2.html"><div>Menu - Style 2</div></a></li>
-											<li><a href="menu-3.html"><div>Menu - Style 3</div></a></li>
-											<li><a href="menu-4.html"><div>Menu - Style 4</div></a></li>
-											<li><a href="menu-5.html"><div>Menu - Style 5</div></a></li>
-											<li><a href="menu-6.html"><div>Menu - Style 6</div></a></li>
-											<li><a href="menu-7.html"><div>Menu - Style 7</div></a></li>
-											<li><a href="menu-8.html"><div>Menu - Style 8</div></a></li>
-											<li><a href="menu-9.html"><div>Menu - Style 9</div></a></li>
-										</ul>
-									</li>
-									<li><a href="#"><div><i class="icon-ok-sign"></i>Page Titles</div></a>
-										<ul>
-											<li><a href="page.html"><div>Left Align</div></a></li>
-											<li><a href="page-title-right.html"><div>Right Align</div></a></li>
-											<li><a href="page-title-center.html"><div>Center Align</div></a></li>
-											<li><a href="page-titledark.html"><div>Dark Style</div></a></li>
-											<li><a href="page-title-pattern.html"><div>Pattern Background</div></a></li>
-											<li><a href="page-title-parallax.html"><div>Parallax Background</div></a>
-												<ul>
-													<li><a href="page-title-parallax.html"><div>Default Header</div></a></li>
-													<li><a href="page-title-parallax-header.html"><div>Transparent Header</div></a></li>
-												</ul>
-											</li>
-											<li><a href="page-title-video.html"><div>HTML5 Video</div></a></li>
-											<li><a href="page-title-nobg.html"><div>No Background</div></a></li>
-											<li><a href="page-title-mini.html"><div>Mini Version</div></a></li>
-										</ul>
-									</li>
-									<li><a href="contact.html"><div><i class="icon-envelope-alt"></i>Contact Pages</div></a>
-										<ul>
-											<li><a href="contact.html">Contact 1</a></li>
-											<li><a href="contact-2.html">Contact 2</a></li>
-											<li><a href="contact-3.html">Contact 3</a></li>
-											<li><a href="contact-4.html">Contact 4</a></li>
-											<li><a href="contact-5.html">Contact 5</a></li>
-											<li><a href="contact-6.html">Contact 6</a></li>
-											<li><a href="contact-7.html">Contact 7</a></li>
-										</ul>
-									</li>
-									<li><a href="#footer" data-scrollto="#footer"><div><i class="icon-th"></i>Footers</div></a>
-										<ul>
-											<li><a href="sticky-footer.html"><div>Sticky Footer</div></a></li>
-											<li><a href="#footer" data-scrollto="#footer"><div>Footer - Layout 1</div></a></li>
-											<li><a href="footer-2.html#footer"><div>Footer - Layout 2</div></a></li>
-											<li><a href="footer-3.html#footer"><div>Footer - Layout 3</div></a></li>
-											<li><a href="footer-4.html#footer"><div>Footer - Layout 4</div></a></li>
-											<li><a href="footer-5.html#footer"><div>Footer - Layout 5</div></a></li>
-											<li><a href="footer-6.html#footer"><div>Footer - Layout 6</div></a></li>
-											<li><a href="footer-7.html#footer"><div>Footer - Layout 7</div></a></li>
-										</ul>
-									</li>
-									<li><a href="#"><div><i class="icon-calendar3"></i>Events</div></a>
-										<ul>
-											<li><a href="events-calendar.html"><div>Full Width Calendar</div></a></li>
-											<li><a href="events-list.html"><div>Events List</div></a>
-												<ul>
-													<li><a href="events-list.html"><div>Right Sidebar</div></a></li>
-													<li><a href="events-list-left-sidebar.html"><div>Left Sidebar</div></a></li>
-													<li><a href="events-list-both-sidebar.html"><div>Both Sidebar</div></a></li>
-													<li><a href="events-list-fullwidth.html"><div>Full Width</div></a></li>
-													<li><a href="events-list-parallax.html"><div>Parallax List</div></a></li>
-												</ul>
-											</li>
-											<li><a href="event-single.html"><div>Single Event</div></a>
-												<ul>
-													<li><a href="event-single-right-sidebar.html"><div>Right Sidebar</div></a></li>
-													<li><a href="event-single-left-sidebar.html"><div>Left Sidebar</div></a></li>
-													<li><a href="event-single-both-sidebar.html"><div>Both Sidebar</div></a></li>
-													<li><a href="event-single.html"><div>Full Width</div></a></li>
-												</ul>
-											</li>
-											<li><a href="event-single-full-width-image.html"><div>Single Event - Full</div></a>
-												<ul>
-													<li><a href="event-single-full-width-image.html"><div>Parallax Image</div></a></li>
-													<li><a href="event-single-full-width-map.html"><div>Google Map</div></a></li>
-													<li><a href="event-single-full-width-slider.html"><div>Slider Gallery</div></a></li>
-													<li><a href="event-single-full-width-video.html"><div>HTML5 Video</div></a></li>
-												</ul>
+											<li><a href="slider-revolution.html"><div>Summer 2016</div></a>
 											</li>
 										</ul>
 									</li>
-									<li><a href="modal-onload.html"><div><i class="icon-line-expand"></i>Modal OnLoad</div></a>
-										<ul>
-											<li><a href="modal-onload.html"><div>Simple Layout</div></a></li>
-											<li><a href="modal-onload-iframe.html"><div>Video iFrame</div></a></li>
-											<li><a href="modal-onload-subscribe.html"><div>Subscription Form</div></a></li>
-											<li><a href="modal-onload-common-height.html"><div>Common Height</div></a></li>
-											<li><a href="modal-onload-cookie.html"><div>Cookies Enabled</div></a></li>
-										</ul>
-									</li>
-									<li><a href="coming-soon.html"><div><i class="icon-time"></i>Coming Soon</div></a>
-										<ul>
-											<li><a href="coming-soon.html"><div>Simple Layout</div></a></li>
-											<li><a href="coming-soon-2.html"><div>Parallax Image</div></a></li>
-											<li><a href="coming-soon-3.html"><div>HTML5 Video</div></a></li>
-										</ul>
-									</li>
-									<li><a href="#"><div><i class="icon-adjust"></i>Dark Version</div></a></li>
 								</ul>
 							</li>
-							<li class="mega-menu"><a href="#"><div>Pages</div></a>
-								<div class="mega-menu-content style-2 clearfix">
-									<ul class="mega-menu-column col-md-3">
-										<li class="mega-menu-title"><a href="#"><div>Introduction</div></a>
-											<ul>
-												<li><a href="about.html"><div>About Us</div></a></li>
-												<li><a href="about-2.html"><div>About Us - Layout 2</div></a></li>
-												<li><a href="about-me.html"><div>About Me</div></a></li>
-												<li><a href="team.html"><div>Team Members</div></a></li>
-												<li><a href="jobs.html"><div>Careers</div></a></li>
-												<li><a href="side-navigation.html"><div>Side Navigation</div></a></li>
-												<li><a href="page-submenu.html"><div>Page Submenu</div></a></li>
-												<li><a href="sitemap.html"><div>Sitemap</div></a></li>
-											</ul>
-										</li>
-									</ul>
-									<ul class="mega-menu-column col-md-3">
-										<li class="mega-menu-title"><a href="#"><div>Utility</div></a>
-											<ul>
-												<li><a href="services.html"><div>Services - Layout 1</div></a></li>
-												<li><a href="services-2.html"><div>Services - Layout 2</div></a></li>
-												<li><a href="services-3.html"><div>Services - Layout 3</div></a></li>
-												<li><a href="faqs.html"><div>FAQs - Layout 1</div></a></li>
-												<li><a href="faqs-2.html"><div>FAQs - Layout 2</div></a></li>
-												<li><a href="faqs-3.html"><div>FAQs - Layout 3</div></a></li>
-												<li><a href="faqs-4.html"><div>FAQs - Layout 4</div></a></li>
-												<li><a href="maintenance.html"><div>Maintenance Page</div></a></li>
-											</ul>
-										</li>
-									</ul>
-									<ul class="mega-menu-column col-md-3">
-										<li class="mega-menu-title"><a href="#"><div>Layout Grids</div></a>
-											<ul>
-												<li><a href="full-width.html"><div>Full Width</div></a></li>
-												<li><a href="full-width-wide.html"><div>Full Width - Wide</div></a></li>
-												<li><a href="right-sidebar.html"><div>Right Sidebar</div></a></li>
-												<li><a href="left-sidebar.html"><div>Left Sidebar</div></a></li>
-												<li><a href="both-sidebar.html"><div>Both Sidebar</div></a></li>
-												<li><a href="both-right-sidebar.html"><div>Both Right Sidebar</div></a></li>
-												<li><a href="both-left-sidebar.html"><div>Both Left Sidebar</div></a></li>
-												<li><a href="blank-page.html"><div>Blank Page</div></a></li>
-											</ul>
-										</li>
-									</ul>
-									<ul class="mega-menu-column col-md-3">
-										<li class="mega-menu-title"><a href="#"><div>Miscellaneous</div></a>
-											<ul>
-												<li><a href="login-register.html"><div>Login/Register</div></a></li>
-												<li><a href="login-register-2.html"><div>Login/Register - Style 2</div></a></li>
-												<li><a href="login-register-3.html"><div>Login/Register - Style 3</div></a></li>
-												<li><a href="login-1.html"><div>Login - Style 1</div></a></li>
-												<li><a href="login-2.html"><div>Login - Style 2</div></a></li>
-												<li><a href="404.html"><div>404 - Simple Layout</div></a></li>
-												<li><a href="404-2.html"><div>404 - Parallax Image</div></a></li>
-												<li><a href="404-3.html"><div>404 - HTML5 Video</div></a></li>
-											</ul>
-										</li>
-									</ul>
-								</div>
-							</li>
-							<li class="mega-menu"><a href="#"><div>Portfolio</div></a>
-								<div class="mega-menu-content style-2 clearfix">
-									<ul class="mega-menu-column col-5">
-										<li class="mega-menu-title"><a href="#"><div>Grids</div></a>
-											<ul>
-												<li><a href="portfolio-1.html"><div>1 Column</div></a></li>
-												<li><a href="portfolio-2.html"><div>2 Columns</div></a></li>
-												<li><a href="portfolio-3.html"><div>3 Columns</div></a></li>
-												<li><a href="portfolio.html"><div>4 Columns</div></a></li>
-												<li><a href="portfolio-5.html"><div>5 Columns</div></a></li>
-												<li><a href="portfolio-6.html"><div>6 Columns</div></a></li>
-											</ul>
-										</li>
-									</ul>
-									<ul class="mega-menu-column col-5">
-										<li class="mega-menu-title"><a href="#"><div>Masonry</div></a>
-											<ul>
-												<li><a href="portfolio-mixed-masonry.html"><div>Mixed Columns</div></a></li>
-												<li><a href="portfolio-2-masonry.html"><div>2 Columns</div></a></li>
-												<li><a href="portfolio-3-masonry.html"><div>3 Columns</div></a></li>
-												<li><a href="portfolio-masonry.html"><div>4 Columns</div></a></li>
-												<li><a href="portfolio-5-masonry.html"><div>5 Columns</div></a></li>
-												<li><a href="portfolio-6-masonry.html"><div>6 Columns</div></a></li>
-											</ul>
-										</li>
-									</ul>
-									<ul class="mega-menu-column col-5">
-										<li class="mega-menu-title"><a href="#"><div>Loading Styles</div></a>
-											<ul>
-												<li><a href="portfolio.html"><div>jQuery Filter</div></a></li>
-												<li><a href="portfolio-pagination.html"><div>Pagination</div></a></li>
-												<li><a href="portfolio-jpagination.html"><div>jQuery Pagination</div></a></li>
-												<li><a href="portfolio-infinity-scroll.html"><div>Infinity Scroll</div></a></li>
-												<li><a href="portfolio-ajax.html"><div>AJAX In Page</div></a></li>
-												<li><a href="portfolio-ajax-in-modal.html"><div>AJAX In Modal</div></a></li>
-											</ul>
-										</li>
-									</ul>
-									<ul class="mega-menu-column col-5">
-										<li class="mega-menu-title"><a href="#"><div>Single Project</div></a>
-											<ul>
-												<li><a href="portfolio-single-extended.html"><div>Extended Item</div></a></li>
-												<li><a href="portfolio-single-fullwidth.html"><div>Parallax Image</div></a></li>
-												<li><a href="portfolio-single-gallery-full.html"><div>Slider Gallery</div></a></li>
-												<li><a href="portfolio-single-video-fullwidth-left-sidebar.html"><div>HTML5 Video</div></a></li>
-												<li><a href="portfolio-single-thumbs-right-sidebar.html"><div>Masonry Thumbs</div></a></li>
-												<li><a href="portfolio-single-video-both-sidebar.html"><div>Embed Video</div></a></li>
-											</ul>
-										</li>
-									</ul>
-									<ul class="mega-menu-column col-5">
-										<li class="mega-menu-title"><a href="#"><div>Layouts</div></a>
-											<ul>
-												<li><a href="portfolio-nomargin.html"><div>Default</div></a></li>
-												<li><a href="portfolio-1-alt-right-sidebar.html"><div>Right Sidebar</div></a></li>
-												<li><a href="portfolio-3-left-sidebar.html"><div>Left Sidebar</div></a></li>
-												<li><a href="portfolio-2-both-sidebar.html"><div>Both Sidebar</div></a></li>
-												<li><a href="portfolio-fullwidth-notitle.html"><div>100% Width</div></a></li>
-												<li><a href="portfolio-parallax.html"><div>Parallax</div></a></li>
-											</ul>
-										</li>
-									</ul>
-								</div>
-							</li>
-							<li class="mega-menu"><a href="#"><div>Blog</div></a>
-								<div class="mega-menu-content style-2 clearfix">
-									<ul class="mega-menu-column col-md-3">
-										<li class="mega-menu-title"><a href="#"><div>Default</div></a>
-											<ul>
-												<li><a href="blog.html"><div>Right Sidebar</div></a></li>
-												<li><a href="blog-left-sidebar.html"><div>Left Sidebar</div></a></li>
-												<li><a href="blog-both-sidebar.html"><div>Both Sidebar</div></a></li>
-												<li><a href="blog-full-width.html"><div>Full Width</div></a></li>
-											</ul>
-										</li>
-										<li class="mega-menu-title"><a href="#"><div>Timeline</div></a>
-											<ul>
-												<li><a href="blog-timeline-right-sidebar.html"><div>Right Sidebar</div></a></li>
-												<li><a href="blog-timeline-left-sidebar.html"><div>Left Sidebar</div></a></li>
-												<li><a href="blog-timeline.html"><div>Full Width</div></a></li>
-											</ul>
-										</li>
-									</ul>
-									<ul class="mega-menu-column col-md-3">
-										<li class="mega-menu-title"><a href="#"><div>Masonry</div></a>
-											<ul>
-												<li><a href="blog-masonry.html"><div>4 Columns</div></a></li>
-												<li><a href="blog-masonry-3.html"><div>3 Columns</div></a></li>
-												<li><a href="blog-masonry-2.html"><div>2 Columns</div></a></li>
-												<li><a href="blog-masonry-full.html"><div>100% Width</div></a></li>
-											</ul>
-										</li>
-										<li class="mega-menu-title"><a href="#"><div>Grid</div></a>
-											<ul>
-												<li><a href="blog-grid.html"><div>4 Columns</div></a></li>
-												<li><a href="blog-grid-3.html"><div>3 Columns</div></a></li>
-												<li><a href="blog-grid-2.html"><div>2 Columns</div></a></li>
-											</ul>
-										</li>
-									</ul>
-									<ul class="mega-menu-column col-md-3">
-										<li class="mega-menu-title"><a href="#"><div>Small Thumbs</div></a>
-											<ul>
-												<li><a href="blog-small-left-sidebar.html"><div>Left Sidebar</div></a></li>
-												<li><a href="blog-small.html"><div>Right Sidebar</div></a></li>
-												<li><a href="blog-small-both-sidebar.html"><div>Both Sidebar</div></a></li>
-												<li><a href="blog-small-full-width.html"><div>Full Width</div></a></li>
-												<li><a href="blog-small-alt.html"><div>Alternate Layout</div></a></li>
-											</ul>
-										</li>
-										<li class="mega-menu-title"><a href="#"><div>Item Splitting</div></a>
-											<ul>
-												<li><a href="blog-grid.html"><div>Pagination</div></a></li>
-												<li><a href="blog-masonry.html"><div>Infinite Scroll</div></a></li>
-											</ul>
-										</li>
-									</ul>
-									<ul class="mega-menu-column col-md-3">
-										<li class="mega-menu-title"><a href="#"><div>Single</div></a>
-											<ul>
-												<li><a href="blog-single.html"><div>Default Layout</div></a></li>
-												<li><a href="blog-single-left-sidebar.html"><div>Left Sidebar</div></a></li>
-												<li><a href="blog-single-full.html"><div>Full Width</div></a></li>
-												<li><a href="blog-single-small.html"><div>Small Image</div></a></li>
-												<li><a href="blog-single-split-right-sidebar.html"><div>Split Layout</div></a></li>
-											</ul>
-										</li>
-										<li class="mega-menu-title"><a href="#"><div>Comments Module</div></a>
-											<ul>
-												<li><a href="blog-single-left-sidebar.html#comments"><div>Facebook Comments</div></a></li>
-												<li><a href="blog-single-small.html#comments"><div>Disqus Comments</div></a></li>
-											</ul>
-										</li>
-									</ul>
-								</div>
-							</li>
-							<li><a href="shop.html"><div>Shop</div></a>
-								<ul>
-									<li><a href="shop.html"><div>4 Columns</div></a></li>
-									<li><a href="shop-3.html"><div>3 Columns</div></a>
-										<ul>
-											<li><a href="shop-3.html"><div>Full Width</div></a></li>
-											<li><a href="shop-3-right-sidebar.html"><div>Right Sidebar</div></a></li>
-											<li><a href="shop-3-left-sidebar.html"><div>Left Sidebar</div></a></li>
-										</ul>
-									</li>
-									<li><a href="shop-2.html"><div>2 Columns</div></a>
-										<ul>
-											<li><a href="shop-2-right-sidebar.html"><div>Right Sidebar</div></a></li>
-											<li><a href="shop-2-left-sidebar.html"><div>Left Sidebar</div></a></li>
-											<li><a href="shop-2-both-sidebar.html"><div>Both Sidebar</div></a></li>
-										</ul>
-									</li>
-									<li><a href="shop-1.html"><div>1 Columns</div></a>
-										<ul>
-											<li><a href="shop-1.html"><div>Full Width</div></a></li>
-											<li><a href="shop-1-right-sidebar.html"><div>Right Sidebar</div></a></li>
-											<li><a href="shop-1-left-sidebar.html"><div>Left Sidebar</div></a></li>
-											<li><a href="shop-1-both-sidebar.html"><div>Both Sidebar</div></a></li>
-										</ul>
-									</li>
-									<li><a href="shop-category-parallax.html"><div>Categories - Parallax</div></a></li>
-									<li><a href="shop-single.html"><div>Single Product</div></a>
-										<ul>
-											<li><a href="shop-single.html"><div>Full Width</div></a></li>
-											<li><a href="shop-single-right-sidebar.html"><div>Right Sidebar</div></a></li>
-											<li><a href="shop-single-left-sidebar.html"><div>Left Sidebar</div></a></li>
-											<li><a href="shop-single-both-sidebar.html"><div>Both Sidebar</div></a></li>
-										</ul>
-									</li>
-									<li><a href="cart.html"><div>Cart</div></a></li>
-									<li><a href="checkout.html"><div>Checkout</div></a></li>
-								</ul>
-							</li>
-							<li class="mega-menu"><a href="#"><div>Shortcodes</div></a>
-								<div class="mega-menu-content clearfix">
-									<ul class="mega-menu-column col-5">
-										<li><a href="animations.html"><div><i class="icon-magic"></i>Animations</div></a></li>
-										<li><a href="buttons.html"><div><i class="icon-link"></i>Buttons</div></a></li>
-										<li><a href="carousel.html"><div><i class="icon-heart3"></i>Carousel</div></a></li>
-										<li><a href="charts.html"><div><i class="icon-bar-chart"></i>Charts</div></a></li>
-										<li><a href="clients.html"><div><i class="icon-apple"></i>Clients</div></a></li>
-										<li><a href="columns-grids.html"><div><i class="icon-th-large"></i>Columns</div></a></li>
-										<li><a href="counters.html"><div><i class="icon-time"></i>Counters</div></a></li>
-										<li><a href="component-datatable.html"><div><i class="icon-table"></i>Data Tables</div></a></li>
-										<li><a href="component-datepicker.html"><div><i class="icon-calendar3"></i>Date &amp; Time Pickers</div></a></li>
-									</ul>
-									<ul class="mega-menu-column col-5">
-										<li><a href="dividers.html"><div><i class="icon-indent-right"></i>Dividers</div></a></li>
-										<li><a href="featured-boxes.html"><div><i class="icon-lightbulb"></i>Icon Boxes</div></a></li>
-										<li><a href="gallery.html"><div><i class="icon-picture"></i>Galleries</div></a></li>
-										<li><a href="headings-dropcaps.html"><div><i class="icon-pencil2"></i>Heading Styles</div></a></li>
-										<li><a href="icon-lists.html"><div><i class="icon-list-alt"></i>Icon Lists</div></a></li>
-										<li><a href="labels-badges.html"><div><i class="icon-plus-sign"></i>Labels</div></a></li>
-										<li><a href="lightbox.html"><div><i class="icon-resize-full"></i>Lightbox</div></a></li>
-										<li><a href="component-editable.html"><div><i class="icon-edit"></i>Editable Fields</div></a></li>
-										<li><a href="component-uploads.html"><div><i class="icon-line-upload"></i>File Uploads</div></a></li>
-									</ul>
-									<ul class="mega-menu-column col-5">
-										<li><a href="lists-panels.html"><div><i class="icon-th-list"></i>Lists &amp; Panels</div></a></li>
-										<li><a href="maps.html"><div><i class="icon-map-marker2"></i>Maps</div></a></li>
-										<li><a href="media-embeds.html"><div><i class="icon-play"></i>Media Embeds</div></a></li>
-										<li><a href="modal-popovers.html"><div><i class="icon-move"></i>Modal Boxes</div></a></li>
-										<li><a href="navigation.html"><div><i class="icon-align-justify2"></i>Navigations</div></a></li>
-										<li><a href="pagination-progress.html"><div><i class="icon-cogs"></i>Pagination</div></a></li>
-										<li><a href="pie-skills.html"><div><i class="icon-tasks"></i>Pies &amp; Skills</div></a></li>
-										<li><a href="component-range-slider.html"><div><i class="icon-line-move"></i>Range Slider</div></a></li>
-										<li><a href="component-ratings.html"><div><i class="icon-star3"></i>Star Ratings</div></a></li>
-									</ul>
-									<ul class="mega-menu-column col-5">
-										<li><a href="pricing.html"><div><i class="icon-dollar"></i>Pricing Boxes</div></a></li>
-										<li><a href="process-steps.html"><div><i class="icon-thumbs-up"></i>Process Steps</div></a></li>
-										<li><a href="promo-boxes.html"><div><i class="icon-rocket"></i>Promo Boxes</div></a></li>
-										<li><a href="quotes-blockquotes.html"><div><i class="icon-quote-left"></i>Blockquotes</div></a></li>
-										<li><a href="responsive.html"><div><i class="icon-laptop2"></i>Responsive</div></a></li>
-										<li><a href="sections.html"><div><i class="icon-folder-open"></i>Sections</div></a></li>
-										<li><a href="social-icons.html"><div><i class="icon-facebook2"></i>Social Icons</div></a></li>
-										<li><a href="component-select-picker.html"><div><i class="icon-select"></i>Select Picker</div></a></li>
-										<li><a href="component-select-box.html"><div><i class="icon-line-columns"></i>Select Boxes</div></a></li>
-									</ul>
-									<ul class="mega-menu-column col-5">
-										<li><a href="style-boxes.html"><div><i class="icon-exclamation-sign"></i>Alert Boxes</div></a></li>
-										<li><a href="styled-icons.html"><div><i class="icon-flag2"></i>Styled Icons</div></a></li>
-										<li><a href="tables.html"><div><i class="icon-table"></i>Tables</div></a></li>
-										<li><a href="tabs.html"><div><i class="icon-star3"></i>Tabs</div></a></li>
-										<li><a href="testimonials-twitter.html"><div><i class="icon-user4"></i>Testimonials</div></a></li>
-										<li><a href="thumbnails-slider.html"><div><i class="icon-camera3"></i>Thumbnails</div></a></li>
-										<li><a href="toggles-accordions.html"><div><i class="icon-ok-circle"></i>Toggles</div></a></li>
-										<li><a href="component-radios-switches.html"><div><i class="icon-line-square-check"></i>Radios &amp; Switches</div></a></li>
-										<li><a href="component-typeahead.html"><div><i class="icon-type"></i>Input Typeahead</div></a></li>
-									</ul>
-								</div>
-							</li>
+							<li class="mega-menu"><a href="#"><div>Project Ideas</div></a></li>
 						</ul>
 
 						<!-- Top Cart
@@ -674,20 +208,188 @@
 
 		</header><!-- #header end -->
 
-		<!-- Page Title
-		============================================= -->
-		<section id="page-title">
+		<section id="slider" class="slider-parallax revslider-wrap ohidden clearfix">
 
-			<div class="container clearfix">
-				<h1>Checkout</h1>
-				<ol class="breadcrumb">
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Shop</a></li>
-					<li class="active">Checkout</li>
-				</ol>
+			<!--
+			#################################
+				- THEMEPUNCH BANNER -
+			#################################
+			-->
+			<div class="tp-banner-container">
+				<div class="tp-banner" >
+					<ul>    <!-- SLIDE  -->
+				<li data-transition="fade" data-slotamount="1" data-masterspeed="1500" data-delay="10000" data-saveperformance="off" data-title="Latest Collections" style="background-color: #F6F6F6;">
+					<!-- LAYERS -->
+
+					<!-- LAYER NR. 2 -->
+					<div class="tp-caption customin ltl tp-resizeme revo-slider-caps-text uppercase"
+					data-x="100"
+					data-y="50"
+					data-customin="x:-200;y:0;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
+					data-speed="400"
+					data-start="1000"
+					data-easing="easeOutQuad"
+					data-splitin="none"
+					data-splitout="none"
+					data-elementdelay="0.01"
+					data-endelementdelay="0.1"
+					data-endspeed="1000"
+					data-endeasing="Power4.easeIn" style=""><img src="images/slider/rev/shop/girl1.jpg" alt="Girl"></div>
+
+					<div class="tp-caption customin ltl tp-resizeme revo-slider-caps-text uppercase"
+					data-x="570"
+					data-y="75"
+					data-customin="x:0;y:150;z:0;rotationZ:0;scaleX:1.3;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
+					data-speed="700"
+					data-start="1000"
+					data-easing="easeOutQuad"
+					data-splitin="none"
+					data-splitout="none"
+					data-elementdelay="0.01"
+					data-endelementdelay="0.1"
+					data-endspeed="1000"
+					data-endeasing="Power4.easeIn" style=" color: #333;">Get your Shopping Bags Ready</div>
+
+					<div class="tp-caption customin ltl tp-resizeme revo-slider-emphasis-text nopadding noborder"
+					data-x="570"
+					data-y="105"
+					data-customin="x:0;y:150;z:0;rotationZ:0;scaleX:1.3;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
+					data-speed="700"
+					data-start="1200"
+					data-easing="easeOutQuad"
+					data-splitin="none"
+					data-splitout="none"
+					data-elementdelay="0.01"
+					data-endelementdelay="0.1"
+					data-endspeed="1000"
+					data-endeasing="Power4.easeIn" style=" color: #333; max-width: 430px; line-height: 1.15;">Latest Fashion<br>Collections</div>
+
+					<div class="tp-caption customin ltl tp-resizeme revo-slider-desc-text tleft"
+					data-x="570"
+					data-y="275"
+					data-customin="x:0;y:150;z:0;rotationZ:0;scaleX:1.3;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
+					data-speed="700"
+					data-start="1400"
+					data-easing="easeOutQuad"
+					data-splitin="none"
+					data-splitout="none"
+					data-elementdelay="0.01"
+					data-endelementdelay="0.1"
+					data-endspeed="1000"
+					data-endeasing="Power4.easeIn" style=" color: #333; max-width: 550px; white-space: normal;">We have created a Design that looks Awesome, performs Brilliantly &amp; senses Orientations.</div>
+
+					<div class="tp-caption customin ltl tp-resizeme"
+					data-x="570"
+					data-y="375"
+					data-customin="x:0;y:150;z:0;rotationZ:0;scaleX:1.3;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
+					data-speed="700"
+					data-start="1550"
+					data-easing="easeOutQuad"
+					data-splitin="none"
+					data-splitout="none"
+					data-elementdelay="0.01"
+					data-endelementdelay="0.1"
+					data-endspeed="1000"
+					data-endeasing="Power4.easeIn" style=""><a href="#" class="button button-border button-large button-rounded tright nomargin"><span>Start Shopping</span> <i class="icon-angle-right"></i></a></div>
+
+				</li>
+				<!-- SLIDE  -->
+				<li data-transition="slideup" data-slotamount="1" data-masterspeed="1500" data-delay="10000"  data-saveperformance="off"  data-title="Magnetic Focals" style="background-color: #E9E8E3;">
+					<!-- LAYERS -->
+
+					<div class="tp-caption customin ltl tp-resizeme revo-slider-caps-text uppercase"
+					data-x="630"
+					data-y="78"
+					data-customin="x:250;y:0;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
+					data-speed="400"
+					data-start="1000"
+					data-easing="easeOutQuad"
+					data-splitin="none"
+					data-splitout="none"
+					data-elementdelay="0.01"
+					data-endelementdelay="0.1"
+					data-endspeed="1000"
+					data-endeasing="Power4.easeIn" style=""><img src="images/slider/rev/shop/bag.png" alt="Bag"></div>
+
+					<!-- LAYER NR. 2 -->
+					<div class="tp-caption customin ltl tp-resizeme revo-slider-caps-text uppercase"
+					data-x="0"
+					data-y="110"
+					data-customin="x:0;y:150;z:0;rotationZ:0;scaleX:1.3;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
+					data-speed="700"
+					data-start="1000"
+					data-easing="easeOutQuad"
+					data-splitin="none"
+					data-splitout="none"
+					data-elementdelay="0.01"
+					data-endelementdelay="0.1"
+					data-endspeed="1000"
+					data-endeasing="Power4.easeIn" style=" color: #333;">Buy Stylish Bangles at Discounted Prices</div>
+
+					<div class="tp-caption customin ltl tp-resizeme revo-slider-emphasis-text nopadding noborder"
+					data-x="0"
+					data-y="140"
+					data-customin="x:0;y:150;z:0;rotationZ:0;scaleX:1.3;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
+					data-speed="700"
+					data-start="1200"
+					data-easing="easeOutQuad"
+					data-splitin="none"
+					data-splitout="none"
+					data-elementdelay="0.01"
+					data-endelementdelay="0.1"
+					data-endspeed="1000"
+					data-endeasing="Power4.easeIn" style=" color: #333; line-height: 1.15;">Focal Bands</div>
+
+					<div class="tp-caption customin ltl tp-resizeme revo-slider-desc-text tleft"
+					data-x="0"
+					data-y="240"
+					data-customin="x:0;y:150;z:0;rotationZ:0;scaleX:1.3;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
+					data-speed="700"
+					data-start="1400"
+					data-easing="easeOutQuad"
+					data-splitin="none"
+					data-splitout="none"
+					data-elementdelay="0.01"
+					data-endelementdelay="0.1"
+					data-endspeed="1000"
+					data-endeasing="Power4.easeIn" style=" color: #333; max-width: 550px; white-space: normal;">Grantees insurmountable challenges invest protect, growth improving quality social entrepreneurship.</div>
+
+					<div class="tp-caption customin ltl tp-resizeme"
+					data-x="0"
+					data-y="340"
+					data-customin="x:0;y:150;z:0;rotationZ:0;scaleX:1.3;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
+					data-speed="700"
+					data-start="1550"
+					data-easing="easeOutQuad"
+					data-splitin="none"
+					data-splitout="none"
+					data-elementdelay="0.01"
+					data-endelementdelay="0.1"
+					data-endspeed="1000"
+					data-endeasing="Power4.easeIn" style=""><a href="#" class="button button-border button-large button-rounded tright nomargin"><span>Start Shopping</span> <i class="icon-angle-right"></i></a></div>
+
+					<div class="tp-caption customin utb tp-resizeme revo-slider-caps-text uppercase"
+					data-x="510"
+					data-y="0"
+					data-customin="x:0;y:-236;z:0;rotationZ:0;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
+					data-speed="600"
+					data-start="2100"
+					data-easing="easeOutQuad"
+					data-splitin="none"
+					data-splitout="none"
+					data-elementdelay="0.01"
+					data-endelementdelay="0.1"
+					data-endspeed="1000"
+					data-endeasing="Power4.easeIn" style=""><img src="images/slider/rev/shop/tag.png" alt="Bag"></div>
+
+				</li>
+			</ul>
+			</div>
 			</div>
 
-		</section><!-- #page-title end -->
+			<!-- END REVOLUTION SLIDER -->
+
+		</section>
 
 		<!-- Content
 		============================================= -->
@@ -697,242 +399,421 @@
 
 				<div class="container clearfix">
 
-					<div class="col_half">
-						<div class="panel panel-default">
-							<div class="panel-body">
-								Returning customer? <a href="login-register.html">Click here to login</a>
-							</div>
+					<div class="col-md-8 nopadding">
+
+						<div class="col-md-6 noleftpadding bottommargin-sm">
+							<a href="#"><img src="images/shop/banners/2.jpg" alt="Image"></a>
 						</div>
+
+						<div class="col-md-6 noleftpadding bottommargin-sm">
+							<a href="#"><img src="images/shop/banners/8.jpg" alt="Image"></a>
+						</div>
+
+
+
+						<div class="col-md-12 noleftpadding">
+							<a href="#"><img src="images/shop/banners/4.jpg" alt="Image"></a>
+						</div>
+
 					</div>
-					<div class="col_half col_last">
-						<div class="panel panel-default">
-							<div class="panel-body">
-								Have a coupon? <a href="login-register.html">Click here to enter your code</a>
-							</div>
-						</div>
+
+					<div class="col-md-4 nopadding">
+						<a href="#"><img src="images/shop/banners/9.jpg" alt="Image"></a>
 					</div>
 
-					<div class="row clearfix">
-						<div class="col-md-6">
-							<h3>Billing Address</h3>
+					<div class="clear"></div>
+					<div class="tabs topmargin-lg clearfix" id="tab-3">
 
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, vel odio non dicta provident sint ex autem mollitia dolorem illum repellat ipsum aliquid illo similique sapiente fugiat minus ratione.</p>
+					<div class="fancy-title title-border title-center topmargin-sm">
+						<h4>Programs</h4>
+					</div>
 
-							<form id="billing-form" name="billing-form" class="nobottommargin" action="#" method="post">
+					<div id="oc-clients-full" class="owl-carousel image-carousel carousel-widget" data-margin="30" data-nav="false" data-autoplay="5000" data-pagi="false" data-items-xxs="2" data-items-xs="3" data-items-sm="4" data-items-md="5" data-items-lg="7">
 
-								<div class="col_half">
-									<label for="billing-form-name">Name:</label>
-									<input type="text" id="billing-form-name" name="billing-form-name" value="" class="sm-form-control" />
-								</div>
 
-								<div class="col_half col_last">
-									<label for="billing-form-lname">Last Name:</label>
-									<input type="text" id="billing-form-lname" name="billing-form-lname" value="" class="sm-form-control" />
-								</div>
+						<div class="oc-item"><a href="#"><img src="images/clients/logo/4.png" alt="Clients"></a></div>
+						<div class="oc-item"><a href="#"><img src="images/clients/logo/5.png" alt="Clients"></a></div>
 
-								<div class="clear"></div>
+						<div class="oc-item"><a href="#"><img src="images/clients/logo/9.png" alt="Clients"></a></div>
+						<div class="oc-item"><a href="#"><img src="images/clients/logo/10.png" alt="Clients"></a></div>
 
-								<div class="col_full">
-									<label for="billing-form-companyname">Company Name:</label>
-									<input type="text" id="billing-form-companyname" name="billing-form-companyname" value="" class="sm-form-control" />
-								</div>
 
-								<div class="col_full">
-									<label for="billing-form-address">Address:</label>
-									<input type="text" id="billing-form-address" name="billing-form-address" value="" class="sm-form-control" />
-								</div>
+						<div class="oc-item"><a href="#"><img src="images/clients/logo/14.png" alt="Clients"></a></div>
+						<div class="oc-item"><a href="#"><img src="images/clients/logo/15.png" alt="Clients"></a></div>
+						<div class="oc-item"><a href="#"><img src="images/clients/logo/18.png" alt="Clients"></a></div>
 
-								<div class="col_full">
-									<input type="text" id="billing-form-address2" name="billing-form-adress" value="" class="sm-form-control" />
-								</div>
+					</div>
 
-								<div class="col_full">
-									<label for="billing-form-city">City / Town</label>
-									<input type="text" id="billing-form-city" name="billing-form-city" value="" class="sm-form-control" />
-								</div>
+					<div class="tabs topmargin-lg clearfix" id="tab-3">
 
-								<div class="col_half">
-									<label for="billing-form-email">Email Address:</label>
-									<input type="email" id="billing-form-email" name="billing-form-email" value="" class="sm-form-control" />
-								</div>
+						<ul class="tab-nav clearfix">
+							<li><a href="#tabs-9">New Arrivals</a></li>
+							<li><a href="#tabs-10">Best sellers</a></li>
+							<li><a href="#tabs-11">You may like</a></li>
+						</ul>
 
-								<div class="col_half col_last">
-									<label for="billing-form-phone">Phone:</label>
-									<input type="text" id="billing-form-phone" name="billing-form-phone" value="" class="sm-form-control" />
-								</div>
+						<div class="tab-container">
 
-							</form>
-						</div>
-						<div class="col-md-6">
-							<h3 class="">Shipping Address</h3>
+							<div class="tab-content clearfix" id="tabs-9">
 
-							<form id="shipping-form" name="shipping-form" class="nobottommargin" action="#" method="post">
+								<div id="shop" class="shop clearfix">
 
-								<div class="col_half">
-									<label for="shipping-form-name">Name:</label>
-									<input type="text" id="shipping-form-name" name="shipping-form-name" value="" class="sm-form-control" />
-								</div>
+									<div class="product clearfix">
+										<div class="product-image">
+											<a href="#"><img src="images/shop/dress/1.jpg" alt="Checked Short Dress"></a>
+											<a href="#"><img src="images/shop/dress/1-1.jpg" alt="Checked Short Dress"></a>
+											<div class="sale-flash">50% Off*</div>
+											<div class="product-overlay">
+												<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+												<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+											</div>
+										</div>
+										<div class="product-desc">
+											<div class="product-title"><h3><a href="#">Checked Short Dress</a></h3></div>
+											<div class="product-price"><del>$24.99</del> <ins>$12.49</ins></div>
+											<div class="product-rating">
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star-half-full"></i>
+											</div>
+										</div>
+									</div>
 
-								<div class="col_half col_last">
-									<label for="shipping-form-lname">Last Name:</label>
-									<input type="text" id="shipping-form-lname" name="shipping-form-lname" value="" class="sm-form-control" />
-								</div>
+									<div class="product clearfix">
+										<div class="product-image">
+											<a href="#"><img src="images/shop/pants/1-1.jpg" alt="Slim Fit Chinos"></a>
+											<a href="#"><img src="images/shop/pants/1.jpg" alt="Slim Fit Chinos"></a>
+											<div class="product-overlay">
+												<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+												<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+											</div>
+										</div>
+										<div class="product-desc">
+											<div class="product-title"><h3><a href="#">Slim Fit Chinos</a></h3></div>
+											<div class="product-price">$39.99</div>
+											<div class="product-rating">
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star-half-full"></i>
+												<i class="icon-star-empty"></i>
+											</div>
+										</div>
+									</div>
 
-								<div class="clear"></div>
-
-								<div class="col_full">
-									<label for="shipping-form-companyname">Company Name:</label>
-									<input type="text" id="shipping-form-companyname" name="shipping-form-companyname" value="" class="sm-form-control" />
-								</div>
-
-								<div class="col_full">
-									<label for="shipping-form-address">Address:</label>
-									<input type="text" id="shipping-form-address" name="shipping-form-address" value="" class="sm-form-control" />
-								</div>
-
-								<div class="col_full">
-									<input type="text" id="shipping-form-address2" name="shipping-form-adress" value="" class="sm-form-control" />
-								</div>
-
-								<div class="col_full">
-									<label for="shipping-form-city">City / Town</label>
-									<input type="text" id="shipping-form-city" name="shipping-form-city" value="" class="sm-form-control" />
-								</div>
-
-								<div class="col_full">
-									<label for="shipping-form-message">Notes <small>*</small></label>
-									<textarea class="sm-form-control" id="shipping-form-message" name="shipping-form-message" rows="6" cols="30"></textarea>
-								</div>
-
-							</form>
-						</div>
-						<div class="clear bottommargin"></div>
-						<div class="col-md-6">
-							<div class="table-responsive clearfix">
-								<h4>Your Orders</h4>
-
-								<table class="table cart">
-									<thead>
-										<tr>
-											<th class="cart-product-thumbnail">&nbsp;</th>
-											<th class="cart-product-name">Product</th>
-											<th class="cart-product-quantity">Quantity</th>
-											<th class="cart-product-subtotal">Total</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr class="cart_item">
-											<td class="cart-product-thumbnail">
-												<a href="#"><img width="64" height="64" src="images/shop/thumbs/small/dress-3.jpg" alt="Pink Printed Dress"></a>
-											</td>
-
-											<td class="cart-product-name">
-												<a href="#">Pink Printed Dress</a>
-											</td>
-
-											<td class="cart-product-quantity">
-												<div class="quantity clearfix">
-													1x2
+									<div class="product clearfix">
+										<div class="product-image">
+											<div class="fslider" data-arrows="false">
+												<div class="flexslider">
+													<div class="slider-wrap">
+														<div class="slide"><a href="#"><img src="images/shop/shoes/1.jpg" alt="Dark Brown Boots"></a></div>
+														<div class="slide"><a href="#"><img src="images/shop/shoes/1-1.jpg" alt="Dark Brown Boots"></a></div>
+														<div class="slide"><a href="#"><img src="images/shop/shoes/1-2.jpg" alt="Dark Brown Boots"></a></div>
+													</div>
 												</div>
-											</td>
+											</div>
+											<div class="product-overlay">
+												<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+												<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+											</div>
+										</div>
+										<div class="product-desc">
+											<div class="product-title"><h3><a href="#">Dark Brown Boots</a></h3></div>
+											<div class="product-price">$49</div>
+											<div class="product-rating">
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star-empty"></i>
+												<i class="icon-star-empty"></i>
+											</div>
+										</div>
+									</div>
 
-											<td class="cart-product-subtotal">
-												<span class="amount">$39.98</span>
-											</td>
-										</tr>
-										<tr class="cart_item">
-											<td class="cart-product-thumbnail">
-												<a href="#"><img width="64" height="64" src="images/shop/thumbs/small/shoes-2.jpg" alt="Checked Canvas Shoes"></a>
-											</td>
+									<div class="product clearfix">
+										<div class="product-image">
+											<a href="#"><img src="images/shop/dress/2.jpg" alt="Light Blue Denim Dress"></a>
+											<a href="#"><img src="images/shop/dress/2-2.jpg" alt="Light Blue Denim Dress"></a>
+											<div class="product-overlay">
+												<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+												<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+											</div>
+										</div>
+										<div class="product-desc">
+											<div class="product-title"><h3><a href="#">Light Blue Denim Dress</a></h3></div>
+											<div class="product-price">$19.95</div>
+											<div class="product-rating">
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star-empty"></i>
+											</div>
+										</div>
+									</div>
 
-											<td class="cart-product-name">
-												<a href="#">Checked Canvas Shoes</a>
-											</td>
-
-											<td class="cart-product-quantity">
-												<div class="quantity clearfix">
-													1x1
-												</div>
-											</td>
-
-											<td class="cart-product-subtotal">
-												<span class="amount">$24.99</span>
-											</td>
-										</tr>
-										<tr class="cart_item">
-											<td class="cart-product-thumbnail">
-												<a href="#"><img width="64" height="64" src="images/shop/thumbs/small/tshirt-2.jpg" alt="Pink Printed Dress"></a>
-											</td>
-
-											<td class="cart-product-name">
-												<a href="#">Blue Men Tshirt</a>
-											</td>
-
-											<td class="cart-product-quantity">
-												<div class="quantity clearfix">
-													1x3
-												</div>
-											</td>
-
-											<td class="cart-product-subtotal">
-												<span class="amount">$41.97</span>
-											</td>
-										</tr>
-									</tbody>
-
-								</table>
+								</div>
 
 							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="table-responsive">
-								<h4>Cart Totals</h4>
 
-								<table class="table cart">
-									<tbody>
-										<tr class="cart_item">
-											<td class="notopborder cart-product-name">
-												<strong>Cart Subtotal</strong>
-											</td>
+							<div class="tab-content clearfix" id="tabs-10">
 
-											<td class="notopborder cart-product-name">
-												<span class="amount">$106.94</span>
-											</td>
-										</tr>
-										<tr class="cart_item">
-											<td class="cart-product-name">
-												<strong>Shipping</strong>
-											</td>
+								<div id="shop" class="shop clearfix">
 
-											<td class="cart-product-name">
-												<span class="amount">Free Delivery</span>
-											</td>
-										</tr>
-										<tr class="cart_item">
-											<td class="cart-product-name">
-												<strong>Total</strong>
-											</td>
+									<div class="product clearfix">
+										<div class="product-image">
+											<a href="#"><img src="images/shop/sunglasses/1.jpg" alt="Unisex Sunglasses"></a>
+											<a href="#"><img src="images/shop/sunglasses/1-1.jpg" alt="Unisex Sunglasses"></a>
+											<div class="sale-flash">Sale!</div>
+											<div class="product-overlay">
+												<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+												<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+											</div>
+										</div>
+										<div class="product-desc">
+											<div class="product-title"><h3><a href="#">Unisex Sunglasses</a></h3></div>
+											<div class="product-price"><del>$19.99</del> <ins>$11.99</ins></div>
+											<div class="product-rating">
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star-empty"></i>
+												<i class="icon-star-empty"></i>
+											</div>
+										</div>
+									</div>
 
-											<td class="cart-product-name">
-												<span class="amount color lead"><strong>$106.94</strong></span>
-											</td>
-										</tr>
-									</tbody>
-								</table>
+									<div class="product clearfix">
+										<div class="product-image">
+											<a href="#"><img src="images/shop/tshirts/1.jpg" alt="Blue Round-Neck Tshirt"></a>
+											<a href="#"><img src="images/shop/tshirts/1-1.jpg" alt="Blue Round-Neck Tshirt"></a>
+											<div class="product-overlay">
+												<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+												<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+											</div>
+										</div>
+										<div class="product-desc">
+											<div class="product-title"><h3><a href="#">Blue Round-Neck Tshirt</a></h3></div>
+											<div class="product-price">$9.99</div>
+											<div class="product-rating">
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star-half-full"></i>
+												<i class="icon-star-empty"></i>
+											</div>
+										</div>
+									</div>
+
+									<div class="product clearfix">
+										<div class="product-image">
+											<a href="#"><img src="images/shop/watches/1.jpg" alt="Silver Chrome Watch"></a>
+											<a href="#"><img src="images/shop/watches/1-1.jpg" alt="Silver Chrome Watch"></a>
+											<div class="product-overlay">
+												<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+												<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+											</div>
+										</div>
+										<div class="product-desc">
+											<div class="product-title"><h3><a href="#">Silver Chrome Watch</a></h3></div>
+											<div class="product-price">$129.99</div>
+											<div class="product-rating">
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star-half-full"></i>
+											</div>
+										</div>
+									</div>
+
+									<div class="product clearfix">
+										<div class="product-image">
+											<a href="#"><img src="images/shop/shoes/2.jpg" alt="Men Grey Casual Shoes"></a>
+											<a href="#"><img src="images/shop/shoes/2-1.jpg" alt="Men Grey Casual Shoes"></a>
+											<div class="sale-flash">Sale!</div>
+											<div class="product-overlay">
+												<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+												<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+											</div>
+										</div>
+										<div class="product-desc">
+											<div class="product-title"><h3><a href="#">Men Grey Casual Shoes</a></h3></div>
+											<div class="product-price"><del>$45.99</del> <ins>$39.49</ins></div>
+											<div class="product-rating">
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star-half-full"></i>
+												<i class="icon-star-empty"></i>
+												<i class="icon-star-empty"></i>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+
+							<div class="tab-content clearfix" id="tabs-11">
+
+								<div id="shop" class="shop clearfix">
+
+									<div class="product clearfix">
+										<div class="product-image">
+											<div class="fslider" data-arrows="false">
+												<div class="flexslider">
+													<div class="slider-wrap">
+														<div class="slide"><a href="#"><img src="images/shop/dress/3.jpg" alt="Pink Printed Dress"></a></div>
+														<div class="slide"><a href="#"><img src="images/shop/dress/3-1.jpg" alt="Pink Printed Dress"></a></div>
+														<div class="slide"><a href="#"><img src="images/shop/dress/3-2.jpg" alt="Pink Printed Dress"></a></div>
+													</div>
+												</div>
+											</div>
+											<div class="product-overlay">
+												<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+												<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+											</div>
+										</div>
+										<div class="product-desc">
+											<div class="product-title"><h3><a href="#">Pink Printed Dress</a></h3></div>
+											<div class="product-price">$39.49</div>
+											<div class="product-rating">
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star-empty"></i>
+												<i class="icon-star-empty"></i>
+											</div>
+										</div>
+									</div>
+
+									<div class="product clearfix">
+										<div class="product-image">
+											<a href="#"><img src="images/shop/pants/5.jpg" alt="Green Trousers"></a>
+											<a href="#"><img src="images/shop/pants/5-1.jpg" alt="Green Trousers"></a>
+											<div class="sale-flash">Sale!</div>
+											<div class="product-overlay">
+												<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+												<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+											</div>
+										</div>
+										<div class="product-desc">
+											<div class="product-title"><h3><a href="#">Green Trousers</a></h3></div>
+											<div class="product-price"><del>$24.99</del> <ins>$21.99</ins></div>
+											<div class="product-rating">
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star-half-full"></i>
+												<i class="icon-star-empty"></i>
+											</div>
+										</div>
+									</div>
+
+									<div class="product clearfix">
+										<div class="product-image">
+											<a href="#"><img src="images/shop/sunglasses/2.jpg" alt="Men Aviator Sunglasses"></a>
+											<a href="#"><img src="images/shop/sunglasses/2-1.jpg" alt="Men Aviator Sunglasses"></a>
+											<div class="product-overlay">
+												<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+												<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+											</div>
+										</div>
+										<div class="product-desc">
+											<div class="product-title"><h3><a href="#">Men Aviator Sunglasses</a></h3></div>
+											<div class="product-price">$13.49</div>
+											<div class="product-rating">
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star-empty"></i>
+											</div>
+										</div>
+									</div>
+
+									<div class="product clearfix">
+										<div class="product-image">
+											<a href="#"><img src="images/shop/tshirts/4.jpg" alt="Black Polo Tshirt"></a>
+											<a href="#"><img src="images/shop/tshirts/4-1.jpg" alt="Black Polo Tshirt"></a>
+											<div class="product-overlay">
+												<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+												<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+											</div>
+										</div>
+										<div class="product-desc">
+											<div class="product-title"><h3><a href="#">Black Polo Tshirt</a></h3></div>
+											<div class="product-price">$11.49</div>
+											<div class="product-rating">
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+												<i class="icon-star3"></i>
+											</div>
+										</div>
+									</div>
+
+								</div>
 
 							</div>
-							<div class="accordion clearfix">
-								<div class="acctitle"><i class="acc-closed icon-ok-circle"></i><i class="acc-open icon-remove-circle"></i>Direct Bank Transfer</div>
-								<div class="acc_content clearfix">Donec sed odio dui. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</div>
 
-								<div class="acctitle"><i class="acc-closed icon-ok-circle"></i><i class="acc-open icon-remove-circle"></i>Cheque Payment</div>
-								<div class="acc_content clearfix">Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus. Aenean lacinia bibendum nulla sed consectetur. Cras mattis consectetur purus sit amet fermentum.</div>
-
-								<div class="acctitle"><i class="acc-closed icon-ok-circle"></i><i class="acc-open icon-remove-circle"></i>Paypal</div>
-								<div class="acc_content clearfix">Nullam id dolor id nibh ultricies vehicula ut id elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus. Aenean lacinia bibendum nulla sed consectetur.</div>
-							</div>
-							<a href="#" class="button button-3d fright">Place Order</a>
 						</div>
+
+					</div>
+
+					<div class="clear bottommargin-sm"></div>
+
+
+
+					<div class="clear"></div>
+
+
+
+				<div class="section nobottommargin">
+					<div class="container clearfix">
+
+						<div class="col_one_fourth nobottommargin">
+							<div class="feature-box fbox-plain fbox-dark fbox-small">
+								<div class="fbox-icon">
+									<i class="icon-thumbs-up2"></i>
+								</div>
+								<h3>100% Original</h3>
+								<p class="notopmargin">We guarantee you the sale of Original Brands.</p>
+							</div>
+						</div>
+
+						<div class="col_one_fourth nobottommargin">
+							<div class="feature-box fbox-plain fbox-dark fbox-small">
+								<div class="fbox-icon">
+									<i class="icon-credit-cards"></i>
+								</div>
+								<h3>Payment Options</h3>
+								<p class="notopmargin">We accept Visa, MasterCard and American Express.</p>
+							</div>
+						</div>
+
+						<div class="col_one_fourth nobottommargin">
+							<div class="feature-box fbox-plain fbox-dark fbox-small">
+								<div class="fbox-icon">
+									<i class="icon-truck2"></i>
+								</div>
+								<h3>Free Shipping</h3>
+								<p class="notopmargin">Free Delivery to 100+ Locations on orders above $40.</p>
+							</div>
+						</div>
+
+						<div class="col_one_fourth nobottommargin col_last">
+							<div class="feature-box fbox-plain fbox-dark fbox-small">
+								<div class="fbox-icon">
+									<i class="icon-undo"></i>
+								</div>
+								<h3>30-Days Returns</h3>
+								<p class="notopmargin">Return or exchange items purchased within 30 days.</p>
+							</div>
+						</div>
+
 					</div>
 				</div>
 
@@ -944,164 +825,6 @@
 		============================================= -->
 		<footer id="footer" class="dark">
 
-			<div class="container">
-
-				<!-- Footer Widgets
-				============================================= -->
-				<div class="footer-widgets-wrap clearfix">
-
-					<div class="col_two_third">
-
-						<div class="col_one_third">
-
-							<div class="widget clearfix">
-
-								<img src="images/footer-widget-logo.png" alt="" class="footer-logo">
-
-								<p>We believe in <strong>Simple</strong>, <strong>Creative</strong> &amp; <strong>Flexible</strong> Design Standards.</p>
-
-								<div style="background: url('images/world-map.png') no-repeat center center; background-size: 100%;">
-									<address>
-										<strong>Headquarters:</strong><br>
-										795 Folsom Ave, Suite 600<br>
-										San Francisco, CA 94107<br>
-									</address>
-									<abbr title="Phone Number"><strong>Phone:</strong></abbr> (91) 8547 632521<br>
-									<abbr title="Fax"><strong>Fax:</strong></abbr> (91) 11 4752 1433<br>
-									<abbr title="Email Address"><strong>Email:</strong></abbr> info@canvas.com
-								</div>
-
-							</div>
-
-						</div>
-
-						<div class="col_one_third">
-
-							<div class="widget widget_links clearfix">
-
-								<h4>Blogroll</h4>
-
-								<ul>
-									<li><a href="http://codex.wordpress.org/">Documentation</a></li>
-									<li><a href="http://wordpress.org/support/forum/requests-and-feedback">Feedback</a></li>
-									<li><a href="http://wordpress.org/extend/plugins/">Plugins</a></li>
-									<li><a href="http://wordpress.org/support/">Support Forums</a></li>
-									<li><a href="http://wordpress.org/extend/themes/">Themes</a></li>
-									<li><a href="http://wordpress.org/news/">WordPress Blog</a></li>
-									<li><a href="http://planet.wordpress.org/">WordPress Planet</a></li>
-								</ul>
-
-							</div>
-
-						</div>
-
-						<div class="col_one_third col_last">
-
-							<div class="widget clearfix">
-								<h4>Recent Posts</h4>
-
-								<div id="post-list-footer">
-									<div class="spost clearfix">
-										<div class="entry-c">
-											<div class="entry-title">
-												<h4><a href="#">Lorem ipsum dolor sit amet, consectetur</a></h4>
-											</div>
-											<ul class="entry-meta">
-												<li>10th July 2014</li>
-											</ul>
-										</div>
-									</div>
-
-									<div class="spost clearfix">
-										<div class="entry-c">
-											<div class="entry-title">
-												<h4><a href="#">Elit Assumenda vel amet dolorum quasi</a></h4>
-											</div>
-											<ul class="entry-meta">
-												<li>10th July 2014</li>
-											</ul>
-										</div>
-									</div>
-
-									<div class="spost clearfix">
-										<div class="entry-c">
-											<div class="entry-title">
-												<h4><a href="#">Debitis nihil placeat, illum est nisi</a></h4>
-											</div>
-											<ul class="entry-meta">
-												<li>10th July 2014</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-
-						</div>
-
-					</div>
-
-					<div class="col_one_third col_last">
-
-						<div class="widget clearfix" style="margin-bottom: -20px;">
-
-							<div class="row">
-
-								<div class="col-md-6 bottommargin-sm">
-									<div class="counter counter-small"><span data-from="50" data-to="15065421" data-refresh-interval="80" data-speed="3000" data-comma="true"></span></div>
-									<h5 class="nobottommargin">Total Downloads</h5>
-								</div>
-
-								<div class="col-md-6 bottommargin-sm">
-									<div class="counter counter-small"><span data-from="100" data-to="18465" data-refresh-interval="50" data-speed="2000" data-comma="true"></span></div>
-									<h5 class="nobottommargin">Clients</h5>
-								</div>
-
-							</div>
-
-						</div>
-
-						<div class="widget subscribe-widget clearfix">
-							<h5><strong>Subscribe</strong> to Our Newsletter to get Important News, Amazing Offers &amp; Inside Scoops:</h5>
-							<div class="widget-subscribe-form-result"></div>
-							<form id="widget-subscribe-form" action="include/subscribe.php" role="form" method="post" class="nobottommargin">
-								<div class="input-group divcenter">
-									<span class="input-group-addon"><i class="icon-email2"></i></span>
-									<input type="email" id="widget-subscribe-form-email" name="widget-subscribe-form-email" class="form-control required email" placeholder="Enter your Email">
-									<span class="input-group-btn">
-										<button class="btn btn-success" type="submit">Subscribe</button>
-									</span>
-								</div>
-							</form>
-						</div>
-
-						<div class="widget clearfix" style="margin-bottom: -20px;">
-
-							<div class="row">
-
-								<div class="col-md-6 clearfix bottommargin-sm">
-									<a href="#" class="social-icon si-dark si-colored si-facebook nobottommargin" style="margin-right: 10px;">
-										<i class="icon-facebook"></i>
-										<i class="icon-facebook"></i>
-									</a>
-									<a href="#"><small style="display: block; margin-top: 3px;"><strong>Like us</strong><br>on Facebook</small></a>
-								</div>
-								<div class="col-md-6 clearfix">
-									<a href="#" class="social-icon si-dark si-colored si-rss nobottommargin" style="margin-right: 10px;">
-										<i class="icon-rss"></i>
-										<i class="icon-rss"></i>
-									</a>
-									<a href="#"><small style="display: block; margin-top: 3px;"><strong>Subscribe</strong><br>to RSS Feeds</small></a>
-								</div>
-
-							</div>
-
-						</div>
-
-					</div>
-
-				</div><!-- .footer-widgets-wrap end -->
-
-			</div>
 
 			<!-- Copyrights
 			============================================= -->
@@ -1110,7 +833,7 @@
 				<div class="container clearfix">
 
 					<div class="col_half">
-						Copyrights &copy; 2014 All Rights Reserved by Canvas Inc.<br>
+						Copyrights &copy; 2016 All Rights Reserved by Cousin Corp.<br>
 						<div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
 					</div>
 
@@ -1126,9 +849,9 @@
 								<i class="icon-twitter"></i>
 							</a>
 
-							<a href="#" class="social-icon si-small si-borderless si-gplus">
-								<i class="icon-gplus"></i>
-								<i class="icon-gplus"></i>
+							<a href="#" class="social-icon si-small si-borderless si-instagram">
+								<i class="icon-instagram"></i>
+								<i class="icon-instagram"></i>
 							</a>
 
 							<a href="#" class="social-icon si-small si-borderless si-pinterest">
@@ -1136,30 +859,11 @@
 								<i class="icon-pinterest"></i>
 							</a>
 
-							<a href="#" class="social-icon si-small si-borderless si-vimeo">
-								<i class="icon-vimeo"></i>
-								<i class="icon-vimeo"></i>
-							</a>
-
-							<a href="#" class="social-icon si-small si-borderless si-github">
-								<i class="icon-github"></i>
-								<i class="icon-github"></i>
-							</a>
-
-							<a href="#" class="social-icon si-small si-borderless si-yahoo">
-								<i class="icon-yahoo"></i>
-								<i class="icon-yahoo"></i>
-							</a>
-
-							<a href="#" class="social-icon si-small si-borderless si-linkedin">
-								<i class="icon-linkedin"></i>
-								<i class="icon-linkedin"></i>
-							</a>
 						</div>
 
 						<div class="clear"></div>
 
-						<i class="icon-envelope2"></i> info@canvas.com <span class="middot">&middot;</span> <i class="icon-headphones"></i> +91-11-6541-6369 <span class="middot">&middot;</span> <i class="icon-skype2"></i> CanvasOnSkype
+						<i class="icon-envelope2"></i> info@laurajanelle.com <span class="middot">&middot;</span> <i class="icon-headphones"></i> 844 366-6900
 					</div>
 
 				</div>
@@ -1182,6 +886,93 @@
 	<!-- Footer Scripts
 	============================================= -->
 	<script type="text/javascript" src="js/functions.js"></script>
+
+	<!-- SLIDER REVOLUTION 5.x SCRIPTS  -->
+	<script type="text/javascript" src="include/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+	<script type="text/javascript" src="include/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+
+	<script type="text/javascript" src="include/rs-plugin/js/extensions/revolution.extension.video.min.js"></script>
+	<script type="text/javascript" src="include/rs-plugin/js/extensions/revolution.extension.slideanims.min.js"></script>
+	<script type="text/javascript" src="include/rs-plugin/js/extensions/revolution.extension.actions.min.js"></script>
+	<script type="text/javascript" src="include/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js"></script>
+	<script type="text/javascript" src="include/rs-plugin/js/extensions/revolution.extension.kenburn.min.js"></script>
+	<script type="text/javascript" src="include/rs-plugin/js/extensions/revolution.extension.navigation.min.js"></script>
+	<script type="text/javascript" src="include/rs-plugin/js/extensions/revolution.extension.migration.min.js"></script>
+	<script type="text/javascript" src="include/rs-plugin/js/extensions/revolution.extension.parallax.min.js"></script>
+
+	<script type="text/javascript">
+
+		var tpj=jQuery;
+		tpj.noConflict();
+
+		tpj(document).ready(function() {
+
+			var apiRevoSlider = tpj('.tp-banner').show().revolution(
+			{
+				sliderType:"standard",
+				jsFileLocation:"include/rs-plugin/js/",
+				sliderLayout:"fullwidth",
+				dottedOverlay:"none",
+				delay:9000,
+				navigation: {},
+				responsiveLevels:[1200,992,768,480,320],
+				gridwidth:1140,
+				gridheight:500,
+				lazyType:"none",
+				shadow:0,
+				spinner:"off",
+				autoHeight:"off",
+				disableProgressBar:"on",
+				hideThumbsOnMobile:"off",
+				hideSliderAtLimit:0,
+				hideCaptionAtLimit:0,
+				hideAllCaptionAtLilmit:0,
+				debugMode:false,
+				fallbacks: {
+					simplifyAll:"off",
+					disableFocusListener:false,
+				},
+				navigation: {
+					keyboardNavigation:"off",
+					keyboard_direction: "horizontal",
+					mouseScrollNavigation:"off",
+					onHoverStop:"off",
+					touch:{
+						touchenabled:"on",
+						swipe_threshold: 75,
+						swipe_min_touches: 1,
+						swipe_direction: "horizontal",
+						drag_block_vertical: false
+					},
+					arrows: {
+						style: "ares",
+						enable: true,
+						hide_onmobile: false,
+						hide_onleave: false,
+						tmp: '<div class="tp-title-wrap">	<span class="tp-arr-titleholder">{{title}}</span> </div>',
+						left: {
+							h_align: "left",
+							v_align: "center",
+							h_offset: 10,
+							v_offset: 0
+						},
+						right: {
+							h_align: "right",
+							v_align: "center",
+							h_offset: 10,
+							v_offset: 0
+						}
+					}
+				}
+			});
+
+			apiRevoSlider.bind("revolution.slide.onloaded",function (e) {
+				SEMICOLON.slider.sliderParallaxDimensions();
+			});
+
+		}); //ready
+
+	</script>
 
 </body>
 </html>
