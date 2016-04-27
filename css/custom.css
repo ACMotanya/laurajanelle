@@ -17,9 +17,9 @@
 
 #primary-menu ul li > a {
 	font-weight: 900;
-	font-size: 13px;
+	font-size: 15px;
 	padding: 0px;
-	line-height: 16px;
+	line-height: 18px;
 	font-family: Bodoni-Sans;
 	letter-spacing: 1px;
 }
@@ -33,7 +33,7 @@
 }
 
 #header.full-header #primary-menu > ul {
-	width: 160px;
+	width: 140px;
 	margin-bottom: -500px;
 	font-align: right;
 }
