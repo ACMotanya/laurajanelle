@@ -16,10 +16,10 @@
 }
 
 #primary-menu ul li > a {
-	font-weight: 900;
-	font-size: 15px;
+	font-weight: 600;
+	font-size: 18px;
 	padding: 0px;
-	line-height: 18px;
+	line-height: 25px;
 	font-family: Bodoni-Sans;
 	letter-spacing: 1px;
 }
