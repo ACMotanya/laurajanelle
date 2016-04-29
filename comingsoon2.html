@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="SemiColonWeb" />
+
+	<!-- Stylesheets
+	============================================= -->
+	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="style.css" type="text/css" />
+	<link rel="stylesheet" href="css/dark.css" type="text/css" />
+	<link rel="stylesheet" href="css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
+
+	<link rel="stylesheet" href="css/responsive.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!--[if lt IE 9]>
+		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<![endif]-->
+
+	<!-- Document Title
+	============================================= -->
+	<title>Coming Soon | Laura Janelle</title>
+
+</head>
+
+<body class="stretched">
+
+	<!-- Document Wrapper
+	============================================= -->
+	<div id="wrapper" class="clearfix">
+
+		<!-- Header
+		============================================= -->
+
+
+		<section id="slider" class="full-screen dark" style="overflow: hidden;">
+
+			<div class="container clearfix vertical-middle" style="z-index: 6;">
+
+				<div class="heading-block title-center nobottomborder">
+          <img src="one-page/images/lj-white-2.png">
+					<h1>Coming Soon</h1>
+					<span>Please check back soon, we're pretty close</span>
+				</div>
+
+				<div id="countdown-ex1" class="countdown countdown-large coming-soon divcenter bottommargin" style="max-width:700px;"></div>
+
+				<div class="divider divider-center divider-short divider-margin"><i class="icon-time"></i></div>
+			</div>
+
+			<div class="video-wrap">
+				<video poster='one-page/images/background-1.jpg' preload muted autoplay loop>
+					<source src='images/videos/runway3.mp4' type='videos/mp4' />
+					<source src='images/videos/runway3.webm' type='video/webm' />
+				</video>
+				<div class="video-overlay"></div>
+			</div>
+
+		</section>
+
+	</div><!-- #wrapper end -->
+
+	<!-- Go To Top
+	============================================= -->
+	<div id="gotoTop" class="icon-angle-up"></div>
+
+	<!-- External JavaScripts
+	============================================= -->
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/plugins.js"></script>
+
+	<!-- Footer Scripts
+	============================================= -->
+	<script type="text/javascript" src="js/functions.js"></script>
+
+	<script>
+		jQuery(document).ready( function($){
+			var newDate = new Date(2016, 5, 01);
+			$('#countdown-ex1').countdown({until: newDate});
+		});
+	</script>
+
+</body>
+</html>
