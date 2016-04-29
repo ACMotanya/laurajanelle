@@ -12,7 +12,7 @@
 
 #header.transparent-header.full-header #primary-menu > ul {
 	border-right-color: transparent;
-	font-align: right;
+	text-align: right;
 }
 
 #primary-menu ul li > a {
