@@ -1,4 +1,4 @@
-d<!DOCTYPE html>
+<!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
 
@@ -60,10 +60,10 @@ d<!DOCTYPE html>
 						<ul class="one-page-menu" data-easing="easeInOutExpo" data-speed="1250" data-offset="65" style="font-family: Bodoni-Sans">
 
 							<li><a href="comingsoon1.html"><div>ABOUT US</div></a></li>
-							<li><a href="findstore.html"><div>FIND A STORE</div></a></li>
+							<li><a href="comingsoon.html"><div>FIND A STORE</div></a></li>
 							<li><a href="comingsoon2.html"><div>RETAILERS</div></a></li>
 							<li><a href="https://www.ivystone.com/find/search-for-a-sales-representative.asp" data-lightbox="iframe" ><div>FIND A REP</div></a></li>
-							<li><a href="replogin.html"><div>SALES REPS</div></a></li>
+							<li><a href="comingsoon1.html"><div>SALES REPS</div></a></li>
 							<li><a href="contact.html"><div>CONTACT</div></a></li>
 						</ul>
 					</nav><!-- #primary-menu end -->
@@ -420,7 +420,7 @@ d<!DOCTYPE html>
 
 
 						<!-- LAYER NR. 5 target="_blank" -->
-						<a class="tp-caption tp-static-layer" target="_blank"
+						<a class="tp-caption tp-static-layer"
 				 			href="comingsoon.html"
 							data-x="['left','left','left','left']" data-hoffset="['62','62','62','62']"
 							data-y="['bottom','bottom','bottom','bottom']" data-voffset="['30','30','30','30']"
@@ -449,7 +449,7 @@ d<!DOCTYPE html>
 
 
 						<!-- LAYER NR. 6 target="_blank" -->
-						<a class="tp-caption   tp-static-layer" target="_blank"
+						<a class="tp-caption   tp-static-layer"
 				 			href="comingsoon1.html" 	id="slide-18-layer-3"
 							data-x="['left','left','left','left']" data-hoffset="['28','30','30','30']"
 							data-y="['bottom','bottom','bottom','bottom']" data-voffset="['30','30','30','30']"
@@ -477,7 +477,7 @@ d<!DOCTYPE html>
 						</a>
 
 						<!-- LAYER NR. 7 target="_blank" -->
- 						<a class="tp-caption tp-static-layer" target="_blank"
+ 						<a class="tp-caption tp-static-layer"
  				 			href="comingsoon2.html" id="slide-18-layer-3"
  							data-x="['left','left','left','left']" data-hoffset="['101','101','101','101']"
  							data-y="['bottom','bottom','bottom','bottom']" data-voffset="['30','30','30','30']"
@@ -504,7 +504,7 @@ d<!DOCTYPE html>
  						</a>
 
 						<!-- LAYER NR. 8 target="_blank" -->
- 						<a class="tp-caption   tp-static-layer" target="_blank"
+ 						<a class="tp-caption   tp-static-layer"
  				 			href="comingsoon.html" id="slide-18-layer-3"
  							data-x="['left','left','left','left']" data-hoffset="['140','140','140','140']"
  							data-y="['bottom','bottom','bottom','bottom']" data-voffset="['30','30','30','30']"
