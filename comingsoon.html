@@ -17,13 +17,33 @@
 
 	<link rel="stylesheet" href="css/responsive.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="stylesheet" href="css/custom.css" type="text/css" />
+		<link rel="stylesheet" href="css/custom.css" type="text/css" />
+
+		<!-- External JavaScripts
+		============================================= -->
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/plugins.js"></script>
+
+		<!-- Footer Scripts
+		============================================= -->
+		<script type="text/javascript" src="js/functions.js"></script>
+
 	<!--[if lt IE 9]>
 		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 	<![endif]-->
 
 	<!-- Document Title
 	============================================= -->
+
+	<style>
+	#header.transparent-header.full-header #header-wrap {
+		border: none;
+	}
+
+	.dark #header.transparent-header.full-header:not(.sticky-header) #header-wrap:not(.not-dark) #primary-menu > ul, #header.transparent-header.full-header.dark:not(.sticky-header) #header-wrap:not(.not-dark) #primary-menu > ul {
+		border: none;
+	}
+	</style>
 	<title>Coming Soon | Laura Janelle</title>
 
 </head>
@@ -56,11 +76,11 @@
 							<li><a href="comingsoon1.html"><div style="color: #999;">ABOUT US</div></a></li>
 							<li><a href="comingsoon.html"><div style="color: #999;">FIND A STORE</div></a></li>
 							<li><a href="comingsoon2.html"><div style="color: #999;">RETAILERS</div></a></li>
-							<li><a href="https://www.ivystone.com/find/search-for-a-sales-representative.asp" data-lightbox="iframe"><div style="color: #999;">FIND A REP</div></a></li>
+							<li><a href="https://www.ivystone.com/find/search-for-a-sales-representative.asp" target="_blank"><div style="color: #999;">FIND A REP</div></a></li>
 							<li><a href="comingsoon1.html"><div style="color: #999;">SALES REPS</div></a></li>
 							<li><a href="contact.html"><div style="color: #999;">CONTACT</div></a></li>
 						</ul>
-					</nav><!-- #primary-menu end -->
+					</nav>
 				</div>
 			</div>
 		</header><!-- #header end -->
@@ -72,6 +92,7 @@
 
 				<div class="heading-block title-center nobottomborder">
           <a href="index.html"><img src="one-page/images/lj-white-2.png"></a>
+
 					<h1>Coming Soon</h1>
 					<span>Please check back soon, we're pretty close</span>
 				</div>
@@ -105,6 +126,8 @@
 	<!-- Footer Scripts
 	============================================= -->
 	<script type="text/javascript" src="js/functions.js"></script>
+
+
 
 	<script>
 		jQuery(document).ready( function($){
