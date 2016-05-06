@@ -43,6 +43,31 @@
 	.dark #header.transparent-header.full-header:not(.sticky-header) #header-wrap:not(.not-dark) #primary-menu > ul, #header.transparent-header.full-header.dark:not(.sticky-header) #header-wrap:not(.not-dark) #primary-menu > ul {
 		border: none;
 	}
+
+
+.fullscreen-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -100;
+}
+
+.fullscreen-bg__video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    -webkit-transform: translate(-50%, -50%);
+       -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+	    transform: translate(-50%, -50%);
+}
 	</style>
 	<title>Coming Soon | Laura Janelle</title>
 
@@ -71,7 +96,7 @@
 					<!-- Primary Navigation
 					============================================= -->
 					<nav id="primary-menu">
-						<ul class="one-page-menu" data-easing="easeInOutExpo" data-speed="1250" data-offset="65" style="font-family: Bodoni-Sans">
+						<ul data-easing="easeInOutExpo" data-speed="1250" data-offset="65" style="font-family: Bodoni-Sans">
 							<li><a href="index.html"><div style="color: #999;">HOME</div></a></li>
 							<li><a href="comingsoon1.html"><div style="color: #999;">ABOUT US</div></a></li>
 							<li><a href="comingsoon.html"><div style="color: #999;">FIND A STORE</div></a></li>
