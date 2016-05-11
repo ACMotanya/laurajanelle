@@ -6,9 +6,6 @@
 <!-- Footer Scripts
 ============================================= -->
 <script type="text/javascript" src="{{ "/js/functions.js" | prepend: site.baseurl }}"></script>
-!-- Range Slider Plugin -->
-<script type="text/javascript" src="js/components/rangeslider.min.js"></script>
-
 
 <script>
     var lines;
@@ -22,17 +19,16 @@
        level4: "",
        level5: ""},
       function(response) {
-
         lines = response.split("\n");
         // lines[0] is header row
         // lines[1]+ are data lines
         for (i=1; i<lines.length - 1; i++) {
            flds = lines[i].split("|");
            prod = '<div class="product clearfix"><div class="product-image">';
-              prod += '<a href="#"><img src="http://api.netlink.ninja/nlhtml/images/shop/' + flds[3] + '" alt="' + flds[1] + '"></a>';
-              prod += '<div class="product-overlay"><a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a><a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a></div></div>';
-              prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#">' + flds[1] + '</a></h3></div><div class="product-price">' + flds[4] + '</div><div class="product-rating"><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star-half-full"></i><i class="icon-star-empty"></i></div></div>';
-          document.getElementById("shop").innerHTML += prod;
+           prod += '<a href="#"><img src="http://api.netlink.ninja/nlhtml/images/shop/' + flds[3] + '" alt="' + flds[1] + '"></a>';
+           prod += '<div class="product-overlay"><a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a><a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a></div></div>';
+           prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#">' + flds[1] + '</a></h3></div><div class="product-price">' + flds[4] + '</div><div class="product-rating"><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star-half-full"></i><i class="icon-star-empty"></i></div></div>';
+           document.getElementById("shop").innerHTML += prod;
         };
       });
 </script>
