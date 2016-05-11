@@ -6,13 +6,14 @@
   <body class="stretched">
     <div id="wrapper" class="clearfix">
 
+      {% include topbar.html %}
       {% include headerpage.html %}
 
       {{ content }}
 
       {% include footer.html %}
     </div>
-    {% include jspage.html %}
+    {% include js.html %}
 
   </body>
 
