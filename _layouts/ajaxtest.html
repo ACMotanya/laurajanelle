@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+  {% include head.html %}
+
+  <body class="stretched" onload="getProducts();">
+    <div id="header-wrap">
+
+      {% include header.html %}
+
+      {{ content }}
+
+      {% include footer.html %}
+    </div>
+    {% include js.html %}
+
+  </body>
+
+</html>
