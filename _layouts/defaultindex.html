@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 
-  {% include headpage.html %}
+  {% include headindex.html %}
 
   <body class="stretched">
     <div id="wrapper" class="clearfix">
 
-      {% include headerpage.html %}
+      {% include header.html %}
 
       {{ content }}
 
       {% include footer.html %}
     </div>
-    {% include jspage.html %}
+    {% include js.html %}
+  
+    {% include indexjs.html %}
+
 
   </body>
 
