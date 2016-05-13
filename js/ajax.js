@@ -15,6 +15,33 @@ $("#idForm").submit(function(e) {
     e.preventDefault(); // avoid to execute the actual submit of the form.
 });
 
+//breadcrumb var lines;
+var flds;
+var breadtitle;
+$.get("http://192.168.123.17:8080/nlhtml/custom/netlink.php?",
+{request_id: "APISTKLST",
+ level1: "",
+ level2: "",
+ level3: "",
+ level4: "",
+ level5: ""},
+function(response) {
+  lines = response.split("\n");
+  // lines[0] is header row
+  // lines[1]+ are data lines
+  for (i=1; i<lines.length - 1; i++) {
+     flds = lines[i].split("|");
+        breadtitle = '<h1>' + flds[2] + '</h1>';
+        breadtitle += '<span>Made With Swarovski Cystals</span>';
+        breadtitle += '<ol class="breadcrumb">';
+          breadtitle += '<li><a href="#">Home</a></li>';
+          breadtitle += '<li>Shop</li>';
+          breadtitle += '<li class="active">Sleek</li>';
+        breadtitle += '</ol>';
+      document.getElementById("breadcrumbtitle").innerHTML += breadtitle;
+    }
+  });
+
 //return all items
 var lines;
 var flds;
