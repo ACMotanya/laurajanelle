@@ -11,7 +11,7 @@ var searchField = document.getElementById('searchvalue');
 
 var filterFunction = function(event) {
   $.get("http://192.168.123.17:8080/nlhtml/custom/netlink.php?",
-    {request_id: "APISTKLST",
+    {request_id: event.data.request_id,
     level1: event.data.level1,
     level2: event.data.level2,
     level3: event.data.level3,
@@ -77,107 +77,112 @@ var filterFunction = function(event) {
 
 
 //
-// List all Product API Function
+// List all Products API Function
 //
 
-$("#shopFilter").on('click', filterFunction);
-
-
-//
-// List all SLEEK Product API Function
-//
-
-$("#shopFilterSleek").on('click', {level1: "LJ10000", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
+$("#shopFilter").on('click', {request_id: "APISTKLST"}, filterFunction);
 
 
 //
-// List all RGLB Product API Function
+// List all SLEEK Products API Function
 //
 
-$("#shopFilterRGLB").on('click', {level1: "LJ10700", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
-
-
-//
-// List all enChamring Product API Function
-//
-
-$("#shopFilterEncharming").on('click', {level1: "LJ10300", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
+$("#shopFilterSleek").on('click', {request_id: "APISTKLST", level1: "LJ10000", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
 
 
 //
-// List all Identify Product API Function
+// List all RGLB Products API Function
 //
 
-$("#shopFilterIdentify").on('click', {level1: "LJ10500", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
+$("#shopFilterRGLB").on('click', {request_id: "APISTKLST", level1: "LJ10700", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
+
+
+//
+// List all enChamring Products API Function
+//
+
+$("#shopFilterEncharming").on('click', {request_id: "APISTKLST", level1: "LJ10300", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
+
+
+//
+// List all Identify Products API Function
+//
+
+$("#shopFilterIdentify").on('click', {request_id: "APISTKLST", level1: "LJ10500", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
 
 
 //
 // List all Programs API Function
 //
 
-$("#shopFilterPrograms").on('click', filterFunction);
+$("#shopFilterPrograms").on('click', {request_id: "APISTKLST", level1: "", level2: "800", level3: "", level4: "", level5: ""}, filterFunction);
 
 
 //
 // List all Sets API Function
 //
 
-$("#shopFilterSets").on('click', filterFunction);
+$("#shopFilterSets").on('click', {request_id: "APISTKLST", level1: "", level2: "700", level3: "", level4: "", level5: ""}, filterFunction);
 
 
 //
-// List all Product API Function
+// List all Earrings API Function
 //
 
-$("#shopFilterEarrings").on('click', {level1: "", level2: "300", level3: "", level4: "", level5: ""},filterFunction);
+$("#shopFilterEarrings").on('click', {request_id: "APISTKLST", level1: "", level2: "300", level3: "", level4: "", level5: ""}, filterFunction);
 
 
 //
 // List all Necklaces API Function
 //
 
-$("#shopFilterNecklaces").on('click', {level1: "", level2: "100", level3: "", level4: "", level5: ""}, filterFunction);
+$("#shopFilterNecklaces").on('click', {request_id: "APISTKLST", level1: "", level2: "100", level3: "", level4: "", level5: ""}, filterFunction);
 
 
 //
 // List all Bracelets API Function
 //
 
-$("#shopFilterBracelets").on('click', {level1: "", level2: "200", level3: "", level4: "", level5: ""}, filterFunction);
+$("#shopFilterBracelets").on('click', {request_id: "APISTKLST", level1: "", level2: "200", level3: "", level4: "", level5: ""}, filterFunction);
 
 
 //
-// List all Product API Function
+// List all Lanyards API Function
 //
 
-$("#shopFilterLanyards").on('click', {level1: "", level2: "400", level3: "", level4: "", level5: ""}, filterFunction);
-
-
-//
-// List all Product API Function
-//
-
-$("#shopFilterTassels").on('click', {level1: "", level2: "600", level3: "", level4: "", level5: ""}, filterFunction);
+$("#shopFilterLanyards").on('click', {request_id: "APISTKLST", level1: "", level2: "400", level3: "", level4: "", level5: ""}, filterFunction);
 
 
 //
-// List all Product API Function
+// List all Tassels API Function
 //
 
-$("#shopFilterSnaps").on('click', {level1: "", level2: "500", level3: "", level4: "", level5: ""}, filterFunction);
+$("#shopFilterTassels").on('click', {request_id: "APISTKLST", level1: "", level2: "600", level3: "", level4: "", level5: ""}, filterFunction);
+
+
+//
+// List all Snaps API Function
+//
+
+$("#shopFilterSnaps").on('click', {request_id: "APISTKLST", level1: "", level2: "500", level3: "", level4: "", level5: ""}, filterFunction);
 
 
 
 //
 // Search API Function
 //
-function getSearchTerm() {
-  searchTerm = document.getElementById("searchvalue").value;
-}
+//function getSearchTerm() {
+//  searchTerm = document.getElementById("searchvalue").value;
+//}
+$('#searchvalue').on("input", function() {
+  searchTerm = this.value;
+  console.log(searchTerm);
+});
 
-searchField.addEventListener('keypress', function (e) {
-    var key = e.which || e.keyCode;
+$('input#searchvalue').on('keypress', function (event) {
+    var key = event.which || event.keyCode;
     if (key === 13) {
+      event.preventDefault();
       getSearchTerm();
       $.get("http://192.168.123.17:8080/nlhtml/custom/netlink.php?",
       {request_id: "APISTKSEARCH",
