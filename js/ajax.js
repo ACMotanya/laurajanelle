@@ -5,11 +5,13 @@ var lines;
 var flds;
 var prod;
 var type;
+var head;
 var searchTerm;
 var searchField = document.getElementById('searchvalue');
 
 
 var filterFunction = function(event) {
+
   $.ajax({
     type: "GET",
     url: "http://192.168.123.17:8080/nlhtml/custom/netlink.php?",
@@ -20,9 +22,7 @@ var filterFunction = function(event) {
     level4: event.data.level4,
     level5: event.data.level5},
     success: function(response) {
-      if (window.location.pathname != "/cousin-op/shop-filter/") {
-            window.location.replace("/cousin-op/shop-filter/");
-          }
+
       lines = response.split("\n");
       // lines[0] is header row
       // lines[1]+ are data lines
@@ -45,8 +45,8 @@ var filterFunction = function(event) {
           collection = fields[2];
         }
 
-      $('#shop').empty();
-      $('#breadcrumbtitle').empty();
+        $('#shop').empty();
+        $('#breadcrumbtitle').empty();
 
       for (i=1; i<lines.length - 1; i++) {
         flds = lines[i].split("|");
@@ -70,7 +70,7 @@ var filterFunction = function(event) {
       }
 
        breadtitle = '<h1>' + collection + '</h1>';
-       breadtitle += '<span>Made With Swarovski Cystals</span>';
+       breadtitle += '<span></span>';
        breadtitle += '<ol class="breadcrumb">';
          breadtitle += '<li><a href="#">Home</a></li>';
          breadtitle += '<li>Shop</li>';
@@ -88,6 +88,24 @@ var filterFunction = function(event) {
 // List all Products API Function
 //
 
+$("#shopFilterSleek").on('click', function () {
+switch (window.location.pathname) {
+     case "/cousin-op/sleek/":
+        $("#shopFilterSleek").on('click', {request_id: "APISTKLST", level1: "LJ10000", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
+        break;
+     case "/cousin-op/rglb/":
+        $("#shopFilterRGLB").on('click', {request_id: "APISTKLST", level1: "LJ10700", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
+        break;
+     case "/cousin-op/encharming/":
+        $("#shopFilterEncharming").on('click', {request_id: "APISTKLST", level1: "LJ10300", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
+        break;
+     case "/cousin-op/identify/":
+        $("#shopFilterIdentify").on('click', {request_id: "APISTKLST", level1: "LJ10500", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
+        break;
+     default:
+        $("#shopFilter").on('click', {request_id: "APISTKLST", level1: "", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
+   }
+});
 
 $("#shopFilter").on('click', {request_id: "APISTKLST", level1: "", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
 
@@ -96,28 +114,28 @@ $("#shopFilter").on('click', {request_id: "APISTKLST", level1: "", level2: "", l
 // List all SLEEK Products API Function
 //
 
-$("#shopFilterSleek").on('click', {request_id: "APISTKLST", level1: "LJ10000", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
+//$("#shopFilterSleek").on('click', {request_id: "APISTKLST", level1: "LJ10000", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
 
 
 //
 // List all RGLB Products API Function
 //
 
-$("#shopFilterRGLB").on('click', {request_id: "APISTKLST", level1: "LJ10700", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
+//$("#shopFilterRGLB").on('click', {request_id: "APISTKLST", level1: "LJ10700", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
 
 
 //
 // List all enChamring Products API Function
 //
 
-$("#shopFilterEncharming").on('click', {request_id: "APISTKLST", level1: "LJ10300", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
+//$("#shopFilterEncharming").on('click', {request_id: "APISTKLST", level1: "LJ10300", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
 
 
 //
 // List all Identify Products API Function
 //
 
-$("#shopFilterIdentify").on('click', {request_id: "APISTKLST", level1: "LJ10500", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
+//$("#shopFilterIdentify").on('click', {request_id: "APISTKLST", level1: "LJ10500", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
 
 
 //
