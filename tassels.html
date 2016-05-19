@@ -50,7 +50,7 @@ jQuery( document ).ready(function() {
               //  prod += 'div class="sale-flash">50% Off*</div>'
                 prod += '<div class="product-overlay">';
                   prod += '<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-                  prod += '<a href="../include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span>Quick View</span></a>';
+                  prod += '<a href="{{ site.baseurl }}/detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a>';
                 prod += '</div>';
               prod += '</div>';
               prod += '<div class="product-desc">';

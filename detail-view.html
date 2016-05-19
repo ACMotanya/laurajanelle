@@ -2,17 +2,156 @@
 layout: page
 ---
 
+<script>
+jQuery( document ).ready(function() {
+
+	var stockNumber = window.location.hash.replace( /^\D+/g, '');
+
+  $.ajax({
+    type: "GET",
+    url: "http://192.168.123.17:8080/nlhtml/custom/netlink.php?",
+    data: {request_id: "APISTKDTL", stock_no: stockNumber},
+    success: function(response) {
+
+      lines = response.split("\n");
+      // lines[0] is header row
+      // lines[1]+ are data lines
+      fields = lines[1].split("|");
+
+      switch (fields[2]) {
+        case "SLK":
+          collection = 'Sleek';
+          break;
+        case "GLB":
+          collection = "RGLB";
+          break;
+        case "EC":
+          collection = "enCharming";
+          break;
+        case "IDT":
+          collection = "iDentify";
+          break;
+        default:
+          collection = fields[2];
+        }
+
+				var prodtype = fields[1].split(/(\s+)/);
+						prodtype = prodtype[2];
+
+/* Fill in the Breadcrumb section */
+			breadtitle = '<h1>' + collection + '</h1>';
+			breadtitle += '<span></span>';
+			breadtitle += '<ol class="breadcrumb">';
+				breadtitle += '<li><a href="#">Home</a></li>';
+				breadtitle += '<li>Shop</li>';
+				breadtitle += '<li class="active">' + collection + '</li>';
+			breadtitle += '</ol>';
+			document.getElementById("breadcrumbtitle").innerHTML += breadtitle;
+
+/* Fill in the picture/s for the product */
+			pictureSlider = '<div class="slide" style="display: block;" data-thumb="../ljimages/' + fields[0].replace(/\s+/g,'') + '-sm.png"><a href="../ljimages/' + fields[0].replace(/\s+/g,'') + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><img src="../ljimages/' + fields[0].replace(/\s+/g,'') + '-md.png" alt="' + fields[1] + '"></a></div>'
+			document.getElementById("images").innerHTML += pictureSlider;
+
+// Fill in the 2nd Column data
+			secondColumn = '<!-- Product Single - Price'
+			secondColumn += '============================================= -->'
+			secondColumn += '<div class="product-price"> <ins>' + fields[4] + '</ins></div><!-- Product Single - Price End -->'
+
+			secondColumn += '<div class="clear"></div>'
+			secondColumn += '<div class="line"></div>'
+
+			secondColumn += '<!-- Product Single - Quantity & Cart Button'
+			secondColumn += '============================================= -->'
+			secondColumn += '<form class="cart nobottommargin clearfix" method="post" enctype="multipart/form-data">'
+				secondColumn += '<div class="quantity clearfix">'
+					secondColumn += '<input type="button" value="-" class="minus" onclick="decreaseValue()">'
+					secondColumn += '<input type="text" step="1" min="1"  name="quantity" value="1" title="Qty" class="qty" size="4" id="number" />'
+					secondColumn += '<input type="button" value="+" class="plus" onclick="increaseValue()">'
+				secondColumn += '</div>'
+				secondColumn += '<button type="submit" class="add-to-cart button nomargin">Add to cart</button>'
+			secondColumn += '</form><!-- Product Single - Quantity & Cart Button End -->'
+
+			secondColumn += '<div class="clear"></div>'
+			secondColumn += '<div class="line"></div>'
+
+			secondColumn += '<!-- Product Single - Short Description'
+			secondColumn += '============================================= -->'
+			secondColumn += '<p>' + fields[1] + '</p>'
+			secondColumn += '<p>' + fields[6] + '</p>'
+			secondColumn += '<ul class="iconlist">'
+
+			secondColumn += '</ul><!-- Product Single - Short Description End -->'
+
+			secondColumn += '<!-- Product Single - Meta'
+			secondColumn += '============================================= -->'
+			secondColumn += '<div class="panel panel-default product-meta">'
+				secondColumn += '<div class="panel-body">'
+					secondColumn += '<span itemprop="productID" class="sku_wrapper">SKU: <span class="sku">' + fields[0] + '</span></span>'
+					secondColumn += '<span class="posted_in">Category: <a href="#" rel="tag">' + prodtype + '</a>.</span>'
+				secondColumn += '</div>'
+			secondColumn += '</div><!-- Product Single - Meta End -->'
+
+			secondColumn += '<!-- Product Single - Share'
+			secondColumn += '============================================= -->'
+			secondColumn += '<div class="si-share noborder clearfix">'
+				secondColumn += '<span>Share:</span>'
+				secondColumn += '<div>'
+				secondColumn += '	<a href="#" class="social-icon si-borderless si-facebook">'
+						secondColumn += '<i class="icon-facebook"></i>'
+						secondColumn += '<i class="icon-facebook"></i>'
+					secondColumn += '</a>'
+					secondColumn += '<a href="#" class="social-icon si-borderless si-twitter">'
+						secondColumn += '<i class="icon-twitter"></i>'
+						secondColumn += '<i class="icon-twitter"></i>'
+					secondColumn += '</a>'
+					secondColumn += '<a href="#" class="social-icon si-borderless si-pinterest">'
+						secondColumn += '<i class="icon-pinterest"></i>'
+						secondColumn += '<i class="icon-pinterest"></i>'
+					secondColumn += '</a>'
+				  secondColumn += '<a href="#" class="social-icon si-borderless si-email3">'
+						secondColumn += '<i class="icon-email3"></i>'
+						secondColumn += '<i class="icon-email3"></i>'
+					secondColumn += '</a>'
+				secondColumn += '</div>'
+			secondColumn += '</div><!-- Product Single - Share End -->'
+			document.getElementById("secondColumn").innerHTML += secondColumn;
+
+
+// Fill in the 3rd Column data
+//			thirdColumn = '<a href="#" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="{{ site.baseurl }}/images/shop/brand.jpg" alt="Brand Logo"></a>'
+
+			thirdColumn = '<div class="divider divider-center"><i class="icon-circle-blank"></i></div>'
+
+			thirdColumn += '<div class="feature-box fbox-plain fbox-dark fbox-small">'
+				thirdColumn += '<div class="fbox-icon">'
+					thirdColumn += '<i class="icon-thumbs-up2"></i>'
+				thirdColumn += '</div>'
+				thirdColumn += '<h3>100% Original</h3>'
+				thirdColumn += '<p class="notopmargin">We guarantee you the sale of Original Brands.</p>'
+			thirdColumn += '</div>'
+
+			thirdColumn += '<div class="feature-box fbox-plain fbox-dark fbox-small">'
+				thirdColumn += '<div class="fbox-icon">'
+					thirdColumn += '<i class="icon-undo"></i>'
+				thirdColumn += '</div>'
+				thirdColumn += '<h3>30-Days Returns</h3>'
+				thirdColumn += '<p class="notopmargin">Return or exchange items purchased within 30 days.</p>'
+			thirdColumn += '</div>'
+			document.getElementById("thirdColumn").innerHTML += thirdColumn
+
+// Fill tabbed Modal Windows..
+
+   }
+	});
+});
+</script>
+
 		<!-- Page Title
 		============================================= -->
 		<section id="page-title">
 
-			<div class="container clearfix">
-				<h1>Pink Printed Dress</h1>
-				<ol class="breadcrumb">
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Shop</a></li>
-					<li class="active">Shop Single</li>
-				</ol>
+			<div class="container clearfix" id="breadcrumbtitle">
+
 			</div>
 
 		</section><!-- #page-title end -->
@@ -36,142 +175,27 @@ layout: page
 								<div class="product-image">
 									<div class="fslider" data-pagi="false" data-arrows="false" data-thumbs="true">
 										<div class="flexslider">
-											<div class="slider-wrap" data-lightbox="gallery">
-												<div class="slide" data-thumb="{{ site.baseurl }}/images/shop/thumbs/dress/3.jpg"><a href="{{ site.baseurl }}/images/shop/dress/3.jpg" title="Pink Printed Dress - Front View" data-lightbox="gallery-item"><img src="{{ site.baseurl }}/images/shop/dress/3.jpg" alt="Pink Printed Dress"></a></div>
-												<div class="slide" data-thumb="{{ site.baseurl }}/images/shop/thumbs/dress/3-1.jpg"><a href="{{ site.baseurl }}/images/shop/dress/3-1.jpg" title="Pink Printed Dress - Side View" data-lightbox="gallery-item"><img src="{{ site.baseurl }}/images/shop/dress/3-1.jpg" alt="Pink Printed Dress"></a></div>
-												<div class="slide" data-thumb="{{ site.baseurl }}/images/shop/thumbs/dress/3-2.jpg"><a href="{{ site.baseurl }}/images/shop/dress/3-2.jpg" title="Pink Printed Dress - Back View" data-lightbox="gallery-item"><img src="{{ site.baseurl }}/images/shop/dress/3-2.jpg" alt="Pink Printed Dress"></a></div>
-											</div>
+											<div class="slider-wrap" data-lightbox="gallery" id="images">
+
+												<!-- 1st Column -->
+
+										</div>
 										</div>
 									</div>
-									<div class="sale-flash">Sale!</div>
+
 								</div><!-- Product Single - Gallery End -->
 
 							</div>
 
-							<div class="col_two_fifth product-desc">
+							<div class="col_two_fifth product-desc" id="secondColumn">
 
-								<!-- Product Single - Price
-								============================================= -->
-								<div class="product-price"><del>$39.99</del> <ins>$24.99</ins></div><!-- Product Single - Price End -->
-
-								<!-- Product Single - Rating
-								============================================= -->
-								<div class="product-rating">
-									<i class="icon-star3"></i>
-									<i class="icon-star3"></i>
-									<i class="icon-star3"></i>
-									<i class="icon-star-half-full"></i>
-									<i class="icon-star-empty"></i>
-								</div><!-- Product Single - Rating End -->
-
-								<div class="clear"></div>
-								<div class="line"></div>
-
-								<!-- Product Single - Quantity & Cart Button
-								============================================= -->
-								<form class="cart nobottommargin clearfix" method="post" enctype='multipart/form-data'>
-									<div class="quantity clearfix">
-										<input type="button" value="-" class="minus">
-										<input type="text" step="1" min="1"  name="quantity" value="1" title="Qty" class="qty" size="4" />
-										<input type="button" value="+" class="plus">
-									</div>
-									<button type="submit" class="add-to-cart button nomargin">Add to cart</button>
-								</form><!-- Product Single - Quantity & Cart Button End -->
-
-								<div class="clear"></div>
-								<div class="line"></div>
-
-								<!-- Product Single - Short Description
-								============================================= -->
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero velit id eaque ex quae laboriosam nulla optio doloribus! Perspiciatis, libero, neque, perferendis at nisi optio dolor!</p>
-								<p>Perspiciatis ad eveniet ea quasi debitis quos laborum eum reprehenderit eaque explicabo assumenda rem modi.</p>
-								<ul class="iconlist">
-									<li><i class="icon-caret-right"></i> Dynamic Color Options</li>
-									<li><i class="icon-caret-right"></i> Lots of Size Options</li>
-									<li><i class="icon-caret-right"></i> 30-Day Return Policy</li>
-								</ul><!-- Product Single - Short Description End -->
-
-								<!-- Product Single - Meta
-								============================================= -->
-								<div class="panel panel-default product-meta">
-									<div class="panel-body">
-										<span itemprop="productID" class="sku_wrapper">SKU: <span class="sku">8465415</span></span>
-										<span class="posted_in">Category: <a href="#" rel="tag">Dress</a>.</span>
-										<span class="tagged_as">Tags: <a href="#" rel="tag">Pink</a>, <a href="#" rel="tag">Short</a>, <a href="#" rel="tag">Dress</a>, <a href="#" rel="tag">Printed</a>.</span>
-									</div>
-								</div><!-- Product Single - Meta End -->
-
-								<!-- Product Single - Share
-								============================================= -->
-								<div class="si-share noborder clearfix">
-									<span>Share:</span>
-									<div>
-										<a href="#" class="social-icon si-borderless si-facebook">
-											<i class="icon-facebook"></i>
-											<i class="icon-facebook"></i>
-										</a>
-										<a href="#" class="social-icon si-borderless si-twitter">
-											<i class="icon-twitter"></i>
-											<i class="icon-twitter"></i>
-										</a>
-										<a href="#" class="social-icon si-borderless si-pinterest">
-											<i class="icon-pinterest"></i>
-											<i class="icon-pinterest"></i>
-										</a>
-										<a href="#" class="social-icon si-borderless si-gplus">
-											<i class="icon-gplus"></i>
-											<i class="icon-gplus"></i>
-										</a>
-										<a href="#" class="social-icon si-borderless si-rss">
-											<i class="icon-rss"></i>
-											<i class="icon-rss"></i>
-										</a>
-										<a href="#" class="social-icon si-borderless si-email3">
-											<i class="icon-email3"></i>
-											<i class="icon-email3"></i>
-										</a>
-									</div>
-								</div><!-- Product Single - Share End -->
+								<!-- 2nd Column -->
 
 							</div>
 
-							<div class="col_one_fifth col_last">
+							<div class="col_one_fifth col_last" id="thirdColumn">
 
-								<a href="#" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="{{ site.baseurl }}/images/shop/brand.jpg" alt="Brand Logo"></a>
-
-								<div class="divider divider-center"><i class="icon-circle-blank"></i></div>
-
-								<div class="feature-box fbox-plain fbox-dark fbox-small">
-									<div class="fbox-icon">
-										<i class="icon-thumbs-up2"></i>
-									</div>
-									<h3>100% Original</h3>
-									<p class="notopmargin">We guarantee you the sale of Original Brands.</p>
-								</div>
-
-								<div class="feature-box fbox-plain fbox-dark fbox-small">
-									<div class="fbox-icon">
-										<i class="icon-credit-cards"></i>
-									</div>
-									<h3>Payment Options</h3>
-									<p class="notopmargin">We accept Visa, MasterCard and American Express.</p>
-								</div>
-
-								<div class="feature-box fbox-plain fbox-dark fbox-small">
-									<div class="fbox-icon">
-										<i class="icon-truck2"></i>
-									</div>
-									<h3>Free Shipping</h3>
-									<p class="notopmargin">Free Delivery to 100+ Locations on orders above $40.</p>
-								</div>
-
-								<div class="feature-box fbox-plain fbox-dark fbox-small">
-									<div class="fbox-icon">
-										<i class="icon-undo"></i>
-									</div>
-									<h3>30-Days Returns</h3>
-									<p class="notopmargin">Return or exchange items purchased within 30 days.</p>
-								</div>
+								<!-- 3rd Column -->
 
 							</div>
 

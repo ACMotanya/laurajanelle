@@ -5691,7 +5691,8 @@ body:not(.device-touch):not(.device-xs):not(.device-xxs) .product-image > a {
 
 .product-title h3 {
 	margin: 0;
-	font-size: 20px;
+	font-size: 14px;
+	font-family: Raleway, Sans-Serif;
 }
 
 .product-title h3 a,
@@ -5701,10 +5702,11 @@ body:not(.device-touch):not(.device-xs):not(.device-xxs) .product-image > a {
 .single-product .product-title h2 a:hover { color: #000; }
 
 .product-price {
-	font-size: 18px;
+	font-size: 15px;
 	font-weight: 600;
 	color: #444;
 	margin-bottom: 4px;
+	font-family: Lato, Sans-Serif;
 }
 
 .product-price del {
@@ -5715,7 +5717,7 @@ body:not(.device-touch):not(.device-xs):not(.device-xxs) .product-image > a {
 
 .product-price ins {
 	text-decoration: none;
-	color: #000;
+	color: #444;
 }
 
 .product-overlay {
