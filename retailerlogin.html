@@ -1,10 +1,68 @@
 ---
 layout: login
 ---
+<script>
+var username;
+var password;
+var session_no;
+
+$(document).ready(function() {
+  $("#login-form").on("submit", function(e) { //add a parameter e - the event object
+     e.preventDefault(); //stop the form from submitting
+		 $.ajax({
+ 	    type: "GET",
+ 	    url: "http://192.168.123.17:8080/nlhtml/custom/netlink.php?",
+ 	    data: {request_id: "APICLOGIN",
+ 	    username: username,
+ 	    password: password},
+ 	    success: function(response) {
+ 				session_no = response;
+				session_no = session_no.replace(/\s+/g,'');
+				document.cookie = session_no;
+ 			}
+  	});
+	});
+});
+</script>
+
+<!-- Header
+============================================= -->
+<header id="header">
+
+	<div id="header-wrap">
+
+		<div class="container clearfix">
+
+			<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+			<!-- Logo
+			============================================= -->
+			<div id="logo">
+				<a href="{{ site.baseurl }}/" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="{{ site.baseurl }}/one-page/images/lj-bw-1.png" alt="Laura Janelle Logo"></a>
+				<a href="{{ site.baseurl }}/" class="retina-logo" data-dark-logo="images/logo-dark@2x.png"><img src="{{ site.baseurl }}/one-page/images/lj-bw-1.png" alt="laura Janelle Logo"></a>
+			</div><!-- #logo end -->
+
+			<!-- Primary Navigation
+			============================================= -->
+			<nav id="primary-menu">
+
+				<ul>
+					<li><a href="{{ site.baseurl }}/"><div>Home</div></a></li>
+				</ul>
+
+			</nav><!-- #primary-menu end -->
+
+		</div>
+
+	</div>
+
+</header><!-- #header end -->
+
+
 
 		<!-- Content
 		============================================= -->
-		<section id="content" style="width: 100%; height: 100%;  background: url('img/encharmingreps.png') center center no-repeat; background-size: cover;">
+		<section id="content" style="width: 100%; height: 100%;  background: url('{{ site.baseurl }}/img/encharmingreps.png') center center no-repeat; background-size: cover;">
 
 			<div class="content-wrap" >
 
@@ -22,7 +80,7 @@ layout: login
 							<div class="tab-content clearfix" id="tab-login">
 								<div class="panel panel-default nobottommargin">
 									<div class="panel-body" style="padding: 40px;">
-										<form id="login-form" name="login-form" class="nobottommargin" action="#" method="post">
+										<form id="login-form" name="login-form" class="nobottommargin" action="#" method="">
 
 											<h3>Retailer Login</h3>
 
@@ -51,10 +109,15 @@ layout: login
 									<div class="panel-body" style="padding: 40px;">
 										<h3>Register for an Account</h3>
 
-										<form id="register-form" name="register-form" class="nobottommargin" action="#" method="post">
+										<form id="register-form" name="register-form" class="nobottommargin" action="https://formspree.io/acemotanya@cousin.com" method="POST">
 
 											<div class="col_full">
 												<label for="register-form-name">Name:</label>
+												<input type="text" id="register-form-name" name="register-form-name" value="" class="form-control" />
+											</div>
+
+											<div class="col_full">
+												<label for="register-form-name"> Business Name:</label>
 												<input type="text" id="register-form-name" name="register-form-name" value="" class="form-control" />
 											</div>
 
@@ -64,30 +127,128 @@ layout: login
 											</div>
 
 											<div class="col_full">
-												<label for="register-form-username">Choose a Username:</label>
-												<input type="text" id="register-form-username" name="register-form-username" value="" class="form-control" />
-											</div>
-
-											<div class="col_full">
 												<label for="register-form-phone">Phone:</label>
 												<input type="text" id="register-form-phone" name="register-form-phone" value="" class="form-control" />
 											</div>
 
 											<div class="col_full">
-												<label for="register-form-password">Choose Password:</label>
-												<input type="password" id="register-form-password" name="register-form-password" value="" class="form-control" />
+												<label for="register-form-phone">Fax Phone:</label>
+												<input type="text" id="register-form-phone" name="register-form-phone" value="" class="form-control" />
 											</div>
 
 											<div class="col_full">
-												<label for="register-form-repassword">Re-enter Password:</label>
-												<input type="password" id="register-form-repassword" name="register-form-repassword" value="" class="form-control" />
+												<label for="register-form-phone">Website:</label>
+												<input type="text" id="register-form-phone" name="register-form-phone" value="" class="form-control" />
+											</div>
+
+											<div class="col_full">
+												<label for="register-form-username">Choose a Username:</label>
+												<input type="text" id="register-form-username" name="register-form-username" value="" class="form-control" />
+											</div>
+
+											<h4>Business Address</h4>
+
+					            <div class="col_full">
+					              <label for="billing-form-address">Address:</label>
+					              <input type="text" id="billing-form-address" name="billing-form-address" value="" class="sm-form-control" />
+					            </div>
+
+					            <div class="col_full">
+					              <input type="text" id="billing-form-address2" name="billing-form-adress" value="" class="sm-form-control" />
+					            </div>
+
+					            <div class="col_full">
+					              <label for="billing-form-city">City / Town</label>
+					              <input type="text" id="billing-form-city" name="billing-form-city" value="" class="sm-form-control" />
+					            </div>
+
+											<div class="col_half">
+												<input type="text" class="sm-form-control" placeholder="State / Country" />
+											</div>
+
+											<div class="col_half col_last">
+												<input type="text" class="sm-form-control" placeholder="PostCode / Zip" />
+											</div>
+
+											<h4>Shipping Address (If different than billing address)</h4>
+
+					            <div class="col_full">
+					              <label for="billing-form-address">Address:</label>
+					              <input type="text" id="billing-form-address" name="billing-form-address" value="" class="sm-form-control" />
+					            </div>
+
+					            <div class="col_full">
+					              <input type="text" id="billing-form-address2" name="billing-form-adress" value="" class="sm-form-control" />
+					            </div>
+
+					            <div class="col_full">
+					              <label for="billing-form-city">City / Town</label>
+					              <input type="text" id="billing-form-city" name="billing-form-city" value="" class="sm-form-control" />
+					            </div>
+
+											<div class="col_half">
+												<input type="text" class="sm-form-control" placeholder="State / Country" />
+											</div>
+
+											<div class="col_half col_last">
+												<input type="text" class="sm-form-control" placeholder="PostCode / Zip" />
+											</div>
+
+											<h4>Required Documents</h4>
+
+											<p>Documentation of an active online business, Etsy, Artfire or similar account, a trade show contract or a copy of an invoice where you have purchased from another wholesale company.</p>
+
+											<div class="col_full">
+												<input id="input-2" type="file" name="Doc1" class="file" data-show-preview="false">
+											</div>
+
+											<p>A copy of a Municipal occupational license from your local area, your Federal Tax ID or EIN, LLC, DBA or Vendor permit.</p>
+
+											<div class="col_full">
+												<input id="input-2" type="file" name="taxID" class="file" data-show-preview="false">
+											</div>
+
+											<p><strong>NOTE: If your business is in the State of Florida, a copy of a Tax ID must be provided also. STATE OF FLORIDA COMPTROLLER SALES TAX DIVISION RULE 39</strong></p>
+
+											<h4>How did you hear about us?</h4>
+
+											<div class="col_half">
+												<input id="checkbox-1" class="checkbox-style" name="checkbox-1" type="checkbox">
+												<label for="checkbox-1" class="checkbox-style-2-label checkbox-small">Website</label>
+											</div>
+											<div class="col_half col_last">
+												<input id="checkbox-2" class="checkbox-style" name="checkbox-2" type="checkbox">
+												<label for="checkbox-2" class="checkbox-style-2-label checkbox-small">Cousin Packaging</label>
+											</div>
+											<div class="col_half">
+												<input id="checkbox-3" class="checkbox-style" name="checkbox-3" type="checkbox">
+												<label for="checkbox-3" class="checkbox-style-2-label checkbox-small">Search Engine</label>
+											</div>
+											<div class="col_half col_last">
+												<input id="checkbox-4" class="checkbox-style" name="checkbox-4" type="checkbox">
+												<label for="checkbox-4" class="checkbox-style-2-label checkbox-small">Social Media</label>
+											</div>
+											<div class="col_half">
+												<input id="checkbox-5" class="checkbox-style" name="checkbox-5" type="checkbox">
+												<label for="checkbox-5" class="checkbox-style-2-label checkbox-small">Friend</label>
+											</div>
+											<div class="col_half col_last">
+												<input id="checkbox-6" class="checkbox-style" name="checkbox-6" type="checkbox">
+												<label for="checkbox-6" class="checkbox-style-2-label checkbox-small">Other</label>
+											</div>
+
+											<div class="line" style="margin: 10px"></div>
+
+											<div class="col_full">
+												<input id="checkbox-7" class="checkbox-style" name="checkbox-7" type="checkbox">
+												<label for="checkbox-7" class="checkbox-style-3-label checkbox-small">Receive occasional emails about inspirational projects, special promotions and "sneak peaks" to our new products</label>
 											</div>
 
 											<div class="col_full nobottommargin">
 												<button class="button button-3d button-black nomargin" id="register-form-submit" name="register-form-submit" value="register">Register Now</button>
 											</div>
 
-										</form>
+					          </form>
 									</div>
 								</div>
 							</div>
@@ -103,15 +264,6 @@ layout: login
 		</section><!-- #content end -->
 
 	</div><!-- #wrapper end -->
-
-	<!-- External JavaScripts
-	============================================= -->
-	<script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="js/plugins.js"></script>
-
-	<!-- Footer Scripts
-	============================================= -->
-	<script type="text/javascript" src="js/functions.js"></script>
 
 </body>
 </html>
