@@ -9,7 +9,78 @@ var head;
 var searchTerm;
 var pictureSlider;
 var secondColumn;
+var cartQty;
 var searchField = document.getElementById('searchvalue');
+
+
+
+//
+// Add item to the cart
+//
+function addItem(clicked_id) {
+   stock_no = clicked_id;
+   console.log(stock_no);
+   console.log("are you running when i click?");
+
+   $.ajax({
+    type: "GET",
+    url: "http://192.168.123.17:8080/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APICARTADD",
+      session_no: session_no,
+      stock_no: stock_no,
+      qty: 1
+    },
+    success: function(response) {
+      console.log(response);
+      shoppingCartIconQty();
+    }
+  });
+}
+
+
+//
+// Get the number of items in the cart
+//
+function shoppingCartIconQty() {
+
+  $.ajax({
+   type: "GET",
+   url: "http://192.168.123.17:8080/nlhtml/custom/netlink.php?",
+   data: {
+     request_id: "APICARTH",
+     session_no: session_no,
+   },
+   success: function(response) {
+     lines = response.split("\n");
+     // lines[0] is header row
+     // lines[1]+ are data lines
+     fields = lines[1].split("|");
+     cartQty = fields[24];
+     cartQty = cartQty.replace(/\s+/g,'');
+     document.getElementById("top-cart-trigger").innerHTML += '<span>' + cartQty + '</span>';
+   }
+ });
+}
+
+
+//
+// Get back the cart header
+//
+function cartHeader() {
+  $.ajax({
+    type: "GET",
+    url: "http://192.168.123.17:8080/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APICARTH",
+      session_no: session_no
+    },
+    success: function(response) {
+      cartheader = response;
+    }
+  });
+}
+
 
 function increaseValue()
 {
@@ -28,17 +99,17 @@ function decreaseValue()
 }
 
 
-var filterFunction = function(event) {
+function filterFunction(a,b,c,d,e,f) {
 
   $.ajax({
     type: "GET",
     url: "http://192.168.123.17:8080/nlhtml/custom/netlink.php?",
-    data: {request_id: event.data.request_id,
-    level1: event.data.level1,
-    level2: event.data.level2,
-    level3: event.data.level3,
-    level4: event.data.level4,
-    level5: event.data.level5},
+    data: {a,
+    level1: b,
+    level2: c,
+    level3: d,
+    level4: e,
+    level5: f},
     success: function(response) {
 
       lines = response.split("\n");
@@ -46,61 +117,32 @@ var filterFunction = function(event) {
       // lines[1]+ are data lines
       fields = lines[1].split("|");
 
-      switch (fields[2]) {
-        case "SLK":
-          collection = 'Sleek';
-          break;
-        case "GLB":
-          collection = "RGLB";
-          break;
-        case "EC":
-          collection = "enCharming";
-          break;
-        case "ID":
-          collection = "iDentify";
-          break;
-        default:
-          collection = fields[2];
-        }
-
         $('#shop').empty();
         $('#breadcrumbtitle').empty();
 
       for (i=1; i<lines.length - 1; i++) {
         flds = lines[i].split("|");
 
-            prod = '<div class="product clearfix pf-dress">';
-              prod += '<div class="product-image">';
-                prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-lg.png" alt="' + flds[1] + '"></a>';
-                prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-lg.png" alt="' + flds[1] + '"></a>';
-              //  prod += 'div class="sale-flash">50% Off*</div>'
-                prod += '<div class="product-overlay">';
-                  prod += '<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-                  prod += '<a href="../include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span>Quick View</span></a>';
-                prod += '</div>';
-              prod += '</div>';
-              prod += '<div class="product-desc">';
-								prod += '<div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div>';
-								prod += '<div class="product-price"><ins>' + flds[4] +'</ins></div>';
-							prod += '</div>';
+        prod = '<div class="product clearfix pf-dress">';
+          prod += '<div class="product-image">';
+            prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-md.png" alt="' + flds[1] + '"></a>';
+          //  prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
+          //  prod += 'div class="sale-flash">50% Off*</div>'
+            prod += '<div class="product-overlay">';
+              prod += '<a href="#" class="add-to-cart" onclick="addItem()" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+              prod += '<a href="{{ site.baseurl }}/detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a>';
             prod += '</div>';
+          prod += '</div>';
+          prod += '<div class="product-desc">';
+            prod += '<div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div>';
+            prod += '<div class="product-price"><ins>$' + flds[4] +'</ins></div>';
+          prod += '</div>';
+        prod += '</div>';
         document.getElementById("shop").innerHTML += prod;
       }
-
-       breadtitle = '<h1>' + collection + '</h1>';
-       breadtitle += '<span></span>';
-       breadtitle += '<ol class="breadcrumb">';
-         breadtitle += '<li><a href="#">Home</a></li>';
-         breadtitle += '<li>Shop</li>';
-         breadtitle += '<li class="active">' + collection + '</li>';
-       breadtitle += '</ol>';
-     document.getElementById("breadcrumbtitle").innerHTML += breadtitle;
-   }
-//    if (window.location.pathname != "/cousin-op/shop-filter/") {
-//      window.location.replace("/cousin-op/shop-filter/");
-//    }
-});
-};
+    }
+  });
+}
 
 //
 // List all Products API Function
@@ -221,6 +263,8 @@ $('#searchvalue').on("input", function() {
   searchTerm = this.value;
   console.log(searchTerm);
 });
+
+
 
 $('input#searchvalue').on('keypress', {request_id: "APISTKSEARCH", level1: searchTerm}, function (event) {
     var key = event.which || event.keyCode;

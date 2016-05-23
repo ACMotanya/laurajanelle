@@ -3,14 +3,15 @@ layout: page
 ---
 
 <script>
-jQuery( document ).ready(function() {
+session_no = Cookies.get('session_no');
+var stock_no = window.location.hash.replace( /^\D+/g, '');
 
-	var stockNumber = window.location.hash.replace( /^\D+/g, '');
+jQuery( document ).ready(function() {
 
   $.ajax({
     type: "GET",
     url: "http://192.168.123.17:8080/nlhtml/custom/netlink.php?",
-    data: {request_id: "APISTKDTL", stock_no: stockNumber},
+    data: {request_id: "APISTKDTL", stock_no: stock_no},
     success: function(response) {
 
       lines = response.split("\n");
@@ -68,7 +69,7 @@ jQuery( document ).ready(function() {
 					secondColumn += '<input type="text" step="1" min="1"  name="quantity" value="1" title="Qty" class="qty" size="4" id="number" />'
 					secondColumn += '<input type="button" value="+" class="plus" onclick="increaseValue()">'
 				secondColumn += '</div>'
-				secondColumn += '<button type="submit" class="add-to-cart button nomargin">Add to cart</button>'
+				secondColumn += '<button type="button" id="add-item" class="add-to-cart button nomargin" onclick="addItem()">Add to cart</button>'
 			secondColumn += '</form><!-- Product Single - Quantity & Cart Button End -->'
 
 			secondColumn += '<div class="clear"></div>'
@@ -116,13 +117,11 @@ jQuery( document ).ready(function() {
 			secondColumn += '</div><!-- Product Single - Share End -->'
 			document.getElementById("secondColumn").innerHTML += secondColumn;
 
-
-
-
 // Fill tabbed Modal Windows..
 
    }
 	});
+
 });
 </script>
 
@@ -300,7 +299,7 @@ jQuery( document ).ready(function() {
 									<div class="product-desc center">
 										<div class="product-title"><h3><a href="#">Unisex Sunglasses</a></h3></div>
 										<div class="product-price"><del>$19.99</del> <ins>$11.99</ins></div>
-										
+
 									</div>
 								</div>
 							</div>

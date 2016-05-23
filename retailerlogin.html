@@ -9,6 +9,8 @@ var session_no;
 $(document).ready(function() {
   $("#login-form").on("submit", function(e) { //add a parameter e - the event object
      e.preventDefault(); //stop the form from submitting
+     username = $('#login-form-username').val();
+     password = $('#login-form-password').val();
 		 $.ajax({
  	    type: "GET",
  	    url: "http://192.168.123.17:8080/nlhtml/custom/netlink.php?",
@@ -16,13 +18,19 @@ $(document).ready(function() {
  	    username: username,
  	    password: password},
  	    success: function(response) {
- 				session_no = response;
-				session_no = session_no.replace(/\s+/g,'');
-				document.cookie = session_no;
+        if (response.replace(/\s+/g,'').length === 25) {
+          session_no = response;
+  				session_no = session_no.replace(/\s+/g,'');
+				  Cookies.set('session_no', session_no);
+          location.pathname = "/cousin-op/shop-filter/"
+        } else {
+          alert("Login credentials are incorrect, try again.");
+        }
  			}
   	});
 	});
 });
+
 </script>
 
 <!-- Header

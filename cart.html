@@ -2,6 +2,25 @@
 layout: page
 ---
 
+<script>
+session_no = Cookies.get('session_no');
+var cartheader;
+
+jQuery( document ).ready(function() {
+  $.ajax({
+    type: "GET",
+    url: "http://192.168.123.17:8080/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APICARTH",
+      session_no: session_no
+    },
+    success: function(response) {
+      cartheader = response;
+    }
+  });
+});
+</script>
+
 
 <!-- Page Title
 ============================================= -->
@@ -39,8 +58,8 @@ layout: page
               <th class="cart-product-subtotal">Total</th>
             </tr>
           </thead>
-          <tbody>
-            <tr class="cart_item">
+          <tbody id="cartItemTable">
+  <!--          <tr class="cart_item">
               <td class="cart-product-remove">
                 <a href="#" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
               </td>
@@ -126,7 +145,7 @@ layout: page
               <td class="cart-product-subtotal">
                 <span class="amount">$41.97</span>
               </td>
-            </tr>
+            </tr> -->
             <tr class="cart_item">
               <td colspan="6">
                 <div class="row clearfix">
@@ -461,26 +480,3 @@ layout: page
   </div>
 
 </section><!-- #content end -->
-
-
-
-//      <!-- Portfolio Filter
-//      ============================================= -->
-  prod = '<ul id="portfolio-filter" class="portfolio-filter clearfix">';
-
-    prod += '<li class="activeFilter"><a href="#" data-filter="*">Show All</a></li>';
-    prod += '<li><a href="#" data-filter=".pf-dress">Necklaces</a></li>';
-    prod += '<li><a href="#" data-filter=".pf-Shoes">Bangles</a></li>';
-    prod += '<li><a href="#" data-filter=".pf-sunglass">Earrings</a></li>';
-    prod += '<li><a href="#" data-filter=".pf-watch">Bracelets</a></li>';
-
-  prod += '</ul><!-- #portfolio-filter end -->';
-
-  prod += '<div style="float:right; width:280px;">';
-    prod += '<input class="range_23" />';
-  prod += '</div>';
-
-  prod += '<div class="clear"></div>';
-//      <!-- Shop
-//      ============================================= -->
-  prod += '<div class="shop grid-container clearfix">';
