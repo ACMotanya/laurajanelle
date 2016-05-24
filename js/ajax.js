@@ -1,25 +1,48 @@
-var fields;
 var breadtitle;
-var collection;
-var lines;
-var flds;
-var prod;
-var type;
-var head;
-var searchTerm;
-var pictureSlider;
-var secondColumn;
-var cartQty;
+var cartheader;
 var cartitems;
+var cartQty;
+var collection;
+var country;
+var countrylines;
+var discountAmt;
+var fields;
+var flds;
+var head;
 var item;
+var lines;
+var orderAmt;
+var pictureSlider;
+var prod;
+var salesTax;
 var searchField = document.getElementById('searchvalue');
+var searchTerm;
+var secondColumn;
+var session_no;
+var shippingCost;
+var stock_no;
+var subtotal;
+var type;
+
+/////////////////////////////////////////////////////
+// Get Session Number and Authorize Access to Page //
+/////////////////////////////////////////////////////
+function sessionNumber()
+{
+  session_no = Cookies.get('session_no');
+  if (session_no.length !== 25) {
+    location.pathname = "/cousin-op/";
+    alert("Please log in first.");
+  }
+}
 
 
 
-//
-// Add item to the cart
-//
-function addItem(clicked_id) {
+//////////////////////////
+// Add item to the cart //
+//////////////////////////
+function addItem(clicked_id)
+{
    stock_no = clicked_id;
    console.log(stock_no);
    console.log("are you running when i click?");
@@ -35,41 +58,18 @@ function addItem(clicked_id) {
     },
     success: function(response) {
       console.log(response);
-      shoppingCartIconQty();
+      cartHeader();
     }
   });
 }
 
 
-//
-// Get the number of items in the cart
-//
-function shoppingCartIconQty() {
 
-  $.ajax({
-   type: "GET",
-   url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
-   data: {
-     request_id: "APICARTH",
-     session_no: session_no,
-   },
-   success: function(response) {
-     lines = response.split("\n");
-     // lines[0] is header row
-     // lines[1]+ are data lines
-     fields = lines[1].split("|");
-     cartQty = fields[24];
-     cartQty = cartQty.replace(/\s+/g,'');
-     document.getElementById("top-cart-trigger").innerHTML += '<span>' + cartQty + '</span>';
-   }
- });
-}
-
-
-//
-// Get back the cart header
-//
-function cartHeader() {
+//////////////////////////////
+// Get back the cart header //
+//////////////////////////////
+function cartHeader()
+{
   $.ajax({
     type: "GET",
     url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
@@ -78,16 +78,29 @@ function cartHeader() {
       session_no: session_no
     },
     success: function(response) {
-      cartheader = response;
+      cartheader = response.split("\n");
+      cartheader = cartheader[1].split("|");
+      orderAmt = cartheader[22].replace(/\s+/g,'');
+      subtotal = cartheader[19].replace(/\s+/g,'');
+      discountAmt = cartheader[20].replace(/\s+/g,'');
+      salesTax = cartheader[21].replace(/\s+/g,'');
+      shippingCost = cartheader[28].replace(/\s+/g,'');
+      cartQty = cartheader[24].replace(/\s+/g,'');
+      document.getElementById("top-cart-trigger").innerHTML += '<span>' + cartQty + '</span>';
+
+      if (location.pathname === "/cousin-op/cart/" || location.pathname === "/cousin-op/checkout/") {
+        cartTotals();
+      }
     }
   });
 }
 
 
-//
-// Get Line items
-//
-function cartList() {
+////////////////////
+// Get Line items //
+////////////////////
+function cartList()
+{
   $.ajax({
     type: "GET",
     url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
@@ -101,47 +114,120 @@ function cartList() {
       // lines[0] is header row
       // lines[1]+ are data lines
 
-      for (i=1; i<cartitems.length - 1; i++) {
-        flds = cartitems[i].split("|");
+      $("#cartItemTable").empty();
+
+      if (location.pathname === "/cousin-op/cart/") {
+        for (i=1; i<cartitems.length - 1; i++) {
+          flds = cartitems[i].split("|");
+
+          item = '<tr class="cart_item">';
+            item += '<td class="cart-product-remove">';
+              item += '<a href="#" class="remove" onclick="removeItem(this.id)" id="' + flds[1].replace(/\s+/g,'') + '" title="Remove this item"><i class="icon-trash2"></i></a>';
+            item += '</td>';
+
+            item += '<td class="cart-product-thumbnail">';
+              item += '<a href="#"><img width="64" height="64" src="../ljimages/' + flds[2].replace(/\s+/g,'') + '-sm.png" alt="' + flds[3] + '"></a>';
+            item += '</td>';
+
+            item += '<td class="cart-product-name">';
+              item += '<a href="#">' + flds[3] + '</a>';
+            item += '</td>';
+
+            item += '<td class="cart-product-price">';
+              item += '<span class="amount">$' + parseInt(flds[7]).toFixed(2) + '</span>';
+            item += '</td>';
+
+            item += '<td class="cart-product-quantity">';
+              item += '<div class="quantity clearfix">';
+                item += '<input type="button" value="-" class="minus">';
+                item += '<input type="text" name="quantity" value="' + flds[6].replace(/\s+/g,'') + '" class="qty" />';
+                item += '<input type="button" value="+" class="plus">';
+              item += '</div>';
+            item += '</td>';
+
+            item += '<td class="cart-product-subtotal">';
+              item += '<span class="amount">$' + parseInt(flds[8]).toFixed(2) + '</span>';
+            item += '</td>';
+          item += '</tr>';
+          $("#cartItemTable").prepend(item);
+        }
 
         item = '<tr class="cart_item">';
-          item += '<td class="cart-product-remove">';
-            item += '<a href="#" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>';
-          item += '</td>';
-
-          item += '<td class="cart-product-thumbnail">';
-            item += '<a href="#"><img width="64" height="64" src="../ljimages/' + flds[2].replace(/\s+/g,'') + '-sm.png" alt="' + flds[3] + '"></a>';
-          item += '</td>';
-
-          item += '<td class="cart-product-name">';
-            item += '<a href="#">' + flds[3] + '</a>';
-          item += '</td>';
-
-          item += '<td class="cart-product-price">';
-            item += '<span class="amount">$' + parseInt(flds[7]).toFixed(2) + '</span>';
-          item += '</td>';
-
-          item += '<td class="cart-product-quantity">';
-            item += '<div class="quantity clearfix">';
-              item += '<input type="button" value="-" class="minus">';
-              item += '<input type="text" name="quantity" value="' + flds[6].replace(/\s+/g,'') + '" class="qty" />';
-              item += '<input type="button" value="+" class="plus">';
+          item += '<td colspan="6">';
+            item += '<div class="row clearfix">';
+              item += '<div class="col-md-4 col-xs-4 nopadding">';
+                item += '<div class="col-md-8 col-xs-7 nopadding">';
+                  item += '<input type="text" value="" class="sm-form-control" placeholder="Enter Coupon Code.." />';
+                item += '</div>';
+                item += '<div class="col-md-4 col-xs-5">';
+                  item += '<a href="#" class="button button-3d button-black nomargin">Apply Coupon</a>';
+                item += '</div>';
+              item += '</div>';
+              item += '<div class="col-md-8 col-xs-8 nopadding">';
+                item += '<a href="#" class="button button-3d nomargin fright">Update Cart</a>';
+                item += '<a href="#" class="button button-3d notopmargin fright" onclick="checkoutRedirect()">Proceed to Checkout</a>';
+              item += '</div>';
             item += '</div>';
           item += '</td>';
-
-          item += '<td class="cart-product-subtotal">';
-            item += '<span class="amount">$' + parseInt(flds[8]).toFixed(2) + '</span>';
-          item += '</td>';
         item += '</tr>';
-        $("#cartItemTable").prepend(item);
-//        document.getElementById("cartItemTable").innerHTML += item;
+        $("#cartItemTable").append(item);
+      }
+      if (location.pathname === "/cousin-op/checkout/") {
+        for (i=1; i<cartitems.length - 1; i++) {
+          flds = cartitems[i].split("|");
+
+          item = '<tr class="cart_item">';
+            item += '<td class="cart-product-thumbnail">';
+              item += '<a href="#"><img width="64" height="64" src="../ljimages/' + flds[2].replace(/\s+/g,'') + '-sm.png" alt="' + flds[3] + '"></a>';
+            item += '</td>';
+
+            item += '<td class="cart-product-name">';
+              item += '<a href="#">' + flds[3] + '</a>';
+            item += '</td>';
+
+            item += '<td class="cart-product-quantity">';
+              item += '<div class="quantity clearfix">' + flds[6].replace(/\s+/g,'') + '</div>';
+            item += '</td>';
+
+            item += '<td class="cart-product-subtotal">';
+              item += '<span class="amount">$' + parseInt(flds[8]).toFixed(2) + '</span>';
+            item += '</td>';
+          item += '</tr>';
+          $("#cartItemTable").append(item);
+        }
       }
     }
   });
 }
 
+////////////////////////////
+// REMOVE ITEMS FROM CART //
+////////////////////////////
+function removeItem(clicked_id)
+{
+  line_no = clicked_id;
+  console.log(line_no);
+  console.log("test, am i removing the item?");
 
+  $.ajax({
+    type: "GET",
+    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APICARTREM",
+      session_no: session_no,
+      line_no: line_no
+    },
+    success: function(response) {
+      console.log(response);
+      cartHeader();
+      cartList();
+    }
+  });
+}
 
+//////////////////////////////////////
+// Functionality of + and - Buttons //
+//////////////////////////////////////
 function increaseValue()
 {
     var value = parseInt(document.getElementById('number').value, 10);
@@ -159,8 +245,98 @@ function decreaseValue()
 }
 
 
-function filterFunction(a,b,c,d,e,f) {
+/////////////////////////////////
+// Get Country Codes and Stuff //
+/////////////////////////////////
+function countryCode()
+{
+    $.ajax({
+    type: "GET",
+    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APICOUNTRY",
+      session_no: session_no
+    },
+    success: function(response) {
+      country = response.split("\n");
+      // lines[0] is header row
+      // lines[1]+ are data lines
 
+      $("#countries").empty();
+
+      for (i=1; i<country.length - 1; i++) {
+        countrylines = country[i].split("|");
+        document.getElementById("countries").innerHTML += '<option value="' + countrylines[0].replace(/\s+/g,'') + '">' + countrylines[1].replace(/\s+/g,'') + '</option>';
+      }
+    }
+  });
+}
+
+
+
+/////////////////////////
+// Fill in Cart Totals //
+/////////////////////////
+function cartTotals()
+{
+  $("#cart-totals").empty();
+  var totals = '<tr class="cart_item">';
+    totals += '<td class="notopborder cart-product-name">';
+      totals += '<strong>Cart Subtotal</strong>';
+    totals += '</td>';
+
+    totals += '<td class="notopborder cart-product-name">';
+      totals += '<span class="amount">' + subtotal + '</span>';
+    totals += '</td>';
+  totals += '</tr>';
+  totals += '<tr class="cart_item">';
+    totals += '<td class="cart-product-name">';
+      totals += '<strong>Shipping</strong>';
+    totals += '</td>';
+
+    totals += '<td class="cart-product-name">';
+      totals += '<span class="amount">' + shippingCost + '</span>';
+    totals += '</td>';
+  totals += '</tr>';
+  totals += '<tr class="cart_item">';
+    totals += '<td class="cart-product-name">';
+      totals += '<strong>Total</strong>';
+    totals += '</td>';
+
+    totals += '<td class="cart-product-name">';
+      totals += '<span class="amount color lead"><strong>' + orderAmt + '</strong></span>';
+    totals += '</td>';
+  totals += '</tr>';
+  document.getElementById("cart-totals").innerHTML += totals;
+}
+
+
+
+/////////////////////////
+// Credit Card Process //
+/////////////////////////
+function creditCard ()
+{
+  $.ajax({
+   type: "GET",
+   url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+   data: {
+     request_id: "APICC",
+     session_no: session_no
+   },
+   success: function(response) {
+     console.log(response);
+     document.getElementById("creditcard").innerHTML += response;
+   }
+ });
+}
+
+
+///////////////////////////////
+// Potential Filter Function //
+///////////////////////////////
+function filterFunction(a,b,c,d,e,f)
+{
   $.ajax({
     type: "GET",
     url: "http://192.168.123.17:8080/nlhtml/custom/netlink.php?",
@@ -202,6 +378,23 @@ function filterFunction(a,b,c,d,e,f) {
       }
     }
   });
+}
+
+
+
+//////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////
+
+//////////////      REDIRECT FUINCTIONS      /////////////////
+
+//////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////
+
+function checkoutRedirect()
+{
+  window.location.pathname = "/cousin-op/checkout/";
 }
 
 //

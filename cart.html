@@ -4,11 +4,11 @@ layout: page
 
 <script>
 session_no = Cookies.get('session_no');
-var cartheader;
 
 jQuery( document ).ready(function() {
-  cartHeader();
   cartList();
+  cartHeader();
+  countryCode();
 });
 </script>
 
@@ -136,8 +136,8 @@ jQuery( document ).ready(function() {
               <td class="cart-product-subtotal">
                 <span class="amount">$41.97</span>
               </td>
-            </tr> -->
-            <tr class="cart_item" id="cartLastLine">
+            </tr>
+            <tr class="cart_item">
               <td colspan="6">
                 <div class="row clearfix">
                   <div class="col-md-4 col-xs-4 nopadding">
@@ -154,7 +154,7 @@ jQuery( document ).ready(function() {
                   </div>
                 </div>
               </td>
-            </tr>
+            </tr> -->
           </tbody>
 
         </table>
@@ -166,8 +166,8 @@ jQuery( document ).ready(function() {
           <h4>Calculate Shipping</h4>
           <form>
             <div class="col_full">
-              <select class="sm-form-control">
-                <option value="AX">&#197;land Islands</option>
+              <select class="sm-form-control" id="countries">
+<!--                <option value="AX">&#197;land Islands</option>
                 <option value="AF">Afghanistan</option>
                 <option value="AL">Albania</option>
                 <option value="DZ">Algeria</option>
@@ -411,7 +411,7 @@ jQuery( document ).ready(function() {
                 <option value="YE">Yemen</option>
                 <option value="ZM">Zambia</option>
                 <option value="ZW">Zimbabwe</option>
-
+-->
               </select>
             </div>
             <div class="col_half">
@@ -430,8 +430,8 @@ jQuery( document ).ready(function() {
             <h4>Cart Totals</h4>
 
             <table class="table cart">
-              <tbody>
-                <tr class="cart_item">
+              <tbody id="cart-totals">
+        <!--        <tr class="cart_item">
                   <td class="cart-product-name">
                     <strong>Cart Subtotal</strong>
                   </td>
@@ -457,7 +457,7 @@ jQuery( document ).ready(function() {
                   <td class="cart-product-name">
                     <span class="amount color lead"><strong>$106.94</strong></span>
                   </td>
-                </tr>
+                </tr> -->
               </tbody>
 
             </table>

@@ -2,6 +2,15 @@
 layout: page
 ---
 
+<script>
+session_no = Cookies.get('session_no');
+
+jQuery( document ).ready(function() {
+  cartList();
+  cartHeader();
+
+});
+</script>
 
 <!-- Page Title
 ============================================= -->
@@ -26,26 +35,9 @@ layout: page
 
     <div class="container clearfix">
 
-      <div class="col_half">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            Returning customer? <a href="login-register.html">Click here to login</a>
-          </div>
-        </div>
-      </div>
-      <div class="col_half col_last">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            Have a coupon? <a href="login-register.html">Click here to enter your code</a>
-          </div>
-        </div>
-      </div>
-
       <div class="row clearfix">
         <div class="col-md-6">
           <h3>Billing Address</h3>
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, vel odio non dicta provident sint ex autem mollitia dolorem illum repellat ipsum aliquid illo similique sapiente fugiat minus ratione.</p>
 
           <form id="billing-form" name="billing-form" class="nobottommargin" action="#" method="post">
 
@@ -149,8 +141,8 @@ layout: page
                   <th class="cart-product-subtotal">Total</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr class="cart_item">
+              <tbody id="cartItemTable">
+<!--                <tr class="cart_item">
                   <td class="cart-product-thumbnail">
                     <a href="#"><img width="64" height="64" src="{{ site.baseurl }}/images/shop/thumbs/small/dress-3.jpg" alt="Pink Printed Dress"></a>
                   </td>
@@ -206,7 +198,7 @@ layout: page
                   <td class="cart-product-subtotal">
                     <span class="amount">$41.97</span>
                   </td>
-                </tr>
+                </tr> -->
               </tbody>
 
             </table>
@@ -218,8 +210,8 @@ layout: page
             <h4>Cart Totals</h4>
 
             <table class="table cart">
-              <tbody>
-                <tr class="cart_item">
+              <tbody id="cart-totals">
+          <!--      <tr class="cart_item">
                   <td class="notopborder cart-product-name">
                     <strong>Cart Subtotal</strong>
                   </td>
@@ -245,26 +237,21 @@ layout: page
                   <td class="cart-product-name">
                     <span class="amount color lead"><strong>$106.94</strong></span>
                   </td>
-                </tr>
+                </tr> -->
               </tbody>
             </table>
 
           </div>
           <div class="accordion clearfix">
-            <div class="acctitle"><i class="acc-closed icon-ok-circle"></i><i class="acc-open icon-remove-circle"></i>Direct Bank Transfer</div>
-            <div class="acc_content clearfix">Donec sed odio dui. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</div>
-
-            <div class="acctitle"><i class="acc-closed icon-ok-circle"></i><i class="acc-open icon-remove-circle"></i>Cheque Payment</div>
-            <div class="acc_content clearfix">Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus. Aenean lacinia bibendum nulla sed consectetur. Cras mattis consectetur purus sit amet fermentum.</div>
-
-            <div class="acctitle"><i class="acc-closed icon-ok-circle"></i><i class="acc-open icon-remove-circle"></i>Paypal</div>
-            <div class="acc_content clearfix">Nullam id dolor id nibh ultricies vehicula ut id elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus. Aenean lacinia bibendum nulla sed consectetur.</div>
+            <div class="acctitle"><i class="acc-closed icon-ok-circle"></i><i class="acc-open icon-remove-circle"></i>Credit Cards</div>
+            <div class="acc_content clearfix">We only accept credit cards at this time.</div>
           </div>
-          <a href="#" class="button button-3d fright">Place Order</a>
+          <a href="#" class="button button-3d fright" onclick="creditCard()">Place Order</a>
         </div>
       </div>
     </div>
 
   </div>
-
 </section><!-- #content end -->
+<div id="creditcard">
+</div>

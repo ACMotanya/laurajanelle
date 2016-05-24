@@ -1,3 +1,6 @@
+<script type="text/javascript">
+  sessionNumber();
+</script>
 <!-- Header
 ============================================= -->
 <header id="header">
@@ -22,7 +25,7 @@
         <ul>
           <li><a href="{{ site.baseurl }}/"><div>Home</div></a></li>
 
-          <li><a href="#"><div id="shopFilter">Shop</div></a>
+          <li><a href="{{ site.baseurl }}/shop-filter"><div id="shopFilter">Shop</div></a>
             <ul>
               <li><a href="#"><div id="shopFilterCollections">Collections</div></a>
                 <ul>
@@ -86,7 +89,7 @@
         <!-- Top Search
         ============================================= -->
         <div id="top-search">
-          <a href="#" id="top-search-trigger"><i class="icon-search3"></i><i class="icon-line-cross"></i></a>
+          <a href="{{ site.baseurl }}/cart" id="top-search-trigger"><i class="icon-search3"></i><i class="icon-line-cross"></i></a>
           <form>
             <input id="searchvalue" type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter..">
           </form>
