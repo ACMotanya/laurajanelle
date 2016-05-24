@@ -7,17 +7,8 @@ session_no = Cookies.get('session_no');
 var cartheader;
 
 jQuery( document ).ready(function() {
-  $.ajax({
-    type: "GET",
-    url: "http://192.168.123.17:8080/nlhtml/custom/netlink.php?",
-    data: {
-      request_id: "APICARTH",
-      session_no: session_no
-    },
-    success: function(response) {
-      cartheader = response;
-    }
-  });
+  cartHeader();
+  cartList();
 });
 </script>
 
@@ -146,7 +137,7 @@ jQuery( document ).ready(function() {
                 <span class="amount">$41.97</span>
               </td>
             </tr> -->
-            <tr class="cart_item">
+            <tr class="cart_item" id="cartLastLine">
               <td colspan="6">
                 <div class="row clearfix">
                   <div class="col-md-4 col-xs-4 nopadding">

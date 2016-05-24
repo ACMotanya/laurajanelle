@@ -10,6 +10,8 @@ var searchTerm;
 var pictureSlider;
 var secondColumn;
 var cartQty;
+var cartitems;
+var item;
 var searchField = document.getElementById('searchvalue');
 
 
@@ -24,7 +26,7 @@ function addItem(clicked_id) {
 
    $.ajax({
     type: "GET",
-    url: "http://192.168.123.17:8080/nlhtml/custom/netlink.php?",
+    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
     data: {
       request_id: "APICARTADD",
       session_no: session_no,
@@ -46,7 +48,7 @@ function shoppingCartIconQty() {
 
   $.ajax({
    type: "GET",
-   url: "http://192.168.123.17:8080/nlhtml/custom/netlink.php?",
+   url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
    data: {
      request_id: "APICARTH",
      session_no: session_no,
@@ -70,7 +72,7 @@ function shoppingCartIconQty() {
 function cartHeader() {
   $.ajax({
     type: "GET",
-    url: "http://192.168.123.17:8080/nlhtml/custom/netlink.php?",
+    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
     data: {
       request_id: "APICARTH",
       session_no: session_no
@@ -80,6 +82,64 @@ function cartHeader() {
     }
   });
 }
+
+
+//
+// Get Line items
+//
+function cartList() {
+  $.ajax({
+    type: "GET",
+    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APICARTL",
+      session_no: session_no
+    },
+    success: function(response) {
+
+      cartitems = response.split("\n");
+      // lines[0] is header row
+      // lines[1]+ are data lines
+
+      for (i=1; i<cartitems.length - 1; i++) {
+        flds = cartitems[i].split("|");
+
+        item = '<tr class="cart_item">';
+          item += '<td class="cart-product-remove">';
+            item += '<a href="#" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>';
+          item += '</td>';
+
+          item += '<td class="cart-product-thumbnail">';
+            item += '<a href="#"><img width="64" height="64" src="../ljimages/' + flds[2].replace(/\s+/g,'') + '-sm.png" alt="' + flds[3] + '"></a>';
+          item += '</td>';
+
+          item += '<td class="cart-product-name">';
+            item += '<a href="#">' + flds[3] + '</a>';
+          item += '</td>';
+
+          item += '<td class="cart-product-price">';
+            item += '<span class="amount">$' + parseInt(flds[7]).toFixed(2) + '</span>';
+          item += '</td>';
+
+          item += '<td class="cart-product-quantity">';
+            item += '<div class="quantity clearfix">';
+              item += '<input type="button" value="-" class="minus">';
+              item += '<input type="text" name="quantity" value="' + flds[6].replace(/\s+/g,'') + '" class="qty" />';
+              item += '<input type="button" value="+" class="plus">';
+            item += '</div>';
+          item += '</td>';
+
+          item += '<td class="cart-product-subtotal">';
+            item += '<span class="amount">$' + parseInt(flds[8]).toFixed(2) + '</span>';
+          item += '</td>';
+        item += '</tr>';
+        $("#cartItemTable").prepend(item);
+//        document.getElementById("cartItemTable").innerHTML += item;
+      }
+    }
+  });
+}
+
 
 
 function increaseValue()
