@@ -230,18 +230,18 @@ function removeItem(clicked_id)
 //////////////////////////////////////
 function increaseValue()
 {
-    var value = parseInt(document.getElementById('number').value, 10);
+    var value = $(this).prev().attr('value');  // parseInt(document.getElementById('number').value, 10);
     value = isNaN(value) ? 0 : value;
     value++;
-    document.getElementById('number').value = value;
+    //document.getElementById('number').value = value;
 }
 
 function decreaseValue()
 {
-    var value = parseInt(document.getElementById('number').value, 10);
+    var value = $(this).next().attr('value'); //parseInt(document.getElementById('number').value, 10);
     value = isNaN(value) ? 0 : value;
     value--;
-    document.getElementById('number').value = value;
+    //document.getElementById('number').value = value;
 }
 
 
