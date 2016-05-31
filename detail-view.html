@@ -7,10 +7,11 @@ session_no = Cookies.get('session_no');
 var stock_no = window.location.hash.replace( /^\D+/g, '');
 
 jQuery( document ).ready(function() {
+  cartHeader();
 
   $.ajax({
     type: "GET",
-    url: "http://192.168.123.17:8080/nlhtml/custom/netlink.php?",
+    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
     data: {request_id: "APISTKDTL", stock_no: stock_no},
     success: function(response) {
 
@@ -65,11 +66,11 @@ jQuery( document ).ready(function() {
 			secondColumn += '============================================= -->'
 			secondColumn += '<form class="cart nobottommargin clearfix" method="post" enctype="multipart/form-data">'
 				secondColumn += '<div class="quantity clearfix">'
-					secondColumn += '<input type="button" value="-" class="minus" onclick="decreaseValue()">'
-					secondColumn += '<input type="text" step="1" min="1"  name="quantity" value="1" title="Qty" class="qty" size="4" id="number" />'
-					secondColumn += '<input type="button" value="+" class="plus" onclick="increaseValue()">'
+					secondColumn += '<input type="button" value="-" class="minus" onclick="decreaseValue(' + fields[0].replace(/\s+/g,'') + ')">'
+					secondColumn += '<input type="text" step="1" min="1"  name="quantity" value="1" title="Qty" class="qty" size="4" id="' + fields[0].replace(/\s+/g,'') + '" />'
+					secondColumn += '<input type="button" value="+" class="plus" onclick="increaseValue(' + fields[0].replace(/\s+/g,'') + ')">'
 				secondColumn += '</div>'
-				secondColumn += '<button type="button" id="add-item" class="add-to-cart button nomargin" onclick="addItem()">Add to cart</button>'
+				secondColumn += '<button type="button" id="add-item" class="add-to-cart button nomargin" onclick="addItemDetailView(' + stock_no + ')">Add to cart</button>'
 			secondColumn += '</form><!-- Product Single - Quantity & Cart Button End -->'
 
 			secondColumn += '<div class="clear"></div>'

@@ -6,6 +6,7 @@ var collection;
 var country;
 var countrylines;
 var discountAmt;
+var detailViewQty;
 var fields;
 var flds;
 var head;
@@ -46,6 +47,7 @@ function addItem(clicked_id)
    stock_no = clicked_id;
    console.log(stock_no);
    console.log("are you running when i click?");
+   detailViewQty = document.getElementById(id).value;
 
    $.ajax({
     type: "GET",
@@ -63,6 +65,32 @@ function addItem(clicked_id)
   });
 }
 
+
+
+///////////////////////////////////////////////
+// Add item to the cart for the  detail page //
+///////////////////////////////////////////////
+function addItemDetailView(stock)
+{
+   console.log(stock);
+   console.log("are you running when i click for detail view?");
+   detailViewQty = document.getElementById(stock).value;
+
+   $.ajax({
+    type: "GET",
+    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APICARTADD",
+      session_no: session_no,
+      stock_no: stock_no,
+      qty: detailViewQty
+    },
+    success: function(response) {
+      console.log(response);
+//      checkoutRedirect();
+    }
+  });
+}
 
 
 //////////////////////////////
@@ -139,9 +167,9 @@ function cartList()
 
             item += '<td class="cart-product-quantity">';
               item += '<div class="quantity clearfix">';
-                item += '<input type="button" value="-" class="minus">';
-                item += '<input type="text" name="quantity" value="' + flds[6].replace(/\s+/g,'') + '" class="qty" />';
-                item += '<input type="button" value="+" class="plus">';
+                item += '<input type="button" value="-" class="minus" onclick="decreaseValue(' + flds[2].replace(/\s+/g,'') + ')">';
+                item += '<input type="text" name="quantity" value="' + flds[6].replace(/\s+/g,'') + '" class="qty" id="' + flds[2].replace(/\s+/g,'') + '" />';
+                item += '<input type="button" value="+" class="plus" onclick="increaseValue(' + flds[2].replace(/\s+/g,'') + ')">';
               item += '</div>';
             item += '</td>';
 
@@ -228,20 +256,20 @@ function removeItem(clicked_id)
 //////////////////////////////////////
 // Functionality of + and - Buttons //
 //////////////////////////////////////
-function increaseValue()
+function increaseValue(id)
 {
-    var value = $(this).prev().attr('value');  // parseInt(document.getElementById('number').value, 10);
-    value = isNaN(value) ? 0 : value;
-    value++;
-    //document.getElementById('number').value = value;
+  var value = parseInt(document.getElementById(id).value, 10);
+  value = isNaN(value) ? 0 : value;
+  value++;
+  document.getElementById(id).value = value;
 }
 
-function decreaseValue()
+function decreaseValue(id)
 {
-    var value = $(this).next().attr('value'); //parseInt(document.getElementById('number').value, 10);
-    value = isNaN(value) ? 0 : value;
-    value--;
-    //document.getElementById('number').value = value;
+  var value = parseInt(document.getElementById(id).value, 10);
+  value = isNaN(value) ? 0 : value;
+  value--;
+  document.getElementById(id).value = value;
 }
 
 
