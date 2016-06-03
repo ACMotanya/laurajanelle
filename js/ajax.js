@@ -47,7 +47,7 @@ function addItem(clicked_id)
    stock_no = clicked_id;
    console.log(stock_no);
    console.log("are you running when i click?");
-   detailViewQty = document.getElementById(id).value;
+   detailViewQty = document.getElementById(stock_no).value;
 
    $.ajax({
     type: "GET",
@@ -87,7 +87,7 @@ function addItemDetailView(stock)
     },
     success: function(response) {
       console.log(response);
-//      checkoutRedirect();
+      cartRedirect();
     }
   });
 }
@@ -425,6 +425,10 @@ function checkoutRedirect()
   window.location.pathname = "/cousin-op/checkout/";
 }
 
+function cartRedirect()
+{
+  window.location.pathname = "/cousin-op/cart/";
+}
 //
 // List all Products API Function
 //
