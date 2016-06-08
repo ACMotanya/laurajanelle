@@ -51,6 +51,7 @@ function addItem(clicked_id)
 
    $.ajax({
     type: "GET",
+
     url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
     data: {
       request_id: "APICARTADD",
@@ -367,33 +368,28 @@ function filterFunction(a,b,c,d,e,f)
 {
   $.ajax({
     type: "GET",
-    url: "http://192.168.123.17:8080/nlhtml/custom/netlink.php?",
-    data: {a,
-    level1: b,
-    level2: c,
-    level3: d,
-    level4: e,
-    level5: f},
+    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: a,
+      level1: b,
+      level2: c,
+      level3: d,
+      level4: e,
+      level5: f},
     success: function(response) {
-
       lines = response.split("\n");
       // lines[0] is header row
       // lines[1]+ are data lines
-      fields = lines[1].split("|");
-
-        $('#shop').empty();
-        $('#breadcrumbtitle').empty();
-
+      $('#shop').empty();
       for (i=1; i<lines.length - 1; i++) {
         flds = lines[i].split("|");
-
         prod = '<div class="product clearfix pf-dress">';
           prod += '<div class="product-image">';
-            prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-md.png" alt="' + flds[1] + '"></a>';
+            prod += '<a href="{{ site.baseurl }}/detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
           //  prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
           //  prod += 'div class="sale-flash">50% Off*</div>'
             prod += '<div class="product-overlay">';
-              prod += '<a href="#" class="add-to-cart" onclick="addItem()" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+              prod += '<a href="#" class="add-to-cart" onclick="addItem(this.id)" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
               prod += '<a href="{{ site.baseurl }}/detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a>';
             prod += '</div>';
           prod += '</div>';
@@ -407,6 +403,7 @@ function filterFunction(a,b,c,d,e,f)
     }
   });
 }
+
 
 
 
@@ -429,6 +426,7 @@ function cartRedirect()
 {
   window.location.pathname = "/cousin-op/cart/";
 }
+
 //
 // List all Products API Function
 //

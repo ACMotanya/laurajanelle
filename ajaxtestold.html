@@ -26,21 +26,51 @@
 			}
 		} */
 
-    function getProducts() {
-      $.get("http://api.netlink.ninja/nlhtml/api/netlink.php?request_id=APISTKLST&level1=COUSIN&level2=JACKETS&level3=&level4=&level5=", function(response) {
-        var lines = response.split("\n");
-  			// lines[0] is header row
-  			// lines[1]+ are data lines
-  			for (i=1; i<lines.length - 1; i++) {
-  				var flds = lines[i].split("|");
-  				var prod = '<div class="product clearfix"><div class="product-image">';
-  				prod += '<a href="#"><img src="http://api.netlink.ninja/nlhtml/images/shop/' + flds[3] + '" alt="' + flds[1] + '"></a>';
-  				prod += '<div class="product-overlay"><a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a><a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a></div></div>';
-  				prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#">' + flds[1] + '</a></h3></div><div class="product-price">' + flds[4] + '</div><div class="product-rating"><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star-half-full"></i><i class="icon-star-empty"></i></div></div>';
-  				document.getElementById("shop").innerHTML += prod;
-        };
-      });
-    }
+    function getProducts(a,b,c,d,e,f)
+		{
+			$.ajax({
+		    type: "GET",
+		    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+		    data: {
+		      request_id: a,
+		      level1: b,
+		      level2: c,
+		      level3: d,
+		      level4: e,
+		      level5: f},
+		    success: function(response) {
+
+		      lines = response.split("\n");
+		      // lines[0] is header row
+		      // lines[1]+ are data lines
+		      fields = lines[1].split("|");
+
+		        $('#shop').empty();
+		        $('#breadcrumbtitle').empty();
+
+		      for (i=1; i<lines.length - 1; i++) {
+		        flds = lines[i].split("|");
+
+		        prod = '<div class="product clearfix pf-dress">';
+		          prod += '<div class="product-image">';
+		            prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-md.png" alt="' + flds[1] + '"></a>';
+		          //  prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
+		          //  prod += 'div class="sale-flash">50% Off*</div>'
+		            prod += '<div class="product-overlay">';
+		              prod += '<a href="#" class="add-to-cart" onclick="addItem()" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+		              prod += '<a href="{{ site.baseurl }}/detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a>';
+		            prod += '</div>';
+		          prod += '</div>';
+		          prod += '<div class="product-desc">';
+		            prod += '<div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div>';
+		            prod += '<div class="product-price"><ins>$' + flds[4] +'</ins></div>';
+		          prod += '</div>';
+		        prod += '</div>';
+		        document.getElementById("shop").innerHTML += prod;
+		      }
+		    }
+		  });
+		}
 
 	</script>
 	<!-- End Charles McPhate additions -->
@@ -68,7 +98,7 @@
 
 </head>
 
-<body class="stretched" onload="getProducts();">
+<body class="stretched" onload="getProducts('APISTKLST','','','','','');">
 
 	<!-- Document Wrapper
 	============================================= -->

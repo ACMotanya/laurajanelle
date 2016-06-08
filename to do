@@ -17,65 +17,57 @@ Make a customer detail page with account information
 set all errors for api calls and login
 
 
+Our Goal
 
-Get functions to do
+Our goal each day is to make a positive difference in the lives of each other, our retailers, our vendors, and our business partners.
 
-    -- Search function
-    -- List All Items
-    List All Programs
-    List All Sets
-    List All Earrings
-    List All Necklaces
-    List All Bracelets
-    List All Lanyards
-    List All Tassels
-    List All Snaps
+Our Mantra
 
-    related products field
-    and same result large picture click
-    add models to the back of site on correlating collection
-    add video and under that say cousin.com the navigation
+Our Mantra is "Be Mindful". We strive each day to live in the present moment. To be mindful. To be right here, right now. As we increase our awareness through mindfulness, our quality of thought and action grows significantly. This provides us the ability to reach our potential.
 
+Our History
 
+Our parent company, Cousin Corporation of America is a family owned business founded in 1970. Over the last 46 years Cousin has evolved from a paint and hobby store to one of the top jewelry making supply companies to a full in house fashion company. Laura Janelle is the granddaughter of our founder, Rita Cousin. Laura previously worked at Cousin and today is a full time mom.
 
-    tabs = '<div class="tab-container">'
-      tabs += '<div class="tab-content clearfix" id="tabs-1">'
-        tabs += '<p>Pink printed dress,  woven, round neck with a keyhole and buttoned closure at the back, sleeveless, concealed zip up at left side seam, belt loops along waist with slight gathers beneath, brand appliqu?? above left front hem, has an attached lining.</p>'
-        tabs += 'Comes with a white, slim synthetic belt that has a tang clasp.'
-      tabs += '</div>'
-      tabs += '<div class="tab-content clearfix" id="tabs-2">'
-        tabs += '<table class="table table-striped table-bordered">'
-          tabs += '<tbody>'
-            tabs += '<tr>'
-              tabs += '<td>Size</td>'
-              tabs += '<td>Small, Medium &amp; Large</td>'
-            tabs += '</tr>'
-            tabs += '<tr>'
-              tabs += '<td>Color</td>'
-              tabs += '<td>Pink &amp; White</td>'
-            tabs += '</tr>'
-            tabs += '<tr>'
-              tabs += '<td>Waist</td>'
-              tabs += '<td>26 cm</td>'
-            tabs += '</tr>'
-            tabs += '<tr>'
-              tabs += '<td>Length</td>'
-              tabs += '<td>40 cm</td>'
-           tabs += '</tr>'
-           tabs += '<tr>'
-              tabs += '<td>Chest</td>'
-              tabs += '<td>33 inches</td>'
-            tabs += '</tr>'
-            tabs += '<tr>'
-              tabs += '<td>Fabric</td>'
-              tabs += '<td>Cotton, Silk &amp; Synthetic</td>'
-            tabs += '</tr>'
-            tabs += '<tr>'
-              tabs += '<td>Warranty</td>'
-              tabs += '<td>3 Months</td>'
-            tabs += '</tr>'
-          tabs += '</tbody>'
-        tabs += '</table>'
-      tabs += '</div>'
-    tabs += '</div>'
-    document.getElementById("tab-1").innerHTML += tabs;
+Our Products
+
+At Laura Janelle we push ourselves to the fashion limit to make sure we are bringing you "on trend" products at outstanding value. From publications to paid trend resources to fashion trade shows to the runways we are constantly gathering and analyzing data from around the world to make sure we are "on trend" all the time. As a full service fashion company, we go from concept to design to packaging; all in house. We feel extremely fortunate to have an amazing group of people on our creative team. Their energy and passion for fashion is contagious!
+ 
+Be Grateful
+
+The opportunity to create, to make a difference, to work towards something you believe in, with people that you care about, is extremely rare and special. We are so grateful to have the opportunity to do this each and every day.
+
+Links at the top:
+
+1. Our Team
+
+Senior Leadership
+President, Denny King
+General Manager, Lisa Coburn
+Chief Financial Officer, Bob Losi
+Vice President, Operations, Marty DiMura
+
+Management Team
+Design Manager, Kristine Regan
+Graphic Arts Manager, Mark Pezzuti
+Customer Service Manager, Denise Morgan
+Purchasing Manager, Cari McKenzie
+Warehouse Manager, Laura Backert
+Rob Murphy, Inventory Control Manager
+Packaging Manager, Sharon Ellingwood
+
+2. Careers (Logo of Cousin Corp, Cousin DIY and Laura Janelle
+
+Being part of the Laura Janelle family is being part of the Cousin family and its 46 year history. A career with Cousin is more than a job and more than a paycheck; it's about making a difference with people you care about and having a lot of fun along the way. You won't find any half empty glasses in our building, only half full. If you enjoy learning, growing and reaching your potential with lots of smiles and laughter then you may just be a great fit.
+
+Join us and become part of something special!
+
+Explore our career opportunities (link)
+
+3. News
+
+4. Legal-Terms of Use. Privacy Policy
+
+5. Take a Tour
+
+6. Cousin.com
