@@ -10,12 +10,12 @@
 	border-right-color: transparent;
 }
 
-#header.transparent-header.full-header #primary-menu > ul {
+#header.transparent-header.full-header #primary-menu.index-nav > ul {
 	border-right-color: transparent;
 	text-align: right;
 }
 
-#primary-menu ul li > a {
+#primary-menu.index-nav ul li > a {
 	font-weight: 600;
 	font-size: 18px;
 	padding: 0px;
@@ -24,22 +24,26 @@
 	letter-spacing: 1px;
 }
 
-#primary-menu ul li > a:hover {
+#primary-menu.index-nav ul li > a:hover {
 	color: #999;
 }
 
-#primary-menu > ul > li:first-child {
+#primary-menu.index-nav > ul > li:first-child {
 	padding-top: 12px;
 }
 
-#header.full-header #primary-menu > ul {
+#header.full-header #primary-menu.index-nav > ul {
 	width: 140px;
 	margin-bottom: -500px;
 	font-align: right;
 }
 
-#primary-menu ul > li {
+#primary-menu.index-nav ul > li {
 	float: right;
+}
+
+#footer.dark, .dark #footer {
+	background: #000;
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -53,7 +57,6 @@
 		text-align: right;
 	}
 }
-
 
 
 /* I think I am the great and everything I love seems to make perfect sense to me */

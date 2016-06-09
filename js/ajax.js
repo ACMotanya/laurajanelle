@@ -31,7 +31,7 @@ var type;
 function sessionNumber()
 {
   session_no = Cookies.get('session_no');
-  if (session_no.length !== 25) {
+  if (typeof(session_no) === "undefined" || session_no.length !== 25) {
     location.pathname = "/cousin-op/";
     alert("Please log in first.");
   }
@@ -51,7 +51,6 @@ function addItem(clicked_id)
 
    $.ajax({
     type: "GET",
-
     url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
     data: {
       request_id: "APICARTADD",
@@ -73,11 +72,11 @@ function addItem(clicked_id)
 //////////////////////////////////////////////
 function addItemDetailView(stock)
 {
-   console.log(stock);
-   console.log("are you running when i click for detail view?");
-   detailViewQty = document.getElementById(stock).value;
+  console.log(stock);
+  console.log("are you running when i click for detail view?");
+  detailViewQty = document.getElementById(stock).value;
 
-   $.ajax({
+  $.ajax({
     type: "GET",
     url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
     data: {
@@ -155,11 +154,11 @@ function cartList()
             item += '</td>';
 
             item += '<td class="cart-product-thumbnail">';
-              item += '<a href="#"><img width="64" height="64" src="../ljimages/' + flds[2].replace(/\s+/g,'') + '-sm.png" alt="' + flds[3] + '"></a>';
+              item += '<a href="../detail-view/#' + flds[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="../ljimages/' + flds[2].replace(/\s+/g,'') + '-sm.png" alt="' + flds[3] + '"></a>';
             item += '</td>';
 
             item += '<td class="cart-product-name">';
-              item += '<a href="#">' + flds[3] + '</a>';
+              item += '<a href="../detail-view/#' + flds[2].replace(/\s+/g,'') + '">' + flds[3] + '</a>';
             item += '</td>';
 
             item += '<td class="cart-product-price">';
@@ -236,7 +235,7 @@ function removeItem(clicked_id)
 {
   line_no = clicked_id;
   console.log(line_no);
-  console.log("test, am i removing the item?");
+  console.log("test, am i removinng the item?");
 
   $.ajax({
     type: "GET",
@@ -361,9 +360,32 @@ function creditCard ()
 }
 
 
-///////////////////////////////
-// Potential Filter Function //
-///////////////////////////////
+/////////////////////
+// Filter Function //
+/////////////////////
+function updateCart ()
+{
+// call APICARTL
+  $.ajax({
+    type: "GET",
+    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APICARTL",
+      session_no: session_no
+    },
+    success: function(response) {}
+  });
+// check APICARTL qty compared to the displayed qty
+// if different call APICARTREM to get rid of line
+// call APICARTADD reinsert with new qty
+//
+}
+
+
+
+/////////////////////
+// Filter Function //
+/////////////////////
 function filterFunction(a,b,c,d,e,f)
 {
   $.ajax({
@@ -381,16 +403,22 @@ function filterFunction(a,b,c,d,e,f)
       // lines[0] is header row
       // lines[1]+ are data lines
       $('#shop').empty();
+      fldsArray = [];
       for (i=1; i<lines.length - 1; i++) {
         flds = lines[i].split("|");
+        fldsArray.push(flds);
+        fldsArray = fldsArray.sort(Comparator);
+      }
+      for (i=0; i<=fldsArray.length - 1; i++) {
+        flds = fldsArray[i];
         prod = '<div class="product clearfix pf-dress">';
           prod += '<div class="product-image">';
-            prod += '<a href="{{ site.baseurl }}/detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
+            prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
           //  prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
           //  prod += 'div class="sale-flash">50% Off*</div>'
             prod += '<div class="product-overlay">';
               prod += '<a href="#" class="add-to-cart" onclick="addItem(this.id)" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-              prod += '<a href="{{ site.baseurl }}/detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a>';
+              prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a>';
             prod += '</div>';
           prod += '</div>';
           prod += '<div class="product-desc">';
@@ -427,116 +455,23 @@ function cartRedirect()
   window.location.pathname = "/cousin-op/cart/";
 }
 
-//
-// List all Products API Function
-//
-
-$("#shopFilterSleek").on('click', function () {
-switch (window.location.pathname) {
-     case "/cousin-op/sleek/":
-        $("#shopFilterSleek").on('click', {request_id: "APISTKLST", level1: "LJ10000", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
-        break;
-     case "/cousin-op/rglb/":
-        $("#shopFilterRGLB").on('click', {request_id: "APISTKLST", level1: "LJ10700", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
-        break;
-     case "/cousin-op/encharming/":
-        $("#shopFilterEncharming").on('click', {request_id: "APISTKLST", level1: "LJ10300", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
-        break;
-     case "/cousin-op/identify/":
-        $("#shopFilterIdentify").on('click', {request_id: "APISTKLST", level1: "LJ10500", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
-        break;
-     default:
-        $("#shopFilter").on('click', {request_id: "APISTKLST", level1: "", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
-   }
-});
-
-$("#shopFilter").on('click', {request_id: "APISTKLST", level1: "", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
+function detailViewRedirect(partNumber)
+{
+  window.location.pathname = "/cousin-op/detail-view/#" + partNumber;
+}
 
 
-//
-// List all SLEEK Products API Function
-//
 
-//$("#shopFilterSleek").on('click', {request_id: "APISTKLST", level1: "LJ10000", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
+//////////////////////
+// HELPER FUNCTIONS //
+//////////////////////
 
-
-//
-// List all RGLB Products API Function
-//
-
-//$("#shopFilterRGLB").on('click', {request_id: "APISTKLST", level1: "LJ10700", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
-
-
-//
-// List all enChamring Products API Function
-//
-
-//$("#shopFilterEncharming").on('click', {request_id: "APISTKLST", level1: "LJ10300", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
-
-
-//
-// List all Identify Products API Function
-//
-
-//$("#shopFilterIdentify").on('click', {request_id: "APISTKLST", level1: "LJ10500", level2: "", level3: "", level4: "", level5: ""}, filterFunction);
-
-
-//
-// List all Programs API Function
-//
-
-$("#shopFilterPrograms").on('click', {request_id: "APISTKLST", level1: "", level2: "800", level3: "", level4: "", level5: ""}, filterFunction);
-
-
-//
-// List all Sets API Function
-//
-
-$("#shopFilterSets").on('click', {request_id: "APISTKLST", level1: "", level2: "700", level3: "", level4: "", level5: ""}, filterFunction);
-
-
-//
-// List all Earrings API Function
-//
-
-$("#shopFilterEarrings").on('click', {request_id: "APISTKLST", level1: "", level2: "300", level3: "", level4: "", level5: ""}, filterFunction);
-
-
-//
-// List all Necklaces API Function
-//
-
-$("#shopFilterNecklaces").on('click', {request_id: "APISTKLST", level1: "", level2: "100", level3: "", level4: "", level5: ""}, filterFunction);
-
-
-//
-// List all Bracelets API Function
-//
-
-$("#shopFilterBracelets").on('click', {request_id: "APISTKLST", level1: "", level2: "200", level3: "", level4: "", level5: ""}, filterFunction);
-
-
-//
-// List all Lanyards API Function
-//
-
-$("#shopFilterLanyards").on('click', {request_id: "APISTKLST", level1: "", level2: "400", level3: "", level4: "", level5: ""}, filterFunction);
-
-
-//
-// List all Tassels API Function
-//
-
-$("#shopFilterTassels").on('click', {request_id: "APISTKLST", level1: "", level2: "600", level3: "", level4: "", level5: ""}, filterFunction);
-
-
-//
-// List all Snaps API Function
-//
-
-$("#shopFilterSnaps").on('click', {request_id: "APISTKLST", level1: "", level2: "500", level3: "", level4: "", level5: ""}, filterFunction);
-
-
+function Comparator(a,b)
+{
+  if (a[8] < b[8]) return -1;
+  if (a[8] > b[8]) return 1;
+  return 0;
+}
 
 //
 // Search API Function
