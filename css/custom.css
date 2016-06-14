@@ -6,6 +6,12 @@
 	height: 110px;
 }*/
 
+
+[class^="icon-"], [class*=" icon-"], [class^="icon-line-"], [class*=" icon-line-"], [class^="icon-line2-"], [class*=" icon-line2-"], .side-header #primary-menu.comingsoon-nav ul > li.sub-menu > a:after {
+  color: white;
+}
+
+
 @media (min-width: 992px) and (max-width: 1385px) {
 	#header, #header-wrap, #logo img {
 		height: 110px;
