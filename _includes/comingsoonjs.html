@@ -1,11 +1,20 @@
 <!-- External JavaScripts
 ============================================= -->
-<script type="text/javascript" src="{{ "/js/history.js" | prepend: site.baseurl }}"></script>
+<script type="text/javascript" src="{{ "/js/jquery.js" | prepend: site.baseurl }}"></script>
 <script type="text/javascript" src="{{ "/js/plugins.js" | prepend: site.baseurl }}"></script>
 
 <!-- Footer Scripts
 ============================================= -->
 <script type="text/javascript" src="{{ "/js/functions.js" | prepend: site.baseurl }}"></script>
+
+
+
+<script>
+  jQuery(document).ready( function($){
+    var newDate = new Date(2016, 5, 16);
+    $('#countdown-ex1').countdown({until: newDate});
+  });
+</script>
 
 <script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

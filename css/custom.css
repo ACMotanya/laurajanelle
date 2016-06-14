@@ -2,6 +2,10 @@
 	Custom CSS
 -----------------------------------------------------------------*/
 
+#header, #header-wrap, #logo img {
+	height: 110px;
+}
+
 #header.transparent-header.full-header #header-wrap {
 	border-bottom: none;
 }
@@ -13,6 +17,35 @@
 #header.transparent-header.full-header #primary-menu.index-nav > ul {
 	border-right-color: transparent;
 	text-align: right;
+}
+
+#header.transparent-header.full-header #primary-menu.page-nav > ul {
+	text-align: right;
+}
+
+#header.sticky-header:not(.static-sticky) #primary-menu > ul > li > a {
+	padding: 0;
+}
+
+#primary-menu.comingsoon-nav ul li > a {
+	color: white;
+}
+
+#primary-menu.page-nav ul {
+	width: 130px;
+}
+
+#primary-menu.page-nav ul li {
+		width: auto;
+}
+
+#primary-menu.page-nav ul li > a {
+	font-weight: 600;
+	font-size: 18px;
+	padding: 0px;
+	line-height: 25px;
+	font-family: Bodoni-Sans;
+	letter-spacing: 1px;
 }
 
 #primary-menu.index-nav ul li > a {
