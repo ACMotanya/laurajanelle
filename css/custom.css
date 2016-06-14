@@ -117,7 +117,16 @@
 .demos-filter li.activeFilter a { color: #1ABC9C; }
 
 @media (max-width: 991px) {
-	.demos-filter { text-align: center; }
+	.demos-filter {
+		text-align: center;
+	}
+
+	#primary-menu.comingsoon-nav ul li > a {
+		color: #666;
+	}
+	#primary-menu.comingsoon-nav ul li > a:hover {
+		color: #000;
+	}
 
 	.demos-filter li {
 		float: left;
@@ -125,6 +134,7 @@
 		padding: 0 20px;
 	}
 }
+
 
 @media (max-width: 767px) {
 	.demos-filter li { width: 50%; }
