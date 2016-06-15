@@ -1,20 +1,18 @@
 /* ----------------------------------------------------------------
 	Custom CSS
------------------------------------------------------------------
+----------------------------------------------------------------- */
 
-#header, #header-wrap, #logo img {
-	height: 110px;
+.margin-auto {
+	margin: auto;
 }
 
-
-[class^="icon-"], [class*=" icon-"], [class^="icon-line-"], [class*=" icon-line-"], [class^="icon-line2-"], [class*=" icon-line2-"], .side-header #primary-menu.comingsoon-nav ul > li.sub-menu > a:after {
-  color: white;
+#header.sticky-header:not(.static-sticky), #header.sticky-header:not(.static-sticky) #header-wrap, #header.sticky-header:not(.static-sticky):not(.sticky-style-2):not(.sticky-style-3) #logo img {
+	height: 100px;
 }
-*/
 
-@media (min-width: 992px) and (max-width: 1385px) {
+@media (min-width: 992px) {
 	#header, #header-wrap, #logo img {
-		height: 110px;
+		height: 100px;
 	}
 }
 
@@ -89,6 +87,12 @@
 
 #footer.dark, .dark #footer {
 	background: #000;
+}
+
+/* About page styling */
+
+#section-about.page-section {
+	padding: 30px 0 0 0;
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
