@@ -113,6 +113,10 @@
 	#primary-menu.comingsoon-nav ul li > a:hover {
 		color: #000;
 	}
+	
+	#header.transparent-header.full-header #header-wrap{
+		background: lightgrey;
+	}
 }
 
 
