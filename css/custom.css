@@ -38,12 +38,12 @@
 
 #header.transparent-header.full-header #primary-menu.index-nav > ul {
 	border-right-color: transparent;
-	text-align: right;
 }
 
-#header.transparent-header.full-header #primary-menu.page-nav > ul {
-	text-align: right;
+#primary-menu ul li.current {
+	color: #999;
 }
+
 
 #header.sticky-header:not(.static-sticky) #primary-menu > ul > li > a {
 	padding: 0;
@@ -72,11 +72,14 @@
 #header.full-header #primary-menu.index-nav > ul {
 	width: 140px;
 	margin-bottom: -500px;
-	font-align: right;
 }
 
 #primary-menu.index-nav ul > li {
 	float: right;
+}
+
+#primary-menu ul li:hover > a, #primary-menu ul li.current > a {
+	color: #999;
 }
 
 #footer.dark, .dark #footer {
@@ -87,6 +90,12 @@
 
 #section-about.page-section {
 	padding: 30px 0 0 0;
+}
+
+div.container.clearfix video {
+	display: block;
+	width: 70%;
+	margin: auto;
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -105,7 +114,6 @@
 
 
 @media (max-width: 991px) {
-
 	#primary-menu.comingsoon-nav ul li > a {
 		color: #666;
 	}
@@ -113,9 +121,23 @@
 	#primary-menu.comingsoon-nav ul li > a:hover {
 		color: #000;
 	}
-	
+
 	#header.transparent-header.full-header #header-wrap{
 		background: lightgrey;
+	}
+
+	#primary-menu.index-nav ul > li {
+		float: left;
+	}
+
+	#primary-menu {
+		margin-left: 33px;
+	}
+
+	div.container.clearfix video {
+		display: block;
+		width: 100%;
+		margin-top: 30px;
 	}
 }
 
