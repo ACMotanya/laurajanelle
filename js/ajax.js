@@ -21,9 +21,12 @@ var searchTerm;
 var secondColumn;
 var session_no;
 var shippingCost;
+var shoppingCart;
 var stock_no;
 var subtotal;
 var type;
+
+
 
 /////////////////////////////////////////////////////
 // Get Session Number and Authorize Access to Page //
@@ -32,7 +35,7 @@ function sessionNumber()
 {
   session_no = Cookies.get('session_no');
   if (typeof(session_no) === "undefined" || session_no.length !== 25) {
-    location.pathname = "/cousin-op/";
+    location.pathname = "/cousin-op/";  //  Well need to change when going live
     alert("Please log in first.");
   }
 }
@@ -93,6 +96,7 @@ function addItemDetailView(stock)
 }
 
 
+
 //////////////////////////////
 // Get back the cart header //
 //////////////////////////////
@@ -122,6 +126,7 @@ function cartHeader()
     }
   });
 }
+
 
 
 ////////////////////
@@ -227,6 +232,8 @@ function cartList()
     }
   });
 }
+
+
 
 ////////////////////////////
 // REMOVE ITEMS FROM CART //
@@ -360,9 +367,9 @@ function creditCard ()
 }
 
 
-/////////////////////
-// Filter Function //
-/////////////////////
+//////////////////////////
+// Update Cart Function //
+//\/\/\/\/\/\/\/\/\/\/\/\\
 function updateCart ()
 {
 // call APICARTL
