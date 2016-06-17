@@ -6,6 +6,10 @@
 	margin: auto;
 }
 
+#header.transparent-header.full-header #header-wrap {
+	border-bottom: none;
+}
+
 #header.sticky-header:not(.static-sticky), #header.sticky-header:not(.static-sticky) #header-wrap, #header.sticky-header:not(.static-sticky):not(.sticky-style-2):not(.sticky-style-3) #logo img {
 	height: 100px;
 }
@@ -14,10 +18,18 @@
 	#header, #header-wrap, #logo img {
 		height: 100px;
 	}
+	#primary-menu ul li > a {
+		font-weight: 600;
+		font-size: 18px;
+		padding: 0px;
+		line-height: 25px;
+		font-family: Bodoni-Sans;
+		letter-spacing: 1px;
+	}
 }
 
-#header.transparent-header.full-header #header-wrap {
-	border-bottom: none;
+#primary-menu ul li > a {
+	font-family: Bodoni-Sans;
 }
 
 #header.transparent-header.full-header #logo {
@@ -47,24 +59,6 @@
 
 #primary-menu.page-nav ul li {
 		width: auto;
-}
-
-#primary-menu.page-nav ul li > a {
-	font-weight: 600;
-	font-size: 18px;
-	padding: 0px;
-	line-height: 25px;
-	font-family: Bodoni-Sans;
-	letter-spacing: 1px;
-}
-
-#primary-menu.index-nav ul li > a {
-	font-weight: 600;
-	font-size: 18px;
-	padding: 0px;
-	line-height: 25px;
-	font-family: Bodoni-Sans;
-	letter-spacing: 1px;
 }
 
 #primary-menu.index-nav ul li > a:hover {
@@ -107,54 +101,26 @@
 	}
 }
 
-
 /* I think I am the great and everything I love seems to make perfect sense to me */
 
 
-.demos-filter {
-	margin: 0;
-	text-align: right;
-}
-
-.demos-filter li {
-	list-style: none;
-	margin: 10px 0px;
-}
-
-.demos-filter li a {
-	display: block;
-	border: 0;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	color: #444;
-}
-
-.demos-filter li a:hover,
-.demos-filter li.activeFilter a { color: #1ABC9C; }
-
 @media (max-width: 991px) {
-	.demos-filter {
-		text-align: center;
-	}
 
 	#primary-menu.comingsoon-nav ul li > a {
 		color: #666;
 	}
+
 	#primary-menu.comingsoon-nav ul li > a:hover {
 		color: #000;
 	}
-
-	.demos-filter li {
-		float: left;
-		width: 33.3%;
-		padding: 0 20px;
+	
+	#header.transparent-header.full-header #header-wrap{
+		background: lightgrey;
 	}
 }
 
 
 @media (max-width: 767px) {
-	.demos-filter li { width: 50%; }
-}
 
 .revo-slider-emphasis-text {
 	font-size: 64px;
@@ -184,9 +150,7 @@
 
 .tp-caption { white-space: nowrap; }
 
-
-
-
+}
 
 /* The scroller on the bottom Empower Entice and Stuff */
 
@@ -195,7 +159,7 @@
   list-style: none;
   padding: 0;
   margin: 10%;
-	text-align: right;
+	text-align: center;
 }
 
 .rotator > li {
