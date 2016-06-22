@@ -197,7 +197,7 @@ function cartList()
                 item += '</div>';
               item += '</div>';
               item += '<div class="col-md-8 col-xs-8 nopadding">';
-                item += '<a href="#" class="button button-3d nomargin fright">Update Cart</a>';
+                item += '<a href="#" class="button button-3d nomargin fright"  onclick="updateCart()">Update Cart</a>';
                 item += '<a href="#" class="button button-3d notopmargin fright" onclick="checkoutRedirect()">Proceed to Checkout</a>';
               item += '</div>';
             item += '</div>';
@@ -372,15 +372,15 @@ function creditCard ()
 //\/\/\/\/\/\/\/\/\/\/\/\\
 function updateCart ()
 {
-// call APICARTL
-  $.ajax({
-    type: "GET",
-    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
-    data: {
-      request_id: "APICARTL",
-      session_no: session_no
-    },
-    success: function(response) {}
+  var table = $("table tbody");
+
+  table.find('tr').each(function (i, el) {
+    var $tds = $(this).find('td'),
+      stockNumber = $tds.eq(2).outerHTML(), // description -> possibly the stock number
+      quantity = $tds.eq(4).value(); // qty  -> have to exert the value of table unit
+
+      console.log(stockNumber);
+      console.log(quantity);
   });
 // check APICARTL qty compared to the displayed qty
 // if different call APICARTREM to get rid of line
