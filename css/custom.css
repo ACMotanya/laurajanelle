@@ -110,6 +110,12 @@ div.container.clearfix video {
 	}
 }
 
+
+/* Meet Us Styles */
+.boss-man {
+  margin:auto;
+  width:66.6666%;
+}
 /* I think I am the great and everything I love seems to make perfect sense to me */
 
 
@@ -144,6 +150,10 @@ div.container.clearfix video {
 
 @media (max-width: 767px) {
 
+	/* Meet Us Styles */
+	  .boss-man {
+	    width: 100%;
+	  }
 .revo-slider-emphasis-text {
 	font-size: 64px;
 	font-weight: 700;

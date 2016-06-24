@@ -24,6 +24,12 @@
             <li><a href="{{ site.baseurl }}/about"><div>ABOUT US</div></a></li>
           {% endif %}
 
+          {% if page.url == "/meet/" %}
+            <li class="current"><a href="{{ site.baseurl }}/meet"><div style="width: 146px">MEET OUR TEAM</div></a></li>
+          {% else %}
+            <li><a href="{{ site.baseurl }}/meet"><div style="width: 146px">MEET OUR TEAM</div></a></li>
+          {% endif %}
+
           <li><a href="{{ site.baseurl }}/comingsoon"><div>FIND A STORE</div></a></li>
           <li><a href="{{ site.baseurl }}/comingsoon1"><div>RETAILERS</div></a></li>
           <li><a href="https://www.ivystone.com/find/search-for-a-sales-representative.asp" target="_blank"><div>FIND A REP</div></a></li>
