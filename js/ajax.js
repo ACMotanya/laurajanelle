@@ -376,7 +376,7 @@ function updateCart ()
 
   table.find('tr').each(function (i, el) {
     var $tds = $(this).find('td'),
-      stockNumber = $tds.eq(2).outerHTML(), // description -> possibly the stock number
+      stockNumber = $tds.eq(2).attr(href), // description -> possibly the stock number
       quantity = $tds.eq(4).value(); // qty  -> have to exert the value of table unit
 
       console.log(stockNumber);

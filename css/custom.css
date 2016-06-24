@@ -76,6 +76,8 @@
 
 #primary-menu.index-nav ul > li {
 	float: right;
+	width: auto;
+	text-align: right;
 }
 
 #primary-menu ul li:hover > a, #primary-menu ul li.current > a {
