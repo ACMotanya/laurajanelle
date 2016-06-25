@@ -20,7 +20,7 @@
 	}
 	#primary-menu ul li > a {
 		font-weight: 600;
-		font-size: 16px;
+		font-size: 18px;
 		padding: 0px;
 		line-height: 25px;
 		font-family: Bodoni-Sans;
@@ -70,7 +70,7 @@
 }
 
 #header.full-header #primary-menu.index-nav > ul {
-	width: 160px;
+	width: 175px;
 	margin-bottom: -500px;
 }
 
