@@ -100,7 +100,7 @@ div.container.clearfix video {
 	margin: auto;
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 778px) and (max-width: 991px) {
 	#primary-menu-trigger {
 		left: 675px;
 	}
