@@ -172,9 +172,9 @@ function cartList()
 
             item += '<td class="cart-product-quantity">';
               item += '<div class="quantity clearfix">';
-                item += '<input type="button" value="-" class="minus" onclick="decreaseValue(' + flds[2].replace(/\s+/g,'') + ')">';
-                item += '<input type="text" name="quantity" value="' + flds[6].replace(/\s+/g,'') + '" class="qty" id="' + flds[2].replace(/\s+/g,'') + '" />';
-                item += '<input type="button" value="+" class="plus" onclick="increaseValue(' + flds[2].replace(/\s+/g,'') + ')">';
+                item += '<input type="button" value="-" class="minus btn-number" disabled="disabled" data-type="minus" data-field="quant[1]" onclick="decreaseValue(' + flds[2].replace(/\s+/g,'') + ')">';
+                item += '<input type="text" name="quant[1]" value="' + flds[6].replace(/\s+/g,'') + '" class="qty form-control input-number" id="' + flds[2].replace(/\s+/g,'') + '" />';
+                item += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant[1]" onclick="increaseValue(' + flds[2].replace(/\s+/g,'') + ')">';
               item += '</div>';
             item += '</td>';
 
