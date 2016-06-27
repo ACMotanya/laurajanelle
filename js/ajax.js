@@ -374,14 +374,13 @@ function updateCart ()
 {
   var table = $("table tbody");
 
-  table.find('tr').each(function (i, el) {
-    var $tds = $(this).find('td'),
-      stockNumber = $tds.eq(2).attr('href'), // description -> possibly the stock number
-      quantity = $tds.eq(4).value(); // qty  -> have to exert the value of table unit
+    table.find('tr').each(function (i, el) {
+      var stockNumber = $(this).find('td.cart-product-name a').attr('href');
+      var qty = $(this).find('td:nth-child(5) div input:nth-child(2)').innerHTML();
 
       console.log(stockNumber);
-      console.log(quantity);
-  });
+      console.log(qty);
+    });
 // check APICARTL qty compared to the displayed qty
 // if different call APICARTREM to get rid of line
 // call APICARTADD reinsert with new qty
