@@ -42,9 +42,31 @@ function sessionNumber()
 
 
 
-//////////////////////////
-// Add item to the cart //
-//////////////////////////
+////////////////////////////////////////
+// New Generic - Add item to the cart //
+////////////////////////////////////////
+function addItemGeneric(session_no, stock_no, qty)
+{
+   $.ajax({
+    type: "GET",
+    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APICARTADD",
+      session_no: session_no,
+      stock_no: stock_no,
+      qty: qty
+    },
+    success: function(response) {
+      console.log(response);
+    }
+  });
+}
+
+
+
+////////////////////////////////
+// OLD - Add item to the cart //
+////////////////////////////////
 function addItem(clicked_id)
 {
    stock_no = clicked_id;
@@ -91,6 +113,55 @@ function addItemDetailView(stock)
     success: function(response) {
       console.log(response);
       cartRedirect();
+    }
+  });
+}
+
+
+
+
+//////////////////////////////////////
+// GENERIC - REMOVE ITEMS FROM CART //
+//////////////////////////////////////
+function removeItemGeneric(session_no, line_no)
+{
+  $.ajax({
+    type: "GET",
+    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APICARTREM",
+      session_no: session_no,
+      line_no: line_no
+    },
+    success: function(response) {
+      console.log(response);
+    }
+  });
+}
+
+
+
+/////////////////////////////////
+// OLD -REMOVE ITEMS FROM CART //
+/////////////////////////////////
+function removeItem(clicked_id)
+{
+  line_no = clicked_id;
+  console.log(line_no);
+  console.log("test, am i removinng the item?");
+
+  $.ajax({
+    type: "GET",
+    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APICARTREM",
+      session_no: session_no,
+      line_no: line_no
+    },
+    success: function(response) {
+      console.log(response);
+      cartHeader();
+      cartList();
     }
   });
 }
@@ -153,7 +224,7 @@ function cartList()
         for (i=1; i<cartitems.length - 1; i++) {
           flds = cartitems[i].split("|");
 
-          item = '<tr class="cart_item">';
+          item = '<tr class="cart_item products">';
             item += '<td class="cart-product-remove">';
               item += '<a href="#" class="remove" onclick="removeItem(this.id)" id="' + flds[1].replace(/\s+/g,'') + '" title="Remove this item"><i class="icon-trash2"></i></a>';
             item += '</td>';
@@ -172,9 +243,9 @@ function cartList()
 
             item += '<td class="cart-product-quantity">';
               item += '<div class="quantity clearfix">';
-                item += '<input type="button" value="-" class="minus btn-number" disabled="disabled" data-type="minus" data-field="quant[1]" onclick="decreaseValue(' + flds[2].replace(/\s+/g,'') + ')">';
-                item += '<input type="text" name="quant[1]" value="' + flds[6].replace(/\s+/g,'') + '" class="qty form-control input-number" id="' + flds[2].replace(/\s+/g,'') + '" />';
-                item += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant[1]" onclick="increaseValue(' + flds[2].replace(/\s+/g,'') + ')">';
+                item += '<input type="button" value="-" class="minus btn-number" disabled="disabled" data-type="minus" data-field="quant['+i+']" onclick="changeQuantity(this)">';
+                item += '<input type="text" name="quant['+i+']" value="' + flds[6].replace(/\s+/g,'') + '" class="qty form-control input-number" id="' + flds[2].replace(/\s+/g,'') + '" />';
+                item += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant['+i+']" onclick="changeQuantity(this)">';
               item += '</div>';
             item += '</td>';
 
@@ -235,49 +306,70 @@ function cartList()
 
 
 
-////////////////////////////
-// REMOVE ITEMS FROM CART //
-////////////////////////////
-function removeItem(clicked_id)
-{
-  line_no = clicked_id;
-  console.log(line_no);
-  console.log("test, am i removinng the item?");
 
-  $.ajax({
-    type: "GET",
-    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
-    data: {
-      request_id: "APICARTREM",
-      session_no: session_no,
-      line_no: line_no
-    },
-    success: function(response) {
-      console.log(response);
-      cartHeader();
-      cartList();
-    }
-  });
-}
 
 //////////////////////////////////////
 // Functionality of + and - Buttons //
 //////////////////////////////////////
-function increaseValue(id)
+function changeQuantity(element)
 {
-  var value = parseInt(document.getElementById(id).value, 10);
-  value = isNaN(value) ? 0 : value;
-  value++;
-  document.getElementById(id).value = value;
+  var fieldName = $(element).attr('data-field');
+  console.log(fieldName);
+  var type      = $(element).attr('data-type');
+  console.log(type);
+  var input = $("input[name='"+fieldName+"']");
+  console.log(input);
+  var currentVal = parseInt(input.val());
+  if (!isNaN(currentVal)) {
+    if(type == 'minus') {
+      var minValue = parseInt(input.attr('min'));
+      if(!minValue) minValue = 1;
+      if(currentVal > minValue) {
+        input.val(currentVal - 1).change();
+      }
+      if(parseInt(input.val()) == minValue) {
+        $(this).attr('disabled', true);
+      }
+    } else if(type == 'plus') {
+      var maxValue = parseInt(input.attr('max'));
+        if(!maxValue) maxValue = 9999999999999;
+        if(currentVal < maxValue) {
+          input.val(currentVal + 1).change();
+        }
+        if(parseInt(input.val()) == maxValue) {
+          $(this).attr('disabled', true);
+        }
+    }
+  } else {
+    input.val(0);
+  }
+
+  $('.input-number').focusin(function(){
+    $(this).data('oldValue', $(this).val());
+  });
+  $('.input-number').change(function() {
+    var minValue =  parseInt($(this).attr('min'));
+    var maxValue =  parseInt($(this).attr('max'));
+    if(!minValue) minValue = 1;
+    if(!maxValue) maxValue = 9999999999999;
+    var valueCurrent = parseInt($(this).val());
+
+    var name = $(this).attr('name');
+    if(valueCurrent >= minValue) {
+        $(".btn-number[data-type='minus'][data-field='"+name+"']").removeAttr('disabled');
+    } else {
+        alert('Sorry, the minimum value was reached');
+        $(this).val($(this).data('oldValue'));
+    }
+    if(valueCurrent <= maxValue) {
+        $(".btn-number[data-type='plus'][data-field='"+name+"']").removeAttr('disabled');
+    } else {
+        alert('Sorry, the maximum value was reached');
+        $(this).val($(this).data('oldValue'));
+    }
+  });
 }
 
-function decreaseValue(id)
-{
-  var value = parseInt(document.getElementById(id).value, 10);
-  value = isNaN(value) ? 0 : value;
-  value--;
-  document.getElementById(id).value = value;
-}
 
 
 /////////////////////////////////
@@ -347,6 +439,47 @@ function cartTotals()
 
 
 
+////////////////////////\\
+// Update Cart Function \\
+//\\\\\\\\\\\\\\\\\\\\\\\\
+function updateCart ()
+{
+  shoppingCart = {};
+
+  var table = $("table tbody#cartItemTable");
+
+  // loop thru cart and faltten the items that are repeated
+  table.find('tr.products').each(function () {
+    var line_no     = $(this).find('td:first-child a').attr('id');
+    var stockNumber = $(this).find('td:nth-child(5) div input:nth-child(2)').attr('id');
+    var qty         = parseInt($(this).find('td:nth-child(5) div input:nth-child(2)').val());
+
+    console.log(line_no);
+    console.log(stockNumber);
+    console.log(qty);
+
+    if (!shoppingCart.hasOwnProperty(stockNumber)) {
+      shoppingCart[stockNumber] = [qty, line_no];
+      removeItemGeneric(session_no, line_no);
+
+    } else {
+      console.log("This is already in there");
+      shoppingCart[stockNumber][0] += qty;
+      removeItemGeneric(session_no, shoppingCart[stockNumber][1]);
+      removeItemGeneric(session_no, line_no);
+
+    }
+  });
+  console.log(shoppingCart);
+
+  $.each( shoppingCart, function( key, value ) {
+    addItemGeneric(session_no, key, value[0]);
+  });
+  cartList();
+}
+
+
+
 /////////////////////////
 // Credit Card Process //
 /////////////////////////
@@ -364,27 +497,6 @@ function creditCard ()
      document.getElementById("creditcard").innerHTML += response;
    }
  });
-}
-
-
-//////////////////////////
-// Update Cart Function //
-//\/\/\/\/\/\/\/\/\/\/\/\\
-function updateCart ()
-{
-  var table = $("table tbody");
-
-    table.find('tr').each(function (i, el) {
-      var stockNumber = $(this).find('td.cart-product-name a').attr('href');
-      var qty = $(this).find('td:nth-child(5) div input:nth-child(2)').innerHTML();
-
-      console.log(stockNumber);
-      console.log(qty);
-    });
-// check APICARTL qty compared to the displayed qty
-// if different call APICARTREM to get rid of line
-// call APICARTADD reinsert with new qty
-//
 }
 
 
