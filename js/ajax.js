@@ -501,6 +501,33 @@ function creditCard ()
 
 
 
+
+/////////////////////////////////////////
+// Saving Addresses from Checkout Page //
+/////////////////////////////////////////
+function saveAddresses()
+{
+  var billing-form-companyname = $("#billing-form-companyname").val();
+  var billing-form-address = $("#billing-form-addres").val();
+  var billing-form-address2 = $("#billing-form-address2").val();
+  var billing-form-address3 = $("#billing-form-address3").val();
+  var billing-form-city = $("#billing-form-city").val();
+  var billing-form-state = $("#billing-form-state").val();
+  var billing-form-zipcode = $("#billing-form-zipcode").val();
+  var billing-form-country = $("#billing-form-country").val();
+  var billing-form-email = $("#billing-form-email").val();
+  var billing-form-phone = $("#billing-form-phone").val();
+  var shipping-form-companyname = $("#shipping-form-companyname").val();
+  var shipping-form-address = $("#shipping-form-address").val();
+  var shipping-form-address2 = $("#shipping-form-address2").val();
+  var shipping-form-address3 = $("#shipping-form-address3").val();
+  var shipping-form-city = $("#shipping-form-city").val();
+  var shipping-form-state = $("#shipping-form-state").val();
+  var shipping-form-zipcode = $("#shipping-form-zipcode").val();
+  var shipping-form-country = $("#shipping-form-country").val();
+}
+
+
 /////////////////////
 // Filter Function //
 /////////////////////
