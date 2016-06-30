@@ -26,8 +26,53 @@ var stock_no;
 var subtotal;
 var type;
 
+/*
+$(document).ready(function() {
+  $("#myButton").click(function() {
+    console.log("is this working?");
+    var hasErrors = $('#billing-form').validator('validate').has('.has-error').length;
+    if (hasErrors) {
+      alert('false');
+    } else {
+      // everything looks good!
+      hasErrors = $('#shipping-form').validator('validate').has('.has-error').length;
+      if (hasErrors) {
+        alert('false');
+      } else {
+        // everything looks good!
+        saveAddresses();
+        console.log("It worked and let's slide the div down now");
+      }
+    }
+  });
+});
 
 
+$(document).ready(function() {
+  $("#myButton").click(function() {
+    console.log("is this working?");
+      $('#billing-form').validator('validate').submit( function (e) {
+      if (e.isDefaultPrevented()) {
+        // handle the invalid form...
+        console.log("Something on the form is incorerrct.");
+      } else {
+        // everything looks good!
+        $('#shipping-form').validator().submit( function (e) {
+          if (e.isDefaultPrevented()) {
+            // handle the invalid form...
+            console.log("Something on the form is incorerrct.");
+          } else {
+            // everything looks good!
+            saveAddresses();
+            console.log("It worked and let's slide the div down now");
+          }
+        });
+      }
+    });
+  });
+});
+
+*/
 /////////////////////////////////////////////////////
 // Get Session Number and Authorize Access to Page //
 /////////////////////////////////////////////////////
@@ -507,24 +552,56 @@ function creditCard ()
 /////////////////////////////////////////
 function saveAddresses()
 {
-  var billing-form-companyname = $("#billing-form-companyname").val();
-  var billing-form-address = $("#billing-form-addres").val();
-  var billing-form-address2 = $("#billing-form-address2").val();
-  var billing-form-address3 = $("#billing-form-address3").val();
-  var billing-form-city = $("#billing-form-city").val();
-  var billing-form-state = $("#billing-form-state").val();
-  var billing-form-zipcode = $("#billing-form-zipcode").val();
-  var billing-form-country = $("#billing-form-country").val();
-  var billing-form-email = $("#billing-form-email").val();
-  var billing-form-phone = $("#billing-form-phone").val();
-  var shipping-form-companyname = $("#shipping-form-companyname").val();
-  var shipping-form-address = $("#shipping-form-address").val();
-  var shipping-form-address2 = $("#shipping-form-address2").val();
-  var shipping-form-address3 = $("#shipping-form-address3").val();
-  var shipping-form-city = $("#shipping-form-city").val();
-  var shipping-form-state = $("#shipping-form-state").val();
-  var shipping-form-zipcode = $("#shipping-form-zipcode").val();
-  var shipping-form-country = $("#shipping-form-country").val();
+  var billingformcompanyname  = $("#billing-form-companyname").val();
+  var billingformaddress      = $("#billing-form-addres").val();
+  var billingformaddress2     = $("#billing-form-address2").val();
+  var billingformaddress3     = $("#billing-form-address3").val();
+  var billingformcity         = $("#billing-form-city").val();
+  var billingformstate        = $("#billing-form-state").val();
+  var billingformzipcode      = $("#billing-form-zipcode").val();
+  var billingformcountry      = $("#billing-form-country").val();
+  var billingformemail        = $("#billing-form-email").val();
+  var billingformphone        = $("#billing-form-phone").val();
+  var shippingformcompanyname = $("#shipping-form-companyname").val();
+  var shippingformaddress     = $("#shipping-form-address").val();
+  var shippingformaddress2    = $("#shipping-form-address2").val();
+  var shippingformaddress3    = $("#shipping-form-address3").val();
+  var shippingformcity        = $("#shipping-form-city").val();
+  var shippingformstate       = $("#shipping-form-state").val();
+  var shippingformzipcode     = $("#shipping-form-zipcode").val();
+  var shippingformcountry     = $("#shipping-form-country").val();
+  var email_addr              = $("#billing-form-email").val();
+  var phone                   = $("#billing-form-phone").val();
+
+  $.ajax({
+   type: "GET",
+   url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+   data: {
+     request_id: "APICARTUPD",
+     session_no: session_no,
+     billname: billingformcompanyname,
+     billadd1: billingformaddress,
+     billadd2: billingformaddress2,
+     billadd3: billingformaddress3,
+     billcity: billingformcity,
+     billstate: billingformstate,
+     billzip: billingformzipcode,
+     billcountry: billingformcountry,
+     shipname: shippingformcompanyname,
+     shipadd1: shippingformaddress,
+     shipadd2: shippingformaddress2,
+     shipadd3: shippingformaddress3,
+     shipcity: shippingformcity,
+     shipstate: shippingformstate,
+     shipzip: shippingformzipcode,
+     shipcountry: shippingformcountry,
+     email_addr: email_addr,
+     phone: phone
+   },
+   success: function(response) {
+     console.log(response);
+   }
+ });
 }
 
 
