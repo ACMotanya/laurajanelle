@@ -521,6 +521,7 @@ function updateCart ()
     addItemGeneric(session_no, key, value[0]);
   });
   cartList();
+  cartTotals();
 }
 
 
@@ -540,6 +541,7 @@ function creditCard ()
    success: function(response) {
      console.log(response);
      document.getElementById("creditcard").innerHTML += response;
+     $( "div#creditcard" ).hide();
    }
  });
 }
