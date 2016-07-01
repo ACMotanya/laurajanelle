@@ -2,13 +2,9 @@ Add image behind Find a Store
 
 Add image behind Retailers Login
 
-Mock up About Us
-
-Add logo for the contact page
-
 Larger breadcrumb font
 
-Make page with past transaction
+Make page with past transactions
 
 Add dropdown for past bill to and ship to addresses
 
@@ -16,58 +12,7 @@ Make a customer detail page with account information
 
 set all errors for api calls and login
 
-
-Our Goal
-
-Our goal each day is to make a positive difference in the lives of each other, our retailers, our vendors, and our business partners.
-
-Our Mantra
-
-Our Mantra is "Be Mindful". We strive each day to live in the present moment. To be mindful. To be right here, right now. As we increase our awareness through mindfulness, our quality of thought and action grows significantly. This provides us the ability to reach our potential.
-
-Our History
-
-Our parent company, Cousin Corporation of America is a family owned business founded in 1970. Over the last 46 years Cousin has evolved from a paint and hobby store to one of the top jewelry making supply companies to a full in house fashion company. Laura Janelle is the granddaughter of our founder, Rita Cousin. Laura previously worked at Cousin and today is a full time mom.
-
-Our Products
-
-At Laura Janelle we push ourselves to the fashion limit to make sure we are bringing you "on trend" products at outstanding value. From publications to paid trend resources to fashion trade shows to the runways we are constantly gathering and analyzing data from around the world to make sure we are "on trend" all the time. As a full service fashion company, we go from concept to design to packaging; all in house. We feel extremely fortunate to have an amazing group of people on our creative team. Their energy and passion for fashion is contagious!
- 
-Be Grateful
-
-The opportunity to create, to make a difference, to work towards something you believe in, with people that you care about, is extremely rare and special. We are so grateful to have the opportunity to do this each and every day.
-
-Links at the top:
-
-1. Our Team
-
-Senior Leadership
-President, Denny King
-General Manager, Lisa Coburn
-Chief Financial Officer, Bob Losi
-Vice President, Operations, Marty DiMura
-
-Management Team
-Design Manager, Kristine Regan
-Graphic Arts Manager, Mark Pezzuti
-Customer Service Manager, Denise Morgan
-Purchasing Manager, Cari McKenzie
-Warehouse Manager, Laura Backert
-Rob Murphy, Inventory Control Manager
-Packaging Manager, Sharon Ellingwood
-
-2. Careers (Logo of Cousin Corp, Cousin DIY and Laura Janelle
-
-Being part of the Laura Janelle family is being part of the Cousin family and its 46 year history. A career with Cousin is more than a job and more than a paycheck; it's about making a difference with people you care about and having a lot of fun along the way. You won't find any half empty glasses in our building, only half full. If you enjoy learning, growing and reaching your potential with lots of smiles and laughter then you may just be a great fit.
-
-Join us and become part of something special!
-
-Explore our career opportunities (link)
-
-3. News
-
-4. Legal-Terms of Use. Privacy Policy
-
-5. Take a Tour
-
-6. Cousin.com
+*add msrp for all items on the shop page
+*add msrp total at the end
+*should i add shipping options
+*swap out descriptions for extended descriptionson the shop page?

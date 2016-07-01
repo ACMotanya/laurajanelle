@@ -12,8 +12,11 @@ var flds;
 var head;
 var item;
 var lines;
+var min;
+var max;
 var orderAmt;
 var pictureSlider;
+var prices = [];
 var prod;
 var salesTax;
 var searchField = document.getElementById('searchvalue');
@@ -25,6 +28,8 @@ var shoppingCart;
 var stock_no;
 var subtotal;
 var type;
+
+
 
 /*
 $(document).ready(function() {
@@ -635,13 +640,14 @@ function filterFunction(a,b,c,d,e,f)
       }
       for (i=0; i<=fldsArray.length - 1; i++) {
         flds = fldsArray[i];
+        prices.push(Number(flds[4]));
         prod = '<div class="product clearfix pf-dress">';
           prod += '<div class="product-image">';
             prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
           //  prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
           //  prod += 'div class="sale-flash">50% Off*</div>'
             prod += '<div class="product-overlay">';
-              prod += '<a href="#" class="add-to-cart" onclick="addItem(this.id)" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+              prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="addItem(this.id); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
               prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a>';
             prod += '</div>';
           prod += '</div>';
@@ -652,6 +658,46 @@ function filterFunction(a,b,c,d,e,f)
         prod += '</div>';
         document.getElementById("shop").innerHTML += prod;
       }
+
+      console.log(prices);
+      min = Array.min(prices);
+      max = Array.max(prices);
+
+      $(".range_23").ionRangeSlider({
+        type: "double",
+        min: min,
+        max: max,
+        from: min,
+        to: max,
+        prefix: '$',
+        hide_min_max: true,
+        hide_from_to: false,
+        grid: false,
+        onStart: function (data) {
+          priceRangefrom = data.from;
+          priceRangeto = data.to;
+        },
+        onFinish: function (data) {
+          priceRangefrom = data.from;
+          priceRangeto = data.to;
+
+          $container.isotope({
+            filter: function() {
+
+              if( $(this).find('.product-price').find('ins').length > 0 ) {
+                var price = $(this).find('.product-price ins').text();
+              } else {
+                var price = $(this).find('.product-price').text();
+              }
+
+              priceNum = price.split("$");
+
+              return ( priceRangefrom <= priceNum[1] && priceRangeto >= priceNum[1] );
+            }
+          });
+
+        }
+      });
     }
   });
 }
@@ -696,6 +742,14 @@ function Comparator(a,b)
   if (a[8] > b[8]) return 1;
   return 0;
 }
+
+Array.min = function( array ){
+    return Math.min.apply( Math, array );
+};
+
+Array.max = function( array ){
+    return Math.max.apply( Math, array );
+};
 
 //
 // Search API Function
