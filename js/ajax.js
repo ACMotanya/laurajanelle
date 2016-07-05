@@ -332,11 +332,11 @@ function cartList()
 
           item = '<tr class="cart_item">';
             item += '<td class="cart-product-thumbnail">';
-              item += '<a href="#"><img width="64" height="64" src="../ljimages/' + flds[2].replace(/\s+/g,'') + '-sm.png" alt="' + flds[3] + '"></a>';
+              item += '<a href=../detail-view/#' + flds[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="../ljimages/' + flds[2].replace(/\s+/g,'') + '-sm.png" alt="' + flds[3] + '"></a>';
             item += '</td>';
 
             item += '<td class="cart-product-name">';
-              item += '<a href="#">' + flds[3] + '</a>';
+              item += '<a href="../detail-view/#' + flds[2].replace(/\s+/g,'') + '">' + flds[3] + '</a>';
             item += '</td>';
 
             item += '<td class="cart-product-quantity">';
@@ -612,6 +612,7 @@ function saveAddresses()
 }
 
 
+
 /////////////////////
 // Filter Function //
 /////////////////////
@@ -641,7 +642,7 @@ function filterFunction(a,b,c,d,e,f)
       for (i=0; i<=fldsArray.length - 1; i++) {
         flds = fldsArray[i];
         prices.push(Number(flds[4]));
-        prod = '<div class="product clearfix pf-dress">';
+        prod = '<div class="product clearfix ' + flds[2] +'">';
           prod += '<div class="product-image">';
             prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
           //  prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
@@ -658,50 +659,64 @@ function filterFunction(a,b,c,d,e,f)
         prod += '</div>';
         document.getElementById("shop").innerHTML += prod;
       }
-
-      console.log(prices);
-      min = Array.min(prices);
-      max = Array.max(prices);
-
-      $(".range_23").ionRangeSlider({
-        type: "double",
-        min: min,
-        max: max,
-        from: min,
-        to: max,
-        prefix: '$',
-        hide_min_max: true,
-        hide_from_to: false,
-        grid: false,
-        onStart: function (data) {
-          priceRangefrom = data.from;
-          priceRangeto = data.to;
-        },
-        onFinish: function (data) {
-          priceRangefrom = data.from;
-          priceRangeto = data.to;
-
-          $container.isotope({
-            filter: function() {
-
-              if( $(this).find('.product-price').find('ins').length > 0 ) {
-                var price = $(this).find('.product-price ins').text();
-              } else {
-                var price = $(this).find('.product-price').text();
-              }
-
-              priceNum = price.split("$");
-
-              return ( priceRangefrom <= priceNum[1] && priceRangeto >= priceNum[1] );
-            }
-          });
-
-        }
-      });
     }
   });
 }
 
+
+
+/////////////////////////
+// Search API Function //
+/////////////////////////
+function search()
+{
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      searchTerm = $('#searchvalue').val();
+      alert("am i getting here?");
+      console.log(searchTerm);
+      $.ajax({
+        type: "GET",
+        url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+        data: {
+          request_id: "APISTKSEARCH",
+          query: searchTerm},
+        success: function(response) {
+          console.log(response);
+          lines = response.split("\n");
+          // lines[0] is header row
+          // lines[1]+ are data lines
+          $('#shop').empty();
+          fldsArray = [];
+          for (i=1; i<lines.length - 1; i++) {
+            flds = lines[i].split("|");
+            fldsArray.push(flds);
+            fldsArray = fldsArray.sort(Comparator);
+          }
+          for (i=0; i<=fldsArray.length - 1; i++) {
+            flds = fldsArray[i];
+            prices.push(Number(flds[4]));
+            prod = '<div class="product clearfix pf-dress">';
+              prod += '<div class="product-image">';
+                prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
+              //  prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
+              //  prod += 'div class="sale-flash">50% Off*</div>'
+                prod += '<div class="product-overlay">';
+                  prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="addItem(this.id); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+                  prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a>';
+                prod += '</div>';
+              prod += '</div>';
+              prod += '<div class="product-desc">';
+                prod += '<div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div>';
+                prod += '<div class="product-price"><ins>$' + flds[4] +'</ins></div>';
+              prod += '</div>';
+            prod += '</div>';
+            document.getElementById("shop").innerHTML += prod;
+          }
+        }
+      });
+    }
+}
 
 
 
@@ -750,57 +765,3 @@ Array.min = function( array ){
 Array.max = function( array ){
     return Math.max.apply( Math, array );
 };
-
-//
-// Search API Function
-//
-
-$('#searchvalue').on("input", function() {
-  searchTerm = this.value;
-  console.log(searchTerm);
-});
-
-
-
-$('input#searchvalue').on('keypress', {request_id: "APISTKSEARCH", level1: searchTerm}, function (event) {
-    var key = event.which || event.keyCode;
-    if (key === 13) {
-      event.preventDefault();
-//      getSearchTerm();
-      $.get("http://192.168.123.17:8080/nlhtml/custom/netlink.php?",
-      {request_id: "APISTKSEARCH",
-       query: searchTerm},
-      function(response) {
-        lines = response.split("\n");
-        // lines[0] is header row
-        // lines[1]+ are data lines
-        fields = lines[1].split("|");
-        $('#shop').empty();
-
-        for (i=1; i<lines.length - 1; i++) {
-          flds = lines[i].split("|");
-    //          prod = '<div class="product clearfix"><div class="product-image">';
-    //          prod += '<a href="#"><img src="http://api.netlink.ninja/nlhtml/images/shop/' + flds[3] + '" alt="' + flds[1] + '"></a>';
-    //          prod += '<div class="product-overlay"><a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a><a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a></div></div>';
-    //          prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#">' + flds[1] + '</a></h3></div><div class="product-price">' + flds[4] + '</div><div class="product-rating"><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star3"></i><i class="icon-star-half-full"></i><i class="icon-star-empty"></i></div></div>';
-
-              prod = '<div class="product clearfix pf-dress">';
-                prod += '<div class="product-image">';
-                  prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-lg.png" alt="' + flds[1] + '"></a>';
-                  prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-lg.png" alt="' + flds[1] + '"></a>';
-                //  prod += 'div class="sale-flash">50% Off*</div>'
-                  prod += '<div class="product-overlay">';
-                    prod += '<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-                    prod += '<a href="../include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>';
-                  prod += '</div>';
-                prod += '</div>';
-                prod += '<div class="product-desc">';
-  								prod += '<div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div>';
-  								prod += '<div class="product-price"><ins>' + flds[4] +'</ins></div>';
-  							prod += '</div>';
-              prod += '</div>';
-          document.getElementById("shop").innerHTML += prod;
-        }
-     });
-    }
-});

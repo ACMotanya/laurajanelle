@@ -15,7 +15,7 @@
       ============================================= -->
       <div id="logo">
         <a href="{{ site.baseurl }}/" class="standard-logo" data-dark-logo="{{ site.baseurl }}/img/lj-bw-1.png"><img src="{{ site.baseurl }}/img/lj-bw-1.png" alt="Laura Janelle Logo"></a>
-        <a href="{{ site.baseurl }}/" class="retina-logo" data-dark-logo="{{ site.baseurl }}/img/lj-bw-1.png"><img src="{{ site.baseurl }}/img/lj-bw-1.png" alt="laura Janelle Logo"></a>
+        <a href="{{ site.baseurl }}/" class="retina-logo" data-dark-logo="{{ site.baseurl }}/img/lj-bw-1.png"><img src="{{ site.baseurl }}/img/lj-bw-1.png" alt="Laura Janelle Logo"></a>
       </div><!-- #logo end -->
 
       <!-- Primary Navigation
@@ -29,10 +29,10 @@
             <ul>
               <li><a href="#"><div id="shopFilterCollections">Collections</div></a>
                 <ul>
-                  <li><a href="{{ site.baseurl }}/sleek"><div id="shopFilterSleek">SLEEK</div></a></li>
-                  <li><a href="{{ site.baseurl }}/rglb"><div id="shopFilterRGLB">RGLB</div></a></li>
-                  <li><a href="{{ site.baseurl }}/encharming"><div id="shopFilterEncharming">ENCHARMING</div></a></li>
-                  <li><a href="{{ site.baseurl }}/identify"><div id="shopFilterIdentify">IDENTIFY</div></a></li>
+                  <li><a href="{{ site.baseurl }}/sleek" onclick="filterFunction('APISTKLST','LJ10000','','','',''); cartHeader();"><div id="shopFilterSleek">SLEEK</div></a></li>
+                  <li><a href="{{ site.baseurl }}/rglb" onclick="filterFunction('APISTKLST','LJ10700','','','',''); cartHeader();"><div id="shopFilterRGLB">RGLB</div></a></li>
+                  <li><a href="{{ site.baseurl }}/encharming" onclick="filterFunction('APISTKLST','LJ10300','','','',''); cartHeader();"><div id="shopFilterEncharming">ENCHARMING</div></a></li>
+                  <li><a href="{{ site.baseurl }}/identify" onclick="filterFunction('APISTKLST','LJ10500','','','',''); cartHeader();"><div id="shopFilterIdentify">IDENTIFY</div></a></li>
                 </ul>
               </li>
               <li><a href="{{ site.baseurl }}/programs"><div id="shopFilterPrograms">PROGRAMS</div></a></li>
@@ -88,11 +88,12 @@
         </div><!-- #top-cart end -->
 
         <!-- Top Search
-        ============================================= 
+        ============================================= -->
         <div id="top-search">
           <a href="#" id="top-search-trigger"><i class="icon-search3"></i><i class="icon-line-cross"></i></a>
           <form>
-            <input id="searchvalue" type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter..">
+            <input id="searchvalue" type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter.." onKeyPress="return search();">
+
           </form>
         </div><!-- #top-search end -->
 
