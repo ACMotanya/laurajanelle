@@ -3,19 +3,19 @@
 </script>
 <!-- Header
 ============================================= -->
-<header id="header">
+<header id="header" class="full-header">
 
   <div id="header-wrap">
 
     <div class="container clearfix">
 
-      <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+      <div id="primary-menu-trigger" class="page-trigger"><i class="icon-reorder"></i></div>
 
       <!-- Logo
       ============================================= -->
-      <div id="logo">
-        <a href="{{ site.baseurl }}/" class="standard-logo" data-dark-logo="{{ site.baseurl }}/img/lj-bw-1.png"><img src="{{ site.baseurl }}/img/lj-bw-1.png" alt="Laura Janelle Logo"></a>
-        <a href="{{ site.baseurl }}/" class="retina-logo" data-dark-logo="{{ site.baseurl }}/img/lj-bw-1.png"><img src="{{ site.baseurl }}/img/lj-bw-1.png" alt="Laura Janelle Logo"></a>
+      <div id="logo" class="page-logo">
+        <a href="{{ site.baseurl }}/" class="standard-logo" data-dark-logo="{{ site.baseurl }}/img/lj-bw-2.png"><img src="{{ site.baseurl }}/img/lj-bw-2.png" alt="Laura Janelle Logo"></a>
+        <a href="{{ site.baseurl }}/" class="retina-logo" data-dark-logo="{{ site.baseurl }}/img/lj-bw-2.png"><img src="{{ site.baseurl }}/img/lj-bw-2.png" alt="Laura Janelle Logo"></a>
       </div><!-- #logo end -->
 
       <!-- Primary Navigation
@@ -25,31 +25,32 @@
         <ul>
           <li><a href="{{ site.baseurl }}/"><div>Home</div></a></li>
 
-          <li><a href="{{ site.baseurl }}/shop-filter"><div id="shopFilter">Shop</div></a>
+          <li><a href="{{ site.baseurl }}/shop/"><div id="shopFilter">Shop</div></a>
             <ul>
               <li><a href="#"><div id="shopFilterCollections">Collections</div></a>
                 <ul>
-                  <li><a href="{{ site.baseurl }}/sleek" onclick="filterFunction('APISTKLST','LJ10000','','','',''); cartHeader();"><div id="shopFilterSleek">SLEEK</div></a></li>
-                  <li><a href="{{ site.baseurl }}/rglb" onclick="filterFunction('APISTKLST','LJ10700','','','',''); cartHeader();"><div id="shopFilterRGLB">RGLB</div></a></li>
-                  <li><a href="{{ site.baseurl }}/encharming" onclick="filterFunction('APISTKLST','LJ10300','','','',''); cartHeader();"><div id="shopFilterEncharming">ENCHARMING</div></a></li>
-                  <li><a href="{{ site.baseurl }}/identify" onclick="filterFunction('APISTKLST','LJ10500','','','',''); cartHeader();"><div id="shopFilterIdentify">IDENTIFY</div></a></li>
+                  <li><a href="{{ site.baseurl }}/shop/#sleek" onclick="filterFunction('APISTKLST','LJ10000','','','','');"><div>SLEEK</div></a></li>
+                  <li><a href="{{ site.baseurl }}/shop/#rglb" onclick="filterFunction('APISTKLST','LJ10700','','','','');"><div>RGLB</div></a></li>
+                  <li><a href="{{ site.baseurl }}/shop/#encharming" onclick="filterFunction('APISTKLST','LJ10300','','','','');"><div>ENCHARMING</div></a></li>
+                  <li><a href="{{ site.baseurl }}/shop/#identify" onclick="filterFunction('APISTKLST','LJ10500','','','','');"><div>IDENTIFY</div></a></li>
                 </ul>
               </li>
-              <li><a href="{{ site.baseurl }}/programs"><div id="shopFilterPrograms">PROGRAMS</div></a></li>
-              <li><a href="{{ site.baseurl }}/sets"><div id="shopFilterSets">SETS</div></a></li>
-              <li><a href="{{ site.baseurl }}/earrings"><div id="shopFilterEarrings">EARRINGS</div></a></li>
-              <li><a href="{{ site.baseurl }}/necklaces"><div id="shopFilterNecklaces">NECKLACES</div></a></li>
-              <li><a href="{{ site.baseurl }}/bracelets"><div id="shopFilterBracelets">BRACELETS</div></a></li>
-              <li><a href="{{ site.baseurl }}/lanyards"><div id="shopFilterLanyards">LANYARDS</div></a></li>
-              <li><a href="{{ site.baseurl }}/tassels"><div id="shopFilterTassels">TASSELS</div></a></li>
-              <li><a href="{{ site.baseurl }}/snaps"><div id="shopFilterSnaps">SNAPS</div></a></li>
+              <li><a href="{{ site.baseurl }}/shop/#programs" onclick="filterFunction('APISTKLST','','800','','','');"><div>PROGRAMS</div></a></li>
+              <li><a href="{{ site.baseurl }}/shop/#sets" onclick="filterFunction('APISTKLST','','700','','','');"><div>SETS</div></a></li>
+              <li><a href="{{ site.baseurl }}/shop/#earrings" onclick="filterFunction('APISTKLST','','300','','','');"><div>EARRINGS</div></a></li>
+              <li><a href="{{ site.baseurl }}/shop/#necklaces" onclick="filterFunction('APISTKLST','','100','','','');"><div>NECKLACES</div></a></li>
+              <li><a href="{{ site.baseurl }}/shop/#bracelets" onclick="filterFunction('APISTKLST','','200','','','');"><div>BRACELETS</div></a></li>
+              <li><a href="{{ site.baseurl }}/shop/#lanyards" onclick="filterFunction('APISTKLST','','400','','','');"><div>LANYARDS</div></a></li>
+              <li><a href="{{ site.baseurl }}/shop/#tassels" onclick="filterFunction('APISTKLST','','600','','','');"><div>TASSELS</div></a></li>
+              <li><a href="{{ site.baseurl }}/shop/#snaps" onclick="filterFunction('APISTKLST','','500','','','');"><div>SNAPS</div></a></li>
             </ul>
           </li>
 
-          <li><a href="{{ site.baseurl }}/shop-filter"><div id="shopFilter">MY ACCOUNT</div></a>
+          <li><a href="#"><div id="shopFilter">MY ACCOUNT</div></a>
             <ul>
-              <li><a href="{{ site.baseurl }}/programs"><div id="shopFilterPrograms">INVOICES</div></a></li>
-              <li><a href="{{ site.baseurl }}/sets"><div id="shopFilterSets">ORDERS</div></a></li>
+              <li><a href="{{ site.baseurl }}/profile"><div>PROFILE</div></a></li>
+              <li><a href="{{ site.baseurl }}/programs"><div>INVOICES</div></a></li>
+              <li><a href="{{ site.baseurl }}/order"><div>ORDERS</div></a></li>
             </ul>
           </li>
 

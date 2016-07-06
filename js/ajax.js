@@ -31,53 +31,7 @@ var type;
 
 
 
-/*
-$(document).ready(function() {
-  $("#myButton").click(function() {
-    console.log("is this working?");
-    var hasErrors = $('#billing-form').validator('validate').has('.has-error').length;
-    if (hasErrors) {
-      alert('false');
-    } else {
-      // everything looks good!
-      hasErrors = $('#shipping-form').validator('validate').has('.has-error').length;
-      if (hasErrors) {
-        alert('false');
-      } else {
-        // everything looks good!
-        saveAddresses();
-        console.log("It worked and let's slide the div down now");
-      }
-    }
-  });
-});
 
-
-$(document).ready(function() {
-  $("#myButton").click(function() {
-    console.log("is this working?");
-      $('#billing-form').validator('validate').submit( function (e) {
-      if (e.isDefaultPrevented()) {
-        // handle the invalid form...
-        console.log("Something on the form is incorerrct.");
-      } else {
-        // everything looks good!
-        $('#shipping-form').validator().submit( function (e) {
-          if (e.isDefaultPrevented()) {
-            // handle the invalid form...
-            console.log("Something on the form is incorerrct.");
-          } else {
-            // everything looks good!
-            saveAddresses();
-            console.log("It worked and let's slide the div down now");
-          }
-        });
-      }
-    });
-  });
-});
-
-*/
 /////////////////////////////////////////////////////
 // Get Session Number and Authorize Access to Page //
 /////////////////////////////////////////////////////
@@ -168,7 +122,6 @@ function addItemDetailView()
 
 
 
-
 //////////////////////////////////////
 // GENERIC - REMOVE ITEMS FROM CART //
 //////////////////////////////////////
@@ -190,9 +143,9 @@ function removeItemGeneric(session_no, line_no)
 
 
 
-/////////////////////////////////
-// OLD -REMOVE ITEMS FROM CART //
-/////////////////////////////////
+//////////////////////////////////
+// OLD - REMOVE ITEMS FROM CART //
+//////////////////////////////////
 function removeItem(clicked_id)
 {
   line_no = clicked_id;

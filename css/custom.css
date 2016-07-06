@@ -13,52 +13,52 @@
 #header.sticky-header:not(.static-sticky), #header.sticky-header:not(.static-sticky) #header-wrap, #header.sticky-header:not(.static-sticky):not(.sticky-style-2):not(.sticky-style-3) #logo img {
 	height: 100px;
 }
+/* shopping cart  logo when scrolling down the page */
+#header.sticky-header:not(.static-sticky), #header.sticky-header:not(.static-sticky) #header-wrap, #header.sticky-header:not(.static-sticky):not(.sticky-style-2):not(.sticky-style-3) #logo.page-logo img,
+#header.sticky-header:not(.static-sticky), #header.sticky-header:not(.static-sticky) #header-wrap, #header.sticky-header:not(.static-sticky):not(.sticky-style-2):not(.sticky-style-3) #primary-menu > ul {
+	height: 79px;
+}
+
 
 @media (min-width: 992px) {
 	#header, #header-wrap, #logo img {
 		height: 100px;
 	}
-	#primary-menu ul li > a {
-		font-weight: 600;
-		font-size: 16px;
+	#primary-menu.index-nav ul li > a {
 		padding: 0px;
 		line-height: 25px;
-		font-family: Bodoni-Sans;
-		letter-spacing: 1px;
 	}
 }
 
 #primary-menu ul li > a {
 	font-family: Bodoni-Sans;
+	font-weight: 600;
+	font-size: 16px;
+	letter-spacing: 1px;
 }
 
 #header.transparent-header.full-header #logo {
 	border-right-color: transparent;
 }
 
-#header.transparent-header.full-header #primary-menu.index-nav > ul {
+#header.transparent-header.full-header #primary-menu > ul {
 	border-right-color: transparent;
+}
+
+#header.full-header #primary-menu > ul {
+	height: 100px;
 }
 
 #primary-menu ul li.current {
 	color: #999;
 }
 
-
-#header.sticky-header:not(.static-sticky) #primary-menu > ul > li > a {
+#header.sticky-header:not(.static-sticky) #primary-menu.index-nav > ul > li > a {
 	padding: 0;
 }
 
 #primary-menu.comingsoon-nav ul li > a {
 	color: white;
-}
-
-#primary-menu.page-nav ul {
-	width: 160px;
-}
-
-#primary-menu.page-nav ul li {
-		width: auto;
 }
 
 #primary-menu.index-nav ul li > a:hover {
@@ -104,6 +104,9 @@ div.container.clearfix video {
 	#primary-menu-trigger {
 		left: 675px;
 	}
+	#primary-menu-trigger.page-trigger {
+		left: 636px;
+	}
 }
 
 @media (max-width: 1224px) {
@@ -118,6 +121,7 @@ div.container.clearfix video {
   margin:auto;
   width:66.6666%;
 }
+
 /* I think I am the great and everything I love seems to make perfect sense to me */
 
 
@@ -130,15 +134,19 @@ div.container.clearfix video {
 		color: #000;
 	}
 
-	#header.transparent-header.full-header #header-wrap{
+	#header.transparent-header.full-header #header-wrap {
 		background: lightgrey;
+	}
+
+	#header.transparent-header.full-header #header-wrap.comingsoon-header {
+		background: black;
 	}
 
 	#primary-menu.index-nav ul > li {
 		float: left;
 	}
 
-	#primary-menu {
+	#primary-menu.index-nav {
 		margin-left: 33px;
 	}
 
@@ -153,9 +161,15 @@ div.container.clearfix video {
 @media (max-width: 767px) {
 
 	/* Meet Us Styles */
-	  .boss-man {
-	    width: 100%;
-	  }
+.boss-man {
+  width: 100%;
+}
+
+#logo.page-logo img {
+	height: 85px;
+
+}
+
 .revo-slider-emphasis-text {
 	font-size: 64px;
 	font-weight: 700;
@@ -184,6 +198,13 @@ div.container.clearfix video {
 
 .tp-caption { white-space: nowrap; }
 
+}
+
+@media (max-width: 479px) {
+	#logo.page-logo img {
+		height: 65px;
+		margin-top: 22px;
+	}
 }
 
 /* The scroller on the bottom Empower Entice and Stuff */
