@@ -1,38 +1,39 @@
-<!-- Range Slider Plugin -->
-<script type="text/javascript" src="{{ "/js/components/rangeslider.min.js" | prepend: site.baseurl }}"></script>
-<script src='http://imagesloaded.desandro.com/imagesloaded.pkgd.js'></script>
-
 <script type="text/javascript">
 
-  var priceRangefrom = 0,
-      priceRangeto = 0,
-      $container = null;
+var priceRangefrom = 0,
+    priceRangeto   = 0,
+    $container     = null;
 
-  jQuery(document).ready(function(){
+  jQuery(document).on("filters", function(){
+
     $container = $('#shop');
+    $container.isotope('destroy');
+    $container.imagesLoaded(function(){
+      $container.isotope({ transitionDuration: '0.65s' });
 
-    $container.isotope({ transitionDuration: '0.65s' });
-
-    $('#portfolio-filter a').click(function(){
-      $('#portfolio-filter li').removeClass('activeFilter');
-      $(this).parent('li').addClass('activeFilter');
-      var selector = $(this).attr('data-filter');
-      $container.isotope({ filter: selector });
-      return false;
+      $('#portfolio-filter a').click(function(){
+        $('#portfolio-filter li').removeClass('activeFilter');
+        $(this).parent('li').addClass('activeFilter');
+        var selector = $(this).attr('data-filter');
+        $container.isotope({ filter: selector });
+        return false;
+      });
     });
+
     $(window).resize(function() {
       $container.isotope('layout');
     });
   });
 
+
   jQuery(document).ready( function($){
 
     $(".range_23").ionRangeSlider({
       type: "double",
-      min: 9,
-      max: 125,
-      from: 9,
-      to: 125,
+      min: 2.25,
+      max: 15,
+      from: 2.25,
+      to: 15,
       prefix: '$',
       hide_min_max: true,
       hide_from_to: false,
@@ -59,9 +60,9 @@
             return ( priceRangefrom <= priceNum[1] && priceRangeto >= priceNum[1] );
           }
         });
-
       }
     });
 
   });
+
 </script>

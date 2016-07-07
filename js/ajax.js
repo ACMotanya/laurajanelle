@@ -30,8 +30,6 @@ var subtotal;
 var type;
 
 
-
-
 /////////////////////////////////////////////////////
 // Get Session Number and Authorize Access to Page //
 /////////////////////////////////////////////////////
@@ -591,10 +589,11 @@ function filterFunction(a,b,c,d,e,f)
         fldsArray.push(flds);
         fldsArray = fldsArray.sort(Comparator);
       }
+      var html = [];
       for (i=0; i<=fldsArray.length - 1; i++) {
         flds = fldsArray[i];
         prices.push(Number(flds[4]));
-        prod = '<div class="product clearfix ' + flds[2] +'">';
+        prod = '<div class="product clearfix ' + flds[2] + '">';
           prod += '<div class="product-image">';
             prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
           //  prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
@@ -609,8 +608,12 @@ function filterFunction(a,b,c,d,e,f)
             prod += '<div class="product-price"><ins>$' + flds[4] +'</ins></div>';
           prod += '</div>';
         prod += '</div>';
-        document.getElementById("shop").innerHTML += prod;
+        html.push(prod);
       }
+      document.getElementById("shop").innerHTML += html.join('');
+      $(document).trigger("filters");
+      min = Array.min(prices);
+      max = Array.max(prices);
     }
   });
 }

@@ -47,6 +47,7 @@ jQuery( document ).ready(function() {
       filterFunction('APISTKLST','','','','','');
     }
   cartHeader();
+
 });
 
 </script>
@@ -79,8 +80,8 @@ jQuery( document ).ready(function() {
 					============================================= -->
 					<ul id="portfolio-filter" class="portfolio-filter clearfix">
 
-						<li class="activeFilter"><a href="#" data-filter="*">Show All</a></li>
-						<li><a href="#" data-filter=".SLK">SLEEK</a></li>
+						<li id="show-all" class="activeFilter"><a href="#" data-filter="*">Show All</a></li>
+						<li id="show-all-2"><a href="#" data-filter=".SLK">SLEEK</a></li>
 						<li><a href="#" data-filter=".GLB">RGLB</a></li>
 						<li><a href="#" data-filter=".ENC">ENCHARMING</a></li>
 						<li><a href="#" data-filter=".IDT">IDENTIFY</a></li>
@@ -91,7 +92,7 @@ jQuery( document ).ready(function() {
 						<input class="range_23" />
 					</div>
 
-					<div class="clear SLK IDT GLB ENC"></div>
+					<div class="clear"></div>
 
 					<!-- Shop
 					============================================= -->
