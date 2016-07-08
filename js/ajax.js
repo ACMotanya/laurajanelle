@@ -9,6 +9,8 @@ var discountAmt;
 var detailViewQty;
 var fields;
 var flds;
+var fldsArray = { "data": []};
+var fldsArray_json;
 var head;
 var item;
 var lines;
@@ -651,6 +653,7 @@ function search()
           fldsArray.push(flds);
           fldsArray = fldsArray.sort(Comparator);
         }
+
         for (i=0; i<=fldsArray.length - 1; i++) {
           flds = fldsArray[i];
 
@@ -675,6 +678,90 @@ function search()
       }
     });
   }
+}
+
+
+
+////////////////////////////////////////////
+// ORDER/INVOICE API Function - APIHISTLST//
+////////////////////////////////////////////
+function orderHistory()
+{
+  $.ajax({
+   type: "GET",
+   url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+   data: {
+     request_id: "APIHISTLST",
+     session_no: session_no
+   },
+   success: function(response) {
+     console.log(response);
+     lines = response.split("\n");
+     // lines[0] is header row
+     // lines[1]+ are data lines
+     $('#tableBody').empty();
+     var fldsArray = [];
+     for (i=1; i<lines.length - 1; i++) {
+       flds = lines[i].split("|");
+       fldsArray.push(flds);
+     }
+     console.log(fldsArray);
+     var html = [];
+     for (i=0; i<=fldsArray.length - 1; i++) {
+       flds = fldsArray[i];
+       prod =  '<tr>';
+       prod += '<td>' + flds[0] + '</td>';
+       prod += '<td>' + flds[1] + '</td>';
+       prod += '<td>' + flds[2] + '</td>';
+       prod += '<td>' + flds[3] + '</td>';
+       prod += '<td>' + flds[4] + '</td>';
+       prod += '<td>' + flds[7] + '</td>';
+       prod += '<td>' + flds[8] + '</td>';
+       prod += '</tr>';
+       html.push(prod);
+     }
+     console.log(html);
+     document.getElementById("tableBody").innerHTML += html.join('');
+   }
+ });
+}
+
+function orderHistoryTest()
+{
+  $.ajax({
+   type: "GET",
+   url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+   data: {
+     request_id: "APIHISTLST",
+     session_no: session_no
+   },
+   success: function(response) {
+     console.log(response);
+     lines = response.split("\n");
+     // lines[0] is header row
+     // lines[1]+ are data lines
+     // $('#tableBody').empty();
+     for (i=1; i<lines.length - 1; i++) {
+       flds = lines[i].split("|");
+     }
+     flds.splice(5, 1);
+     flds.splice(5, 1);
+     flds.splice(9, 1);
+     flds.splice(7, 1);
+     flds.splice(7, 1);
+     flds.splice(7, 1);
+     console.log(flds);
+     fldsArray.data.push(flds);
+     fldsArray = JSON.stringify(fldsArray);
+     fldsArray_json = $.parseJSON(fldsArray);
+   },
+   complete: function(){
+     table = $('#datatable1').DataTable();
+
+     table.rows.add( fldsArray_json.data ).draw();
+     console.log("did this run");
+   }
+ });
 }
 
 
