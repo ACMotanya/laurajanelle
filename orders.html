@@ -8,7 +8,7 @@ layout: page
 session_no = Cookies.get('session_no');
 
 $(document).ready(function() {
-    orderHistoryTest();
+    orderHistory();
 });
 </script>
 
@@ -34,10 +34,45 @@ $(document).ready(function() {
   <div class="content-wrap">
 
     <div class="container clearfix">
+      <div class="fancy-title title-double-border">
+        <h1>Open Orders</h1>
+      </div>
 
       <div class="table-responsive">
 
         <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th>Order #</th>
+              <th>Order Date</th>
+              <th>Ship Date</th>
+              <th>PO Number</th>
+              <th>Tax Total</th>
+              <th>Order Total</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>Order #</th>
+              <th>Order Date</th>
+              <th>Ship Date</th>
+              <th>PO Number</th>
+              <th>Tax Total</th>
+              <th>Order Total</th>
+            </tr>
+          </tfoot>
+
+        </table>
+
+      </div>
+
+      <div class="fancy-title title-double-border">
+        <h1>Past Orders</h1>
+      </div>
+
+      <div class="table-responsive">
+
+        <table id="datatable2" class="table table-striped table-bordered" cellspacing="0" width="100%">
           <thead>
             <tr>
               <th>Order #</th>

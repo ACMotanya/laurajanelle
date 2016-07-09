@@ -149,8 +149,6 @@ function removeItemGeneric(session_no, line_no)
 function removeItem(clicked_id)
 {
   line_no = clicked_id;
-  console.log(line_no);
-  console.log("test, am i removinng the item?");
 
   $.ajax({
     type: "GET",
@@ -585,15 +583,10 @@ function filterFunction(a,b,c,d,e,f)
       // lines[0] is header row
       // lines[1]+ are data lines
       $('#shop').empty();
-      fldsArray = [];
+      var html = [];
       for (i=1; i<lines.length - 1; i++) {
         flds = lines[i].split("|");
-        fldsArray.push(flds);
-        fldsArray = fldsArray.sort(Comparator);
-      }
-      var html = [];
-      for (i=0; i<=fldsArray.length - 1; i++) {
-        flds = fldsArray[i];
+
         prices.push(Number(flds[4]));
         prod = '<div class="product clearfix ' + flds[2] + '">';
           prod += '<div class="product-image">';
@@ -630,7 +623,6 @@ function search()
   if(event.keyCode == 13) {
     event.preventDefault();
     searchTerm = $('#searchvalue').val();
-    alert("am i getting here?");
     console.log(searchTerm);
     $.ajax({
       type: "GET",
@@ -644,36 +636,33 @@ function search()
         // lines[0] is header row
         // lines[1]+ are data lines
         $('#shop').empty();
+        html = [];
         if ( lines.length <= 2) {
           document.getElementById("shop").innerHTML += '<h1>There are no results</h1>';
-        }
-        fldsArray = [];
-        for (i=1; i<lines.length - 1; i++) {
-          flds = lines[i].split("|");
-          fldsArray.push(flds);
-          fldsArray = fldsArray.sort(Comparator);
-        }
+        } else {
+          for (i=1; i<lines.length - 1; i++) {
+            flds = lines[i].split("|");
 
-        for (i=0; i<=fldsArray.length - 1; i++) {
-          flds = fldsArray[i];
-
-          prices.push(Number(flds[4]));
-          prod = '<div class="product clearfix pf-dress">';
-            prod += '<div class="product-image">';
-              prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
-            //  prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
-            //  prod += 'div class="sale-flash">50% Off*</div>'
-              prod += '<div class="product-overlay">';
-                prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="addItem(this.id); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-                prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a>';
+            prices.push(Number(flds[4]));
+            prod = '<div class="product clearfix pf-dress">';
+              prod += '<div class="product-image">';
+                prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
+              //  prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
+              //  prod += 'div class="sale-flash">50% Off*</div>'
+                prod += '<div class="product-overlay">';
+                  prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="addItem(this.id); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+                  prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a>';
+                prod += '</div>';
+              prod += '</div>';
+              prod += '<div class="product-desc">';
+                prod += '<div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div>';
+                prod += '<div class="product-price"><ins>$' + parseInt(flds[4]).toFixed(2) + '</ins></div>';
               prod += '</div>';
             prod += '</div>';
-            prod += '<div class="product-desc">';
-              prod += '<div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div>';
-              prod += '<div class="product-price"><ins>$' + parseInt(flds[4]).toFixed(2) + '</ins></div>';
-            prod += '</div>';
-          prod += '</div>';
-          document.getElementById("shop").innerHTML += prod;
+            html.push(prod);
+          }
+          document.getElementById("shop").innerHTML += html.join('');
+          $(document).trigger("filters");
         }
       }
     });
@@ -699,40 +688,41 @@ function orderHistory()
      lines = response.split("\n");
      // lines[0] is header row
      // lines[1]+ are data lines
-     $('#tableBody').empty();
-     var fldsArray = [];
+     // $('#tableBody').empty();
      for (i=1; i<lines.length - 1; i++) {
        flds = lines[i].split("|");
-       fldsArray.push(flds);
+       flds.splice(5, 1);
+       flds.splice(5, 1);
+       flds.splice(9, 1);
+       flds.splice(7, 1);
+       flds.splice(7, 1);
+       flds.splice(7, 1);
+       console.log(flds);
+       fldsArray.data.push(flds);
      }
-     console.log(fldsArray);
-     var html = [];
-     for (i=0; i<=fldsArray.length - 1; i++) {
-       flds = fldsArray[i];
-       prod =  '<tr>';
-       prod += '<td>' + flds[0] + '</td>';
-       prod += '<td>' + flds[1] + '</td>';
-       prod += '<td>' + flds[2] + '</td>';
-       prod += '<td>' + flds[3] + '</td>';
-       prod += '<td>' + flds[4] + '</td>';
-       prod += '<td>' + flds[7] + '</td>';
-       prod += '<td>' + flds[8] + '</td>';
-       prod += '</tr>';
-       html.push(prod);
-     }
-     console.log(html);
-     document.getElementById("tableBody").innerHTML += html.join('');
+     fldsArray = JSON.stringify(fldsArray);
+     fldsArray_json = $.parseJSON(fldsArray);
+   },
+   complete: function(){
+     table = $('#datatable2').DataTable();
+     table.rows.add( fldsArray_json.data ).draw();
+     console.log("did this run");
    }
  });
 }
 
-function orderHistoryTest()
+
+
+////////////////////////////////////////////
+// OPEN ORDER API Function - APIORDLST /////
+////////////////////////////////////////////
+function openOrders()
 {
   $.ajax({
    type: "GET",
    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
    data: {
-     request_id: "APIHISTLST",
+     request_id: "APIORDLST",
      session_no: session_no
    },
    success: function(response) {
@@ -743,21 +733,18 @@ function orderHistoryTest()
      // $('#tableBody').empty();
      for (i=1; i<lines.length - 1; i++) {
        flds = lines[i].split("|");
+       flds.splice(3, 1);
+       flds.splice(6, 1);
+       flds.splice(6, 1);
+       flds.splice(6, 1);
+       console.log(flds);
+       fldsArray.data.push(flds);
      }
-     flds.splice(5, 1);
-     flds.splice(5, 1);
-     flds.splice(9, 1);
-     flds.splice(7, 1);
-     flds.splice(7, 1);
-     flds.splice(7, 1);
-     console.log(flds);
-     fldsArray.data.push(flds);
      fldsArray = JSON.stringify(fldsArray);
      fldsArray_json = $.parseJSON(fldsArray);
    },
    complete: function(){
-     table = $('#datatable1').DataTable();
-
+     table = $('#datatable2').DataTable();
      table.rows.add( fldsArray_json.data ).draw();
      console.log("did this run");
    }
