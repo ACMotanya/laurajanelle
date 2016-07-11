@@ -1,0 +1,48 @@
+---
+layout: page
+---
+
+
+
+<script>
+session_no = Cookies.get('session_no');
+
+function doEmail() {
+  console.log("is this working?");
+    $.get("../mailer/order_confirmation.php?session_no=G4EGOARBF4GDG9D19TDGOD93G&order_no=800010196&ship_to=0");
+    console.log("it worked?");
+    return false;
+
+}
+
+$(document).ready(function() {
+  $("#testButton").click(function() {
+    console.log("is this working?");
+    $.ajax({
+      type: "GET",
+      url: "../mailer/order_confirmation.php?",
+      data: {
+        session_no: session_no,
+        order_no: 12345,
+        ship_to: 0
+      },
+      success: function(response) {
+        console.log(response);
+      }
+    });
+    console.log("It worked and email should be sent");
+  });
+});
+</script>
+
+<!-- Content
+============================================= -->
+<section id="content">
+  <div class="content-wrap">
+    <div class="container clearfix">
+      <div class="form-group">
+        <button type="button" class="button button-3d fright" id="testB" onclick="doEmail();">Place Order</button>
+      </div>
+    </div>
+  </div>
+</section>
