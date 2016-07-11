@@ -34,7 +34,116 @@ $(document).ready(function() {
   <div class="content-wrap">
 
     <div class="container clearfix">
-      <div class="fancy-title title-double-border">
+
+      <div class="widget subscribe-widget clearfix">
+        <h3>Search by order number to display the line items and order details.</h3>
+        <div class="widget-subscribe-form-result"></div>
+        <form id="widget-subscribe-form" role="form" method="" class="nobottommargin">
+          <div class="input-group divcenter">
+            <span class="input-group-addon"><i class="icon-search3"></i></span>
+            <input type="number" id="orderNumber" name="orderNumber" class="form-control" placeholder="Enter Order Number">
+            <span class="input-group-btn">
+              <button class="btn btn-secondary" type="submit">Search Orders</button>
+            </span>
+          </div>
+        </form>
+      </div>
+
+      <div class="fancy-title title-double-border topmargin">
+        <h1>Order Details</h1>
+      </div>
+
+      <table class="table table-bordered">
+        <thead>
+        <tr><th>Order Field</th><th>Order Detail</th></tr>
+        </thead>
+
+        <tbody>
+
+        <tr><td>Order Number</td><td>Mark</td></tr>
+
+        <tr><td>Order Date</td><td>Mark</td></tr>
+
+        <tr><td>Shipping Date</td><td>Jacob</td></tr>
+
+        <tr><td>Customer Number</td><td>@twitter</td></tr>
+
+        <tr><td>PO Number</td><td>@twitter</td></tr>
+
+        <tr><td>Terms Code</td><td>@twitter</td></tr>
+
+        <tr><td>Ship-via Code</td><td>@twitter</td></tr>
+
+        <tr><td>Tax Amount</td><td>@twitter</td></tr>
+
+        <tr><td>Order Total</td><td>@twitter</td></tr>
+
+        <tr><td>Discount Amount</td><td>@twitter</td></tr>
+
+        <tr><td>Bill-to Name</td><td>@twitter</td></tr>
+
+        <tr><td>Bill-to Address</td><td>@twitter</td></tr>
+
+        <tr><td>Ship-to Name</td><td>@twitter</td></tr>
+
+        <tr><td>Ship-to Address</td><td>@twitter</td></tr>
+
+        <tr><td>Notes</td><td></td></tr>
+
+        <tr><td>Email Address</td><td>@twitter</td></tr>
+
+        <tr><td>Total Payments</td><td>@twitter</td></tr>
+
+        <tr><td>Number of Lines</td><td>@twitter</td></tr>
+
+        <tr><td>Total Order Qty</td><td>@twitter</td></tr>
+
+        <tr><td>Total Weight</td><td>@twitter</td></tr>
+
+        <tr><td>Shipping Method</td><td>@twitter</td></tr>
+
+        <tr><td>Total Other Charges</td><td>@twitter</td></tr>
+
+        <tr><td>Total Freight</td><td>@twitter</td></tr>
+
+        </tbody>
+      </table>
+
+
+      <div class="fancy-title title-double-border topmargin">
+        <h1>Line Items</h1>
+      </div>
+
+
+      <div class="table-responsive">
+
+        <table id="datatable3" class="table table-striped table-bordered" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th>Line #</th>
+              <th>Stock #</th>
+              <th>Description</th>
+              <th>Qty Ordered</th>
+              <th>Unit Price</th>
+              <th>Extended Price</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>Line #</th>
+              <th>Stock #</th>
+              <th>Description</th>
+              <th>Qty Ordered</th>
+              <th>Unit Price</th>
+              <th>Extended Price</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+        <div class="divider divider-short divider-center"><i class="icon-connection-empty"></i></div>
+
+      <div class="fancy-title title-double-border topmargin">
         <h1>Open Orders</h1>
       </div>
 
@@ -66,7 +175,7 @@ $(document).ready(function() {
 
       </div>
 
-      <div class="fancy-title title-double-border">
+      <div class="fancy-title title-double-border topmargin">
         <h1>Past Orders</h1>
       </div>
 

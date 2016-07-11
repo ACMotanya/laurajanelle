@@ -671,9 +671,9 @@ function search()
 
 
 
-////////////////////////////////////////////
-// ORDER/INVOICE API Function - APIHISTLST//
-////////////////////////////////////////////
+/////////////////////////////////////////////
+// ORDER/INVOICE API Function - APIHISTLST //
+/////////////////////////////////////////////
 function orderHistory()
 {
   $.ajax({
@@ -748,6 +748,44 @@ function openOrders()
      table.rows.add( fldsArray_json.data ).draw();
      console.log("did this run");
    }
+ });
+}
+
+
+
+/////////////////////////////////////////////
+     // PULL SAVED BILL TO ADDRESSES //
+/////////////////////////////////////////////
+function billToAddress()
+{
+  $.ajax({
+    type: "GET",
+    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APIBIILLST",
+      session_no: session_no
+    },
+    success: function(response) {
+      
+    }
+ });
+}
+
+/////////////////////////////////////////////
+    // PULL SAVED SHIP TO ADDRESSES //
+/////////////////////////////////////////////
+function billToAddress()
+{
+  $.ajax({
+    type: "GET",
+    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APISHIPLST",
+      session_no: session_no
+    },
+    success: function(response) {
+
+    }
  });
 }
 

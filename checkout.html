@@ -4,11 +4,35 @@ layout: page
 
 <script>
 session_no = Cookies.get('session_no');
+var frame = document.getElementById('express');
+
+frame.contentWindow.postMessage(/*any variable or object here*/, '*');
 
 jQuery( document ).ready(function() {
   cartList();
   cartHeader();
   creditCard();
+});
+
+$(document).ready(function() {
+  $("#myButton").click(function() {
+    console.log("is this working?");
+    var hasErrors = $('#billing-form').validator('validate').has('.has-error').length;
+    if (hasErrors) {
+      alert('Billing address form has errors.');
+    } else {
+      // everything looks good!
+      hasErrors = $('#shipping-form').validator('validate').has('.has-error').length;
+      if (hasErrors) {
+        alert('Shipping address form has errors.');
+      } else {
+        // everything looks good!
+        saveAddresses();
+        $( "div#creditcard" ).slideDown( "slow" );
+        console.log("It worked and let's slide the div down now");
+      }
+    }
+  });
 });
 </script>
 
@@ -42,19 +66,15 @@ jQuery( document ).ready(function() {
 
 
           <form data-toggle="validator" role="form" id="billing-form" name="billing-form" class="nobottommargin" action="#" method="">
-<!--
-            <div class="col_half">
-              <label for="billing-form-name">Name:</label>
-              <input type="text" id="billing-form-name" name="billing-form-name" value="" class="sm-form-control" />
+
+            <div class="col_full">
+              <label for="saved-billing-address">Saved Bill-to Addresses:</label>
+              <select class="sm-form-control" id="billing-address">
+              </select>
             </div>
 
-            <div class="col_half col_last">
-              <label for="billing-form-lname">Last Name:</label>
-              <input type="text" id="billing-form-lname" name="billing-form-lname" value="" class="sm-form-control" />
-            </div>
+            <div class="divider divider-short divider-center"></div>
 
-            <div class="clear"></div>
--->
             <div class="form-group">
               <div class="col_full">
                 <label for="billing-form-companyname" class="control-label">Company Name:</label>
@@ -385,19 +405,15 @@ jQuery( document ).ready(function() {
           <h3 class="">Shipping Address</h3>
 
           <form data-toggle="validator" role="form" id="shipping-form" name="shipping-form" class="nobottommargin" action="#" method="">
-<!--
-            <div class="col_half">
-              <label for="shipping-form-name">Name:</label>
-              <input type="text" id="shipping-form-name" name="shipping-form-name" value="" class="sm-form-control" />
+
+            <div class="col_full">
+              <label for="saved-shipping-address">Saved Ship-to Addresses:</label>
+              <select class="sm-form-control" id="shipping-address">
+              </select>
             </div>
 
-            <div class="col_half col_last">
-              <label for="shipping-form-lname">Last Name:</label>
-              <input type="text" id="shipping-form-lname" name="shipping-form-lname" value="" class="sm-form-control" />
-            </div>
+            <div class="divider divider-short divider-center"></div>
 
-            <div class="clear"></div>
--->
             <div class="form-group">
               <div class="col_full">
                 <label for="shipping-form-companyname">Company Name:</label>
@@ -841,59 +857,12 @@ jQuery( document ).ready(function() {
     </div>
 
   </div>
-</section><!-- #content end
+</section><!-- #content end -->
 
-<script type="text/javascript">
-$(document).ready(function() {
-  $("#myButton").click(function() {
-    console.log("is this working?");
-    $('#billing-form').validator().submit( function (e) {
 
-      if (e.isDefaultPrevented()) {
-        // handle the invalid form...
-        alert("Something on the form is incorerrct.");
-      } else {
-        // everything looks good!
-        $('#billing-form').validator().submit( function (e) {
-
-          if (e.isDefaultPrevented()) {
-            // handle the invalid form...
-            alert("Something on the form is incorerrct.");
-          } else {
-            // everything looks good!
-            saveAddresses();
-            console.log("It worked and let's slide the div down now");
-
-          }
-        });
-      }
-    });
-  });
-});
-</script>
--->
 
 <script type="text/javascript">
 
-$(document).ready(function() {
-  $("#myButton").click(function() {
-    console.log("is this working?");
-    var hasErrors = $('#billing-form').validator('validate').has('.has-error').length;
-    if (hasErrors) {
-      alert('Billing address form has errors.');
-    } else {
-      // everything looks good!
-      hasErrors = $('#shipping-form').validator('validate').has('.has-error').length;
-      if (hasErrors) {
-        alert('Shipping address form has errors.');
-      } else {
-        // everything looks good!
-        saveAddresses();
-        $( "div#creditcard" ).slideDown( "slow" );
-        console.log("It worked and let's slide the div down now");
-      }
-    }
-  });
-});
+
 
 </script>
