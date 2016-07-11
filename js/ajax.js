@@ -766,7 +766,15 @@ function billToAddress()
       session_no: session_no
     },
     success: function(response) {
-      
+      console.log(response);
+      lines = response.split("\n");
+      // lines[0] is header row
+      // lines[1]+ are data lines
+      // $('#tableBody').empty();
+      for (i=1; i<lines.length - 1; i++) {
+        flds = lines[i].split("|");
+      }
+
     }
  });
 }
