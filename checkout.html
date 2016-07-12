@@ -9,8 +9,9 @@ jQuery( document ).ready(function() {
   cartList();
   cartHeader();
   creditCard();
+  shipToAddress();
 });
-
+/*
 $(document).ready(function() {
   $("#myButton").click(function() {
     console.log("is this working?");
@@ -31,12 +32,26 @@ $(document).ready(function() {
     }
   });
 });
+*/
+$(document).ready(function() {
+  $("#myButton").click(function() {
+    console.log("is this working?");
+    var hasErrors = $('#shipping-form').validator('validate').has('.has-error').length;
+    if (hasErrors) {
+      alert('Shipping address form has errors.');
+    } else {
+      // everything looks good!
+      saveAddresses();
+      $( "div#creditcard" ).slideDown( "slow" );
+      console.log("It worked and let's slide the div down now");
+    }
+  });
+});
 </script>
 
 <!-- Page Title
 ============================================= -->
 <section id="page-title">
-
   <div class="container clearfix">
     <h1>Checkout</h1>
     <ol class="breadcrumb">
@@ -45,7 +60,6 @@ $(document).ready(function() {
       <li class="active">Checkout</li>
     </ol>
   </div>
-
 </section><!-- #page-title end -->
 
 
@@ -59,12 +73,132 @@ $(document).ready(function() {
 
       <div class="row clearfix">
         <div class="col-md-6">
+          <div class="table-responsive clearfix">
+            <h3>Your Orders</h3>
+
+            <table class="table cart">
+              <thead>
+                <tr>
+                  <th class="cart-product-thumbnail">&nbsp;</th>
+                  <th class="cart-product-name">Product</th>
+                  <th class="cart-product-quantity">Quantity</th>
+                  <th class="cart-product-subtotal">Total</th>
+                </tr>
+              </thead>
+              <tbody id="cartItemTable">
+<!--                <tr class="cart_item">
+                  <td class="cart-product-thumbnail">
+                    <a href="#"><img width="64" height="64" src="{{ site.baseurl }}/images/shop/thumbs/small/dress-3.jpg" alt="Pink Printed Dress"></a>
+                  </td>
+
+                  <td class="cart-product-name">
+                    <a href="#">Pink Printed Dress</a>
+                  </td>
+
+                  <td class="cart-product-quantity">
+                    <div class="quantity clearfix">
+                      1x2
+                    </div>
+                  </td>
+
+                  <td class="cart-product-subtotal">
+                    <span class="amount">$39.98</span>
+                  </td>
+                </tr>
+                <tr class="cart_item">
+                  <td class="cart-product-thumbnail">
+                    <a href="#"><img width="64" height="64" src="{{ site.baseurl }}/images/shop/thumbs/small/shoes-2.jpg" alt="Checked Canvas Shoes"></a>
+                  </td>
+
+                  <td class="cart-product-name">
+                    <a href="#">Checked Canvas Shoes</a>
+                  </td>
+
+                  <td class="cart-product-quantity">
+                    <div class="quantity clearfix">
+                      1x1
+                    </div>
+                  </td>
+
+                  <td class="cart-product-subtotal">
+                    <span class="amount">$24.99</span>
+                  </td>
+                </tr>
+                <tr class="cart_item">
+                  <td class="cart-product-thumbnail">
+                    <a href="#"><img width="64" height="64" src="{{ site.baseurl }}/images/shop/thumbs/small/tshirt-2.jpg" alt="Pink Printed Dress"></a>
+                  </td>
+
+                  <td class="cart-product-name">
+                    <a href="#">Blue Men Tshirt</a>
+                  </td>
+
+                  <td class="cart-product-quantity">
+                    <div class="quantity clearfix">
+                      1x3
+                    </div>
+                  </td>
+
+                  <td class="cart-product-subtotal">
+                    <span class="amount">$41.97</span>
+                  </td>
+                </tr> -->
+              </tbody>
+
+            </table>
+
+          </div>
+
+          <div class="divider divider-center"><i class="icon-diamond"></i></div>
+
+          <div class="table-responsive">
+            <h3>Cart Totals</h3>
+
+            <table class="table cart">
+              <tbody id="cart-totals">
+          <!--      <tr class="cart_item">
+                  <td class="notopborder cart-product-name">
+                    <strong>Cart Subtotal</strong>
+                  </td>
+
+                  <td class="notopborder cart-product-name">
+                    <span class="amount">$106.94</span>
+                  </td>
+                </tr>
+                <tr class="cart_item">
+                  <td class="cart-product-name">
+                    <strong>Shipping</strong>
+                  </td>
+
+                  <td class="cart-product-name">
+                    <span class="amount">Free Delivery</span>
+                  </td>
+                </tr>
+                <tr class="cart_item">
+                  <td class="cart-product-name">
+                    <strong>Total</strong>
+                  </td>
+
+                  <td class="cart-product-name">
+                    <span class="amount color lead"><strong>$106.94</strong></span>
+                  </td>
+                </tr> -->
+              </tbody>
+            </table>
+
+          </div>
+
+          <div class="accordion clearfix">
+            <div class="acctitle"><i class="acc-closed icon-ok-circle"></i><i class="acc-open icon-remove-circle"></i>Credit Cards</div>
+            <div class="acc_content clearfix">We only accept credit cards at this time.</div>
+          </div>
+        </div>
+<!--        <div class="col-md-6">
           <h3>Billing Address</h3>
 
-
           <form data-toggle="validator" role="form" id="billing-form" name="billing-form" class="nobottommargin" action="#" method="">
-
-            <div class="col_full">
+<!--
+            <div class="col_full" style="visibility: hidden;">
               <label for="saved-billing-address">Saved Bill-to Addresses:</label>
               <select class="sm-form-control" id="billing-address">
               </select>
@@ -395,20 +529,25 @@ $(document).ready(function() {
                 <div class="help-block with-errors"></div>
               </div>
             </div>
-            <input type="submit" style="display:none" />
+
           </form>
-        </div>
+        </div> -->
         <div class="col-md-6">
-          <h3 class="">Shipping Address</h3>
+          <h3>Shipping Address</h3>
 
           <form data-toggle="validator" role="form" id="shipping-form" name="shipping-form" class="nobottommargin" action="#" method="">
 
-            <div class="col_full">
+            <div class="col_half nobottommargin">
               <label for="saved-shipping-address">Saved Ship-to Addresses:</label>
-              <select class="sm-form-control" id="shipping-address">
+              <select class="sm-form-control" id="shipping-address" onchange="displayAddress(this.value)">
               </select>
             </div>
-
+            <!--
+            <div class="col_half col_last">
+              <input id="checkbox-1" class="checkbox-style" name="checkbox-1" type="checkbox">
+              <label for="checkbox-1" class="checkbox-style-3-label checkbox-small">Check to save address</label>
+            </div>
+          -->
             <div class="divider divider-short divider-center"></div>
 
             <div class="form-group">
@@ -715,6 +854,24 @@ $(document).ready(function() {
                 </select>
               </div>
 
+              <div class="form-group">
+                <div class="col_half">
+                  <label for="billing-form-email">Email Address:</label>
+                  <input type="email" id="billing-form-email" name="billing-form-email" data-error="Email address is invalid" required value="" class="sm-form-control form-control required email" />
+                  <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                  <div class="help-block with-errors"></div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col_half col_last">
+                  <label for="billing-form-phone">Phone:</label>
+                  <input type="text" id="billing-form-phone" name="billing-form-phone" data-error="Must be 10 digits" data-minlength="10" required value="" class="sm-form-control form-control" />
+                  <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                  <div class="help-block with-errors"></div>
+                </div>
+              </div>
+
               <div class="col_full">
                 <label for="shipping-form-message">Notes <small>*</small></label>
                 <textarea class="sm-form-control" id="shipping-form-message" name="shipping-form-message" rows="6" cols="30"></textarea>
@@ -724,123 +881,8 @@ $(document).ready(function() {
         </div>
         <div class="clear bottommargin"></div>
         <div class="col-md-6">
-          <div class="table-responsive clearfix">
-            <h4>Your Orders</h4>
 
-            <table class="table cart">
-              <thead>
-                <tr>
-                  <th class="cart-product-thumbnail">&nbsp;</th>
-                  <th class="cart-product-name">Product</th>
-                  <th class="cart-product-quantity">Quantity</th>
-                  <th class="cart-product-subtotal">Total</th>
-                </tr>
-              </thead>
-              <tbody id="cartItemTable">
-<!--                <tr class="cart_item">
-                  <td class="cart-product-thumbnail">
-                    <a href="#"><img width="64" height="64" src="{{ site.baseurl }}/images/shop/thumbs/small/dress-3.jpg" alt="Pink Printed Dress"></a>
-                  </td>
 
-                  <td class="cart-product-name">
-                    <a href="#">Pink Printed Dress</a>
-                  </td>
-
-                  <td class="cart-product-quantity">
-                    <div class="quantity clearfix">
-                      1x2
-                    </div>
-                  </td>
-
-                  <td class="cart-product-subtotal">
-                    <span class="amount">$39.98</span>
-                  </td>
-                </tr>
-                <tr class="cart_item">
-                  <td class="cart-product-thumbnail">
-                    <a href="#"><img width="64" height="64" src="{{ site.baseurl }}/images/shop/thumbs/small/shoes-2.jpg" alt="Checked Canvas Shoes"></a>
-                  </td>
-
-                  <td class="cart-product-name">
-                    <a href="#">Checked Canvas Shoes</a>
-                  </td>
-
-                  <td class="cart-product-quantity">
-                    <div class="quantity clearfix">
-                      1x1
-                    </div>
-                  </td>
-
-                  <td class="cart-product-subtotal">
-                    <span class="amount">$24.99</span>
-                  </td>
-                </tr>
-                <tr class="cart_item">
-                  <td class="cart-product-thumbnail">
-                    <a href="#"><img width="64" height="64" src="{{ site.baseurl }}/images/shop/thumbs/small/tshirt-2.jpg" alt="Pink Printed Dress"></a>
-                  </td>
-
-                  <td class="cart-product-name">
-                    <a href="#">Blue Men Tshirt</a>
-                  </td>
-
-                  <td class="cart-product-quantity">
-                    <div class="quantity clearfix">
-                      1x3
-                    </div>
-                  </td>
-
-                  <td class="cart-product-subtotal">
-                    <span class="amount">$41.97</span>
-                  </td>
-                </tr> -->
-              </tbody>
-
-            </table>
-
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="table-responsive">
-            <h4>Cart Totals</h4>
-
-            <table class="table cart">
-              <tbody id="cart-totals">
-          <!--      <tr class="cart_item">
-                  <td class="notopborder cart-product-name">
-                    <strong>Cart Subtotal</strong>
-                  </td>
-
-                  <td class="notopborder cart-product-name">
-                    <span class="amount">$106.94</span>
-                  </td>
-                </tr>
-                <tr class="cart_item">
-                  <td class="cart-product-name">
-                    <strong>Shipping</strong>
-                  </td>
-
-                  <td class="cart-product-name">
-                    <span class="amount">Free Delivery</span>
-                  </td>
-                </tr>
-                <tr class="cart_item">
-                  <td class="cart-product-name">
-                    <strong>Total</strong>
-                  </td>
-
-                  <td class="cart-product-name">
-                    <span class="amount color lead"><strong>$106.94</strong></span>
-                  </td>
-                </tr> -->
-              </tbody>
-            </table>
-
-          </div>
-          <div class="accordion clearfix">
-            <div class="acctitle"><i class="acc-closed icon-ok-circle"></i><i class="acc-open icon-remove-circle"></i>Credit Cards</div>
-            <div class="acc_content clearfix">We only accept credit cards at this time.</div>
-          </div>
           <div class="form-group">
             <button type="button" class="button button-3d fright" form="billing-form" id="myButton" >Place Order</button>
           </div>

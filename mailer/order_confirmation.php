@@ -57,51 +57,52 @@ $orderHeaderLines = explode("\r\n", $orderHeader);
 $orderHeaderLineCurrent = explode("|", $orderHeaderLines[1]);
 
 // set header info
-$headerOrderNumber = trim($orderHeaderLineCurrent[0];
-$headerOrderDate = trim($orderHeaderLineCurrent[1];
-$headerShippingDate = trim($orderHeaderLineCurrent[2];
-$headerCustomerNumber = trim($orderHeaderLineCurrent[3];
-$headerPoNumber = trim($orderHeaderLineCurrent[4];
-$headerTermsCode = trim($orderHeaderLineCurrent[5];
-$headerShipViaCode = trim($orderHeaderLineCurrent[6];
-$headerTaxAmount = trim($orderHeaderLineCurrent[7];
-$headerOrderTotal = trim($orderHeaderLineCurrent[8];
-$headerDiscountAmt = trim($orderHeaderLineCurrent[9];
-$headerBillToName = trim($orderHeaderLineCurrent[10];
-$headerBillToAdd1 = trim($orderHeaderLineCurrent[11];
-$headerBillToAdd2 = trim($orderHeaderLineCurrent[12];
-$headerBillToAdd3 = trim($orderHeaderLineCurrent[13];
-$headerBillToCity = trim($orderHeaderLineCurrent[14];
-$headerBillToState = trim($orderHeaderLineCurrent[15];
-$headerBillToZip = trim($orderHeaderLineCurrent[16];
-$headerShipToName = trim($orderHeaderLineCurrent[17];
-$headerShipToAdd1 = trim($orderHeaderLineCurrent[18];
-$headerShipToAdd2 = trim($orderHeaderLineCurrent[19];
-$headerShipToAdd3 = trim($orderHeaderLineCurrent[20];
-$headerShipToCity = trim($orderHeaderLineCurrent[21];
-$headerShipToState = trim($orderHeaderLineCurrent[22];
-$headerShipToZip = trim($orderHeaderLineCurrent[23];
-$headerText1 = trim($orderHeaderLineCurrent[24];
-$headerText2 = trim($orderHeaderLineCurrent[25];
-$headerText3 = trim($orderHeaderLineCurrent[26];
-$headerText4 = trim($orderHeaderLineCurrent[27];
-$headerText5 = trim($orderHeaderLineCurrent[28];
-$headerEmailAddress = trim($orderHeaderLineCurrent[29];
-$headerTotalPayments = trim($orderHeaderLineCurrent[30];
-$headerNumberOfLines = trim($orderHeaderLineCurrent[31];
-$headerTotalOrderQty = trim($orderHeaderLineCurrent[32]; // Qty combined all lines
-$headerTotalWeight = trim($orderHeaderLineCurrent[33];
-$headerShipViaDescription = trim($orderHeaderLineCurrent[34];
-$headerTotalOtherCharges = trim($orderHeaderLineCurrent[35]; // non-freight non-tax charges
-$headerTotalFreight = trim($orderHeaderLineCurrent[36];
-$headerShipToCountry = trim($orderHeaderLineCurrent[37];
-$headerBillToCountry = trim($orderHeaderLineCurrent[38];
+$headerOrderNumber = trim($orderHeaderLineCurrent[0]);
+$headerOrderDate = trim($orderHeaderLineCurrent[1]);
+$headerShippingDate = trim($orderHeaderLineCurrent[2]);
+$headerCustomerNumber = trim($orderHeaderLineCurrent[3]);
+$headerPoNumber = trim($orderHeaderLineCurrent[4]);
+$headerTermsCode = trim($orderHeaderLineCurrent[5]);
+$headerShipViaCode = trim($orderHeaderLineCurrent[6]);
+$headerTaxAmount = trim($orderHeaderLineCurrent[7]);
+$headerOrderTotal = trim($orderHeaderLineCurrent[8]);
+$headerDiscountAmt = trim($orderHeaderLineCurrent[9]);
+$headerBillToName = trim($orderHeaderLineCurrent[10]);
+$headerBillToAdd1 = trim($orderHeaderLineCurrent[11]);
+$headerBillToAdd2 = trim($orderHeaderLineCurrent[12]);
+$headerBillToAdd3 = trim($orderHeaderLineCurrent[13]);
+$headerBillToCity = trim($orderHeaderLineCurrent[14]);
+$headerBillToState = trim($orderHeaderLineCurrent[15]);
+$headerBillToZip = trim($orderHeaderLineCurrent[16]);
+$headerShipToName = trim($orderHeaderLineCurrent[17]);
+$headerShipToAdd1 = trim($orderHeaderLineCurrent[18]);
+$headerShipToAdd2 = trim($orderHeaderLineCurrent[19]);
+$headerShipToAdd3 = trim($orderHeaderLineCurrent[20]);
+$headerShipToCity = trim($orderHeaderLineCurrent[21]);
+$headerShipToState = trim($orderHeaderLineCurrent[22]);
+$headerShipToZip = trim($orderHeaderLineCurrent[23]);
+$headerText1 = trim($orderHeaderLineCurrent[24]);
+$headerText2 = trim($orderHeaderLineCurrent[25]);
+$headerText3 = trim($orderHeaderLineCurrent[26]);
+$headerText4 = trim($orderHeaderLineCurrent[27]);
+$headerText5 = trim($orderHeaderLineCurrent[28]);
+$headerEmailAddress = trim($orderHeaderLineCurrent[29]);
+$headerTotalPayments = trim($orderHeaderLineCurrent[30]);
+$headerNumberOfLines = trim($orderHeaderLineCurrent[31]);
+$headerTotalOrderQty = trim($orderHeaderLineCurrent[32]); // Qty combined all lines
+$headerTotalWeight = trim($orderHeaderLineCurrent[33]);
+$headerShipViaDescription = trim($orderHeaderLineCurrent[34]);
+$headerTotalOtherCharges = trim($orderHeaderLineCurrent[35]); // non-freight non-tax charges
+$headerTotalFreight = trim($orderHeaderLineCurrent[36]);
+$headerShipToCountry = trim($orderHeaderLineCurrent[37]);
+$headerBillToCountry = trim($orderHeaderLineCurrent[38]);
 // End Order Header
 
 
 // ####################Order Details####################
 $orderDetails = file_get_contents("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APIORDL&order_no=" . $orderNumber . "&session_no=" . $sessionNumber);
 $orderDetails = trim($orderDetails);
+
 $orderDetailsLines = explode("\r\n", $orderDetails);
 
 $orderDetailsHTML = "";
@@ -236,8 +237,9 @@ $mail->Subject = "Thank you for your order with LauraJanelle.com";
 $mail->Body = $htmlEmail;
 $mail->AltBody = $textEmail;
 
-
+/*
 if (!$mail->send()) {
     echo $mail->ErrorInfo;
 }
+*/
 ?>

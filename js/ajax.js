@@ -25,11 +25,13 @@ var searchField = document.getElementById('searchvalue');
 var searchTerm;
 var secondColumn;
 var session_no;
+var shippingAddresses = [];
 var shippingCost;
 var shoppingCart;
 var stock_no;
 var subtotal;
 var type;
+
 
 
 /////////////////////////////////////////////////////
@@ -509,7 +511,7 @@ function creditCard ()
 /////////////////////////////////////////
 function saveAddresses()
 {
-  var billingformcompanyname  = $("#billing-form-companyname").val();
+/*  var billingformcompanyname  = $("#billing-form-companyname").val();
   var billingformaddress      = $("#billing-form-addres").val();
   var billingformaddress2     = $("#billing-form-address2").val();
   var billingformaddress3     = $("#billing-form-address3").val();
@@ -519,6 +521,7 @@ function saveAddresses()
   var billingformcountry      = $("#billing-form-country").val();
   var billingformemail        = $("#billing-form-email").val();
   var billingformphone        = $("#billing-form-phone").val();
+*/
   var shippingformcompanyname = $("#shipping-form-companyname").val();
   var shippingformaddress     = $("#shipping-form-address").val();
   var shippingformaddress2    = $("#shipping-form-address2").val();
@@ -536,7 +539,7 @@ function saveAddresses()
    data: {
      request_id: "APICARTUPD",
      session_no: session_no,
-     billname: billingformcompanyname,
+/*     billname: billingformcompanyname,
      billadd1: billingformaddress,
      billadd2: billingformaddress2,
      billadd3: billingformaddress3,
@@ -544,6 +547,7 @@ function saveAddresses()
      billstate: billingformstate,
      billzip: billingformzipcode,
      billcountry: billingformcountry,
+*/
      shipname: shippingformcompanyname,
      shipadd1: shippingformaddress,
      shipadd2: shippingformaddress2,
@@ -584,9 +588,14 @@ function filterFunction(a,b,c,d,e,f)
       // lines[1]+ are data lines
       $('#shop').empty();
       var html = [];
+      fldsArray = [];
       for (i=1; i<lines.length - 1; i++) {
         flds = lines[i].split("|");
-
+        fldsArray.push(flds);
+        fldsArray = fldsArray.sort(Comparator);
+      }
+      for (i=0; i<=fldsArray.length - 1; i++) {
+        flds = fldsArray[i];
         prices.push(Number(flds[4]));
         prod = '<div class="product clearfix ' + flds[2] + '">';
           prod += '<div class="product-image">';
@@ -706,18 +715,22 @@ function orderHistory()
    complete: function(){
      table = $('#datatable2').DataTable();
      table.rows.add( fldsArray_json.data ).draw();
-     console.log("did this run");
+     console.log("did this run past orders");
    }
  });
 }
 
 
 
-////////////////////////////////////////////
-// OPEN ORDER API Function - APIORDLST /////
-////////////////////////////////////////////
+/////////////////////////////////////////
+// OPEN ORDER API Function - APIORDLST //
+/////////////////////////////////////////
 function openOrders()
 {
+  var openlines,
+      openfldsArray = { "data": []},
+      openfldsArray_json,
+      fields;
   $.ajax({
    type: "GET",
    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
@@ -727,30 +740,42 @@ function openOrders()
    },
    success: function(response) {
      console.log(response);
-     lines = response.split("\n");
+     openlines = response.split("\n");
      // lines[0] is header row
      // lines[1]+ are data lines
      // $('#tableBody').empty();
-     for (i=1; i<lines.length - 1; i++) {
-       flds = lines[i].split("|");
-       flds.splice(3, 1);
-       flds.splice(6, 1);
-       flds.splice(6, 1);
-       flds.splice(6, 1);
+     for (i=1; i< openlines.length - 1; i++) {
+       fields = openlines[i].split("|");
+       fields.splice(3, 1);
+       fields.splice(6, 1);
+       fields.splice(6, 1);
+       fields.splice(6, 1);
        console.log(flds);
-       fldsArray.data.push(flds);
+       openfldsArray.data.push(fields);
      }
-     fldsArray = JSON.stringify(fldsArray);
-     fldsArray_json = $.parseJSON(fldsArray);
+     openfldsArray = JSON.stringify(openfldsArray);
+     openfldsArray_json = $.parseJSON(openfldsArray);
    },
    complete: function(){
-     table = $('#datatable2').DataTable();
-     table.rows.add( fldsArray_json.data ).draw();
-     console.log("did this run");
+     table1 = $('#datatable1').DataTable();
+     table1.rows.add( openfldsArray_json.data ).draw();
+     console.log("did this run open orders");
    }
  });
 }
 
+
+
+/////////////////////////////////////////////
+          // GET ORDER HEADER //
+/////////////////////////////////////////////
+function searchOrders()
+{
+  if(event.keyCode == 13) {
+    event.preventDefault();
+    searchTerm = $('#searchvalue').val();
+  }
+}
 
 
 /////////////////////////////////////////////
@@ -782,7 +807,7 @@ function billToAddress()
 /////////////////////////////////////////////
     // PULL SAVED SHIP TO ADDRESSES //
 /////////////////////////////////////////////
-function billToAddress()
+function shipToAddress()
 {
   $.ajax({
     type: "GET",
@@ -792,7 +817,16 @@ function billToAddress()
       session_no: session_no
     },
     success: function(response) {
-
+      console.log(response);
+      lines = response.split("\n");
+      // lines[0] is header row
+      // lines[1]+ are data lines
+      for (i=1; i<lines.length - 1; i++) {
+        flds = lines[i].split("|");
+        shippingAddresses.push([flds[1],flds[2],flds[3],flds[4],flds[5],flds[6],flds[7]]);
+        document.getElementById("shipping-address").innerHTML += '<option value="'+i+'">' + flds[1] + ', ' + flds[2] + '</option>';
+      }
+      $("#shipping-address").prepend('<option selected="selected">Select Address</option>');
     }
  });
 }
@@ -844,3 +878,14 @@ Array.min = function( array ){
 Array.max = function( array ){
     return Math.max.apply( Math, array );
 };
+
+function displayAddress(index) {
+  var ind = index - 1;
+  document.getElementById("shipping-form-companyname").value = shippingAddresses[ind][0].trim();
+  document.getElementById("shipping-form-address").value = shippingAddresses[ind][1].trim();
+  document.getElementById("shipping-form-address2").value = shippingAddresses[ind][2].trim();
+  document.getElementById("shipping-form-address3").value = shippingAddresses[ind][3].trim();
+  document.getElementById("shipping-form-city").value = shippingAddresses[ind][4].trim();
+  document.getElementById("shipping-form-state").value = shippingAddresses[ind][5].trim();
+  document.getElementById("shipping-form-zipcode").value = shippingAddresses[ind][6].trim();
+}
