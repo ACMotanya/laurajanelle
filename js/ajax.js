@@ -16,6 +16,7 @@ var item;
 var lines;
 var min;
 var max;
+var numberOfOrders;
 var orderAmt;
 var pictureSlider;
 var prices = [];
@@ -503,6 +504,24 @@ function creditCard ()
  });
 */
  document.getElementById("creditcard").src="http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICC&session_no=" + session_no + "";
+
+ $.ajax({
+  type: "GET",
+  url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+  data: {
+    request_id: "APIORDLST",
+    session_no: session_no
+  },
+  success: function(response) {
+    console.log(response);
+    openlines = response.split("\n");
+    numberOfOrders = openlines.length;
+  }
+  });
+
+ window.setInterval(function(){
+   /// call your function here
+ }, 5000);
 }
 
 
