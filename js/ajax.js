@@ -488,6 +488,7 @@ function updateCart ()
 /////////////////////////
 function creditCard ()
 {
+  /*
   $.ajax({
    type: "GET",
    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
@@ -497,15 +498,11 @@ function creditCard ()
    },
    success: function(response) {
      console.log(response);
-     document.getElementById("creditcard").innerHTML += response;
-     $( "div#creditcard" ).hide();
+     document.getElementById("creditcard").src += response;
    }
  });
-
-//  console.log("is this working?");
-//   $.get("http://srv-mysqldb/ace/apihelper.php?request_id=APICC&session_no=UREWAAUOF9AFU4D9WADWNDN32");
-//   console.log("it worked?");
-//  return false;
+*/
+ document.getElementById("creditcard").src="http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICC&session_no=" + session_no + "";
 }
 
 

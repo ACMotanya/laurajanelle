@@ -8,7 +8,6 @@ session_no = Cookies.get('session_no');
 jQuery( document ).ready(function() {
   cartList();
   cartHeader();
-//  creditCard();
   shipToAddress();
 
 });
@@ -43,9 +42,9 @@ $(document).ready(function() {
     } else {
       // everything looks good!
       saveAddresses();
-      // $( "div#creditcard" ).slideDown( "slow" );
-      // console.log("It worked and let's slide the div down now");
-      window.open("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICC&session_no=" + session_no + "");
+      creditCard();
+//       $( "#creditcard" ).slideDown( "slow" );
+//       console.log("It worked and let's slide the div down now");
     }
   });
 });
@@ -891,10 +890,7 @@ $(document).ready(function() {
         </div>
 
         <div class="clear bottommargin"></div>
-        <div id="creditcard">
-
-
-        </div>
+        <iframe id="creditcard" width=99% height=360></iframe>
       </div>
     </div>
 

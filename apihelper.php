@@ -10,7 +10,6 @@ $querystring = htmlspecialchars($querystring);
 echo "$querystring";
 $netlink_url = "http://72.64.152.18:8081/nlhtml/custom/netlink.php?$querystring";
 
-
 $curl_handle=curl_init();
 curl_setopt($curl_handle,CURLOPT_URL,$netlink_url);
 curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,20);
