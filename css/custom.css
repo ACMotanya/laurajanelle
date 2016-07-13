@@ -45,9 +45,7 @@
 	border-right-color: transparent;
 }
 
-#header.full-header #primary-menu > ul {
-	height: 100px;
-}
+
 
 #primary-menu ul li.current {
 	color: #999;
@@ -107,6 +105,7 @@ div.container.clearfix video {
 	#primary-menu-trigger.page-trigger {
 		left: 636px;
 	}
+	
 }
 
 @media (max-width: 1224px) {

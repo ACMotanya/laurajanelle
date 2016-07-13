@@ -488,9 +488,9 @@ function updateCart ()
 /////////////////////////
 function creditCard ()
 {
-/*  $.ajax({
+  $.ajax({
    type: "GET",
-   url: "../apihelper.php",
+   url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
    data: {
      request_id: "APICC",
      session_no: session_no
@@ -501,11 +501,11 @@ function creditCard ()
      $( "div#creditcard" ).hide();
    }
  });
-*/
-  console.log("is this working?");
-   $.get("../apihelper.php?request_id=APICC&session_no=UREWAAUOF9AFU4D9WADWNDN32");
-   console.log("it worked?");
-   return false;
+
+//  console.log("is this working?");
+//   $.get("http://srv-mysqldb/ace/apihelper.php?request_id=APICC&session_no=UREWAAUOF9AFU4D9WADWNDN32");
+//   console.log("it worked?");
+//  return false;
 }
 
 
