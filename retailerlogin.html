@@ -6,9 +6,14 @@ layout: login
 <script>
 var username;
 var password;
-var session_no;
+
 
 $(document).ready(function() {
+  if ( Cookies.get('session_no').length === 25 ) {
+    location.pathname = "/cousin-op/shop/";  //  Well need to change when going live
+    alert("You're already logged in.");
+  }
+
   $("#login-form").on("submit", function(e) { //add a parameter e - the event object
      e.preventDefault(); //stop the form from submitting
      username = $('#login-form-username').val();
@@ -17,8 +22,8 @@ $(document).ready(function() {
  	    type: "GET",
  	    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
  	    data: {request_id: "APICLOGIN",
- 	    username: username,
- 	    password: password},
+ 	           username: username,
+ 	           password: password},
  	    success: function(response) {
         if (response.replace(/\s+/g,'').length === 25) {
           session_no = response;
@@ -26,9 +31,6 @@ $(document).ready(function() {
 				  Cookies.set('session_no', session_no);
           location.pathname = "/cousin-op/shop/"
         } else {
-          session_no = response;
-  				session_no = session_no.replace(/\s+/g,'');
-				  Cookies.set('session_no', session_no);
           alert("Login credentials are incorrect, try again.");
         }
  			}
@@ -278,5 +280,14 @@ $(document).ready(function() {
 			</div>
 
 		</section><!-- #content end -->
+
+    <!-- Cookie Notification Bar
+		============================================= -->
+		<div id="cookie-notification" class="dark">
+			<div class="container clearfix">
+				We use cookies to ensure you get the best experience on our website. By your continued use of this site you accept such use.
+        <a href="#" class="cookie-accept cookie-noti-btn fright btn btn-danger btn-sm">Accept</a>
+			</div>
+		</div>
 
 	</div><!-- #wrapper end -->

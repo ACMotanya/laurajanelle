@@ -17,6 +17,7 @@ var lines;
 var min;
 var max;
 var numberOfOrders;
+var newNumberOfOrders;
 var orderAmt;
 var pictureSlider;
 var prices = [];
@@ -42,7 +43,7 @@ function sessionNumber()
 {
   session_no = Cookies.get('session_no');
   if (typeof(session_no) === "undefined" || session_no.length !== 25) {
-    location.pathname = "/cousin-op/";  //  Well need to change when going live
+    location.pathname = "/cousin-op/retailerlogin/";  //  Well need to change when going live
     alert("Please log in first.");
   }
 }
@@ -222,6 +223,7 @@ function cartList()
       // lines[1]+ are data lines
 
       $("#cartItemTable").empty();
+      $("#minicart").empty();
 
       if (location.pathname === "/cousin-op/cart/") {
         for (i=1; i<cartitems.length - 1; i++) {
@@ -257,6 +259,18 @@ function cartList()
             item += '</td>';
           item += '</tr>';
           $("#cartItemTable").prepend(item);
+
+          miniitem = '<div class="top-cart-item clearfix">';
+            miniitem += '<div class="top-cart-item-image">';
+              miniitem += '<a href="#"><img src="../ljimages/' + flds[2].replace(/\s+/g,'') + '-sm.png" alt="' + flds[3] + '" /></a>';
+            miniitem += '</div>';
+            miniitem += '<div class="top-cart-item-desc">';
+              miniitem += '<a href="#">' + flds[3] + '</a>';
+              miniitem += '<span class="top-cart-item-price">$' + parseInt(flds[7]).toFixed(2) + '</span>';
+              miniitem += '<span class="top-cart-item-quantity">x ' + flds[6].replace(/\s+/g,'') + '</span>';
+            miniitem += '</div>';
+          miniitem += '</div>';
+          $("#minicart").append(miniitem);
         }
 
         item = '<tr class="cart_item">';
@@ -278,8 +292,7 @@ function cartList()
           item += '</td>';
         item += '</tr>';
         $("#cartItemTable").append(item);
-      }
-      if (location.pathname === "/cousin-op/checkout/") {
+      } else if (location.pathname === "/cousin-op/checkout/") {
         for (i=1; i<cartitems.length - 1; i++) {
           flds = cartitems[i].split("|");
 
@@ -301,7 +314,31 @@ function cartList()
             item += '</td>';
           item += '</tr>';
           $("#cartItemTable").append(item);
+
+          miniitem = '<div class="top-cart-item clearfix">';
+            miniitem += '<div class="top-cart-item-image">';
+              miniitem += '<a href="#"><img src="../ljimages/' + flds[2].replace(/\s+/g,'') + '-sm.png" alt="' + flds[3] + '" /></a>';
+            miniitem += '</div>';
+            miniitem += '<div class="top-cart-item-desc">';
+              miniitem += '<a href="#">' + flds[3] + '</a>';
+              miniitem += '<span class="top-cart-item-price">$' + parseInt(flds[7]).toFixed(2) + '</span>';
+              miniitem += '<span class="top-cart-item-quantity">x ' + flds[6].replace(/\s+/g,'') + '</span>';
+            miniitem += '</div>';
+          miniitem += '</div>';
+          $("#minicart").append(miniitem);
         }
+      } else {
+        miniitem = '<div class="top-cart-item clearfix">';
+          miniitem += '<div class="top-cart-item-image">';
+            miniitem += '<a href="#"><img src="../ljimages/' + flds[2].replace(/\s+/g,'') + '-sm.png" alt="' + flds[3] + '" /></a>';
+          miniitem += '</div>';
+          miniitem += '<div class="top-cart-item-desc">';
+            miniitem += '<a href="#">' + flds[3] + '</a>';
+            miniitem += '<span class="top-cart-item-price">$' + parseInt(flds[7]).toFixed(2) + '</span>';
+            miniitem += '<span class="top-cart-item-quantity">x ' + flds[6].replace(/\s+/g,'') + '</span>';
+          miniitem += '</div>';
+        miniitem += '</div>';
+        $("#minicart").append(miniitem);
       }
     }
   });
@@ -489,39 +526,51 @@ function updateCart ()
 /////////////////////////
 function creditCard()
 {
-  /*
+  document.getElementById("creditcard").src="http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICC&session_no=" + session_no + "";
+
   $.ajax({
-   type: "GET",
-   url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
-   data: {
-     request_id: "APICC",
-     session_no: session_no
-   },
-   success: function(response) {
-     console.log(response);
-     document.getElementById("creditcard").src += response;
-   }
- });
-*/
- document.getElementById("creditcard").src="http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICC&session_no=" + session_no + "";
+    type: "GET",
+    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APIORDLST",
+      session_no: session_no
+    },
+    success: function(response) {
+      console.log(response);
+      openlines = response.split("\n");
+      numberOfOrders = openlines.length;
+    },
+    complete: function (){
+      var findNewOrder = setInterval(function(){
+        $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APIORDLST&session_no=" + session_no + "", function( data ) {
+          openlines = data.split("\n");
+          newNumberOfOrders = openlines.length;
+          if (numberOfOrders != newNumberOfOrders) {
+            clearInterval(findNewOrder);
 
- $.ajax({
-  type: "GET",
-  url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
-  data: {
-    request_id: "APIORDLST",
-    session_no: session_no
-  },
-  success: function(response) {
-    console.log(response);
-    openlines = response.split("\n");
-    numberOfOrders = openlines.length;
-  }
+            orders = [];
+            for (i=1; i< openlines.length - 1; i++) {
+              fields = openlines[i].split("|");
+              orders.push(fields);
+            }
+            orders = orders.sort(function(a, b) {
+              return a[1] > b[1] ? -1 : 1;
+            });
+            newOrder = orders[0][0];
+            $( "#success" ).trigger( "click" );
+            var message =  '<h4 style="font-family: Lato;">The order # is: ' + newOrder + '</h4>';
+
+                message += '<p>This is a confirmation that your order has been successfully received and is currently under process. You will receive an email soon with a copy of your invoice, which also includes the details of your order.</p>';
+                message += '<p class="nobottommargin">Laura Janelle values your business and is continuously looking for ways to better satisfy their customers. Please do share with us if there is a way we can serve you better.</p>';
+            document.getElementById("successMessage").innerHTML += message;
+            document.body.addEventListener("click", function(){
+              ordersRedirect();
+            });
+          }
+        });
+      }, 3000);
+    }
   });
-
- window.setInterval(function(){
-   /// call your function here
- }, 5000);
 }
 
 
@@ -691,7 +740,7 @@ function filterFunction(a,b,c,d,e,f)
           //  prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
           //  prod += 'div class="sale-flash">50% Off*</div>'
             prod += '<div class="product-overlay">';
-              prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="addItem(this.id); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+              prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
               prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a>';
             prod += '</div>';
           prod += '</div>';
@@ -704,8 +753,6 @@ function filterFunction(a,b,c,d,e,f)
       }
       document.getElementById("shop").innerHTML += html.join('');
       $(document).trigger("filters");
-      min = Array.min(prices);
-      max = Array.max(prices);
     },
     complete: function(){
       pageTitle();
@@ -750,7 +797,7 @@ function search()
               //  prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
               //  prod += 'div class="sale-flash">50% Off*</div>'
                 prod += '<div class="product-overlay">';
-                  prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="addItem(this.id); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+                  prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
                   prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a>';
                 prod += '</div>';
               prod += '</div>';
@@ -949,6 +996,21 @@ function detailViewRedirect(partNumber)
   window.location.pathname = "/cousin-op/detail-view/#" + partNumber;
 }
 
+function ordersRedirect()
+{
+  window.location.pathname = "/cousin-op/orders/";
+}
+
+function shopRedriect()
+{
+  window.location.pathname = "/cousin-op/shop/";
+}
+
+function homeRedriect()
+{
+  window.location.pathname = "/cousin-op/";
+}
+
 
 
 //////////////////////
@@ -979,4 +1041,12 @@ function displayAddress(index) {
   document.getElementById("shipping-form-city").value = shippingAddresses[ind][4].trim();
   document.getElementById("shipping-form-state").value = shippingAddresses[ind][5].trim();
   document.getElementById("shipping-form-zipcode").value = shippingAddresses[ind][6].trim();
+}
+
+function logoff()
+{
+  $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id==APILOGOFF&session_no="+ session_no +"", function( data ) {
+    Cookies.set('session_no', "Logged Out");
+    homeRedriect();
+  });
 }

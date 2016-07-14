@@ -55,6 +55,8 @@
           </li>
 
           <li><a href="{{ site.baseurl }}/cart"><div>Cart</div></a></li>
+
+          <li><a href="#" onclick="logoff();"><div>Log Out</div></a></li>
         </ul>
 
         <!-- Top Cart
@@ -63,12 +65,12 @@
           <a href="{{ site.baseurl }}/cart" id="top-cart-trigger"><i class="icon-shopping-cart"></i>
     <!--        <span></span> -->
           </a>
-<!--          <div class="top-cart-content">
+          <div class="top-cart-content">
             <div class="top-cart-title">
               <h4>Shopping Cart</h4>
             </div>
-            <div class="top-cart-items">
-              <div class="top-cart-item clearfix">
+            <div class="top-cart-items" id="minicart">
+          <!--    <div class="top-cart-item clearfix">
                 <div class="top-cart-item-image">
                   <a href="#"><img src="{{ site.baseurl }}/images/shop/small/1.jpg" alt="Blue Round-Neck Tshirt" /></a>
                 </div>
@@ -87,13 +89,13 @@
                   <span class="top-cart-item-price">$24.99</span>
                   <span class="top-cart-item-quantity">x 3</span>
                 </div>
-              </div>
+              </div>-->
             </div>
             <div class="top-cart-action clearfix">
-              <span class="fleft top-checkout-price">$114.95</span>
-              <button class="button button-3d button-small nomargin fright">View Cart</button>
+            <!--  <span class="fleft top-checkout-price">$114.95</span> -->
+              <button class="button button-3d button-small nomargin fright" onclick="cartRedirect();">View Cart</button>
             </div>
-          </div> -->
+          </div>
         </div><!-- #top-cart end -->
 
         <!-- Top Search

@@ -30,11 +30,15 @@
 	}
 }
 
+
 #primary-menu ul li > a {
 	font-family: Bodoni-Sans;
 	font-weight: 600;
-	font-size: 16px;
+	font-size: 14px;
 	letter-spacing: 1px;
+}
+#primary-menu.index-nav ul li > a {
+	font-size: 16px;
 }
 
 #header.transparent-header.full-header #logo {
@@ -105,7 +109,7 @@ div.container.clearfix video {
 	#primary-menu-trigger.page-trigger {
 		left: 636px;
 	}
-	
+
 }
 
 @media (max-width: 1224px) {
