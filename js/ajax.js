@@ -487,7 +487,7 @@ function updateCart ()
 /////////////////////////
 // Credit Card Process //
 /////////////////////////
-function creditCard ()
+function creditCard()
 {
   /*
   $.ajax({
@@ -588,6 +588,73 @@ function saveAddresses()
 
 
 
+/////////////////////////
+// Populate Page Title //
+/////////////////////////
+function pageTitle()
+{
+switch (window.location.hash) {
+  case "#sleek":
+
+    $('#page-title').empty();
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>SLEEK</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">SLEEK</li></ol></div>';
+    break;
+  case "#rglb":
+
+    $('#page-title').empty();
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>RGLB</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">RGLB</li></ol></div>';
+    break;
+  case "#encharming":
+
+    $('#page-title').empty();
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Encharming</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Encharming</li></ol></div>';
+    break;
+  case "#identify":
+
+    $('#page-title').empty();
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>iDentify</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">iDentify</li></ol></div>';
+    break;
+  case "#programs":
+    $('#page-title').empty();
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Programs</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Programs</li></ol></div>';
+    break;
+  case "#sets":
+    $('#page-title').empty();
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Sets</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Sets</li></ol></div>';
+    break;
+  case "#earrings":
+    $('#page-title').empty();
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Earrings</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Earrings</li></ol></div>';
+    break;
+  case "#necklaces":
+    $('#page-title').empty();
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Necklaces</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Necklaces</li></ol></div>';
+    break;
+  case "#bracelets":
+    $('#page-title').empty();
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Bracelets</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Bracelets</li></ol></div>';
+    break;
+  case "#lanyards":
+    $('#page-title').empty();
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Lanyards</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><<li>Shop</li><li class="active">Lanyards</li></ol></div>';
+    break;
+  case "#tassels":
+    $('#page-title').empty();
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Tassels</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Tassels</li></ol></div>';
+    break;
+  case "#snaps":
+    $('#page-title').empty();
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Snaps</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Snaps</li></ol></div>';
+    break;
+  default:
+
+    $('#page-title').empty();
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Full Suite</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li class="active">Shop</li></ol></div>';
+  }
+}
+
+
+
 /////////////////////
 // Filter Function //
 /////////////////////
@@ -639,6 +706,9 @@ function filterFunction(a,b,c,d,e,f)
       $(document).trigger("filters");
       min = Array.min(prices);
       max = Array.max(prices);
+    },
+    complete: function(){
+      pageTitle();
     }
   });
 }

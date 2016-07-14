@@ -122,7 +122,7 @@ $(document).ready(function() {
 									<div class="panel-body" style="padding: 40px;">
 										<h3>Register for an Account</h3>
 
-										<form id="register-form" name="register-form" class="nobottommargin" action="https://getsimpleform.com/messages?form_api_token=8bb5347f6ea8a314f9e3b5140b6507e2" method="POST">
+										<form id="register-form" name="register-form" class="nobottommargin" action="https://getsimpleform.com/messages?form_api_token=8bb5347f6ea8a314f9e3b5140b6507e2" method="POST" role="form">
 
 											<div class="col_full">
 												<label for="register-form-name">Name:</label>
@@ -131,7 +131,7 @@ $(document).ready(function() {
 
 											<div class="col_full">
 												<label for="register-form-name"> Business Name:</label>
-												<input type="text" id="register-form-name" name="register-form-name" value="" class="form-control" />
+												<input type="text" id="register-form-name" name="register-form-business-name" value="" class="form-control" />
 											</div>
 
 											<div class="col_full">
@@ -141,17 +141,17 @@ $(document).ready(function() {
 
 											<div class="col_full">
 												<label for="register-form-phone">Phone:</label>
-												<input type="text" id="register-form-phone" name="register-form-phone" value="" class="form-control" />
+												<input type="number" id="register-form-phone" name="register-form-phone" value="" class="form-control" />
 											</div>
 
 											<div class="col_full">
 												<label for="register-form-phone">Fax Phone:</label>
-												<input type="text" id="register-form-phone" name="register-form-phone" value="" class="form-control" />
+												<input type="text" id="register-form-phone" name="register-form-fax" value="" class="form-control" />
 											</div>
 
 											<div class="col_full">
 												<label for="register-form-phone">Website:</label>
-												<input type="text" id="register-form-phone" name="register-form-phone" value="" class="form-control" />
+												<input type="text" id="register-form-phone" name="register-form-website" value="" class="form-control" />
 											</div>
 
 											<div class="col_full">
@@ -162,49 +162,49 @@ $(document).ready(function() {
 											<h4>Business Address</h4>
 
 					            <div class="col_full">
-					              <label for="billing-form-address">Address:</label>
-					              <input type="text" id="billing-form-address" name="billing-form-address" value="" class="sm-form-control" />
+					              <label for="business-form-address">Address:</label>
+					              <input type="text" id="business-form-address" name="business-form-address" value="" class="sm-form-control" />
 					            </div>
 
 					            <div class="col_full">
-					              <input type="text" id="billing-form-address2" name="billing-form-adress" value="" class="sm-form-control" />
+					              <input type="text" id="business-form-address2" name="business-form-adresss-2" value="" class="sm-form-control" />
 					            </div>
 
 					            <div class="col_full">
-					              <label for="billing-form-city">City / Town</label>
-					              <input type="text" id="billing-form-city" name="billing-form-city" value="" class="sm-form-control" />
+					              <label for="business-form-city">City / Town</label>
+					              <input type="text" id="business-form-city" name="business-form-city" value="" class="sm-form-control" />
 					            </div>
 
 											<div class="col_half">
-												<input type="text" class="sm-form-control" placeholder="State / Country" />
+												<input type="text" class="sm-form-control" name="business-form-state" placeholder="State / Country" />
 											</div>
 
 											<div class="col_half col_last">
-												<input type="text" class="sm-form-control" placeholder="PostCode / Zip" />
+												<input type="text" class="sm-form-control" name="business-form-zipcode" placeholder="PostCode / Zip" />
 											</div>
 
-											<h4>Shipping Address (If different than billing address)</h4>
+											<h4>Shipping Address (If different than register address)</h4>
 
 					            <div class="col_full">
-					              <label for="billing-form-address">Address:</label>
-					              <input type="text" id="billing-form-address" name="billing-form-address" value="" class="sm-form-control" />
+					              <label for="shipping-form-address">Address:</label>
+					              <input type="text" id="shipping-form-address" name="shipping-form-address" value="" class="sm-form-control" />
 					            </div>
 
 					            <div class="col_full">
-					              <input type="text" id="billing-form-address2" name="billing-form-adress" value="" class="sm-form-control" />
+					              <input type="text" id="shipping-form-address-2" name="shipping-form-adress-2" value="" class="sm-form-control" />
 					            </div>
 
 					            <div class="col_full">
-					              <label for="billing-form-city">City / Town</label>
-					              <input type="text" id="billing-form-city" name="billing-form-city" value="" class="sm-form-control" />
+					              <label for="shipping-form-city">City / Town</label>
+					              <input type="text" id="shipping-form-city" name="shipping-form-city" value="" class="sm-form-control" />
 					            </div>
 
 											<div class="col_half">
-												<input type="text" class="sm-form-control" placeholder="State / Country" />
+												<input type="text" class="sm-form-control" name="shipping-form-state" placeholder="State / Country" />
 											</div>
 
 											<div class="col_half col_last">
-												<input type="text" class="sm-form-control" placeholder="PostCode / Zip" />
+												<input type="text" class="sm-form-control" name="shipping-form-zipcode" placeholder="PostCode / Zip" />
 											</div>
 
 											<h4>Required Documents</h4>
@@ -212,13 +212,13 @@ $(document).ready(function() {
 											<p>Documentation of an active online business, Etsy, Artfire or similar account, a trade show contract or a copy of an invoice where you have purchased from another wholesale company.</p>
 
 											<div class="col_full">
-												<input id="input-2" type="file" name="Doc1" class="file" data-show-preview="false">
+												<input id="Doc1" type="file" name="Doc1" class="file" >
 											</div>
 
 											<p>A copy of a Municipal occupational license from your local area, your Federal Tax ID or EIN, LLC, DBA or Vendor permit.</p>
 
 											<div class="col_full">
-												<input id="input-2" type="file" name="taxID" class="file" data-show-preview="false">
+												<input id="taxId" type="file" name="taxID" class="file">
 											</div>
 
 											<p><strong>NOTE: If your business is in the State of Florida, a copy of a Tax ID must be provided also. STATE OF FLORIDA COMPTROLLER SALES TAX DIVISION RULE 39</strong></p>
@@ -226,34 +226,34 @@ $(document).ready(function() {
 											<h4>How did you hear about us?</h4>
 
 											<div class="col_half">
-												<input id="checkbox-1" class="checkbox-style" name="checkbox-1" type="checkbox">
+												<input id="checkbox-1" class="checkbox-style" name="hear-about-us-website" type="checkbox">
 												<label for="checkbox-1" class="checkbox-style-2-label checkbox-small">Website</label>
 											</div>
 											<div class="col_half col_last">
-												<input id="checkbox-2" class="checkbox-style" name="checkbox-2" type="checkbox">
+												<input id="checkbox-2" class="checkbox-style" name="hear-about-us-packaging" type="checkbox">
 												<label for="checkbox-2" class="checkbox-style-2-label checkbox-small">Cousin Packaging</label>
 											</div>
 											<div class="col_half">
-												<input id="checkbox-3" class="checkbox-style" name="checkbox-3" type="checkbox">
+												<input id="checkbox-3" class="checkbox-style" name="hear-about-us-search-engine" type="checkbox">
 												<label for="checkbox-3" class="checkbox-style-2-label checkbox-small">Search Engine</label>
 											</div>
 											<div class="col_half col_last">
-												<input id="checkbox-4" class="checkbox-style" name="checkbox-4" type="checkbox">
+												<input id="checkbox-4" class="checkbox-style" name="hear-about-us-social-media" type="checkbox">
 												<label for="checkbox-4" class="checkbox-style-2-label checkbox-small">Social Media</label>
 											</div>
 											<div class="col_half">
-												<input id="checkbox-5" class="checkbox-style" name="checkbox-5" type="checkbox">
+												<input id="checkbox-5" class="checkbox-style" name="hear-about-us-friend" type="checkbox">
 												<label for="checkbox-5" class="checkbox-style-2-label checkbox-small">Friend</label>
 											</div>
 											<div class="col_half col_last">
-												<input id="checkbox-6" class="checkbox-style" name="checkbox-6" type="checkbox">
+												<input id="checkbox-6" class="checkbox-style" name="hear-about-us-other" type="checkbox">
 												<label for="checkbox-6" class="checkbox-style-2-label checkbox-small">Other</label>
 											</div>
 
 											<div class="line" style="margin: 10px"></div>
 
 											<div class="col_full">
-												<input id="checkbox-7" class="checkbox-style" name="checkbox-7" type="checkbox">
+												<input id="checkbox-7" class="checkbox-style" name="receive-promotions" type="checkbox">
 												<label for="checkbox-7" class="checkbox-style-3-label checkbox-small">Receive occasional emails about inspirational projects, special promotions and "sneak peaks" to our new products</label>
 											</div>
 
