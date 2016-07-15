@@ -715,38 +715,7 @@ function filterFunction(a,b,c,d,e,f)
       level4: e,
       level5: f},
     success: function(response) {
-      lines = response.split("\n");
-      // lines[0] is header row
-      // lines[1]+ are data lines
-      $('#shop').empty();
-      html = [];
-      if ( lines.length <= 2) {
-        document.getElementById("shop").innerHTML += '<h1>There are no results</h1>';
-      } else {
-        for (i=1; i<lines.length - 1; i++) {
-          flds = lines[i].split("|");
-
-          prices.push(Number(flds[4]));
-          prod = '<div class="product clearfix pf-dress">';
-            prod += '<div class="product-image">';
-              prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
-            //  prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
-            //  prod += 'div class="sale-flash">50% Off*</div>'
-              prod += '<div class="product-overlay">';
-                prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-                prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a>';
-              prod += '</div>';
-            prod += '</div>';
-            prod += '<div class="product-desc">';
-              prod += '<div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div>';
-              prod += '<div class="product-price"><ins>$' + parseInt(flds[4]).toFixed(2) + '</ins></div>';
-            prod += '</div>';
-          prod += '</div>';
-          html.push(prod);
-        }
-        document.getElementById("shop").innerHTML += html.join('');
-        $(document).trigger("filters");
-      }
+      fillShop(response);
     },
     complete: function(){
       pageTitle();
@@ -771,38 +740,7 @@ function search()
         request_id: "APISTKSEARCH",
         query: searchTerm},
       success: function(response) {
-        lines = response.split("\n");
-        // lines[0] is header row
-        // lines[1]+ are data lines
-        $('#shop').empty();
-        html = [];
-        if ( lines.length <= 2) {
-          document.getElementById("shop").innerHTML += '<h1>There are no results</h1>';
-        } else {
-          for (i=1; i<lines.length - 1; i++) {
-            flds = lines[i].split("|");
-
-            prices.push(Number(flds[4]));
-            prod = '<div class="product clearfix pf-dress">';
-              prod += '<div class="product-image">';
-                prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
-              //  prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
-              //  prod += 'div class="sale-flash">50% Off*</div>'
-                prod += '<div class="product-overlay">';
-                  prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-                  prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a>';
-                prod += '</div>';
-              prod += '</div>';
-              prod += '<div class="product-desc">';
-                prod += '<div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div>';
-                prod += '<div class="product-price"><ins>$' + parseInt(flds[4]).toFixed(2) + '</ins></div>';
-              prod += '</div>';
-            prod += '</div>';
-            html.push(prod);
-          }
-          document.getElementById("shop").innerHTML += html.join('');
-          $(document).trigger("filters");
-        }
+        fillShop(response);
       }
     });
   }
@@ -827,7 +765,7 @@ function fillShop(response)
       flds = lines[i].split("|");
 
       prices.push(Number(flds[4]));
-      prod = '<div class="product clearfix pf-dress">';
+      prod = '<div class="product clearfix ' + flds[2] + '">';
         prod += '<div class="product-image">';
           prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
         //  prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
