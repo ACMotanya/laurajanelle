@@ -18,6 +18,7 @@ var min;
 var max;
 var numberOfOrders;
 var newNumberOfOrders;
+var neworder;
 var orderAmt;
 var pictureSlider;
 var prices = [];
@@ -187,7 +188,7 @@ function cartHeader()
     success: function(response) {
       cartheader = response.split("\n");
       cartheader = cartheader[1].split("|");
-      orderAmt = cartheader[22].replace(/\s+/g,'');
+      orderAmt = cartheader[22];
       subtotal = cartheader[19].replace(/\s+/g,'');
       discountAmt = cartheader[20].replace(/\s+/g,'');
       salesTax = cartheader[21].replace(/\s+/g,'');
@@ -196,7 +197,35 @@ function cartHeader()
       document.getElementById("top-cart-trigger").innerHTML += '<span>' + cartQty + '</span>';
 
       if (location.pathname === "/cousin-op/cart/" || location.pathname === "/cousin-op/checkout/") {
-        cartTotals();
+        $("#cart-totals").empty();
+        var totals = '<tr class="cart_item">';
+          totals += '<td class="notopborder cart-product-name">';
+            totals += '<strong>Cart Subtotal</strong>';
+          totals += '</td>';
+
+          totals += '<td class="notopborder cart-product-name">';
+            totals += '<span class="amount">' + subtotal + '</span>';
+          totals += '</td>';
+        totals += '</tr>';
+        totals += '<tr class="cart_item">';
+          totals += '<td class="cart-product-name">';
+            totals += '<strong>Shipping</strong>';
+          totals += '</td>';
+
+          totals += '<td class="cart-product-name">';
+            totals += '<span class="amount">' + shippingCost + '</span>';
+          totals += '</td>';
+        totals += '</tr>';
+        totals += '<tr class="cart_item">';
+          totals += '<td class="cart-product-name">';
+            totals += '<strong>Total</strong>';
+          totals += '</td>';
+
+          totals += '<td class="cart-product-name">';
+            totals += '<span class="amount color lead"><strong>' + orderAmt + '</strong></span>';
+          totals += '</td>';
+        totals += '</tr>';
+        document.getElementById("cart-totals").innerHTML += totals;
       }
     }
   });
@@ -243,7 +272,7 @@ function cartList()
             item += '</td>';
 
             item += '<td class="cart-product-price">';
-              item += '<span class="amount">$' + parseInt(flds[7]).toFixed(2) + '</span>';
+              item += '<span class="amount">$' + flds[7].substring(0, flds[7].length - 3) + '</span>';
             item += '</td>';
 
             item += '<td class="cart-product-quantity">';
@@ -255,7 +284,7 @@ function cartList()
             item += '</td>';
 
             item += '<td class="cart-product-subtotal">';
-              item += '<span class="amount">$' + parseInt(flds[8]).toFixed(2) + '</span>';
+              item += '<span class="amount">$' + flds[8].substring(0, flds[8].length - 4) + '</span>';
             item += '</td>';
           item += '</tr>';
           $("#cartItemTable").prepend(item);
@@ -266,7 +295,7 @@ function cartList()
             miniitem += '</div>';
             miniitem += '<div class="top-cart-item-desc">';
               miniitem += '<a href="#">' + flds[3] + '</a>';
-              miniitem += '<span class="top-cart-item-price">$' + parseInt(flds[7]).toFixed(2) + '</span>';
+              miniitem += '<span class="top-cart-item-price">$' + flds[7].substring(0, flds[7].length - 3) + '</span>';
               miniitem += '<span class="top-cart-item-quantity">x ' + flds[6].replace(/\s+/g,'') + '</span>';
             miniitem += '</div>';
           miniitem += '</div>';
@@ -285,7 +314,7 @@ function cartList()
                 item += '</div>';
               item += '</div>';
               item += '<div class="col-md-8 col-xs-8 nopadding">';
-                item += '<a href="#" class="button button-3d nomargin fright"  onclick="updateCart()">Update Cart</a>';
+                item += '<a href="#" class="button button-3d nomargin fright" id="updateCartButton" onclick="updateCart1()">Update Cart</a>';
                 item += '<a href="#" class="button button-3d notopmargin fright" onclick="checkoutRedirect()">Proceed to Checkout</a>';
               item += '</div>';
             item += '</div>';
@@ -310,7 +339,7 @@ function cartList()
             item += '</td>';
 
             item += '<td class="cart-product-subtotal">';
-              item += '<span class="amount">$' + parseInt(flds[8]).toFixed(2) + '</span>';
+              item += '<span class="amount">$' + flds[8].substring(0, flds[8].length - 4) + '</span>';
             item += '</td>';
           item += '</tr>';
           $("#cartItemTable").append(item);
@@ -321,24 +350,28 @@ function cartList()
             miniitem += '</div>';
             miniitem += '<div class="top-cart-item-desc">';
               miniitem += '<a href="#">' + flds[3] + '</a>';
-              miniitem += '<span class="top-cart-item-price">$' + parseInt(flds[7]).toFixed(2) + '</span>';
+              miniitem += '<span class="top-cart-item-price">$' + flds[7].substring(0, flds[7].length - 3) + '</span>';
               miniitem += '<span class="top-cart-item-quantity">x ' + flds[6].replace(/\s+/g,'') + '</span>';
             miniitem += '</div>';
           miniitem += '</div>';
           $("#minicart").append(miniitem);
         }
       } else {
-        miniitem = '<div class="top-cart-item clearfix">';
+        for (i=1; i<cartitems.length - 1; i++) {
+          flds = cartitems[i].split("|");
+
+          miniitem = '<div class="top-cart-item clearfix">';
           miniitem += '<div class="top-cart-item-image">';
-            miniitem += '<a href="#"><img src="../ljimages/' + flds[2].replace(/\s+/g,'') + '-sm.png" alt="' + flds[3] + '" /></a>';
+          miniitem += '<a href="#"><img src="../ljimages/' + flds[2].replace(/\s+/g,'') + '-sm.png" alt="' + flds[3] + '" /></a>';
           miniitem += '</div>';
           miniitem += '<div class="top-cart-item-desc">';
-            miniitem += '<a href="#">' + flds[3] + '</a>';
-            miniitem += '<span class="top-cart-item-price">$' + parseInt(flds[7]).toFixed(2) + '</span>';
-            miniitem += '<span class="top-cart-item-quantity">x ' + flds[6].replace(/\s+/g,'') + '</span>';
+          miniitem += '<a href="#">' + flds[3] + '</a>';
+          miniitem += '<span class="top-cart-item-price">$' + flds[7].substring(0, flds[7].length - 3) + '</span>';
+          miniitem += '<span class="top-cart-item-quantity">x ' + flds[6].replace(/\s+/g,'') + '</span>';
           miniitem += '</div>';
-        miniitem += '</div>';
-        $("#minicart").append(miniitem);
+          miniitem += '</div>';
+          $("#minicart").append(miniitem);
+        }
       }
     }
   });
@@ -446,35 +479,7 @@ function countryCode()
 /////////////////////////
 function cartTotals()
 {
-  $("#cart-totals").empty();
-  var totals = '<tr class="cart_item">';
-    totals += '<td class="notopborder cart-product-name">';
-      totals += '<strong>Cart Subtotal</strong>';
-    totals += '</td>';
 
-    totals += '<td class="notopborder cart-product-name">';
-      totals += '<span class="amount">' + subtotal + '</span>';
-    totals += '</td>';
-  totals += '</tr>';
-  totals += '<tr class="cart_item">';
-    totals += '<td class="cart-product-name">';
-      totals += '<strong>Shipping</strong>';
-    totals += '</td>';
-
-    totals += '<td class="cart-product-name">';
-      totals += '<span class="amount">' + shippingCost + '</span>';
-    totals += '</td>';
-  totals += '</tr>';
-  totals += '<tr class="cart_item">';
-    totals += '<td class="cart-product-name">';
-      totals += '<strong>Total</strong>';
-    totals += '</td>';
-
-    totals += '<td class="cart-product-name">';
-      totals += '<span class="amount color lead"><strong>' + orderAmt + '</strong></span>';
-    totals += '</td>';
-  totals += '</tr>';
-  document.getElementById("cart-totals").innerHTML += totals;
 }
 
 
@@ -482,41 +487,58 @@ function cartTotals()
 ////////////////////////\\
 // Update Cart Function \\
 //\\\\\\\\\\\\\\\\\\\\\\\\
-function updateCart ()
+function updateCart1()
 {
+  $("#updateCartButton").hide();
   shoppingCart = {};
 
   var table = $("table tbody#cartItemTable");
 
-  // loop thru cart and faltten the items that are repeated
+  // loop thru cart and flatten the items that are repeated
   table.find('tr.products').each(function () {
     var line_no     = $(this).find('td:first-child a').attr('id');
     var stockNumber = $(this).find('td:nth-child(5) div input:nth-child(2)').attr('id');
     var qty         = parseInt($(this).find('td:nth-child(5) div input:nth-child(2)').val());
 
-    console.log(line_no);
-    console.log(stockNumber);
-    console.log(qty);
-
     if (!shoppingCart.hasOwnProperty(stockNumber)) {
       shoppingCart[stockNumber] = [qty, line_no];
       removeItemGeneric(session_no, line_no);
-
     } else {
-      console.log("This is already in there");
       shoppingCart[stockNumber][0] += qty;
       removeItemGeneric(session_no, shoppingCart[stockNumber][1]);
       removeItemGeneric(session_no, line_no);
-
     }
   });
-  console.log(shoppingCart);
 
   $.each( shoppingCart, function( key, value ) {
     addItemGeneric(session_no, key, value[0]);
   });
   cartList();
-  cartTotals();
+  cartHeader();
+}
+
+function updateCart2()
+{
+  $("#updateCartButton").hide();
+  shoppingCart = {};
+
+  var table = $("table tbody#cartItemTable");
+
+  // loop thru cart and flatten the items that are repeated
+  table.find('tr.products').each(function () {
+    var line_no     = $(this).find('td:first-child a').attr('id');
+    var stockNumber = $(this).find('td:nth-child(5) div input:nth-child(2)').attr('id');
+    var qty         = parseInt($(this).find('td:nth-child(5) div input:nth-child(2)').val());
+    shoppingCart[stockNumber] = [qty, line_no];
+    removeItemGeneric(session_no, line_no);
+  });
+
+  $.each( shoppingCart, function( key, value ) {
+    addItemGeneric(session_no, key, value[0]);
+  });
+  cartList();
+  cartHeader();
+
 }
 
 
@@ -777,7 +799,7 @@ function fillShop(response)
         prod += '</div>';
         prod += '<div class="product-desc">';
           prod += '<div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div>';
-          prod += '<div class="product-price"><ins>$' + parseInt(flds[4]).toFixed(2) + '</ins></div>';
+          prod += '<div class="product-price"><ins>$' + flds[4] + '</ins></div>';
         prod += '</div>';
       prod += '</div>';
       html.push(prod);
@@ -880,76 +902,86 @@ function openOrders()
 /////////////////////////////////////////////
 function searchOrders(orderSearchNumber)
 {
-    $.ajax({
-      type: "GET",
-      url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
-      data: {
-        request_id: "APIORDH",
-        session_no: session_no,
-        order_no: orderSearchNumber},
-      success: function(response) {
-        lines = response.split("\n");
-        // lines[0] is header row
-        // lines[1]+ are data lines
-        $('#orderDetails').empty();
-        // html = [];
-        if ( lines.length <= 2) {
-          document.getElementById("shop").innerHTML += '<h1>There are no results</h1>';
-        } else {
-          for (i=1; i<lines.length - 1; i++) {
-            details = lines[i].split("|");
-            line = '<tr><td>Order Number</td><td>'+details[1]+'</td></tr>';
+  var openfldsArray = { "data": []};
 
-            line += '<tr><td>Order Date</td><td>'+details[2]+'</td></tr>';
+  $.ajax({
+    type: "GET",
+    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APIORDH",
+      session_no: session_no,
+      order_no: orderSearchNumber},
+    success: function(response) {
+      lines = response.split("\n");
+      // lines[0] is header row
+      // lines[1]+ are data lines
+      $('#orderDetails').empty();
+      // html = [];
+      if ( lines.length <= 2) {
+        document.getElementById("shop").innerHTML += '<h1>There are no results</h1>';
+      } else {
+        for (i=1; i<lines.length - 1; i++) {
+          details = lines[i].split("|");
+          line = '<tr><td>Order Number</td><td>'+details[0]+'</td></tr>';
+          line += '<tr><td>Order Date</td><td>'+details[1]+'</td></tr>';
+          line += '<tr><td>Shipping Date</td><td>'+details[2]+'</td></tr>';
+          line += '<tr><td>Customer Number</td><td>'+details[3]+'</td></tr>';
+          line += '<tr><td>PO Number</td><td>'+details[4]+'</td></tr>';
 
-            line += '<tr><td>Shipping Date</td><td>'+details[3]+'</td></tr>';
-
-            line += '<tr><td>Customer Number</td><td>'+details[4]+'</td></tr>';
-
-            line += '<tr><td>PO Number</td><td>'+details[5]+'</td></tr>';
-
-            line += '<tr><td>Terms Code</td><td>'+details[6]+'</td></tr>';
-
-            line += '<tr><td>Ship-via Code</td><td>'+details[7]+'</td></tr>';
-
-            line += '<tr><td>Tax Amount</td><td>'+details[8]+'</td></tr>';
-
-            line += '<tr><td>Order Total</td><td>'+details[9]+'</td></tr>';
-
-            line += '<tr><td>Discount Amount</td><td>'+details[10]+'</td></tr>';
-
-            line += '<tr><td>Bill-to Name</td><td>'+details[11]+'</td></tr>';
-
-            line += '<tr><td>Bill-to Address</td><td>'+details[12]+'</td></tr>';
-
-            line += '<tr><td>Ship-to Name</td><td>'+details[13]+'</td></tr>';
-
-            line += '<tr><td>Ship-to Address</td><td>'+details[14]+'</td></tr>';
-
-            line += '<tr><td>Notes</td><td>'+details[15]+'</td></tr>';
-
-            line += '<tr><td>Email Address</td><td>'+details[16]+'</td></tr>';
-
-            line += '<tr><td>Total Payments</td><td>'+details[17]+'</td></tr>';
-
-            line += '<tr><td>Number of Lines</td><td>'+details[18]+'</td></tr>';
-
-            line += '<tr><td>Total Order Qty</td><td>'+details[19]+'</td></tr>';
-
-            line += '<tr><td>Total Weight</td><td>'+details[20]+'</td></tr>';
-
-            line += '<tr><td>Shipping Method</td><td>'+details[21]+'</td></tr>';
-
-            line += '<tr><td>Total Other Charges</td><td>'+details[22]+'</td></tr>';
-
-            line += '<tr><td>Total Freight</td><td>'+details[23]+'</td></tr>';
-
-            document.getElementById("orderDetails").innerHTML += line;
-          }
+          line += '<tr><td>Tax Amount</td><td>'+details[5]+'</td></tr>';
+          line += '<tr><td>Order Total</td><td>'+details[6]+'</td></tr>';
+          line += '<tr><td>Discount Amount</td><td>'+details[7]+'</td></tr>';
+          line += '<tr><td>Bill-to Name</td><td>'+details[8]+'</td></tr>';
+          line += '<tr><td>Bill-to Address</td><td>'+details[9]+'</td></tr>';
+          line += '<tr><td>Ship-to Name</td><td>'+details[10]+'</td></tr>';
+          line += '<tr><td>Ship-to Address</td><td>'+details[11]+'</td></tr>';
+          line += '<tr><td>Notes</td><td>'+details[12]+'</td></tr>';
+          line += '<tr><td>Email Address</td><td>'+details[13]+'</td></tr>';
+          line += '<tr><td>Total Payments</td><td>'+details[14]+'</td></tr>';
+          line += '<tr><td>Number of Lines</td><td>'+details[15]+'</td></tr>';
+          line += '<tr><td>Total Order Qty</td><td>'+details[16]+'</td></tr>';
+          line += '<tr><td>Total Weight</td><td>'+details[17]+'</td></tr>';
+          line += '<tr><td>Shipping Method</td><td>'+details[18]+'</td></tr>';
+          line += '<tr><td>Total Other Charges</td><td>'+details[19]+'</td></tr>';
+          line += '<tr><td>Total Freight</td><td>'+details[20]+'</td></tr>';
+          line += '<tr><td>Terms Code</td><td>'+details[21]+'</td></tr>';
+          line += '<tr><td>Ship-via Code</td><td>'+details[22]+'</td></tr>';
+          document.getElementById("orderDetails").innerHTML += line;
         }
       }
-    });
-
+    }
+  });
+  $.ajax({
+    type: "GET",
+    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APIORDLST",
+      session_no: session_no,
+      order_no: orderSearchNumber},
+    success: function(response) {
+      console.log(response);
+      openlines = response.split("\n");
+      // lines[0] is header row
+      // lines[1]+ are data lines
+      // $('#tableBody').empty();
+      for (i=1; i< openlines.length - 1; i++) {
+        fields = openlines[i].split("|");
+        fields.splice(0, 1);
+        fields.splice(4, 1);
+        fields.splice(4, 1);
+        fields.splice(6, 1);
+        console.log(flds);
+        openfldsArray.data.push(fields);
+      }
+      openfldsArray = JSON.stringify(openfldsArray);
+      openfldsArray_json = $.parseJSON(openfldsArray);
+    },
+    complete: function(){
+      table3 = $('#datatable3').DataTable();
+      table1.rows.add( openfldsArray_json.data ).draw();
+      console.log("did this run open orders");
+    }
+  });
 }
 
 
@@ -974,7 +1006,6 @@ function billToAddress()
       for (i=1; i<lines.length - 1; i++) {
         flds = lines[i].split("|");
       }
-
     }
  });
 }

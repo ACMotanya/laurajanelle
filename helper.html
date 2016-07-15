@@ -1,0 +1,23 @@
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/js.cookie.js"></script>
+
+<script>
+$(document).ready(function() {
+  session_no = Cookies.get('session_no');
+  $.ajax({
+    type: "GET",
+    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APIORDH",
+      session_no: session_no,
+      order_no: 800010524},
+    success: function(response) {
+      document.getElementById("body").innerHTML += response
+    }
+  });
+});
+</script>
+
+<body id="body">
+
+</body>
