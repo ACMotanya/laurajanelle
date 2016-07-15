@@ -11,6 +11,15 @@ $(document).ready(function() {
     openOrders();
     orderHistory();
     cartList();
+    $('#searchForOrders').click(function(){
+      var orderSearchNumber = $('#orderNumber').val();
+      searchOrders(orderSearchNumber);
+    })
+    $('#orderNumber').keypress(function(e){
+      if(e.which == 13){//Enter key pressed
+        $('#searchButton').click();//Trigger search button click event
+      }
+    });
 });
 </script>
 
@@ -43,9 +52,9 @@ $(document).ready(function() {
         <form id="widget-subscribe-form" role="form" method="" class="nobottommargin">
           <div class="input-group divcenter">
             <span class="input-group-addon"><i class="icon-search3"></i></span>
-            <input type="number" id="orderNumber" name="orderNumber" class="form-control" placeholder="Enter Order Number">
+            <input type="number" id="orderNumber" name="orderNumber" class="form-control" value="" placeholder="Enter Order Number">
             <span class="input-group-btn">
-              <button class="btn btn-secondary" type="submit">Search Orders</button>
+              <button class="btn btn-secondary" type="submit" id="searchForOrders">Search Orders</button>
             </span>
           </div>
         </form>
@@ -60,53 +69,7 @@ $(document).ready(function() {
         <tr><th>Order Field</th><th>Order Detail</th></tr>
         </thead>
 
-        <tbody>
-
-        <tr><td>Order Number</td><td>Mark</td></tr>
-
-        <tr><td>Order Date</td><td>Mark</td></tr>
-
-        <tr><td>Shipping Date</td><td>Jacob</td></tr>
-
-        <tr><td>Customer Number</td><td>@twitter</td></tr>
-
-        <tr><td>PO Number</td><td>@twitter</td></tr>
-
-        <tr><td>Terms Code</td><td>@twitter</td></tr>
-
-        <tr><td>Ship-via Code</td><td>@twitter</td></tr>
-
-        <tr><td>Tax Amount</td><td>@twitter</td></tr>
-
-        <tr><td>Order Total</td><td>@twitter</td></tr>
-
-        <tr><td>Discount Amount</td><td>@twitter</td></tr>
-
-        <tr><td>Bill-to Name</td><td>@twitter</td></tr>
-
-        <tr><td>Bill-to Address</td><td>@twitter</td></tr>
-
-        <tr><td>Ship-to Name</td><td>@twitter</td></tr>
-
-        <tr><td>Ship-to Address</td><td>@twitter</td></tr>
-
-        <tr><td>Notes</td><td></td></tr>
-
-        <tr><td>Email Address</td><td>@twitter</td></tr>
-
-        <tr><td>Total Payments</td><td>@twitter</td></tr>
-
-        <tr><td>Number of Lines</td><td>@twitter</td></tr>
-
-        <tr><td>Total Order Qty</td><td>@twitter</td></tr>
-
-        <tr><td>Total Weight</td><td>@twitter</td></tr>
-
-        <tr><td>Shipping Method</td><td>@twitter</td></tr>
-
-        <tr><td>Total Other Charges</td><td>@twitter</td></tr>
-
-        <tr><td>Total Freight</td><td>@twitter</td></tr>
+        <tbody id="orderDetails">
 
         </tbody>
       </table>

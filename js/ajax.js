@@ -644,22 +644,18 @@ function pageTitle()
 {
 switch (window.location.hash) {
   case "#sleek":
-
     $('#page-title').empty();
     document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>SLEEK</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">SLEEK</li></ol></div>';
     break;
   case "#rglb":
-
     $('#page-title').empty();
     document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>RGLB</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">RGLB</li></ol></div>';
     break;
   case "#encharming":
-
     $('#page-title').empty();
     document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Encharming</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Encharming</li></ol></div>';
     break;
   case "#identify":
-
     $('#page-title').empty();
     document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>iDentify</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">iDentify</li></ol></div>';
     break;
@@ -696,7 +692,6 @@ switch (window.location.hash) {
     document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Snaps</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Snaps</li></ol></div>';
     break;
   default:
-
     $('#page-title').empty();
     document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Full Suite</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li class="active">Shop</li></ol></div>';
   }
@@ -720,39 +715,7 @@ function filterFunction(a,b,c,d,e,f)
       level4: e,
       level5: f},
     success: function(response) {
-      lines = response.split("\n");
-      // lines[0] is header row
-      // lines[1]+ are data lines
-      $('#shop').empty();
-      var html = [];
-      fldsArray = [];
-      for (i=1; i<lines.length - 1; i++) {
-        flds = lines[i].split("|");
-        fldsArray.push(flds);
-        fldsArray = fldsArray.sort(Comparator);
-      }
-      for (i=0; i<=fldsArray.length - 1; i++) {
-        flds = fldsArray[i];
-        prices.push(Number(flds[4]));
-        prod = '<div class="product clearfix ' + flds[2] + '">';
-          prod += '<div class="product-image">';
-            prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
-          //  prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
-          //  prod += 'div class="sale-flash">50% Off*</div>'
-            prod += '<div class="product-overlay">';
-              prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-              prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a>';
-            prod += '</div>';
-          prod += '</div>';
-          prod += '<div class="product-desc">';
-            prod += '<div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div>';
-            prod += '<div class="product-price"><ins>$' + flds[4] +'</ins></div>';
-          prod += '</div>';
-        prod += '</div>';
-        html.push(prod);
-      }
-      document.getElementById("shop").innerHTML += html.join('');
-      $(document).trigger("filters");
+      fillShop(response);
     },
     complete: function(){
       pageTitle();
@@ -770,7 +733,6 @@ function search()
   if(event.keyCode == 13) {
     event.preventDefault();
     searchTerm = $('#searchvalue').val();
-    console.log(searchTerm);
     $.ajax({
       type: "GET",
       url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
@@ -778,41 +740,50 @@ function search()
         request_id: "APISTKSEARCH",
         query: searchTerm},
       success: function(response) {
-        console.log(response);
-        lines = response.split("\n");
-        // lines[0] is header row
-        // lines[1]+ are data lines
-        $('#shop').empty();
-        html = [];
-        if ( lines.length <= 2) {
-          document.getElementById("shop").innerHTML += '<h1>There are no results</h1>';
-        } else {
-          for (i=1; i<lines.length - 1; i++) {
-            flds = lines[i].split("|");
-
-            prices.push(Number(flds[4]));
-            prod = '<div class="product clearfix pf-dress">';
-              prod += '<div class="product-image">';
-                prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
-              //  prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
-              //  prod += 'div class="sale-flash">50% Off*</div>'
-                prod += '<div class="product-overlay">';
-                  prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-                  prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a>';
-                prod += '</div>';
-              prod += '</div>';
-              prod += '<div class="product-desc">';
-                prod += '<div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div>';
-                prod += '<div class="product-price"><ins>$' + parseInt(flds[4]).toFixed(2) + '</ins></div>';
-              prod += '</div>';
-            prod += '</div>';
-            html.push(prod);
-          }
-          document.getElementById("shop").innerHTML += html.join('');
-          $(document).trigger("filters");
-        }
+        fillShop(response);
       }
     });
+  }
+}
+
+
+
+/////////////////////////////////////////////
+      // POPULATE THE STORE PAGE //
+/////////////////////////////////////////////
+function fillShop(response)
+{
+  lines = response.split("\n");
+  // lines[0] is header row
+  // lines[1]+ are data lines
+  $('#shop').empty();
+  html = [];
+  if ( lines.length <= 2) {
+    document.getElementById("shop").innerHTML += '<h1>There are no results</h1>';
+  } else {
+    for (i=1; i<lines.length - 1; i++) {
+      flds = lines[i].split("|");
+
+      prices.push(Number(flds[4]));
+      prod = '<div class="product clearfix pf-dress">';
+        prod += '<div class="product-image">';
+          prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
+        //  prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
+        //  prod += 'div class="sale-flash">50% Off*</div>'
+          prod += '<div class="product-overlay">';
+            prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+            prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a>';
+          prod += '</div>';
+        prod += '</div>';
+        prod += '<div class="product-desc">';
+          prod += '<div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div>';
+          prod += '<div class="product-price"><ins>$' + parseInt(flds[4]).toFixed(2) + '</ins></div>';
+        prod += '</div>';
+      prod += '</div>';
+      html.push(prod);
+    }
+    document.getElementById("shop").innerHTML += html.join('');
+    $(document).trigger("filters");
   }
 }
 
@@ -907,12 +878,78 @@ function openOrders()
 /////////////////////////////////////////////
           // GET ORDER HEADER //
 /////////////////////////////////////////////
-function searchOrders()
+function searchOrders(orderSearchNumber)
 {
-  if(event.keyCode == 13) {
-    event.preventDefault();
-    searchTerm = $('#searchvalue').val();
-  }
+    $.ajax({
+      type: "GET",
+      url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+      data: {
+        request_id: "APIORDH",
+        session_no: session_no,
+        order_no: orderSearchNumber},
+      success: function(response) {
+        lines = response.split("\n");
+        // lines[0] is header row
+        // lines[1]+ are data lines
+        $('#orderDetails').empty();
+        // html = [];
+        if ( lines.length <= 2) {
+          document.getElementById("shop").innerHTML += '<h1>There are no results</h1>';
+        } else {
+          for (i=1; i<lines.length - 1; i++) {
+            details = lines[i].split("|");
+            line = '<tr><td>Order Number</td><td>'+details[1]+'</td></tr>';
+
+            line += '<tr><td>Order Date</td><td>'+details[2]+'</td></tr>';
+
+            line += '<tr><td>Shipping Date</td><td>'+details[3]+'</td></tr>';
+
+            line += '<tr><td>Customer Number</td><td>'+details[4]+'</td></tr>';
+
+            line += '<tr><td>PO Number</td><td>'+details[5]+'</td></tr>';
+
+            line += '<tr><td>Terms Code</td><td>'+details[6]+'</td></tr>';
+
+            line += '<tr><td>Ship-via Code</td><td>'+details[7]+'</td></tr>';
+
+            line += '<tr><td>Tax Amount</td><td>'+details[8]+'</td></tr>';
+
+            line += '<tr><td>Order Total</td><td>'+details[9]+'</td></tr>';
+
+            line += '<tr><td>Discount Amount</td><td>'+details[10]+'</td></tr>';
+
+            line += '<tr><td>Bill-to Name</td><td>'+details[11]+'</td></tr>';
+
+            line += '<tr><td>Bill-to Address</td><td>'+details[12]+'</td></tr>';
+
+            line += '<tr><td>Ship-to Name</td><td>'+details[13]+'</td></tr>';
+
+            line += '<tr><td>Ship-to Address</td><td>'+details[14]+'</td></tr>';
+
+            line += '<tr><td>Notes</td><td>'+details[15]+'</td></tr>';
+
+            line += '<tr><td>Email Address</td><td>'+details[16]+'</td></tr>';
+
+            line += '<tr><td>Total Payments</td><td>'+details[17]+'</td></tr>';
+
+            line += '<tr><td>Number of Lines</td><td>'+details[18]+'</td></tr>';
+
+            line += '<tr><td>Total Order Qty</td><td>'+details[19]+'</td></tr>';
+
+            line += '<tr><td>Total Weight</td><td>'+details[20]+'</td></tr>';
+
+            line += '<tr><td>Shipping Method</td><td>'+details[21]+'</td></tr>';
+
+            line += '<tr><td>Total Other Charges</td><td>'+details[22]+'</td></tr>';
+
+            line += '<tr><td>Total Freight</td><td>'+details[23]+'</td></tr>';
+
+            document.getElementById("orderDetails").innerHTML += line;
+          }
+        }
+      }
+    });
+
 }
 
 
