@@ -9,10 +9,6 @@ var password;
 
 
 $(document).ready(function() {
-  if ( Cookies.get('session_no').length === 25 ) {
-    location.pathname = "/cousin-op/shop/";  //  Well need to change when going live
-    alert("You're already logged in.");
-  }
 
   $("#login-form").on("submit", function(e) { //add a parameter e - the event object
      e.preventDefault(); //stop the form from submitting
