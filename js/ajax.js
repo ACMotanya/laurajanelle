@@ -881,7 +881,6 @@ function openOrders()
        fields.splice(6, 1);
        fields.splice(6, 1);
        fields.splice(6, 1);
-       console.log(flds);
        openfldsArray.data.push(fields);
      }
      openfldsArray = JSON.stringify(openfldsArray);
@@ -902,7 +901,6 @@ function openOrders()
 /////////////////////////////////////////////
 function searchOrders(orderSearchNumber)
 {
-  var openfldsArray = { "data": []};
 
   $.ajax({
     type: "GET",
@@ -918,7 +916,7 @@ function searchOrders(orderSearchNumber)
       $('#orderDetails').empty();
       // html = [];
       if ( lines.length <= 2) {
-        document.getElementById("shop").innerHTML += '<h1>There are no results</h1>';
+        document.getElementById("orderDetails").innerHTML += '<h1>There are no results</h1>';
       } else {
         for (i=1; i<lines.length - 1; i++) {
           details = lines[i].split("|");
@@ -951,11 +949,13 @@ function searchOrders(orderSearchNumber)
       }
     }
   });
+  var openfldsArray = { "data": []};
+  fields = "";
   $.ajax({
     type: "GET",
     url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
     data: {
-      request_id: "APIORDLST",
+      request_id: "APIORDL",
       session_no: session_no,
       order_no: orderSearchNumber},
     success: function(response) {
@@ -970,16 +970,24 @@ function searchOrders(orderSearchNumber)
         fields.splice(4, 1);
         fields.splice(4, 1);
         fields.splice(6, 1);
-        console.log(flds);
+        console.log("whats up"+fields);
         openfldsArray.data.push(fields);
       }
       openfldsArray = JSON.stringify(openfldsArray);
       openfldsArray_json = $.parseJSON(openfldsArray);
     },
     complete: function(){
-      table3 = $('#datatable3').DataTable();
-      table1.rows.add( openfldsArray_json.data ).draw();
-      console.log("did this run open orders");
+      if (fields === "" ) {
+        $("#datatable3").hide();
+        table3.clear();
+      } else {
+        $("#datatable3").show();
+
+        table3 = $('#datatable3').DataTable();
+        table3.clear();
+        table3.rows.add( openfldsArray_json.data ).draw();
+        console.log("did this get line items for orders");
+      }
     }
   });
 }
