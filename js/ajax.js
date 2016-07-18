@@ -118,29 +118,34 @@ function createUser()
   var userEmail       = $("#create-user-email").val();
   var userContactName = $("#create-user-contactname").val();
 
-  $.ajax({
-   type: "GET",
-   url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
-   data: {
-     request_id: "APINEWUSER",
-     new_username: userName,
-     new_password: userPassword,
-     cust_no: userNumber,
-     contact_name: userContactName,
-     email: userEmail
-   },
-   success: function(response) {
-     console.log(response);
-     username = "C" + userName.toUpperCase();
-     console.log(username);
-     if ( response === response.toUpperCase() ) {
-       console.log(response);
-       alert("Laura Janelle user has been created. Double check SouthWare and make sure everything was entered correctly.");
-     } else {
-       alert("User not created, try again.");
-     }
+  $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICHECKUSER&session_no=2UD24M4BDN2D4RDAWABU9D254&username="+ userName +"", function( data ) {
+    if (data.length > 2) {
+      alert("Pick a different username.");
+    } else {
+      $.ajax({
+       type: "GET",
+       url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+       data: {
+         request_id: "APINEWUSER",
+         new_username: userName,
+         new_password: userPassword,
+         cust_no: userNumber,
+         contact_name: userContactName,
+         email: userEmail
+       },
+       success: function(response) {
+         console.log(response);
+
+         if ( response === response.toUpperCase() ) {
+
+           alert("Laura Janelle user has been created. Double check SouthWare and make sure everything was entered correctly.");
+         } else {
+           alert("User not created, try again.");
+         }
+       }
+     });
    }
- });
+  });
 }
 
 
@@ -1310,7 +1315,7 @@ function displayAddress(index) {
 
 function logoff()
 {
-  $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id==APILOGOFF&session_no="+ session_no +"", function( data ) {
+  $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APILOGOFF&session_no="+ session_no +"", function( data ) {
     Cookies.set('session_no', "Logged Out");
     homeRedriect();
   });
