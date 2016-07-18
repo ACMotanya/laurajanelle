@@ -125,6 +125,10 @@ div.container.clearfix video {
   width:66.6666%;
 }
 
+#newUser {
+	display: none;
+}
+
 /* I think I am the great and everything I love seems to make perfect sense to me */
 
 

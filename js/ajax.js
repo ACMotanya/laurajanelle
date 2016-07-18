@@ -17,6 +17,7 @@ var lines;
 var min;
 var max;
 var numberOfOrders;
+var newCustomerNumber;
 var newNumberOfOrders;
 var neworder;
 var orderAmt;
@@ -34,6 +35,7 @@ var shoppingCart;
 var stock_no;
 var subtotal;
 var type;
+var username;
 
 
 
@@ -49,6 +51,97 @@ function sessionNumber()
   }
 }
 
+
+
+/////////////////////////////////////////
+        // create new customer //
+/////////////////////////////////////////
+function createCustomer()
+{
+  var createcompanyname = $("#create-companyname").val();
+  var createcontactname = $("#create-contactname").val();
+  var createaddress     = $("#create-addres").val();
+  var createaddress2    = $("#create-address2").val();
+  var createaddress3    = $("#create-address3").val();
+  var createcity        = $("#create-city").val();
+  var createstate       = $("#create-state").val();
+  var createzipcode     = $("#create-zipcode").val();
+  var createcountry     = $("#create-country").val();
+  var createemail       = $("#create-email").val();
+  var createphone       = $("#create-phone").val();
+  var createfax         = $("#create-fax").val();
+
+  $.ajax({
+   type: "GET",
+   url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+   data: {
+     request_id: "APINEWCUST",
+     cust_name: createcompanyname,
+     address1: createaddress,
+     address2: createaddress2,
+     address3: createaddress3,
+     city: createcity,
+     state: createstate,
+     zip: createzipcode,
+     contact_name: createcontactname,
+     phone: createphone,
+     email: createemail,
+     fax: createfax,
+     country: createcountry
+   },
+   success: function(response) {
+     console.log(response);
+     if (response.length <= 10) {
+       alert("An errror occured, try again.");
+     } else {
+       newCustomerNumber = response;
+       $("#newCustomer").hide();
+       $("#newUser").show();
+       document.getElementById("create-user-number").value = newCustomerNumber.trim();
+       document.getElementById("create-user-email").value = createemail.trim();
+       document.getElementById("create-user-contactname").value = createcompanyname.trim();
+    }
+   }
+ });
+}
+
+
+
+/////////////////////////////////////////
+          // Create New User //
+/////////////////////////////////////////
+function createUser()
+{
+  var userName        = $("#create-user-name").val();
+  var userPassword    = $("#create-user-password").val();
+  var userNumber      = $("#create-user-number").val();
+  var userEmail       = $("#create-user-email").val();
+  var userContactName = $("#create-user-contactname").val();
+
+  $.ajax({
+   type: "GET",
+   url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+   data: {
+     request_id: "APINEWUSER",
+     new_username: userName,
+     new_password: userPassword,
+     cust_no: userNumber,
+     contact_name: userContactName,
+     email: userEmail
+   },
+   success: function(response) {
+     console.log(response);
+     username = "C" + userName.toUpperCase();
+     console.log(username);
+     if ( response === response.toUpperCase() ) {
+       console.log(response);
+       alert("Laura Janelle user has been created. Double check SouthWare and make sure everything was entered correctly.");
+     } else {
+       alert("User not created, try again.");
+     }
+   }
+ });
+}
 
 
 ////////////////////////////////////////
@@ -897,7 +990,7 @@ function openOrders()
 
 
 /////////////////////////////////////////////
-          // GET ORDER HEADER //
+    // GET ORDER HEADER AND LINE ITEMS //
 /////////////////////////////////////////////
 function searchOrders(orderSearchNumber)
 {
@@ -992,6 +1085,102 @@ function searchOrders(orderSearchNumber)
   });
 }
 
+
+
+/////////////////////////////////////////////
+   // GET INVOICE HEADER AND LINE ITEMS //
+/////////////////////////////////////////////
+function searchInvoices(invoiceSearchNumber)
+{
+  $.ajax({
+    type: "GET",
+    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APIHISTH",
+      session_no: session_no,
+      inv_no: invoiceSearchNumber},
+    success: function(response) {
+      lines = response.split("\n");
+      // lines[0] is header row
+      // lines[1]+ are data lines
+      $('#invoiceDetails').empty();
+      // html = [];
+      if ( lines.length <= 2) {
+        document.getElementById("invoiceDetails").innerHTML += '<tr><td><h1>There are no results</h1></td><td></td></tr>';
+      } else {
+        for (i=1; i<lines.length - 1; i++) {
+          details = lines[i].split("|");
+          line = '<tr><td>Order Number</td><td>'+details[0]+'</td></tr>';
+          line += '<tr><td>Invoice Number</td><td>'+details[1]+'</td></tr>';
+          line += '<tr><td>Order Date</td><td>'+details[2]+'</td></tr>';
+          line += '<tr><td>Shipping Date</td><td>'+details[3]+'</td></tr>';
+          line += '<tr><td>Customer Number</td><td>'+details[4]+'</td></tr>';
+          line += '<tr><td>PO Number</td><td>'+details[5]+'</td></tr>';
+
+          line += '<tr><td>Tax Amount</td><td>'+details[8]+'</td></tr>';
+          line += '<tr><td>Order Total</td><td>'+details[9]+'</td></tr>';
+          line += '<tr><td>Discount Amount</td><td>'+details[10]+'</td></tr>';
+          line += '<tr><td>Bill-to Name</td><td>'+details[11]+'</td></tr>';
+          line += '<tr><td>Bill-to Address</td><td>'+details[12]+' '+details[13]+' '+details[14]+', '+details[15]+', '+details[16]+', '+details[17]+'</td></tr>';
+          line += '<tr><td>Ship-to Name</td><td>'+details[18]+'</td></tr>';
+          line += '<tr><td>Ship-to Address</td><td>'+details[19]+' '+details[20]+' '+details[21]+', '+details[22]+', '+details[23]+', '+details[24]+'</td></tr>';
+          line += '<tr><td>Notes</td><td>'+details[25]+' '+details[26]+' '+details[27]+' '+details[28]+' '+details[29]+'</td></tr>';
+          line += '<tr><td>Email Address</td><td>'+details[30]+'</td></tr>';
+          line += '<tr><td>Total Payments</td><td>'+details[31]+'</td></tr>';
+          line += '<tr><td>Number of Lines</td><td>'+details[32]+'</td></tr>';
+          line += '<tr><td>Total Order Qty</td><td>'+details[33]+'</td></tr>';
+          line += '<tr><td>Total Weight</td><td>'+details[34]+'</td></tr>';
+          line += '<tr><td>Shipping Method</td><td>'+details[35]+'</td></tr>';
+          line += '<tr><td>Total Other Charges</td><td>'+details[36]+'</td></tr>';
+          line += '<tr><td>Total Freight</td><td>'+details[37]+'</td></tr>';
+
+          document.getElementById("invoiceDetails").innerHTML += line;
+        }
+      }
+    }
+  });
+  var openfldsArray = { "data": []};
+  fields = "";
+  $.ajax({
+    type: "GET",
+    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APIHISTL",
+      session_no: session_no,
+      inv_no: invoiceSearchNumber},
+    success: function(response) {
+      console.log(response);
+      openlines = response.split("\n");
+      // lines[0] is header row
+      // lines[1]+ are data lines
+      // $('#tableBody').empty();
+      for (i=1; i< openlines.length - 1; i++) {
+        fields = openlines[i].split("|");
+        fields.splice(0, 1);
+        fields.splice(2, 1);
+        fields.splice(4, 1);
+        fields.splice(4, 1);
+        fields.splice(8, 1);
+        console.log("whats up"+fields);
+        openfldsArray.data.push(fields);
+      }
+      openfldsArray = JSON.stringify(openfldsArray);
+      openfldsArray_json = $.parseJSON(openfldsArray);
+    },
+    complete: function(){
+      if (fields === "" ) {
+        table4 = $('#datatable4').DataTable();
+        table4.clear();
+      } else {
+        $("#datatable4").show();
+        table4 = $('#datatable4').DataTable();
+        table4.clear();
+        table4.rows.add( openfldsArray_json.data ).draw();
+        console.log("did this get line items for the invoice");
+      }
+    }
+  });
+}
 
 /////////////////////////////////////////////
      // PULL SAVED BILL TO ADDRESSES //
