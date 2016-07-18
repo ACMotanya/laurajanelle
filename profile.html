@@ -1,98 +1,28 @@
+---
+layout: page
+---
 
-<!DOCTYPE html>
-<html dir="ltr" lang="en-US">
+<script>
+session_no = Cookies.get('session_no');
 
-  <head>
-
-	<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
-	<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
-	<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-	<link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
-	<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-	<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
-	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-	<link rel="manifest" href="/manifest.json">
-	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#1abc9c">
-	<meta name="apple-mobile-web-app-title" content="Laura Janelle">
-	<meta name="application-name" content="Laura Janelle">
-	<meta name="msapplication-TileColor" content="#da532c">
-	<meta name="msapplication-TileImage" content="/mstile-144x144.png">
-	<meta name="theme-color" content="#ffffff">
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta name="author" content="Laura Janelle" />
-  <meta name="description" content="Fashion accessories for the gift market">
-
-	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-	<meta http-equiv="Pragma" content="no-cache" />
-	<meta http-equiv="Expires" content="0" />
-
-	<!-- Stylesheets
-	============================================= -->
-  <link rel="canonical" href="https://www.laurajanelle.comcreate/">
-
-	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Adamina:300,400,500,600,700,800,900|Raleway:300,400,500,600,700,800,900|Roboto:400,100,300,500,700,900|EB+Garamond:300,400,500,700|Permanent+Marker" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="css/bootstrap.css" type="text/css">
-	<link rel="stylesheet" href="style.css" type="text/css" />
-	<link rel="stylesheet" href="css/dark.css" type="text/css" />
-	<link rel="stylesheet" href="css/font-icons.css" type="text/css" />
-	<link rel="stylesheet" href="css/animate.css" type="text/css" />
-	<link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
-	<link rel="stylesheet" href="css/responsive.css" type="text/css" />
-	<link rel="stylesheet" href="css/custom.css" type="text/css" />
-
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="js/js.cookie.js"></script>
-	<script type="text/javascript" src="js/ajax.js"></script>
+</script>
 
 
-
-	<!--[if lt IE 9]>
-		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
-	<![endif]-->
-
-	<!-- Document Title
-	============================================= -->
-	<title>Laura Janelle</title>
-
-</head>
-
-  <!-- Bootstrap File Upload CSS -->
-  <link rel="stylesheet" href="css/components/bs-filestyle.css" type="text/css" />
-  <!-- Bootstrap Switch CSS -->
-  <link rel="stylesheet" href="css/components/bs-switches.css" type="text/css" />
-
-  <!-- Radio Checkbox Plugin -->
-  <link rel="stylesheet" href="css/components/radio-checkbox.css" type="text/css" />
-
-  <body class="stretched">
-    <div id="wrapper" class="clearfix">
-
-      <!-- Top Bar
-============================================= -->
-<div id="top-bar" class="hidden-xs">
+<section id="page-title">
 
   <div class="container clearfix">
-
-    <div class="col_half nobottommargin">
-
-      <p class="nobottommargin"><strong>Call:</strong> 866 366-6900 | <strong>Email:</strong> info@LauraJanelle.com</p>
-
-    </div>
-
+    <h1>Profile</h1>
+    <ol class="breadcrumb">
+      <li><a href="{{ site.baseurl }}/">Home</a></li>
+      <li><a href="#">Account</a></li>
+      <li class="active">Profile</li>
+    </ol>
   </div>
 
-</div><!-- #top-bar end -->
+</section><!-- #page-title end -->
 
 
-      <!-- Content
+<!-- Content
 ============================================= -->
 <section id="content">
 
@@ -101,82 +31,83 @@
     <div class="container clearfix">
 
       <div class="row clearfix">
+        <div class="col-md-6">
+          <div class="table-responsive clearfix">
+            <h3>Account Details</h3>
 
-          <div class="col-md-12" id="newCustomer">
-            <h2 class="center nobottommargin" style="color: red"> Make sure customer is not already in SouthWare </h2>
-            <p class="center" style="color: red"> Visit www.laurajanelle.com/createloginonly/ if you ONLY need a Laura Janelle login. </p>
+            <table class="table table-bordered">
+              <thead>
+              <tr><th>Account Field</th><th>Account Detail</th></tr>
+              </thead>
 
-          <h3>Create New Customer</h3>
+              <tbody id="accountDetails">
 
-          <form data-toggle="validator" role="form" id="create-form" name="create" class="nobottommargin" action="#" method="">
+              </tbody>
+            </table>
 
-            <div class="divider divider-short divider-center"></div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h3>Save New Shipping Address</h3>
+
+          <form data-toggle="validator" role="form" id="shipping-form" name="shipping-form" class="nobottommargin" action="#" method="">
 
             <div class="form-group">
               <div class="col_full">
-                <label for="create-companyname" class="control-label">Company Name:</label>
-                <input type="text" id="create-companyname" name="create-companyname" maxlength="30" required value="" class="sm-form-control form-control" />
+                <label for="shipping-form-companyname">Company Name:</label>
+                <input type="text" id="shipping-form-companyname" name="shipping-form-companyname" maxlength="30" required value="" required class="sm-form-control form-control" />
                 <div class="help-block with-errors"></div>
               </div>
             </div>
 
             <div class="form-group">
               <div class="col_full">
-                <label for="create-contactname" class="control-label">Contact Name: </label>
-                <input type="text" id="create-contactname" name="create-contactname" maxlength="30" required value="" class="sm-form-control form-control" />
+                <label for="shipping-form-address">Address:</label>
+                <input type="text" id="shipping-form-address" name="shipping-form-address" maxlength="30" required value="" class="sm-form-control form-control" />
                 <div class="help-block with-errors"></div>
               </div>
             </div>
 
             <div class="form-group">
               <div class="col_full">
-                <label for="create-address">Address:</label>
-                <input type="text" id="create-address" name="create-address" maxlength="30" required value="" class="sm-form-control form-control" />
+                <input type="text" id="shipping-form-address2" name="shipping-form-adress2" maxlength="30" value="" class="sm-form-control form-control" />
                 <div class="help-block with-errors"></div>
               </div>
             </div>
 
             <div class="form-group">
               <div class="col_full">
-                <input type="text" id="create-address2" name="create-address2" maxlength="30" value="" class="sm-form-control form-control" />
+                <input type="text" id="shipping-form-address3" name="shipping-form-adress3" maxlength="30" value="" class="sm-form-control form-control" />
                 <div class="help-block with-errors"></div>
               </div>
             </div>
 
             <div class="form-group">
               <div class="col_full">
-                <input type="text" id="create-address3" name="create-address3" maxlength="30" value="" class="sm-form-control form-control" />
-                <div class="help-block with-errors"></div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col_full">
-                <label for="create-city">City / Town</label>
-                <input type="text" id="create-city" name="create-city" maxlength="30" required value="" class="sm-form-control form-control" />
+                <label for="shipping-form-city">City / Town</label>
+                <input type="text" id="shipping-form-city" name="shipping-form-city" maxlength="30" required value="" class="sm-form-control form-control" />
                 <div class="help-block with-errors"></div>
               </div>
             </div>
 
             <div class="form-group">
               <div class="col_half">
-                <label for="create-state">State:</label>
-                <input type="text" id="create-state" name="create-state" maxlength="2" required value="" class="sm-form-control form-control" />
+                <label for="shipping-form-state">State:</label>
+                <input type="text" id="shipping-form-state" name="shipping-form-state" maxlength="2" required value="" class="sm-form-control form-control" />
                 <div class="help-block with-errors"></div>
               </div>
             </div>
 
             <div class="form-group">
               <div class="col_half col_last">
-                <label for="create-zipcode">Zip Code:</label>
-                <input type="text" id="create-zipcode" name="create-zipcode" maxlength="10" required value="" class="sm-form-control form-control" />
+                <label for="shipping-form-zipcode">Zip Code:</label>
+                <input type="text" id="shipping-form-zipcode" name="shipping-form-zipcode" maxlength="10" required value="" class="sm-form-control form-control" />
                 <div class="help-block with-errors"></div>
               </div>
             </div>
 
             <div class="col_full">
-              <label for="create-country">Country:</label>
-              <select class="sm-form-control" id=" create-country">
+              <select class="sm-form-control" id="countries">
                 <option value="AX">&#197;land Islands</option>
                 <option value="AF">Afghanistan</option>
                 <option value="AL">Albania</option>
@@ -426,158 +357,50 @@
             </div>
 
             <div class="form-group">
-              <div class="col_half">
-                <label for="create-email">Email Address:</label>
-                <input type="email" id="create-email" name="create-email" data-error="Email address is invalid" required value="" class="sm-form-control form-control required email" />
-                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                <div class="help-block with-errors"></div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col_half col_last">
-                <label for="create-phone">Phone:</label>
-                <input type="text" id="create-phone" name="create-phone" data-error="Must be 10 digits" data-minlength="10" required value="" class="sm-form-control form-control" />
-                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                <div class="help-block with-errors"></div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col_half col_last">
-                <label for="create-phone">Fax:</label>
-                <input type="text" id="create-phone" name="create-phone" data-error="Must be 10 digits" data-minlength="10" required value="" class="sm-form-control form-control" />
-                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                <div class="help-block with-errors"></div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <button type="button" class="button button-3d fright" form="create-form" id="myNewCustomer" onclick="createCustomer();">Create Customer</button>
-            </div>
-
-          </form>
-        </div>
-
-
-        <div class="col-md-12" id="newUser">
-
-          <h3>Create New User</h3>
-
-          <form data-toggle="validator" role="form" id="create-user-form" name="create" class="nobottommargin" action="#" method="">
-
-            <div class="divider divider-short divider-center"></div>
-
-            <div class="form-group">
-              <div class="col_half">
-                <label for="create-user-name">Username:</label>
-                <input type="text" id="create-user-name" name="create-user-name" required value="" class="sm-form-control form-control required" />
-                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                <div class="help-block with-errors"></div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col_half col_last">
-                <label for="create-user-password">Password:</label>
-                <input type="text" id="create-user-password" name="create-user-password" required value="" class="sm-form-control form-control required" />
-                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                <div class="help-block with-errors"></div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col_half">
-                <label for="create-user-email">Email Address:</label>
-                <input type="email" id="create-user-email" name="create-user-email" data-error="Email address is invalid" required value="" class="sm-form-control form-control required email" />
-                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                <div class="help-block with-errors"></div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col_half col_last">
-                <label for="create-user-number">Customer Number:</label>
-                <input type="number" id="create-user-number" name="create-user-number" data-maxlength="10" required value="" class="sm-form-control form-control required" />
-                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                <div class="help-block with-errors"></div>
-              </div>
-            </div>
-
-            <div class="form-group">
               <div class="col_full">
-                <label for="create-user-contactname" class="control-label">Contact Name:</label>
-                <input type="text" id="create-user-contactname" name="create-user-contactname" maxlength="30" required value="" class="sm-form-control form-control" />
+                <label for="shipping-form-contact-name">Contact Name:</label>
+                <input type="text" id="shipping-form-contact-name" name="shipping-form-contact-name" value="" class="sm-form-control form-control" />
+                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                 <div class="help-block with-errors"></div>
               </div>
             </div>
 
             <div class="form-group">
-              <button type="button" class="button button-3d fright" form="create-user-form" id="myNewUser" onclick="createUser();">Create User</button>
+              <div class="col_half">
+                <label for="shipping-form-email">Email Address:</label>
+                <input type="email" id="shipping-form-email" name="shipping-form-email" data-error="Email address is invalid" required value="" class="sm-form-control form-control required email" />
+                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                <div class="help-block with-errors"></div>
+              </div>
             </div>
+
+            <div class="form-group">
+              <div class="col_half col_last">
+                <label for="billing-form-phone">Phone:</label>
+                <input type="text" id="billing-form-phone" name="billing-form-phone" data-error="Must be 10 digits" data-minlength="10" required value="" class="sm-form-control form-control" />
+                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                <div class="help-block with-errors"></div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="col_full">
+                <button type="button" class="button button-3d fright" form="shipping-form" id="myButton" >Add New Address</button>
+                </div>
+              </div>
+            </div>
+
+              <!-- <div class="col_full">
+                <label for="shipping-form-message">Notes <small>*</small></label>
+                <textarea class="sm-form-control" id="shipping-form-message" name="shipping-form-message" rows="6" cols="30"></textarea>
+              </div> -->
+
           </form>
         </div>
+        <div class="clear bottommargin"></div>
 
       </div>
     </div>
-
-
-    <!-- Large modal -->
-    <button id="success" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg" style="visibility: hidden;">Large modal</button>
-
-
-    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-body">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h3 class="modal-title" id="myModalLabel">Thank you for your order!</h3>
-            </div>
-            <div id="successMessage" class="modal-body" style="font-family: Lato; font-size: 19px;">
-<!--              <h4 style="font-family: Lato;">The order # is: 800010541</h4>
-
-              <p>This is a confirmation that your order has been successfully received and is currently under process. You will receive an email soon with a copy of your invoice, which also includes the details of your order.</p>
-              <p class="nobottommargin">Laura Janelle values your business and is continuously looking for ways to better satisfy their customers. Please do share with us if there is a way we can serve you better.</p> -->
-            </div>
-            <div class="modal-footer">
-  					  <button type="button" class="btn btn-default" data-dismiss="modal" onclick="homeRedirect();">Close</button>
-  					</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
-</section><!-- #content end -->
-
-
-
-    </div>
-    <!-- External JavaScripts
-============================================= -->
-<script type="text/javascript" src="js/history.js"></script>
-<script type="text/javascript" src="js/plugins.js"></script>
-
-<!-- Range Slider Plugin -->
-<script type="text/javascript" src="js/components/rangeslider.min.js"></script>
-
-<!-- Footer Scripts
-============================================= -->
-<script type="text/javascript" src="js/functions.js"></script>
-
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-77390272-1', 'auto');
-ga('send', 'pageview');
-
-</script>
-
-
-  </body>
-
-</html>
+</section>

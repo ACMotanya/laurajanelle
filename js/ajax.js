@@ -100,7 +100,7 @@ function createCustomer()
        document.getElementById("create-user-number").value = newCustomerNumber.trim();
        document.getElementById("create-user-email").value = createemail.trim();
        document.getElementById("create-user-contactname").value = createcompanyname.trim();
-    }
+     }
    }
  });
 }
@@ -108,7 +108,7 @@ function createCustomer()
 
 
 /////////////////////////////////////////
-          // Create New User //
+//////////// Create New User ////////////
 /////////////////////////////////////////
 function createUser()
 {
@@ -118,8 +118,10 @@ function createUser()
   var userEmail       = $("#create-user-email").val();
   var userContactName = $("#create-user-contactname").val();
 
-  $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICHECKUSER&session_no=2UD24M4BDN2D4RDAWABU9D254&username="+ userName +"", function( data ) {
-    if (data.length > 2) {
+  $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICHECKUSER&session_no=2UD24M4BDN2D4RDAWABU9D254&username="+ userName.toUpperCase() +"", function( data ) {
+    if ( data.length > 4 ) {
+      console.log(data);
+      console.log(data.length);
       alert("Pick a different username.");
     } else {
       $.ajax({
@@ -135,9 +137,7 @@ function createUser()
        },
        success: function(response) {
          console.log(response);
-
          if ( response === response.toUpperCase() ) {
-
            alert("Laura Janelle user has been created. Double check SouthWare and make sure everything was entered correctly.");
          } else {
            alert("User not created, try again.");
@@ -1186,6 +1186,42 @@ function searchInvoices(invoiceSearchNumber)
     }
   });
 }
+
+
+/////////////////////////////////////////////
+     // GET ACCOUNT DETAILS //
+/////////////////////////////////////////////
+$.ajax({
+  type: "GET",
+  url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+  data: {
+    request_id: "APIACCTINFO",
+    user: cust_name},
+  success: function(response) {
+    lines = response.split("\n");
+    // lines[0] is header row
+    // lines[1]+ are data lines
+    $('#accountDetails').empty();
+    if ( lines.length <= 1) {
+      document.getElementById("accountDetails").innerHTML += '<tr><td><h1>There are no results</h1></td><td></td></tr>';
+    } else {
+      for (i=1; i<lines.length - 1; i++) {
+        details = lines[i].split("|");
+        line =  '<tr><td>Username</td><td>'+details[0]+'</td></tr>';
+        line += '<tr><td>Customer Number</td><td>'+details[1]+'</td></tr>';
+        line += '<tr><td>Customer Name</td><td>'+details[2]+'</td></tr>';
+        line += '<tr><td>Email Address</td><td>'+details[3]+'</td></tr>';
+        line += '<tr><td>Phone Number</td><td>'+details[4]+'</td></tr>';
+        line += '<tr><td>Default Ship Via Code</td><td>'+details[5]+'</td></tr>';
+        line += '<tr><td>Terms Code</td><td>'+details[6]+'</td></tr>';
+
+        document.getElementById("accountDetails").innerHTML += line;
+      }
+    }
+  }
+});
+
+
 
 /////////////////////////////////////////////
      // PULL SAVED BILL TO ADDRESSES //

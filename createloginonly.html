@@ -1,0 +1,73 @@
+---
+layout: login
+---
+
+
+<!-- Content
+============================================= -->
+<section id="content">
+  <div class="content-wrap">
+    <div class="container clearfix">
+      <div class="row clearfix">
+        <h2 class="center" style="color: red"> Make sure customer is in SouthWare </h2>
+
+        <div class="col-md-12" id="newLoginOnly">
+          <h3>Create New User</h3>
+
+          <form data-toggle="validator" role="form" id="create-user-form" name="create" class="nobottommargin" action="#" method="">
+
+            <div class="divider divider-short divider-center"></div>
+
+            <div class="form-group">
+              <div class="col_half">
+                <label for="create-user-name">Username:</label>
+                <input type="text" id="create-user-name" name="create-user-name" required value="" class="sm-form-control form-control required" />
+                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                <div class="help-block with-errors"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col_half col_last">
+                <label for="create-user-password">Password:</label>
+                <input type="text" id="create-user-password" name="create-user-password" required value="" class="sm-form-control form-control required" />
+                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                <div class="help-block with-errors"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col_half">
+                <label for="create-user-email">Email Address:</label>
+                <input type="email" id="create-user-email" name="create-user-email" data-error="Email address is invalid" required value="" class="sm-form-control form-control required email" />
+                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                <div class="help-block with-errors"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col_half col_last">
+                <label for="create-user-number">Customer Number:</label>
+                <input type="number" id="create-user-number" name="create-user-number" data-maxlength="10" required value="" class="sm-form-control form-control required" />
+                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                <div class="help-block with-errors"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col_full">
+                <label for="create-user-contactname" class="control-label">Contact Name:</label>
+                <input type="text" id="create-user-contactname" name="create-user-contactname" maxlength="30" required value="" class="sm-form-control form-control" />
+                <div class="help-block with-errors"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <button type="button" class="button button-3d fright" form="create-user-form" id="myNewUser" onclick="createUser();">Create User</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- #content end -->
