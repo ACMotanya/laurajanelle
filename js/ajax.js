@@ -1289,32 +1289,44 @@ function shipToAddress()
 
 function checkoutRedirect()
 {
-  window.location.pathname = "/cousin-op/checkout/";
+  pathArray = window.location.pathname.split( '/' );
+  pathArray[pathArray.length - 2] = "checkout";
+  window.location.pathname = pathArray.join('/');
 }
 
 function cartRedirect()
 {
-  window.location.pathname = "/cousin-op/cart/";
+  pathArray = window.location.pathname.split( '/' );
+  pathArray[pathArray.length - 2] = "cart";
+  window.location.pathname = pathArray.join('/');
 }
 
 function detailViewRedirect(partNumber)
 {
-  window.location.pathname = "/cousin-op/detail-view/#" + partNumber;
+  pathArray = window.location.pathname.split( '/' );
+  pathArray[pathArray.length - 2] = "detail-view";
+  window.location.pathname = pathArray.join('/') + partNumber;
 }
 
 function ordersRedirect()
 {
-  window.location.pathname = "/cousin-op/orders/";
+  pathArray = window.location.pathname.split( '/' );
+  pathArray[pathArray.length - 2] = "orders";
+  window.location.pathname = pathArray.join('/');
 }
 
 function shopRedriect()
 {
-  window.location.pathname = "/cousin-op/shop/";
+  pathArray = window.location.pathname.split( '/' );
+  pathArray[pathArray.length - 2] = "shop";
+  window.location.pathname = pathArray.join('/');
 }
 
 function homeRedriect()
 {
-  window.location.pathname = "/cousin-op/";
+  pathArray = window.location.pathname.split( '/' );
+  pathArray.splice([pathArray.length - 2]);
+  window.location.pathname = pathArray.join('/');
 }
 
 
