@@ -657,7 +657,7 @@ function creditCard()
             });
             newOrder = orders[0][0];
             $( "#success" ).trigger( "click" );
-            var message =  '<h4 style="font-family: Lato;">The order # is: ' + newOrder + '</h4>';
+           	var message =  '<h4 style="font-family: Lato;">The order # is: ' + newOrder + '</h4>';
 
                 message += '<p>This is a confirmation that your order has been successfully received and is currently under process. You will receive an email soon with a copy of your invoice, which also includes the details of your order.</p>';
                 message += '<p class="nobottommargin">Laura Janelle values your business and is continuously looking for ways to better satisfy their customers. Please do share with us if there is a way we can serve you better.</p>';
@@ -671,7 +671,6 @@ function creditCard()
     }
   });
 }
-
 
 
 
@@ -699,39 +698,70 @@ function saveAddresses()
   var shippingformstate       = $("#shipping-form-state").val();
   var shippingformzipcode     = $("#shipping-form-zipcode").val();
   var shippingformcountry     = $("#shipping-form-country").val();
+  var shippingformcontactname = $("#shipping-form-contactname").val();
   var email_addr              = $("#billing-form-email").val();
   var phone                   = $("#billing-form-phone").val();
 
-  $.ajax({
-   type: "GET",
-   url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
-   data: {
-     request_id: "APICARTUPD",
-     session_no: session_no,
-/*     billname: billingformcompanyname,
-     billadd1: billingformaddress,
-     billadd2: billingformaddress2,
-     billadd3: billingformaddress3,
-     billcity: billingformcity,
-     billstate: billingformstate,
-     billzip: billingformzipcode,
-     billcountry: billingformcountry,
-*/
-     shipname: shippingformcompanyname,
-     shipadd1: shippingformaddress,
-     shipadd2: shippingformaddress2,
-     shipadd3: shippingformaddress3,
-     shipcity: shippingformcity,
-     shipstate: shippingformstate,
-     shipzip: shippingformzipcode,
-     shipcountry: shippingformcountry,
-     email_addr: email_addr,
-     phone: phone
-   },
-   success: function(response) {
-     console.log(response);
-   }
- });
+  pathArray = window.location.pathname.split( '/' );
+  var path = pathArray.splice([pathArray.length - 2]);
+
+  if ( path[0] === "checkout" ) {
+    $.ajax({
+      type: "GET",
+      url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+      data: {
+        request_id: "APICARTUPD",
+        session_no: session_no,
+    /*     billname: billingformcompanyname,
+        billadd1: billingformaddress,
+        billadd2: billingformaddress2,
+        billadd3: billingformaddress3,
+        billcity: billingformcity,
+        billstate: billingformstate,
+        billzip: billingformzipcode,
+        billcountry: billingformcountry,
+    */
+        shipname: shippingformcompanyname,
+        shipadd1: shippingformaddress,
+        shipadd2: shippingformaddress2,
+        shipadd3: shippingformaddress3,
+        shipcity: shippingformcity,
+        shipstate: shippingformstate,
+        shipzip: shippingformzipcode,
+        shipcountry: shippingformcountry,
+        email_addr: email_addr,
+        phone: phone
+      },
+      success: function(response) {
+        console.log(response);
+      }
+    });
+  } else if ( path[0] === "profile" ) {
+    cust_no = $("#cust_no").html().trim();
+    shippingformcontactname = shippingformcontactname.split(' ').join('+');
+     $.ajax({
+      type: "GET",
+      url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+      data: {
+        request_id: "APINEWSHIP",
+        cust_no: cust_no,
+        ship_to_name: shippingformcompanyname,
+        address1: shippingformaddress,
+        address2: shippingformaddress2,
+        address3: shippingformaddress3,
+        city: shippingformcity,
+        state: shippingformstate,
+        zip: shippingformzipcode,
+        country: shippingformcountry,
+        contact_name: shippingformcontactname,
+        phone: phone,
+        email: email_addr
+      },
+      success: function(response) {
+        console.log(response);
+      }
+    });
+  }
 }
 
 
@@ -1122,7 +1152,7 @@ function accountDetails()
       for (i=0; i<lines.length - 1; i++) {
         details = lines[i].split("|");
         line =  '<tr><td>Username</td><td>'+details[0]+'</td></tr>';
-        line += '<tr><td>Customer Number</td><td>'+details[1]+'</td></tr>';
+        line += '<tr><td>Customer Number</td><td id="cust_no">'+details[1]+'</td></tr>';
         line += '<tr><td>Customer Name</td><td>'+details[2]+'</td></tr>';
         line += '<tr><td>Email Address</td><td>'+details[3]+'</td></tr>';
         line += '<tr><td>Phone Number</td><td>'+details[4]+'</td></tr>';
