@@ -4,7 +4,11 @@ layout: page
 
 <script>
 session_no = Cookies.get('session_no');
+username = Cookies.get('username').toUpperCase();;
 
+jQuery( document ).ready(function() {
+  accountDetails();
+});
 </script>
 
 

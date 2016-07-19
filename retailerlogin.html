@@ -4,16 +4,15 @@ layout: login
 
 
 <script>
-var username;
 var password;
-
 
 $(document).ready(function() {
 
-  $("#login-form").on("submit", function(e) { //add a parameter e - the event object
-     e.preventDefault(); //stop the form from submitting
+  $("#login-form").on("submit", function(e) {
+     e.preventDefault();
      username = $('#login-form-username').val();
      password = $('#login-form-password').val();
+
 		 $.ajax({
  	    type: "GET",
  	    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
@@ -22,9 +21,11 @@ $(document).ready(function() {
  	           password: password},
  	    success: function(response) {
         if (response.replace(/\s+/g,'').length === 25) {
+          console.log(username);
           session_no = response;
   				session_no = session_no.replace(/\s+/g,'');
 				  Cookies.set('session_no', session_no);
+          Cookies.set('username', username);
           shopRedirect();
         } else {
           alert("Login credentials are incorrect, try again.");

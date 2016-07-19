@@ -5,6 +5,7 @@ var cartQty;
 var collection;
 var country;
 var countrylines;
+var cust_name;
 var discountAmt;
 var detailViewQty;
 var fields;
@@ -813,7 +814,7 @@ function fillShop(response)
         prod += '</div>';
         prod += '<div class="product-desc">';
           prod += '<div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div>';
-          prod += '<div class="product-price"><ins>$' + flds[4] + '</ins></div>';
+          prod += '<div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div>';
         prod += '</div>';
       prod += '</div>';
       html.push(prod);
@@ -1102,23 +1103,23 @@ function searchInvoices(invoiceSearchNumber)
 
 
 /////////////////////////////////////////////
-     // GET ACCOUNT DETAILS //
+         // GET ACCOUNT DETAILS //
 /////////////////////////////////////////////
-$.ajax({
-  type: "GET",
-  url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
-  data: {
-    request_id: "APIACCTINFO",
-    user: cust_name},
-  success: function(response) {
-    lines = response.split("\n");
-    // lines[0] is header row
-    // lines[1]+ are data lines
-    $('#accountDetails').empty();
-    if ( lines.length <= 1) {
-      document.getElementById("accountDetails").innerHTML += '<tr><td><h1>There are no results</h1></td><td></td></tr>';
-    } else {
-      for (i=1; i<lines.length - 1; i++) {
+function accountDetails()
+{
+  $.ajax({
+    type: "GET",
+    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APIACCTINFO",
+      user: username},
+    success: function(response) {
+      console.log(response);
+      lines = response.split("\n");
+      // lines[0] is header row
+      // lines[1]+ are data lines
+      $('#accountDetails').empty();
+      for (i=0; i<lines.length - 1; i++) {
         details = lines[i].split("|");
         line =  '<tr><td>Username</td><td>'+details[0]+'</td></tr>';
         line += '<tr><td>Customer Number</td><td>'+details[1]+'</td></tr>';
@@ -1126,13 +1127,12 @@ $.ajax({
         line += '<tr><td>Email Address</td><td>'+details[3]+'</td></tr>';
         line += '<tr><td>Phone Number</td><td>'+details[4]+'</td></tr>';
         line += '<tr><td>Default Ship Via Code</td><td>'+details[5]+'</td></tr>';
-        line += '<tr><td>Terms Code</td><td>'+details[6]+'</td></tr>';
-
-        document.getElementById("accountDetails").innerHTML += line;
+        line += '<tr><td>Terms Code</td><td>'+details[6]+'</td></tr>';  
+        document.getElementById("accountDetails").innerHTML += line;         
       }
     }
-  }
-});
+  });
+}
 
 
 
