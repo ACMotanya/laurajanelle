@@ -280,7 +280,10 @@ function cartHeader()
       cartQty = cartheader[24].replace(/\s+/g,'');
       document.getElementById("top-cart-trigger").innerHTML += '<span>' + cartQty + '</span>';
 
-      if (location.pathname === "/cousin-op/cart/" || location.pathname === "/cousin-op/checkout/") {
+      pathArray = window.location.pathname.split( '/' );
+      var path = pathArray.splice([pathArray.length - 2]);
+
+      if ( path[0] === "cart" || path[0] === "checkout") {
         $("#cart-totals").empty();
         var totals = '<tr class="cart_item">';
           totals += '<td class="notopborder cart-product-name">';
@@ -337,8 +340,10 @@ function cartList()
 
       $("#cartItemTable").empty();
       $("#minicart").empty();
+      pathArray = window.location.pathname.split( '/' );
+      var path = pathArray.splice([pathArray.length - 2]);
 
-      if (location.pathname === "/cousin-op/cart/") {
+      if ( path[0] === "cart") {
         for (i=1; i<cartitems.length - 1; i++) {
           flds = cartitems[i].split("|");
 
@@ -405,7 +410,7 @@ function cartList()
           item += '</td>';
         item += '</tr>';
         $("#cartItemTable").append(item);
-      } else if (location.pathname === "/cousin-op/checkout/") {
+      } else if (path[0] === "checkout") {
         for (i=1; i<cartitems.length - 1; i++) {
           flds = cartitems[i].split("|");
 
@@ -934,25 +939,22 @@ function searchOrders(orderSearchNumber)
           line += '<tr><td>Shipping Date</td><td>'+details[2]+'</td></tr>';
           line += '<tr><td>Customer Number</td><td>'+details[3]+'</td></tr>';
           line += '<tr><td>PO Number</td><td>'+details[4]+'</td></tr>';
-
           line += '<tr><td>Tax Amount</td><td>'+details[5]+'</td></tr>';
           line += '<tr><td>Order Total</td><td>'+details[6]+'</td></tr>';
           line += '<tr><td>Discount Amount</td><td>'+details[7]+'</td></tr>';
           line += '<tr><td>Bill-to Name</td><td>'+details[8]+'</td></tr>';
-          line += '<tr><td>Bill-to Address</td><td>'+details[9]+'</td></tr>';
-          line += '<tr><td>Ship-to Name</td><td>'+details[10]+'</td></tr>';
-          line += '<tr><td>Ship-to Address</td><td>'+details[11]+'</td></tr>';
-          line += '<tr><td>Notes</td><td>'+details[12]+'</td></tr>';
-          line += '<tr><td>Email Address</td><td>'+details[13]+'</td></tr>';
-          line += '<tr><td>Total Payments</td><td>'+details[14]+'</td></tr>';
-          line += '<tr><td>Number of Lines</td><td>'+details[15]+'</td></tr>';
-          line += '<tr><td>Total Order Qty</td><td>'+details[16]+'</td></tr>';
-          line += '<tr><td>Total Weight</td><td>'+details[17]+'</td></tr>';
-          line += '<tr><td>Shipping Method</td><td>'+details[18]+'</td></tr>';
-          line += '<tr><td>Total Other Charges</td><td>'+details[19]+'</td></tr>';
-          line += '<tr><td>Total Freight</td><td>'+details[20]+'</td></tr>';
-          line += '<tr><td>Terms Code</td><td>'+details[21]+'</td></tr>';
-          line += '<tr><td>Ship-via Code</td><td>'+details[22]+'</td></tr>';
+          line += '<tr><td>Bill-to Address</td><td>'+details[9]+' '+details[10]+' '+details[11]+', '+details[12]+', '+details[13]+', '+details[14]+'</td></tr>';
+          line += '<tr><td>Ship-to Name</td><td>'+details[15]+'</td></tr>';
+          line += '<tr><td>Ship-to Address</td><td>'+details[16]+' '+details[17]+' '+details[18]+', '+details[19]+', '+details[20]+', '+details[21]+'</td></tr>';
+          line += '<tr><td>Notes</td><td>'+details[22]+' '+details[23]+' '+details[24]+' '+details[25]+' '+details[26]+'</td></tr>';
+          line += '<tr><td>Email Address</td><td>'+details[27]+'</td></tr>';
+          line += '<tr><td>Total Payments</td><td>'+details[28]+'</td></tr>';
+          line += '<tr><td>Number of Lines</td><td>'+details[29]+'</td></tr>';
+          line += '<tr><td>Total Order Qty</td><td>'+details[30]+'</td></tr>';
+          line += '<tr><td>Total Weight</td><td>'+details[31]+'</td></tr>';
+          line += '<tr><td>Shipping Method</td><td>'+details[32]+'</td></tr>';
+          line += '<tr><td>Total Other Charges</td><td>'+details[33]+'</td></tr>';
+          line += '<tr><td>Total Freight</td><td>'+details[34]+'</td></tr>';
           document.getElementById("orderDetails").innerHTML += line;
         }
       }
@@ -1254,7 +1256,9 @@ function sessionNumber()
 {
   session_no = Cookies.get('session_no');
   if (typeof(session_no) === "undefined" || session_no.length !== 25) {
-    location.pathname = "/cousin-op/retailerlogin/";  //  Well need to change when going live
+    pathArray = window.location.pathname.split( '/' );
+    pathArray[pathArray.length - 2] = "retailerlogin";
+    window.location.pathname = pathArray.join('/');
     alert("Please log in first.");
   }
 }
@@ -1294,7 +1298,7 @@ function logoff()
 {
   $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APILOGOFF&session_no="+ session_no +"", function( data ) {
     Cookies.set('session_no', "Logged Out");
-    homeRedriect();
+    homeRedirect();
   });
 }
 

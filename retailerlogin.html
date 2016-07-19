@@ -25,7 +25,7 @@ $(document).ready(function() {
           session_no = response;
   				session_no = session_no.replace(/\s+/g,'');
 				  Cookies.set('session_no', session_no);
-          location.pathname = "/cousin-op/shop/"
+          shopRedirect();
         } else {
           alert("Login credentials are incorrect, try again.");
         }
