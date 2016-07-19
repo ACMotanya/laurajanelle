@@ -120,9 +120,8 @@ $(document).ready(function() {
 									<div class="panel-body" style="padding: 40px;">
 										<h3>Register for an Account</h3>
 
-										<form id="register-form" name="register-form" class="nobottommargin" action="https://getsimpleform.com/messages?form_api_token=b83273e1ff326a34ec1012bc799fbe38" method="post" role="form" enctype="multipart/form-data">
-                      <!-- the redirect_to is optional, the form will redirect to the referrer on submission -->
-                      <input type='hidden' name='redirect_to' value='http://www.laurajanelle.com' />
+										<form id="register-form" name="register-form" class="nobottommargin" action="https://getsimpleform.com/messages?form_api_token=" method="post" role="form" enctype="multipart/form-data" onsubmit="return false"> <!-- b83273e1ff326a34ec1012bc799fbe38 -->
+
                       <div class="form-process"></div>
 
 											<div class="col_full">
@@ -259,7 +258,7 @@ $(document).ready(function() {
 											</div>
 
 											<div class="col_full nobottommargin">
-												<button class="button button-3d button-black nomargin" name="register-submit" type="submit" value="register" id="register-form-submit">Register Now</button>
+												<button class="button button-3d button-black nomargin" name="register-submit" type="submit" value="register" data-toggle="modal" data-target="#mymodal" id="register-form-submit" onclick="applicationReceived();">Register Now</button>
 											</div>
 
 					          </form>
@@ -272,6 +271,27 @@ $(document).ready(function() {
 					</div>
 
 				</div>
+
+        <div id="mymodal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-body">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="homeRedirect();">&times;</button>
+                  <h3 class="modal-title" id="myModalLabel">Thank you for applying!</h3>
+                </div>
+                <div class="modal-body" style="font-family: Lato; font-size: 19px;">
+
+                  <p>This is a confirmation that your applicaiton has been successfully received and is currently under process. You will receive an email soon with your login credential or asking for further information.</p>
+                  <p class="nobottommargin">Laura Janelle values your business and is continuously looking for ways to better satisfy their customers. Please do share with us if there is a way we can serve you better.</p>
+                </div>
+                <div class="modal-footer">
+      					  <button type="button" class="btn btn-default" data-dismiss="modal" onclick="homeRedirect();">Close</button>
+      					</div>
+              </div>
+            </div>
+          </div>
+        </div>
 
 			</div>
 

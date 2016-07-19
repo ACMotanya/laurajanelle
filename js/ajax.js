@@ -39,20 +39,6 @@ var username;
 
 
 
-/////////////////////////////////////////////////////
-// Get Session Number and Authorize Access to Page //
-/////////////////////////////////////////////////////
-function sessionNumber()
-{
-  session_no = Cookies.get('session_no');
-  if (typeof(session_no) === "undefined" || session_no.length !== 25) {
-    location.pathname = "/cousin-op/retailerlogin/";  //  Well need to change when going live
-    alert("Please log in first.");
-  }
-}
-
-
-
 /////////////////////////////////////////
         // create new customer //
 /////////////////////////////////////////
@@ -375,8 +361,8 @@ function cartList()
 
             item += '<td class="cart-product-quantity">';
               item += '<div class="quantity clearfix">';
-                item += '<input type="button" value="-" class="minus btn-number" disabled="disabled" data-type="minus" data-field="quant['+i+']" onclick="changeQuantity(this)">';
-                item += '<input type="text" name="quant['+i+']" value="' + flds[6].replace(/\s+/g,'') + '" class="qty form-control input-number" id="' + flds[2].replace(/\s+/g,'') + '" />';
+                item += '<input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant['+i+']" onclick="changeQuantity(this)">';
+                item += '<input type="text" name="quant['+i+']" min="1" value="' + flds[6].replace(/\s+/g,'') + '" class="qty form-control input-number" id="' + flds[2].replace(/\s+/g,'') + '" />';
                 item += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant['+i+']" onclick="changeQuantity(this)">';
               item += '</div>';
             item += '</td>';
@@ -412,7 +398,7 @@ function cartList()
                 item += '</div>';
               item += '</div>';
               item += '<div class="col-md-8 col-xs-8 nopadding">';
-                item += '<a href="#" class="button button-3d nomargin fright" id="updateCartButton" onclick="updateCart1()">Update Cart</a>';
+                item += '<a href="#" class="button button-3d nomargin fright" id="updateCartButton" onclick="updateCart2()">Update Cart</a>';
                 item += '<a href="#" class="button button-3d notopmargin fright" onclick="checkoutRedirect()">Proceed to Checkout</a>';
               item += '</div>';
             item += '</div>';
@@ -477,8 +463,6 @@ function cartList()
 
 
 
-
-
 //////////////////////////////////////
 // Functionality of + and - Buttons //
 //////////////////////////////////////
@@ -499,16 +483,16 @@ function changeQuantity(element)
         input.val(currentVal - 1).change();
       }
       if(parseInt(input.val()) == minValue) {
-        $(this).attr('disabled', true);
+        $(element).attr('disabled', true);
       }
     } else if(type == 'plus') {
-      var maxValue = parseInt(input.attr('max'));
+        var maxValue = parseInt(input.attr('max'));
         if(!maxValue) maxValue = 9999999999999;
         if(currentVal < maxValue) {
           input.val(currentVal + 1).change();
         }
         if(parseInt(input.val()) == maxValue) {
-          $(this).attr('disabled', true);
+          $(element).attr('disabled', true);
         }
     }
   } else {
@@ -516,28 +500,28 @@ function changeQuantity(element)
   }
 
   $('.input-number').focusin(function(){
-    $(this).data('oldValue', $(this).val());
+    $(element).data('oldValue', $(element).val());
   });
   $('.input-number').change(function() {
-    var minValue =  parseInt($(this).attr('min'));
-    var maxValue =  parseInt($(this).attr('max'));
+    var minValue =  parseInt(input.attr('min'));
+    var maxValue =  parseInt(input.attr('max'));
     if(!minValue) minValue = 1;
     if(!maxValue) maxValue = 9999999999999;
-    var valueCurrent = parseInt($(this).val());
+    var valueCurrent = parseInt(input.val());
 
-    var name = $(this).attr('name');
-    if(valueCurrent >= minValue) {
-        $(".btn-number[data-type='minus'][data-field='"+name+"']").removeAttr('disabled');
-    } else {
-        alert('Sorry, the minimum value was reached');
-        $(this).val($(this).data('oldValue'));
-    }
-    if(valueCurrent <= maxValue) {
-        $(".btn-number[data-type='plus'][data-field='"+name+"']").removeAttr('disabled');
-    } else {
-        alert('Sorry, the maximum value was reached');
-        $(this).val($(this).data('oldValue'));
-    }
+  //  var name = $(element).attr('name');
+  //  if(valueCurrent >= minValue) {
+  //      $(".btn-number[data-type='minus'][data-field='"+name+"']").removeAttr('disabled');
+  //  } else {
+//        alert('Sorry, the minimum value was reached');
+  //      $(element).val($(element).data('oldValue'));
+//    }
+//    if(valueCurrent <= maxValue) {
+  //      $(".btn-number[data-type='plus'][data-field='"+name+"']").removeAttr('disabled');
+  //  } else {
+  //      alert('Sorry, the maximum value was reached');
+  //      $(element).val($(element).data('oldValue'));
+//    }
   });
 }
 
@@ -568,16 +552,6 @@ function countryCode()
       }
     }
   });
-}
-
-
-
-/////////////////////////
-// Fill in Cart Totals //
-/////////////////////////
-function cartTotals()
-{
-
 }
 
 
@@ -636,7 +610,6 @@ function updateCart2()
   });
   cartList();
   cartHeader();
-
 }
 
 
@@ -753,68 +726,6 @@ function saveAddresses()
      console.log(response);
    }
  });
-}
-
-
-
-/////////////////////////
-// Populate Page Title //
-/////////////////////////
-function pageTitle()
-{
-switch (window.location.hash) {
-  case "#sleek":
-    $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>SLEEK</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">SLEEK</li></ol></div>';
-    break;
-  case "#rglb":
-    $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>RGLB</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">RGLB</li></ol></div>';
-    break;
-  case "#encharming":
-    $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Encharming</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Encharming</li></ol></div>';
-    break;
-  case "#identify":
-    $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>iDentify</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">iDentify</li></ol></div>';
-    break;
-  case "#programs":
-    $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Programs</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Programs</li></ol></div>';
-    break;
-  case "#sets":
-    $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Sets</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Sets</li></ol></div>';
-    break;
-  case "#earrings":
-    $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Earrings</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Earrings</li></ol></div>';
-    break;
-  case "#necklaces":
-    $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Necklaces</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Necklaces</li></ol></div>';
-    break;
-  case "#bracelets":
-    $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Bracelets</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Bracelets</li></ol></div>';
-    break;
-  case "#lanyards":
-    $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Lanyards</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><<li>Shop</li><li class="active">Lanyards</li></ol></div>';
-    break;
-  case "#tassels":
-    $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Tassels</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Tassels</li></ol></div>';
-    break;
-  case "#snaps":
-    $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Snaps</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Snaps</li></ol></div>';
-    break;
-  default:
-    $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Full Suite</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li class="active">Shop</li></ol></div>';
-  }
 }
 
 
@@ -1315,18 +1226,18 @@ function ordersRedirect()
   window.location.pathname = pathArray.join('/');
 }
 
-function shopRedriect()
+function shopRedirect()
 {
   pathArray = window.location.pathname.split( '/' );
   pathArray[pathArray.length - 2] = "shop";
   window.location.pathname = pathArray.join('/');
 }
 
-function homeRedriect()
+function homeRedirect()
 {
   pathArray = window.location.pathname.split( '/' );
   pathArray.splice([pathArray.length - 2]);
-  window.location.pathname = pathArray.join('/');
+  window.location.pathname = pathArray.join('/') + "/";
 }
 
 
@@ -1334,6 +1245,21 @@ function homeRedriect()
 //////////////////////
 // HELPER FUNCTIONS //
 //////////////////////
+
+
+/////////////////////////////////////////////////////
+// Get Session Number and Authorize Access to Page //
+/////////////////////////////////////////////////////
+function sessionNumber()
+{
+  session_no = Cookies.get('session_no');
+  if (typeof(session_no) === "undefined" || session_no.length !== 25) {
+    location.pathname = "/cousin-op/retailerlogin/";  //  Well need to change when going live
+    alert("Please log in first.");
+  }
+}
+
+
 
 function Comparator(a,b)
 {
@@ -1350,6 +1276,8 @@ Array.max = function( array ){
     return Math.max.apply( Math, array );
 };
 
+
+
 function displayAddress(index) {
   var ind = index - 1;
   document.getElementById("shipping-form-companyname").value = shippingAddresses[ind][0].trim();
@@ -1361,10 +1289,78 @@ function displayAddress(index) {
   document.getElementById("shipping-form-zipcode").value = shippingAddresses[ind][6].trim();
 }
 
+
 function logoff()
 {
   $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APILOGOFF&session_no="+ session_no +"", function( data ) {
     Cookies.set('session_no', "Logged Out");
     homeRedriect();
   });
+}
+
+
+function applicationReceived()
+{
+  $("#register-form").hide();
+}
+
+
+/////////////////////////
+// Populate Page Title //
+/////////////////////////
+function pageTitle()
+{
+switch (window.location.hash) {
+  case "#sleek":
+    $('#page-title').empty();
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>SLEEK</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">SLEEK</li></ol></div>';
+    break;
+  case "#rglb":
+    $('#page-title').empty();
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>RGLB</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">RGLB</li></ol></div>';
+    break;
+  case "#encharming":
+    $('#page-title').empty();
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Encharming</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Encharming</li></ol></div>';
+    break;
+  case "#identify":
+    $('#page-title').empty();
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>iDentify</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">iDentify</li></ol></div>';
+    break;
+  case "#programs":
+    $('#page-title').empty();
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Programs</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Programs</li></ol></div>';
+    break;
+  case "#sets":
+    $('#page-title').empty();
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Sets</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Sets</li></ol></div>';
+    break;
+  case "#earrings":
+    $('#page-title').empty();
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Earrings</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Earrings</li></ol></div>';
+    break;
+  case "#necklaces":
+    $('#page-title').empty();
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Necklaces</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Necklaces</li></ol></div>';
+    break;
+  case "#bracelets":
+    $('#page-title').empty();
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Bracelets</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Bracelets</li></ol></div>';
+    break;
+  case "#lanyards":
+    $('#page-title').empty();
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Lanyards</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><<li>Shop</li><li class="active">Lanyards</li></ol></div>';
+    break;
+  case "#tassels":
+    $('#page-title').empty();
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Tassels</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Tassels</li></ol></div>';
+    break;
+  case "#snaps":
+    $('#page-title').empty();
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Snaps</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Snaps</li></ol></div>';
+    break;
+  default:
+    $('#page-title').empty();
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Full Suite</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li class="active">Shop</li></ol></div>';
+  }
 }

@@ -66,7 +66,7 @@ jQuery( document ).ready(function() {
 			secondColumn += '============================================= -->'
 			secondColumn += '<form class="cart nobottommargin clearfix" method="post" enctype="multipart/form-data">'
 				secondColumn += '<div class="quantity clearfix">'
-					secondColumn += '<input type="button" value="-" class="minus btn-number" disabled="disabled" data-type="minus" data-field="quant[1]" onclick="changeQuantity(this)">'
+					secondColumn += '<input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant[1]" onclick="changeQuantity(this)">'
 					secondColumn += '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + fields[0].replace(/\s+/g,'') + '" />'
 					secondColumn += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant[1]" onclick="changeQuantity(this)">'
 				secondColumn += '</div>'
