@@ -108,7 +108,7 @@ $(document).ready(function() {
 
 											<div class="col_full nobottommargin">
 												<button class="button button-3d button-black nomargin" id="login-form-submit" name="login-form-submit" value="login">Login</button>
-												<a href="#" class="fright">Forgot Password?</a>
+												<a href="#" data-toggle="modal" data-target="#PasswordModal" class="fright">Forgot Password?</a>
 											</div>
 
 										</form>
@@ -293,6 +293,49 @@ $(document).ready(function() {
             </div>
           </div>
         </div>
+
+				<!-- Modal -->
+				<div class="modal fade" id="PasswordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-body">
+							<div class="modal-content">
+								<div class="modal-body">
+									<h4>Forgot Your Password?</h4>
+									<p class="nobottommargin">If you forgot your password, no worries: Enter your username, email address, and customer number below and click on the 'Request Password Reset' button. <br><br>
+											We will contact you shortly.</p>
+								</div>
+								<div class="panel panel-default nobottommargin">
+									<div class="panel-body" style="padding: 40px;">
+										<form id="password-form" name="new-password-form" class="nobottommargin" action="https://getsimpleform.com/messages?form_api_token=8bb5347f6ea8a314f9e3b5140b6507e2" method="post" role="form"> <!-- b83273e1ff326a34ec1012bc799fbe38 -->
+
+                      <div class="form-process"></div>
+
+											<div class="col_full">
+												<label for="password-username">Username:</label>
+												<input type="text" id="password-username" name="username" value="" class="form-control required" />
+											</div>
+
+											<div class="col_full">
+												<label for="password-customer-number">Customer Number:</label>
+												<input type="text" id="password-customer-number" name="customer-number" value="" class="form-control" />
+											</div>
+
+											<div class="col_full">
+												<label for="password-email">Email Address:</label>
+												<input type="text" id="password-email" name="email" value="" class="form-control required" />
+											</div>
+
+											<div class="modal-footer">
+												<button class="btn btn-default" name="password-reset-submit" type="submit" value="PasswordReset">Request Password Reset</button>
+											</div>
+										</form>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
 
 			</div>
 

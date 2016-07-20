@@ -9,6 +9,7 @@ jQuery( document ).ready(function() {
   cartList();
   cartHeader();
   shipToAddress();
+  $("#creditcard").hide();
 });
 /*
 $(document).ready(function() {
@@ -39,11 +40,9 @@ $(document).ready(function() {
     if (hasErrors) {
       alert('Shipping address form has errors.');
     } else {
-      // everything looks good!
       saveAddresses();
       creditCard();
-//       $( "#creditcard" ).slideDown( "slow" );
-//       console.log("It worked and let's slide the div down now");
+      $( "#creditcard" ).slideDown( "slow" );
     }
   });
 });
@@ -883,7 +882,7 @@ $(document).ready(function() {
         <div class="clear bottommargin"></div>
         <div class="col-md-6">
           <div class="form-group">
-            <button type="button" class="button button-3d fright" form="billing-form" id="myButton" >Place Order</button>
+            <button type="button" class="button button-3d fright" form="billing-form" id="myButton">Place Order</button>
           </div>
         </div>
         <div class="clear bottommargin"></div>

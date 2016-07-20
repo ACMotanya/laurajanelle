@@ -664,7 +664,7 @@ function creditCard()
             document.getElementById("successMessage").innerHTML += message;
             document.body.addEventListener("click", function(){
               ordersRedirect();
-              $.get("http://72.64.152.18:8081/mailer/order_confirmation.php?session_no=" + session_no + "&order_no="+ newOrder + "", function ( data ) {
+              $.get("http://72.64.152.18:8082/ace/mailer/order_confirmation.php?session_no=" + session_no + "&order_no="+ newOrder + "", function ( data ) {
                 console.log(data);
               });
             });
@@ -810,7 +810,15 @@ function search()
         request_id: "APISTKSEARCH",
         query: searchTerm},
       success: function(response) {
-        fillShop(response);
+        pathArray = window.location.pathname.split( '/' );
+        path = pathArray.splice([pathArray.length - 2]);
+        var response = response
+        if (path[0] === "shop") {
+          fillShop(response);
+        } else {
+          $("section").append('<section id="content"><div class="content-wrap"><div class="container clearfix"><div class="shop grid-container clearfix" id="shop"></div></div></div></div>');
+          fillShop(response); 
+        }
       }
     });
   }
@@ -964,7 +972,7 @@ function searchOrders(orderSearchNumber)
       $('#orderDetails').empty();
       // html = [];
       if ( lines.length <= 2) {
-        document.getElementById("orderDetails").innerHTML += '<h1>There are no results</h1>';
+        document.getElementById("orderDetails").innerHTML += '<tr><td><h1>There are no results</h1></td><td></td></tr>';
       } else {
         for (i=1; i<lines.length - 1; i++) {
           details = lines[i].split("|");
