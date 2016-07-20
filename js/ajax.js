@@ -664,6 +664,9 @@ function creditCard()
             document.getElementById("successMessage").innerHTML += message;
             document.body.addEventListener("click", function(){
               ordersRedirect();
+              $.get("http://72.64.152.18:8081/mailer/order_confirmation.php?session_no=" + session_no + "&order_no="+ newOrder + "", function ( data ) {
+                console.log(data);
+              });
             });
           }
         });
