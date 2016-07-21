@@ -12,6 +12,8 @@ $(document).ready(function() {
      e.preventDefault();
      username = $('#login-form-username').val();
      password = $('#login-form-password').val();
+     var openOrderLines;
+     var invoiceLines;
 
 		 $.ajax({
  	    type: "GET",
@@ -26,7 +28,24 @@ $(document).ready(function() {
   				session_no = session_no.replace(/\s+/g,'');
 				  Cookies.set('session_no', session_no);
           Cookies.set('username', username);
-          shopRedirect();
+          $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APIORDLST&session_no=" + session_no + "", function( data ) {
+            openOrderLines = data.split("\n");
+            openOrderLines = openOrderLines.length;
+            console.log( openOrderLines );
+            $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APIHISTLST&session_no=" + session_no + "", function( data ) {
+              invoiceLines = data.split("\n");
+              invoiceLines = invoiceLines.length;
+              console.log( invoiceLines );
+              console.log(openOrderLines + invoiceLines);
+              if (openOrderLines + invoiceLines <= 4) {
+                Cookies.set('newCustomer', "true");
+                shopRedirect();
+              } else {
+                Cookies.set('newCustomer', "false");
+                shopRedirect();
+              }
+            });
+          });
         } else {
           alert("Login credentials are incorrect, try again.");
         }
@@ -331,7 +350,7 @@ $(document).ready(function() {
 										</form>
 									</div>
 								</div>
-								
+
 							</div>
 						</div>
 					</div>
