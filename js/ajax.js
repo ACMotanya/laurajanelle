@@ -261,7 +261,7 @@ function removeItem(clicked_id)
 //////////////////////////////
 // Get back the cart header //
 //////////////////////////////
-function cartHeader()
+function cartHeader(callback)
 {
   $.ajax({
     type: "GET",
@@ -273,12 +273,12 @@ function cartHeader()
     success: function(response) {
       cartheader = response.split("\n");
       cartheader = cartheader[1].split("|");
-      orderAmt = cartheader[22];
-      subtotal = cartheader[19].replace(/\s+/g,'');
-      discountAmt = cartheader[20].replace(/\s+/g,'');
-      salesTax = cartheader[21].replace(/\s+/g,'');
-      shippingCost = cartheader[28].replace(/\s+/g,'');
-      cartQty = cartheader[24].replace(/\s+/g,'');
+      orderAmt = cartheader[22].trim();
+      subtotal = cartheader[19].trim();
+      discountAmt = cartheader[20].trim();
+      salesTax = cartheader[21].trim();
+      shippingCost = cartheader[28].trim();
+      cartQty = cartheader[24].trim();
       document.getElementById("top-cart-trigger").innerHTML += '<span>' + cartQty + '</span>';
 
       pathArray = window.location.pathname.split( '/' );
@@ -314,6 +314,11 @@ function cartHeader()
           totals += '</td>';
         totals += '</tr>';
         document.getElementById("cart-totals").innerHTML += totals;
+      }
+    },
+    complete: function () {
+      if (callback && typeof(callback) === "function") {
+        callback();
       }
     }
   });
@@ -817,7 +822,7 @@ function search()
           fillShop(response);
         } else {
           $("section").append('<section id="content"><div class="content-wrap"><div class="container clearfix"><div class="shop grid-container clearfix" id="shop"></div></div></div></div>');
-          fillShop(response); 
+          fillShop(response);
         }
       }
     });
@@ -1168,8 +1173,8 @@ function accountDetails()
         line += '<tr><td>Email Address</td><td>'+details[3]+'</td></tr>';
         line += '<tr><td>Phone Number</td><td>'+details[4]+'</td></tr>';
         line += '<tr><td>Default Ship Via Code</td><td>'+details[5]+'</td></tr>';
-        line += '<tr><td>Terms Code</td><td>'+details[6]+'</td></tr>';  
-        document.getElementById("accountDetails").innerHTML += line;         
+        line += '<tr><td>Terms Code</td><td>'+details[6]+'</td></tr>';
+        document.getElementById("accountDetails").innerHTML += line;
       }
     }
   });
@@ -1347,6 +1352,30 @@ function logoff()
 function applicationReceived()
 {
   $("#register-form").hide();
+}
+
+
+
+////////////////////////////////
+// Find Minimum for the order //
+////////////////////////////////
+function minimumTotal()
+{
+  newCustomer = Cookies.get('newCustomer');
+  console.log(orderAmt);
+  orderAmtFloat = parseFloat(orderAmt);
+  console.log(orderAmtFloat);
+  if (newCustomer === "false" && orderAmtFloat < 100 || newCustomer === "true" && orderAmtFloat < 150 ){
+    $("#myButton").hide();
+    if (newCustomer === "true") {
+      console.log("hello i am new");
+      document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + (150 - orderAmtFloat) + ' more to reach the minimum order requirement of $150 for new customers.</h2>';
+    }
+    if (newCustomer === "false") {
+      console.log("hello I am old");
+      document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + (100 - orderAmtFloat) + ' more to reach the minimum order requirement of $100.</h2>';
+    }
+  }
 }
 
 
