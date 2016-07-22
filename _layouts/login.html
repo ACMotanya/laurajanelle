@@ -6,19 +6,17 @@
   <link rel="stylesheet" href="{{ "/css/components/bs-filestyle.css" | prepend: site.baseurl }}" type="text/css" />
   <!-- Bootstrap Switch CSS -->
   <link rel="stylesheet" href="{{ "/css/components/bs-switches.css" | prepend: site.baseurl }}" type="text/css" />
-
   <!-- Radio Checkbox Plugin -->
   <link rel="stylesheet" href="{{ "/css/components/radio-checkbox.css" | prepend: site.baseurl }}" type="text/css" />
 
   <body class="stretched">
     <div id="wrapper" class="clearfix">
 
-
       {{ content }}
-
 
     </div>
     {% include js.html %}
+    <script type="text/javascript" src="{{ "/js/validator.min.js" | prepend: site.baseurl }}"></script>
 
   </body>
 
