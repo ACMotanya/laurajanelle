@@ -1,17 +1,87 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
-  {% include headpage.html %}
+  {% include head-page.html %}
   <!-- Range Slider CSS -->
   <link rel="stylesheet" href="{{ "/css/components/ion.rangeslider.css" | prepend: site.baseurl }}" type="text/css" />
   <body class="stretched">
     <div id="wrapper" class="clearfix">
       {% include topbar.html %}
-      {% include headerpage.html %}
+      {% include header-page.html %}
       {{ content }}
       {% include footer.html %}
     </div> <!-- end of page wrapper -->
     {% include js.html %}
-    {% include shopfilterjs.html %}
+    <!-- Range Slider Plugin -->
+    <script type="text/javascript" src="{{ "/js/components/rangeslider.min.js" | prepend: site.baseurl }}"></script>
     
+    <script type="text/javascript">
+
+    var priceRangefrom = 0,
+        priceRangeto   = 0,
+        $container     = null;
+
+      jQuery(document).on("filters", function(){
+
+        $container = $('#shop');
+        $container.isotope('destroy');
+        $container.imagesLoaded(function(){
+          $container.isotope({ transitionDuration: '0.65s' });
+
+          $('#portfolio-filter a').click(function(){
+            $('#portfolio-filter li').removeClass('activeFilter');
+            $(this).parent('li').addClass('activeFilter');
+            var selector = $(this).attr('data-filter');
+            $container.isotope({ filter: selector });
+            return false;
+          });
+        });
+
+        $(window).resize(function() {
+          $container.isotope('layout');
+        });
+      });
+
+
+      jQuery(document).ready( function($){
+
+        $(".range_23").ionRangeSlider({
+          type: "double",
+          min: 2.25,
+          max: 15,
+          from: 2.25,
+          to: 15,
+          prefix: '$',
+          hide_min_max: true,
+          hide_from_to: false,
+          grid: false,
+          onStart: function (data) {
+            priceRangefrom = data.from;
+            priceRangeto = data.to;
+          },
+          onFinish: function (data) {
+            priceRangefrom = data.from;
+            priceRangeto = data.to;
+
+            $container.isotope({
+              filter: function() {
+
+                if( $(this).find('.product-price').find('ins').length > 0 ) {
+                  var price = $(this).find('.product-price ins').text();
+                } else {
+                  var price = $(this).find('.product-price').text();
+                }
+
+                priceNum = price.split("$");
+
+                return ( priceRangefrom <= priceNum[1] && priceRangeto >= priceNum[1] );
+              }
+            });
+          }
+        });
+
+      });
+
+    </script>
+
   </body>
 </html>

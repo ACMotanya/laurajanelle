@@ -21,8 +21,8 @@
 	<meta name="msapplication-TileImage" content="/mstile-144x144.png">
 	<meta name="theme-color" content="#ffffff">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta name="author" content="Laura Janelle" />
-  <meta name="description" content="{{ site.description }}">
+  <meta name="author" content="Laura Janelle" />
+	<meta name="author" content="{{ site.description }}" />
 
 	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 	<meta http-equiv="Pragma" content="no-cache" />
@@ -30,57 +30,33 @@
 
 	<!-- Stylesheets
 	============================================= -->
-  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-
-	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Adamina:300,400,500,600,700,800,900|Raleway:300,400,500,600,700,800,900|Roboto:400,100,300,500,700,900|EB+Garamond:300,400,500,700|Permanent+Marker" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="{{ "/css/bootstrap.css" | prepend: site.baseurl }}" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700|Roboto:300,400,500,700|EB+Garamond:300,400,500,700" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="{{ "/css/bootstrap.css" | prepend: site.baseurl }}" type="text/css" />
 	<link rel="stylesheet" href="{{ "/style.css" | prepend: site.baseurl }}" type="text/css" />
+
+	<!-- One Page Module Specific Stylesheet -->
+	<link rel="stylesheet" href="{{ "/one-page/onepage.css" | prepend: site.baseurl }}" type="text/css" />
+	<!-- / -->
+
 	<link rel="stylesheet" href="{{ "/css/dark.css" | prepend: site.baseurl }}" type="text/css" />
 	<link rel="stylesheet" href="{{ "/css/font-icons.css" | prepend: site.baseurl }}" type="text/css" />
+	<link rel="stylesheet" href="{{ "/one-page/css/et-line.css" | prepend: site.baseurl }}" type="text/css" />
 	<link rel="stylesheet" href="{{ "/css/animate.css" | prepend: site.baseurl }}" type="text/css" />
 	<link rel="stylesheet" href="{{ "/css/magnific-popup.css" | prepend: site.baseurl }}" type="text/css" />
+  <link rel="stylesheet" href="{{ "/css/font-icons.css" | prepend: site.baseurl }}" type="text/css" />
+
+	<link rel="stylesheet" href="{{ "/css/fonts.css" | prepend: site.baseurl }}" type="text/css" />
+
 	<link rel="stylesheet" href="{{ "/css/responsive.css" | prepend: site.baseurl }}" type="text/css" />
+  <link rel="stylesheet" href="{{ "/css/custom.css" | prepend: site.baseurl }}" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<!--[if lt IE 9]>
 		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 	<![endif]-->
-
-	<!-- SLIDER REVOLUTION 5.x CSS SETTINGS -->
-	<link rel="stylesheet" type="text/css" href="{{ "/include/rs-plugin/css/settings.css" | prepend: site.baseurl }}" media="screen" />
-	<link rel="stylesheet" type="text/css" href="{{ "/include/rs-plugin/css/layers.css" | prepend: site.baseurl }}">
-	<link rel="stylesheet" type="text/css" href="{{ "/include/rs-plugin/css/navigation.css" | prepend: site.baseurl }}">
 	<script type="text/javascript" src="{{ "/js/jquery.js" | prepend: site.baseurl }}"></script>
-
-	<link rel="stylesheet" href="{{ "/css/custom.css" | prepend: site.baseurl }}" type="text/css" />
-
 
 	<!-- Document Title
 	============================================= -->
 	<title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
-<!--
-	<style>
 
-		@media only screen and (orientation:portrait){
-			body.stretched {
-
-				-webkit-transform: rotate(0deg);
-				-moz-transform: rotate(0deg);
-				-o-transform: rotate(0deg);
-				-ms-transform: rotate(0deg);
-				transform: rotate(0deg);
-			}
-		}
-
-		@media only screen and (orientation:landscape){
-			body.stretched {
-	 			-webkit-transform: rotate(90deg);
-	 			-moz-transform: rotate(90deg);
-		 		-o-transform: rotate(90deg);
-	 			-ms-transform: rotate(90deg);
-	 			transform: rotate(90deg);
-		}
-	}
-
-	</style>
--->
 </head>

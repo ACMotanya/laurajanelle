@@ -2,12 +2,54 @@
 
 <html dir="ltr" lang="en-US">
 
-  {% include headone-page.html %}
+  {% include head-one-page.html %}
 
   <body class="stretched">
     <div id="wrapper" class="clearfix">
 
-      {% include headerone-page.html %}
+      <!-- Header
+      ============================================= -->
+      <header id="header" class="full-header transparent-header" data-sticky-class="not-dark">
+        <div>
+          <div class="container clearfix">
+            <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+      <!--  Logo
+            ============================================= -->
+            <div id="logo">
+              <a href="{{ site.baseurl }}/" class="standard-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/lj-bw-1.png" alt="Laura Janelle Logo"></a>
+              <a href="{{ site.baseurl }}/" class="retina-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/lj-bw-1.png" alt="Laura Janelle Logo"></a>
+            </div><!-- #logo end -->
+
+            <!-- Primary Navigation
+            ============================================= -->
+            <nav id="primary-menu" class="index-nav">
+              <ul data-easing="easeInOutExpo" data-speed="1250" data-offset="65">
+                <li><a href="{{ site.baseurl }}/"><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HOME</div></a></li>
+
+                {% if page.url == "/about/" %}
+                  <li class="current"><a href="{{ site.baseurl }}/about"><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ABOUT US</div></a></li>
+                {% else %}
+                  <li><a href="{{ site.baseurl }}/about"><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ABOUT US</div></a></li>
+                {% endif %}
+
+                {% if page.url == "/meet/" %}
+                  <li class="current"><a href="{{ site.baseurl }}/meet"><div>&nbsp;MEET OUR TEAM</div></a></li>
+                {% else %}
+                  <li><a href="{{ site.baseurl }}/meet"><div>&nbsp;MEET OUR TEAM</div></a></li>
+                {% endif %}
+
+                <li><a href="{{ site.baseurl }}/comingsoon"><div>&nbsp;&nbsp;FIND A STORE</div></a></li>
+                <li><a href="{{ site.baseurl }}/comingsoon1"><div>RETAILER LOGIN</div></a></li>
+                <li><a href="https://www.ivystone.com/find/search-for-a-sales-representative.asp" target="_blank"><div>&nbsp;&nbsp;&nbsp;&nbsp;FIND A REP</div></a></li>
+                <li><a href="{{ site.baseurl }}/contact"><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CONTACT</div></a></li>
+                <li><a href="http://www.cousin.com" target="_blank"><div>&nbsp;&nbsp;&nbsp;&nbsp;COUSIN.COM</div></a></li>
+              </ul>
+            </nav><!-- #primary-menu end -->
+          </div>
+        </div>
+      </header><!-- #header end -->
+
 
       {{ content }}
 

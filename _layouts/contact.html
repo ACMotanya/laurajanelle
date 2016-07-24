@@ -1,18 +1,141 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 
-  {% include headindex.html %}
+  {% include head-index.html %}
 
   <body class="stretched">
     <div id="wrapper" class="clearfix">
 
-      {% include contactheader.html %}
+      <!-- Header
+      ============================================= -->
+      <header id="header" class="full-header transparent-header" data-sticky-class="not-dark">
+        <div id="header-wrap">
+          <div class="container clearfix">
+            <div id="primary-menu-trigger"><i class="icon-reorder" style="color: white"></i></div>
+
+      <!--  Logo
+            =============================================
+            <div id="logo">
+              <a href="{{ site.baseurl }}/" class="standard-logo" data-dark-logo="{{ site.baseurl }}/one-page/images/lj-white-2.png"><img src="{{ site.baseurl }}/one-page/images/lj-bw-1.png" alt="Laura Janelle Logo"></a>
+              <a href="{{ site.baseurl }}/" class="retina-logo" data-dark-logo="{{ site.baseurl }}/one-page/images/lj-white-2.png"><img src="{{ site.baseurl }}/one-page/images/lj-bw-1.png" alt="Laura Janelle Logo"></a>
+            </div><!-- #logo end -->
+
+            <!-- Primary Navigation
+            ============================================= -->
+            <nav id="primary-menu" class="index-nav comingsoon-nav">
+              <ul data-easing="easeInOutExpo" data-speed="1250" data-offset="65">
+                <li><a href="{{ site.baseurl }}/"><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HOME</div></a></li>
+                <li><a href="{{ site.baseurl }}/about"><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ABOUT US</div></a></li>
+                <li><a href="{{ site.baseurl }}/meet"><div>&nbsp;MEET OUR TEAM</div></a></li>
+                <li><a href="{{ site.baseurl }}/comingsoon"><div>&nbsp;&nbsp;FIND A STORE</div></a></li>
+                <li><a href="{{ site.baseurl }}/comingsoon1"><div>RETAILER LOGIN</div></a></li>
+                <li><a href="https://www.ivystone.com/find/search-for-a-sales-representative.asp" target="_blank"><div>&nbsp;&nbsp;&nbsp;&nbsp;FIND A REP</div></a></li>
+
+                {% if page.url == "/contact/" %}
+                  <li class="current"><a href="{{ site.baseurl }}/contact"><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CONTACT</div></a></li>
+                {% else %}
+                  <li><a href="{{ site.baseurl }}/contact"><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CONTACT</div></a></li>
+                {% endif %}
+
+                <li><a href="http://www.cousin.com" target="_blank"><div>&nbsp;&nbsp;&nbsp;&nbsp;COUSIN.COM</div></a></li>
+              </ul>
+            </nav><!-- #primary-menu end -->
+          </div>
+        </div>
+      </header><!-- #header end -->
+
 
       {{ content }}
 
     </div>
     {% include js.html %}
-    {% include contactjs.html %}
+    {% include js-rev.html %}
+    <script type="text/javascript">
+      var tpj = jQuery;
+
+      var revapi287;
+      tpj(document).ready(function() {
+        if (tpj("#rev_slider_287_1").revolution == undefined) {
+          revslider_showDoubleJqueryError("#rev_slider_287_1");
+        } else {
+          revapi287 = tpj("#rev_slider_287_1").show().revolution({
+            sliderType: "standard",
+            jsFileLocation: "include/rs-plugin/js/",
+            sliderLayout: "fullscreen",
+            dottedOverlay: "none",
+            delay: 9000,
+            navigation: {
+              keyboardNavigation: "off",
+              keyboard_direction: "horizontal",
+              mouseScrollNavigation: "off",
+              onHoverStop: "off",
+              touch: {
+                touchenabled: "on",
+                swipe_threshold: 75,
+                swipe_min_touches: 50,
+                swipe_direction: "horizontal",
+                drag_block_vertical: false
+              },
+              arrows: {
+                style: "uranus",
+                enable: true,
+                hide_onmobile: true,
+                hide_under: 778,
+                hide_onleave: true,
+                hide_delay: 200,
+                hide_delay_mobile: 1200,
+                tmp: '',
+                left: {
+                  h_align: "left",
+                  v_align: "center",
+                  h_offset: 20,
+                  v_offset: 0
+                },
+                right: {
+                  h_align: "right",
+                  v_align: "center",
+                  h_offset: 20,
+                  v_offset: 0
+                }
+              }
+            },
+            responsiveLevels: [1240, 1024, 778, 480],
+            gridwidth: [1200, 1024, 778, 480],
+            gridheight: [645, 576, 480, 480],
+            lazyType: "none",
+            parallax: {
+              type: "scroll",
+              origo: "enterpoint",
+              speed: 400,
+              levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 46, 47, 48, 49, 50, 51, 55],
+              type: "scroll",
+            },
+            shadow: 0,
+            spinner: "off",
+            stopLoop: "on",
+            stopAfterLoops: 0,
+            stopAtSlide: 1,
+            shuffle: "off",
+            autoHeight: "off",
+            fullScreenAutoWidth: "off",
+            fullScreenAlignForce: "off",
+            fullScreenOffsetContainer: "",
+            disableProgressBar: "on",
+            hideThumbsOnMobile: "off",
+            hideSliderAtLimit: 0,
+            hideCaptionAtLimit: 0,
+            hideAllCaptionAtLilmit: 0,
+            debugMode: false,
+            fallbacks: {
+              simplifyAll: "off",
+              nextSlideOnWindowFocus: "off",
+              disableFocusListener: false,
+            }
+          });
+        }
+      }); /*ready*/
+    </script>
+
 
   </body>
 
