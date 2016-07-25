@@ -194,7 +194,7 @@ function addItemDetailView()
   console.log("are you running when I click for detail view?");
   detailViewQty = document.getElementById(stock_no).value;
 
-  $.ajax({
+  jQuery.ajax({
     type: "GET",
     url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
     data: {
@@ -474,69 +474,48 @@ function cartList()
 
 
 
-//////////////////////////////////////
-// Functionality of + and - Buttons //
-//////////////////////////////////////
-function changeQuantity(element)
+/////////////////////////////////////////////
+// Get Information for the Item Quick View //
+/////////////////////////////////////////////
+function quickView()
 {
-  var fieldName = $(element).attr('data-field');
-  console.log(fieldName);
-  var type      = $(element).attr('data-type');
-  console.log(type);
-  var input = $("input[name='"+fieldName+"']");
-  console.log(input);
-  var currentVal = parseInt(input.val());
-  if (!isNaN(currentVal)) {
-    if(type == 'minus') {
-      var minValue = parseInt(input.attr('min'));
-      if(!minValue) minValue = 1;
-      if(currentVal > minValue) {
-        input.val(currentVal - 1).change();
-      }
-      if(parseInt(input.val()) == minValue) {
-        $(element).attr('disabled', true);
-      }
-    } else if(type == 'plus') {
-        var maxValue = parseInt(input.attr('max'));
-        if(!maxValue) maxValue = 9999999999999;
-        if(currentVal < maxValue) {
-          input.val(currentVal + 1).change();
+  jQuery.ajax({
+    type: "GET",
+    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    data: {request_id: "APISTKDTL", stock_no: stock_no},
+    success: function(response) {
+      lines = response.split("\n");
+      fields = lines[1].split("|");
+
+      switch (fields[2]) {
+        case "SLK":
+          collection = 'Sleek';
+          break;
+        case "GLB":
+          collection = "RGLB";
+          break;
+        case "EC":
+          collection = "enCharming";
+          break;
+        case "IDT":
+          collection = "iDentify";
+          break;
+        default:
+          collection = fields[2];
         }
-        if(parseInt(input.val()) == maxValue) {
-          $(element).attr('disabled', true);
-        }
+
+        var prodtype = fields[1].split(/(\s+)/);
+						prodtype = prodtype[2];
+
+      document.getElementById("shopItemTitle").innerHTML = '<h2>'+ collection +' Program</h2>';
+			document.getElementById("images").innerHTML = '<div class="slide" style="display: block;"><a href="../ljimages/' + fields[0].trim() + '-lg.png" title="' + fields[1] + '"><img src="../ljimages/' + fields[0].trim() + '-md.png" alt="' + fields[1] + '"></a></div>';
+      document.getElementById("secondColumn").prepend += '<div class="product-price"> <ins>$' + fields[4].substring(0, fields[4].length - 3) + '</ins></div>';
+      jQuery( ".minus" ).after( '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + fields[0].replace(/\s+/g,'') + '" />' );
+      jQuery( "#description" ).after( "<p>" + fields[1] + "</p><p>" + fields[6] + "</p>");
+	    jQuery( ".panel-body" ).html( '<span itemprop="productID" class="sku_wrapper">SKU: <span class="sku">' + fields[0] + '</span></span><span class="posted_in">Category: <a href="#" rel="tag">' + prodtype + '</a></span>'); 
     }
-  } else {
-    input.val(0);
-  }
-
-  $('.input-number').focusin(function(){
-    $(element).data('oldValue', $(element).val());
-  });
-  $('.input-number').change(function() {
-    var minValue =  parseInt(input.attr('min'));
-    var maxValue =  parseInt(input.attr('max'));
-    if(!minValue) minValue = 1;
-    if(!maxValue) maxValue = 9999999999999;
-    var valueCurrent = parseInt(input.val());
-
-  //  var name = $(element).attr('name');
-  //  if(valueCurrent >= minValue) {
-  //      $(".btn-number[data-type='minus'][data-field='"+name+"']").removeAttr('disabled');
-  //  } else {
-//        alert('Sorry, the minimum value was reached');
-  //      $(element).val($(element).data('oldValue'));
-//    }
-//    if(valueCurrent <= maxValue) {
-  //      $(".btn-number[data-type='plus'][data-field='"+name+"']").removeAttr('disabled');
-  //  } else {
-  //      alert('Sorry, the maximum value was reached');
-  //      $(element).val($(element).data('oldValue'));
-//    }
   });
 }
-
-
 
 /////////////////////////////////
 // Get Country Codes and Stuff //
@@ -1288,6 +1267,16 @@ function homeRedirect()
   window.location.pathname = pathArray.join('/') + "/";
 }
 
+function redirect(pathname)
+{
+  pathArray = window.location.pathname.split( '/' );
+  pathArray[pathArray.length - 2] = pathname;
+  window.location.pathname = pathArray.join('/');
+}
+function windowHash(hash)
+{
+  window.location.hash = hash;
+}
 
 
 //////////////////////
@@ -1377,6 +1366,72 @@ function minimumTotal()
     }
   }
 }
+
+
+
+//////////////////////////////////////
+// Functionality of + and - Buttons //
+//////////////////////////////////////
+function changeQuantity(element)
+{
+  var fieldName = jQuery(element).attr('data-field');
+  console.log(fieldName);
+  var type      = jQuery(element).attr('data-type');
+  console.log(type);
+  var input = jQuery("input[name='"+fieldName+"']");
+  console.log(input);
+  var currentVal = parseInt(input.val());
+  if (!isNaN(currentVal)) {
+    if(type == 'minus') {
+      var minValue = parseInt(input.attr('min'));
+      if(!minValue) minValue = 1;
+      if(currentVal > minValue) {
+        input.val(currentVal - 1).change();
+      }
+      if(parseInt(input.val()) == minValue) {
+        jQuery(element).attr('disabled', true);
+      }
+    } else if(type == 'plus') {
+        var maxValue = parseInt(input.attr('max'));
+        if(!maxValue) maxValue = 9999999999999;
+        if(currentVal < maxValue) {
+          input.val(currentVal + 1).change();
+        }
+        if(parseInt(input.val()) == maxValue) {
+          jQuery(element).attr('disabled', true);
+        }
+    }
+  } else {
+    input.val(0);
+  }
+
+  jQuery('.input-number').focusin(function(){
+    jQuery(element).data('oldValue', jQuery(element).val());
+  });
+  jQuery('.input-number').change(function() {
+    var minValue =  parseInt(input.attr('min'));
+    var maxValue =  parseInt(input.attr('max'));
+    if(!minValue) minValue = 1;
+    if(!maxValue) maxValue = 9999999999999;
+    var valueCurrent = parseInt(input.val());
+
+  //  var name = $(element).attr('name');
+  //  if(valueCurrent >= minValue) {
+  //      $(".btn-number[data-type='minus'][data-field='"+name+"']").removeAttr('disabled');
+  //  } else {
+//        alert('Sorry, the minimum value was reached');
+  //      $(element).val($(element).data('oldValue'));
+//    }
+//    if(valueCurrent <= maxValue) {
+  //      $(".btn-number[data-type='plus'][data-field='"+name+"']").removeAttr('disabled');
+  //  } else {
+  //      alert('Sorry, the maximum value was reached');
+  //      $(element).val($(element).data('oldValue'));
+//    }
+  });
+  return false;
+}
+
 
 
 /////////////////////////

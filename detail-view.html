@@ -55,43 +55,32 @@ jQuery( document ).ready(function() {
 			document.getElementById("images").innerHTML += pictureSlider;
 
 // Fill in the 2nd Column data
-			secondColumn = '<!-- Product Single - Price'
-			secondColumn += '============================================= -->'
-			secondColumn += '<div class="product-price"> <ins>$' + parseInt(fields[4]).toFixed(2) + '</ins></div><!-- Product Single - Price End -->'
+			secondColumn = '<div class="product-price"> <ins>$' + fields[4].substring(0, fields[4].length - 3) + '</ins></div>';
 
-			secondColumn += '<div class="clear"></div>'
-			secondColumn += '<div class="line"></div>'
+			secondColumn += '<div class="clear"></div>';
+			secondColumn += '<div class="line"></div>';
 
-			secondColumn += '<!-- Product Single - Quantity & Cart Button'
-			secondColumn += '============================================= -->'
-			secondColumn += '<form class="cart nobottommargin clearfix" method="post" enctype="multipart/form-data">'
-				secondColumn += '<div class="quantity clearfix">'
-					secondColumn += '<input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant[1]" onclick="changeQuantity(this)">'
-					secondColumn += '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + fields[0].replace(/\s+/g,'') + '" />'
-					secondColumn += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant[1]" onclick="changeQuantity(this)">'
-				secondColumn += '</div>'
-				secondColumn += '<button type="button" id="add-item" class="add-to-cart button nomargin" onclick="addItemDetailView()">Add to cart</button>'
-			secondColumn += '</form><!-- Product Single - Quantity & Cart Button End -->'
+			secondColumn += '<form class="cart nobottommargin clearfix" method="post" enctype="multipart/form-data">';
+				secondColumn += '<div class="quantity clearfix">';
+					secondColumn += '<input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant[1]" onclick="changeQuantity(this)">';
+					secondColumn += '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + fields[0].replace(/\s+/g,'') + '" />';
+					secondColumn += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant[1]" onclick="changeQuantity(this)">';
+				secondColumn += '</div>';
+				secondColumn += '<button type="button" id="add-item" class="add-to-cart button nomargin" onclick="addItemDetailView()">Add to cart</button>';
+			secondColumn += '</form>';
 
-			secondColumn += '<div class="clear"></div>'
-			secondColumn += '<div class="line"></div>'
+			secondColumn += '<div class="clear"></div>';
+			secondColumn += '<div class="line"></div>';
 
-			secondColumn += '<!-- Product Single - Short Description'
-			secondColumn += '============================================= -->'
-			secondColumn += '<p>' + fields[1] + '</p>'
-			secondColumn += '<p>' + fields[6] + '</p>'
-			secondColumn += '<ul class="iconlist">'
+			secondColumn += '<p>' + fields[1] + '</p>';
+			secondColumn += '<p>' + fields[6] + '</p>';
 
-			secondColumn += '</ul><!-- Product Single - Short Description End -->'
-
-			secondColumn += '<!-- Product Single - Meta'
-			secondColumn += '============================================= -->'
-			secondColumn += '<div class="panel panel-default product-meta">'
-				secondColumn += '<div class="panel-body">'
-					secondColumn += '<span itemprop="productID" class="sku_wrapper">SKU: <span class="sku">' + fields[0] + '</span></span>'
-					secondColumn += '<span class="posted_in">Category: <a href="#" rel="tag">' + prodtype + '</a></span>'
-				secondColumn += '</div>'
-			secondColumn += '</div><!-- Product Single - Meta End -->'
+			secondColumn += '<div class="panel panel-default product-meta">';
+				secondColumn += '<div class="panel-body">';
+					secondColumn += '<span itemprop="productID" class="sku_wrapper">SKU: <span class="sku">' + fields[0] + '</span></span>';
+					secondColumn += '<span class="posted_in">Category: <a href="#" rel="tag">' + prodtype + '</a></span>';
+				secondColumn += '</div>';
+			secondColumn += '</div><!-- Product Single - Meta End -->';
 
 /*			secondColumn += '<!-- Product Single - Share'
 			secondColumn += '============================================= -->'
