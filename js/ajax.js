@@ -123,7 +123,6 @@ function createUser()
          email: userEmail
        },
        success: function(response) {
-         console.log(response);
          if ( response === response.toUpperCase() ) {
            alert("Laura Janelle user has been created. Double check SouthWare and make sure everything was entered correctly.");
          } else {
@@ -164,11 +163,9 @@ function addItemGeneric(session_no, stock_no, qty)
 function addItem(clicked_id)
 {
    stock_no = clicked_id;
-   console.log(stock_no);
-   console.log("are you running when i click?");
    detailViewQty = document.getElementById(stock_no).value;
 
-   $.ajax({
+   jQuery.ajax({
     type: "GET",
     url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
     data: {
@@ -178,7 +175,6 @@ function addItem(clicked_id)
       qty: 1
     },
     success: function(response) {
-      console.log(response);
       cartHeader();
     }
   });
@@ -191,7 +187,6 @@ function addItem(clicked_id)
 //////////////////////////////////////////////
 function addItemDetailView()
 {
-  console.log("are you running when I click for detail view?");
   detailViewQty = document.getElementById(stock_no).value;
 
   jQuery.ajax({
@@ -205,7 +200,7 @@ function addItemDetailView()
     },
     success: function(response) {
       console.log(response);
-      cartRedirect();
+      redirect("cart");
     }
   });
 }
@@ -263,7 +258,7 @@ function removeItem(clicked_id)
 //////////////////////////////
 function cartHeader(callback)
 {
-  $.ajax({
+  jQuery.ajax({
     type: "GET",
     url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
     data: {
@@ -285,7 +280,7 @@ function cartHeader(callback)
       var path = pathArray.splice([pathArray.length - 2]);
 
       if ( path[0] === "cart" || path[0] === "checkout") {
-        $("#cart-totals").empty();
+        jQuery("#cart-totals").empty();
         var totals = '<tr class="cart_item">';
           totals += '<td class="notopborder cart-product-name">';
             totals += '<strong>Cart Subtotal</strong>';
@@ -331,7 +326,7 @@ function cartHeader(callback)
 ////////////////////
 function cartList()
 {
-  $.ajax({
+  jQuery.ajax({
     type: "GET",
     url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
     data: {
@@ -344,8 +339,8 @@ function cartList()
       // lines[0] is header row
       // lines[1]+ are data lines
 
-      $("#cartItemTable").empty();
-      $("#minicart").empty();
+      jQuery("#cartItemTable").empty();
+      jQuery("#minicart").empty();
       pathArray = window.location.pathname.split( '/' );
       var path = pathArray.splice([pathArray.length - 2]);
 
@@ -367,7 +362,7 @@ function cartList()
             item += '</td>';
 
             item += '<td class="cart-product-price">';
-              item += '<span class="amount">$' + flds[7].substring(0, flds[7].length - 3) + '</span>';
+              item += '<span class="amount">jQuery' + flds[7].substring(0, flds[7].length - 3) + '</span>';
             item += '</td>';
 
             item += '<td class="cart-product-quantity">';
@@ -379,10 +374,10 @@ function cartList()
             item += '</td>';
 
             item += '<td class="cart-product-subtotal">';
-              item += '<span class="amount">$' + flds[8].substring(0, flds[8].length - 4) + '</span>';
+              item += '<span class="amount">jQuery' + flds[8].substring(0, flds[8].length - 4) + '</span>';
             item += '</td>';
           item += '</tr>';
-          $("#cartItemTable").prepend(item);
+          jQuery("#cartItemTable").prepend(item);
 
           miniitem = '<div class="top-cart-item clearfix">';
             miniitem += '<div class="top-cart-item-image">';
@@ -390,11 +385,11 @@ function cartList()
             miniitem += '</div>';
             miniitem += '<div class="top-cart-item-desc">';
               miniitem += '<a href="#">' + flds[3] + '</a>';
-              miniitem += '<span class="top-cart-item-price">$' + flds[7].substring(0, flds[7].length - 3) + '</span>';
+              miniitem += '<span class="top-cart-item-price">jQuery' + flds[7].substring(0, flds[7].length - 3) + '</span>';
               miniitem += '<span class="top-cart-item-quantity">x ' + flds[6].replace(/\s+/g,'') + '</span>';
             miniitem += '</div>';
           miniitem += '</div>';
-          $("#minicart").append(miniitem);
+          jQuery("#minicart").append(miniitem);
         }
 
         item = '<tr class="cart_item">';
@@ -410,12 +405,12 @@ function cartList()
               item += '</div>';
               item += '<div class="col-md-8 col-xs-8 nopadding">';
                 item += '<a href="#" class="button button-3d nomargin fright" id="updateCartButton" onclick="updateCart2()">Update Cart</a>';
-                item += '<a href="#" class="button button-3d notopmargin fright" onclick="checkoutRedirect()">Proceed to Checkout</a>';
+                item += '<a href="#" class="button button-3d notopmargin fright" onclick="redirect(\'checkout\')">Proceed to Checkout</a>';
               item += '</div>';
             item += '</div>';
           item += '</td>';
         item += '</tr>';
-        $("#cartItemTable").append(item);
+        jQuery("#cartItemTable").append(item);
       } else if (path[0] === "checkout") {
         for (i=1; i<cartitems.length - 1; i++) {
           flds = cartitems[i].split("|");
@@ -434,10 +429,10 @@ function cartList()
             item += '</td>';
 
             item += '<td class="cart-product-subtotal">';
-              item += '<span class="amount">$' + flds[8].substring(0, flds[8].length - 4) + '</span>';
+              item += '<span class="amount">jQuery' + flds[8].substring(0, flds[8].length - 4) + '</span>';
             item += '</td>';
           item += '</tr>';
-          $("#cartItemTable").append(item);
+          jQuery("#cartItemTable").append(item);
 
           miniitem = '<div class="top-cart-item clearfix">';
             miniitem += '<div class="top-cart-item-image">';
@@ -445,11 +440,11 @@ function cartList()
             miniitem += '</div>';
             miniitem += '<div class="top-cart-item-desc">';
               miniitem += '<a href="#">' + flds[3] + '</a>';
-              miniitem += '<span class="top-cart-item-price">$' + flds[7].substring(0, flds[7].length - 3) + '</span>';
+              miniitem += '<span class="top-cart-item-price">jQuery' + flds[7].substring(0, flds[7].length - 3) + '</span>';
               miniitem += '<span class="top-cart-item-quantity">x ' + flds[6].replace(/\s+/g,'') + '</span>';
             miniitem += '</div>';
           miniitem += '</div>';
-          $("#minicart").append(miniitem);
+          jQuery("#minicart").append(miniitem);
         }
       } else {
         for (i=1; i<cartitems.length - 1; i++) {
@@ -461,11 +456,11 @@ function cartList()
           miniitem += '</div>';
           miniitem += '<div class="top-cart-item-desc">';
           miniitem += '<a href="#">' + flds[3] + '</a>';
-          miniitem += '<span class="top-cart-item-price">$' + flds[7].substring(0, flds[7].length - 3) + '</span>';
+          miniitem += '<span class="top-cart-item-price">jQuery' + flds[7].substring(0, flds[7].length - 3) + '</span>';
           miniitem += '<span class="top-cart-item-quantity">x ' + flds[6].replace(/\s+/g,'') + '</span>';
           miniitem += '</div>';
           miniitem += '</div>';
-          $("#minicart").append(miniitem);
+          jQuery("#minicart").append(miniitem);
         }
       }
     }
@@ -508,11 +503,11 @@ function quickView()
 						prodtype = prodtype[2];
 
       document.getElementById("shopItemTitle").innerHTML = '<h2>'+ collection +' Program</h2>';
-			document.getElementById("images").innerHTML = '<div class="slide" style="display: block;"><a href="../ljimages/' + fields[0].trim() + '-lg.png" title="' + fields[1] + '"><img src="../ljimages/' + fields[0].trim() + '-md.png" alt="' + fields[1] + '"></a></div>';
-      document.getElementById("secondColumn").prepend += '<div class="product-price"> <ins>$' + fields[4].substring(0, fields[4].length - 3) + '</ins></div>';
+			document.getElementById("images").innerHTML = '<div class="slide" style="display: block;"><a href="#"  title="' + fields[1] + '"><img src="../ljimages/' + fields[0].trim() + '-md.png" alt="' + fields[1] + '"></a></div>';
+      document.getElementById("secondColumn").prepend = '<div class="product-price"> <ins>jQuery' + fields[4].substring(0, fields[4].length - 3) + '</ins></div>';
       jQuery( ".minus" ).after( '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + fields[0].replace(/\s+/g,'') + '" />' );
       jQuery( "#description" ).after( "<p>" + fields[1] + "</p><p>" + fields[6] + "</p>");
-	    jQuery( ".panel-body" ).html( '<span itemprop="productID" class="sku_wrapper">SKU: <span class="sku">' + fields[0] + '</span></span><span class="posted_in">Category: <a href="#" rel="tag">' + prodtype + '</a></span>'); 
+	    jQuery( ".panel-body" ).html( '<span itemprop="productID" class="sku_wrapper">SKU: <span class="sku">' + fields[0] + '</span></span><span class="posted_in">Category: <a href="#" rel="tag">' + prodtype + '</a></span>');
     }
   });
 }
@@ -522,7 +517,7 @@ function quickView()
 /////////////////////////////////
 function countryCode()
 {
-    $.ajax({
+  $.ajax({
     type: "GET",
     url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
     data: {
@@ -531,11 +526,7 @@ function countryCode()
     },
     success: function(response) {
       country = response.split("\n");
-      // lines[0] is header row
-      // lines[1]+ are data lines
-
       $("#countries").empty();
-
       for (i=1; i<country.length - 1; i++) {
         countrylines = country[i].split("|");
         document.getElementById("countries").innerHTML += '<option value="' + countrylines[0].replace(/\s+/g,'') + '">' + countrylines[1].replace(/\s+/g,'') + '</option>';
@@ -553,7 +544,6 @@ function updateCart1()
 {
   $("#updateCartButton").hide();
   shoppingCart = {};
-
   var table = $("table tbody#cartItemTable");
 
   // loop thru cart and flatten the items that are repeated
@@ -647,7 +637,7 @@ function creditCard()
                 message += '<p class="nobottommargin">Laura Janelle values your business and is continuously looking for ways to better satisfy their customers. Please do share with us if there is a way we can serve you better.</p>';
             document.getElementById("successMessage").innerHTML += message;
             document.body.addEventListener("click", function(){
-              ordersRedirect();
+              redirect("orders");
               $.get("http://72.64.152.18:8082/ace/mailer/order_confirmation.php?session_no=" + session_no + "&order_no="+ newOrder + "", function ( data ) {
                 console.log(data);
               });
@@ -796,12 +786,12 @@ function search()
       success: function(response) {
         pathArray = window.location.pathname.split( '/' );
         path = pathArray.splice([pathArray.length - 2]);
-        var response = response
+        var data = response;
         if (path[0] === "shop") {
-          fillShop(response);
+          fillShop(data);
         } else {
           $("section").append('<section id="content"><div class="content-wrap"><div class="container clearfix"><div class="shop grid-container clearfix" id="shop"></div></div></div></div>');
-          fillShop(response);
+          fillShop(data);
         }
       }
     });
@@ -845,7 +835,10 @@ function fillShop(response)
       html.push(prod);
     }
     document.getElementById("shop").innerHTML += html.join('');
+    min = Array.min(prices);
+    max = Array.max(prices);
     $(document).trigger("filters");
+    $(document).trigger("priceFilters");
   }
 }
 
@@ -954,7 +947,7 @@ function searchOrders(orderSearchNumber)
       // lines[0] is header row
       // lines[1]+ are data lines
       $('#orderDetails').empty();
-      // html = [];
+      html = [];
       if ( lines.length <= 2) {
         document.getElementById("orderDetails").innerHTML += '<tr><td><h1>There are no results</h1></td><td></td></tr>';
       } else {
@@ -981,7 +974,8 @@ function searchOrders(orderSearchNumber)
           line += '<tr><td>Shipping Method</td><td>'+details[32]+'</td></tr>';
           line += '<tr><td>Total Other Charges</td><td>'+details[33]+'</td></tr>';
           line += '<tr><td>Total Freight</td><td>'+details[34]+'</td></tr>';
-          document.getElementById("orderDetails").innerHTML += line;
+          html.push(line);
+          document.getElementById("orderDetails").innerHTML += html.join('');
         }
       }
     }
@@ -1000,7 +994,6 @@ function searchOrders(orderSearchNumber)
       openlines = response.split("\n");
       // lines[0] is header row
       // lines[1]+ are data lines
-      // $('#tableBody').empty();
       for (i=1; i< openlines.length - 1; i++) {
         fields = openlines[i].split("|");
         fields.splice(0, 1);
@@ -1060,7 +1053,6 @@ function searchInvoices(invoiceSearchNumber)
           line += '<tr><td>Shipping Date</td><td>'+details[3]+'</td></tr>';
           line += '<tr><td>Customer Number</td><td>'+details[4]+'</td></tr>';
           line += '<tr><td>PO Number</td><td>'+details[5]+'</td></tr>';
-
           line += '<tr><td>Tax Amount</td><td>'+details[8]+'</td></tr>';
           line += '<tr><td>Order Total</td><td>'+details[9]+'</td></tr>';
           line += '<tr><td>Discount Amount</td><td>'+details[10]+'</td></tr>';
@@ -1215,73 +1207,43 @@ function shipToAddress()
 
 
 
-//////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
 
-//////////////      REDIRECT FUINCTIONS      /////////////////
+//////////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
 
-function checkoutRedirect()
-{
-  pathArray = window.location.pathname.split( '/' );
-  pathArray[pathArray.length - 2] = "checkout";
-  window.location.pathname = pathArray.join('/');
-}
+//////////////////    HELPER FUNCTIONS     ///////////////////////
 
-function cartRedirect()
-{
-  pathArray = window.location.pathname.split( '/' );
-  pathArray[pathArray.length - 2] = "cart";
-  window.location.pathname = pathArray.join('/');
-}
+//////////////////////////////////////////////////////////////////
 
-function detailViewRedirect(partNumber)
-{
-  pathArray = window.location.pathname.split( '/' );
-  pathArray[pathArray.length - 2] = "detail-view";
-  window.location.pathname = pathArray.join('/') + partNumber;
-}
+//////////////////////////////////////////////////////////////////
 
-function ordersRedirect()
-{
-  pathArray = window.location.pathname.split( '/' );
-  pathArray[pathArray.length - 2] = "orders";
-  window.location.pathname = pathArray.join('/');
-}
+//////////////////////////////////////////////////////////////////
 
-function shopRedirect()
-{
-  pathArray = window.location.pathname.split( '/' );
-  pathArray[pathArray.length - 2] = "shop";
-  window.location.pathname = pathArray.join('/');
-}
+//////////////////////////////////////////////////////////////////
 
-function homeRedirect()
-{
-  pathArray = window.location.pathname.split( '/' );
-  pathArray.splice([pathArray.length - 2]);
-  window.location.pathname = pathArray.join('/') + "/";
-}
 
+
+/////////////////////////////////////////////////////
+          // redirect with hash add ins  //
+/////////////////////////////////////////////////////
 function redirect(pathname)
 {
   pathArray = window.location.pathname.split( '/' );
   pathArray[pathArray.length - 2] = pathname;
   window.location.pathname = pathArray.join('/');
 }
+
 function windowHash(hash)
 {
   window.location.hash = hash;
 }
 
 
-//////////////////////
-// HELPER FUNCTIONS //
-//////////////////////
 
 
 /////////////////////////////////////////////////////
@@ -1329,11 +1291,12 @@ function displayAddress(index) {
 }
 
 
+
 function logoff()
 {
   $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APILOGOFF&session_no="+ session_no +"", function( data ) {
     Cookies.set('session_no', "Logged Out");
-    homeRedirect();
+    redirect("");
   });
 }
 
@@ -1351,17 +1314,13 @@ function applicationReceived()
 function minimumTotal()
 {
   newCustomer = Cookies.get('newCustomer');
-  console.log(orderAmt);
   orderAmtFloat = parseFloat(orderAmt);
-  console.log(orderAmtFloat);
   if (newCustomer === "false" && orderAmtFloat < 100 || newCustomer === "true" && orderAmtFloat < 150 ){
     $("#myButton").hide();
     if (newCustomer === "true") {
-      console.log("hello i am new");
       document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + (150 - orderAmtFloat) + ' more to reach the minimum order requirement of $150 for new customers.</h2>';
     }
     if (newCustomer === "false") {
-      console.log("hello I am old");
       document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + (100 - orderAmtFloat) + ' more to reach the minimum order requirement of $100.</h2>';
     }
   }
@@ -1375,11 +1334,8 @@ function minimumTotal()
 function changeQuantity(element)
 {
   var fieldName = jQuery(element).attr('data-field');
-  console.log(fieldName);
   var type      = jQuery(element).attr('data-type');
-  console.log(type);
-  var input = jQuery("input[name='"+fieldName+"']");
-  console.log(input);
+  var input     = jQuery("input[name='"+fieldName+"']");
   var currentVal = parseInt(input.val());
   if (!isNaN(currentVal)) {
     if(type == 'minus') {
@@ -1409,25 +1365,11 @@ function changeQuantity(element)
     jQuery(element).data('oldValue', jQuery(element).val());
   });
   jQuery('.input-number').change(function() {
-    var minValue =  parseInt(input.attr('min'));
-    var maxValue =  parseInt(input.attr('max'));
+    var minValue = parseInt(input.attr('min'));
+    var maxValue = parseInt(input.attr('max'));
     if(!minValue) minValue = 1;
     if(!maxValue) maxValue = 9999999999999;
     var valueCurrent = parseInt(input.val());
-
-  //  var name = $(element).attr('name');
-  //  if(valueCurrent >= minValue) {
-  //      $(".btn-number[data-type='minus'][data-field='"+name+"']").removeAttr('disabled');
-  //  } else {
-//        alert('Sorry, the minimum value was reached');
-  //      $(element).val($(element).data('oldValue'));
-//    }
-//    if(valueCurrent <= maxValue) {
-  //      $(".btn-number[data-type='plus'][data-field='"+name+"']").removeAttr('disabled');
-  //  } else {
-  //      alert('Sorry, the maximum value was reached');
-  //      $(element).val($(element).data('oldValue'));
-//    }
   });
   return false;
 }
@@ -1439,57 +1381,57 @@ function changeQuantity(element)
 /////////////////////////
 function pageTitle()
 {
-switch (window.location.hash) {
+  switch (window.location.hash) {
   case "#sleek":
     $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>SLEEK</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">SLEEK</li></ol></div>';
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>SLEEK</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">SLEEK</li></ol></div>';
     break;
   case "#rglb":
     $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>RGLB</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">RGLB</li></ol></div>';
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>RGLB</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">RGLB</li></ol></div>';
     break;
   case "#encharming":
     $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Encharming</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Encharming</li></ol></div>';
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Encharming</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">Encharming</li></ol></div>';
     break;
   case "#identify":
     $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>iDentify</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">iDentify</li></ol></div>';
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>iDentify</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">iDentify</li></ol></div>';
     break;
   case "#programs":
     $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Programs</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Programs</li></ol></div>';
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Programs</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">Programs</li></ol></div>';
     break;
   case "#sets":
     $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Sets</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Sets</li></ol></div>';
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Sets</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">Sets</li></ol></div>';
     break;
   case "#earrings":
     $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Earrings</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Earrings</li></ol></div>';
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Earrings</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">Earrings</li></ol></div>';
     break;
   case "#necklaces":
     $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Necklaces</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Necklaces</li></ol></div>';
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Necklaces</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">Necklaces</li></ol></div>';
     break;
   case "#bracelets":
     $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Bracelets</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Bracelets</li></ol></div>';
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Bracelets</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">Bracelets</li></ol></div>';
     break;
   case "#lanyards":
     $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Lanyards</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><<li>Shop</li><li class="active">Lanyards</li></ol></div>';
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Lanyards</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><<li>Shop</li><li class="active">Lanyards</li></ol></div>';
     break;
   case "#tassels":
     $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Tassels</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Tassels</li></ol></div>';
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Tassels</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">Tassels</li></ol></div>';
     break;
   case "#snaps":
     $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Snaps</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li>Shop</li><li class="active">Snaps</li></ol></div>';
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Snaps</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">Snaps</li></ol></div>';
     break;
   default:
     $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Full Suite</h1><ol class="breadcrumb"><li><a href="#">Home</a></li><li class="active">Shop</li></ol></div>';
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Full Suite</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li class="active">Shop</li></ol></div>';
   }
 }

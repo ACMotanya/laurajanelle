@@ -3,6 +3,13 @@ layout: storefront
 ---
 
 
+<script>
+jQuery( document ).ready(function() {
+	cartHeader();
+	cartList();
+});
+
+</script>
 		<section id="slider" class="slider-parallax revslider-wrap ohidden clearfix">
 
 			<div class="tp-banner-container">
@@ -80,7 +87,7 @@ layout: storefront
 							data-elementdelay="0.01"
 							data-endelementdelay="0.1"
 							data-endspeed="1000"
-							data-endeasing="Power4.easeIn" style=""><a href="#" class="button button-border button-large button-rounded tright nomargin" onclick="shopRedirect();"><span>Start Shopping</span> <i class="icon-angle-right"></i></a></div>
+							data-endeasing="Power4.easeIn" style=""><a href="#" class="button button-border button-large button-rounded tright nomargin" onclick="redirect('shop');"><span>Start Shopping</span> <i class="icon-angle-right"></i></a></div>
 
 						</li>
 						<!-- SLIDE  -->
@@ -156,7 +163,7 @@ layout: storefront
 							data-elementdelay="0.01"
 							data-endelementdelay="0.1"
 							data-endspeed="1000"
-							data-endeasing="Power4.easeIn" style=""><a href="#" class="button button-border button-large button-rounded tright nomargin" onclick="shopRedirect();"><span>Start Shopping</span> <i class="icon-angle-right"></i></a></div>
+							data-endeasing="Power4.easeIn" style=""><a href="#" class="button button-border button-large button-rounded tright nomargin" onclick="redirect('shop');"><span>Start Shopping</span> <i class="icon-angle-right"></i></a></div>
 
 						</li>
 					</ul>
@@ -216,7 +223,7 @@ layout: storefront
 											<a href="#" onclick='windowHash("10031"); redirect("detail-view");'><img src="{{site.baseurl }}/ljimages/10031-sm.png" alt="2 pc Earrings"></a>
 
 											<div class="product-overlay">
-												<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+												<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 10031 has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="10031"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
 												<a href="{{site.baseurl }}/shop-item.html" onclick="stock_no = '10031'; quickView();" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
 											</div>
 										</div>
@@ -238,8 +245,8 @@ layout: storefront
 											<a href="#" onclick='windowHash("10718"); redirect("detail-view");'><img src="{{site.baseurl }}/ljimages/10718-sm.png" alt="1 pc Bracelet"></a>
 
 											<div class="product-overlay">
-												<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-												<a href="{{site.baseurl }}/include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+												<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 10718 has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="10718"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+												<a href="{{site.baseurl }}/shop-item.html" onclick="stock_no = '10718'; quickView();" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
 											</div>
 										</div>
 										<div class="product-desc">
@@ -261,8 +268,8 @@ layout: storefront
 											<a href="#" onclick='windowHash("10308"); redirect("detail-view");'><img src="{{site.baseurl }}/ljimages/10308-sm.png" alt='18" Necklace & 5 pc Charms'></a>
 
 											<div class="product-overlay">
-												<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-												<a href="{{site.baseurl }}/include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+												<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 10031 has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="10031"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+												<a href="{{site.baseurl }}/shop-item.html" onclick="stock_no = '10308'; quickView();" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
 											</div>
 										</div>
 										<div class="product-desc">
@@ -283,8 +290,8 @@ layout: storefront
 											<a href="#" onclick='windowHash("10501"); redirect("detail-view");'><img src="{{site.baseurl }}/ljimages/10501-sm.png" alt="1 pc Lanyard"></a>
 
 											<div class="product-overlay">
-												<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-												<a href="{{site.baseurl }}/include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+												<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 10031 has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="10031"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+												<a href="{{site.baseurl }}/shop-item.html" onclick="stock_no = '10501'; quickView();" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
 											</div>
 										</div>
 										<div class="product-desc">
@@ -313,8 +320,8 @@ layout: storefront
 											<a href="#" onclick='windowHash("10017"); redirect("detail-view");'><img src="{{site.baseurl }}/ljimages/10017-sm.png" alt="1 pc Necklace & 2 pc Earrings"></a>
 
 											<div class="product-overlay">
-												<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-												<a href="{{site.baseurl }}/include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+												<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 10031 has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="10031"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+												<a href="{{site.baseurl }}/shop-item.html" onclick="stock_no = '10017'; quickView();" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
 											</div>
 										</div>
 										<div class="product-desc">
@@ -335,8 +342,8 @@ layout: storefront
 											<a href="#" onclick='windowHash("10712"); redirect("detail-view");'><img src="{{site.baseurl }}/ljimages/10712-sm.png" alt="1 pc Bracelet"></a>
 
 											<div class="product-overlay">
-												<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-												<a href="{{site.baseurl }}/include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+												<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 10031 has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="10031"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+												<a href="{{site.baseurl }}/shop-item.html" onclick="stock_no = '10712'; quickView();" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
 											</div>
 										</div>
 										<div class="product-desc">
@@ -358,8 +365,8 @@ layout: storefront
 											<a href="#" onclick='windowHash("10325"); redirect("detail-view");'><img src="{{site.baseurl }}/ljimages/10325-sm.png" alt='18" Necklace & 5 pc Charms'></a>
 
 											<div class="product-overlay">
-												<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-												<a href="{{site.baseurl }}/include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+												<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 10325 has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="10325"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+												<a href="{{site.baseurl }}/shop-item.html" onclick="stock_no = '10325'; quickView();" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
 											</div>
 										</div>
 										<div class="product-desc">
@@ -380,8 +387,8 @@ layout: storefront
 											<a href="#" onclick='windowHash("10500A"); redirect("detail-view");'><img src="{{site.baseurl }}/ljimages/10500A-sm.png" alt="iDentify Countertop Display Program"></a>
 
 											<div class="product-overlay">
-												<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-												<a href="{{site.baseurl }}/include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+												<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 10500A has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="10500A"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+												<a href="{{site.baseurl }}/shop-item.html" onclick="stock_no = '10500A'; quickView();" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
 											</div>
 										</div>
 										<div class="product-desc">
@@ -409,8 +416,8 @@ layout: storefront
 											<a href="#" onclick='windowHash("10042"); redirect("detail-view");'><img src="{{site.baseurl }}/ljimages/10042-sm.png" alt="1 pc Bangle"></a>
 
 											<div class="product-overlay">
-												<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-												<a href="{{site.baseurl }}/include/ajax/shop-item.html" data-value='10042' class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+												<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 10042 has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="10042"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+												<a href="{{site.baseurl }}/shop-item.html" onclick="stock_no = '10042'; quickView();" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
 											</div>
 										</div>
 										<div class="product-desc">
@@ -431,8 +438,8 @@ layout: storefront
 											<a href="#" onclick='windowHash("10700C"); redirect("detail-view");'><img src="{{site.baseurl }}/ljimages/10700C-sm.png" alt="Bracelet Countertop Display Program"></a>
 
 											<div class="product-overlay">
-												<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-												<a href="{{site.baseurl }}/include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+												<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 10700C has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="10700C"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+												<a href="{{site.baseurl }}/shop-item.html" onclick="stock_no = '10700C'; quickView();" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
 											</div>
 										</div>
 										<div class="product-desc">
@@ -454,8 +461,8 @@ layout: storefront
 											<a href="#" onclick='windowHash("10314"); redirect("detail-view");'><img src="{{site.baseurl }}/ljimages/10314-sm.png" alt='18" Necklace & 5 pc Charms'></a>
 
 											<div class="product-overlay">
-												<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-												<a href="{{site.baseurl }}/include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+												<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 10314 has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="10314"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+												<a href="{{site.baseurl }}/shop-item.html" onclick="stock_no = '10314'; quickView();" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
 											</div>
 										</div>
 										<div class="product-desc">
@@ -476,8 +483,8 @@ layout: storefront
 											<a href="#" onclick='windowHash("10519"); redirect("detail-view");'><img src="{{site.baseurl }}/ljimages/10519-sm.png" alt="1 pc Snap Accent"></a>
 
 											<div class="product-overlay">
-												<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-												<a href="{{site.baseurl }}/include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+												<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 10519 has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="10519"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+												<a href="{{site.baseurl }}/shop-item.html" onclick="stock_no = '10519'; quickView();" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
 											</div>
 										</div>
 										<div class="product-desc">

@@ -41,18 +41,11 @@ jQuery( document ).ready(function() {
 						prodtype = prodtype[2];
 
 /* Fill in the Breadcrumb section */
-			breadtitle = '<h1>' + collection + '</h1>';
-			breadtitle += '<span></span>';
-			breadtitle += '<ol class="breadcrumb">';
-				breadtitle += '<li><a href="#">Home</a></li>';
-				breadtitle += '<li>Shop</li>';
-				breadtitle += '<li class="active">' + collection + '</li>';
-			breadtitle += '</ol>';
-			document.getElementById("breadcrumbtitle").innerHTML += breadtitle;
+			document.getElementById("breadcrumbtitle").innerHTML = '<h1>' + collection + '</h1><span></span><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">' + collection + '</li></ol>';
 
-/* Fill in the picture/s for the product */
-			pictureSlider = '<div class="slide" style="display: block;" data-thumb="../ljimages/' + fields[0].replace(/\s+/g,'') + '-sm.png"><a href="../ljimages/' + fields[0].replace(/\s+/g,'') + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><img src="../ljimages/' + fields[0].replace(/\s+/g,'') + '-md.png" alt="' + fields[1] + '"></a></div>'
-			document.getElementById("images").innerHTML += pictureSlider;
+/* Fill in the pictures for the product */
+			document.getElementById("images").innerHTML = '<div class="slide" style="display: block;" data-thumb="../ljimages/' + fields[0].replace(/\s+/g,'') + '-sm.png"><a href="../ljimages/' + fields[0].replace(/\s+/g,'') + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><img src="../ljimages/' + fields[0].replace(/\s+/g,'') + '-md.png" alt="' + fields[1] + '"></a></div>'
+
 
 // Fill in the 2nd Column data
 			secondColumn = '<div class="product-price"> <ins>$' + fields[4].substring(0, fields[4].length - 3) + '</ins></div>';

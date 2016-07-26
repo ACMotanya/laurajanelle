@@ -13,7 +13,7 @@
     {% include js.html %}
     <!-- Range Slider Plugin -->
     <script type="text/javascript" src="{{ "/js/components/rangeslider.min.js" | prepend: site.baseurl }}"></script>
-    
+
     <script type="text/javascript">
 
     var priceRangefrom = 0,
@@ -42,7 +42,7 @@
       });
 
 
-      jQuery(document).ready( function($){
+      jQuery(document).on("priceFilters", function(){
 
         $(".range_23").ionRangeSlider({
           type: "double",
@@ -62,13 +62,14 @@
             priceRangefrom = data.from;
             priceRangeto = data.to;
 
+            $container.isotope('destroy');
             $container.isotope({
               filter: function() {
 
-                if( $(this).find('.product-price').find('ins').length > 0 ) {
-                  var price = $(this).find('.product-price ins').text();
+                if( jQuery(this).find('.product-price').find('ins').length > 0 ) {
+                  var price = jQuery(this).find('.product-price ins').text();
                 } else {
-                  var price = $(this).find('.product-price').text();
+                  var price = jQuery(this).find('.product-price').text();
                 }
 
                 priceNum = price.split("$");
