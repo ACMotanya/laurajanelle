@@ -23,7 +23,7 @@
       <nav id="primary-menu">
 
         <ul>
-          <li><a href="{{ site.baseurl }}/storefront"><div>Home</div></a></li>
+          <li><a href="{{ site.baseurl }}/store"><div>Home</div></a></li>
 
           <li><a href="{{ site.baseurl }}/shop/"><div id="shopFilter">Shop</div></a>
             <ul>
@@ -93,7 +93,7 @@
             </div>
             <div class="top-cart-action clearfix">
             <!--  <span class="fleft top-checkout-price">$114.95</span> -->
-              <button class="button button-3d button-small nomargin fright" onclick="cartRedirect();">View Cart</button>
+              <button class="button button-3d button-small nomargin fright" onclick="redirect('cart');">View Cart</button>
             </div>
           </div>
         </div><!-- #top-cart end -->
@@ -104,7 +104,6 @@
           <a href="#" id="top-search-trigger"><i class="icon-search3"></i><i class="icon-line-cross"></i></a>
           <form>
             <input id="searchvalue" type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter.." onKeyPress="return search();">
-
           </form>
         </div><!-- #top-search end -->
 

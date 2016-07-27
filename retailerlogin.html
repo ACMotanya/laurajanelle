@@ -37,10 +37,10 @@ layout: login
 					              console.log(openOrderLines + invoiceLines);
 					              if (openOrderLines + invoiceLines <= 4) {
 					                Cookies.set('newCustomer', "true");
-					                redirect("storefront");
+					                redirect("store");
 					              } else {
 					                Cookies.set('newCustomer', "false");
-					                redirect("storefront");
+					                redirect("store");
 					              }
 					            });
 					          });
@@ -69,9 +69,7 @@ layout: login
 				============================================= -->
 				<section id="slider" class="slider-parallax full-screen">
 					<div class="slider-parallax-inner">
-
 						<div class="full-screen dark section nopadding nomargin noborder ohidden" style="background-image: url('{{ site.baseurl }}/img/encharming3.png'); background-size: cover; background-position: center center;">
-
 							<div class="row nomargin" style="position: relative; z-index: 2;">
 								<div class="col-md-offset-7 col-md-5 full-screen" style="background-color: rgba(0,0,0,0.45);">
 									<div class="row center">
@@ -96,19 +94,15 @@ layout: login
 												<a href="#" data-toggle="modal" data-target="#PasswordModal" class="fright">Forgot Password?</a>
 											</div>
 										</form>
-										<p class="nobottommargin">Not registered?<br><a class="btn btn-default" href="#register" data-scrollto="#register" data-easing="easeInOutExpo" data-speed="1250" onclick="$('#content').show();">Sign Up</a><small class="t600"><em></em></small></p>
+										<p class="nobottommargin">Not registered?<br><a class="btn btn-default" href="#register" data-scrollto="#register" data-easing="easeInOutExpo" data-speed="1250" onclick="$('#content').show(); $('#register-form-name').focus();">Sign Up</a><small class="t600"><em></em></small></p>
 									</div>
 								</div>
 							</div>
-
 							<div class="video-wrap" style="z-index:1;">
 								<div class="video-overlay" style="background: rgba(0,0,0,0.1);"></div>
 							</div>
-
 						</div>
-
 					</div>
-
 				</section><!-- #slider end -->
 
 				<!-- Modal -->
@@ -123,7 +117,7 @@ layout: login
 								</div>
 								<div class="panel panel-default nobottommargin">
 									<div class="panel-body" style="padding: 40px;">
-										<form id="password-form" name="new-password-form" class="nobottommargin" action="https://getsimpleform.com/messages?form_api_token=8bb5347f6ea8a314f9e3b5140b6507e2" method="post" role="form"> <!-- b83273e1ff326a34ec1012bc799fbe38 -->
+										<form id="password-form" name="new-password-form" class="nobottommargin" action="https://getsimpleform.com/messages?form_api_token=b83273e1ff326a34ec1012bc799fbe38" method="post" role="form"> <!--  ace@cousin.com 8bb5347f6ea8a314f9e3b5140b6507e2-->
 
 											<div class="form-process"></div>
 
@@ -170,7 +164,7 @@ layout: login
 
 								<p class="divcenter bottommargin-sm" style="max-width: 800px;">To become a wholesale customer with Laura Janelle, please complete this application form and mail, fax, or email with the required documents listed below. This is not a credit application. We require a $150.00 opening order and $500.00 in orders per year to maintain wholesale status. You may apply for credit terms through our application process. Please contact Customer Service for more information.</p>
 
-								<form data-toggle="validator" id="register-form" name="register-form" class="nobottommargin" action="https://getsimpleform.com/messages?form_api_token=" method="post" role="form" enctype="multipart/form-data" onsubmit="return false"> <!-- b83273e1ff326a34ec1012bc799fbe38 -->
+								<form data-toggle="validator" id="register-form" name="register-form" class="nobottommargin" action="https://getsimpleform.com/messages?form_api_token=b83273e1ff326a34ec1012bc799fbe38" method="post" role="form" enctype="multipart/form-data" onsubmit="return false;"> <!--  ace@cousin.com 8bb5347f6ea8a314f9e3b5140b6507e2-->
 
 									<div class="form-process"></div>
 
@@ -178,96 +172,96 @@ layout: login
 
 										<div class="col-sm-6 bottommargin">
 											<div class="form-group">
-											<div class="col_full">
-												<label for="register-form-name">Name:</label>
-												<input type="text" id="register-form-name" name="register-form-name" value="" required class="sm-form-control form-control" />
-												<div class="help-block with-errors"></div>
-											</div>
-											</div>
-
-											<div class="form-group">
-											<div class="col_full">
-												<label for="register-form-name"> Business Name:</label>
-												<input type="text" id="register-form-business-name" name="register-form-business-name" value="" required class="sm-form-control form-control" />
-												<div class="help-block with-errors"></div>
-											</div>
+												<div class="col_full">
+													<label for="register-form-name">Name:</label>
+													<input type="text" id="register-form-name" name="register-form-name" value="" required class="sm-form-control form-control" />
+													<div class="help-block with-errors"></div>
+												</div>
 											</div>
 
 											<div class="form-group">
-											<div class="col_full">
-					              <label for="business-form-address">Business Address:</label>
-					              <input type="text" id="business-form-address" name="business-form-address" required value="" class="sm-form-control" />
-												<div class="help-block with-errors"></div>
-					            </div>
+												<div class="col_full">
+													<label for="register-form-name"> Business Name:</label>
+													<input type="text" id="register-form-business-name" name="register-form-business-name" value="" required class="sm-form-control form-control" />
+													<div class="help-block with-errors"></div>
+												</div>
 											</div>
 
 											<div class="form-group">
-					            <div class="col_full">
-					              <input type="text" id="business-form-address2" name="business-form-adresss-2" value="" class="sm-form-control" />
-												<div class="help-block with-errors"></div>
-					            </div>
+												<div class="col_full">
+						              <label for="business-form-address">Business Address:</label>
+						              <input type="text" id="business-form-address" name="business-form-address" required value="" class="sm-form-control" />
+													<div class="help-block with-errors"></div>
+						            </div>
 											</div>
 
 											<div class="form-group">
-					            <div class="col_full">
-					              <label for="business-form-city">City / Town</label>
-					              <input type="text" id="business-form-city" name="business-form-city" required value="" class="sm-form-control" />
-												<div class="help-block with-errors"></div>
-					            </div>
+						            <div class="col_full">
+						              <input type="text" id="business-form-address2" name="business-form-adresss-2" value="" class="sm-form-control" />
+													<div class="help-block with-errors"></div>
+						            </div>
 											</div>
 
 											<div class="form-group">
-											<div class="col_half">
-												<input type="text" class="sm-form-control" name="business-form-state" required placeholder="State / Country" />
-												<div class="help-block with-errors"></div>
-											</div>
-											</div>
-
-											<div class="form-group">
-											<div class="col_half col_last">
-												<input type="text" class="sm-form-control" name="business-form-zipcode" maxlength="10" required placeholder="PostCode / Zip" />
-												<div class="help-block with-errors"></div>
-											</div>
+						            <div class="col_full">
+						              <label for="business-form-city">City / Town</label>
+						              <input type="text" id="business-form-city" name="business-form-city" required value="" class="sm-form-control" />
+													<div class="help-block with-errors"></div>
+						            </div>
 											</div>
 
 											<div class="form-group">
-											<div class="col_full">
-												<label for="register-form-email">Email Address:</label>
-												<input type="email" id="register-form-email" name="register-form-email" data-error="Email address is invalid" required value="" class="sm-form-control form-control" />
-												<div class="help-block with-errors"></div>
-											</div>
-											</div>
-
-											<div class="form-group">
-											<div class="col_half">
-												<label for="register-form-phone">Phone:</label>
-												<input type="number" id="register-form-phone" name="register-form-phone" data-error="Must be 10 digits" data-minlength="10" required value="" class="form-control sm-form-control" />
-												<div class="help-block with-errors"></div>
-											</div>
+												<div class="col_half">
+													<input type="text" class="sm-form-control" name="business-form-state" required placeholder="State / Country" />
+													<div class="help-block with-errors"></div>
+												</div>
 											</div>
 
 											<div class="form-group">
-											<div class="col_half col_last">
-												<label for="register-form-fax">Fax Phone:</label>
-												<input type="number" id="register-form-fax" name="register-form-fax" value="" data-error="Must be 10 digits" class="form-control sm-form-control" />
-												<div class="help-block with-errors"></div>
-											</div>
-											</div>
-
-											<div class="form-group">
-											<div class="col_full">
-												<label for="register-form-website">Website:</label>
-												<input type="text" id="register-form-website" name="register-form-website" value="" class="form-control sm-form-control" />
-												<div class="help-block with-errors"></div>
-											</div>
+												<div class="col_half col_last">
+													<input type="text" class="sm-form-control" name="business-form-zipcode" maxlength="10" required placeholder="PostCode / Zip" />
+													<div class="help-block with-errors"></div>
+												</div>
 											</div>
 
 											<div class="form-group">
-											<div class="col_full">
-												<label for="register-form-username">Desired Username:</label>
-												<input type="text" id="register-form-username" name="register-form-username" required data-error="Must be at least 3 characters long" minlength="3" value="" class="form-control sm-form-control" />
-												<div class="help-block with-errors"></div>
+												<div class="col_full">
+													<label for="register-form-email">Email Address:</label>
+													<input type="email" id="register-form-email" name="register-form-email" data-error="Email address is invalid" required value="" class="sm-form-control form-control" />
+													<div class="help-block with-errors"></div>
+												</div>
 											</div>
+
+											<div class="form-group">
+												<div class="col_half">
+													<label for="register-form-phone">Phone:</label>
+													<input type="number" id="register-form-phone" name="register-form-phone" data-error="Must be 10 digits" data-minlength="10" required value="" class="form-control sm-form-control" />
+													<div class="help-block with-errors"></div>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<div class="col_half col_last">
+													<label for="register-form-fax">Fax Phone:</label>
+													<input type="number" id="register-form-fax" name="register-form-fax" value="" data-error="Must be 10 digits" class="form-control sm-form-control" />
+													<div class="help-block with-errors"></div>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<div class="col_full">
+													<label for="register-form-website">Website:</label>
+													<input type="text" id="register-form-website" name="register-form-website" value="" class="form-control sm-form-control" />
+													<div class="help-block with-errors"></div>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<div class="col_full">
+													<label for="register-form-username">Desired Username:</label>
+													<input type="text" id="register-form-username" name="register-form-username" required data-error="Must be at least 3 characters long" minlength="3" value="" class="form-control sm-form-control" />
+													<div class="help-block with-errors"></div>
+												</div>
 											</div>
 
 										</div>
@@ -315,7 +309,7 @@ layout: login
 											</div>
 											<div class="col_full nobottommargin">
 												<button class="button button-3d button-black nomargin" id="validateButton">Register Now</button>
-												<button class="button button-3d button-black nomargin" name="register-submit" type="submit" value="register" data-toggle="modal" data-target="#mymodal" id="register-form-submit" onclick="applicationReceived();" style="visibility:hidden;">Register Now</button>
+												<button class="button button-3d button-black nomargin" name="register-submit" type="submit" value="register" data-toggle="modal" data-target="#mymodal" id="register-form-submit" onclick="$('#register-form').hide();" style="visibility:hidden;">Register Now</button>
 											</div>
 										</div>
 									</div>
@@ -333,7 +327,7 @@ layout: login
 		                </div>
 		                <div class="modal-body" style="font-family: Lato; font-size: 19px;">
 
-		                  <p>This is a confirmation that your applicaiton has been successfully received and is currently under process. You will receive an email soon with your login credential or asking for further information.</p>
+		                  <p>This is a confirmation that your applicaiton has been successfully received and is currently under process. You will receive an email soon with your login credentials or asking for further information.</p>
 		                  <p class="nobottommargin">Laura Janelle values your business and is continuously looking for ways to better satisfy their customers. Please do share with us if there is a way we can serve you better.</p>
 		                </div>
 		                <div class="modal-footer">

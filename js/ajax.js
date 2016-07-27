@@ -362,7 +362,7 @@ function cartList()
             item += '</td>';
 
             item += '<td class="cart-product-price">';
-              item += '<span class="amount">jQuery' + flds[7].substring(0, flds[7].length - 3) + '</span>';
+              item += '<span class="amount">$' + flds[7].substring(0, flds[7].length - 3) + '</span>';
             item += '</td>';
 
             item += '<td class="cart-product-quantity">';
@@ -374,7 +374,7 @@ function cartList()
             item += '</td>';
 
             item += '<td class="cart-product-subtotal">';
-              item += '<span class="amount">jQuery' + flds[8].substring(0, flds[8].length - 4) + '</span>';
+              item += '<span class="amount">$' + flds[8].substring(0, flds[8].length - 4) + '</span>';
             item += '</td>';
           item += '</tr>';
           jQuery("#cartItemTable").prepend(item);
@@ -385,7 +385,7 @@ function cartList()
             miniitem += '</div>';
             miniitem += '<div class="top-cart-item-desc">';
               miniitem += '<a href="#">' + flds[3] + '</a>';
-              miniitem += '<span class="top-cart-item-price">jQuery' + flds[7].substring(0, flds[7].length - 3) + '</span>';
+              miniitem += '<span class="top-cart-item-price">$' + flds[7].substring(0, flds[7].length - 3) + '</span>';
               miniitem += '<span class="top-cart-item-quantity">x ' + flds[6].replace(/\s+/g,'') + '</span>';
             miniitem += '</div>';
           miniitem += '</div>';
@@ -429,7 +429,7 @@ function cartList()
             item += '</td>';
 
             item += '<td class="cart-product-subtotal">';
-              item += '<span class="amount">jQuery' + flds[8].substring(0, flds[8].length - 4) + '</span>';
+              item += '<span class="amount">$' + flds[8].substring(0, flds[8].length - 4) + '</span>';
             item += '</td>';
           item += '</tr>';
           jQuery("#cartItemTable").append(item);
@@ -440,7 +440,7 @@ function cartList()
             miniitem += '</div>';
             miniitem += '<div class="top-cart-item-desc">';
               miniitem += '<a href="#">' + flds[3] + '</a>';
-              miniitem += '<span class="top-cart-item-price">jQuery' + flds[7].substring(0, flds[7].length - 3) + '</span>';
+              miniitem += '<span class="top-cart-item-price">$' + flds[7].substring(0, flds[7].length - 3) + '</span>';
               miniitem += '<span class="top-cart-item-quantity">x ' + flds[6].replace(/\s+/g,'') + '</span>';
             miniitem += '</div>';
           miniitem += '</div>';
@@ -456,7 +456,7 @@ function cartList()
           miniitem += '</div>';
           miniitem += '<div class="top-cart-item-desc">';
           miniitem += '<a href="#">' + flds[3] + '</a>';
-          miniitem += '<span class="top-cart-item-price">jQuery' + flds[7].substring(0, flds[7].length - 3) + '</span>';
+          miniitem += '<span class="top-cart-item-price">$' + flds[7].substring(0, flds[7].length - 3) + '</span>';
           miniitem += '<span class="top-cart-item-quantity">x ' + flds[6].replace(/\s+/g,'') + '</span>';
           miniitem += '</div>';
           miniitem += '</div>';
@@ -504,7 +504,7 @@ function quickView()
 
       document.getElementById("shopItemTitle").innerHTML = '<h2>'+ collection +' Program</h2>';
 			document.getElementById("images").innerHTML = '<div class="slide" style="display: block;"><a href="#"  title="' + fields[1] + '"><img src="../ljimages/' + fields[0].trim() + '-md.png" alt="' + fields[1] + '"></a></div>';
-      document.getElementById("secondColumn").prepend = '<div class="product-price"> <ins>jQuery' + fields[4].substring(0, fields[4].length - 3) + '</ins></div>';
+      document.getElementById("secondColumn").prepend = '<div class="product-price"> <ins>$' + fields[4].substring(0, fields[4].length - 3) + '</ins></div>';
       jQuery( ".minus" ).after( '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + fields[0].replace(/\s+/g,'') + '" />' );
       jQuery( "#description" ).after( "<p>" + fields[1] + "</p><p>" + fields[6] + "</p>");
 	    jQuery( ".panel-body" ).html( '<span itemprop="productID" class="sku_wrapper">SKU: <span class="sku">' + fields[0] + '</span></span><span class="posted_in">Category: <a href="#" rel="tag">' + prodtype + '</a></span>');
@@ -667,6 +667,7 @@ function saveAddresses()
   var billingformemail        = $("#billing-form-email").val();
   var billingformphone        = $("#billing-form-phone").val();
 */
+
   var shippingformcompanyname = $("#shipping-form-companyname").val();
   var shippingformaddress     = $("#shipping-form-address").val();
   var shippingformaddress2    = $("#shipping-form-address2").val();
@@ -675,9 +676,31 @@ function saveAddresses()
   var shippingformstate       = $("#shipping-form-state").val();
   var shippingformzipcode     = $("#shipping-form-zipcode").val();
   var shippingformcountry     = $("#shipping-form-country").val();
-  var shippingformcontactname = $("#shipping-form-contactname").val();
   var email_addr              = $("#billing-form-email").val();
   var phone                   = $("#billing-form-phone").val();
+  var ponumber                = $("#shipping-form-ponumber").val();
+  var text1;
+  var text2;
+  var text3;
+  var text4;
+  var text5;
+  var notesArray = [];
+  notesArray = $("#shipping-form-message").val().match(/.{1,30}/g);
+  if (notesArray[0] && typeof(notesArray[0]) === "string") {
+     text1 = notesArray[0];
+  }
+  if (notesArray[1] && typeof(notesArray[1]) === "string") {
+    text2 = notesArray[1];
+  }
+  if (notesArray[2] && typeof(notesArray[2]) === "string") {
+    text3 = notesArray[2];
+  }
+  if (notesArray[3] && typeof(notesArray[3]) === "string") {
+    text4 = notesArray[3];
+  }
+  if (notesArray[4] && typeof(notesArray[4]) === "string") {
+    text5 = notesArray[4];
+  }
 
   pathArray = window.location.pathname.split( '/' );
   var path = pathArray.splice([pathArray.length - 2]);
@@ -689,7 +712,7 @@ function saveAddresses()
       data: {
         request_id: "APICARTUPD",
         session_no: session_no,
-    /*     billname: billingformcompanyname,
+    /*  billname: billingformcompanyname,
         billadd1: billingformaddress,
         billadd2: billingformaddress2,
         billadd3: billingformaddress3,
@@ -706,8 +729,14 @@ function saveAddresses()
         shipstate: shippingformstate,
         shipzip: shippingformzipcode,
         shipcountry: shippingformcountry,
+        phone: phone,
         email_addr: email_addr,
-        phone: phone
+        po_no: ponumber,
+        text1: text1,
+        text2: text2,
+        text3: text3,
+        text4: text4,
+        text5: text5
       },
       success: function(response) {
         console.log(response);
@@ -715,7 +744,7 @@ function saveAddresses()
     });
   } else if ( path[0] === "profile" ) {
     cust_no = $("#cust_no").html().trim();
-    shippingformcontactname = shippingformcontactname.split(' ').join('+');
+    var shippingformcontactname = $("#shipping-form-contactname").val();
      $.ajax({
       type: "GET",
       url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
@@ -763,6 +792,7 @@ function filterFunction(a,b,c,d,e,f)
     },
     complete: function(){
       pageTitle();
+      hideFilter();
     }
   });
 }
@@ -934,7 +964,10 @@ function openOrders()
 /////////////////////////////////////////////
 function searchOrders(orderSearchNumber)
 {
-
+  $("#details-title").show();
+  $("#details-table").show();
+  $("#line-item-title").show();
+  $("#line-item-table").show();
   $.ajax({
     type: "GET",
     url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
@@ -1029,6 +1062,10 @@ function searchOrders(orderSearchNumber)
 /////////////////////////////////////////////
 function searchInvoices(invoiceSearchNumber)
 {
+  $("#details-title").show();
+  $("#details-table").show();
+  $("#line-item-title").show();
+  $("#line-item-table").show();
   $.ajax({
     type: "GET",
     url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
@@ -1301,12 +1338,6 @@ function logoff()
 }
 
 
-function applicationReceived()
-{
-  $("#register-form").hide();
-}
-
-
 
 ////////////////////////////////
 // Find Minimum for the order //
@@ -1348,14 +1379,14 @@ function changeQuantity(element)
         jQuery(element).attr('disabled', true);
       }
     } else if(type == 'plus') {
-        var maxValue = parseInt(input.attr('max'));
-        if(!maxValue) maxValue = 9999999999999;
-        if(currentVal < maxValue) {
-          input.val(currentVal + 1).change();
-        }
-        if(parseInt(input.val()) == maxValue) {
-          jQuery(element).attr('disabled', true);
-        }
+      var maxValue = parseInt(input.attr('max'));
+      if(!maxValue) maxValue = 9999999999999;
+      if(currentVal < maxValue) {
+        input.val(currentVal + 1).change();
+      }
+      if(parseInt(input.val()) == maxValue) {
+        jQuery(element).attr('disabled', true);
+      }
     }
   } else {
     input.val(0);
@@ -1375,6 +1406,20 @@ function changeQuantity(element)
 }
 
 
+/////////////////////////////////////
+// Hide filter on the Program Page //
+/////////////////////////////////////
+function hideFilter()
+{
+  if (window.location.hash === "#sleek" || window.location.hash === "#rglb" || window.location.hash === "#encharming" || window.location.hash === "#identify") {
+     console.log("Hello I aam here");
+    $("#portfolio-filter").css({"visibility":"hidden"});
+  } else {
+    $("#portfolio-filter").css({"visibility":"visible"});
+  }
+}
+
+
 
 /////////////////////////
 // Populate Page Title //
@@ -1384,54 +1429,54 @@ function pageTitle()
   switch (window.location.hash) {
   case "#sleek":
     $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>SLEEK</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">SLEEK</li></ol></div>';
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>SLEEK</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><li>Shop</li><li class="active">SLEEK</li></ol></div>';
     break;
   case "#rglb":
     $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>RGLB</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">RGLB</li></ol></div>';
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>RGLB</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><li>Shop</li><li class="active">RGLB</li></ol></div>';
     break;
   case "#encharming":
     $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Encharming</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">Encharming</li></ol></div>';
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Encharming</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><li>Shop</li><li class="active">Encharming</li></ol></div>';
     break;
   case "#identify":
     $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>iDentify</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">iDentify</li></ol></div>';
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>iDentify</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><li>Shop</li><li class="active">iDentify</li></ol></div>';
     break;
   case "#programs":
     $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Programs</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">Programs</li></ol></div>';
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Programs</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><li>Shop</li><li class="active">Programs</li></ol></div>';
     break;
   case "#sets":
     $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Sets</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">Sets</li></ol></div>';
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Sets</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><li>Shop</li><li class="active">Sets</li></ol></div>';
     break;
   case "#earrings":
     $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Earrings</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">Earrings</li></ol></div>';
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Earrings</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><li>Shop</li><li class="active">Earrings</li></ol></div>';
     break;
   case "#necklaces":
     $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Necklaces</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">Necklaces</li></ol></div>';
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Necklaces</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><li>Shop</li><li class="active">Necklaces</li></ol></div>';
     break;
   case "#bracelets":
     $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Bracelets</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">Bracelets</li></ol></div>';
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Bracelets</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><li>Shop</li><li class="active">Bracelets</li></ol></div>';
     break;
   case "#lanyards":
     $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Lanyards</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><<li>Shop</li><li class="active">Lanyards</li></ol></div>';
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Lanyards</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><<li>Shop</li><li class="active">Lanyards</li></ol></div>';
     break;
   case "#tassels":
     $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Tassels</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">Tassels</li></ol></div>';
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Tassels</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><li>Shop</li><li class="active">Tassels</li></ol></div>';
     break;
   case "#snaps":
     $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Snaps</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">Snaps</li></ol></div>';
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Snaps</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><li>Shop</li><li class="active">Snaps</li></ol></div>';
     break;
   default:
     $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Full Suite</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li class="active">Shop</li></ol></div>';
+    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Full Suite</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><li class="active">Shop</li></ol></div>';
   }
 }

@@ -8,6 +8,10 @@ layout: page
 session_no = Cookies.get('session_no');
 
 $(document).ready(function() {
+    $("#details-title").hide();
+    $("#details-table").hide();
+    $("#line-item-title").hide();
+    $("#line-item-table").hide();
 
     orderHistory();
     cartList();
@@ -60,11 +64,11 @@ $(document).ready(function() {
         </form>
       </div>
 
-      <div class="fancy-title title-double-border topmargin">
+      <div class="fancy-title title-double-border topmargin" id="details-title">
         <h1>Invoice Details</h1>
       </div>
 
-      <table class="table table-bordered">
+      <table class="table table-bordered" id="details-table">
         <thead>
         <tr><th>Invoice Field</th><th>Invoice Detail</th></tr>
         </thead>
@@ -75,11 +79,11 @@ $(document).ready(function() {
       </table>
 
 
-      <div class="fancy-title title-double-border topmargin">
+      <div class="fancy-title title-double-border topmargin" id="line-item-title">
         <h1>Line Items</h1>
       </div>
 
-      <div class="table-responsive">
+      <div class="table-responsive" id="line-item-table">
 
         <table id="datatable4" class="table table-striped table-bordered" cellspacing="0" width="100%">
           <thead>
