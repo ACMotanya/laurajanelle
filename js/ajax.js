@@ -6,7 +6,7 @@ var collection;
 var country;
 var countrylines;
 var cust_name;
-var discountAmt;
+
 var detailViewQty;
 var fields;
 var flds;
@@ -25,7 +25,7 @@ var orderAmt;
 var pictureSlider;
 var prices = [];
 var prod;
-var salesTax;
+
 var searchField = document.getElementById('searchvalue');
 var searchTerm;
 var secondColumn;
@@ -268,47 +268,17 @@ function cartHeader(callback)
     success: function(response) {
       cartheader = response.split("\n");
       cartheader = cartheader[1].split("|");
-      orderAmt = cartheader[22].trim();
-      subtotal = cartheader[19].trim();
-      discountAmt = cartheader[20].trim();
-      salesTax = cartheader[21].trim();
-      shippingCost = cartheader[28].trim();
-      cartQty = cartheader[24].trim();
-      document.getElementById("top-cart-trigger").innerHTML += '<span>' + cartQty + '</span>';
+      orderAmt = cartheader[22];
+      subtotal = cartheader[19];
+      cartQty = cartheader[24];
+      document.getElementById("top-cart-trigger").innerHTML += '<span>' + cartQty.trim() + '</span>';
 
       pathArray = window.location.pathname.split( '/' );
       var path = pathArray.splice([pathArray.length - 2]);
 
       if ( path[0] === "cart" || path[0] === "checkout") {
-        jQuery("#cart-totals").empty();
-        var totals = '<tr class="cart_item">';
-          totals += '<td class="notopborder cart-product-name">';
-            totals += '<strong>Cart Subtotal</strong>';
-          totals += '</td>';
-
-          totals += '<td class="notopborder cart-product-name">';
-            totals += '<span class="amount">' + subtotal + '</span>';
-          totals += '</td>';
-        totals += '</tr>';
-        totals += '<tr class="cart_item">';
-          totals += '<td class="cart-product-name">';
-            totals += '<strong>Shipping</strong>';
-          totals += '</td>';
-
-          totals += '<td class="cart-product-name">';
-            totals += '<span class="amount">' + shippingCost + '</span>';
-          totals += '</td>';
-        totals += '</tr>';
-        totals += '<tr class="cart_item">';
-          totals += '<td class="cart-product-name">';
-            totals += '<strong>Total</strong>';
-          totals += '</td>';
-
-          totals += '<td class="cart-product-name">';
-            totals += '<span class="amount color lead"><strong>' + orderAmt + '</strong></span>';
-          totals += '</td>';
-        totals += '</tr>';
-        document.getElementById("cart-totals").innerHTML += totals;
+        $(".cart-product-name.subtotal").html( '<span class="amount">' + subtotal.trim() + '</span>' );
+        $(".cart-product-name.total").html( '<span class="amount color lead"><strong>' + orderAmt.trim() + '</strong></span>');
       }
     },
     complete: function () {
@@ -339,8 +309,10 @@ function cartList()
       // lines[0] is header row
       // lines[1]+ are data lines
 
-      jQuery("#cartItemTable").empty();
+      jQuery(".cart_item.products").empty();
       jQuery("#minicart").empty();
+      html = [];
+      html2 = [];
       pathArray = window.location.pathname.split( '/' );
       var path = pathArray.splice([pathArray.length - 2]);
 
@@ -377,7 +349,8 @@ function cartList()
               item += '<span class="amount">$' + flds[8].substring(0, flds[8].length - 4) + '</span>';
             item += '</td>';
           item += '</tr>';
-          jQuery("#cartItemTable").prepend(item);
+          html.push(item);
+//          jQuery("#cartItemTable").prepend(item);
 
           miniitem = '<div class="top-cart-item clearfix">';
             miniitem += '<div class="top-cart-item-image">';
@@ -389,10 +362,13 @@ function cartList()
               miniitem += '<span class="top-cart-item-quantity">x ' + flds[6].replace(/\s+/g,'') + '</span>';
             miniitem += '</div>';
           miniitem += '</div>';
-          jQuery("#minicart").append(miniitem);
+          html2.push(miniitem);
         }
+        $("#cartItemTable").prepend(html.join(''));
+        $("#updateCartButton").show();
+        $("#minicart").append(html2.join(''));
 
-        item = '<tr class="cart_item">';
+  /*      item = '<tr class="cart_item">';
           item += '<td colspan="6">';
             item += '<div class="row clearfix">';
               item += '<div class="col-md-4 col-xs-4 nopadding">';
@@ -410,7 +386,7 @@ function cartList()
             item += '</div>';
           item += '</td>';
         item += '</tr>';
-        jQuery("#cartItemTable").append(item);
+        jQuery("#cartItemTable").append(item); */
       } else if (path[0] === "checkout") {
         for (i=1; i<cartitems.length - 1; i++) {
           flds = cartitems[i].split("|");
@@ -444,24 +420,26 @@ function cartList()
               miniitem += '<span class="top-cart-item-quantity">x ' + flds[6].replace(/\s+/g,'') + '</span>';
             miniitem += '</div>';
           miniitem += '</div>';
-          jQuery("#minicart").append(miniitem);
+          html2.push(miniitem);
         }
+        $("#minicart").append(html2.join(''));
       } else {
         for (i=1; i<cartitems.length - 1; i++) {
           flds = cartitems[i].split("|");
 
           miniitem = '<div class="top-cart-item clearfix">';
-          miniitem += '<div class="top-cart-item-image">';
-          miniitem += '<a href="#"><img src="../ljimages/' + flds[2].replace(/\s+/g,'') + '-sm.png" alt="' + flds[3] + '" /></a>';
+            miniitem += '<div class="top-cart-item-image">';
+              miniitem += '<a href="#"><img src="../ljimages/' + flds[2].replace(/\s+/g,'') + '-sm.png" alt="' + flds[3] + '" /></a>';
+            miniitem += '</div>';
+            miniitem += '<div class="top-cart-item-desc">';
+              miniitem += '<a href="#">' + flds[3] + '</a>';
+              miniitem += '<span class="top-cart-item-price">$' + flds[7].substring(0, flds[7].length - 3) + '</span>';
+              miniitem += '<span class="top-cart-item-quantity">x ' + flds[6].replace(/\s+/g,'') + '</span>';
+            miniitem += '</div>';
           miniitem += '</div>';
-          miniitem += '<div class="top-cart-item-desc">';
-          miniitem += '<a href="#">' + flds[3] + '</a>';
-          miniitem += '<span class="top-cart-item-price">$' + flds[7].substring(0, flds[7].length - 3) + '</span>';
-          miniitem += '<span class="top-cart-item-quantity">x ' + flds[6].replace(/\s+/g,'') + '</span>';
-          miniitem += '</div>';
-          miniitem += '</div>';
-          jQuery("#minicart").append(miniitem);
+          html2.push(miniitem);
         }
+        jQuery("#minicart").append(html2.join(''));
       }
     }
   });
@@ -1349,10 +1327,10 @@ function minimumTotal()
   if (newCustomer === "false" && orderAmtFloat < 100 || newCustomer === "true" && orderAmtFloat < 150 ){
     $("#myButton").hide();
     if (newCustomer === "true") {
-      document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + (150 - orderAmtFloat) + ' more to reach the minimum order requirement of $150 for new customers.</h2>';
+      document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + (150.00 - orderAmtFloat) + ' more to reach the minimum order requirement of $150 for new customers.</h2>';
     }
     if (newCustomer === "false") {
-      document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + (100 - orderAmtFloat) + ' more to reach the minimum order requirement of $100.</h2>';
+      document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + (100.00 - orderAmtFloat) + ' more to reach the minimum order requirement of $100.</h2>';
     }
   }
 }
@@ -1426,9 +1404,11 @@ function hideFilter()
 /////////////////////////
 function pageTitle()
 {
+  var pageTitle;
   switch (window.location.hash) {
   case "#sleek":
     $('#page-title').empty();
+    pageTitle = "SLEEK";
     document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>SLEEK</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><li>Shop</li><li class="active">SLEEK</li></ol></div>';
     break;
   case "#rglb":
