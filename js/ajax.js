@@ -765,7 +765,13 @@ function filterFunction(a,b,c,d,e,f)
       level3: d,
       level4: e,
       level5: f},
+    statusCode: {
+      500: function() {
+        alert("Script exhausted");
+      }
+    },
     success: function(response) {
+      console.log(response);
       fillShop(response);
     },
     complete: function(){
@@ -1309,7 +1315,7 @@ function displayAddress(index) {
 
 function logoff()
 {
-  $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APILOGOFF&session_no="+ session_no +"", function( data ) {
+  jQuery.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APILOGOFF&session_no="+ session_no +"", function( data ) {
     Cookies.set('session_no', "Logged Out");
     redirect("");
   });
