@@ -5,6 +5,11 @@ layout: login
 					var password;
 
 					$(document).ready(function() {
+
+						if ( Cookies.get('session_no').length === 25 ) {
+							redirect("store");
+						}
+
 						$("#content").hide();
 					  $("#login-form").on("submit", function(e) {
 					     e.preventDefault();
@@ -162,7 +167,7 @@ layout: login
 
 								<p id="register" class="divcenter bottommargin-sm" style="max-width: 800px;"><strong>If you are an existing customer and would like to make purchases online, please email <a href="mailto:customerservice@laurajanelle.com?Subject=Website%20Login" target="_top">customerservice@laurajanelle.com</a> with your company name and email address to obtain a login.</strong> </p>
 
-								<p class="divcenter bottommargin-sm" style="max-width: 800px;">To become a wholesale customer with Laura Janelle, please complete this application form and mail, fax, or email with the required documents listed below. This is not a credit application. We require a $150.00 opening order and $500.00 in orders per year to maintain wholesale status. You may apply for credit terms through our application process. Please contact Customer Service for more information.</p>
+								<p class="divcenter bottommargin-sm" style="max-width: 800px;">To become a wholesale customer with Laura Janelle, please complete this application form and mail, fax, or email with the required documents listed below. This is not a credit application. We require a $200.00 opening order. You may apply for credit terms through our application process. Please contact Customer Service for more information.</p>
 
 								<form data-toggle="validator" id="register-form" name="register-form" class="nobottommargin" action="https://getsimpleform.com/messages?form_api_token=b83273e1ff326a34ec1012bc799fbe38" method="post" role="form" enctype="multipart/form-data" onsubmit="return false;"> <!--  ace@cousin.com 8bb5347f6ea8a314f9e3b5140b6507e2-->
 
@@ -278,35 +283,41 @@ layout: login
 											</div>
 											<p><strong>NOTE: If your business is in the State of Florida, a copy of a Tax ID must be provided also. STATE OF FLORIDA COMPTROLLER SALES TAX DIVISION RULE 39</strong></p>
 											<h4>How did you hear about us?</h4>
-											<div class="col_half">
+											<div class="col_one_third">
 												<input id="checkbox-1" class="checkbox-style" name="hear-about-us-website" type="checkbox">
 												<label for="checkbox-1" class="checkbox-style-2-label checkbox-small">Website</label>
 											</div>
-											<div class="col_half col_last">
+											<div class="col_one_third">
 												<input id="checkbox-2" class="checkbox-style" name="hear-about-us-packaging" type="checkbox">
 												<label for="checkbox-2" class="checkbox-style-2-label checkbox-small">Cousin Packaging</label>
 											</div>
-											<div class="col_half">
+											<div class="col_one_third">
 												<input id="checkbox-3" class="checkbox-style" name="hear-about-us-search-engine" type="checkbox">
 												<label for="checkbox-3" class="checkbox-style-2-label checkbox-small">Search Engine</label>
 											</div>
-											<div class="col_half col_last">
+											<div class="col_one_third">
 												<input id="checkbox-4" class="checkbox-style" name="hear-about-us-social-media" type="checkbox">
 												<label for="checkbox-4" class="checkbox-style-2-label checkbox-small">Social Media</label>
 											</div>
-											<div class="col_half">
+											<div class="col_one_third">
 												<input id="checkbox-5" class="checkbox-style" name="hear-about-us-friend" type="checkbox">
 												<label for="checkbox-5" class="checkbox-style-2-label checkbox-small">Friend</label>
 											</div>
-											<div class="col_half col_last">
-												<input id="checkbox-6" class="checkbox-style" name="hear-about-us-other" type="checkbox">
-												<label for="checkbox-6" class="checkbox-style-2-label checkbox-small">Other</label>
+											<div class="col_one_third">
+												<input id="checkbox-6" class="checkbox-style" name="hear-about-us-sales-rep" type="checkbox">
+												<label for="checkbox-6" class="checkbox-style-2-label checkbox-small">Sales Rep</label>
+											</div>
+											<div class="col_one_third col_last">
+												<input id="checkbox-7" class="checkbox-style" name="hear-about-us-other" type="checkbox">
+												<label for="checkbox-7" class="checkbox-style-2-label checkbox-small">Other</label>
 											</div>
 											<div class="line" style="margin: 10px"></div>
+
 											<div class="col_full">
 												<input id="checkbox-7" class="checkbox-style" name="receive-promotions" type="checkbox">
-												<label for="checkbox-7" class="checkbox-style-3-label checkbox-small">Receive occasional emails about inspirational projects, special promotions and "sneak peaks" to our new products</label>
+												<label for="checkbox-7" class="checkbox-style-3-label checkbox-small">Be the first to know about new products and promotions</label>
 											</div>
+
 											<div class="col_full nobottommargin">
 												<button class="button button-3d button-black nomargin" id="validateButton">Register Now</button>
 												<button class="button button-3d button-black nomargin" name="register-submit" type="submit" value="register" data-toggle="modal" data-target="#mymodal" id="register-form-submit" onclick="$('#register-form').hide();" style="visibility:hidden;">Register Now</button>

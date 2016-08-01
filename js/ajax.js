@@ -1330,10 +1330,10 @@ function minimumTotal()
 {
   newCustomer = Cookies.get('newCustomer');
   orderAmtFloat = parseFloat(orderAmt);
-  if (newCustomer === "false" && orderAmtFloat < 100 || newCustomer === "true" && orderAmtFloat < 150 ){
+  if (newCustomer === "false" && orderAmtFloat < 100 || newCustomer === "true" && orderAmtFloat < 200 ){
     $("#myButton").hide();
     if (newCustomer === "true") {
-      document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + (150.00 - orderAmtFloat) + ' more to reach the minimum order requirement of $150 for new customers.</h2>';
+      document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + (200.00 - orderAmtFloat) + ' more to reach the minimum order requirement of $150 for new customers.</h2>';
     }
     if (newCustomer === "false") {
       document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + (100.00 - orderAmtFloat) + ' more to reach the minimum order requirement of $100.</h2>';
