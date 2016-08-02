@@ -6,9 +6,11 @@ layout: login
 
 					$(document).ready(function() {
 
-						if ( Cookies.get('session_no').length === 25 ) {
-							redirect("store");
-						}
+						if ( Cookies.get('session_no') && typeof(Cookies.get('session_no')) === "string") {
+							if ( Cookies.get('session_no').length === 25 ) {
+								redirect("store");
+							}
+			      }
 
 						$("#content").hide();
 					  $("#login-form").on("submit", function(e) {
