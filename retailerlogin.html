@@ -8,9 +8,17 @@ layout: login
 
 						if ( Cookies.get('session_no') && typeof(Cookies.get('session_no')) === "string") {
 							if ( Cookies.get('session_no').length === 25 ) {
-								redirect("store");
+								redirect("shop");
 							}
 			      }
+
+						var $loading = $('#loadingDiv').hide();
+
+						$(document).ajaxStart(function () {
+							$loading.show();
+						}).ajaxStop(function () {
+							$loading.hide();
+						});
 
 						$("#content").hide();
 					  $("#login-form").on("submit", function(e) {
@@ -44,10 +52,10 @@ layout: login
 					              console.log(openOrderLines + invoiceLines);
 					              if (openOrderLines + invoiceLines <= 4) {
 					                Cookies.set('newCustomer', "true");
-					                redirect("store");
+					                redirect("shop");
 					              } else {
 					                Cookies.set('newCustomer', "false");
-					                redirect("store");
+					                redirect("shop");
 					              }
 					            });
 					          });
@@ -75,10 +83,21 @@ layout: login
 		      <!-- Slider
 				============================================= -->
 				<section id="slider" class="slider-parallax full-screen">
+
 					<div class="slider-parallax-inner">
 						<div class="full-screen dark section nopadding nomargin noborder ohidden" style="background-image: url('{{ site.baseurl }}/img/encharming3.png'); background-size: cover; background-position: center center;">
+
 							<div class="row nomargin" style="position: relative; z-index: 2;">
 								<div class="col-md-offset-7 col-md-5 full-screen" style="background-color: rgba(0,0,0,0.45);">
+									<div class="col-md-3 col-sm-4 col-xs-6 center" style="height: 150px;" id="loadingDiv">
+				            <div class="css3-spinner" style="z-index:auto;">
+				              <div class="css3-spinner-rect1"></div>
+				              <div class="css3-spinner-rect2"></div>
+				              <div class="css3-spinner-rect3"></div>
+				              <div class="css3-spinner-rect4"></div>
+				              <div class="css3-spinner-rect5"></div>
+				            </div>
+				          </div>
 									<div class="row center">
 										<a href="{{ site.baseurl }}/"><img src="{{ site.baseurl }}/one-page/images/lj-white-2.png" alt="Laura Janelle Logo"></a>
 									</div>

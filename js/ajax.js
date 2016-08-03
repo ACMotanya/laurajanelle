@@ -47,7 +47,7 @@ function createCustomer()
 {
   var createcompanyname = $("#create-companyname").val();
   var createcontactname = $("#create-contactname").val();
-  var createaddress     = $("#create-addres").val();
+  var createaddress     = $("#create-address").val();
   var createaddress2    = $("#create-address2").val();
   var createaddress3    = $("#create-address3").val();
   var createcity        = $("#create-city").val();
@@ -634,7 +634,8 @@ function creditCard()
 /////////////////////////////////////////
 function saveAddresses()
 {
-/*  var billingformcompanyname  = $("#billing-form-companyname").val();
+/*
+  var billingformcompanyname  = $("#billing-form-companyname").val();
   var billingformaddress      = $("#billing-form-addres").val();
   var billingformaddress2     = $("#billing-form-address2").val();
   var billingformaddress3     = $("#billing-form-address3").val();
@@ -765,20 +766,128 @@ function filterFunction(a,b,c,d,e,f)
       level3: d,
       level4: e,
       level5: f},
-    statusCode: {
-      500: function() {
-        alert("Script exhausted");
-      }
-    },
     success: function(response) {
       console.log(response);
-      fillShop(response);
+      if ( window.location.hash === "#sleek" ) {
+        fillShop2(response);
+      } else {
+        fillShop3(response);
+      }
     },
     complete: function(){
       pageTitle();
       hideFilter();
     }
   });
+}
+
+
+
+/////////////////////////////////////////////
+      // POPULATE THE STORE PAGE //
+/////////////////////////////////////////////
+function fillShop2(response)
+{
+  lines = response.split("\n");
+  lines.shift();
+  linesPlus = [];
+  for (i=0; i<lines.length - 1; i++) {
+    linesPlus.push(lines[i].split("|"));
+  }
+  linesPlus.sort( function( a, b )
+  {
+    // Sort by the 8th value which is the color in each array
+    // if ( a[8] == b[8] ) return 0;
+    // return a[8] < b[8] ? -1 : 1;
+    retVal=0;
+    if(a[8]!=b[8]) retVal=a[8]>b[8]?1:-1;
+    else if(a[1]!=b[1]) retVal=a[1]>b[1]?1:-1;
+    return retVal;
+  });
+  console.log(linesPlus);
+  // lines[0] is header row
+  // lines[1]+ are data lines
+  $('#shop').empty();
+  html = [];
+  if ( lines.length <= 1) {
+    document.getElementById("shop").innerHTML += '<h1>There are no results</h1>';
+  } else {
+    for (i=0; i<linesPlus.length; i++) {
+      flds = linesPlus[i];
+
+      prices.push(Number(flds[4]));
+      prod = '<div class="product clearfix ' + flds[2] + '">';
+        prod += '<div class="product-image">';
+          prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
+        //  prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
+        //  prod += 'div class="sale-flash">50% Off*</div>'
+          prod += '<div class="product-overlay">';
+            prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+            prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a>';
+          prod += '</div>';
+        prod += '</div>';
+        prod += '<div class="product-desc">';
+          prod += '<div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div>';
+          prod += '<div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div>';
+        prod += '</div>';
+      prod += '</div>';
+      html.push(prod);
+    }
+    document.getElementById("shop").innerHTML += html.join('');
+    min = Array.min(prices);
+    max = Array.max(prices);
+    $(document).trigger("filters");
+    $(document).trigger("priceFilters");
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+      // POPULATE THE STORE PAGE  333333333333333333333333333333333333333333333333333333333//
+////////////////////////////////////////////////////////////////////////////////////////////////////
+function fillShop3(response)
+{
+  $('#shop').empty();
+  lines = response.split("\n");
+  if ( lines.length <= 2) {
+    document.getElementById("shop").innerHTML += '<h1>There are no results</h1>';
+  } else {
+    lines.shift();
+    linesPlus = [];
+    for (i=0; i<lines.length - 1; i++) {
+      if ( lines[i].substring(5,6) === " " ) {
+        linesPlus.push(lines[i].split("|"));
+      } else {
+        linesPlus.unshift(lines[i].split("|"));
+      }
+    }
+    html = [];
+    for (i=0; i<linesPlus.length; i++) {
+      flds = linesPlus[i];
+
+      prices.push(Number(flds[4]));
+      prod = '<div class="product clearfix ' + flds[2] + '">';
+        prod += '<div class="product-image">';
+          prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
+        //  prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
+        //  prod += 'div class="sale-flash">50% Off*</div>'
+          prod += '<div class="product-overlay">';
+            prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+            prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a>';
+          prod += '</div>';
+        prod += '</div>';
+        prod += '<div class="product-desc">';
+          prod += '<div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div>';
+          prod += '<div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div>';
+        prod += '</div>';
+      prod += '</div>';
+      html.push(prod);
+    }
+    document.getElementById("shop").innerHTML += html.join('');
+    min = Array.min(prices);
+    max = Array.max(prices);
+    $(document).trigger("filters");
+    $(document).trigger("priceFilters");
+  }
 }
 
 
@@ -1396,7 +1505,6 @@ function changeQuantity(element)
 function hideFilter()
 {
   if (window.location.hash === "#sleek" || window.location.hash === "#rglb" || window.location.hash === "#encharming" || window.location.hash === "#identify") {
-     console.log("Hello I aam here");
     $("#portfolio-filter").css({"visibility":"hidden"});
   } else {
     $("#portfolio-filter").css({"visibility":"visible"});
