@@ -99,6 +99,13 @@ Index page styling
 	margin-top: 30px !important;
 }
 
+.portfolio-item .portfolio-image a {
+	width: auto;
+}
+.flex-next {
+	right: 0;
+	left: auto;
+}
 
 #copyrights.index {
 	background-color: #fff;
@@ -109,12 +116,18 @@ Index page styling
 	.content-wrap .index {
 		padding-top: 50px;
 	}
+
+		transform: translateY(-60%);
 }
 
 @media (min-width: 1500px) {
 	.container.index {
     width: 1500px;
 	}
+}
+
+.portfolio-overlay {
+	background-color: rgba(0,0,0,0.5);
 }
 
 /*
@@ -127,7 +140,7 @@ About page styling
 	padding: 30px 0 0 0;
 }
 
-div.container.clearfix video {
+div.container.clearfix video.about {
 	display: block;
 	width: 70%;
 	margin: auto;
@@ -191,7 +204,7 @@ div.container.clearfix video {
 		margin-left: 33px;
 	}
 
-	div.container.clearfix video {
+	div.container.clearfix video.about {
 		display: block;
 		width: 100%;
 		margin-top: 30px;
