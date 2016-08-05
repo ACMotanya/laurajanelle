@@ -90,7 +90,38 @@
 	background: #000;
 }
 
-/* About page styling */
+/* \\\\\\\\\\\\\\\\\\\
+Index page styling
+\\\\\\\\\\\\\\\\\\\\\*/
+#footer.index {
+	border-top: none;
+	background-color: #fff;
+	margin-top: 30px !important;
+}
+
+
+#copyrights.index {
+	background-color: #fff;
+}
+
+
+@media (min-width: 991px) {
+	.content-wrap .index {
+		padding-top: 50px;
+	}
+}
+
+@media (min-width: 1500px) {
+	.container.index {
+    width: 1500px;
+	}
+}
+
+/*
+/* \\\\\\\\\\\\\\\\\\\
+About page styling
+/* \\\\\\\\\\\\\\\\\\\
+*/
 
 #section-about.page-section {
 	padding: 30px 0 0 0;
@@ -118,8 +149,9 @@ div.container.clearfix video {
 	}
 }
 
-
-/* Meet Us Styles */
+/* \\\\\\\\\\\\\\\\\\\
+	/* Meet Us Styles
+/* \\\\\\\\\\\\\\\\\\\*/
 .boss-man {
   margin:auto;
   width:66.6666%;
@@ -131,7 +163,7 @@ div.container.clearfix video {
 
 
 
-/* I think I am the great and everything I love seems to make perfect sense to me */
+/* I think I am the great and everything, love never made sense to me */
 
 
 @media (max-width: 991px) {
