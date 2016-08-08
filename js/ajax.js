@@ -799,11 +799,10 @@ function filterFunction(a,b,c,d,e,f)
       if ( window.location.hash === "#sleek" ) {
         fillShop2(response);
       } else {
-        fillShop3(response);
+        fillShop2(response);
       }
     },
     complete: function(){
-      pageTitle();
       hideFilter();
     }
   });
@@ -822,15 +821,16 @@ function fillShop2(response)
   for (i=0; i<lines.length - 1; i++) {
     linesPlus.push(lines[i].split("|"));
   }
-  linesPlus.sort( function( a, b )
+  linesPlus = linesPlus.sort( function( a, b )
   {
     // Sort by the 8th value which is the color in each array
     // if ( a[8] == b[8] ) return 0;
     // return a[8] < b[8] ? -1 : 1;
-    retVal=0;
-    if(a[8]!=b[8]) retVal=a[8]>b[8]?1:-1;
-    else if(a[1]!=b[1]) retVal=a[1]>b[1]?1:-1;
-    return retVal;
+    // retVal=0;
+    // if(a[8]!=b[8]) retVal=a[8]>b[8]?1:-1;
+    // else if(a[1]!=b[1]) retVal=a[1]>b[1]?1:-1;
+    // return retVal;
+      return sortItems.indexOf( a.key ) > sortItems.indexOf( b.key );
   });
   console.log(linesPlus);
   // lines[0] is header row
