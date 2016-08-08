@@ -26,7 +26,7 @@ sortItems = [
 "10777","10778","10779","10780","10781","10782","10783","10784",
 "10300A","10301","10302","10303","10304","10305","10306","10307",
 "10308","10309","10310","10311","10314","10315","10312","10313",
-"10316","10317","10318","10320","10323","10321","10324","10325",
+"10316","10317","10318","10319","10320","10322","10323","10321","10324","10325",
 "10326","10327","10328","10329","10330","10331","10332","10500A",
 "10501","10502","10503","10504","10517","10518","10519","10520",
 "10505","10506","10507","10508","10523","10524","10525","10522",
@@ -816,74 +816,18 @@ function fillShop2(response)
   for (i=0; i<lines.length - 1; i++) {
     linesPlus.push(lines[i].split("|"));
   }
-  linesPlus = linesPlus.sort( function( a, b )
+  linesPlus.sort( function( a, b )
   {
-    // Sort by the 8th value which is the color in each array
-    // if ( a[8] == b[8] ) return 0;
-    // return a[8] < b[8] ? -1 : 1;
-    // retVal=0;
-    // if(a[8]!=b[8]) retVal=a[8]>b[8]?1:-1;
-    // else if(a[1]!=b[1]) retVal=a[1]>b[1]?1:-1;
-    // return retVal;
-      return sortItems.indexOf( a[0] ) > sortItems.indexOf( b[0] );
+    retVal=0;
+    if (sortItems.indexOf(a[0].trim()) != sortItems.indexOf( b[0].trim() )) retVal= sortItems.indexOf( a[0].trim() ) > sortItems.indexOf( b[0].trim() )?1:-1;
+    return retVal;
   });
-  console.log(linesPlus);
-  // lines[0] is header row
   // lines[1]+ are data lines
   $('#shop').empty();
   html = [];
   if ( lines.length <= 1) {
     document.getElementById("shop").innerHTML += '<h1>There are no results</h1>';
   } else {
-    for (i=0; i<linesPlus.length; i++) {
-      flds = linesPlus[i];
-
-      prices.push(Number(flds[4]));
-      prod = '<div class="product clearfix ' + flds[2] + '">';
-        prod += '<div class="product-image">';
-          prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
-        //  prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
-        //  prod += 'div class="sale-flash">50% Off*</div>'
-          prod += '<div class="product-overlay">';
-            prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-            prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a>';
-          prod += '</div>';
-        prod += '</div>';
-        prod += '<div class="product-desc">';
-          prod += '<div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div>';
-          prod += '<div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div>';
-        prod += '</div>';
-      prod += '</div>';
-      html.push(prod);
-    }
-    document.getElementById("shop").innerHTML += html.join('');
-    min = Array.min(prices);
-    max = Array.max(prices);
-    $(document).trigger("filters");
-    $(document).trigger("priceFilters");
-  }
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-      // POPULATE THE STORE PAGE  333333333333333333333333333333333333333333333333333333333//
-////////////////////////////////////////////////////////////////////////////////////////////////////
-function fillShop3(response)
-{
-  $('#shop').empty();
-  lines = response.split("\n");
-  if ( lines.length <= 2) {
-    document.getElementById("shop").innerHTML += '<h1>There are no results</h1>';
-  } else {
-    lines.shift();
-    linesPlus = [];
-    for (i=0; i<lines.length - 1; i++) {
-      if ( lines[i].substring(5,6) === " " ) {
-        linesPlus.push(lines[i].split("|"));
-      } else {
-        linesPlus.unshift(lines[i].split("|"));
-      }
-    }
-    html = [];
     for (i=0; i<linesPlus.length; i++) {
       flds = linesPlus[i];
 
@@ -937,54 +881,10 @@ function search()
           fillShop(data);
         } else {
           $("section").append('<section id="content"><div class="content-wrap"><div class="container clearfix"><div class="shop grid-container clearfix" id="shop"></div></div></div></div>');
-          fillShop(data);
+          fillShop2(data);
         }
       }
     });
-  }
-}
-
-
-
-/////////////////////////////////////////////
-      // POPULATE THE STORE PAGE //
-/////////////////////////////////////////////
-function fillShop(response)
-{
-  lines = response.split("\n");
-  // lines[0] is header row
-  // lines[1]+ are data lines
-  $('#shop').empty();
-  html = [];
-  if ( lines.length <= 2) {
-    document.getElementById("shop").innerHTML += '<h1>There are no results</h1>';
-  } else {
-    for (i=1; i<lines.length - 1; i++) {
-      flds = lines[i].split("|");
-
-      prices.push(Number(flds[4]));
-      prod = '<div class="product clearfix ' + flds[2] + '">';
-        prod += '<div class="product-image">';
-          prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
-        //  prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
-        //  prod += 'div class="sale-flash">50% Off*</div>'
-          prod += '<div class="product-overlay">';
-            prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-            prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a>';
-          prod += '</div>';
-        prod += '</div>';
-        prod += '<div class="product-desc">';
-          prod += '<div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div>';
-          prod += '<div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div>';
-        prod += '</div>';
-      prod += '</div>';
-      html.push(prod);
-    }
-    document.getElementById("shop").innerHTML += html.join('');
-    min = Array.min(prices);
-    max = Array.max(prices);
-    $(document).trigger("filters");
-    $(document).trigger("priceFilters");
   }
 }
 
