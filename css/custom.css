@@ -2,6 +2,8 @@
 	Custom CSS
 ----------------------------------------------------------------- */
 
+.content { display: none; }
+
 .margin-auto {
 	margin: auto;
 }
@@ -30,13 +32,13 @@
 	}
 }
 
-
 #primary-menu ul li > a {
 	font-family: Bodoni-Sans;
 	font-weight: 600;
 	font-size: 14px;
 	letter-spacing: 1px;
 }
+
 #primary-menu.index-nav ul li > a {
 	font-size: 16px;
 }
@@ -48,8 +50,6 @@
 #header.transparent-header.full-header #primary-menu > ul {
 	border-right-color: transparent;
 }
-
-
 
 #primary-menu ul li.current {
 	color: #999;
@@ -116,8 +116,6 @@ Index page styling
 	.content-wrap .index {
 		padding-top: 50px;
 	}
-
-		transform: translateY(-60%);
 }
 
 @media (min-width: 1500px) {
@@ -236,6 +234,27 @@ div.container.clearfix video.about {
 
 /* The scroller on the bottom Empower Entice and Stuff */
 
+.content {
+  width: 100%;
+  padding: 0;
+  margin: 5%;
+	text-align: right;
+	color: #000;
+	float: right;
+	font-size: 70px;
+}
+
+@media (max-width: 991px) {
+	.content {
+		font-size: 50px;
+	}
+}
+
+@media (max-width: 479px) {
+	.content {
+		font-size: 30px;
+	}
+}
 .rotator {
   width: 80%;
   list-style: none;
@@ -243,6 +262,8 @@ div.container.clearfix video.about {
   margin: 5%;
 	text-align: right;
 	color: #000;
+	float: right;
+	font-size: 70px;
 }
 
 .rotator > li {
