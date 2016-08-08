@@ -59,6 +59,19 @@
 		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 	<![endif]-->
 	<script type="text/javascript" src="js/jquery.js"></script>
+  <script>
+  jQuery(document).ready(function() {
+    function fadeContent() {
+      $(".contentPanel .content:hidden:first").fadeIn(500).delay(2000).fadeOut(500, function() {
+        $(this).appendTo($(this).parent());
+        fadeContent();
+      });
+    }
+    fadeContent();
+  });
+  </script>
+
+
 
 	<!-- Document Title
 	============================================= -->
@@ -255,18 +268,34 @@
   			</article>
       </div>
 
-      <!-- LAYER NR. 4 -->
-      <div class="tp-caption tp-resizeme" style="z-index: 0; white-space: nowrap; font-size: 70px; line-height: 0px; color: rgba(0, 0, 0, .80); font-family:Bodoni-Sans, sans-serif;">
+      <div class="contentPanel">
+        <div class="content">
+           <div style="z-index: 0; font-family:Bodoni-Sans, sans-serif;">
+              OUR SHOPPING CART IS NOW OPEN
+           </div>
+        </div>
+        <div class="content">
+           <div style="z-index: 0; font-family:Bodoni-Sans, sans-serif;">
+              CLICK HERE TO SHOP<a href="http://www.laurajanelle.com/retailerlogin" style="color: rgba(0, 0, 0, .50);"> NOW</a>
+           </div>
+        </div>
+      </div>
+
+
+
+      <!-- LAYER NR. 4
+      <div class="tp-caption tp-resizeme" style="z-index: 0; white-space: nowrap; line-height: 0px; font-family:Bodoni-Sans, sans-serif;">
         <ul class="rotator one-page-menu">
           <li>OUR SHOPPING CART IS NOW OPEN</li>
           <li><a href="http://www.laurajanelle.com/retailerlogin">CLICK HERE TO SHOP NOW</a></li>
           <li>OUR SHOPPING CART IS NOW OPEN</li>
           <li><a href="http://www.laurajanelle.com/retailerlogin">CLICK HERE TO SHOP NOW</a></li>
         </ul>
-      </div>
+      </div>-->
     </div>
   </div>
 </section>
+
 
 
       <!-- Footer
@@ -314,7 +343,8 @@
   </div><!-- #copyrights end -->
 </footer><!-- #footer end -->
 
-    </div>
+</div>
+
     <!-- External JavaScripts
 =============================================
 <script type="text/javascript" src="/js/history.js"></script> -->
@@ -323,6 +353,18 @@
 <!-- Footer Scripts
 ============================================= -->
 <script type="text/javascript" src="js/functions.js"></script>
+
+<script>
+jQuery(document).ready(function() {
+  function fadeContent() {
+    $(".contentPanel .content:hidden:first").fadeIn(500).delay(2000).fadeOut(500, function() {
+      $(this).appendTo($(this).parent());
+      fadeContent();
+    });
+  }
+  fadeContent();
+});
+</script>
 
 <script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
