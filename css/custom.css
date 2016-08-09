@@ -111,10 +111,59 @@ Index page styling
 	background-color: #fff;
 }
 
+/* The scroller on the bottom Empower Entice and Stuff */
+div.content div a {
+	text-decoration: underline !important;
+}
 
-@media (min-width: 991px) {
+.content {
+	color: #000;
+	float: none;
+	font-size: 42px;
+	position: absolute;
+	left: 10px;
+	top: 40px;
+}
+
+.second-set {
+	left: 660px;
+}
+
+@media (max-width: 1199px) {
+	.content {
+		font-size: 30px;
+	}
+	.second-set {
+		left: 475px;
+	}
+}
+
+@media (max-width: 991px) {
+	.content {
+		font-size: 25px;
+	}
+	.second-set {
+		left: 395px;
+	}
+}
+
+@media (max-width: 768px) {
+	.content {
+		font-size: 16px;
+	}
+	.second-set {
+		left: 260px;
+	}
+}
+
+@media (max-width: 500px) {
+	.contentPanel {
+		display: none;
+	}
+}
+@media (min-width: 479px) {
 	.content-wrap .index {
-		padding-top: 50px;
+		padding-top: 100px;
 	}
 }
 
@@ -232,52 +281,6 @@ div.container.clearfix video.about {
 	}
 }
 
-/* The scroller on the bottom Empower Entice and Stuff */
-
-.content {
-  width: 100%;
-	text-align: right;
-	color: #000;
-	float: right;
-	font-size: 42px;
-	position: absolute;
-	left: 105px;
-	z-index: 2;
-}
-@media (max-width: 1740px) {
-	.content {
-		left: 65px;
-	}
-}
-@media (max-width: 1650px) {
-	.content {
-		left: 15px;
-	}
-}
-@media (max-width: 1550px) {
-	.content {
-		left: -15px;
-	}
-}
-
-
-@media (max-width: 991px) {
-	.content {
-		font-size: 42px;
-	}
-}
-@media (max-width: 768px) {
-	.content {
-		left: 15px;
-		position: relative;
-	}
-}
-
-@media (max-width: 479px) {
-	.content {
-		font-size: 30px;
-	}
-}
 .rotator {
   width: 80%;
   list-style: none;
