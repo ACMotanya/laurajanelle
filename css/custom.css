@@ -121,28 +121,28 @@ div.content div a {
 	float: none;
 	font-size: 50px;
 	position: absolute;
-	left: 55px;
+	left: 48px;
 	top: 35px;
 }
 
 .second-set {
-	left: 830px;
+	left: 840px;
 }
 
 @media (max-width: 1499px) {
 	.content {
 		font-size: 45px;
-		left: 27px;
+		left: 20px;
 	}
 	.second-set {
-		left: 725px;
+		left: 730px;
 	}
 }
 
 @media (max-width: 1199px) {
 	.content {
-		font-size: 30px;
-		left: 77px;
+		font-size: 32px;
+		left: 40px;
 	}
 	.second-set {
 		left: 550px;
@@ -151,21 +151,21 @@ div.content div a {
 
 @media (max-width: 991px) {
 	.content {
-		font-size: 22px;
-		left: 65px;
+		font-size: 24.5px;
+		left: 30px;
 	}
 	.second-set {
-		left: 405px;
+		left: 425px;
 	}
 }
 
 @media (max-width: 767px) {
 	.content {
 		font-size: 15px;
-		left: 28px;
+		left: 23px;
 	}
 	.second-set {
-		left: 263px;
+		left: 265px;
 	}
 }
 
