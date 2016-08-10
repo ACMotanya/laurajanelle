@@ -1291,12 +1291,6 @@ function redirect(pathname)
   window.location.pathname = pathArray.join('/');
 }
 
-function windowHash(hash)
-{
-  window.location.hash = hash;
-}
-
-
 
 
 /////////////////////////////////////////////////////
