@@ -2,7 +2,7 @@
 	Custom CSS
 ----------------------------------------------------------------- */
 
-.content { display: none; }
+
 
 .margin-auto {
 	margin: auto;
@@ -125,17 +125,23 @@ div.content div a {
 	top: 35px;
 }
 
+
+
 .second-set {
 	left: 840px;
 }
 
 @media (max-width: 1499px) {
 	.content {
-		font-size: 45px;
+		font-size: 40px;
 		left: 20px;
+		top: 50px;
 	}
 	.second-set {
-		left: 730px;
+		left: 660px;
+	}
+	.portfolio-2 .portfolio-item {
+		margin-top: 40px;
 	}
 }
 
@@ -183,6 +189,9 @@ div.content div a {
 @media (min-width: 1500px) {
 	.container.index {
     width: 1500px;
+	}
+	.portfolio-2 .portfolio-item {
+		margin-top: 40px;
 	}
 }
 
