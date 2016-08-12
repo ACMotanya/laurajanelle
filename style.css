@@ -161,7 +161,7 @@ h6 {
 	font-weight: 600;
 	line-height: 1.5;
 	margin: 0 0 30px 0;
-	font-family: 'Bodoni-Sans', sans-serif;
+	font-family: 'Bodoni-Sans', 'Oranienbaum', sans-serif;
 }
 
 h5,
@@ -403,9 +403,9 @@ span.middot {
 
 .nolineheight { line-height: 0 !important; }
 
-.font-body { font-family: 'bodoni-sans', sans-serif; }
+.font-body { font-family: 'bodoni-sans', 'Oranienbaum', sans-serif; }
 
-.font-primary { font-family: 'bodoni-sans', sans-serif; }
+.font-primary { font-family: 'bodoni-sans', 'Oranienbaum', sans-serif; }
 
 .font-secondary { font-family: 'Crete Round', serif; }
 
@@ -995,7 +995,7 @@ body.stretched #header.full-header .container {
 #logo {
 	position: relative;
 	float: left;
-	font-family: 'bodoni-sans', sans-serif;
+	font-family: 'bodoni-sans', 'Oranienbaum', sans-serif;
 	font-size: 36px;
 	line-height: 100%;
 	margin-right: 40px;
@@ -1124,7 +1124,7 @@ body.stretched #header.full-header .container {
 	font-size: 13px;
 	letter-spacing: 1px;
 	text-transform: uppercase;
-	font-family: 'bodoni-sans', sans-serif;
+	font-family: 'bodoni-sans', 'Oranienbaum', sans-serif;
 	-webkit-transition: margin .4s ease, padding .4s ease;
 	-o-transition: margin .4s ease, padding .4s ease;
 	transition: margin .4s ease, padding .4s ease;
@@ -1199,7 +1199,7 @@ body.no-superfish #primary-menu li:hover > .mega-menu-content { display: block; 
 	padding-bottom: 10px;
 	border: 0;
 	letter-spacing: 0;
-	font-family: 'bodoni-sans', sans-serif;
+	font-family: 'bodoni-sans', 'Oranienbaum', sans-serif;
 	-webkit-transition: all .2s ease-in-out;
 	-o-transition: all .2s ease-in-out;
 	transition: all .2s ease-in-out;
@@ -1287,7 +1287,7 @@ body.stretched #header.full-header #primary-menu ul li.mega-menu .mega-menu-cont
 #primary-menu ul li .mega-menu-content.style-2 ul.mega-menu-column > li.mega-menu-title > a {
 	font-size: 13px;
 	font-weight: bold;
-	font-family: 'bodoni-sans', sans-serif;
+	font-family: 'bodoni-sans', 'Oranienbaum', sans-serif;
 	letter-spacing: 1px;
 	text-transform: uppercase !important;
 	margin-bottom: 15px;
@@ -1716,7 +1716,7 @@ body.top-search-open #top-search form {
 	color: #333;
 	font-weight: 700;
 	margin-top: 0 !important;
-	font-family: 'bodoni-sans', sans-serif;
+	font-family: 'bodoni-sans', 'Oranienbaum', sans-serif;
 	letter-spacing: 2px;
 }
 
@@ -4809,7 +4809,7 @@ body.device-touch.device-xxs .portfolio-notitle .portfolio-overlay { display: no
 	padding: 30px 0;
 	text-align: center;
 	color: #444;
-	font-family: 'bodoni-sans', sans-serif;
+	font-family: 'bodoni-sans', 'Oranienbaum', sans-serif;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	font-size: 24px;
@@ -5051,7 +5051,7 @@ body:not(.device-touch) .entry-link {
 	font-weight: bold;
 	letter-spacing: 1px;
 	text-transform: uppercase;
-	font-family: 'bodoni-sans', sans-serif;
+	font-family: 'bodoni-sans', 'Oranienbaum', sans-serif;
 }
 
 .post-timeline .entry-timeline {
@@ -5573,7 +5573,7 @@ div.alignright {
 .wp-caption {
 	text-align: center;
 	margin: 10px 20px 13px 20px;
-	font-family: 'bodoni-sans', Georgia, "Times New Roman", Times, serif;
+	font-family: 'bodoni-sans',  'Oranienbaum', "Times New Roman", Times, serif;
 	font-style: italic;
 }
 
@@ -6470,7 +6470,7 @@ body:not(.device-touch) .button {
 	font-size: 22px;
 	height: auto;
 	line-height: 1;
-	font-family: 'bodoni-sans', sans-serif;
+	font-family: 'bodoni-sans', 'Oranienbaum', sans-serif;
 }
 
 .button.button-desc span {
@@ -7450,7 +7450,7 @@ body:not(.device-touch) .button.button-full strong {
 
 .feature-box.fbox-center.fbox-italic p {
 	font-style: italic;
-	font-family: 'bodoni-sans', sans-serif;
+	font-family: 'bodoni-sans', 'Oranienbaum', sans-serif;
 }
 
 
@@ -8811,7 +8811,7 @@ ul.tab-nav-lg li {
 ul.tab-nav-lg li a {
 	display: inline-block;
 	color: #444;
-	font-family: 'bodoni-sans', sans-serif;
+	font-family: 'bodoni-sans', 'Oranienbaum', sans-serif;
 	font-size: 13px;
 	font-weight: bold;
 	text-transform: uppercase;
@@ -9411,7 +9411,7 @@ body:not(.device-touch) .clients-grid li a {
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	font-weight: 700;
-	font-family: 'Bodoni-Sans', sans-serif;
+	font-family: 'Bodoni-Sans', 'Oranienbaum', sans-serif;
 }
 
 .team-title span {
@@ -9770,7 +9770,7 @@ body:not(.device-touch) .team-overlay {
 .counter {
 	font-size: 42px;
 	font-weight: 600;
-	font-family: 'bodoni-sans', sans-serif;
+	font-family: 'bodoni-sans', 'Oranienbaum', sans-serif;
 }
 
 .counter.counter-small { font-size: 28px; }
@@ -9900,7 +9900,7 @@ body:not(.device-touch) .rounded-skill {
 
 .skills li .progress-percent .counter {
 	font-weight: 400;
-	font-family: 'bodoni-sans', sans-serif;
+	font-family: 'bodoni-sans', 'Oranienbaum', sans-serif;
 }
 
 .progress-percent:after, .progress-percent:before {
@@ -10509,7 +10509,7 @@ label {
 	display: inline-block;
 	font-size: 13px;
 	font-weight: 700;
-	font-family: 'bodoni-sans', sans-serif;
+	font-family: 'bodoni-sans', 'Oranienbaum', sans-serif;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	color: #555;
@@ -10772,13 +10772,13 @@ label.error { display: none !important; }
 .emphasis-title h2 {
 	font-size: 64px;
 	letter-spacing: -2px;
-	font-family: 'Bodoni-Sans', sans-serif;
+	font-family: 'Bodoni-Sans', 'Oranienbaum', sans-serif;
 }
 
 .emphasis-title h1 strong,
 .emphasis-title h2 strong {
 	font-weight: 700;
- 	font-family: 'Bodoni-Sans', sans-serif;
+ 	font-family: 'Bodoni-Sans', 'Oranienbaum', sans-serif;
 }
 
 
@@ -10801,7 +10801,7 @@ label.error { display: none !important; }
 	background-color: #FFF;
 	padding-right: 15px;
 	margin-bottom: 0;
-	font-family: 'Bodoni-Sans', sans-serif;
+	font-family: 'Bodoni-Sans', 'Oranienbaum', sans-serif;
 }
 
 .fancy-title h4,
@@ -11780,7 +11780,7 @@ body:not(.device-touch) .tagcloud a {
 	font-size: 13px;
 	font-weight: 700;
 	letter-spacing: 2px;
-	font-family: 'bodoni-sans', sans-serif;
+	font-family: 'bodoni-sans', 'Oranienbaum', sans-serif;
 }
 
 .nav-tree li i {
@@ -11813,7 +11813,7 @@ body:not(.device-touch) .tagcloud a {
 	font-size: 12px;
 	padding: 6px 0;
 	letter-spacing: 1px;
-	font-family: 'bodoni-sans', sans-serif;
+	font-family: 'bodoni-sans', 'Oranienbaum', sans-serif;
 }
 
 .nav-tree ul ul a i.icon-angle-down { font-size: 12px; }
@@ -11844,7 +11844,7 @@ body:not(.device-touch) .tagcloud a {
 	font-weight: bold;
 	text-align: right;
 	text-transform: uppercase;
-	font-family: 'bodoni-sans', sans-serif;
+	font-family: 'bodoni-sans', 'Oranienbaum', sans-serif;
 	letter-spacing: 2px;
 }
 

@@ -3,7 +3,6 @@
 ----------------------------------------------------------------- */
 
 
-
 .margin-auto {
 	margin: auto;
 }
@@ -33,7 +32,7 @@
 }
 
 #primary-menu ul li > a {
-	font-family: Bodoni-Sans;
+	font-family: Bodoni-Sans, 'Oranienbaum';
 	font-weight: 600;
 	font-size: 14px;
 	letter-spacing: 1px;
@@ -119,26 +118,16 @@ div.content div a {
 .content {
 	color: #000;
 	float: none;
-	font-size: 50px;
+	font-size: 43px;
 	position: absolute;
-	left: 45px;
 	top: 35px;
 }
 
 
-
-.second-set {
-	left: 840px;
-}
-
 @media (max-width: 1499px) {
 	.content {
-		font-size: 40px;
-		left: 20px;
+		font-size: 32px;
 		top: 50px;
-	}
-	.second-set {
-		left: 660px;
 	}
 	.portfolio-2 .portfolio-item {
 		margin-top: 40px;
@@ -147,37 +136,26 @@ div.content div a {
 
 @media (max-width: 1199px) {
 	.content {
-		font-size: 32px;
-		left: 40px;
-	}
-	.second-set {
-		left: 550px;
+		font-size: 25px;
 	}
 }
 
 @media (max-width: 991px) {
 	.content {
-		font-size: 24.5px;
-		left: 30px;
-	}
-	.second-set {
-		left: 425px;
+		font-size: 20px;
 	}
 }
 
 @media (max-width: 767px) {
 	.content {
 		font-size: 15px;
-		left: 23px;
-	}
-	.second-set {
-		left: 265px;
 	}
 }
 
 @media (max-width: 500px) {
-	.contentPanel {
-		display: none;
+	.content {
+		top: -35px;
+		width: 85%;
 	}
 }
 @media (min-width: 479px) {
