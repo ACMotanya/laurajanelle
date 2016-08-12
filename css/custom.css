@@ -3,6 +3,13 @@
 ----------------------------------------------------------------- */
 
 
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+     /* IE10+ CSS styles go here */
+		.content {
+		 	font-size: 45px;
+		}
+}
+
 
 .margin-auto {
 	margin: auto;
@@ -119,13 +126,11 @@ div.content div a {
 .content {
 	color: #000;
 	float: none;
-	font-size: 50px;
+	font-size: 45px;
 	position: absolute;
 	left: 45px;
 	top: 35px;
 }
-
-
 
 .second-set {
 	left: 840px;
@@ -133,7 +138,7 @@ div.content div a {
 
 @media (max-width: 1499px) {
 	.content {
-		font-size: 40px;
+		font-size: 35px;
 		left: 20px;
 		top: 50px;
 	}
@@ -147,7 +152,7 @@ div.content div a {
 
 @media (max-width: 1199px) {
 	.content {
-		font-size: 32px;
+		font-size: 27px;
 		left: 40px;
 	}
 	.second-set {
@@ -157,7 +162,7 @@ div.content div a {
 
 @media (max-width: 991px) {
 	.content {
-		font-size: 24.5px;
+		font-size: 21.5px;
 		left: 30px;
 	}
 	.second-set {
@@ -167,7 +172,7 @@ div.content div a {
 
 @media (max-width: 767px) {
 	.content {
-		font-size: 15px;
+		font-size: 12px;
 		left: 23px;
 	}
 	.second-set {
