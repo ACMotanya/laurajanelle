@@ -3,7 +3,6 @@
 ----------------------------------------------------------------- */
 
 
-
 .margin-auto {
 	margin: auto;
 }
@@ -119,13 +118,11 @@ div.content div a {
 .content {
 	color: #000;
 	float: none;
-	font-size: 50px;
+	font-size: 43px;
 	position: absolute;
-	left: 45px;
+
 	top: 35px;
 }
-
-
 
 .second-set {
 	left: 840px;
@@ -133,8 +130,8 @@ div.content div a {
 
 @media (max-width: 1499px) {
 	.content {
-		font-size: 40px;
-		left: 20px;
+		font-size: 32px;
+
 		top: 50px;
 	}
 	.second-set {
@@ -147,8 +144,8 @@ div.content div a {
 
 @media (max-width: 1199px) {
 	.content {
-		font-size: 32px;
-		left: 40px;
+		font-size: 25px;
+
 	}
 	.second-set {
 		left: 550px;
@@ -157,8 +154,8 @@ div.content div a {
 
 @media (max-width: 991px) {
 	.content {
-		font-size: 24.5px;
-		left: 30px;
+		font-size: 20px;
+
 	}
 	.second-set {
 		left: 425px;
@@ -167,8 +164,7 @@ div.content div a {
 
 @media (max-width: 767px) {
 	.content {
-		font-size: 15px;
-		left: 23px;
+		font-size: 13px;
 	}
 	.second-set {
 		left: 265px;
