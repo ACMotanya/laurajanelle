@@ -32,7 +32,7 @@
 }
 
 #primary-menu ul li > a {
-	font-family: Bodoni-Sans;
+	font-family: Bodoni-Sans, 'Oranienbaum';
 	font-weight: 600;
 	font-size: 14px;
 	letter-spacing: 1px;
@@ -120,22 +120,14 @@ div.content div a {
 	float: none;
 	font-size: 43px;
 	position: absolute;
-
 	top: 35px;
 }
 
-.second-set {
-	left: 840px;
-}
 
 @media (max-width: 1499px) {
 	.content {
 		font-size: 32px;
-
 		top: 50px;
-	}
-	.second-set {
-		left: 660px;
 	}
 	.portfolio-2 .portfolio-item {
 		margin-top: 40px;
@@ -145,35 +137,25 @@ div.content div a {
 @media (max-width: 1199px) {
 	.content {
 		font-size: 25px;
-
-	}
-	.second-set {
-		left: 550px;
 	}
 }
 
 @media (max-width: 991px) {
 	.content {
 		font-size: 20px;
-
-	}
-	.second-set {
-		left: 425px;
 	}
 }
 
 @media (max-width: 767px) {
 	.content {
-		font-size: 13px;
-	}
-	.second-set {
-		left: 265px;
+		font-size: 15px;
 	}
 }
 
 @media (max-width: 500px) {
-	.contentPanel {
-		display: none;
+	.content {
+		top: -35px;
+		width: 85%;
 	}
 }
 @media (min-width: 479px) {
