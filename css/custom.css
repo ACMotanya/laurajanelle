@@ -319,12 +319,16 @@ div.widget.clearfix form {
 /*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 Contact page styling - Contact slide page
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
-h1.contact {
-	font-family: 'Bodoni-Sans', 'Oranienbaum';
-	font-size: 63px;
-	letter-spacing: 5px;
-	color: #000;
+#page-title.contact {
+	background: white;
+	border-top: 1px solid #EEE;
+
 }
+
+#page-title.contact div.container h1 {
+		font-family: Bodoni-Sans, 'Oranienbaum';
+}
+
 .rotator > li {
   font-weight: 800;
   opacity: 0;
