@@ -203,6 +203,7 @@ function addItem(clicked_id)
     },
     success: function(response) {
       cartHeader();
+      cartList();
     }
   });
 }

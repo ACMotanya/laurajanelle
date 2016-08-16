@@ -56,17 +56,54 @@
 	<script type="text/javascript" src="js/js.cookie.js"></script>
 	<script type="text/javascript" src="js/ajax.js"></script>
 
-
 	<!--[if lt IE 9]>
 		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 	<![endif]-->
-
+<script>
+switch (window.location.hash) {
+  case "#sleek":
+    filterFunction('APISTKLST','LJ10000','','','','');
+    break;
+  case "#rglb":
+    filterFunction('APISTKLST','LJ10700','','','','');
+    break;
+  case "#encharming":
+    filterFunction('APISTKLST','LJ10300','','','','');
+    break;
+  case "#identify":
+    filterFunction('APISTKLST','LJ10500','','','','');
+    break;
+  case "#programs":
+    filterFunction('APISTKLST','','800','','','');
+    break;
+  case "#sets":
+    filterFunction('APISTKLST','','700','','','');
+    break;
+  case "#earrings":
+    filterFunction('APISTKLST','','300','','','');
+    break;
+  case "#necklaces":
+    filterFunction('APISTKLST','','100','','','');
+    break;
+  case "#bracelets":
+    filterFunction('APISTKLST','','200','','','');
+    break;
+  case "#lanyards":
+    filterFunction('APISTKLST','','400','','','');
+    break;
+  case "#tassels":
+    filterFunction('APISTKLST','','600','','','');
+    break;
+  case "#snaps":
+    filterFunction('APISTKLST','','500','','','');
+    break;
+  default:
+    filterFunction('APISTKLST','','','','','');
+}
+</script>
 	<!-- Document Title
 	============================================= -->
 	<title>Laura Janelle</title>
-
-
-
 </head>
 
 
@@ -490,10 +527,10 @@
                     <div class="togglet"><i class="toggle-closed icon-chevron-down"></i><i class="toggle-open icon-chevron-up"></i>PRICE</div>
                     <div class="togglec">
                       <form action="action_page.php">
-                        <input type="number" name="firstname" style="width: 25%; margin-right: 10px;" placeholder="min">
+                        <input type="number" id="min" name="firstname" style="width: 25%; margin-right: 10px;" placeholder="min">
                          TO
-                        <input type="number" name="lastname" style="width: 25%; margin: 0px 10px;" placeholder="max">
-                        <input type="button" value="GO">
+                        <input type="number" id="max" name="lastname" style="width: 25%; margin: 0px 10px;" placeholder="max">
+                        <input type="button" value="GO" onclick="priceFilter();">
                       </form>
                     </div>
                   </div>
@@ -638,6 +675,7 @@
 <!-- Footer Scripts
 ============================================= -->
 <script type="text/javascript" src="js/functions.js"></script>
+<script type="text/javascript" src="js/components/rangeslider.min.js"></script>
 
 <script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -652,27 +690,50 @@ ga('send', 'pageview');
 <script>
     var $container;
     var filters = {};
-    var priceRangefrom = 1;
-    var priceRangeto = 999;
 
+    function priceFilter() {
+      var priceRangefrom = $("#min").val();
+      var priceRangeto = $("#max").val();
+      console.log( priceRangefrom + " + " + priceRangeto);
+
+      $container.isotope({
+        filter: function() {
+
+          if( jQuery(this).find('.product-price').find('ins').length > 0 ) {
+            var price = jQuery(this).find('.product-price ins').text();
+          } else {
+            var price = jQuery(this).find('.product-price').text();
+          }
+
+          priceNum = price.split("$");
+
+          return ( priceRangefrom <= priceNum[1] && priceRangeto >= priceNum[1] );
+        }
+      });
+    };
 
     $(function(){
       $container = $('#shop');
       var $output = $('#output');
 
       $container.isotope({
-        transitionDuration: '0.65s',
+        transitionDuration: '0.65s'
       });
+
 
       // do stuff when checkbox change
       $('.toggle').on( 'change', function( jQEvent ) {
         console.log("I am in the function");
+
         var $checkbox = $( jQEvent.target );
         manageCheckbox( $checkbox );
 
         var comboFilter = getComboFilter( filters );
-        console.log("display comoboFilter: " + comboFilter);
-        $container.isotope({ filter: comboFilter });
+
+        $container.isotope({
+          transitionDuration: '0.65s',
+          filter: comboFilter
+         });
 
         $output.text( comboFilter );
       });
@@ -682,6 +743,9 @@ ga('send', 'pageview');
       var i = 0;
       var comboFilters = [];
       var message = [];
+      var priceRangefrom = $("#min").val();
+      var priceRangeto = $("#max").val();
+      console.log( priceRangefrom + " new prices " + priceRangeto);
 
       for ( var prop in filters ) {
         message.push( filters[ prop ].join(' ') );
@@ -708,7 +772,9 @@ ga('send', 'pageview');
         }
         i++;
       }
+
       var comboFilter = comboFilters.join(', ');
+      console.log("display comboFilter: " + comboFilter);
       return comboFilter;
     }
 
@@ -753,40 +819,6 @@ ga('send', 'pageview');
     }
 
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   </body>
 </html>
