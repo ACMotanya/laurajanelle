@@ -5,6 +5,7 @@ layout: page
 <script>
 session_no = Cookies.get('session_no');
 var stock_no = window.location.hash.replace( /^\D+/g, '');
+var zoompic;
 
 jQuery( document ).ready(function() {
   cartHeader();
@@ -35,16 +36,16 @@ jQuery( document ).ready(function() {
           break;
         default:
           collection = fields[2];
-        }
+      }
 
-				var prodtype = fields[1].split(/(\s+)/);
-						prodtype = prodtype[2];
+			var prodtype = fields[1].split(/(\s+)/);
+					prodtype = prodtype[2];
 
 /* Fill in the Breadcrumb section */
 			document.getElementById("breadcrumbtitle").innerHTML = '<h1>' + collection + '</h1><span></span><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">' + collection + '</li></ol>';
 
 /* Fill in the pictures for the product */
-			document.getElementById("images").innerHTML = '<div class="slide" style="display: block;" data-thumb="../ljimages/' + fields[0].replace(/\s+/g,'') + '-sm.png"><a href="../ljimages/' + fields[0].replace(/\s+/g,'') + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom" id="ex1"><img src="../ljimages/' + fields[0].replace(/\s+/g,'') + '-md.png" alt="' + fields[1] + '"></span></a></div>'
+			document.getElementById("images").innerHTML = '<div class="slide" style="display: block;"><a href="../ljimages/' + fields[0].replace(/\s+/g,'') + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom" id="ex1"><img src="../ljimages/' + fields[0].replace(/\s+/g,'') + '-md.png" alt="' + fields[1] + '"></span></a></div>'
 
 
 // Fill in the 2nd Column data
@@ -104,7 +105,7 @@ jQuery( document ).ready(function() {
 
    }
 	});
-  $('#ex1').zoom();
+  zoompic = $('#ex1').zoom();
 });
 </script>
 
@@ -121,15 +122,10 @@ jQuery( document ).ready(function() {
 		<!-- Content
 		============================================= -->
 		<section id="content">
-
 			<div class="content-wrap">
-
 				<div class="container clearfix">
-
 					<div class="single-product">
-
 						<div class="product">
-
 							<div class="col_two_fifth">
 
 								<!-- Product Single - Gallery
@@ -197,7 +193,7 @@ jQuery( document ).ready(function() {
 							<div class="oc-item">
 								<div class="product iproduct clearfix">
 									<div class="product-image">
-										<a href="#"><img src="{{ site.baseurl }}/images/shop/dress/1.jpg" alt="Checked Short Dress"></a>
+										<a href="#"><img src="{{ site.baseurl }}/images/shop/dress/1.jpg" alt="Checked Short Dress"></span></a>
 										<a href="#"><img src="{{ site.baseurl }}/images/shop/dress/1-1.jpg" alt="Checked Short Dress"></a>
 										<div class="sale-flash">50% Off*</div>
 										<div class="product-overlay">
