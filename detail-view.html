@@ -44,7 +44,7 @@ jQuery( document ).ready(function() {
 			document.getElementById("breadcrumbtitle").innerHTML = '<h1>' + collection + '</h1><span></span><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">' + collection + '</li></ol>';
 
 /* Fill in the pictures for the product */
-			document.getElementById("images").innerHTML = '<div class="slide" style="display: block;" data-thumb="../ljimages/' + fields[0].replace(/\s+/g,'') + '-sm.png"><a href="../ljimages/' + fields[0].replace(/\s+/g,'') + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><img src="../ljimages/' + fields[0].replace(/\s+/g,'') + '-md.png" alt="' + fields[1] + '"></a></div>'
+			document.getElementById("images").innerHTML = '<div class="slide" style="display: block;" data-thumb="../ljimages/' + fields[0].replace(/\s+/g,'') + '-sm.png"><a href="../ljimages/' + fields[0].replace(/\s+/g,'') + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom" id="ex1"><img src="../ljimages/' + fields[0].replace(/\s+/g,'') + '-md.png" alt="' + fields[1] + '"></span></a></div>'
 
 
 // Fill in the 2nd Column data
@@ -104,7 +104,7 @@ jQuery( document ).ready(function() {
 
    }
 	});
-
+  $('#ex1').zoom();
 });
 </script>
 
@@ -141,10 +141,9 @@ jQuery( document ).ready(function() {
 
 												<!-- 1st Column -->
 
-										</div>
+										  </div>
 										</div>
 									</div>
-
 								</div><!-- Product Single - Gallery End -->
 
 							</div>
@@ -186,7 +185,7 @@ jQuery( document ).ready(function() {
 						</div>
 
 					</div>
-          <!--
+
 					<div class="clear"></div><div class="line"></div>
 
 					<div class="col_full nobottommargin">
