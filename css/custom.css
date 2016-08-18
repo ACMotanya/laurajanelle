@@ -2,7 +2,9 @@
 	Custom CSS
 ----------------------------------------------------------------- */
 
-
+#content > div > div > div > div:nth-child(1) {
+	background-image: url('img/contact-img-1.png');
+}
 
 
 .margin-auto {
