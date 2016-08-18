@@ -6,34 +6,6 @@ var collection;
 var country;
 var countrylines;
 var cust_name;
-sortItems = [
-"10000A","10025","10026","10027","10029","10031","10032","10033",
-"10034","10036","10035","10028","10030","10037","10038","10039",
-"10041","10043","10044","10045","10046","10048","10047","10040",
-"10042","10013","10014","10015","10017","10019","10020","10021",
-"10022","10024","10023","10016","10018","10001","10002","10003",
-"10005","10007","10008","10009","10010","10012","10011","10004",
-"10006","10700D","10700B","10713","10714","10721","10715","10716","10723",
-"10717","10718","10725","10719","10720","10727","10722","10729",
-"10730","10724","10731","10732","10726","10733","10734","10728",
-"10735","10736","10743","10744","10745","10746","10747","10748",
-"10737","10738","10739","10740","10741","10742","10700A","10707",
-"10712","10710","10703","10704","10711","10701","10705","10702",
-"10706","10708","10709","10700C","10749","10750","10751","10752",
-"10753","10754","10755","10756","10757","10758","10759","10760",
-"10761","10762","10763","10764","10765","10766","10767","10768",
-"10769","10770","10771","10772","10773","10774","10775","10776",
-"10777","10778","10779","10780","10781","10782","10783","10784",
-"10300A","10301","10302","10303","10304","10305","10306","10307",
-"10308","10309","10310","10311","10314","10315","10312","10313",
-"10316","10317","10318","10319","10320","10322","10323","10321","10324","10325",
-"10326","10327","10328","10329","10330","10331","10332","10500A",
-"10501","10502","10503","10504","10517","10518","10519","10520",
-"10505","10506","10507","10508","10523","10524","10525","10522",
-"10509","10510","10511","10512","10526","10527","10528","10521",
-"10513","10514","10515","10516","10529","10530","10531","10532",
-"10533","10534","10535","10536","10541","10542","10537","10538",
-"10539","10540","10543","10544"];
 var detailViewQty;
 var fields;
 var flds;
@@ -52,7 +24,6 @@ var orderAmt;
 var pictureSlider;
 var prices = [];
 var prod;
-
 var searchField = document.getElementById('searchvalue');
 var searchTerm;
 var secondColumn;
@@ -60,6 +31,34 @@ var session_no;
 var shippingAddresses = [];
 var shippingCost;
 var shoppingCart;
+var sortItems = [
+    "10000A","10025","10026","10027","10029","10031","10032","10033",
+    "10034","10036","10035","10028","10030","10037","10038","10039",
+    "10041","10043","10044","10045","10046","10048","10047","10040",
+    "10042","10013","10014","10015","10017","10019","10020","10021",
+    "10022","10024","10023","10016","10018","10001","10002","10003",
+    "10005","10007","10008","10009","10010","10012","10011","10004",
+    "10006","10700D","10700B","10713","10714","10721","10715","10716",
+    "10723","10717","10718","10725","10719","10720","10727","10722",
+    "10729","10730","10724","10731","10732","10726","10733","10734",
+    "10728","10735","10736","10743","10744","10745","10746","10747",
+    "10748","10737","10738","10739","10740","10741","10742","10700A",
+    "10707","10712","10710","10703","10704","10711","10701","10705",
+    "10702","10706","10708","10709","10700C","10749","10750","10751",
+    "10752","10753","10754","10755","10756","10757","10758","10759",
+    "10760","10761","10762","10763","10764","10765","10766","10767",
+    "10768","10769","10770","10771","10772","10773","10774","10775",
+    "10776","10777","10778","10779","10780","10781","10782","10783",
+    "10784","10300A","10301","10302","10303","10304","10305","10306",
+    "10307","10308","10309","10310","10311","10314","10315","10312",
+    "10313","10316","10317","10318","10319","10320","10322","10323",
+    "10321","10324","10325","10326","10327","10328","10329","10330",
+    "10331","10332","10500A","10501","10502","10503","10504","10517",
+    "10518","10519","10520","10505","10506","10507","10508","10523",
+    "10524","10525","10522","10509","10510","10511","10512","10526",
+    "10527","10528","10521","10513","10514","10515","10516","10529",
+    "10530","10531","10532","10533","10534","10535","10536","10541",
+    "10542","10537","10538","10539","10540","10543","10544"];
 var stock_no;
 var subtotal;
 var type;
@@ -833,21 +832,11 @@ function fillShop2(response)
       flds = linesPlus[i];
 
       prices.push(Number(flds[4]));
-      prod = '<div class="product clearfix ' + flds[2] + '">';
-        prod += '<div class="product-image">';
-          prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
-        //  prod += '<a href="#"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a>';
-        //  prod += 'div class="sale-flash">50% Off*</div>'
-          prod += '<div class="product-overlay">';
-            prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-            prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a>';
-          prod += '</div>';
-        prod += '</div>';
-        prod += '<div class="product-desc">';
-          prod += '<div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div>';
-          prod += '<div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div>';
-        prod += '</div>';
-      prod += '</div>';
+      prod = '<div class="product clearfix ' + flds[2] + '"><div class="product-image"><a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
+      prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+      prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a></div></div>';
+      prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div><div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div></div></div>';
+
       html.push(prod);
     }
     document.getElementById("shop").innerHTML += html.join('');
@@ -1344,8 +1333,8 @@ function logoff()
 {
   jQuery.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APILOGOFF&session_no="+ session_no +"", function( data ) {
     Cookies.set('session_no', "Logged Out");
-    redirect("");
   });
+  redirect("");
 }
 
 
@@ -1491,4 +1480,65 @@ function pageTitle()
     $('#page-title').empty();
     document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Full Suite</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><li class="active">Shop</li></ol></div>';
   }
+}
+
+
+//////////////////////////
+// Filter Function Test //
+//////////////////////////
+function filterFunction2(a,b,c,d,e,f)
+{
+  $.ajax({
+    type: "GET",
+    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: a,
+      level1: b,
+      level2: c,
+      level3: d,
+      level4: e,
+      level5: f},
+    success: function(response) {
+      console.log(response);
+      lines = response.split("\n");
+      lines.shift();
+      linesPlus = [];
+      for (i=0; i<lines.length - 1; i++) {
+        linesPlus.push(lines[i].split("|"));
+      }
+
+      linesPlus.sort( function( a, b ) {
+        retVal=0;
+        if (sortItems.indexOf(a[0].trim()) != sortItems.indexOf( b[0].trim() )) retVal= sortItems.indexOf( a[0].trim() ) > sortItems.indexOf( b[0].trim() )?1:-1;
+        return retVal;
+      });
+
+      // lines[1]+ are data lines
+      $('#shop').empty();
+      html = [];
+      if ( lines.length <= 1) {
+        document.getElementById("shop").innerHTML += '<h1>There are no results</h1>';
+      } else {
+        for (i=0; i<linesPlus.length; i++) {
+          flds = linesPlus[i];
+
+          prices.push(Number(flds[4]));
+          prod = '<div class="product clearfix ' + flds[2] +" "+ flds[8] + '"><div class="product-image"><a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
+          prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+          prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a></div></div>';
+          prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div><div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div></div></div>';
+
+          html.push(prod);
+        }
+        document.getElementById("shop").innerHTML += html.join('');
+        min = Array.min(prices);
+        max = Array.max(prices);
+        $(document).trigger("filters2");
+//        $(document).trigger("priceFilters");
+      }
+    },
+    complete: function(){
+    //  hideFilter();
+    }
+  });
 }
