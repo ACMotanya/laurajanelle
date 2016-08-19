@@ -1,6 +1,13 @@
 ---
 layout: page
 ---
+<style>
+  #ex1 > span > img.zoomImg {
+    width: 630px !important;
+    height: 630px !important;
+  }
+</style>
+
 
 <script>
 session_no = Cookies.get('session_no');
@@ -9,103 +16,7 @@ var zoompic;
 
 jQuery( document ).ready(function() {
   cartHeader();
-
-  $.ajax({
-    type: "GET",
-    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
-    data: {request_id: "APISTKDTL", stock_no: stock_no},
-    success: function(response) {
-
-      lines = response.split("\n");
-      // lines[0] is header row
-      // lines[1]+ are data lines
-      fields = lines[1].split("|");
-
-      switch (fields[2]) {
-        case "SLK":
-          collection = 'Sleek';
-          break;
-        case "GLB":
-          collection = "RGLB";
-          break;
-        case "ENC":
-          collection = "enCharming";
-          break;
-        case "IDT":
-          collection = "iDentify";
-          break;
-        default:
-          collection = fields[2];
-      }
-
-			var prodtype = fields[1].split(/(\s+)/);
-					prodtype = prodtype[2];
-
-/* Fill in the Breadcrumb section */
-			document.getElementById("breadcrumbtitle").innerHTML = '<h1>' + collection + '</h1><span></span><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">' + collection + '</li></ol>';
-
-/* Fill in the pictures for the product */
-			document.getElementById("images").innerHTML = '<div class="slide" style="display: block;"><a href="../ljimages/' + fields[0].replace(/\s+/g,'') + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom" id="ex1"><img src="../ljimages/' + fields[0].replace(/\s+/g,'') + '-md.png" alt="' + fields[1] + '"></span></a></div>'
-
-
-// Fill in the 2nd Column data
-			secondColumn = '<div class="product-price"> <ins>$' + fields[4].substring(0, fields[4].length - 3) + '</ins></div>';
-
-			secondColumn += '<div class="clear"></div>';
-			secondColumn += '<div class="line"></div>';
-
-			secondColumn += '<form class="cart nobottommargin clearfix" method="post" enctype="multipart/form-data">';
-				secondColumn += '<div class="quantity clearfix">';
-					secondColumn += '<input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant[1]" onclick="changeQuantity(this)">';
-					secondColumn += '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + fields[0].replace(/\s+/g,'') + '" />';
-					secondColumn += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant[1]" onclick="changeQuantity(this)">';
-				secondColumn += '</div>';
-				secondColumn += '<button type="button" id="add-item" class="add-to-cart button nomargin" onclick="addItemDetailView()">Add to cart</button>';
-			secondColumn += '</form>';
-
-			secondColumn += '<div class="clear"></div>';
-			secondColumn += '<div class="line"></div>';
-
-			secondColumn += '<p>' + fields[1] + '</p>';
-			secondColumn += '<p>' + fields[6] + '</p>';
-
-			secondColumn += '<div class="panel panel-default product-meta">';
-				secondColumn += '<div class="panel-body">';
-					secondColumn += '<span itemprop="productID" class="sku_wrapper">SKU: <span class="sku"> ' + fields[0] + '</span></span>';
-					secondColumn += '<span class="posted_in">Category: <span>' + prodtype + '</span>';
-				secondColumn += '</div>';
-			secondColumn += '</div><!-- Product Single - Meta End -->';
-
-/*			secondColumn += '<!-- Product Single - Share'
-			secondColumn += '============================================= -->'
-			secondColumn += '<div class="si-share noborder clearfix">'
-				secondColumn += '<span>Share:</span>'
-				secondColumn += '<div>'
-				secondColumn += '	<a href="#" class="social-icon si-borderless si-facebook">'
-						secondColumn += '<i class="icon-facebook"></i>'
-						secondColumn += '<i class="icon-facebook"></i>'
-					secondColumn += '</a>'
-					secondColumn += '<a href="#" class="social-icon si-borderless si-twitter">'
-						secondColumn += '<i class="icon-twitter"></i>'
-						secondColumn += '<i class="icon-twitter"></i>'
-					secondColumn += '</a>'
-					secondColumn += '<a href="#" class="social-icon si-borderless si-pinterest">'
-						secondColumn += '<i class="icon-pinterest"></i>'
-						secondColumn += '<i class="icon-pinterest"></i>'
-					secondColumn += '</a>'
-				  secondColumn += '<a href="#" class="social-icon si-borderless si-email3">'
-						secondColumn += '<i class="icon-email3"></i>'
-						secondColumn += '<i class="icon-email3"></i>'
-					secondColumn += '</a>'
-				secondColumn += '</div>'
-			secondColumn += '</div><!-- Product Single - Share End -->'
-*/			document.getElementById("secondColumn").innerHTML += secondColumn;
-
-// Fill tabbed Modal Windows..
-
-   }
-	});
-  zoompic = $('#ex1').zoom();
+  detailView();
 });
 </script>
 
@@ -183,7 +94,7 @@ jQuery( document ).ready(function() {
 					</div>
 
 					<div class="clear"></div><div class="line"></div>
-
+<!--
 					<div class="col_full nobottommargin">
 
 						<h4>Related Products</h4>

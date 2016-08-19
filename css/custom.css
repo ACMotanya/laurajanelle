@@ -1,12 +1,54 @@
 /* ----------------------------------------------------------------
 	Custom CSS
------------------------------------------------------------------ */
+-----------------------------------------------------------------
 
-#content > div > div > div > div:nth-child(1) {
-	background-image: url('img/contact-img-1.png');
+
+.product-image img:hover {
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  -webkit-transition-timing-function: linear; /* Safari and Chrome
+  transition-timing-function: linear;
+  -webkit-transition-duration: .5s; /* Safari 
+    transition-duration: .5s;
+}
+*/
+#content > div > div.contact {
+ width: 1450px;
 }
 
+div.contact-img > div.col-sm-3 {
+	padding-left: 6px;
+	padding-right: 6px;
+}
 
+.team-overlay {
+	opacity: 1;
+}
+.team-overlay:before, .team-overlay > .team-desc {
+	background-color: transparent;
+}
+
+div.team-social-icons a, div.team-social-icons p {
+	color: #FAFAFA;
+	font-size: 17px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+  font-family: "Bodoni-Sans";
+
+}
+
+div.team-social-icons a:hover {
+	color: #000;
+}
+
+/* give white background to the cousin.com link in the nav
+#primary-menu > ul > li:nth-child(8) > a > div {
+	background: white;
+}
+ */
 .margin-auto {
 	margin: auto;
 }
@@ -29,6 +71,7 @@
 #header.full-header #logo, #header.full-header #primary-menu > ul {
 	border-right: none;
 }
+
 i.icon-shopping-cart,
 i.icon-search3 {
 	font-size: 22px;
@@ -102,6 +145,10 @@ i.icon-search3 {
 	background: #000;
 }
 
+.footer-logo {
+	margin-bottom: 7px;
+}
+
 /*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 Index page styling - index slide page
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
@@ -114,6 +161,7 @@ Index page styling - index slide page
 .portfolio-item .portfolio-image a {
 	width: auto;
 }
+
 .flex-next {
 	right: 0;
 	left: auto;
