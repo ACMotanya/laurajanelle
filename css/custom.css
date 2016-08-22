@@ -9,12 +9,14 @@
   transform: scale(1.1);
   -webkit-transition-timing-function: linear; /* Safari and Chrome
   transition-timing-function: linear;
-  -webkit-transition-duration: .5s; /* Safari 
+  -webkit-transition-duration: .5s; /* Safari
     transition-duration: .5s;
 }
 */
-#content > div > div.contact {
- width: 1450px;
+@media (min-width: 1430px) {
+  #content > div > div.contact {
+   width: 1450px;
+  }
 }
 
 div.contact-img > div.col-sm-3 {
