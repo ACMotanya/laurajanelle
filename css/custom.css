@@ -9,12 +9,14 @@
   transform: scale(1.1);
   -webkit-transition-timing-function: linear; /* Safari and Chrome
   transition-timing-function: linear;
-  -webkit-transition-duration: .5s; /* Safari 
+  -webkit-transition-duration: .5s; /* Safari
     transition-duration: .5s;
 }
 */
-#content > div > div.contact {
- width: 1450px;
+@media (min-width: 1430px) {
+  #content > div > div.contact {
+   width: 1450px;
+  }
 }
 
 div.contact-img > div.col-sm-3 {
@@ -40,8 +42,8 @@ div.team-social-icons a, div.team-social-icons p {
 
 }
 
-div.team-social-icons a:hover {
-	color: #000;
+div.team-title h4 a:hover {
+	color: #999;
 }
 
 /* give white background to the cousin.com link in the nav
