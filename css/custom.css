@@ -42,8 +42,8 @@ div.team-social-icons a, div.team-social-icons p {
 
 }
 
-div.team-social-icons a:hover {
-	color: #000;
+div.team-title h4 a:hover {
+	color: #999;
 }
 
 /* give white background to the cousin.com link in the nav
