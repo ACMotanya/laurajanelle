@@ -1,18 +1,18 @@
 /* ----------------------------------------------------------------
 	Custom CSS
------------------------------------------------------------------
+----------------------------------------------------------------- */
 
 
-.product-image img:hover {
+.product-image img.shopimg:hover {
   -moz-transform: scale(1.1);
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
-  -webkit-transition-timing-function: linear; /* Safari and Chrome
+  -webkit-transition-timing-function: linear; /* Safari and Chrome */
   transition-timing-function: linear;
-  -webkit-transition-duration: .5s; /* Safari
-    transition-duration: .5s;
+  -webkit-transition-duration: .25s; /* Safari */
+    transition-duration: .25s;
 }
-*/
+
 
 @media (min-width: 992px) {
   #content > div > div.contact {

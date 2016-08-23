@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
 <html dir="ltr" lang="en-US">
-
   <head>
 	<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
@@ -59,7 +58,7 @@
 	<!--[if lt IE 9]>
 		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 	<![endif]-->
-
+  <script type="text/javascript" src="js/jquery.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 
 
@@ -108,8 +107,8 @@
 
       <div class="bh-sl-container">
       <div id="page-header">
-        <h1 class="bh-sl-title">Using Chipotle as an Example</h1>
-        <p>I used locations around Minneapolis and the southwest suburbs. So, for example, Edina, Plymouth, Eden Prarie, etc. would be good for testing the functionality.
+        <h1 class="bh-sl-title">Find Laura Janelle in these stores or something....</h1>
+        <p>Edina, Plymouth, Eden Prarie, etc. would be good for testing the functionality.
         You can use just the city as the address - ex: Edina, MN.</p>
       </div>
 
@@ -159,11 +158,17 @@ ga('send', 'pageview');
 
 <script>
 $(function() {
-      $('#bh-sl-map-container').storeLocator({
-        'dataType': 'json',
-        'dataLocation': 'data/locations.json'
-      });
-    });
+  $('#bh-sl-map-container').storeLocator({
+    'dataType': 'json',
+    'dataLocation': 'data/fulllocations.json',
+    'mapSettings': {
+			zoom     : 12,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		},
+    'storeLimit'               : 504,
+    'fullMapStart'             : true
+  });
+});
 </script>
 
   </body>
