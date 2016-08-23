@@ -13,11 +13,13 @@
     transition-duration: .5s;
 }
 */
-@media (min-width: 1430px) {
+
+@media (min-width: 992px) {
   #content > div > div.contact {
-   width: 1450px;
+   width: 90%
   }
 }
+
 
 div.contact-img > div.col-sm-3 {
 	padding-left: 6px;
