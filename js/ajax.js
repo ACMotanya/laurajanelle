@@ -1399,10 +1399,20 @@ function displayAddress(index) {
 
 function logoff()
 {
-  jQuery.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APILOGOFF&session_no="+ session_no +"", function( data ) {
-    Cookies.set('session_no', "Logged Out");
+  $.ajax({
+    type: "GET",
+    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APILOGOFF",
+      session_no: session_no
+    },
+    success: function(response) {
+      Cookies.set('session_no', "Logged Out");
+    },
+    complete: function() {
+      redirect("");
+    }
   });
-  redirect("");
 }
 
 

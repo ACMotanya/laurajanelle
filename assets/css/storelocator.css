@@ -61,9 +61,9 @@
           width: auto; } }
     .bh-sl-container .form-input input, .bh-sl-container .form-input select {
       box-sizing: border-box;
-      border: 1px solid #ccc;
+    /*  border: 1px solid #ccc;
       border-radius: 4px;
-      font: normal 14px/1.4 Arial, Helvetica, sans-serif;
+      font: normal 14px/1.4 Arial, Helvetica, sans-serif; */
       margin: 15px 0;
       padding: 6px 12px;
       width: 100%;
@@ -73,15 +73,15 @@
           width: auto;
           margin: 0 15px 0 10px; } }
   .bh-sl-container button {
-    background: #00447a;
+  /*  background: #00447a;  */
     border: none;
     border-radius: 4px;
-    color: #fff;
+  /*  color: #fff; */
     cursor: pointer;
     float: left;
-    font: bold 14px/1.4 Arial, Helvetica, sans-serif;
+  /*  font: bold 14px/1.4 Arial, Helvetica, sans-serif; */
     margin-top: 3px;
-    padding: 6px 12px;
+  /*  padding: 6px 12px; */
     white-space: nowrap;
     -webkit-border-radius: 4px; }
   .bh-sl-container .bh-sl-loading {
@@ -129,12 +129,12 @@
       .bh-sl-container .bh-sl-map-container {
         margin-bottom: 60px; } }
     .bh-sl-container .bh-sl-map-container a {
-      color: #005293;
+    /*  color: #005293; */
       text-decoration: none; }
       .bh-sl-container .bh-sl-map-container a:active, .bh-sl-container .bh-sl-map-container a:focus, .bh-sl-container .bh-sl-map-container a:hover {
         text-decoration: underline; }
   .bh-sl-container .bh-sl-loc-list {
-    font-size: 13px;
+/*    font-size: 13px; */
     height: 530px;
     overflow-x: auto;
     width: 100%; }
@@ -159,12 +159,12 @@
         float: left;
         width: 100%; }
     .bh-sl-container .bh-sl-loc-list .list-label {
-      background: #00192d;
+/*      background: #00192d;
       border-radius: 15px;
-      color: #fff;
+      color: #fff; */
       display: block;
       float: left;
-      font-weight: bold;
+/*      font-weight: bold; */
       margin: 10px 0 0 15px;
       padding: 4px 7px;
       text-align: center;
@@ -177,9 +177,10 @@
       .bh-sl-container .bh-sl-loc-list .list-details .list-content {
         padding: 10px; }
       .bh-sl-container .bh-sl-loc-list .list-details .loc-dist {
-        color: #8e8e8e;
+    /*    color: #8e8e8e;
         font-weight: bold;
-        font-style: italic; }
+        font-style: italic; */
+      }
     .bh-sl-container .bh-sl-loc-list .list-focus {
       border: 1px solid rgba(0, 82, 147, 0.4);
       transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s; }
@@ -230,10 +231,10 @@
       padding: 10px 0;
       text-align: center; }
       .bh-sl-container .bh-sl-pagination-container ol li {
-        color: #005293;
+      /*  color: #005293; */
         cursor: pointer;
         display: inline-block;
-        font: bold 14px Arial, Helvetica, sans-serif;
+    /*    font: bold 14px Arial, Helvetica, sans-serif; */
         padding: 10px; }
       .bh-sl-container .bh-sl-pagination-container ol .bh-sl-current {
         color: #555;
