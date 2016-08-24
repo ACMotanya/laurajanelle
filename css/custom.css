@@ -3,50 +3,10 @@
 ----------------------------------------------------------------- */
 
 
-.product-image img.shopimg:hover {
-  -moz-transform: scale(1.1);
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-  -webkit-transition-timing-function: linear; /* Safari and Chrome */
-  transition-timing-function: linear;
-  -webkit-transition-duration: .25s; /* Safari */
-    transition-duration: .25s;
-}
 
 
-@media (min-width: 992px) {
-  #content > div > div.contact {
-   width: 90%
-  }
-}
 
 
-div.contact-img > div.col-sm-3 {
-	padding-left: 6px;
-	padding-right: 6px;
-}
-
-.team-overlay {
-	opacity: 1;
-}
-.team-overlay:before, .team-overlay > .team-desc {
-	background-color: transparent;
-}
-
-div.team-social-icons a, div.team-social-icons p {
-	color: #FAFAFA;
-	font-size: 17px;
-	font-weight: 700;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
-  font-family: "Bodoni-Sans";
-
-}
-
-div.team-title h4 a:hover {
-	color: #999;
-}
 
 /* give white background to the cousin.com link in the nav
 #primary-menu > ul > li:nth-child(8) > a > div {
@@ -175,11 +135,6 @@ Index page styling - index slide page
 	background-color: #fff;
 }
 
-/* The scroller on the bottom Empower Entice and Stuff */
-div.content div a {
-	text-decoration: underline !important;
-}
-
 .content {
 	color: #000;
 	float: none;
@@ -187,7 +142,6 @@ div.content div a {
 	position: absolute;
 	top: 35px;
 }
-
 
 @media (max-width: 1499px) {
 	.content {
@@ -265,7 +219,6 @@ div.container.clearfix video.about {
 	#primary-menu-trigger.page-trigger {
 		left: 636px;
 	}
-
 }
 
 @media (max-width: 1224px) {
@@ -290,6 +243,22 @@ div.container.clearfix video.about {
 /*\\\\\\\\\\\\\\\\\\\\
 	 Shop page Coolio
 \\\\\\\\\\\\\\\\\\\\*/
+.product-image img.shopimg:hover {
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  -webkit-transition-timing-function: linear; /* Safari and Chrome */
+  transition-timing-function: linear;
+  -webkit-transition-duration: .25s; /* Safari */
+  transition-duration: .25s;
+}
+
+#ex1 > span > img.zoomImg {
+  width: 630px !important;
+  height: 630px !important;
+  cursor :zoom-in;
+}
+
 .widget {
 	margin-top: 25px;
 }
@@ -375,6 +344,49 @@ div.widget.clearfix form {
 /*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 Contact page styling - Contact slide page
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
+@media (min-width: 992px) {
+  #content > div > div.contact {
+   width: 90%
+  }
+}
+
+div.contact-img > div.col-sm-3 {
+	padding-left: 6px;
+	padding-right: 6px;
+}
+
+.team-overlay {
+	opacity: 1;
+}
+.team-overlay:before, .team-overlay > .team-desc {
+	background-color: transparent;
+}
+
+div.team-social-icons a, div.team-social-icons p {
+	color: #FAFAFA;
+	font-size: 17px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+  font-family: "Bodoni-Sans";
+
+}
+
+div.team-title h4 a:hover {
+	color: #999;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
 #page-title.contact {
 	background: white;
 	border-top: 1px solid #EEE;

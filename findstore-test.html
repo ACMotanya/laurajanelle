@@ -35,6 +35,7 @@
 	============================================= -->
 	<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700|Roboto:300,400,500,700|EB+Garamond:300,400,500,700" rel="stylesheet" type="text/css" />
 	<link href='https://fonts.googleapis.com/css?family=Oranienbaum' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="assets/css/storelocator.css" />
 	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 	<link rel="stylesheet" href="style.css" type="text/css" />
 
@@ -52,7 +53,7 @@
 	<link rel="stylesheet" href="css/fonts.css" type="text/css" />
 
 	<link rel="stylesheet" href="css/responsive.css" type="text/css" />
-  <link rel="stylesheet" type="text/css" href="assets/css/storelocator.css" />
+
   <link rel="stylesheet" href="css/custom.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<!--[if lt IE 9]>
@@ -104,32 +105,92 @@
       </header><!-- #header end -->
 
 
+      <section id="content">
+  			<div class="content-wrap">
+  				<div class="container clear-bottommargin clearfix">
+            <div class="bh-sl-container">
+            <div id="page-header">
+              <h1 class="bh-sl-title">Find Laura Janelle in these stores...</h1>
 
-      <div class="bh-sl-container">
-      <div id="page-header">
-        <h1 class="bh-sl-title">Find Laura Janelle in these stores or something....</h1>
-        <p>Edina, Plymouth, Eden Prarie, etc. would be good for testing the functionality.
-        You can use just the city as the address - ex: Edina, MN.</p>
-      </div>
-
-      <div class="bh-sl-form-container">
-        <form id="bh-sl-user-location" method="post" action="#">
-            <div class="form-input">
-              <label for="bh-sl-address">Enter Address or Zip Code:</label>
-              <input type="text" id="bh-sl-address" name="bh-sl-address" />
             </div>
 
-            <button id="bh-sl-submit" type="submit">Submit</button>
-        </form>
-      </div>
+            <div class="bh-sl-form-container">
+              <form id="bh-sl-user-location" method="post" action="#">
+                  <div class="form-input">
+                    <label for="bh-sl-address">Enter Address or Zip Code:</label>
+                    <input type="text" id="bh-sl-address" name="bh-sl-address" />
 
-      <div id="bh-sl-map-container" class="bh-sl-map-container">
-        <div id="bh-sl-map" class="bh-sl-map"></div>
-        <div class="bh-sl-loc-list">
-          <ul class="list"></ul>
+                  <!--  <label for="bh-sl-maxdistance">Search Radius:</label>
+                    <input type="text" id="bh-sl-maxdistance" name="bh-sl-maxdistance" /> -->
+                    <label for="bh-sl-maxdistance">Search radius</label>
+          					<select autocomplete="off" id="bh-sl-maxdistance" class="radius" name="radius">
+          						<option value="10">10 mi</option>
+                      <option value="25">25 mi</option>
+                      <option selected="selected" value="50">50 mi</option>
+                      <option value="100">100 mi</option>
+                      <option value="200">200 mi</option>
+                      <option value="500">500 mi</option>
+          					</select>
+                  </div>
+                  <button id="bh-sl-submit" class="button button-3d button-black nomargin" type="submit"style="background: #000;">Submit</button>
+              </form>
+            </div>
+
+            <div id="bh-sl-map-container" class="bh-sl-map-container">
+              <div id="bh-sl-map" class="bh-sl-map"></div>
+              <div class="bh-sl-loc-list">
+                <ul class="list"></ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <!-- Footer
+    ============================================= -->
+    <footer id="footer" class="dark">
+      <!-- Copyrights
+      ============================================= -->
+      <div id="copyrights">
+        <div class="container clearfix">
+          <div class="col_half">
+            Copyrights &copy; 2016 All Rights Reserved by Cousin Corp.<br>
+            <div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
+          </div>
+          <div class="col_half col_last tright">
+            <div class="fright clearfix">
+              <a href="https://www.facebook.com/laurajanellebycousin/" target="_blank" class="social-icon si-small si-borderless si-facebook">
+                <i class="icon-facebook"></i>
+                <i class="icon-facebook"></i>
+              </a>
+
+              <a href="https://twitter.com/LJbyCousin" target="_blank" class="social-icon si-small si-borderless si-twitter">
+                <i class="icon-twitter"></i>
+                <i class="icon-twitter"></i>
+              </a>
+
+              <a href="https://www.instagram.com/laurajanellebycousin/" target="_blank" class="social-icon si-small si-borderless si-instagram">
+                <i class="icon-instagram"></i>
+                <i class="icon-instagram"></i>
+              </a>
+
+              <a href="https://www.pinterest.com/laurajbycousin/" target="_blank" class="social-icon si-small si-borderless si-pinterest">
+                <i class="icon-pinterest"></i>
+                <i class="icon-pinterest"></i>
+              </a>
+
+              <a href="https://www.linkedin.com/company/laura-janelle" target="_blank" class="social-icon si-small si-borderless si-linkedin">
+                <i class="icon-linkedin"></i>
+                <i class="icon-linkedin"></i>
+              </a>
+            </div>
+            <div class="clear"></div>
+            <i class="icon-envelope2"></i><a href="mailto:info@laurajanelle.com" style="color: #555;">&nbsp; info@laurajanelle.com</a> <span class="middot">&middot;</span> <i class="icon-headphones"></i> 844 366-6900
+          </div>
+        </div>
+      </div><!-- #copyrights end -->
+    </footer><!-- #footer end -->
 
     </div>
     <!-- External JavaScripts
@@ -162,13 +223,17 @@ $(function() {
     'dataType': 'json',
     'dataLocation': 'data/fulllocations.json',
     'mapSettings': {
-			zoom     : 12,
+			zoom     : 11,
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		},
-    'storeLimit'               : 504,
-    'fullMapStart'             : true
+    'storeLimit': 504,
+    'fullMapStart': true,
+    'autoGeocode': true,
+    'maxDistance': true,
+    'styles': [{"featureType":"all","elementType":"all","stylers":[{"saturation":-100},{"gamma":0.5}]}]
   });
 });
+
 </script>
 
   </body>
