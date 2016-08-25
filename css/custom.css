@@ -2,12 +2,6 @@
 	Custom CSS
 ----------------------------------------------------------------- */
 
-
-
-
-
-
-
 /* give white background to the cousin.com link in the nav
 #primary-menu > ul > li:nth-child(8) > a > div {
 	background: white;
@@ -369,82 +363,10 @@ div.team-social-icons a, div.team-social-icons p {
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
-  font-family: "Bodoni-Sans";
-
+	font-family: Bodoni-Sans, 'Oranienbaum';
 }
 
 div.team-title h4 a:hover {
 	color: #999;
   cursor: pointer;
-}
-
-
-
-
-
-
-
-
-
-
-#page-title.contact {
-	background: white;
-	border-top: 1px solid #EEE;
-
-}
-
-#page-title.contact div.container h1 {
-		font-family: Bodoni-Sans, 'Oranienbaum';
-}
-
-.rotator > li {
-  font-weight: 800;
-  opacity: 0;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.rotator > li:first-child {
-  -webkit-animation: loop 11s infinite;
-}
-
-.rotator > li:nth-child(2) {
-  -webkit-animation: opsecond 11s infinite;
-}
-
-.rotator > li:nth-child(3) {
-  -webkit-animation: opthird 11s infinite;
-}
-
-.rotator > li:last-child {
-  -webkit-animation: oplast 11s infinite;
-}
-
-@-webkit-keyframes loop {
-  0% { opacity: 0; }
-  8% { opacity: 1; }
-	17% { opacity: 1; }
-  25% { opacity: 0; }
-}
-
-@-webkit-keyframes opsecond {
-  25% { opacity: 0; }
-  33% { opacity: 1; }
-  42% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-@-webkit-keyframes opthird {
-  50% { opacity: 0; }
-  58% { opacity: 1; }
-  67% { opacity: 1; }
-  75% { opacity: 0; }
-}
-
-@-webkit-keyframes oplast {
-  75% { opacity: 0; }
-  83% { opacity: 1; }
-  92% { opacity: 1; }
-  100% { opacity: 1; }
-  0% { opacity: 0; }
 }
