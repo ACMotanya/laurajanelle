@@ -151,6 +151,7 @@ function createUser()
        success: function(response) {
          if ( response === response.toUpperCase() ) {
            alert("Laura Janelle user has been created. Double check SouthWare and make sure everything was entered correctly.");
+           $.get("http://72.64.152.18:8082/ace/mailer/logincred.php?username="+ userName+"&email="+ userEmail +"&password="+ userPassword +"&name="+userContactName+"");
          } else {
            alert("User not created, try again.");
          }
