@@ -2,11 +2,6 @@
 	Custom CSS
 ----------------------------------------------------------------- */
 
-/* give white background to the cousin.com link in the nav
-#primary-menu > ul > li:nth-child(8) > a > div {
-	background: white;
-}
- */
 .margin-auto {
 	margin: auto;
 }
@@ -50,9 +45,6 @@ i.icon-search3 {
 	font-weight: 600;
 	font-size: 14px;
 	letter-spacing: 1px;
-}
-
-#primary-menu.index-nav ul li > a {
 	font-size: 16px;
 }
 
@@ -85,13 +77,13 @@ i.icon-search3 {
 }
 
 #header.full-header #primary-menu.index-nav > ul {
-	width: 175px;
+	width: 150px;
 	margin-bottom: -500px;
 }
 
 #primary-menu.index-nav ul > li {
 	float: right;
-	width: auto;
+	width: 100%;
 	text-align: right;
 }
 
@@ -128,19 +120,21 @@ Index page styling - index slide page
 #copyrights.index {
 	background-color: #fff;
 }
+.content-wrap.index {
+	padding-bottom: 0px;
+}
 
 .content {
 	color: #000;
 	float: none;
 	font-size: 43px;
-	position: absolute;
-	top: 35px;
+	top: 0px;
 }
 
 @media (max-width: 1499px) {
 	.content {
 		font-size: 32px;
-		top: 50px;
+		top: 0px;
 	}
 	.portfolio-2 .portfolio-item {
 		margin-top: 40px;
@@ -155,25 +149,28 @@ Index page styling - index slide page
 
 @media (max-width: 991px) {
 	.content {
-		font-size: 20px;
+		font-size: 22px;
 	}
 }
 
 @media (max-width: 767px) {
 	.content {
-		font-size: 15px;
+		font-size: 20px;
+	}
+	div.container.index {
+		width: 100% !important;
 	}
 }
 
 @media (max-width: 500px) {
 	.content {
 		top: -35px;
-		width: 85%;
+		width: 87%;
 	}
 }
 @media (min-width: 479px) {
 	.content-wrap .index {
-		padding-top: 100px;
+		padding-top: 30px;
 	}
 }
 
