@@ -1,7 +1,12 @@
 ---
 layout: one-page
 ---
+<script>
+$("#primary-menu-trigger").click( function() {
+  $("#primary-menu").children("ul").toggle();
+});
 
+</script>
   <link rel="stylesheet" type="text/css" href="{{ "/assets/css/storelocator.css" | prepend: site.baseurl }}">
 
       <section id="content">
