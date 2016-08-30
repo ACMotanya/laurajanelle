@@ -1,12 +1,23 @@
 ---
 layout: one-page
 ---
+
 <script>
 $("#primary-menu-trigger").click( function() {
   $("#primary-menu").children("ul").toggle();
 });
-
+var limitFunc = function(){
+    if (window.innerWidth>992){
+      $("#primary-menu").children("ul").css("display", "block");
+      console.log('bigScreen');
+    } else {
+      $("#primary-menu").children("ul").css("display", "none");
+      console.log('smallScreen');
+    }
+};
+window.addEventListener("resize", limitFunc);
 </script>
+
   <link rel="stylesheet" type="text/css" href="{{ "/assets/css/storelocator.css" | prepend: site.baseurl }}">
 
       <section id="content">
@@ -57,16 +68,15 @@ $(function() {
     'dataType': 'json',
     'dataLocation': '../data/fulllocations.json',
     'mapSettings': {
-			zoom     : 10,
+			zoom: 10,
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		},
     'storeLimit': 700,
     'fullMapStart': true,
     'autoGeocode': true,
     'maxDistance': true,
-    'infowindowTemplatePath'   : '../assets/js/plugins/storeLocator/templates/infowindow-description.html',
-		'listTemplatePath'         : '../assets/js/plugins/storeLocator/templates/location-list-description.html'
+    'infowindowTemplatePath': '../assets/js/plugins/storeLocator/templates/infowindow-description.html',
+		'listTemplatePath': '../assets/js/plugins/storeLocator/templates/location-list-description.html'
   });
 });
-
 </script>

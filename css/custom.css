@@ -77,7 +77,7 @@ i.icon-search3 {
 }
 
 #header.full-header #primary-menu.index-nav > ul {
-	width: 150px;
+	width: 158px;
 	margin-bottom: -500px;
 }
 
@@ -120,9 +120,7 @@ Index page styling - index slide page
 #copyrights.index {
 	background-color: #fff;
 }
-.content-wrap.index {
-	padding-bottom: 0px;
-}
+
 
 .content {
 	color: #000;

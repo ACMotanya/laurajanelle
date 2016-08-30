@@ -1613,7 +1613,7 @@ function filterFunction2(a,b,c,d,e,f)
         min = Array.min(prices);
         max = Array.max(prices);
         $(document).trigger("filters2");
-//        $(document).trigger("priceFilters");
+//        $(document).trigger("priceFilters2");
       }
     },
     complete: function(){
