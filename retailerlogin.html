@@ -41,23 +41,28 @@ layout: login
 					  				session_no = session_no.replace(/\s+/g,'');
 									  Cookies.set('session_no', session_no);
 					          Cookies.set('username', username);
-					          $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APIORDLST&session_no=" + session_no + "", function( data ) {
-					            openOrderLines = data.split("\n");
-					            openOrderLines = openOrderLines.length;
-					            console.log( openOrderLines );
-					            $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APIHISTLST&session_no=" + session_no + "", function( data ) {
-					              invoiceLines = data.split("\n");
-					              invoiceLines = invoiceLines.length;
-					              console.log( invoiceLines );
-					              console.log(openOrderLines + invoiceLines);
-					              if (openOrderLines + invoiceLines <= 4) {
-					                Cookies.set('newCustomer', "true");
-					                redirect("shop");
-					              } else {
-					                Cookies.set('newCustomer', "false");
-					                redirect("shop");
-					              }
-					            });
+										$.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APIHISTLST&session_no=" + session_no + "", function( data ) {
+											invoiceLines = data.split("\n");
+											invoiceLines = invoiceLines.length;
+											console.log( invoiceLines );
+											if (invoiceLines >= 3) {
+												Cookies.set('newCustomer', "false");
+												redirect("shop");
+											} else {
+							          $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APIORDLST&session_no=" + session_no + "", function( data ) {
+							            openOrderLines = data.split("\n");
+							            openOrderLines = openOrderLines.length;
+							            console.log( openOrderLines );
+//													console.log(openOrderLines + invoiceLines);
+						              if (openOrderLines <= 2) {
+						                Cookies.set('newCustomer', "true");
+						                redirect("shop");
+						              } else {
+						                Cookies.set('newCustomer', "false");
+						                redirect("shop");
+						              }
+					            	});
+											}
 					          });
 					        } else {
 					          alert("Login credentials are incorrect, try again.");
@@ -75,7 +80,6 @@ layout: login
 								$("#register-form-submit").click();
 							}
 						});
-
 					});
 
 					</script>

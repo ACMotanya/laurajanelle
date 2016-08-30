@@ -527,9 +527,9 @@ switch (window.location.hash) {
                     <div class="togglet"><i class="toggle-closed icon-chevron-down"></i><i class="toggle-open icon-chevron-up"></i>PRICE</div>
                     <div class="togglec">
                       <form action="action_page.php">
-                        <input type="number" id="min" name="firstname" style="width: 25%; margin-right: 10px;" placeholder="min">
+                        <input type="number" step="0.25" id="min" name="firstname" style="width: 25%; margin-right: 10px;" placeholder="min">
                          TO
-                        <input type="number" id="max" name="lastname" style="width: 25%; margin: 0px 10px;" placeholder="max">
+                        <input type="number" step="0.25" id="max" name="lastname" style="width: 25%; margin: 0px 10px;" placeholder="max">
                         <input type="button" value="GO" onclick="priceFilter();">
                       </form>
                     </div>
@@ -537,7 +537,7 @@ switch (window.location.hash) {
   							</div>
 
                 <div class="widget subscribe-widget clearfix">
-                  <div class="toggle">
+                  <div class="toggle ui-group">
                     <div class="togglet"><i class="toggle-closed icon-chevron-down"></i><i class="toggle-open icon-chevron-up"></i>COLOR</div>
                     <div class="togglec" data-group="color">
                       <div>
@@ -688,29 +688,40 @@ ga('send', 'pageview');
 </script>
 
 <script>
+
+    var priceRangefrom = 0;
+    var priceRangeto   = 0;
     var $container;
     var filters = {};
 
     function priceFilter() {
-      var priceRangefrom = $("#min").val();
-      var priceRangeto = $("#max").val();
+      var priceRangefrom = parseFloat($("#min").val());
+      var priceRangeto = parseFloat($("#max").val());
       console.log( priceRangefrom + " + " + priceRangeto);
 
+      $container.isotope('destroy');
+      $(document).trigger("filters2");
       $container.isotope({
+        transitionDuration: '0.65s',
         filter: function() {
 
-          if( jQuery(this).find('.product-price').find('ins').length > 0 ) {
-            var price = jQuery(this).find('.product-price ins').text();
-          } else {
-            var price = jQuery(this).find('.product-price').text();
+          if( jQuery(this).is(':visible')) {
+            if( jQuery(this).find('.product-price').find('ins').length > 0 ) {
+              var price = jQuery(this).find('.product-price ins').text();
+            } else {
+              var price = jQuery(this).find('.product-price').text();
+            }
+
+
+            priceNum = price.split("$");
+            console.log(priceNum);
+            return ( priceRangefrom <= priceNum[1] && priceRangeto >= priceNum[1] );
           }
-
-          priceNum = price.split("$");
-
-          return ( priceRangefrom <= priceNum[1] && priceRangeto >= priceNum[1] );
         }
       });
     };
+
+
 
     jQuery(document).on("filters2", function(){
       $container = $('#shop');
@@ -720,13 +731,8 @@ ga('send', 'pageview');
           $container = $('#shop');
           var $output = $('#output');
 
-          $container.isotope({
-            transitionDuration: '0.65s'
-          });
-
-
           // do stuff when checkbox change
-          $('.toggle').on( 'change', function( jQEvent ) {
+          $('.ui-group').on( 'change', function( jQEvent ) {
             console.log("I am in the function");
 
             var $checkbox = $( jQEvent.target );
@@ -749,9 +755,6 @@ ga('send', 'pageview');
       var i = 0;
       var comboFilters = [];
       var message = [];
-      var priceRangefrom = $("#min").val();
-      var priceRangeto = $("#max").val();
-      console.log( priceRangefrom + " new prices " + priceRangeto);
 
       for ( var prop in filters ) {
         message.push( filters[ prop ].join(' ') );
