@@ -103,7 +103,6 @@ function createCustomer()
      country: createcountry
    },
    success: function(response) {
-     console.log(response);
      if (response.length <= 10) {
        alert("An errror occured, try again.");
      } else {
@@ -133,8 +132,6 @@ function createUser()
 
   $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICHECKUSER&session_no=2UD24M4BDN2D4RDAWABU9D254&username="+ userName.toUpperCase() +"", function( data ) {
     if ( data.length > 4 ) {
-      console.log(data);
-      console.log(data.length);
       alert("Pick a different username.");
     } else {
       $.ajax({
@@ -167,19 +164,7 @@ function createUser()
 ////////////////////////////////////////
 function addItemGeneric(session_no, stock_no, qty)
 {
-   $.ajax({
-    type: "GET",
-    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
-    data: {
-      request_id: "APICARTADD",
-      session_no: session_no,
-      stock_no: stock_no,
-      qty: qty
-    },
-    success: function(response) {
-      console.log(response);
-    }
-  });
+  $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no="+ session_no +"&stock_no="+ stock_no +"&qty="+qty+"");
 }
 
 
@@ -190,22 +175,9 @@ function addItemGeneric(session_no, stock_no, qty)
 function addItem(clicked_id)
 {
    stock_no = clicked_id;
-   detailViewQty = document.getElementById(stock_no).value;
-
-   jQuery.ajax({
-    type: "GET",
-    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
-    data: {
-      request_id: "APICARTADD",
-      session_no: session_no,
-      stock_no: stock_no,
-      qty: 1
-    },
-    success: function(response) {
-      cartHeader();
-      cartList();
-    }
-  });
+   addItemGeneric(session_no, stock_no, "1");
+   cartHeader();
+   cartList();
 }
 
 
@@ -217,20 +189,8 @@ function addItemDetailView()
 {
   detailViewQty = document.getElementById(stock_no).value;
 
-  jQuery.ajax({
-    type: "GET",
-    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
-    data: {
-      request_id: "APICARTADD",
-      session_no: session_no,
-      stock_no: stock_no,
-      qty: detailViewQty
-    },
-    success: function(response) {
-      console.log(response);
-      redirect("cart");
-    }
-  });
+  addItemGeneric(session_no, stock_no, detailViewQty);
+  redirect("cart");
 }
 
 
@@ -240,18 +200,7 @@ function addItemDetailView()
 //////////////////////////////////////
 function removeItemGeneric(session_no, line_no)
 {
-  $.ajax({
-    type: "GET",
-    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
-    data: {
-      request_id: "APICARTREM",
-      session_no: session_no,
-      line_no: line_no
-    },
-    success: function(response) {
-      console.log(response);
-    }
-  });
+  $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICARTREM&session_no="+ session_no +"&line_no="+ line_no +"");
 }
 
 
@@ -262,21 +211,9 @@ function removeItemGeneric(session_no, line_no)
 function removeItem(clicked_id)
 {
   line_no = clicked_id;
-
-  $.ajax({
-    type: "GET",
-    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
-    data: {
-      request_id: "APICARTREM",
-      session_no: session_no,
-      line_no: line_no
-    },
-    success: function(response) {
-      console.log(response);
-      cartHeader();
-      cartList();
-    }
-  });
+  removeItemGeneric(session_no, line_no);
+  cartHeader();
+  cartList();
 }
 
 
@@ -546,30 +483,7 @@ function detailView()
         secondColumn += '</div>';
       secondColumn += '</div><!-- Product Single - Meta End -->';
 
-  /*			secondColumn += '<!-- Product Single - Share'
-      secondColumn += '============================================= -->'
-      secondColumn += '<div class="si-share noborder clearfix">'
-        secondColumn += '<span>Share:</span>'
-        secondColumn += '<div>'
-        secondColumn += '	<a href="#" class="social-icon si-borderless si-facebook">'
-            secondColumn += '<i class="icon-facebook"></i>'
-            secondColumn += '<i class="icon-facebook"></i>'
-          secondColumn += '</a>'
-          secondColumn += '<a href="#" class="social-icon si-borderless si-twitter">'
-            secondColumn += '<i class="icon-twitter"></i>'
-            secondColumn += '<i class="icon-twitter"></i>'
-          secondColumn += '</a>'
-          secondColumn += '<a href="#" class="social-icon si-borderless si-pinterest">'
-            secondColumn += '<i class="icon-pinterest"></i>'
-            secondColumn += '<i class="icon-pinterest"></i>'
-          secondColumn += '</a>'
-          secondColumn += '<a href="#" class="social-icon si-borderless si-email3">'
-            secondColumn += '<i class="icon-email3"></i>'
-            secondColumn += '<i class="icon-email3"></i>'
-          secondColumn += '</a>'
-        secondColumn += '</div>'
-      secondColumn += '</div><!-- Product Single - Share End -->'
-  */			document.getElementById("secondColumn").innerHTML += secondColumn;
+      document.getElementById("secondColumn").innerHTML += secondColumn;
 
   // Fill tabbed Modal Windows..
 
@@ -683,7 +597,6 @@ function creditCard()
       session_no: session_no
     },
     success: function(response) {
-      console.log(response);
       openlines = response.split("\n");
       numberOfOrders = openlines.length;
     },
@@ -711,10 +624,8 @@ function creditCard()
                 message += '<p class="nobottommargin">Laura Janelle values your business and is continuously looking for ways to better satisfy their customers. Please do share with us if there is a way we can serve you better.</p>';
             document.getElementById("successMessage").innerHTML += message;
             document.body.addEventListener("click", function(){
+              $.get("http://72.64.152.18:8082/ace/mailer/order_confirmation.php?session_no=" + session_no + "&order_no="+ newOrder + "");
               redirect("orders");
-              $.get("http://72.64.152.18:8082/ace/mailer/order_confirmation.php?session_no=" + session_no + "&order_no="+ newOrder + "", function ( data ) {
-                console.log(data);
-              });
             });
           }
         });
@@ -730,19 +641,6 @@ function creditCard()
 /////////////////////////////////////////
 function saveAddresses()
 {
-/*
-  var billingformcompanyname  = $("#billing-form-companyname").val();
-  var billingformaddress      = $("#billing-form-addres").val();
-  var billingformaddress2     = $("#billing-form-address2").val();
-  var billingformaddress3     = $("#billing-form-address3").val();
-  var billingformcity         = $("#billing-form-city").val();
-  var billingformstate        = $("#billing-form-state").val();
-  var billingformzipcode      = $("#billing-form-zipcode").val();
-  var billingformcountry      = $("#billing-form-country").val();
-  var billingformemail        = $("#billing-form-email").val();
-  var billingformphone        = $("#billing-form-phone").val();
-*/
-
   var shippingformcompanyname = $("#shipping-form-companyname").val();
   var shippingformaddress     = $("#shipping-form-address").val();
   var shippingformaddress2    = $("#shipping-form-address2").val();
@@ -787,15 +685,6 @@ function saveAddresses()
       data: {
         request_id: "APICARTUPD",
         session_no: session_no,
-    /*  billname: billingformcompanyname,
-        billadd1: billingformaddress,
-        billadd2: billingformaddress2,
-        billadd3: billingformaddress3,
-        billcity: billingformcity,
-        billstate: billingformstate,
-        billzip: billingformzipcode,
-        billcountry: billingformcountry,
-    */
         shipname: shippingformcompanyname,
         shipadd1: shippingformaddress,
         shipadd2: shippingformaddress2,
@@ -812,9 +701,6 @@ function saveAddresses()
         text3: text3,
         text4: text4,
         text5: text5
-      },
-      success: function(response) {
-        console.log(response);
       }
     });
   } else if ( path[0] === "profile" ) {
@@ -837,9 +723,6 @@ function saveAddresses()
         contact_name: shippingformcontactname,
         phone: phone,
         email: email_addr
-      },
-      success: function(response) {
-        console.log(response);
       }
     });
   }
@@ -863,7 +746,6 @@ function filterFunction(a,b,c,d,e,f)
       level4: e,
       level5: f},
     success: function(response) {
-      console.log(response);
       fillShop2(response);
     },
     complete: function(){
@@ -962,7 +844,7 @@ function orderHistory()
      session_no: session_no
    },
    success: function(response) {
-     console.log(response);
+
      lines = response.split("\n");
      // lines[0] is header row
      // lines[1]+ are data lines
@@ -975,7 +857,7 @@ function orderHistory()
        flds.splice(7, 1);
        flds.splice(7, 1);
        flds.splice(7, 1);
-       console.log(flds);
+
        fldsArray.data.push(flds);
      }
      fldsArray = JSON.stringify(fldsArray);
@@ -984,7 +866,7 @@ function orderHistory()
    complete: function(){
      table = $('#datatable2').DataTable();
      table.rows.add( fldsArray_json.data ).draw();
-     console.log("did this run past orders");
+
    }
  });
 }
@@ -1008,7 +890,7 @@ function openOrders()
      session_no: session_no
    },
    success: function(response) {
-     console.log(response);
+
      openlines = response.split("\n");
      // lines[0] is header row
      // lines[1]+ are data lines
@@ -1027,7 +909,6 @@ function openOrders()
    complete: function(){
      table1 = $('#datatable1').DataTable();
      table1.rows.add( openfldsArray_json.data ).draw();
-     console.log("did this run open orders");
    }
  });
 }
@@ -1098,7 +979,6 @@ function searchOrders(orderSearchNumber)
       session_no: session_no,
       order_no: orderSearchNumber},
     success: function(response) {
-      console.log(response);
       openlines = response.split("\n");
       // lines[0] is header row
       // lines[1]+ are data lines
@@ -1108,7 +988,6 @@ function searchOrders(orderSearchNumber)
         fields.splice(4, 1);
         fields.splice(4, 1);
         fields.splice(6, 1);
-        console.log("whats up"+fields);
         openfldsArray.data.push(fields);
       }
       openfldsArray = JSON.stringify(openfldsArray);
@@ -1124,7 +1003,6 @@ function searchOrders(orderSearchNumber)
         table3 = $('#datatable3').DataTable();
         table3.clear();
         table3.rows.add( openfldsArray_json.data ).draw();
-        console.log("did this get line items for orders");
       }
     }
   });
@@ -1197,7 +1075,7 @@ function searchInvoices(invoiceSearchNumber)
       session_no: session_no,
       inv_no: invoiceSearchNumber},
     success: function(response) {
-      console.log(response);
+
       openlines = response.split("\n");
       // lines[0] is header row
       // lines[1]+ are data lines
@@ -1209,7 +1087,7 @@ function searchInvoices(invoiceSearchNumber)
         fields.splice(4, 1);
         fields.splice(4, 1);
         fields.splice(8, 1);
-        console.log("whats up"+fields);
+
         openfldsArray.data.push(fields);
       }
       openfldsArray = JSON.stringify(openfldsArray);
@@ -1224,7 +1102,7 @@ function searchInvoices(invoiceSearchNumber)
         table4 = $('#datatable4').DataTable();
         table4.clear();
         table4.rows.add( openfldsArray_json.data ).draw();
-        console.log("did this get line items for the invoice");
+
       }
     }
   });
@@ -1243,7 +1121,7 @@ function accountDetails()
       request_id: "APIACCTINFO",
       user: username},
     success: function(response) {
-      console.log(response);
+
       lines = response.split("\n");
       // lines[0] is header row
       // lines[1]+ are data lines
@@ -1278,7 +1156,7 @@ function billToAddress()
       session_no: session_no
     },
     success: function(response) {
-      console.log(response);
+
       lines = response.split("\n");
       // lines[0] is header row
       // lines[1]+ are data lines
@@ -1303,7 +1181,7 @@ function shipToAddress()
       session_no: session_no
     },
     success: function(response) {
-      console.log(response);
+
       lines = response.split("\n");
       // lines[0] is header row
       // lines[1]+ are data lines
@@ -1328,7 +1206,7 @@ function shipToAddress()
 
 //////////////////////////////////////////////////////////////////
 
-//////////////////    HELPER FUNCTIONS     ///////////////////////
+//////////////////////// HELPER FUNCTIONS ////////////////////////
 
 //////////////////////////////////////////////////////////////////
 
@@ -1428,10 +1306,10 @@ function minimumTotal()
   if (newCustomer === "false" && orderAmtFloat < 100 || newCustomer === "true" && orderAmtFloat < 200 ){
     $("#myButton").hide();
     if (newCustomer === "true") {
-      document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + (200.00 - orderAmtFloat) + ' more to reach the minimum order requirement of $150 for new customers.</h2>';
+      document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + parseFloat((200 - orderAmtFloat)).toFixed(2) + ' more to reach the minimum order requirement of $150 for new customers.</h2>';
     }
     if (newCustomer === "false") {
-      document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + (100.00 - orderAmtFloat) + ' more to reach the minimum order requirement of $100.</h2>';
+      document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + parseFloat((100 - orderAmtFloat)).toFixed(2) + ' more to reach the minimum order requirement of $100.</h2>';
     }
   }
 }
