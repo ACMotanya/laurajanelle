@@ -291,13 +291,19 @@ layout: login
 										<div class="col-sm-6 bottommargin">
 											<h4>Required Documents</h4>
 											<p>Documentation of an active online business, Etsy, Artfire or similar account, a trade show contract or a copy of an invoice where you have purchased from another wholesale company.</p>
-											<div class="col_full">
-												<input id="doc-1" type="file" name="doc[0]" class="file">
-											</div>
+											<div class="form-group">
+												<div class="col_full">
+													<input id="doc-1" type="file" name="doc[0]" required class="file">
+													<div class="help-block with-errors"></div>
+			  								</div>
+			  							</div>
 											<p>A copy of a Municipal occupational license from your local area, your Federal Tax ID or EIN, LLC, DBA or Vendor permit.</p>
-											<div class="col_full">
-												<input id="taxId" type="file" name="doc[1]" class="file">
-											</div>
+											<div class="form-group">
+												<div class="col_full">
+													<input id="taxId" type="file" name="doc[1]" required class="file">
+													<div class="help-block with-errors"></div>
+			  								</div>
+			  							</div>
 											<p><strong>NOTE: If your business is in the State of Florida, a copy of a Tax ID must be provided also. STATE OF FLORIDA COMPTROLLER SALES TAX DIVISION RULE 39</strong></p>
 											<h4>How did you hear about us?</h4>
 											<div class="col_one_third">
