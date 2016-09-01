@@ -1,9 +1,27 @@
 ---
 layout: page
 ---
-<style>
+<!-- Star Rating CSS -->
 
-</style>
+
+  <style>
+
+	.white-section {
+		background-color: #FFF;
+		padding: 25px 20px;
+		-webkit-box-shadow: 0px 1px 1px 0px #dfdfdf;
+		box-shadow: 0px 1px 1px 0px #dfdfdf;
+		border-radius: 3px;
+	}
+
+	.white-section label { margin-bottom: 15px; }
+
+	.dark .white-section {
+		background-color: #111;
+		-webkit-box-shadow: 0px 1px 1px 0px #444;
+		box-shadow: 0px 1px 1px 0px #444;
+	}
+	</style>
 
 
 <script>
@@ -53,6 +71,24 @@ jQuery( document ).ready(function() {
 							</div>
 
 							<div class="col_two_fifth product-desc" id="secondColumn">
+                <div class="product-price">
+                  <!-- The Price -->
+                </div>
+
+                '<div class="product-rating">
+          			'<i class="icon-star3"></i>
+          			<i class="icon-star3"></i>
+          		<i class="icon-star3"></i>
+          			<i class="icon-star-half-full"></i>
+          			<i class="icon-star-empty"></i></div>
+                <div class="col-md-6 bottommargin-sm">
+                <div class="white-section">
+                <label>Start with Default params:</label>
+                <input id="input" type="number" class="rating" max="5" data-size="sm" data-glyphicon="false" data-rating-class="fontawesome-icon">
+                <br>
+                <pre class="noborder nobottommargin">&#x3C;input id=&#x22;input-&#x22; type=&#x22;number&#x22; class=&#x22;rating&#x22; min=&#x22;1&#x22; max=&#x22;5&#x22; data-size=&#x22;sm&#x22;&#x3E;</pre>
+                </div>
+                </div>
 
 								<!-- 2nd Column -->
 
@@ -196,6 +232,9 @@ jQuery( document ).ready(function() {
         -->
 				</div>
 
+
 			</div>
 
 		</section><!-- #content end -->
+
+    <script type="text/javascript" src="{{ "/js/components/star-rating.js" | prepend: site.baseurl }}"></script>
