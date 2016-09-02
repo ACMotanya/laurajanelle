@@ -283,10 +283,10 @@
                     <div class="togglet"><i class="toggle-closed icon-chevron-down"></i><i class="toggle-open icon-chevron-up"></i>PRICE</div>
                     <div class="togglec">
                       <form action="action_page.php">
-                        <input type="number" step="0.25" id="min" name="firstname" style="width: 25%; margin-right: 10px;" placeholder="min">
+                        <span>$</span><input type="number" step="0.25" id="min" name="firstname" style="width: 25%; margin-right: 10px;" placeholder="min">
                          TO
-                        <input type="number" step="0.25" id="max" name="lastname" style="width: 25%; margin: 0px 10px;" placeholder="max">
-                        <input type="button" value="GO" onclick="priceFilter();">
+                        <span>$</span><input type="number" step="0.25" id="max" name="lastname" style="width: 25%; margin: 0px 10px;" placeholder="max">
+                        <button class="button button-3d button-black nomargin" type="button" value="GO" onclick="priceFilter();">GO</button>
                       </form>
                     </div>
                   </div>

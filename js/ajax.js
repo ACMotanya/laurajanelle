@@ -456,26 +456,9 @@ function detailView()
 
 
   // Fill in the 2nd Column data
-      secondColumn = '<div class="product-price"> <ins>$' + fields[4].substring(0, fields[4].length - 3) + '</ins>';
+      document.getElementById("price-area").innerHTML = '<div class="product-price"> <ins>$' + fields[4].substring(0, fields[4].length - 3) + '</ins>';
 
-
-			secondColumn +=					  '<div class="product-rating">';
-			secondColumn +=						'<i class="icon-star3"></i>';
-			secondColumn +=						'<i class="icon-star3"></i>';
-			secondColumn +=						'<i class="icon-star3"></i>';
-			secondColumn +=						'<i class="icon-star-half-full"></i>';
-			secondColumn +=						'<i class="icon-star-empty"></i></div>';
-      secondColumn +=	      '<div class="col-md-6 bottommargin-sm">';
-      secondColumn +=	        '<div class="white-section">';
-      secondColumn +=	          '<label>Start with Default params:</label>';
-      secondColumn +=	          '<input id="input" type="number" class="rating" max="5" data-size="sm" data-glyphicon="false" data-rating-class="fontawesome-icon">';
-      secondColumn +=	          '<br>';
-      secondColumn +=	          '<pre class="noborder nobottommargin">&#x3C;input id=&#x22;input-&#x22; type=&#x22;number&#x22; class=&#x22;rating&#x22; min=&#x22;1&#x22; max=&#x22;5&#x22; data-size=&#x22;sm&#x22;&#x3E;</pre>';
-      secondColumn +=	        '</div>';
-      secondColumn +=	      '</div>';
-
-
-      secondColumn += '<div class="clear"></div>';
+      secondColumn = '<div class="clear"></div>';
       secondColumn += '<div class="line"></div>';
 
       secondColumn += '<form class="cart nobottommargin clearfix" method="post" enctype="multipart/form-data">';
@@ -500,7 +483,7 @@ function detailView()
         secondColumn += '</div>';
       secondColumn += '</div><!-- Product Single - Meta End -->';
 
-      document.getElementById("secondColumn").innerHTML += secondColumn;
+      $("#secondColumn").append(secondColumn);
 
   // Fill tabbed Modal Windows..
 

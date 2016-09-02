@@ -6,21 +6,28 @@ layout: page
 
   <style>
 
-	.white-section {
-		background-color: #FFF;
-		padding: 25px 20px;
-		-webkit-box-shadow: 0px 1px 1px 0px #dfdfdf;
-		box-shadow: 0px 1px 1px 0px #dfdfdf;
-		border-radius: 3px;
+	#secondColumn > div.star-rating.rating-sm.rating-active > div.clear-rating.clear-rating-active > i,
+  #secondColumn > div.product-rating > div > div.caption > span,
+  #secondColumn > div.star-rating.rating-sm.rating-active > div.caption > span,
+  #secondColumn > div.product-rating > div > div.clear-rating.clear-rating-active > i {
+		display: none;
 	}
+  .rating-container .rating-stars {
+    color: red
+  }
 
-	.white-section label { margin-bottom: 15px; }
+  .single-product .product-rating:hover {
+    color: red;
+    transition-timing-function: ease;
+  }
 
-	.dark .white-section {
-		background-color: #111;
-		-webkit-box-shadow: 0px 1px 1px 0px #444;
-		box-shadow: 0px 1px 1px 0px #444;
-	}
+  .single-product .product-rating {
+    top: -9px;
+  }
+
+  #secondColumn > div.product-rating > div {
+    display: inline;
+  }
 	</style>
 
 
@@ -71,23 +78,13 @@ jQuery( document ).ready(function() {
 							</div>
 
 							<div class="col_two_fifth product-desc" id="secondColumn">
-                <div class="product-price">
+                <div class="product-price" id="price-area">
                   <!-- The Price -->
                 </div>
 
-                '<div class="product-rating">
-          			'<i class="icon-star3"></i>
-          			<i class="icon-star3"></i>
-          		<i class="icon-star3"></i>
-          			<i class="icon-star-half-full"></i>
-          			<i class="icon-star-empty"></i></div>
-                <div class="col-md-6 bottommargin-sm">
-                <div class="white-section">
-                <label>Start with Default params:</label>
-                <input id="input" type="number" class="rating" max="5" data-size="sm" data-glyphicon="false" data-rating-class="fontawesome-icon">
-                <br>
-                <pre class="noborder nobottommargin">&#x3C;input id=&#x22;input-&#x22; type=&#x22;number&#x22; class=&#x22;rating&#x22; min=&#x22;1&#x22; max=&#x22;5&#x22; data-size=&#x22;sm&#x22;&#x3E;</pre>
-                </div>
+                <div class="product-rating">
+                  Save to Wishlist
+                  <input style="display: inline;" id="input" type="number" data-stars="1" class="rating" max="1" data-size="sm" data-glyphicon="false" data-rating-class="line-icon" data-symbol="&#xe024;" data-default-caption="{rating} Hearts" data-star-captions="{}" >
                 </div>
 
 								<!-- 2nd Column -->
