@@ -242,6 +242,15 @@ div.container.clearfix video.about {
   transition-duration: .25s;
 }
 
+.product-image {
+	border: 2px solid lightgrey;
+	border-radius: 3px;
+}
+
+.product-overlay a.add-to-cart {
+	color: #888;
+}
+
 #ex1 > span > img.zoomImg {
   width: 630px !important;
   height: 630px !important;
