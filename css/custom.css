@@ -229,6 +229,30 @@ div.container.clearfix video.about {
 }
 
 
+/* \\\\\\\\\\\\\\\\\\\\\
+	/* Careers Page Styles
+/* \\\\\\\\\\\\\\\\\\\*/
+/* gets rid of random line of demarcation  on headings*/
+.heading-block:after {
+  display: none;
+}
+
+.iconlist-color li i {
+	color: #777;
+}
+
+.heading-block h2 {
+	font-weight: 600;
+}
+
+div.acc_content.clearfix {
+  display: block !important;
+}
+
+label {
+	font-family: 'Bodoni-Sans', 'Oranienbaum';
+}
+
 /*\\\\\\\\\\\\\\\\\\\\
 	 Shop page Coolio
 \\\\\\\\\\\\\\\\\\\\*/
