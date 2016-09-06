@@ -43,6 +43,20 @@
           <li><a href="{{ site.baseurl }}/retailerlogin" target="_blank"><div>RETAILER LOGIN</div></a></li>
           <li><a href="https://www.ivystone.com/find/search-for-a-sales-representative.asp" target="_blank"><div>FIND A REP</div></a></li>
 
+          {% if page.url == "/careers/" %}
+            <li class="current">
+              <a href="{{ site.baseurl }}/careers" target="_blank">
+                <div>CAREERS</div>
+              </a>
+            </li>
+          {% else %}
+            <li>
+              <a href="{{ site.baseurl }}/careers" target="_blank">
+                <div>CAREERS</div>
+              </a>
+            </li>
+          {% endif %}
+
           {% if page.url == "/contact/" %}
             <li class="current"><a href="{{ site.baseurl }}/contact" target="_blank"><div>CONTACT</div></a></li>
           {% else %}
