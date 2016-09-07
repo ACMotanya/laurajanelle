@@ -2,6 +2,20 @@
 	Custom CSS
 ----------------------------------------------------------------- */
 
+
+
+/* randomly broke fixes on shop page */
+#header.full-header #logo {
+	padding-right: 0px !important;
+	margin-right: 0px !important;
+}
+
+@media (max-width: 1199px) and (min-width: 450px) {
+	.product:not(.product-2):not(.product-3) .product-title h3 {
+		font-size: 14px;
+	}
+}
+
 .margin-auto {
 	margin: auto;
 }
@@ -256,17 +270,9 @@ label {
 /*\\\\\\\\\\\\\\\\\\\\
 	 Shop page Coolio
 \\\\\\\\\\\\\\\\\\\\*/
-.product-image img.shopimg:hover {
-  -moz-transform: scale(1.1);
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-  -webkit-transition-timing-function: linear; /* Safari and Chrome */
-  transition-timing-function: linear;
-  -webkit-transition-duration: .25s; /* Safari */
-  transition-duration: .25s;
-}
 
-.product-image {
+
+.col_two_fifth div.product-image {
 	border: 2px solid lightgrey;
 	border-radius: 3px;
 }
