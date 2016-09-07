@@ -422,34 +422,17 @@ function detailView()
     url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
     data: {request_id: "APISTKDTL", stock_no: stock_no},
     success: function(response) {
-
+      console.log(response);
       lines = response.split("\n");
       // lines[0] is header row
       // lines[1]+ are data lines
       fields = lines[1].split("|");
 
-      switch (fields[2]) {
-        case "SLK":
-          collection = 'Sleek';
-          break;
-        case "GLB":
-          collection = "RGLB";
-          break;
-        case "ENC":
-          collection = "enCharming";
-          break;
-        case "IDT":
-          collection = "iDentify";
-          break;
-        default:
-          collection = fields[2];
-      }
+
 
       var prodtype = fields[1].split(/(\s+)/);
           prodtype = prodtype[2];
 
-  /* Fill in the Breadcrumb section */
-      document.getElementById("breadcrumbtitle").innerHTML = '<h1>' + collection + '</h1><span></span><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'storefront\')">Home</a></li><li>Shop</li><li class="active">' + collection + '</li></ol>';
 
   /* Fill in the pictures for the product */
       document.getElementById("images").innerHTML = '<div class="slide" style="display: block;"><a href="../ljimages/' + fields[0].replace(/\s+/g,'') + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom" id="ex1"><img src="../ljimages/' + fields[0].replace(/\s+/g,'') + '-md.png" alt="' + fields[1] + '"></span></a></div>';
@@ -652,27 +635,29 @@ function saveAddresses()
   var email_addr              = $("#billing-form-email").val();
   var phone                   = $("#billing-form-phone").val();
   var ponumber                = $("#shipping-form-ponumber").val();
-  var text1;
-  var text2;
-  var text3;
-  var text4;
-  var text5;
+  var text1 = "";
+  var text2 = "";
+  var text3 = "";
+  var text4 = "";
+  var text5 = "";
   var notesArray = [];
-  notesArray = $("#shipping-form-message").val().match(/.{1,30}/g);
-  if (notesArray[0] && typeof(notesArray[0]) === "string") {
-     text1 = notesArray[0];
-  }
-  if (notesArray[1] && typeof(notesArray[1]) === "string") {
-    text2 = notesArray[1];
-  }
-  if (notesArray[2] && typeof(notesArray[2]) === "string") {
-    text3 = notesArray[2];
-  }
-  if (notesArray[3] && typeof(notesArray[3]) === "string") {
-    text4 = notesArray[3];
-  }
-  if (notesArray[4] && typeof(notesArray[4]) === "string") {
-    text5 = notesArray[4];
+  if($("#shipping-form-message").val()) {
+    notesArray = $("#shipping-form-message").val().match(/.{1,30}/g);
+    if (notesArray[0] && typeof(notesArray[0]) === "string") {
+       text1 = notesArray[0];
+    }
+    if (notesArray[1] && typeof(notesArray[1]) === "string") {
+      text2 = notesArray[1];
+    }
+    if (notesArray[2] && typeof(notesArray[2]) === "string") {
+      text3 = notesArray[2];
+    }
+    if (notesArray[3] && typeof(notesArray[3]) === "string") {
+      text4 = notesArray[3];
+    }
+    if (notesArray[4] && typeof(notesArray[4]) === "string") {
+      text5 = notesArray[4];
+    }
   }
 
   pathArray = window.location.pathname.split( '/' );
@@ -782,17 +767,15 @@ function fillShop2(response)
     for (i=0; i<linesPlus.length; i++) {
       flds = linesPlus[i];
 
-      prices.push(Number(flds[4]));
-      prod = '<div class="product clearfix ' + flds[2] + '"><div class="product-image"><a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img class="shopimg" src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
+      prod = '<div class="product clearfix ' + flds[2] + '"><div class="product-image"><a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
       prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
       prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a></div></div>';
-      prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div><div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div></div></div>';
+      prod += '<div class="product-desc" style="height: 80px;"><div class="product-title"><h3><a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '">' + flds[1] +'</a></h3></div><div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div></div></div>';
 
       html.push(prod);
     }
     document.getElementById("shop").innerHTML += html.join('');
-    min = Array.min(prices);
-    max = Array.max(prices);
+
     $(document).trigger("filters");
     $(document).trigger("priceFilters");
   }
@@ -1302,11 +1285,12 @@ function logoff()
 function minimumTotal()
 {
   newCustomer = Cookies.get('newCustomer');
-  orderAmtFloat = parseFloat(orderAmt);
+  orderAmt.trim();
+  orderAmtFloat = parseFloat(orderAmt.replace(/,/g,''));
   if (newCustomer === "false" && orderAmtFloat < 100 || newCustomer === "true" && orderAmtFloat < 200 ){
     $("#myButton").hide();
     if (newCustomer === "true") {
-      document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + parseFloat((200 - orderAmtFloat)).toFixed(2) + ' more to reach the minimum order requirement of $150 for new customers.</h2>';
+      document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + parseFloat((200 - orderAmtFloat)).toFixed(2) + ' more to reach the minimum order requirement of $200 for new customers.</h2>';
     }
     if (newCustomer === "false") {
       document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + parseFloat((100 - orderAmtFloat)).toFixed(2) + ' more to reach the minimum order requirement of $100.</h2>';
