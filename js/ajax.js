@@ -428,11 +428,8 @@ function detailView()
       // lines[1]+ are data lines
       fields = lines[1].split("|");
 
-
-
       var prodtype = fields[1].split(/(\s+)/);
           prodtype = prodtype[2];
-
 
   /* Fill in the pictures for the product */
       document.getElementById("images").innerHTML = '<div class="slide" style="display: block;"><a href="../ljimages/' + fields[0].replace(/\s+/g,'') + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom" id="ex1"><img src="../ljimages/' + fields[0].replace(/\s+/g,'') + '-md.png" alt="' + fields[1] + '"></span></a></div>';
@@ -731,6 +728,7 @@ function filterFunction(a,b,c,d,e,f)
       level4: e,
       level5: f},
     success: function(response) {
+      console.log(response);
       fillShop2(response);
     },
     complete: function(){
@@ -802,7 +800,7 @@ function search()
         path = pathArray.splice([pathArray.length - 2]);
         var data = response;
         if (path[0] === "shop") {
-          fillShop(data);
+          fillShop2(data);
         } else {
           $("section").append('<section id="content"><div class="content-wrap"><div class="container clearfix"><div class="shop grid-container clearfix" id="shop"></div></div></div></div>');
           fillShop2(data);
