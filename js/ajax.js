@@ -436,7 +436,7 @@ function detailView()
 
 
   // Fill in the 2nd Column data
-      document.getElementById("price-area").innerHTML = '<div class="product-price"> <ins>$' + fields[4].substring(0, fields[4].length - 3) + '</ins>';
+      document.getElementById("price-area").innerHTML = '<ins>$' + fields[4].substring(0, fields[4].length - 3) + '</ins>';
 
       secondColumn = '<div class="clear"></div>';
       secondColumn += '<div class="line"></div>';

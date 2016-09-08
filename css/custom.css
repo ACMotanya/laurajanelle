@@ -271,8 +271,8 @@ label {
 	 Shop page Coolio
 \\\\\\\\\\\\\\\\\\\\*/
 
-
-.col_two_fifth div.product-image {
+#images > div > a,
+#images > div.slide.flex-active-slide > a {
 	border: 2px solid lightgrey;
 	border-radius: 3px;
 }
