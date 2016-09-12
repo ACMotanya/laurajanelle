@@ -356,17 +356,6 @@ div.widget.clearfix form {
 	}
 }
 
-.rotator {
-  width: 80%;
-  list-style: none;
-  padding: 0;
-  margin: 5%;
-	text-align: right;
-	color: #fff;
-	float: right;
-	font-size: 70px;
-}
-
 
 /*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 Contact page styling - Contact slide page
@@ -402,4 +391,67 @@ div.team-social-icons a, div.team-social-icons p {
 div.team-title h4 a:hover {
 	color: #999;
   cursor: pointer;
+}
+
+
+/* The scroller on the bottom Empower Entice and Stuff */
+
+.rotator {
+  width: 80%;
+  list-style: none;
+  padding: 0;
+  margin: 10%;
+	text-align: center;
+}
+
+.rotator > li {
+  font-weight: 800;
+  opacity: 0;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.rotator > li:first-child {
+  -webkit-animation: loop 11s infinite;
+}
+
+.rotator > li:nth-child(2) {
+  -webkit-animation: opsecond 11s infinite;
+}
+
+.rotator > li:nth-child(3) {
+  -webkit-animation: opthird 11s infinite;
+}
+
+.rotator > li:last-child {
+  -webkit-animation: oplast 11s infinite;
+}
+
+@-webkit-keyframes loop {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+	17% { opacity: 1; }
+  25% { opacity: 0; }
+}
+
+@-webkit-keyframes opsecond {
+  17% { opacity: 0; }
+  25% { opacity: 1; }
+  35% { opacity: 1; }
+  55% { opacity: 0; }
+}
+
+@-webkit-keyframes opthird {
+  35% { opacity: 0; }
+  55% { opacity: 1; }
+  65% { opacity: 1; }
+  77% { opacity: 0; }
+}
+
+@-webkit-keyframes oplast {
+  66% { opacity: 0; }
+  77% { opacity: 1; }
+  100% { opacity: 1; }
+  0% { opacity: 1; }
+  10% { opacity: 0; }
 }
