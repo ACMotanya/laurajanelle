@@ -271,8 +271,19 @@ label {
 	 Shop page Coolio
 \\\\\\\\\\\\\\\\\\\\*/
 
+.product-image > a > img.shopimg:hover {
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  -webkit-transition-timing-function: linear; /* Safari and Chrome */
+  transition-timing-function: linear;
+  -webkit-transition-duration: .25s; /* Safari */
+  transition-duration: .25s;
+}
+
 #images > div > a,
-#images > div.slide.flex-active-slide > a {
+#images > div.slide.flex-active-slide > a,
+.product-image > a > img {
 	border: 2px solid lightgrey;
 	border-radius: 3px;
 }
