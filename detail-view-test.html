@@ -59,6 +59,18 @@
 	============================================= -->
 	<title>Laura Janelle</title>
 
+<script>
+jQuery( document ).ready(function() {
+    $('.ex1 img')
+   .wrap('<span style="display:inline-block; position: relative; overflow: hidden;"></span>')
+   .css('display', 'block')
+   .parent()
+   .zoom();
+
+   console.log("I ran");
+ });
+</script>
+
 </head>
 
 
@@ -209,6 +221,12 @@
   footer {
     margin-top: 10px !important;
   }
+
+  .ex1 > span > img.zoomImg {
+    width: 630px !important;
+    height: 630px !important;
+    cursor :zoom-in;
+  }
 	</style>
 
 
@@ -239,21 +257,21 @@ jQuery( document ).ready(function() {
 									<div class="fslider" data-pagi="false" data-arrows="false" data-thumbs="true">
 										<div class="flexslider">
 											<div class="slider-wrap" data-lightbox="gallery" id="images">
-                        <div class="slide" data-thumb="ljimages/10303-sm.png">
-                          <a href="ljimages/10303-lg.png" title="EC NECKLACE HAMSA GOLD" data-lightbox="gallery-item" style="border: none;">
-                            <span class="zoom" id="ex1">
-                              <span style="display: inline-block; position: relative; overflow: hidden;">
-                                <img src="ljimages/10303-md.png" alt="EC NECKLACE HAMSA GOLD">
-                              </span>
+                        <div class="slide" data-thumb="ljimages/10302-sm.png">
+                          <a href="ljimages/10302-lg.png" title="EC NECKLACE HAMSA GOLD" data-lightbox="gallery-item" style="border: none;">
+                            <span class="zoom ex1" id="">
+
+                                <img src="ljimages/10302-md.png" alt="EC NECKLACE HAMSA GOLD">
+
                             </span>
                           </a>
                         </div>
                         <div class="slide" data-thumb="ljimages/packaging/encharming_package-sm.png">
                           <a href="ljimages/packaging/encharming_package-lg.png" title="EC NECKLACE HAMSA GOLD" data-lightbox="gallery-item" style="border: none;">
-                            <span class="zoom" id="ex1">
-                              <span style="display: inline-block; position: relative; overflow: hidden;">
+                            <span class="zoom ex1" id="ex1">
+
                                 <img src="ljimages/packaging/encharming_package-md.png" alt="EC NECKLACE HAMSA GOLD">
-                              </span>
+
                             </span>
                           </a>
                         </div>
@@ -303,7 +321,7 @@ jQuery( document ).ready(function() {
 
 								<!-- Product Single - Short Description
 								============================================= -->
-								<p>Lightweight 18” gold toned necklace with six relaxing charm styles to complete your look including: gold cross, Lotus flower, evil eye, stacked faceted beads, tassel, and Hamsa. Choose the Deep Sea Blue tassel, or perhaps the Hamsa to bring you luck and happiness.</p>
+								<p>Lightweight 18” gold toned necklace that will brighten your day by adding any one of these charms to your look. Change out the charm as often as you’d like with a choice of 5 different flowers, or a butterfly.</p>
                 <p>The value of this look is unbeatable, each necklace features fun and exciting packaging. She is getting multiple styles per necklace, while you’ll be making a 3x markup! Not to mention, this look serves a broad demographic so all of your customers will be sure to find the perfect design.</p>
 
 				<!--						<ul class="iconlist">
@@ -350,7 +368,7 @@ jQuery( document ).ready(function() {
                         </tr>
                         <tr>
                           <td>Color</td>
-                          <td>Gold / Blue</td>
+                          <td>Gold / Teal</td>
                         </tr>
                         <tr>
                           <td>Type</td>
