@@ -436,7 +436,7 @@ function detailView()
 
 
   // Fill in the 2nd Column data
-      document.getElementById("price-area").innerHTML = '<ins>$' + fields[4].substring(0, fields[4].length - 3) + '</ins>';
+      document.getElementById("price-area").innerHTML = '<ins>$' + fields[4] + '</ins>';
 
       secondColumn = '<div class="clear"></div>';
       secondColumn += '<div class="line"></div>';
@@ -764,7 +764,7 @@ function fillShop2(response)
   } else {
     for (i=0; i<linesPlus.length; i++) {
       flds = linesPlus[i];
-       if ( flds[2] === "ZEN" ) {
+       if ( flds[2].trim() === "ACE" || !isNaN(flds[2]) ) {
          continue;
        } else {
         prod = '<div class="product clearfix ' + flds[2] + '"><div class="product-image"><a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img class="shopimg" src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
