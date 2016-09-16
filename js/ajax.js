@@ -432,10 +432,48 @@ function detailView()
           prodtype = prodtype[2];
 
   /* Fill in the pictures for the product */
-      document.getElementById("images").innerHTML = '<div class="slide" style="display: block;"><a href="../ljimages/' + fields[0].replace(/\s+/g,'') + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom" id="ex1"><img src="../ljimages/' + fields[0].replace(/\s+/g,'') + '-md.png" alt="' + fields[1] + '"></span></a></div>';
+
+       pics =  '<div class="slide" style="display: block" data-thumb="../ljimages/' + fields[0].replace(/\s+/g,'') + '-sm.png"><a href="../ljimages/' + fields[0].replace(/\s+/g,'') + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom" id="ex1"><img src="../ljimages/' + fields[0].replace(/\s+/g,'') + '-md.png" alt="' + fields[1] + '"></span></a></div>';
+       if (fields[2] === "ENC")  {
+         pics += '<div class="slide" data-thumb="../packaging/' + fields[0].replace(/\s+/g,'') + '-sm.JPG"><a href="../packaging/' + fields[0].replace(/\s+/g,'') + '-lg.JPG" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom" id="ex1"><img src="../packaging/' + fields[0].replace(/\s+/g,'') + '-md.JPG" alt="' + fields[1] + '"></span></a></div>';
+       }
+       $("#images").append(pics);
+
+       secondColumn = '<div><a href="#" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div>';
+
+       secondColumn += '<div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + fields[0].replace(/\s+/g,'') + '</span></span></div><div class="line"></div>';
+
+       secondColumn += '<div class="product-price col_one_third" style="font-size: 16px; font-weight: 400;"> <ins>COST:&nbsp;' + fields[4] + '</ins></div>';
+
+       secondColumn += '<div class="col_one_third" style="top: 0px; margin: 0px;">MIN: 1</div>';
+
+       secondColumn += '<div class="product-rating col_one_third col_last" style="top: 0px; margin: 0px;">MSRP:' + fields[3] + '</div><div class="clear"></div><div class="line"></div>';
+
+       secondColumn += '<form class="cart nobottommargin clearfix" method="post" enctype="multipart/form-data">';
+         secondColumn += '<div class="quantity clearfix">';
+           secondColumn += '<input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant[1]" onclick="changeQuantity(this)">';
+           secondColumn += '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + fields[0].replace(/\s+/g,'') + '" />';
+           secondColumn += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant[1]" onclick="changeQuantity(this)">';
+         secondColumn += '</div>';
+         secondColumn += '<button type="button" id="add-item" class="add-to-cart button nomargin" onclick="addItemDetailView()">Add to cart</button>';
+       secondColumn += '</form><div class="clear"></div><div class="line"></div>';
+
+       secondColumn += '<p>' + fields[1] + '</p>';
+  //     secondColumn += '<p>' + fields[6] + '</p></div>';
+       if (fields[2] === "ENC")  {
+         secondColumn += '<p>The value of this look is unbeatable, each necklace features fun and exciting packaging. She is getting multiple styles per necklace, while you’ll be making a 3x markup! Not to mention, this look serves a broad demographic so all of your customers will be sure to find the perfect design.</p>';
+       }
+       $("#secondColumn").append(secondColumn);
+
+  /*       info =  '<tr><td>Description</td><td>18" Necklace &amp; 5 pc Charms</td></tr>';
+       info += '<tr><td>Dimensions</td><td>18” chain, 3” extender</td></tr>';
+       info += '<tr><td>Color</td><td>Gold / Teal</td></tr>';
+       info += '<tr><td>Type</td><td>Necklace</td></tr>';
+       info += '<tr><td>Look</td><td>enCHARMing</td></tr>';
+       $("#addInfo").append(info);
 
 
-  // Fill in the 2nd Column data
+       Fill in the 2nd Column data
       document.getElementById("price-area").innerHTML = '<ins>$' + fields[4] + '</ins>';
 
       secondColumn = '<div class="clear"></div>';
@@ -464,11 +502,12 @@ function detailView()
       secondColumn += '</div><!-- Product Single - Meta End -->';
 
       $("#secondColumn").append(secondColumn);
-
+*/
   // Fill tabbed Modal Windows..
 
    },
    complete: function () {
+     SEMICOLON.widget.loadFlexSlider();
      $('#ex1 img')
     .wrap('<span style="display:inline-block"></span>')
     .css('display', 'block')
@@ -764,7 +803,7 @@ function fillShop2(response)
   } else {
     for (i=0; i<linesPlus.length; i++) {
       flds = linesPlus[i];
-       if ( flds[2].trim() === "ACE" || !isNaN(flds[2]) ) {
+       if ( flds[2].trim() === "ZEN" || !isNaN(flds[2]) ) {
          continue;
        } else {
         prod = '<div class="product clearfix ' + flds[2] + '"><div class="product-image"><a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img class="shopimg" src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';

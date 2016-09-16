@@ -281,8 +281,7 @@ label {
   transition-duration: .25s;
 }
 
-#images > div > a,
-#images > div.slide.flex-active-slide > a,
+.single-product .product-image img,
 .product-image > a > img {
 	border: 2px solid lightgrey;
 	border-radius: 3px;
@@ -313,20 +312,10 @@ div.widget.clearfix form {
 
 
 @media (max-width: 991px) {
-	#primary-menu.comingsoon-nav ul li > a {
-		color: #666;
-	}
 
-	#primary-menu.comingsoon-nav ul li > a:hover {
-		color: #000;
-	}
 
 	#header.transparent-header.full-header #header-wrap {
 		background: lightgrey;
-	}
-
-	#header.transparent-header.full-header #header-wrap.comingsoon-header {
-		background: black;
 	}
 
 	#primary-menu.index-nav ul > li {
