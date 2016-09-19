@@ -271,8 +271,18 @@ label {
 	 Shop page Coolio
 \\\\\\\\\\\\\\\\\\\\*/
 
-#images > div > a,
-#images > div.slide.flex-active-slide > a {
+.product-image > a > img.shopimg:hover {
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  -webkit-transition-timing-function: linear; /* Safari and Chrome */
+  transition-timing-function: linear;
+  -webkit-transition-duration: .25s; /* Safari */
+  transition-duration: .25s;
+}
+
+.single-product .product-image img,
+.product-image > a > img {
 	border: 2px solid lightgrey;
 	border-radius: 3px;
 }
@@ -302,20 +312,10 @@ div.widget.clearfix form {
 
 
 @media (max-width: 991px) {
-	#primary-menu.comingsoon-nav ul li > a {
-		color: #666;
-	}
 
-	#primary-menu.comingsoon-nav ul li > a:hover {
-		color: #000;
-	}
 
 	#header.transparent-header.full-header #header-wrap {
 		background: lightgrey;
-	}
-
-	#header.transparent-header.full-header #header-wrap.comingsoon-header {
-		background: black;
 	}
 
 	#primary-menu.index-nav ul > li {

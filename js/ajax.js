@@ -428,8 +428,8 @@ function detailView()
       // lines[1]+ are data lines
       fields = lines[1].split("|");
 
-      var prodtype = fields[1].split(/(\s+)/);
-          prodtype = prodtype[2];
+  //    var prodtype = fields[1].split(/(\s+)/);
+  //        prodtype = prodtype[2];
 
   /* Fill in the pictures for the product */
 
@@ -458,22 +458,24 @@ function detailView()
          secondColumn += '<button type="button" id="add-item" class="add-to-cart button nomargin" onclick="addItemDetailView()">Add to cart</button>';
        secondColumn += '</form><div class="clear"></div><div class="line"></div>';
 
-       secondColumn += '<p>' + fields[1] + '</p>';
-  //     secondColumn += '<p>' + fields[6] + '</p></div>';
+
        if (fields[2] === "ENC")  {
+         secondColumn += '<p>' + fields[8] + '</p></div>';
          secondColumn += '<p>The value of this look is unbeatable, each necklace features fun and exciting packaging. She is getting multiple styles per necklace, while you’ll be making a 3x markup! Not to mention, this look serves a broad demographic so all of your customers will be sure to find the perfect design.</p>';
+       } else {
+         secondColumn += '<p>' + fields[1] + '</p>';
        }
        $("#secondColumn").append(secondColumn);
 
-  /*       info =  '<tr><td>Description</td><td>18" Necklace &amp; 5 pc Charms</td></tr>';
-       info += '<tr><td>Dimensions</td><td>18” chain, 3” extender</td></tr>';
-       info += '<tr><td>Color</td><td>Gold / Teal</td></tr>';
-       info += '<tr><td>Type</td><td>Necklace</td></tr>';
-       info += '<tr><td>Look</td><td>enCHARMing</td></tr>';
+       info =  '<tr><td>Description</td><td>' + fields[1] + '</td></tr>';
+       info += '<tr><td>Dimensions</td><td>' + fields[6] + '</td></tr>';
+       info += '<tr><td>Color</td><td>' + whatColor(color) +'</td></tr>';
+       info += '<tr><td>Type</td><td>' + whatType(type) + '</td></tr>';
+       info += '<tr><td>Look</td><td>' + whatLook(fields[2]) + '</td></tr>';
        $("#addInfo").append(info);
 
 
-       Fill in the 2nd Column data
+/*       Fill in the 2nd Column data
       document.getElementById("price-area").innerHTML = '<ins>$' + fields[4] + '</ins>';
 
       secondColumn = '<div class="clear"></div>';
@@ -507,7 +509,7 @@ function detailView()
 
    },
    complete: function () {
-     SEMICOLON.widget.loadFlexSlider();
+  //   SEMICOLON.widget.loadFlexSlider();
      $('#ex1 img')
     .wrap('<span style="display:inline-block"></span>')
     .css('display', 'block')
@@ -778,9 +780,9 @@ function filterFunction(a,b,c,d,e,f)
 
 
 
-/////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // POPULATE THE STORE PAGE //
-/////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function fillShop2(response)
 {
   lines = response.split("\n");
@@ -789,8 +791,7 @@ function fillShop2(response)
   for (i=0; i<lines.length - 1; i++) {
     linesPlus.push(lines[i].split("|"));
   }
-  linesPlus.sort( function( a, b )
-  {
+  linesPlus.sort( function( a, b ) {
     retVal=0;
     if (sortItems.indexOf(a[0].trim()) != sortItems.indexOf( b[0].trim() )) retVal= sortItems.indexOf( a[0].trim() ) > sortItems.indexOf( b[0].trim() )?1:-1;
     return retVal;
@@ -806,10 +807,10 @@ function fillShop2(response)
        if ( flds[2].trim() === "ZEN" || !isNaN(flds[2]) ) {
          continue;
        } else {
-        prod = '<div class="product clearfix ' + flds[2] + '"><div class="product-image"><a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img class="shopimg" src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
-        prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-        prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a></div></div>';
-        prod += '<div class="product-desc" style="height: 80px;"><div class="product-title"><h3><a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '">' + flds[1] +'</a></h3></div><div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div></div></div>';
+        prod = '<div class="product clearfix ' + flds[2] + '"><div class="product-image"><a href="../detail-view/#' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
+        prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim()  + ' has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+        prod += '<a href="../detail-view/#' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].trim()  + '">Detail View</span></a></div></div>';
+        prod += '<div class="product-desc" style="height: 80px;"><div class="product-title"><h3><a href="../detail-view/#' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '">' + flds[1] +'</a></h3></div><div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div></div></div>';
 
         html.push(prod);
       }
@@ -1221,23 +1222,23 @@ function shipToAddress()
 
 
 
-//////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
-//////////////////////// HELPER FUNCTIONS ////////////////////////
+//////////////////////// HELPER FUNCTIONS / SUBROUTINES ///////////////////////
 
-//////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -1398,6 +1399,116 @@ function hideFilter()
   } else {
     $("#portfolio-filter").css({"visibility":"visible"});
   }
+}
+
+
+
+/////////////////////////////////////
+  // SUBROUTINE TO FIND COLOR //
+/////////////////////////////////////
+function whatColor(colorCode)
+{
+    switch (colorCode) {
+      case "01": color = "Silver";
+      break;
+      case "02": color = "Gold";
+      break;
+      case "03": color = "Black";
+      break;
+      case "04": color = "Blue";
+      break;
+      case "05": color = "Brown";
+      break;
+      case "06": color = "Clear";
+      break;
+      case "07": color = "Green";
+      break;
+      case "08": color = "Grey";
+      break;
+      case "09": color = "Opal";
+      break;
+      case "10": color = "Orange";
+      break;
+      case "11": color = "Pink";
+      break;
+      case "12": color = "Purple";
+      break;
+      case "13": color = "Rainbow";
+      break;
+      case "14": color = "Red";
+      break;
+      case "15": color = "Tan";
+      break;
+      case "16": color = "Teal";
+      break;
+      case "17": color = "Turquoise";
+      break;
+      case "18": color = "White";
+      break;
+      case "19": color = "Yellow";
+      break;
+      case "20": color = "Mulitcolored";
+      break;
+      default:
+      color = "N/A";
+    }
+    return color;
+}
+
+
+
+/////////////////////////////////////
+   // SUBROUTINE TO FIND TYPE //
+/////////////////////////////////////
+function whatType(typeCode)
+{
+  switch (typeCode) {
+    case "100": type = "Necklace";
+    break;
+    case "200": type = "Bracelet";
+    break;
+    case "300": type = "Earrings";
+    break;
+    case "400": type = "Lanyard";
+    break;
+    case "500": type = "Snap";
+    break;
+    case "600": type = "Tassel";
+    break;
+    case "700": type = "Set";
+    break;
+    case "800": type = "Program";
+    break;
+    case "900": type = "Oil";
+    break;
+    default:
+    type = "N/A";
+  }
+  return type;
+}
+
+
+
+/////////////////////////////////////
+   // SUBROUTINE TO FIND LOOK //
+/////////////////////////////////////
+function whatLook(lookCode)
+{
+  switch (lookCode) {
+    case "SLK": look = "SLEEK";
+    break;
+    case "ENC": look = "enCHARMing";
+    break;
+    case "GLB": look = "RGLB";
+    break;
+    case "IDT": look = "iDentify";
+    break;
+    case "ZEN": look = "AURA";
+    break;
+    default:
+    look = "N/A";
+  }
+  return look;
 }
 
 
