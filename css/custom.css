@@ -281,7 +281,7 @@ label {
   transition-duration: .25s;
 }
 
-.single-product .product-image img,
+
 .product-image > a > img {
 	border: 2px solid lightgrey;
 	border-radius: 3px;

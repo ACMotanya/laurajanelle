@@ -447,7 +447,7 @@ function detailView()
 
        secondColumn += '<div class="col_one_third" style="top: 0px; margin: 0px;">MIN: 1</div>';
 
-       secondColumn += '<div class="product-rating col_one_third col_last" style="top: 0px; margin: 0px;">MSRP:' + fields[3] + '</div><div class="clear"></div><div class="line"></div>';
+       secondColumn += '<div class="product-rating col_one_third col_last" style="top: 0px; margin: 0px;">MSRP:&nbsp;' + fields[3] + '</div><div class="clear"></div><div class="line"></div>';
 
        secondColumn += '<form class="cart nobottommargin clearfix" method="post" enctype="multipart/form-data">';
          secondColumn += '<div class="quantity clearfix">';
@@ -455,7 +455,7 @@ function detailView()
            secondColumn += '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + fields[0].replace(/\s+/g,'') + '" />';
            secondColumn += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant[1]" onclick="changeQuantity(this)">';
          secondColumn += '</div>';
-         secondColumn += '<button type="button" id="add-item" class="add-to-cart button nomargin" onclick="addItemDetailView()">Add to cart</button>';
+         secondColumn += '<button type="button" id="add-item" class="add-to-cart button nomargin" onclick="saveColorAndType(); addItemDetailView();">Add to cart</button>';
        secondColumn += '</form><div class="clear"></div><div class="line"></div>';
 
 
@@ -509,16 +509,14 @@ function detailView()
 
    },
    complete: function () {
-  //   SEMICOLON.widget.loadFlexSlider();
-     $('#ex1 img')
-    .wrap('<span style="display:inline-block"></span>')
-    .css('display', 'block')
-    .parent()
-    .zoom();
-    $('#ex1').focus();
-    $('.flexslider').flexslider({
-      smoothHeight: true
-    });
+     $('#ex1 img').wrap('<span style="display:inline-block"></span>').css('display', 'block').parent().zoom();
+     $('#ex1').focus();
+  //   $('.flexslider').flexslider({
+  //     smoothHeight: true
+  //   });
+     setTimeout(function(){
+       SEMICOLON.widget.loadFlexSlider();
+     },1000);
    }
   });
 }
@@ -847,10 +845,80 @@ function search()
         path = pathArray.splice([pathArray.length - 2]);
         var data = response;
         if (path[0] === "shop") {
-          fillShop2(data);
+///////////////// Leave in until McPhate changes the fields for the SearchAPI call put this back after changes -->  fillShop2(data);
+          lines = response.split("\n");
+          lines.shift();
+          linesPlus = [];
+          for (i=0; i<lines.length - 1; i++) {
+            linesPlus.push(lines[i].split("|"));
+          }
+          linesPlus.sort( function( a, b ) {
+            retVal=0;
+            if (sortItems.indexOf(a[0].trim()) != sortItems.indexOf( b[0].trim() )) retVal= sortItems.indexOf( a[0].trim() ) > sortItems.indexOf( b[0].trim() )?1:-1;
+            return retVal;
+          });
+          // lines[1]+ are data lines
+          $('#shop').empty();
+          html = [];
+          if ( lines.length <= 1) {
+            document.getElementById("shop").innerHTML += '<h1>There are no results</h1>';
+          } else {
+            for (i=0; i<linesPlus.length; i++) {
+              flds = linesPlus[i];
+               if ( flds[2].trim() === "ZEN" || !isNaN(flds[2]) ) {
+                 continue;
+               } else {
+                prod = '<div class="product clearfix ' + flds[2] + '"><div class="product-image"><a href="../detail-view/#' + flds[0].trim() +'"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
+                prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim()  + ' has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+                prod += '<a href="../detail-view/#' + flds[0].trim() + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].trim()  + '">Detail View</span></a></div></div>';
+                prod += '<div class="product-desc" style="height: 80px;"><div class="product-title"><h3><a href="../detail-view/#' + flds[0].trim() + '">' + flds[1] +'</a></h3></div><div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div></div></div>';
+
+                html.push(prod);
+              }
+            }
+            document.getElementById("shop").innerHTML += html.join('');
+
+            $(document).trigger("filters");
+            $(document).trigger("priceFilters");
+          }
         } else {
           $("section").append('<section id="content"><div class="content-wrap"><div class="container clearfix"><div class="shop grid-container clearfix" id="shop"></div></div></div></div>');
-          fillShop2(data);
+///////////////// Leave in until McPhate changes the fields for the SearchAPI call  put this back after changes -->  fillShop2(data);
+          lines = response.split("\n");
+          lines.shift();
+          linesPlus = [];
+          for (i=0; i<lines.length - 1; i++) {
+            linesPlus.push(lines[i].split("|"));
+          }
+          linesPlus.sort( function( a, b ) {
+            retVal=0;
+            if (sortItems.indexOf(a[0].trim()) != sortItems.indexOf( b[0].trim() )) retVal= sortItems.indexOf( a[0].trim() ) > sortItems.indexOf( b[0].trim() )?1:-1;
+            return retVal;
+          });
+          // lines[1]+ are data lines
+          $('#shop').empty();
+          html = [];
+          if ( lines.length <= 1) {
+            document.getElementById("shop").innerHTML += '<h1>There are no results</h1>';
+          } else {
+            for (i=0; i<linesPlus.length; i++) {
+              flds = linesPlus[i];
+               if ( flds[2].trim() === "ZEN" || !isNaN(flds[2]) ) {
+                 continue;
+               } else {
+                prod = '<div class="product clearfix ' + flds[2] + '"><div class="product-image"><a href="../detail-view/#' + flds[0].trim() +'"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
+                prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim()  + ' has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+                prod += '<a href="../detail-view/#' + flds[0].trim() + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].trim()  + '">Detail View</span></a></div></div>';
+                prod += '<div class="product-desc" style="height: 80px;"><div class="product-title"><h3><a href="../detail-view/#' + flds[0].trim() + '">' + flds[1] +'</a></h3></div><div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div></div></div>';
+
+                html.push(prod);
+              }
+            }
+            document.getElementById("shop").innerHTML += html.join('');
+
+            $(document).trigger("filters");
+            $(document).trigger("priceFilters");
+          }
         }
       }
     });
@@ -1622,7 +1690,7 @@ function filterFunction2(a,b,c,d,e,f)
           prices.push(Number(flds[4]));
           prod = '<div class="product clearfix ' + flds[2] +" "+ flds[8].trim() +" "+ flds[9].trim() + '"><div class="product-image"><a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
           prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-          prod += '<a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a></div></div>';
+          prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a></div></div>';
           prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div><div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div></div></div>';
 
           html.push(prod);

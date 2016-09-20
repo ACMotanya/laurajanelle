@@ -4,40 +4,54 @@ layout: page
 <!-- Star Rating CSS -->
 
 
-  <style>
-  #secondColumn > div.product-rating > div > div.caption > span,
-  #secondColumn > div.star-rating.rating-sm.rating-active > div.caption > span,
-  #secondColumn > div.product-rating > div > div.clear-rating.clear-rating-active > i,
-  #secondColumn > div.star-rating.rating-sm.rating-active > div.clear-rating.clear-rating-active > i {
-    display: none;
-  }
+<style>
+#secondColumn > div.product-rating > div > div.caption > span,
+#secondColumn > div.star-rating.rating-sm.rating-active > div.caption > span,
+#secondColumn > div.product-rating > div > div.clear-rating.clear-rating-active > i,
+#secondColumn > div.star-rating.rating-sm.rating-active > div.clear-rating.clear-rating-active > i {
+  display: none;
+}
 
-  .rating-container .rating-stars {
-    color: red;
-    transition-timing-function: ease;
-  }
+.rating-container .rating-stars {
+  color: red;
+  transition-timing-function: ease;
+}
 
-
-  footer {
-    margin-top: 10px !important;
-  }
-	</style>
+footer {
+  margin-top: 10px !important;
+}
+</style>
 
 
 <script>
 //session_no = Cookies.get('session_no');
 var hash = window.location.hash.split("+");
 var stock_no = hash[0].replace( /^\D+/g, '');
-var color = hash[1].replace( /^\D+/g, '');
-var type = hash[2].replace( /^\D+/g, '');
-
-
+var color;
+var type;
+if (hash.length === 3 ) {
+  color = hash[1].replace( /^\D+/g, '');
+  type  = hash[2].replace( /^\D+/g, '');
+}
 
 jQuery( document ).ready(function() {
   detailView();
   cartHeader();
+  cartList();
 });
 
+function saveColorAndType()
+{
+  var details = [];
+  details[0] = color;
+  details[1] = type;
+  if (!sessionStorage.getItem(stock_no)) {
+    sessionStorage.setItem(stock_no, JSON.stringify(details));
+  }
+}
+
+//...
+console.log(JSON.parse(sessionStorage.getItem(stock_no)));
 
 </script>
 
@@ -87,7 +101,7 @@ jQuery( document ).ready(function() {
                 <div class="toggle">
                   <div class="togglet" style="border-bottom: 2px solid grey;"><i class="toggle-closed icon-chevron-down"></i><i class="toggle-open icon-chevron-up"></i> Additional Information</div>
                   <div class="togglec">
-                    <table class="table table-striped table-bordered">
+                    <table class="table table-striped table-bordered topmargin-sm">
                       <tbody id="addInfo">
                       </tbody>
                     </table>
