@@ -413,7 +413,7 @@ function cartList()
 
 
 //////////////////////////////
-// Get Detail View for item //
+// Get Detail View for Item //
 //////////////////////////////
 function detailView()
 {
@@ -515,6 +515,10 @@ function detailView()
     .css('display', 'block')
     .parent()
     .zoom();
+    $('#ex1').focus();
+    $('.flexslider').flexslider({
+      smoothHeight: true
+    });
    }
   });
 }
