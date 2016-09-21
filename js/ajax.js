@@ -190,7 +190,9 @@ function addItemDetailView()
   detailViewQty = document.getElementById(stock_no).value;
 
   addItemGeneric(session_no, stock_no, detailViewQty);
-  redirect("cart");
+  if ( window.location.pathname != "/shop/") {
+    redirect("cart");
+  }
 }
 
 
@@ -283,35 +285,35 @@ function cartList()
 
       if ( path[0] === "cart") {
         for (i=1; i<cartitems.length - 1; i++) {
-          flds = cartitems[i].split("|");
+          data = cartitems[i].split("|");
 
           item = '<tr class="cart_item products">';
             item += '<td class="cart-product-remove">';
-              item += '<a href="#" class="remove" onclick="removeItem(this.id)" id="' + flds[1].replace(/\s+/g,'') + '" title="Remove this item"><i class="icon-trash2"></i></a>';
+              item += '<a href="#" class="remove" onclick="removeItem(this.id)" id="' + data[1].replace(/\s+/g,'') + '" title="Remove this item"><i class="icon-trash2"></i></a>';
             item += '</td>';
 
             item += '<td class="cart-product-thumbnail">';
-              item += '<a href="../detail-view/#' + flds[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="../ljimages/' + flds[2].replace(/\s+/g,'') + '-sm.png" alt="' + flds[3] + '"></a>';
+              item += '<a href="../detail-view/#' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '"></a>';
             item += '</td>';
 
             item += '<td class="cart-product-name">';
-              item += '<a href="../detail-view/#' + flds[2].replace(/\s+/g,'') + '">' + flds[3] + '</a>';
+              item += '<a href="../detail-view/#' + data[2].replace(/\s+/g,'') + '">' + data[3] + '</a>';
             item += '</td>';
 
             item += '<td class="cart-product-price">';
-              item += '<span class="amount">$' + flds[7].substring(0, flds[7].length - 3) + '</span>';
+              item += '<span class="amount">$' + data[7].substring(0, data[7].length - 3) + '</span>';
             item += '</td>';
 
             item += '<td class="cart-product-quantity">';
               item += '<div class="quantity clearfix">';
                 item += '<input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant['+i+']" onclick="changeQuantity(this)">';
-                item += '<input type="text" name="quant['+i+']" min="1" value="' + flds[6].replace(/\s+/g,'') + '" class="qty form-control input-number" id="' + flds[2].replace(/\s+/g,'') + '" />';
+                item += '<input type="text" name="quant['+i+']" min="1" value="' + data[6].replace(/\s+/g,'') + '" class="qty form-control input-number" id="' + data[2].replace(/\s+/g,'') + '" />';
                 item += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant['+i+']" onclick="changeQuantity(this)">';
               item += '</div>';
             item += '</td>';
 
             item += '<td class="cart-product-subtotal">';
-              item += '<span class="amount">$' + flds[8].substring(0, flds[8].length - 4) + '</span>';
+              item += '<span class="amount">$' + data[8].substring(0, data[8].length - 4) + '</span>';
             item += '</td>';
           item += '</tr>';
           html.push(item);
@@ -319,12 +321,12 @@ function cartList()
 
           miniitem = '<div class="top-cart-item clearfix">';
             miniitem += '<div class="top-cart-item-image">';
-              miniitem += '<a href="#"><img src="../ljimages/' + flds[2].replace(/\s+/g,'') + '-sm.png" alt="' + flds[3] + '" /></a>';
+              miniitem += '<a href="#"><img src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '" /></a>';
             miniitem += '</div>';
             miniitem += '<div class="top-cart-item-desc">';
-              miniitem += '<a href="#">' + flds[3] + '</a>';
-              miniitem += '<span class="top-cart-item-price">$' + flds[7].substring(0, flds[7].length - 3) + '</span>';
-              miniitem += '<span class="top-cart-item-quantity">x ' + flds[6].replace(/\s+/g,'') + '</span>';
+              miniitem += '<a href="#">' + data[3] + '</a>';
+              miniitem += '<span class="top-cart-item-price">$' + data[7].substring(0, data[7].length - 3) + '</span>';
+              miniitem += '<span class="top-cart-item-quantity">x ' + data[6].replace(/\s+/g,'') + '</span>';
             miniitem += '</div>';
           miniitem += '</div>';
           html2.push(miniitem);
@@ -354,35 +356,35 @@ function cartList()
         jQuery("#cartItemTable").append(item); */
       } else if (path[0] === "checkout") {
         for (i=1; i<cartitems.length - 1; i++) {
-          flds = cartitems[i].split("|");
+          data = cartitems[i].split("|");
 
           item = '<tr class="cart_item">';
             item += '<td class="cart-product-thumbnail">';
-              item += '<a href=../detail-view/#' + flds[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="../ljimages/' + flds[2].replace(/\s+/g,'') + '-sm.png" alt="' + flds[3] + '"></a>';
+              item += '<a href=../detail-view/#' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '"></a>';
             item += '</td>';
 
             item += '<td class="cart-product-name">';
-              item += '<a href="../detail-view/#' + flds[2].replace(/\s+/g,'') + '">' + flds[3] + '</a>';
+              item += '<a href="../detail-view/#' + data[2].replace(/\s+/g,'') + '">' + data[3] + '</a>';
             item += '</td>';
 
             item += '<td class="cart-product-quantity">';
-              item += '<div class="quantity clearfix">' + flds[6].replace(/\s+/g,'') + '</div>';
+              item += '<div class="quantity clearfix">' + data[6].replace(/\s+/g,'') + '</div>';
             item += '</td>';
 
             item += '<td class="cart-product-subtotal">';
-              item += '<span class="amount">$' + flds[8].substring(0, flds[8].length - 4) + '</span>';
+              item += '<span class="amount">$' + data[8].substring(0, data[8].length - 4) + '</span>';
             item += '</td>';
           item += '</tr>';
           jQuery("#cartItemTable").append(item);
 
           miniitem = '<div class="top-cart-item clearfix">';
             miniitem += '<div class="top-cart-item-image">';
-              miniitem += '<a href="#"><img src="../ljimages/' + flds[2].replace(/\s+/g,'') + '-sm.png" alt="' + flds[3] + '" /></a>';
+              miniitem += '<a href="#"><img src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '" /></a>';
             miniitem += '</div>';
             miniitem += '<div class="top-cart-item-desc">';
-              miniitem += '<a href="#">' + flds[3] + '</a>';
-              miniitem += '<span class="top-cart-item-price">$' + flds[7].substring(0, flds[7].length - 3) + '</span>';
-              miniitem += '<span class="top-cart-item-quantity">x ' + flds[6].replace(/\s+/g,'') + '</span>';
+              miniitem += '<a href="#">' + data[3] + '</a>';
+              miniitem += '<span class="top-cart-item-price">$' + data[7].substring(0, data[7].length - 3) + '</span>';
+              miniitem += '<span class="top-cart-item-quantity">x ' + data[6].replace(/\s+/g,'') + '</span>';
             miniitem += '</div>';
           miniitem += '</div>';
           html2.push(miniitem);
@@ -390,16 +392,16 @@ function cartList()
         $("#minicart").append(html2.join(''));
       } else {
         for (i=1; i<cartitems.length - 1; i++) {
-          flds = cartitems[i].split("|");
+          data = cartitems[i].split("|");
 
           miniitem = '<div class="top-cart-item clearfix">';
             miniitem += '<div class="top-cart-item-image">';
-              miniitem += '<a href="#"><img src="../ljimages/' + flds[2].replace(/\s+/g,'') + '-sm.png" alt="' + flds[3] + '" /></a>';
+              miniitem += '<a href="#"><img src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '" /></a>';
             miniitem += '</div>';
             miniitem += '<div class="top-cart-item-desc">';
-              miniitem += '<a href="#">' + flds[3] + '</a>';
-              miniitem += '<span class="top-cart-item-price">$' + flds[7].substring(0, flds[7].length - 3) + '</span>';
-              miniitem += '<span class="top-cart-item-quantity">x ' + flds[6].replace(/\s+/g,'') + '</span>';
+              miniitem += '<a href="#">' + data[3] + '</a>';
+              miniitem += '<span class="top-cart-item-price">$' + data[7].substring(0, data[7].length - 3) + '</span>';
+              miniitem += '<span class="top-cart-item-quantity">x ' + data[6].replace(/\s+/g,'') + '</span>';
             miniitem += '</div>';
           miniitem += '</div>';
           html2.push(miniitem);
@@ -460,7 +462,7 @@ function detailView()
 
 
        if (fields[2] === "ENC")  {
-         secondColumn += '<p>' + fields[8] + '</p></div>';
+         secondColumn += '<p>' + fields[8] + '</p>';
          secondColumn += '<p>The value of this look is unbeatable, each necklace features fun and exciting packaging. She is getting multiple styles per necklace, while you’ll be making a 3x markup! Not to mention, this look serves a broad demographic so all of your customers will be sure to find the perfect design.</p>';
        } else {
          secondColumn += '<p>' + fields[1] + '</p>';
@@ -776,6 +778,9 @@ function filterFunction(a,b,c,d,e,f)
     },
     complete: function(){
       hideFilter();
+      setTimeout(function(){
+        SEMICOLON.initialize.lightbox();
+      },1000);
     }
   });
 }
@@ -810,8 +815,8 @@ function fillShop2(response)
          continue;
        } else {
         prod = '<div class="product clearfix ' + flds[2] + '"><div class="product-image"><a href="../detail-view/#' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
-        prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim()  + ' has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-        prod += '<a href="../detail-view/#' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].trim()  + '">Detail View</span></a></div></div>';
+        prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim()  + ' has been added to your cart!" onclick="addItem(' + flds[0].trim()  + '); SEMICOLON.widget.notifications(this);"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+        prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="event.preventDefault(); stock_no=\'' + flds[0].trim() + '\'; quickView(this.id);" id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '"><i class="icon-zoom-in2"></i><span id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '">Quick View</span></a></div></div>';
         prod += '<div class="product-desc" style="height: 80px;"><div class="product-title"><h3><a href="../detail-view/#' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '">' + flds[1] +'</a></h3></div><div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div></div></div>';
 
         html.push(prod);
@@ -831,6 +836,8 @@ function fillShop2(response)
 /////////////////////////
 function search()
 {
+  stock_no = window.location.hash;
+
   if(event.keyCode == 13) {
     event.preventDefault();
     searchTerm = $('#searchvalue').val();
@@ -1324,6 +1331,10 @@ function redirect(pathname)
   window.location.pathname = pathArray.join('/');
 }
 
+function windowHash(name)
+{
+  window.location.hash = name;
+}
 
 
 /////////////////////////////////////////////////////
@@ -1690,7 +1701,7 @@ function filterFunction2(a,b,c,d,e,f)
           prices.push(Number(flds[4]));
           prod = '<div class="product clearfix ' + flds[2] +" "+ flds[8].trim() +" "+ flds[9].trim() + '"><div class="product-image"><a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
           prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-          prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a></div></div>';
+          prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=' + flds[0] + '; quickView();" ><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a></div></div>';
           prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div><div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div></div></div>';
 
           html.push(prod);
@@ -1703,6 +1714,7 @@ function filterFunction2(a,b,c,d,e,f)
     },
     complete: function(){
     //  hideFilter();
+    SEMICOLON.initialize.lightbox();
     }
   });
 }
@@ -1712,7 +1724,7 @@ function filterFunction2(a,b,c,d,e,f)
 /////////////////////////////////////////////
 // Get Information for the Item Quick View //
 /////////////////////////////////////////////
-function quickView()
+function quickView(clicked_id)
 {
   jQuery.ajax({
     type: "GET",
@@ -1723,31 +1735,33 @@ function quickView()
       fields = lines[1].split("|");
 
       switch (fields[2]) {
-        case "SLK":
-          collection = 'Sleek';
+        case "SLK": collection = 'SLEEK';
           break;
-        case "GLB":
-          collection = "RGLB";
+        case "GLB": collection = "RGLB";
           break;
-        case "EC":
-          collection = "enCharming";
+        case "ENC": collection = "enCHARMing";
           break;
-        case "IDT":
-          collection = "iDentify";
+        case "IDT": collection = "iDentify";
+          break;
+        case "ZEN": collection = "AURA";
           break;
         default:
           collection = fields[2];
-        }
+      }
 
-        var prodtype = fields[1].split(/(\s+)/);
-						prodtype = prodtype[2];
+      var prodtype = fields[1].split(/(\s+)/);
+					prodtype = prodtype[2];
 
-      document.getElementById("shopItemTitle").innerHTML = '<h2>'+ collection +' Program</h2>';
-			document.getElementById("images").innerHTML = '<div class="slide" style="display: block;"><a href="#"  title="' + fields[1] + '"><img src="../ljimages/' + fields[0].trim() + '-md.png" alt="' + fields[1] + '"></a></div>';
-      document.getElementById("secondColumn").prepend = '<div class="product-price"> <ins>$' + fields[4].substring(0, fields[4].length - 3) + '</ins></div>';
-      jQuery( ".minus" ).after( '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + fields[0].replace(/\s+/g,'') + '" />' );
-      jQuery( "#description" ).after( "<p>" + fields[1] + "</p><p>" + fields[6] + "</p>");
-	    jQuery( ".panel-body" ).html( '<span itemprop="productID" class="sku_wrapper">SKU: <span class="sku">' + fields[0] + '</span></span><span class="posted_in">Category: <a href="#" rel="tag">' + prodtype + '</a></span>');
+			document.getElementById("images").innerHTML = '<div class="slide" style="display: block;"><a href="../detail-view/#' + clicked_id + '" title="' + fields[1] + '"><img src="../ljimages/' + stock_no + '-md.png" alt="' + fields[1] + '"></a></div>';
+
+      jQuery( "#secondColumn").prepend('<div><a href="#" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div><div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + stock_no + '</span></span></div><div class="line"></div><div class="product-price col_half" style="font-size: 16px; font-weight: 400;"><ins>COST:&nbsp;' + fields[4] + '</ins></div><div class="product-rating col_half col_last" style="top: 0px; margin: 0px;">MSRP:&nbsp;' + fields[3] + '</div>');
+      jQuery( ".minus" ).after( '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + stock_no + '" />' );
+      if (fields[2] === "ENC")  {
+         secondColumn = '<p>' + fields[8] + '</p>';
+      } else {
+         secondColumn = '<p>' + fields[1] + '</p>';
+      }
+      $("#description").append(secondColumn);
     }
   });
 }

@@ -1,14 +1,11 @@
-<script>
-stock_no = "10025";
-quickView();
-</script>
+
 
 <div class="single-product shop-quick-view-ajax clearfix">
-
+<!--
     <div class="ajax-modal-title" id="shopItemTitle">
-        <!-- filled but AJAX CONTENT -->
+        <!-- filled but AJAX CONTENT
     </div>
-
+-->
     <div class="product modal-padding clearfix">
 
         <div class="col_half nobottommargin">
@@ -36,18 +33,15 @@ quickView();
 
                   <input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant[1]" onclick="changeQuantity(this);">
               </div>
-              <button type="button" id="add-item" class="add-to-cart button nomargin" onclick="addItemDetailView()">Add to cart</button>
+              <button type="button" id="add-item" class="add-to-cart button nomargin" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>The item(s) have been added to your cart!" onclick="addItemDetailView(); SEMICOLON.widget.notifications(this); cartList(); return false;">Add to cart</button>
           </form><!-- Product Single - Quantity & Cart Button End -->
 
           <div class="clear"></div>
-          <div class="line" id="description"></div>
+          <div class="line"></div>
+          <div id="description">
           <!-- filled but AJAX CONTENT -->
-
-          <div class="panel panel-default product-meta nobottommargin">
-              <div class="panel-body">
-                <!-- filled but AJAX CONTENT -->
-              </div>
           </div>
+
         </div>
 
     </div>
