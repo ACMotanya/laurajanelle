@@ -25,13 +25,18 @@ footer {
 
 <script>
 //session_no = Cookies.get('session_no');
+var detailString;
 var hash = window.location.hash.split("+");
 var stock_no = hash[0].replace( /^\D+/g, '');
-var color;
-var type;
+
 if (hash.length === 3 ) {
+  detailString = window.location.hash;
   color = hash[1].replace( /^\D+/g, '');
   type  = hash[2].replace( /^\D+/g, '');
+} else {
+  var dets  = sessionStorage.getItem(stock_no).split("+");
+  var color = dets[1].replace( /^\D+/g, '');;
+  var type  = dets[2].replace( /^\D+/g, '');;
 }
 
 jQuery( document ).ready(function() {
@@ -40,22 +45,11 @@ jQuery( document ).ready(function() {
   cartList();
 });
 
-function saveColorAndType()
-{
-  var details = [];
-  details[0] = color;
-  details[1] = type;
-  if (!sessionStorage.getItem(stock_no)) {
-    sessionStorage.setItem(stock_no, JSON.stringify(details));
-  }
-}
 
 //...
-console.log(JSON.parse(sessionStorage.getItem(stock_no)));
+console.log(sessionStorage.getItem(stock_no));
 
 </script>
-
-
 
 		<!-- Content
 		============================================= -->

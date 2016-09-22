@@ -160,34 +160,32 @@ function createUser()
 
 
 ////////////////////////////////////////
-// New Generic - Add item to the cart //
+/// SUBROUTINE- Add item to the cart ///
 ////////////////////////////////////////
 function addItemGeneric(session_no, stock_no, qty)
 {
   $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no="+ session_no +"&stock_no="+ stock_no +"&qty="+qty+"");
 }
-
-
-
-////////////////////////////////
-// OLD - Add item to the cart //
-////////////////////////////////
-function addItem(clicked_id)
-{
-   stock_no = clicked_id;
-   addItemGeneric(session_no, stock_no, "1");
-   cartHeader();
-   cartList();
-}
-
-
-
 //////////////////////////////////////////////
 // Add item to the cart for the detail page //
 //////////////////////////////////////////////
 function addItemDetailView()
 {
-  detailViewQty = document.getElementById(stock_no).value;
+  if (document.getElementById(stock_no)) {
+    detailViewQty = document.getElementById(stock_no).value;
+  } else {
+    detailViewQty = "1";
+  }
+
+
+//    var details = [];
+//    details[0] = color;
+//    details[1] = type;
+    // Save color and type in the sessionStorage
+    if (!sessionStorage.getItem(stock_no)) {
+      sessionStorage.setItem(stock_no, detailString);
+//      sessionStorage.setItem(stock_no, JSON.stringify(details));
+    }
 
   addItemGeneric(session_no, stock_no, detailViewQty);
   if ( window.location.pathname != "/shop/") {
@@ -197,18 +195,15 @@ function addItemDetailView()
 
 
 
-//////////////////////////////////////
-// GENERIC - REMOVE ITEMS FROM CART //
-//////////////////////////////////////
+/////////////////////////////////////////
+// SUBROUTINE - REMOVE ITEMS FROM CART //
+/////////////////////////////////////////
 function removeItemGeneric(session_no, line_no)
 {
   $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICARTREM&session_no="+ session_no +"&line_no="+ line_no +"");
 }
-
-
-
 //////////////////////////////////
-// OLD - REMOVE ITEMS FROM CART //
+  // REMOVE ITEMS FROM CART //
 //////////////////////////////////
 function removeItem(clicked_id)
 {
@@ -287,106 +282,37 @@ function cartList()
         for (i=1; i<cartitems.length - 1; i++) {
           data = cartitems[i].split("|");
 
-          item = '<tr class="cart_item products">';
-            item += '<td class="cart-product-remove">';
-              item += '<a href="#" class="remove" onclick="removeItem(this.id)" id="' + data[1].replace(/\s+/g,'') + '" title="Remove this item"><i class="icon-trash2"></i></a>';
-            item += '</td>';
-
-            item += '<td class="cart-product-thumbnail">';
-              item += '<a href="../detail-view/#' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '"></a>';
-            item += '</td>';
-
-            item += '<td class="cart-product-name">';
-              item += '<a href="../detail-view/#' + data[2].replace(/\s+/g,'') + '">' + data[3] + '</a>';
-            item += '</td>';
-
-            item += '<td class="cart-product-price">';
-              item += '<span class="amount">$' + data[7].substring(0, data[7].length - 3) + '</span>';
-            item += '</td>';
-
-            item += '<td class="cart-product-quantity">';
-              item += '<div class="quantity clearfix">';
-                item += '<input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant['+i+']" onclick="changeQuantity(this)">';
-                item += '<input type="text" name="quant['+i+']" min="1" value="' + data[6].replace(/\s+/g,'') + '" class="qty form-control input-number" id="' + data[2].replace(/\s+/g,'') + '" />';
-                item += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant['+i+']" onclick="changeQuantity(this)">';
-              item += '</div>';
-            item += '</td>';
-
-            item += '<td class="cart-product-subtotal">';
-              item += '<span class="amount">$' + data[8].substring(0, data[8].length - 4) + '</span>';
-            item += '</td>';
-          item += '</tr>';
+          item = '<tr class="cart_item products"><td class="cart-product-remove"><a href="#" class="remove" onclick="removeItem(this.id)" id="' + data[1].replace(/\s+/g,'') + '" title="Remove this item"><i class="icon-trash2"></i></a></td>';
+          item += '<td class="cart-product-thumbnail"><a href="../detail-view/#' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '"></a></td>';
+          item += '<td class="cart-product-name"><a href="../detail-view/#' + data[2].replace(/\s+/g,'') + '">' + data[3] + '</a></td>';
+          item += '<td class="cart-product-price"><span class="amount">$' + data[7].substring(0, data[7].length - 3) + '</span></td>';
+          item += '<td class="cart-product-quantity"><div class="quantity clearfix">';
+          item += '<input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant['+i+']" onclick="changeQuantity(this)">';
+          item += '<input type="text" name="quant['+i+']" min="1" value="' + data[6].replace(/\s+/g,'') + '" class="qty form-control input-number" id="' + data[2].replace(/\s+/g,'') + '" />';
+          item += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant['+i+']" onclick="changeQuantity(this)"></div></td>';
+          item += '<td class="cart-product-subtotal"><span class="amount">$' + data[8].substring(0, data[8].length - 4) + '</span></td></tr>';
           html.push(item);
-//          jQuery("#cartItemTable").prepend(item);
 
-          miniitem = '<div class="top-cart-item clearfix">';
-            miniitem += '<div class="top-cart-item-image">';
-              miniitem += '<a href="#"><img src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '" /></a>';
-            miniitem += '</div>';
-            miniitem += '<div class="top-cart-item-desc">';
-              miniitem += '<a href="#">' + data[3] + '</a>';
-              miniitem += '<span class="top-cart-item-price">$' + data[7].substring(0, data[7].length - 3) + '</span>';
-              miniitem += '<span class="top-cart-item-quantity">x ' + data[6].replace(/\s+/g,'') + '</span>';
-            miniitem += '</div>';
-          miniitem += '</div>';
+          miniitem = '<div class="top-cart-item clearfix"><div class="top-cart-item-image"><a href="#"><img src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '" /></a></div>';
+          miniitem += '<div class="top-cart-item-desc"><a href="#">' + data[3] + '</a><span class="top-cart-item-price">$' + data[7].substring(0, data[7].length - 3) + '</span><span class="top-cart-item-quantity">x ' + data[6].replace(/\s+/g,'') + '</span></div></div>';
           html2.push(miniitem);
         }
         $("#cartItemTable").prepend(html.join(''));
         $("#updateCartButton").show();
         $("#minicart").append(html2.join(''));
 
-  /*      item = '<tr class="cart_item">';
-          item += '<td colspan="6">';
-            item += '<div class="row clearfix">';
-              item += '<div class="col-md-4 col-xs-4 nopadding">';
-                item += '<div class="col-md-8 col-xs-7 nopadding">';
-                  item += '<input type="text" value="" class="sm-form-control" placeholder="Enter Coupon Code.." />';
-                item += '</div>';
-                item += '<div class="col-md-4 col-xs-5">';
-                  item += '<a href="#" class="button button-3d button-black nomargin">Apply Coupon</a>';
-                item += '</div>';
-              item += '</div>';
-              item += '<div class="col-md-8 col-xs-8 nopadding">';
-                item += '<a href="#" class="button button-3d nomargin fright" id="updateCartButton" onclick="updateCart2()">Update Cart</a>';
-                item += '<a href="#" class="button button-3d notopmargin fright" onclick="redirect(\'checkout\')">Proceed to Checkout</a>';
-              item += '</div>';
-            item += '</div>';
-          item += '</td>';
-        item += '</tr>';
-        jQuery("#cartItemTable").append(item); */
       } else if (path[0] === "checkout") {
         for (i=1; i<cartitems.length - 1; i++) {
           data = cartitems[i].split("|");
 
-          item = '<tr class="cart_item">';
-            item += '<td class="cart-product-thumbnail">';
-              item += '<a href=../detail-view/#' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '"></a>';
-            item += '</td>';
-
-            item += '<td class="cart-product-name">';
-              item += '<a href="../detail-view/#' + data[2].replace(/\s+/g,'') + '">' + data[3] + '</a>';
-            item += '</td>';
-
-            item += '<td class="cart-product-quantity">';
-              item += '<div class="quantity clearfix">' + data[6].replace(/\s+/g,'') + '</div>';
-            item += '</td>';
-
-            item += '<td class="cart-product-subtotal">';
-              item += '<span class="amount">$' + data[8].substring(0, data[8].length - 4) + '</span>';
-            item += '</td>';
-          item += '</tr>';
+          item = '<tr class="cart_item"><td class="cart-product-thumbnail"><a href=../detail-view/#' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '"></a></td>';
+          item += '<td class="cart-product-name"><a href="../detail-view/#' + data[2].replace(/\s+/g,'') + '">' + data[3] + '</a></td>';
+          item += '<td class="cart-product-quantity"><div class="quantity clearfix">' + data[6].replace(/\s+/g,'') + '</div></td>';
+          item += '<td class="cart-product-subtotal"><span class="amount">$' + data[8].substring(0, data[8].length - 4) + '</span></td></tr>';
           jQuery("#cartItemTable").append(item);
 
-          miniitem = '<div class="top-cart-item clearfix">';
-            miniitem += '<div class="top-cart-item-image">';
-              miniitem += '<a href="#"><img src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '" /></a>';
-            miniitem += '</div>';
-            miniitem += '<div class="top-cart-item-desc">';
-              miniitem += '<a href="#">' + data[3] + '</a>';
-              miniitem += '<span class="top-cart-item-price">$' + data[7].substring(0, data[7].length - 3) + '</span>';
-              miniitem += '<span class="top-cart-item-quantity">x ' + data[6].replace(/\s+/g,'') + '</span>';
-            miniitem += '</div>';
-          miniitem += '</div>';
+          miniitem = '<div class="top-cart-item clearfix"><div class="top-cart-item-image"><a href="#"><img src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '" /></a></div>';
+          miniitem += '<div class="top-cart-item-desc"><a href="#">' + data[3] + '</a><span class="top-cart-item-price">$' + data[7].substring(0, data[7].length - 3) + '</span><span class="top-cart-item-quantity">x ' + data[6].replace(/\s+/g,'') + '</span></div></div>';
           html2.push(miniitem);
         }
         $("#minicart").append(html2.join(''));
@@ -394,16 +320,8 @@ function cartList()
         for (i=1; i<cartitems.length - 1; i++) {
           data = cartitems[i].split("|");
 
-          miniitem = '<div class="top-cart-item clearfix">';
-            miniitem += '<div class="top-cart-item-image">';
-              miniitem += '<a href="#"><img src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '" /></a>';
-            miniitem += '</div>';
-            miniitem += '<div class="top-cart-item-desc">';
-              miniitem += '<a href="#">' + data[3] + '</a>';
-              miniitem += '<span class="top-cart-item-price">$' + data[7].substring(0, data[7].length - 3) + '</span>';
-              miniitem += '<span class="top-cart-item-quantity">x ' + data[6].replace(/\s+/g,'') + '</span>';
-            miniitem += '</div>';
-          miniitem += '</div>';
+          miniitem = '<div class="top-cart-item clearfix"><div class="top-cart-item-image"><a href="#"><img src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '" /></a></div>';
+          miniitem += '<div class="top-cart-item-desc"><a href="#">' + data[3] + '</a><span class="top-cart-item-price">$' + data[7].substring(0, data[7].length - 3) + '</span><span class="top-cart-item-quantity">x ' + data[6].replace(/\s+/g,'') + '</span></div></div>';
           html2.push(miniitem);
         }
         jQuery("#minicart").append(html2.join(''));
@@ -430,10 +348,7 @@ function detailView()
       // lines[1]+ are data lines
       fields = lines[1].split("|");
 
-  //    var prodtype = fields[1].split(/(\s+)/);
-  //        prodtype = prodtype[2];
-
-  /* Fill in the pictures for the product */
+       /* Fill in the pictures for the product */
 
        pics =  '<div class="slide" style="display: block" data-thumb="../ljimages/' + fields[0].replace(/\s+/g,'') + '-sm.png"><a href="../ljimages/' + fields[0].replace(/\s+/g,'') + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom" id="ex1"><img src="../ljimages/' + fields[0].replace(/\s+/g,'') + '-md.png" alt="' + fields[1] + '"></span></a></div>';
        if (fields[2] === "ENC")  {
@@ -442,28 +357,17 @@ function detailView()
        $("#images").append(pics);
 
        secondColumn = '<div><a href="#" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div>';
-
        secondColumn += '<div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + fields[0].replace(/\s+/g,'') + '</span></span></div><div class="line"></div>';
-
-       secondColumn += '<div class="product-price col_one_third" style="font-size: 16px; font-weight: 400;"> <ins>COST:&nbsp;' + fields[4] + '</ins></div>';
-
-       secondColumn += '<div class="col_one_third" style="top: 0px; margin: 0px;">MIN: 1</div>';
-
+       secondColumn += '<div class="product-price col_one_third" style="font-size: 16px; font-weight: 400;"> <ins>COST:&nbsp;' + fields[4] + '</ins></div><div class="col_one_third" style="top: 0px; margin: 0px;">MIN: 1</div>';
        secondColumn += '<div class="product-rating col_one_third col_last" style="top: 0px; margin: 0px;">MSRP:&nbsp;' + fields[3] + '</div><div class="clear"></div><div class="line"></div>';
-
-       secondColumn += '<form class="cart nobottommargin clearfix" method="post" enctype="multipart/form-data">';
-         secondColumn += '<div class="quantity clearfix">';
-           secondColumn += '<input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant[1]" onclick="changeQuantity(this)">';
-           secondColumn += '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + fields[0].replace(/\s+/g,'') + '" />';
-           secondColumn += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant[1]" onclick="changeQuantity(this)">';
-         secondColumn += '</div>';
-         secondColumn += '<button type="button" id="add-item" class="add-to-cart button nomargin" onclick="saveColorAndType(); addItemDetailView();">Add to cart</button>';
-       secondColumn += '</form><div class="clear"></div><div class="line"></div>';
-
+       secondColumn += '<form class="cart nobottommargin clearfix" method="post" enctype="multipart/form-data"><div class="quantity clearfix">';
+       secondColumn += '<input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant[1]" onclick="changeQuantity(this)">';
+       secondColumn += '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + fields[0].replace(/\s+/g,'') + '" />';
+       secondColumn += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant[1]" onclick="changeQuantity(this)"></div>';
+       secondColumn += '<button type="button" id="add-item" class="add-to-cart button nomargin" onclick="addItemDetailView();">Add to cart</button></form><div class="clear"></div><div class="line"></div>';
 
        if (fields[2] === "ENC")  {
-         secondColumn += '<p>' + fields[8] + '</p>';
-         secondColumn += '<p>The value of this look is unbeatable, each necklace features fun and exciting packaging. She is getting multiple styles per necklace, while you’ll be making a 3x markup! Not to mention, this look serves a broad demographic so all of your customers will be sure to find the perfect design.</p>';
+         secondColumn += '<p>' + fields[8] + '</p><p>The value of this look is unbeatable, each necklace features fun and exciting packaging. She is getting multiple styles per necklace, while you’ll be making a 3x markup! Not to mention, this look serves a broad demographic so all of your customers will be sure to find the perfect design.</p>';
        } else {
          secondColumn += '<p>' + fields[1] + '</p>';
        }
@@ -475,47 +379,9 @@ function detailView()
        info += '<tr><td>Type</td><td>' + whatType(type) + '</td></tr>';
        info += '<tr><td>Look</td><td>' + whatLook(fields[2]) + '</td></tr>';
        $("#addInfo").append(info);
-
-
-/*       Fill in the 2nd Column data
-      document.getElementById("price-area").innerHTML = '<ins>$' + fields[4] + '</ins>';
-
-      secondColumn = '<div class="clear"></div>';
-      secondColumn += '<div class="line"></div>';
-
-      secondColumn += '<form class="cart nobottommargin clearfix" method="post" enctype="multipart/form-data">';
-        secondColumn += '<div class="quantity clearfix">';
-          secondColumn += '<input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant[1]" onclick="changeQuantity(this)">';
-          secondColumn += '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + fields[0].replace(/\s+/g,'') + '" />';
-          secondColumn += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant[1]" onclick="changeQuantity(this)">';
-        secondColumn += '</div>';
-        secondColumn += '<button type="button" id="add-item" class="add-to-cart button nomargin" onclick="addItemDetailView()">Add to cart</button>';
-      secondColumn += '</form>';
-
-      secondColumn += '<div class="clear"></div>';
-      secondColumn += '<div class="line"></div>';
-
-      secondColumn += '<p>' + fields[1] + '</p>';
-      secondColumn += '<p>' + fields[6] + '</p>';
-
-      secondColumn += '<div class="panel panel-default product-meta">';
-        secondColumn += '<div class="panel-body">';
-          secondColumn += '<span itemprop="productID" class="sku_wrapper">SKU: <span class="sku"> ' + fields[0] + '</span></span>';
-          secondColumn += '<span class="posted_in">Category: <span>' + prodtype + '</span>';
-        secondColumn += '</div>';
-      secondColumn += '</div><!-- Product Single - Meta End -->';
-
-      $("#secondColumn").append(secondColumn);
-*/
-  // Fill tabbed Modal Windows..
-
    },
    complete: function () {
      $('#ex1 img').wrap('<span style="display:inline-block"></span>').css('display', 'block').parent().zoom();
-     $('#ex1').focus();
-  //   $('.flexslider').flexslider({
-  //     smoothHeight: true
-  //   });
      setTimeout(function(){
        SEMICOLON.widget.loadFlexSlider();
      },1000);
@@ -811,11 +677,11 @@ function fillShop2(response)
   } else {
     for (i=0; i<linesPlus.length; i++) {
       flds = linesPlus[i];
-       if ( flds[2].trim() === "ZEN" || !isNaN(flds[2]) ) {
+       if ( flds[2].trim() === "Ace" || !isNaN(flds[2]) ) {
          continue;
        } else {
         prod = '<div class="product clearfix ' + flds[2] + '"><div class="product-image"><a href="../detail-view/#' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
-        prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim()  + ' has been added to your cart!" onclick="addItem(' + flds[0].trim()  + '); SEMICOLON.widget.notifications(this);"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+        prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim()  + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '\'; addItemDetailView(); SEMICOLON.widget.notifications(this);"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
         prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="event.preventDefault(); stock_no=\'' + flds[0].trim() + '\'; quickView(this.id);" id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '"><i class="icon-zoom-in2"></i><span id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '">Quick View</span></a></div></div>';
         prod += '<div class="product-desc" style="height: 80px;"><div class="product-title"><h3><a href="../detail-view/#' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '">' + flds[1] +'</a></h3></div><div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div></div></div>';
 
@@ -876,7 +742,7 @@ function search()
                  continue;
                } else {
                 prod = '<div class="product clearfix ' + flds[2] + '"><div class="product-image"><a href="../detail-view/#' + flds[0].trim() +'"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
-                prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim()  + ' has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+                prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim()  + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '\'; addItemDetailView(); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
                 prod += '<a href="../detail-view/#' + flds[0].trim() + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].trim()  + '">Detail View</span></a></div></div>';
                 prod += '<div class="product-desc" style="height: 80px;"><div class="product-title"><h3><a href="../detail-view/#' + flds[0].trim() + '">' + flds[1] +'</a></h3></div><div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div></div></div>';
 
@@ -914,7 +780,7 @@ function search()
                  continue;
                } else {
                 prod = '<div class="product clearfix ' + flds[2] + '"><div class="product-image"><a href="../detail-view/#' + flds[0].trim() +'"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
-                prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim()  + ' has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+                prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim()  + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '\'; addItemDetailView(); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
                 prod += '<a href="../detail-view/#' + flds[0].trim() + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].trim()  + '">Detail View</span></a></div></div>';
                 prod += '<div class="product-desc" style="height: 80px;"><div class="product-title"><h3><a href="../detail-view/#' + flds[0].trim() + '">' + flds[1] +'</a></h3></div><div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div></div></div>';
 
@@ -1700,7 +1566,7 @@ function filterFunction2(a,b,c,d,e,f)
 
           prices.push(Number(flds[4]));
           prod = '<div class="product clearfix ' + flds[2] +" "+ flds[8].trim() +" "+ flds[9].trim() + '"><div class="product-image"><a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
-          prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="addItem(this.id); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+          prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '\'; addItemDetailView(); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
           prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=' + flds[0] + '; quickView();" ><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a></div></div>';
           prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div><div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div></div></div>';
 
