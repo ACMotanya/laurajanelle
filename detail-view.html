@@ -26,6 +26,8 @@ footer {
 <script>
 //session_no = Cookies.get('session_no');
 var detailString;
+var color;
+var type;
 var hash = window.location.hash.split("+");
 var stock_no = hash[0].replace( /^\D+/g, '');
 
@@ -33,10 +35,10 @@ if (hash.length === 3 ) {
   detailString = window.location.hash;
   color = hash[1].replace( /^\D+/g, '');
   type  = hash[2].replace( /^\D+/g, '');
-} else {
+} else if ( sessionStorage.getItem(stock_no) != null || sessionStorage.getItem(stock_no) != "undefined" ) {
   var dets  = sessionStorage.getItem(stock_no).split("+");
-  var color = dets[1].replace( /^\D+/g, '');;
-  var type  = dets[2].replace( /^\D+/g, '');;
+  color = dets[1].replace( /^\D+/g, '');
+  type  = dets[2].replace( /^\D+/g, '');
 }
 
 jQuery( document ).ready(function() {
@@ -80,7 +82,7 @@ console.log(sessionStorage.getItem(stock_no));
               <!--   <div class="product-price" id="price-area">
 
                 </div>
-<!--
+                <!--
                 <div class="product-rating">
                   Save to Wishlist
                   <input style="display: inline;" id="input" type="number" data-stars="1" class="rating" max="1" data-size="sm" data-glyphicon="false" data-rating-class="line-icon" data-symbol="&#xe024;" data-default-caption="{rating} Hearts" data-star-captions="{}" >

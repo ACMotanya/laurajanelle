@@ -182,14 +182,9 @@ function addItemDetailView()
     detailViewQty = "1";
   }
 
-
-//    var details = [];
-//    details[0] = color;
-//    details[1] = type;
     // Save color and type in the sessionStorage
-    if (!sessionStorage.getItem(stock_no)) {
+    if (!sessionStorage.getItem(stock_no) || sessionStorage.getItem(stock_no) === "undefined" || sessionStorage.getItem(stock_no) === null ) {
       sessionStorage.setItem(stock_no, detailString);
-//      sessionStorage.setItem(stock_no, JSON.stringify(details));
     }
 
   addItemGeneric(session_no, stock_no, detailViewQty);
@@ -682,7 +677,7 @@ function fillShop2(response)
   } else {
     for (i=0; i<linesPlus.length; i++) {
       flds = linesPlus[i];
-       if ( flds[2].trim() === "Ace" || !isNaN(flds[2]) ) {
+       if ( flds[2].trim() === "Ace" ) {
          continue;
        } else {
         prod = '<div class="product clearfix ' + flds[2] + '"><div class="product-image"><a href="../detail-view/#' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
