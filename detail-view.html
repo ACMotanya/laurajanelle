@@ -35,7 +35,7 @@ if (hash.length === 3 ) {
   detailString = window.location.hash;
   color = hash[1].replace( /^\D+/g, '');
   type  = hash[2].replace( /^\D+/g, '');
-} else if ( sessionStorage.getItem(stock_no) != null && sessionStorage.getItem(stock_no) != "undefined" ) {
+} else if ( sessionStorage.getItem(stock_no) != null && sessionStorage.getItem(stock_no) != "undefined" && sessionStorage.getItem(stock_no).length >= 8 ) {
   var dets  = sessionStorage.getItem(stock_no).split("+");
   color = dets[1].replace( /^\D+/g, '');
   type  = dets[2].replace( /^\D+/g, '');
