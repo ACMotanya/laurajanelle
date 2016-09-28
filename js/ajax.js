@@ -681,7 +681,11 @@ function fillShop2(response)
   } else {
     for (i=0; i<linesPlus.length; i++) {
       flds = linesPlus[i];
-       if ( flds[2].trim() === "ZEN" ) {
+
+      //////////////////////////////////////////////////
+            // code for aura items on hold //
+      //////////////////////////////////////////////////
+       if ( flds[2].trim() === "Ace" ) {
          continue;
        } else {
         prod = '<div class="product clearfix ' + flds[2] + '"><div class="product-image"><a href="../detail-view/#' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
