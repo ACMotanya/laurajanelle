@@ -188,7 +188,7 @@ function addItemDetailView()
     }
 
   addItemGeneric(session_no, stock_no, detailViewQty);
-  if ( window.location.pathname != "/shop/" ) {
+  if ( window.location.pathname !== "/shop/" ) {
     redirect("cart");
   }
 }
@@ -351,7 +351,7 @@ function detailView()
        /* Fill in the pictures for the product */
 
        pics =  '<div class="slide" style="display: block" data-thumb="../ljimages/' + fields[0].replace(/\s+/g,'') + '-sm.png"><a href="../ljimages/' + fields[0].replace(/\s+/g,'') + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom" id="ex1"><img src="../ljimages/' + fields[0].replace(/\s+/g,'') + '-md.png" alt="' + fields[1] + '"></span></a></div>';
-       if (fields[2] === "ENC")  {
+       if (fields[2] === "ENC" && stock_no !== "CD103")  {
          pics += '<div class="slide" data-thumb="../packaging/' + fields[0].replace(/\s+/g,'') + '-sm.JPG"><a href="../packaging/' + fields[0].replace(/\s+/g,'') + '-lg.JPG" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom" id="ex1"><img src="../packaging/' + fields[0].replace(/\s+/g,'') + '-md.JPG" alt="' + fields[1] + '"></span></a></div>';
        }
        $("#images").append(pics);
@@ -366,7 +366,7 @@ function detailView()
        secondColumn += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant[1]" onclick="changeQuantity(this)"></div>';
        secondColumn += '<button type="button" id="add-item" class="add-to-cart button nomargin" onclick="addItemDetailView();">Add to cart</button></form><div class="clear"></div><div class="line"></div>';
 
-       if (fields[2] === "ENC")  {
+       if (fields[2] === "ENC" )  {
          secondColumn += '<p>' + fields[8] + '</p><p>The value of this look is unbeatable, each necklace features fun and exciting packaging. She is getting multiple styles per necklace, while you’ll be making a 3x markup! Not to mention, this look serves a broad demographic so all of your customers will be sure to find the perfect design.</p>';
        } else {
          if (fields[8].length !== 0) {
@@ -685,7 +685,7 @@ function fillShop2(response)
       //////////////////////////////////////////////////
             // code for aura items on hold //
       //////////////////////////////////////////////////
-       if ( flds[2].trim() === "Ace" ) {
+       if ( flds[2].trim() === "ACE" ) {
          continue;
        } else {
         prod = '<div class="product clearfix ' + flds[2] + '"><div class="product-image"><a href="../detail-view/#' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
