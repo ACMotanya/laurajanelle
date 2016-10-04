@@ -1367,51 +1367,51 @@ function hideFilter()
 /////////////////////////////////////
 function whatColor(colorCode)
 {
-    switch (colorCode) {
-      case "01": color = "Silver";
-      break;
-      case "02": color = "Gold";
-      break;
-      case "03": color = "Black";
-      break;
-      case "04": color = "Blue";
-      break;
-      case "05": color = "Brown";
-      break;
-      case "06": color = "Clear";
-      break;
-      case "07": color = "Green";
-      break;
-      case "08": color = "Grey";
-      break;
-      case "09": color = "Opal";
-      break;
-      case "10": color = "Orange";
-      break;
-      case "11": color = "Pink";
-      break;
-      case "12": color = "Purple";
-      break;
-      case "13": color = "Rainbow";
-      break;
-      case "14": color = "Red";
-      break;
-      case "15": color = "Tan";
-      break;
-      case "16": color = "Teal";
-      break;
-      case "17": color = "Turquoise";
-      break;
-      case "18": color = "White";
-      break;
-      case "19": color = "Yellow";
-      break;
-      case "20": color = "Mulitcolored";
-      break;
-      default:
-      color = "N/A";
-    }
-    return color;
+  switch (colorCode) {
+    case "01": color = "Silver";
+    break;
+    case "02": color = "Gold";
+    break;
+    case "03": color = "Black";
+    break;
+    case "04": color = "Blue";
+    break;
+    case "05": color = "Brown";
+    break;
+    case "06": color = "Clear";
+    break;
+    case "07": color = "Green";
+    break;
+    case "08": color = "Grey";
+    break;
+    case "09": color = "Opal";
+    break;
+    case "10": color = "Orange";
+    break;
+    case "11": color = "Pink";
+    break;
+    case "12": color = "Purple";
+    break;
+    case "13": color = "Rainbow";
+    break;
+    case "14": color = "Red";
+    break;
+    case "15": color = "Tan";
+    break;
+    case "16": color = "Teal";
+    break;
+    case "17": color = "Turquoise";
+    break;
+    case "18": color = "White";
+    break;
+    case "19": color = "Yellow";
+    break;
+    case "20": color = "Mulitcolored";
+    break;
+    default:
+    color = "N/A";
+  }
+  return color;
 }
 
 
@@ -1474,69 +1474,6 @@ function whatLook(lookCode)
 
 
 
-/////////////////////////
-// Populate Page Title //
-/////////////////////////
-function pageTitle()
-{
-  var pageTitle;
-  switch (window.location.hash) {
-  case "#sleek":
-    $('#page-title').empty();
-    pageTitle = "SLEEK";
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>SLEEK</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><li>Shop</li><li class="active">SLEEK</li></ol></div>';
-    break;
-  case "#rglb":
-    $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>RGLB</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><li>Shop</li><li class="active">RGLB</li></ol></div>';
-    break;
-  case "#encharming":
-    $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Encharming</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><li>Shop</li><li class="active">Encharming</li></ol></div>';
-    break;
-  case "#identify":
-    $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>iDentify</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><li>Shop</li><li class="active">iDentify</li></ol></div>';
-    break;
-  case "#programs":
-    $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Programs</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><li>Shop</li><li class="active">Programs</li></ol></div>';
-    break;
-  case "#sets":
-    $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Sets</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><li>Shop</li><li class="active">Sets</li></ol></div>';
-    break;
-  case "#earrings":
-    $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Earrings</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><li>Shop</li><li class="active">Earrings</li></ol></div>';
-    break;
-  case "#necklaces":
-    $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Necklaces</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><li>Shop</li><li class="active">Necklaces</li></ol></div>';
-    break;
-  case "#bracelets":
-    $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Bracelets</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><li>Shop</li><li class="active">Bracelets</li></ol></div>';
-    break;
-  case "#lanyards":
-    $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Lanyards</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><<li>Shop</li><li class="active">Lanyards</li></ol></div>';
-    break;
-  case "#tassels":
-    $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Tassels</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><li>Shop</li><li class="active">Tassels</li></ol></div>';
-    break;
-  case "#snaps":
-    $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Snaps</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><li>Shop</li><li class="active">Snaps</li></ol></div>';
-    break;
-  default:
-    $('#page-title').empty();
-    document.getElementById("page-title").innerHTML += '<div class="container clearfix"><h1>Full Suite</h1><ol class="breadcrumb"><li><a href="#" onclick="redirect(\'store\')">Home</a></li><li class="active">Shop</li></ol></div>';
-  }
-}
-
-
 //////////////////////////
 // Filter Function Test //
 //////////////////////////
@@ -1577,7 +1514,7 @@ function filterFunction2(a,b,c,d,e,f)
           flds = linesPlus[i];
 
           prices.push(Number(flds[4]));
-          prod =  '<div class="product clearfix ' + flds[2] +" "+ flds[8].trim() +" "+ flds[9].trim() + '"><div class="product-image"><a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
+          prod =  '<div class="product clearfix ' + flds[2] +" "+ flds[8].trim() +" "+ flds[9].trim() + '"><div class="product-image"><a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="../ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
           prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '\'; addItemDetailView(); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
           prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="event.preventDefault(); stock_no=\'' + flds[0].trim() + '\'; quickView(this.id);" id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '"><i class="icon-zoom-in2"></i><span id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '">Quick View</span></a></div></div>';
           prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div><div class="product-price">cost &nbsp;<ins>$' + flds[4].trim() + '</ins></div></div></div>';
