@@ -350,13 +350,14 @@ function detailView()
 
        /* Fill in the pictures for the product */
 
-       pics =  '<div class="slide" style="display: block" data-thumb="../ljimages/' + fields[0].replace(/\s+/g,'') + '-sm.png"><a href="../ljimages/' + fields[0].replace(/\s+/g,'') + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom" id="ex1"><img src="../ljimages/' + fields[0].replace(/\s+/g,'') + '-md.png" alt="' + fields[1] + '"></span></a></div>';
+       var pics =  '<div class="slide" style="display: block" data-thumb="../ljimages/' + fields[0] + '-sm.png"><a href="../ljimages/' + fields[0] + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom" id="ex1"><img src="../ljimages/' + fields[0] + '-md.png" alt="' + fields[1] + '"></span></a></div>';
        if (fields[2] === "ENC" && stock_no !== "CD103")  {
-         pics += '<div class="slide" data-thumb="../packaging/' + fields[0].replace(/\s+/g,'') + '-sm.JPG"><a href="../packaging/' + fields[0].replace(/\s+/g,'') + '-lg.JPG" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom" id="ex1"><img src="../packaging/' + fields[0].replace(/\s+/g,'') + '-md.JPG" alt="' + fields[1] + '"></span></a></div>';
+         pics += '<div class="slide" data-thumb="../packaging/' + fields[0] + '-sm.JPG"><a href="../packaging/' + fields[0] + '-lg.JPG" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom" id="ex1"><img src="../packaging/' + fields[0] + '-md.JPG" alt="' + fields[1] + '"></span></a></div>';
+       } else if (fields[2] === "GLB" && stock_no !== "CD107" && stock_no >= 10713 && stock_no <= 10748) {
+         pics += '<div class="slide" data-thumb="../backs/' + fields[0] + 'bk-sm.png"><a href="../backs/' + fields[0] + 'bk-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom" id="ex1"><img src="../backs/' + fields[0] + 'bk-md.png" alt="' + fields[1] + '"></span></a></div>';
        }
-       $("#images").append(pics);
 
-       secondColumn = '<div><a href="#" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div>';
+       secondColumn  = '<div><a href="#" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div>';
        secondColumn += '<div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + fields[0].replace(/\s+/g,'') + '</span></span></div><div class="line"></div>';
        secondColumn += '<div class="product-price col_one_third" style="font-size: 16px; font-weight: 400;"> <ins>COST:&nbsp;' + fields[4] + '</ins></div><div class="col_one_third" style="top: 0px; margin: 0px;">MIN: 1</div>';
        secondColumn += '<div class="product-rating col_one_third col_last" style="top: 0px; margin: 0px;">MSRP:&nbsp;' + fields[3] + '</div><div class="clear"></div><div class="line"></div>';
@@ -375,6 +376,7 @@ function detailView()
            secondColumn += '<p>' + fields[1] + '</p>';
          }
        }
+       $("#images").append(pics);
        $("#secondColumn").append(secondColumn);
 
        info =  '<tr><td>Description</td><td>' + fields[1] + '</td></tr>';
@@ -685,7 +687,7 @@ function fillShop2(response)
       //////////////////////////////////////////////////
             // code for aura items on hold //
       //////////////////////////////////////////////////
-       if ( flds[2].trim() === "ACE" ) {
+       if ( flds[2].trim() === "ZEN" ) {
          continue;
        } else {
         prod = '<div class="product clearfix ' + flds[2] + '"><div class="product-image"><a href="../detail-view/#' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
@@ -1351,7 +1353,7 @@ function changeQuantity(element)
 /////////////////////////////////////
 function hideFilter()
 {
-  if (window.location.hash === "#sleek" || window.location.hash === "#rglb" || window.location.hash === "#encharming" || window.location.hash === "#identify") {
+  if (window.location.hash === "#sleek" || window.location.hash === "#rglb" || window.location.hash === "#encharming" || window.location.hash === "#identify" || window.location.hash === "#aura") {
     $("#portfolio-filter").css({"visibility":"hidden"});
   } else {
     $("#portfolio-filter").css({"visibility":"visible"});
@@ -1435,6 +1437,8 @@ function whatType(typeCode)
     case "700": type = "Set";
     break;
     case "800": type = "Program";
+    break;
+    case "850": type = "Display";
     break;
     case "900": type = "Oil";
     break;
@@ -1575,8 +1579,8 @@ function filterFunction2(a,b,c,d,e,f)
           prices.push(Number(flds[4]));
           prod =  '<div class="product clearfix ' + flds[2] +" "+ flds[8].trim() +" "+ flds[9].trim() + '"><div class="product-image"><a href="../detail-view/#' + flds[0].replace(/\s+/g,'') + '"><img src="ljimages/' + flds[0].replace(/\s+/g,'') + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
           prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].replace(/\s+/g,'') + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '\'; addItemDetailView(); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-          prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=' + flds[0] + '; quickView();" ><i class="icon-zoom-in2"></i><span class="' + flds[0].replace(/\s+/g,'') + '">Detail View</span></a></div></div>';
-          prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div><div class="product-price" style="float: left;">cost &nbsp;<ins>$' + flds[4].trim() + '</ins></div><div class="product-price" style="float: right;">msrp &nbsp;<ins>$' + flds[3].trim() + '</ins></div></div></div>';
+          prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="event.preventDefault(); stock_no=\'' + flds[0].trim() + '\'; quickView(this.id);" id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '"><i class="icon-zoom-in2"></i><span id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '">Quick View</span></a></div></div>';
+          prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#">' + flds[1] +'</a></h3></div><div class="product-price">cost &nbsp;<ins>$' + flds[4].trim() + '</ins></div></div></div>';
 
           html.push(prod);
         }
