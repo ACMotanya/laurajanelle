@@ -18,36 +18,44 @@ layout: page
         });
 
         switch (window.location.hash) {
-          case "#sleek": filterFunction('APISTKLST','LJ10000','','','','');
+          case "#sleek": filterFunction2('APISTKLST','LJ10000','','','','');
             break;
-          case "#rglb": filterFunction('APISTKLST','LJ10700','','','','');
+          case "#rglb": filterFunction2('APISTKLST','LJ10700','','','','');
             break;
-          case "#encharming": filterFunction('APISTKLST','LJ10300','','','','');
+          case "#encharming": filterFunction2('APISTKLST','LJ10300','','','','');
             break;
-          case "#identify": filterFunction('APISTKLST','LJ10500','','','','');
+          case "#identify": filterFunction2('APISTKLST','LJ10500','','','','');
             break;
-          case "#programs": filterFunction('APISTKLST','','800','','','');
+          case "#aura": filterFunction2('APISTKLST','LJ11100','','','','');
             break;
-          case "#sets": filterFunction('APISTKLST','','700','','','');
+          case "#programs": filterFunction2('APISTKLST','','800','','','');
             break;
-          case "#earrings": filterFunction('APISTKLST','','300','','','');
+          case "#sets": filterFunction2('APISTKLST','','700','','','');
             break;
-          case "#necklaces": filterFunction('APISTKLST','','100','','','');
+          case "#earrings": filterFunction2('APISTKLST','','300','','','');
             break;
-          case "#bracelets": filterFunction('APISTKLST','','200','','','');
+          case "#necklaces": filterFunction2('APISTKLST','','100','','','');
             break;
-          case "#lanyards": filterFunction('APISTKLST','','400','','','');
+          case "#bracelets": filterFunction2('APISTKLST','','200','','','');
             break;
-          case "#tassels": filterFunction('APISTKLST','','600','','','');
+          case "#lanyards": filterFunction2('APISTKLST','','400','','','');
             break;
-          case "#snaps": filterFunction('APISTKLST','','500','','','');
+          case "#tassels": filterFunction2('APISTKLST','','600','','','');
             break;
-          default: filterFunction('APISTKLST','','','','','');
+          case "#snaps": filterFunction2('APISTKLST','','500','','','');
+            break;
+          case "#displays": filterFunction2('APISTKLST','','850','','','');
+            break;
+          case "#oils": filterFunction2('APISTKLST','','900','','','');
+            break;
+          default: filterFunction2('APISTKLST','','','','','');
         }
+
         cartHeader();
         cartList();
-
       });
+
+
       </script>
   		<!-- Content
   		=============================================
@@ -180,10 +188,7 @@ layout: page
                         <input id="checkbox-18" class="checkbox-style" name="checkbox-18" type="checkbox" value=".02">
                         <label for="checkbox-18" class="checkbox-style-1-label">GOLD</label>
                       </div>
-                      <div>
-                        <input id="checkbox-19" class="checkbox-style" name="checkbox-19" type="checkbox" value=".13">
-                        <label for="checkbox-19" class="checkbox-style-1-label">RAINBOW</label>
-                      </div>
+
                       <div>
                         <input id="checkbox-20" class="checkbox-style" name="checkbox-20" type="checkbox" value=".07">
                         <label for="checkbox-20" class="checkbox-style-1-label">GREEN</label>
@@ -197,14 +202,6 @@ layout: page
                         <label for="checkbox-22" class="checkbox-style-1-label">SILVER</label>
                       </div>
                       <div>
-                        <input id="checkbox-23" class="checkbox-style" name="checkbox-23" type="checkbox" value=".16">
-                        <label for="checkbox-23" class="checkbox-style-1-label">TEAL</label>
-                      </div>
-                      <div>
-                        <input id="checkbox-24" class="checkbox-style" name="checkbox-24" type="checkbox" value=".19">
-                        <label for="checkbox-24" class="checkbox-style-1-label">YELLOW</label>
-                      </div>
-                      <div>
                         <input id="checkbox-25" class="checkbox-style" name="checkbox-25" type="checkbox" value=".18">
                         <label for="checkbox-25" class="checkbox-style-1-label">WHITE</label>
                       </div>
@@ -212,10 +209,7 @@ layout: page
                         <input id="checkbox-26" class="checkbox-style" name="checkbox-26" type="checkbox" value=".15">
                         <label for="checkbox-26" class="checkbox-style-1-label">TAN</label>
                       </div>
-                      <div>
-                        <input id="checkbox-27" class="checkbox-style" name="checkbox-27" type="checkbox" value=".09">
-                        <label for="checkbox-27" class="checkbox-style-1-label">OPAL</label>
-                      </div>
+
                       <div>
                         <input id="checkbox-28" class="checkbox-style" name="checkbox-28" type="checkbox" value=".20">
                         <label for="checkbox-28" class="checkbox-style-1-label">MULTI</label>
@@ -267,15 +261,15 @@ layout: page
     function priceFilter() {
       var priceRangefrom = parseFloat($("#min").val());
       var priceRangeto = parseFloat($("#max").val());
-      console.log( priceRangefrom + " + " + priceRangeto);
 
-      $container.isotope('destroy');
-      $(document).trigger("filters2");
+    //  $container.isotope('destroy');
+    //  $(document).trigger("filters2");
       $container.isotope({
         transitionDuration: '0.65s',
         filter: function() {
           if( jQuery(this).is(':visible')) {
             if( jQuery(this).find('.product-price').find('ins').length > 0 ) {
+              console.log(jQuery(this));
               var price = jQuery(this).find('.product-price ins').text();
             } else {
               var price = jQuery(this).find('.product-price').text();
