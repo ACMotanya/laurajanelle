@@ -8,8 +8,46 @@ layout: page
 
       <script>
 
-          filterFunction2('APISTKLST','','','','','');
-          SEMICOLON.initialize.lightbox();
+      jQuery( document ).ready(function() {
+        var $loading = $('#loadingDiv');
+
+        $(document).ajaxStart(function () {
+          $loading.show();
+        }).ajaxStop(function () {
+          $loading.hide();
+        });
+
+        switch (window.location.hash) {
+          case "#sleek": filterFunction('APISTKLST','LJ10000','','','','');
+            break;
+          case "#rglb": filterFunction('APISTKLST','LJ10700','','','','');
+            break;
+          case "#encharming": filterFunction('APISTKLST','LJ10300','','','','');
+            break;
+          case "#identify": filterFunction('APISTKLST','LJ10500','','','','');
+            break;
+          case "#programs": filterFunction('APISTKLST','','800','','','');
+            break;
+          case "#sets": filterFunction('APISTKLST','','700','','','');
+            break;
+          case "#earrings": filterFunction('APISTKLST','','300','','','');
+            break;
+          case "#necklaces": filterFunction('APISTKLST','','100','','','');
+            break;
+          case "#bracelets": filterFunction('APISTKLST','','200','','','');
+            break;
+          case "#lanyards": filterFunction('APISTKLST','','400','','','');
+            break;
+          case "#tassels": filterFunction('APISTKLST','','600','','','');
+            break;
+          case "#snaps": filterFunction('APISTKLST','','500','','','');
+            break;
+          default: filterFunction('APISTKLST','','','','','');
+        }
+        cartHeader();
+        cartList();
+
+      });
       </script>
   		<!-- Content
   		=============================================
@@ -47,7 +85,7 @@ layout: page
                       <div>
   										  <input id="checkbox-4" class="checkbox-style" name="checkbox-4" type="checkbox" value=".IDT" >
   										  <label for="checkbox-4" class="checkbox-style-1-label">iDentify</label>
-  									  </div>3
+  									  </div>
                     </div>
                   </div>
                 </div>
@@ -199,6 +237,16 @@ layout: page
   						<!-- Shop
   						============================================= -->
   						<div id="shop" class="shop product-3 clearfix">
+
+                <div class="col-md-3 col-sm-4 col-xs-6 center" style="height: 150px;" id="loadingDiv">
+                  <div class="css3-spinner" style="z-index:auto;">
+                    <div class="css3-spinner-rect1"></div>
+                    <div class="css3-spinner-rect2"></div>
+                    <div class="css3-spinner-rect3"></div>
+                    <div class="css3-spinner-rect4"></div>
+                    <div class="css3-spinner-rect5"></div>
+                  </div>
+                </div>
 
   						</div><!-- #shop end -->
 

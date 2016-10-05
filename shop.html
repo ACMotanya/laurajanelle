@@ -4,7 +4,7 @@ layout: shopfilter
 
 
 <script>
-var on_page = window.location.hash
+
 jQuery( document ).ready(function() {
   var $loading = $('#loadingDiv');
 
@@ -15,44 +15,31 @@ jQuery( document ).ready(function() {
   });
 
   switch (window.location.hash) {
-    case "#sleek":
-      filterFunction('APISTKLST','LJ10000','','','','');
+    case "#sleek": filterFunction('APISTKLST','LJ10000','','','','');
       break;
-    case "#rglb":
-      filterFunction('APISTKLST','LJ10700','','','','');
+    case "#rglb": filterFunction('APISTKLST','LJ10700','','','','');
       break;
-    case "#encharming":
-      filterFunction('APISTKLST','LJ10300','','','','');
+    case "#encharming": filterFunction('APISTKLST','LJ10300','','','','');
       break;
-    case "#identify":
-      filterFunction('APISTKLST','LJ10500','','','','');
+    case "#identify": filterFunction('APISTKLST','LJ10500','','','','');
       break;
-    case "#programs":
-      filterFunction('APISTKLST','','800','','','');
+    case "#programs": filterFunction('APISTKLST','','800','','','');
       break;
-    case "#sets":
-      filterFunction('APISTKLST','','700','','','');
+    case "#sets": filterFunction('APISTKLST','','700','','','');
       break;
-    case "#earrings":
-      filterFunction('APISTKLST','','300','','','');
+    case "#earrings": filterFunction('APISTKLST','','300','','','');
       break;
-    case "#necklaces":
-      filterFunction('APISTKLST','','100','','','');
+    case "#necklaces": filterFunction('APISTKLST','','100','','','');
       break;
-    case "#bracelets":
-      filterFunction('APISTKLST','','200','','','');
+    case "#bracelets": filterFunction('APISTKLST','','200','','','');
       break;
-    case "#lanyards":
-      filterFunction('APISTKLST','','400','','','');
+    case "#lanyards": filterFunction('APISTKLST','','400','','','');
       break;
-    case "#tassels":
-      filterFunction('APISTKLST','','600','','','');
+    case "#tassels": filterFunction('APISTKLST','','600','','','');
       break;
-    case "#snaps":
-      filterFunction('APISTKLST','','500','','','');
+    case "#snaps": filterFunction('APISTKLST','','500','','','');
       break;
-    default:
-      filterFunction('APISTKLST','','','','','');
+    default: filterFunction('APISTKLST','','','','','');
   }
   cartHeader();
   cartList();
