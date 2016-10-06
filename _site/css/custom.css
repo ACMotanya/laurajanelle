@@ -234,6 +234,16 @@ div.container.clearfix video.about {
 	text-align: right;
 }
 
+.looks.aura {
+	text-align: right;
+}
+
+@media (max-width: 1078px) {
+	.looks.aura {
+		text-align: left;
+	}
+}
+
 /* \\\\\\\\\\\\\\\\\\\
 	/* Meet Us Styles
 /* \\\\\\\\\\\\\\\\\\\*/
