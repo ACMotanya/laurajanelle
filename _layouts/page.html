@@ -4,7 +4,7 @@
 
   {% include head-page.html %}
 
-  <body class="stretched">
+  <body id="body" class="stretched">
     <div id="wrapper" class="clearfix">
 
       {% include header-page.html %}
@@ -16,6 +16,13 @@
     {% include js.html %}
     <script type="text/javascript" src="{{ "/js/validator.min.js" | prepend: site.baseurl }}"></script>
     <script type="text/javascript" src="{{ "/js/jquery.zoom.min.js" | prepend: site.baseurl }}"></script>
+
+    <script>
+    if ($(window).width() < 1100) {
+      $('#body').removeClass('device-md');
+      $('#body').addClass('device-sm');
+    }
+    </script>
 
   </body>
 
