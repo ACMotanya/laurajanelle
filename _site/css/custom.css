@@ -4,6 +4,21 @@
 
 
 
+@media (min-width: 991px) and (max-width: 1248px) {
+    .navbar-collapse.collapse {
+        display: none !important;
+    }
+    .navbar-collapse.collapse.in {
+        display: block !important;
+    }
+    .navbar-header .collapse, .navbar-toggle {
+        display:block !important;
+    }
+    .navbar-header {
+        float:none;
+    }
+}
+
 /* randomly broke fixes on shop page */
 #header.full-header #logo {
 	padding-right: 0px !important;
