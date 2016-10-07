@@ -43,6 +43,8 @@
     <link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
     <link rel="stylesheet" href="css/responsive.css" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
     <!--[if lt IE 9]>
       <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
     <![endif]-->
@@ -57,6 +59,8 @@
     <!-- Document Title
     ============================================= -->
     <title>Laura Janelle</title>
+
+
   </head>
 
   <body class="stretched">
@@ -99,17 +103,17 @@
 
               <!-- SLIDE 5 -->
               <li data-index="rs-38" data-fstransition="fade" data-slotamount="7" data-easein="default" data-easeout="default" data-masterspeed="1500" data-rotate="0" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off" data-title="Intro">
-                <!-- MAIN IMAGE -->
+                <!-- MAIN IMAGE src="img/auramodel-right.jpg" -->
 
-                <img src="img/auramodel-right.jpg" alt="Aura Model" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
+                <img class="heroImage" src="img/auramodel-down.jpg" alt="Aura Model" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
 
                 <!-- LAYER NR. 2 -->
                 <div class="tp-caption tp-resizeme uppercase"
-                  data-x="['left','left','left','left']" data-hoffset="['150','60','45','15']"
+                  data-x="['left','left','middle','middle']" data-hoffset="['150','60','45','45']"
                   data-y="['middle','middle','top','top']" data-voffset="['0','0','170','20']"
                   data-fontsize="['40','40','30','20']"
                   data-lineheight="['40','42','40','22']"
-                  data-visibility="['on','on','on','on']"
+                  data-visibility="['on','on','off','off']"
                   data-width="600"
                   data-whitespace="normal"
                   data-transform_idle="o:1;"
@@ -121,7 +125,33 @@
 
                   data-responsive_offset="on"
 
-                  style="z-index: 0; white-space: normal; font-weight: 500; font-family: 'Bodoni-Sans', 'Oranienbaum';color:#999"><span style="color:#999">Introducing</span> <br><img src="img/ZEN-logo.png"><br>The Scent of<br> Happiness
+                  style="z-index: 0; white-space: normal; font-weight: 500; font-family: 'Bodoni-Sans', 'Oranienbaum'; color: #999;">Introducing</span> <br>
+                  <img src="img/ZEN-logo.png" data-ww="['125px','105px','125px','125px']" data-hh="['125px','105px','125px','125px']"><br>
+                  The Scent of<br> Happiness
+                </div>
+
+
+                <!-- LAYER NR. 2 -->
+                <div class="tp-caption uppercase"
+                  data-x="['left','left','middle','middle']" data-hoffset="['150','60','0','0']"
+                  data-y="['middle','middle','top','top']" data-voffset="['0','0','60','45']"
+                  data-fontsize="['40','40','30','20']"
+                  data-lineheight="['40','42','40','22']"
+                  data-visibility="['off','off','on','on']"
+                  data-width="650"
+                  data-whitespace="normal"
+                  data-transform_idle="o:1;"
+                  data-transform_in="z:0;rX:0deg;rY:0;rZ:0;sX:1.5;sY:1.5;skX:0;skY:0;opacity:0;s:1500;e:Power3.easeOut;"
+                  data-transform_out="opacity:0;s:1000;s:1000;"
+                  data-start="500"
+                  data-splitin="none"
+                  data-splitout="none"
+
+                  data-responsive_offset="on"
+
+                  style="z-index: 0; white-space: normal; font-weight: 500; font-family: 'Bodoni-Sans', 'Oranienbaum'; color: #999; text-align: center;">Introducing</span>
+                  <img src="img/ZEN-logo.png" data-ww="['125px','125px','95px','50px']" data-hh="['125px','125px','95px','50px']">
+                  The Scent of Happiness
                 </div>
               </li>
 
@@ -131,8 +161,8 @@
 
               <!-- LAYER NR. 1 -->
               <div class="tp-caption tp-static-layer"
-                data-x="['left','left','right','center']" data-hoffset="['40','40','50','0']"
-                data-y="['top','top','top','top']" data-voffset="['5','5','20','30']"
+                data-x="['left','left','right','right']" data-hoffset="['40','40','50','50']"
+                data-y="['top','top','top','top']" data-voffset="['5','5','30','30']"
                 data-width="none"
                 data-height="none"
                 data-whitespace="nowrap"
@@ -146,7 +176,7 @@
                 data-responsive="on"
                 data-startslide="0"
                 data-endslide="4"
-
+                data-basealign="slide"
                 style="z-index: 5;"><img src="img/lj-newlogo-orig.png" alt="" width="62" height="10" data-ww="['489px','355px','300px','240px']" data-hh="['115px','85px','65px','55px']" data-no-retina>
               </div>
 
@@ -461,6 +491,14 @@
           });
         }
       }); /*ready*/
+
+      $(function() {
+        if($(window).width() <= 777) {
+          $(".heroImage").each(function() {
+            $(this).attr("src", $(this).attr("src").replace("img/auramodel-right.jpg", "img/rglbhero-2.jpg"));
+          });
+        }
+      });
     </script>
     <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
