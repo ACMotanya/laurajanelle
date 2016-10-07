@@ -4,22 +4,7 @@
 
 
 
-@media (min-width: 991px) and (max-width: 1248px) {
-    .navbar-collapse.collapse {
-        display: none !important;
-    }
-    .navbar-collapse.collapse.in {
-        display: block !important;
-    }
-    .navbar-header .collapse, .navbar-toggle {
-        display:block !important;
-    }
-    .navbar-header {
-        float:none;
-    }
-}
-
-/* randomly broke fixes on shop page */
+/* randomly broken fixes on shop page */
 #header.full-header #logo {
 	padding-right: 0px !important;
 	margin-right: 0px !important;
@@ -30,7 +15,7 @@
 		font-size: 14px;
 	}
 }
-/* randomly broke fixes on shop page END */
+/* randomly broken fixes on shop page END */
 .margin-auto {
 	margin: auto;
 }
@@ -336,6 +321,10 @@ label {
 
 div.widget.clearfix form {
 	margin-bottom: 0px;
+}
+
+.togglec.detailViewAddInfo {
+  display: block !important;
 }
 /* random media queries underneath here */
 
