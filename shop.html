@@ -1,107 +1,353 @@
 ---
-layout: shopfilter
+layout: page
 ---
+
+
+<link rel="stylesheet" href="../css/components/bs-switches.css" type="text/css" />
+<link rel="stylesheet" href="../css/components/radio-checkbox.css" type="text/css" />
+
+      <script>
+
+      var $loading = $('#loadingDiv');
+
+      $(document).ajaxStart(function () {
+        $loading.show();
+      }).ajaxStop(function () {
+        $loading.hide();
+      });
+
+      filterFunction2('APISTKLST','','','','','');
+
+      cartHeader();
+      cartList();
+
+      </script>
+  		<!-- Content
+  		=============================================
+
+      <p id="output"></p>-->
+  		<section id="content">
+  			<div class="content-wrap">
+  				<div class="container clearfix">
+
+            <!-- Sidebar
+  					============================================= -->
+  					<div class="sidebar nobottommargin">
+  						<div class="sidebar-widgets-wrap">
+  							<h4>SHOP CATEGORIES</h4>
+                <div class="widget clearfix">
+                  <div class="toggle ui-group">
+                    <div class="togglet"><i class="toggle-closed icon-chevron-down"></i><i class="toggle-open icon-chevron-up"></i>LOOK</div>
+                    <div class="togglec" data-group="brand">
+                      <div>
+  										  <input id="checkbox-30" class="checkbox-style" name="checkbox-30" type="checkbox" value=".ZEN" >
+  										  <label for="checkbox-30" class="checkbox-style-1-label">AURA</label>
+  									  </div>
+                      <div>
+  										  <input id="checkbox-1" class="checkbox-style" name="checkbox-1" type="checkbox" value=".SLK" >
+  										  <label for="checkbox-1" class="checkbox-style-1-label">SLEEK</label>
+  									  </div>
+  									  <div>
+  										  <input id="checkbox-2" class="checkbox-style" name="checkbox-2" type="checkbox" value=".GLB" >
+  										  <label for="checkbox-2" class="checkbox-style-1-label">RGLB</label>
+  									  </div>
+  									  <div>
+  										  <input id="checkbox-3" class="checkbox-style" name="checkbox-3" type="checkbox" value=".ENC" >
+  										  <label for="checkbox-3" class="checkbox-style-1-label">enCHARMing</label>
+  									  </div>
+                      <div>
+  										  <input id="checkbox-4" class="checkbox-style" name="checkbox-4" type="checkbox" value=".IDT" >
+  										  <label for="checkbox-4" class="checkbox-style-1-label">iDentify</label>
+  									  </div>
+                    </div>
+                  </div>
+                </div>
+
+  							<div class="widget clearfix">
+                  <div class="toggle ui-group">
+                    <div class="togglet"><i class="toggle-closed icon-chevron-down"></i><i class="toggle-open icon-chevron-up"></i>TYPE</div>
+                    <div class="togglec" data-group="type">
+                      <div>
+                        <input id="checkbox-5" class="checkbox-style" name="checkbox-5" type="checkbox" value=".800" >
+                        <label for="checkbox-5" class="checkbox-style-1-label">PROGRAMS</label>
+                      </div>
+                      <div>
+                        <input id="checkbox-6" class="checkbox-style" name="checkbox-6" type="checkbox" value=".700" >
+                        <label for="checkbox-6" class="checkbox-style-1-label">SETS</label>
+                      </div>
+                      <div>
+                        <input id="checkbox-7" class="checkbox-style" name="checkbox-7" type="checkbox" value=".300" >
+                        <label for="checkbox-7" class="checkbox-style-1-label">EARRINGS</label>
+                      </div>
+                      <div>
+                        <input id="checkbox-8" class="checkbox-style" name="checkbox-8" type="checkbox" value=".100" >
+                        <label for="checkbox-8" class="checkbox-style-1-label">NECKLACES</label>
+                      </div>
+                      <div>
+                        <input id="checkbox-9" class="checkbox-style" name="checkbox-9" type="checkbox" value=".200">
+                        <label for="checkbox-9" class="checkbox-style-1-label">BRACELETS</label>
+                      </div>
+                      <div>
+                        <input id="checkbox-10" class="checkbox-style" name="checkbox-10" type="checkbox" value=".400">
+                        <label for="checkbox-10" class="checkbox-style-1-label">LANYARDS</label>
+                      </div>
+                      <div>
+                        <input id="checkbox-11" class="checkbox-style" name="checkbox-11" type="checkbox" value=".600">
+                        <label for="checkbox-11" class="checkbox-style-1-label">TASSELS</label>
+                      </div>
+                      <div>
+                        <input id="checkbox-12" class="checkbox-style" name="checkbox-12" type="checkbox" value=".500">
+                        <label for="checkbox-12" class="checkbox-style-1-label">SNAPS</label>
+                      </div>
+                      <div>
+                        <input id="checkbox-31" class="checkbox-style" name="checkbox-5" type="checkbox" value=".850" >
+                        <label for="checkbox-31" class="checkbox-style-1-label">DISPLAYS</label>
+                      </div>
+                      <div>
+                        <input id="checkbox-32" class="checkbox-style" name="checkbox-6" type="checkbox" value=".900" >
+                        <label for="checkbox-32" class="checkbox-style-1-label">OIL</label>
+                      </div>
+                    </div>
+                  </div>
+  							</div>
+
+  							<div class="widget clearfix">
+                  <div class="toggle">
+                    <div class="togglet"><i class="toggle-closed icon-chevron-down"></i><i class="toggle-open icon-chevron-up"></i>PRICE</div>
+                    <div class="togglec" style="padding-left: 0px;">
+                      <form>
+                        <input type="number" step="0.25" id="min" style="width: 30%; margin-right: 5px; border: 2px solid lightgrey; border-radius: 2px; line-height: 30px; padding-left: 5px;" placeholder="  min">
+                         <strong>to</strong>
+                        <input type="number" step="0.25" id="max" style="width: 30%; margin: 0px; margin-left: 5px; border: 2px solid lightgrey; border-radius: 2px; line-height: 30px; padding-left: 5px;" placeholder="  max">
+                        <button class="button button-3d button-mini button-rounded button-black" style="height: 36px; margin: 0px; bottom: 3px;" type="button" onclick="priceFilter();">GO</button>
+                      </form>
+                    </div>
+                  </div>
+  							</div>
+
+                <div class="widget subscribe-widget clearfix">
+                  <div class="toggle ui-group">
+                    <div class="togglet"><i class="toggle-closed icon-chevron-down"></i><i class="toggle-open icon-chevron-up"></i>COLOR</div>
+                    <div class="togglec" data-group="color">
+                      <div>
+                        <input id="checkbox-13" class="checkbox-style" name="checkbox-13" type="checkbox" value=".03">
+                        <label for="checkbox-13" class="checkbox-style-1-label">BLACK</label>
+                      </div>
+                      <div>
+                        <input id="checkbox-14" class="checkbox-style" name="checkbox-14" type="checkbox" value=".04">
+                        <label for="checkbox-14" class="checkbox-style-1-label">BLUE</label>
+                      </div>
+                      <div>
+                        <input id="checkbox-15" class="checkbox-style" name="checkbox-15" type="checkbox" value=".06">
+                        <label for="checkbox-15" class="checkbox-style-1-label">CLEAR</label>
+                      </div>
+                      <div>
+                        <input id="checkbox-16" class="checkbox-style" name="checkbox-16" type="checkbox" value=".12">
+                        <label for="checkbox-16" class="checkbox-style-1-label">PURPLE</label>
+                      </div>
+                     <div>
+                        <input id="checkbox-17" class="checkbox-style" name="checkbox-17" type="checkbox" value=".11">
+                        <label for="checkbox-17" class="checkbox-style-1-label">PINK</label>
+                      </div>
+                      <div>
+                        <input id="checkbox-18" class="checkbox-style" name="checkbox-18" type="checkbox" value=".02">
+                        <label for="checkbox-18" class="checkbox-style-1-label">GOLD</label>
+                      </div>
+
+                      <div>
+                        <input id="checkbox-20" class="checkbox-style" name="checkbox-20" type="checkbox" value=".07">
+                        <label for="checkbox-20" class="checkbox-style-1-label">GREEN</label>
+                      </div>
+                      <div>
+                        <input id="checkbox-21" class="checkbox-style" name="checkbox-21" type="checkbox" value=".14">
+                        <label for="checkbox-21" class="checkbox-style-1-label">RED</label>
+                      </div>
+                      <div>
+                        <input id="checkbox-22" class="checkbox-style" name="checkbox-22" type="checkbox" value=".01">
+                        <label for="checkbox-22" class="checkbox-style-1-label">SILVER</label>
+                      </div>
+                      <div>
+                        <input id="checkbox-25" class="checkbox-style" name="checkbox-25" type="checkbox" value=".18">
+                        <label for="checkbox-25" class="checkbox-style-1-label">WHITE</label>
+                      </div>
+                      <div>
+                        <input id="checkbox-26" class="checkbox-style" name="checkbox-26" type="checkbox" value=".15">
+                        <label for="checkbox-26" class="checkbox-style-1-label">TAN</label>
+                      </div>
+
+                      <div>
+                        <input id="checkbox-28" class="checkbox-style" name="checkbox-28" type="checkbox" value=".20">
+                        <label for="checkbox-28" class="checkbox-style-1-label">MULTI</label>
+                      </div>
+                      <div>
+                        <input id="checkbox-29" class="checkbox-style" name="checkbox-29" type="checkbox" value=".05">
+                        <label for="checkbox-29" class="checkbox-style-1-label">BROWN</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Post Content
+  					============================================= -->
+  					<div class="postcontent nobottommargin col_last">
+
+  						<!-- Shop
+  						============================================= -->
+  						<div id="shop" class="shop product-3 clearfix">
+
+                <div class="col-md-3 col-sm-4 col-xs-6 center" style="height: 150px;" id="loadingDiv">
+                  <div class="css3-spinner" style="z-index:auto;">
+                    <div class="css3-spinner-rect1"></div>
+                    <div class="css3-spinner-rect2"></div>
+                    <div class="css3-spinner-rect3"></div>
+                    <div class="css3-spinner-rect4"></div>
+                    <div class="css3-spinner-rect5"></div>
+                  </div>
+                </div>
+
+  						</div><!-- #shop end -->
+
+  					</div><!-- .postcontent end -->
+
+				  </div>
+			  </div>
+		  </section><!-- #content end -->
 
 
 <script>
 
-jQuery( document ).ready(function() {
-  var $loading = $('#loadingDiv');
+    var priceRangefrom = 0;
+    var priceRangeto   = 0;
+    var $container;
+    var filters = {};
 
-  $(document).ajaxStart(function () {
-    $loading.show();
-  }).ajaxStop(function () {
-    $loading.hide();
-  });
+    function priceFilter() {
+      var priceRangefrom = parseFloat($("#min").val());
+      var priceRangeto = parseFloat($("#max").val());
 
-  switch (window.location.hash) {
-    case "#sleek": filterFunction('APISTKLST','LJ10000','','','','');
-      break;
-    case "#rglb": filterFunction('APISTKLST','LJ10700','','','','');
-      break;
-    case "#encharming": filterFunction('APISTKLST','LJ10300','','','','');
-      break;
-    case "#identify": filterFunction('APISTKLST','LJ10500','','','','');
-      break;
-    case "#programs": filterFunction('APISTKLST','','800','','','');
-      break;
-    case "#sets": filterFunction('APISTKLST','','700','','','');
-      break;
-    case "#earrings": filterFunction('APISTKLST','','300','','','');
-      break;
-    case "#necklaces": filterFunction('APISTKLST','','100','','','');
-      break;
-    case "#bracelets": filterFunction('APISTKLST','','200','','','');
-      break;
-    case "#lanyards": filterFunction('APISTKLST','','400','','','');
-      break;
-    case "#tassels": filterFunction('APISTKLST','','600','','','');
-      break;
-    case "#snaps": filterFunction('APISTKLST','','500','','','');
-      break;
-    default: filterFunction('APISTKLST','','','','','');
-  }
-  cartHeader();
-  cartList();
+    //  $container.isotope('destroy');
+    //  $(document).trigger("filters2");
+      $container.isotope({
+        transitionDuration: '0.65s',
+        filter: function() {
+          if( jQuery(this).is(':visible')) {
+            if( jQuery(this).find('.product-price').find('ins').length > 0 ) {
+              console.log(jQuery(this));
+              var price = jQuery(this).find('.product-price ins').text();
+            } else {
+              var price = jQuery(this).find('.product-price').text();
+            }
+            priceNum = price.split("$");
+            console.log(priceNum);
+            return ( priceRangefrom <= priceNum[1] && priceRangeto >= priceNum[1] );
+          }
+        }
+      });
+    };
 
-});
+    jQuery(document).on("filters2", function(){
+      $container = $('#shop');
+      $container.isotope('destroy');
+      $container.imagesLoaded(function(){
+        $(function(){
+          $container = $('#shop');
+          var $output = $('#output');
 
+          // do stuff when checkbox change
+          $('.ui-group').on( 'change', function( jQEvent ) {
+            console.log("I am in the function");
+
+            var $checkbox = $( jQEvent.target );
+            manageCheckbox( $checkbox );
+
+            var comboFilter = getComboFilter( filters );
+
+            $container.isotope({
+              transitionDuration: '0.65s',
+              filter: comboFilter
+             });
+
+            $output.text( comboFilter );
+          });
+        });
+      });
+    });
+
+    function getComboFilter( filters ) {
+      var i = 0;
+      var comboFilters = [];
+      var message = [];
+
+      for ( var prop in filters ) {
+        message.push( filters[ prop ].join(' ') );
+        var filterGroup = filters[ prop ];
+        // skip to next filter group if it doesn't have any values
+        if ( !filterGroup.length ) {
+          continue;
+        }
+        if ( i === 0 ) {
+          // copy to new array
+          comboFilters = filterGroup.slice(0);
+        } else {
+          var filterSelectors = [];
+          // copy to fresh array
+          var groupCombo = comboFilters.slice(0); // [ A, B ]
+          // merge filter Groups
+          for (var k=0, len3 = filterGroup.length; k < len3; k++) {
+            for (var j=0, len2 = groupCombo.length; j < len2; j++) {
+              filterSelectors.push( groupCombo[j] + filterGroup[k] ); // [ 1, 2 ]
+            }
+          }
+          // apply filter selectors to combo filters for next group
+          comboFilters = filterSelectors;
+        }
+        i++;
+      }
+
+      var comboFilter = comboFilters.join(', ');
+      console.log("display comboFilter: " + comboFilter);
+      return comboFilter;
+    }
+
+    function manageCheckbox( $checkbox ) {
+      var checkbox = $checkbox[0];
+
+      var group = $checkbox.parents('.togglec').attr('data-group');
+      console.log("I am the group " + group);
+      // create array for filter group, if not there yet
+      var filterGroup = filters[ group ];
+      if ( !filterGroup ) {
+        filterGroup = filters[ group ] = [];
+      }
+
+      var isAll = $checkbox.hasClass('all');
+      // reset filter group if the all box was checked
+      if ( isAll ) {
+        delete filters[ group ];
+        if ( !checkbox.checked ) {
+          checkbox.checked = 'checked';
+        }
+      }
+      // index of
+      var index = $.inArray( checkbox.value, filterGroup );
+
+      if ( checkbox.checked ) {
+        var selector = isAll ? 'input' : 'input.all';
+        $checkbox.siblings( selector ).removeAttr('checked');
+
+        if ( !isAll && index === -1 ) {
+          // add filter to group
+          filters[ group ].push( checkbox.value );
+        }
+      } else if ( !isAll ) {
+        // remove filter from group
+        filters[ group ].splice( index, 1 );
+        // if unchecked the last box, check the all
+        if ( !$checkbox.siblings('[checked]').length ) {
+          $checkbox.siblings('input.all').attr('checked', 'checked');
+        }
+      }
+    }
 </script>
-
-
-    <!-- Page Title
-    ============================================= -
-    <section id="page-title">
-
-
-
-    </section><!-- #page-title end -->
-
-		<!-- Content
-		=============================================-->
-		<section id="content">
-
-			<div class="content-wrap">
-
-				<div class="container clearfix">
-
-					<!-- Portfolio Filter
-					============================================= -->
-					<ul id="portfolio-filter" class="portfolio-filter clearfix">
-
-						<li class="activeFilter"><a href="#" data-filter="*">Show All</a></li>
-						<li><a href="#" data-filter=".SLK">SLEEK</a></li>
-						<li><a href="#" data-filter=".GLB">RGLB</a></li>
-						<li><a href="#" data-filter=".ENC">ENCHARMING</a></li>
-						<li><a href="#" data-filter=".IDT">IDENTIFY</a></li>
-            <li><a href="#" data-filter=".ZEN">AURA</a></li>
-
-					</ul><!-- #portfolio-filter end -->
-
-					<div style="float:right; width:280px;">
-						<input class="range_23" />
-					</div>
-
-					<div class="clear"></div>
-
-					<!-- Shop
-					============================================= -->
-					<div class="shop grid-container clearfix" id="shop">
-
-            <div class="col-md-3 col-sm-4 col-xs-6 center" style="height: 150px;" id="loadingDiv">
-              <div class="css3-spinner" style="z-index:auto;">
-                <div class="css3-spinner-rect1"></div>
-                <div class="css3-spinner-rect2"></div>
-                <div class="css3-spinner-rect3"></div>
-                <div class="css3-spinner-rect4"></div>
-                <div class="css3-spinner-rect5"></div>
-              </div>
-            </div>
-
-					</div><!-- #shop end -->
-
-				</div>
-
-			</div>
-
-		</section><!-- #content end -->
