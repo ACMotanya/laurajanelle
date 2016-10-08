@@ -25,8 +25,14 @@
         <ul>
           <li><a href="{{ site.baseurl }}/"><div>Home</div></a></li>
 
-          <li><a href="{{ site.baseurl }}/shop/"><div id="shopFilter">Shop</div></a>
-            <ul>
+
+          {% if page.url == "/shop/" %}
+          <li class="current"><a href="{{ site.baseurl }}/shop/#"><div id="shopFilter">Shop</div></a>
+          {% else %}
+          <li><a href="{{ site.baseurl }}/shop/#"><div id="shopFilter">Shop</div></a>
+          {% endif %}
+        <!--    <ul>
+
               <li><a href="#"><div id="shopFilterCollections">Collections</div></a>
                 <ul>
                   <li><a href="{{ site.baseurl }}/shop/#aura"       onclick="filterFunction('APISTKLST','LJ11100','','','','');"><div>AURA</div></a></li>
@@ -46,18 +52,41 @@
               <li><a href="{{ site.baseurl }}/shop/#snaps"     onclick="filterFunction('APISTKLST','','500','','','');"><div>SNAPS</div></a></li>
               <li><a href="{{ site.baseurl }}/shop/#displays"  onclick="filterFunction('APISTKLST','','850','','','');"><div>SNAPS</div></a></li>
               <li><a href="{{ site.baseurl }}/shop/#oils"      onclick="filterFunction('APISTKLST','','900','','','');"><div>OIL</div></a></li>
-            </ul>
+
+            </ul>-->
+
           </li>
 
           <li><a href="#"><div id="shopFilter">MY ACCOUNT</div></a>
             <ul>
+
+              {% if page.url == "/profile/" %}
+              <li class="current"><a href="{{ site.baseurl }}/profile"><div>PROFILE</div></a></li>
+              {% else %}
               <li><a href="{{ site.baseurl }}/profile"><div>PROFILE</div></a></li>
+              {% endif %}
+
+
+              {% if page.url == "/invoices/" %}
+              <li class="current"><a href="{{ site.baseurl }}/invoices"><div>INVOICES</div></a></li>
+              {% else %}
               <li><a href="{{ site.baseurl }}/invoices"><div>INVOICES</div></a></li>
+              {% endif %}
+
+              {% if page.url == "/orders/" %}
+              <li class="current"><a href="{{ site.baseurl }}/orders"><div>ORDERS</div></a></li>
+              {% else %}
               <li><a href="{{ site.baseurl }}/orders"><div>ORDERS</div></a></li>
+              {% endif %}
             </ul>
           </li>
 
-          <li><a href="{{ site.baseurl }}/cart"><div>Cart</div></a></li>
+          {% if page.url == "/cart/" %}
+          <li class="current"><a href="{{ site.baseurl }}/cart/#"><div>Cart</div></a></li>
+          {% else %}
+          <li><a href="{{ site.baseurl }}/cart/#"><div>Cart</div></a></li>
+          {% endif %}
+
 
           <li><a href="#" onclick="logoff();"><div>Log Out</div></a></li>
         </ul>

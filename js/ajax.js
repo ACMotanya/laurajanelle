@@ -1492,7 +1492,7 @@ function filterFunction2(a,b,c,d,e,f)
       level4: e,
       level5: f},
     success: function(response) {
-      console.log(response);
+
       lines = response.split("\n");
       lines.shift();
       linesPlus = [];
