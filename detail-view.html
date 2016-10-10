@@ -36,7 +36,7 @@ if (hash.length === 3 ) {
   color = hash[1].replace( /^\D+/g, '');
   type  = hash[2].replace( /^\D+/g, '');
 } else if ( sessionStorage.getItem(stock_no) != null && sessionStorage.getItem(stock_no) != "undefined" && sessionStorage.getItem(stock_no).length >= 8 ) {
-  var dets  = sessionStorage.getItem(stock_no).split("+");
+  var dets = sessionStorage.getItem(stock_no).split("+");
   color = dets[1].replace( /^\D+/g, '');
   type  = dets[2].replace( /^\D+/g, '');
 }
@@ -46,10 +46,6 @@ jQuery( document ).ready(function() {
   cartHeader();
   cartList();
 });
-
-
-//...
-console.log(sessionStorage.getItem(stock_no));
 
 </script>
 
@@ -75,11 +71,10 @@ console.log(sessionStorage.getItem(stock_no));
 										</div>
 									</div>
 								</div><!-- Product Single - Gallery End -->
-
 							</div>
 
 							<div class="col_half col_last product-desc" id="secondColumn">
-              <!--   <div class="product-price" id="price-area">
+                <!--   <div class="product-price" id="price-area">
 
                 </div>
                 <!--
@@ -89,11 +84,9 @@ console.log(sessionStorage.getItem(stock_no));
                 </div>
 
 								<!-- 2nd Column -->
-
 							</div>
 
               <div class="col_full nobottommargin">
-
                 <div class="toggle">
                   <div class="togglet" style="border-bottom: 2px solid grey;"><i class="toggle-closed icon-chevron-down"></i><i class="toggle-open icon-chevron-up"></i> Additional Information</div>
                   <div class="togglec detailViewAddInfo">
@@ -107,12 +100,8 @@ console.log(sessionStorage.getItem(stock_no));
             </div>
           </div>
 					<div class="clear"></div><div class="line"></div>
-
 				</div>
-
-
 			</div>
-
 		</section><!-- #content end
 
     <script type="text/javascript" src="{{ "/js/components/star-rating.js" | prepend: site.baseurl }}"></script> -->
