@@ -8,6 +8,7 @@ var countrylines;
 var cust_name;
 var detailViewQty;
 var fields;
+var filters = {};
 var flds;
 var fldsArray = { "data": []};
 var fldsArray_json;
@@ -188,8 +189,8 @@ function addItemDetailView()
     }
 
   addItemGeneric(session_no, stock_no, detailViewQty);
-  if ( window.location.pathname !== "/shop/" && window.location.pathname !== "/test/" ) {
-    redirect("cart");
+  if ( window.location.hash !== "#shop" ) {
+    windowHash("cart");
   }
 }
 
@@ -228,7 +229,6 @@ function cartHeader(callback)
       session_no: session_no
     },
     success: function(response) {
-      console.log(response);
       cartheader = response.split("\n");
       if (cartheader.length >=3 ){
         cartheader = cartheader[1].split("|");
@@ -237,10 +237,7 @@ function cartHeader(callback)
         cartQty = cartheader[24];
         document.getElementById("top-cart-trigger").innerHTML += '<span>' + cartQty.trim() + '</span>';
 
-        pathArray = window.location.pathname.split( '/' );
-        var path = pathArray.splice([pathArray.length - 2]);
-
-        if ( path[0] === "cart" || path[0] === "checkout") {
+        if ( window.location.hash === "#cart" || window.location.hash === "#checkout") {
           $(".cart-product-name.subtotal").html( '<span class="amount">' + subtotal.trim() + '</span>' );
           $(".cart-product-name.total").html( '<span class="amount color lead"><strong>' + orderAmt.trim() + '</strong></span>');
         }
@@ -278,10 +275,8 @@ function cartList()
       jQuery("#minicart").empty();
       html = [];
       html2 = [];
-      pathArray = window.location.pathname.split( '/' );
-      var path = pathArray.splice([pathArray.length - 2]);
 
-      if ( path[0] === "cart") {
+      if ( window.location.hash === "#cart") {
         for (i=1; i<cartitems.length - 1; i++) {
           data = cartitems[i].split("|");
 
@@ -304,7 +299,7 @@ function cartList()
         $("#updateCartButton").show();
         $("#minicart").append(html2.join(''));
 
-      } else if (path[0] === "checkout") {
+      } else if (window.location.hash === "#checkout") {
         for (i=1; i<cartitems.length - 1; i++) {
           data = cartitems[i].split("|");
 
@@ -362,9 +357,9 @@ function detailView()
 
        secondColumn  = '<div><a href="#" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div>';
        secondColumn += '<div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + fields[0].replace(/\s+/g,'') + '</span></span></div><div class="line"></div>';
-       secondColumn += '<div class="product-price col_one_third" style="font-size: 16px; font-weight: 400;"> <ins>COST:&nbsp;$' + fields[4] + '</ins></div><div class="col_one_third hidden-xs" style="top: 0px; margin: 0px;">MIN: 1</div>';
+       secondColumn += '<div class="product-price col_one_third" style="font-size: 16px; font-weight: 400;"> <ins>COST:&nbsp;' + fields[4] + '</ins></div><div class="col_one_third hidden-xs" style="top: 0px; margin: 0px;">MIN: 1</div>';
        if (stock_no !== "CD111" && stock_no !== "CD103" && stock_no !== "CD105" && stock_no !== "CD107" && stock_no !== "CD100" && stock_no !== "11100A" && stock_no !== "10000A" && stock_no !== "10300A" && stock_no !== "10500A" && stock_no !== "10700A" && stock_no !== "10700B" && stock_no !== "10700C" && stock_no !== "10700D" )  {
-         secondColumn += '<div class="product-rating col_one_third col_last" style="top: 0px; margin: 0px;">MSRP:&nbsp;$' + fields[3] + '</div>';
+         secondColumn += '<div class="product-rating col_one_third col_last" style="top: 0px; margin: 0px;">MSRP:&nbsp;' + fields[3] + '</div>';
        }
        secondColumn += '<div class="clear"></div><div class="line"></div><form class="cart nobottommargin clearfix" method="post" enctype="multipart/form-data"><div class="quantity clearfix">';
        secondColumn += '<input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant[1]" onclick="changeQuantity(this)">';
@@ -527,7 +522,7 @@ function creditCard()
             document.getElementById("successMessage").innerHTML += message;
             document.body.addEventListener("click", function(){
               $.get("http://72.64.152.18:8082/ace/mailer/order_confirmation.php?session_no=" + session_no + "&order_no="+ newOrder + "");
-              redirect("orders");
+              windowHash("orders");
             });
           }
         });
@@ -579,10 +574,7 @@ function saveAddresses()
     }
   }
 
-  pathArray = window.location.pathname.split( '/' );
-  var path = pathArray.splice([pathArray.length - 2]);
-
-  if ( path[0] === "checkout" ) {
+  if ( window.location.hash === "#checkout" ) {
     $.ajax({
       type: "GET",
       url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
@@ -607,7 +599,7 @@ function saveAddresses()
         text5: text5
       }
     });
-  } else if ( path[0] === "profile" ) {
+  } else if ( window.location.hash === "#profile" ) {
     cust_no = $("#cust_no").html().trim();
     var shippingformcontactname = $("#shipping-form-contactname").val();
      $.ajax({
@@ -681,10 +673,10 @@ function fillShop2(response)
     return retVal;
   });
   // lines[1]+ are data lines
-  $('#shop').empty();
+  $('#shopItems').empty();
   html = [];
   if ( lines.length <= 1) {
-    document.getElementById("shop").innerHTML += '<h1>There are no results</h1>';
+    document.getElementById("shopItems").innerHTML += '<h1>There are no results</h1>';
   } else {
     for (i=0; i<linesPlus.length; i++) {
       flds = linesPlus[i];
@@ -703,7 +695,7 @@ function fillShop2(response)
         html.push(prod);
       }
     }
-    document.getElementById("shop").innerHTML += html.join('');
+    document.getElementById("shopItems").innerHTML += html.join('');
 
     $(document).trigger("filters");
     $(document).trigger("priceFilters");
@@ -729,10 +721,9 @@ function search()
         request_id: "APISTKSEARCH",
         query: searchTerm},
       success: function(response) {
-        pathArray = window.location.pathname.split( '/' );
-        path = pathArray.splice([pathArray.length - 2]);
+
         var data = response;
-        if (path[0] === "shop") {
+        if (window.location.hash === "#shop") {
 ///////////////// Leave in until McPhate changes the fields for the SearchAPI call put this back after changes -->  fillShop2(data);
           lines = response.split("\n");
           lines.shift();
@@ -746,10 +737,10 @@ function search()
             return retVal;
           });
           // lines[1]+ are data lines
-          $('#shop').empty();
+          $('#shopItems').empty();
           html = [];
           if ( lines.length <= 1) {
-            document.getElementById("shop").innerHTML += '<h1>There are no results</h1>';
+            document.getElementById("shopItems").innerHTML += '<h1>There are no results</h1>';
           } else {
             for (i=0; i<linesPlus.length; i++) {
               flds = linesPlus[i];
@@ -764,7 +755,7 @@ function search()
                 html.push(prod);
               }
             }
-            document.getElementById("shop").innerHTML += html.join('');
+            document.getElementById("shopItems").innerHTML += html.join('');
 
             $(document).trigger("filters");
             $(document).trigger("priceFilters");
@@ -784,10 +775,10 @@ function search()
             return retVal;
           });
           // lines[1]+ are data lines
-          $('#shop').empty();
+          $('#shopItems').empty();
           html = [];
           if ( lines.length <= 1) {
-            document.getElementById("shop").innerHTML += '<h1>There are no results</h1>';
+            document.getElementById("shopItems").innerHTML += '<h1>There are no results</h1>';
           } else {
             for (i=0; i<linesPlus.length; i++) {
               flds = linesPlus[i];
@@ -802,7 +793,7 @@ function search()
                 html.push(prod);
               }
             }
-            document.getElementById("shop").innerHTML += html.join('');
+            document.getElementById("shopItems").innerHTML += html.join('');
 
             $(document).trigger("filters");
             $(document).trigger("priceFilters");
@@ -1277,7 +1268,7 @@ function logoff()
       Cookies.set('session_no', "Logged Out");
     },
     complete: function() {
-      redirect("");
+      windowHash("");
     }
   });
 }
@@ -1509,10 +1500,10 @@ function filterFunction2(a,b,c,d,e,f)
         return retVal;
       });
 
-      $('#shop').empty();
+      $('#shopItems').empty();
       html = [];
       if ( lines.length <= 1) {
-        document.getElementById("shop").innerHTML += '<h1>There are no results</h1>';
+        document.getElementById("shopItems").innerHTML += '<h1>There are no results</h1>';
       } else {
         for (i=0; i<linesPlus.length; i++) {
           flds = linesPlus[i];
@@ -1524,7 +1515,7 @@ function filterFunction2(a,b,c,d,e,f)
 
           html.push(prod);
         }
-        document.getElementById("shop").innerHTML += html.join('');
+        document.getElementById("shopItems").innerHTML += html.join('');
         $(document).trigger("filters2");
       }
     },
@@ -1578,6 +1569,196 @@ function quickView(clicked_id)
       }
       $("#quickViewForm").append('<button type="button" id="add-item" class="add-to-cart button nomargin" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>The item(s) have been added to your cart!" onclick="detailString=\'' + clicked_id + '\'; addItemDetailView(); SEMICOLON.widget.notifications(this); cartList(); return false;">Add to cart</button>');
       $("#description").append(secondColumn);
+    }
+  });
+}
+
+
+
+/////////////////////////////////////////////
+// Tabs loads ajax. Makes this go faster.. //
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+
+function shopPage()
+{
+filterFunction2('APISTKLST','','','','','');
+cartHeader();
+cartList();
+}
+
+function priceFilter() {
+  var priceRangefrom = parseFloat($("#min").val());
+  var priceRangeto = parseFloat($("#max").val());
+
+//  $container.isotope('destroy');
+//  $(document).trigger("filters2");
+  $container.isotope({
+    transitionDuration: '0.65s',
+    filter: function() {
+      if( jQuery(this).is(':visible')) {
+        if( jQuery(this).find('.product-price').find('ins').length > 0 ) {
+          price = jQuery(this).find('.product-price ins').text();
+        } else {
+          price = jQuery(this).find('.product-price').text();
+        }
+        priceNum = price.split("$");
+        return ( priceRangefrom <= priceNum[1] && priceRangeto >= priceNum[1] );
+      }
+    }
+  });
+}
+
+jQuery(document).on("filters2", function(){
+  $container = $('#shopItems');
+//      $container.isotope('destroy');
+  $container.imagesLoaded(function(){
+    $(function(){
+      $container = $('#shopItems');
+      var $output = $('#output');
+
+      // do stuff when checkbox change
+      $('.ui-group').on( 'change', function( jQEvent ) {
+
+        var $checkbox = $( jQEvent.target );
+        manageCheckbox( $checkbox );
+
+        var comboFilter = getComboFilter( filters );
+
+        $container.isotope({
+          transitionDuration: '0.65s',
+          filter: comboFilter
+         });
+
+        $output.text( comboFilter );
+      });
+    });
+  });
+});
+
+function getComboFilter( filters ) {
+  var i = 0;
+  var comboFilters = [];
+  var message = [];
+
+  for ( var prop in filters ) {
+    message.push( filters[ prop ].join(' ') );
+    var filterGroup = filters[ prop ];
+    // skip to next filter group if it doesn't have any values
+    if ( !filterGroup.length ) {
+      continue;
+    }
+    if ( i === 0 ) {
+      // copy to new array
+      comboFilters = filterGroup.slice(0);
+    } else {
+      var filterSelectors = [];
+      // copy to fresh array
+      var groupCombo = comboFilters.slice(0); // [ A, B ]
+      // merge filter Groups
+      for (var k=0, len3 = filterGroup.length; k < len3; k++) {
+        for (var j=0, len2 = groupCombo.length; j < len2; j++) {
+          filterSelectors.push( groupCombo[j] + filterGroup[k] ); // [ 1, 2 ]
+        }
+      }
+      // apply filter selectors to combo filters for next group
+      comboFilters = filterSelectors;
+    }
+    i++;
+  }
+
+  var comboFilter = comboFilters.join(', ');
+  return comboFilter;
+}
+
+function manageCheckbox( $checkbox ) {
+  var checkbox = $checkbox[0];
+
+  var group = $checkbox.parents('.togglec').attr('data-group');
+  // create array for filter group, if not there yet
+  var filterGroup = filters[ group ];
+  if ( !filterGroup ) {
+    filterGroup = filters[ group ] = [];
+  }
+
+  var isAll = $checkbox.hasClass('all');
+  // reset filter group if the all box was checked
+  if ( isAll ) {
+    delete filters[ group ];
+    if ( !checkbox.checked ) {
+      checkbox.checked = 'checked';
+    }
+  }
+  // index of
+  var index = $.inArray( checkbox.value, filterGroup );
+
+  if ( checkbox.checked ) {
+    var selector = isAll ? 'input' : 'input.all';
+    $checkbox.siblings( selector ).removeAttr('checked');
+
+    if ( !isAll && index === -1 ) {
+      // add filter to group
+      filters[ group ].push( checkbox.value );
+    }
+  } else if ( !isAll ) {
+    // remove filter from group
+    filters[ group ].splice( index, 1 );
+    // if unchecked the last box, check the all
+    if ( !$checkbox.siblings('[checked]').length ) {
+      $checkbox.siblings('input.all').attr('checked', 'checked');
+    }
+  }
+}
+
+
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+
+
+function cartPage()
+{
+  cartList();
+  cartHeader();
+}
+
+
+
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+
+
+function checkoutPage()
+{
+  cartList();
+  cartHeader(minimumTotal);
+  shipToAddress();
+  $("#creditcard").hide();
+
+  $("#myButton").click(function() {
+    console.log("is this working?");
+    var hasErrors = $('#shipping-form').validator('validate').has('.has-error').length;
+    if (hasErrors) {
+      alert('Shipping address form has errors.');
+    } else {
+
+      saveAddresses();
+      creditCard();
+      $( "#creditcard" ).slideDown( "slow" );
     }
   });
 }
