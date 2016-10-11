@@ -3,8 +3,8 @@ layout: page
 ---
 
 <script>
-session_no = Cookies.get('session_no');
-username = Cookies.get('username').toUpperCase();;
+
+username = Cookies.get('username').toUpperCase();
 
 jQuery( document ).ready(function() {
   accountDetails();
@@ -389,7 +389,7 @@ jQuery( document ).ready(function() {
 
             <div class="form-group">
               <div class="col_half col_last">
-                <label for=shipping-form-phone">Phone:</label>
+                <label for="shipping-form-phone">Phone:</label>
                 <input type="text" id="shipping-form-phone" name="shipping-form-phone" data-error="Must be 10 digits" data-minlength="10" required value="" class="sm-form-control form-control" />
                 <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                 <div class="help-block with-errors"></div>

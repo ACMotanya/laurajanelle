@@ -5,25 +5,25 @@ layout: page
 
 
 <script>
-session_no = Cookies.get('session_no');
+
 
 $(document).ready(function() {
-    $("#details-title").hide();
-    $("#details-table").hide();
-    $("#line-item-title").hide();
-    $("#line-item-table").hide();
+  $("#details-title").hide();
+  $("#details-table").hide();
+  $("#line-item-title").hide();
+  $("#line-item-table").hide();
 
-    orderHistory();
-    cartList();
-    $('#searchForInvoices').click(function(){
-      var invoiceSearchNumber = $('#invoiceNumber').val();
-      searchInvoices(invoiceSearchNumber);
-    })
-    $('#invoiceNumber').keypress(function(e){
-      if(e.which == 13){//Enter key pressed
-        $('#searchButton').click();//Trigger search button click event
-      }
-    });
+  orderHistory();
+  cartList();
+  $('#searchForInvoices').click(function(){
+    var invoiceSearchNumber = $('#invoiceNumber').val();
+    searchInvoices(invoiceSearchNumber);
+  })
+  $('#invoiceNumber').keypress(function(e){
+    if(e.which == 13){//Enter key pressed
+      $('#searchButton').click();//Trigger search button click event
+    }
+  });
 });
 </script>
 

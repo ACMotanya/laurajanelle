@@ -45,6 +45,7 @@
   <link rel="stylesheet" href="{{ "/css/components/bs-rating.css" | prepend: site.baseurl }}" type="text/css" />
   <link rel="stylesheet" href="{{ "/css/components/bs-switches.css" | prepend: site.baseurl }}" type="text/css" />
   <link rel="stylesheet" href="{{ "/css/components/radio-checkbox.css" | prepend: site.baseurl }}" type="text/css" />
+  <link rel="stylesheet" href="{{ "/css/components/bs-datatable.css" | prepend: site.baseurl }}" type="text/css" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script type="text/javascript" src="{{ "/js/jquery.js" | prepend: site.baseurl }}"></script>
@@ -194,8 +195,13 @@
     {% include js.html %}
     <script type="text/javascript" src="{{ "/js/validator.min.js" | prepend: site.baseurl }}"></script>
     <script type="text/javascript" src="{{ "/js/jquery.zoom.min.js" | prepend: site.baseurl }}"></script>
+    <script type="text/javascript" src="{{ "/js/components/bs-datatable.js" | prepend: site.baseurl }}"></script>
 
     <script>
+    $(window).on('hashchange', function() {
+      whichPage();
+    });
+    
     $(function() {
       $('nav ul li a').click(function() {
         var $linkClicked = $(this).attr('href');
@@ -205,53 +211,13 @@
           $(this).addClass("current");
           $('#content div div section').hide();
           $($linkClicked).fadeIn();
-
+          whichPage();
           return false;
-        }
-        else {
+        } else {
           return false;
-        }
-
-        var hash = window.location.hash;
-        hash = hash.replace(/^#/, '');
-        switch (hash) {
-            case 'shop' :
-                shopPage();
-                break;
-            case 'cart' :
-                $('#content div div section').hide();
-                $('#cart').show();
-                cartPage();
-                break;
-            case 'checkout' :
-              $('#content div div section').hide();
-              $('#checkout').show();
-                checkoutPage();
-                break;
         }
       });
-
-      var hash = window.location.hash;
-      hash = hash.replace(/^#/, '');
-      switch (hash) {
-          case 'shop' :
-              shopPage();
-              break;
-          case 'cart' :
-              $('#content div div section').hide();
-              $('#cart').show();
-              cartPage();
-              break;
-          case 'checkout' :
-            $('#content div div section').hide();
-            $('#checkout').show();
-              checkoutPage();
-              break;
-      }
-
-
     });
-
     </script>
 
 
