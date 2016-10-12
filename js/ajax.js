@@ -364,7 +364,7 @@ function detailView()
        secondColumn  = '<div><a href="#" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div>';
        secondColumn += '<div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + fields[0].replace(/\s+/g,'') + '</span></span></div><div class="line"></div>';
        secondColumn += '<div class="product-price col_one_third" style="font-size: 16px; font-weight: 400;"> <ins>COST:&nbsp;$' + fields[4] + '</ins></div><div class="col_one_third hidden-xs" style="top: 0px; margin: 0px;">MIN: 1</div>';
-       if (stock_no !== "CD111" && stock_no !== "CD103" && stock_no !== "CD105" && stock_no !== "CD107" && stock_no !== "CD100" && stock_no !== "11100A" && stock_no !== "10000A" && stock_no !== "10300A" && stock_no !== "10500A" && stock_no !== "10700A" && stock_no !== "10700B" && stock_no !== "10700C" && stock_no !== "10700D" )  {
+       if (stock_no !== "CD111" && stock_no !== "CD103" && stock_no !== "CD105" && stock_no !== "CD107" && stock_no !== "CD100" && stock_no !== "11100A" && stock_no !== "10000A" && stock_no !== "10300A" && stock_no !== "10500A" && stock_no !== "10700A" && stock_no !== "10700B" && stock_no !== "10700C" && stock_no !== "10700D" && stock_no !== "PIL107" && stock_no !== "34737029" )  {
          secondColumn += '<div class="product-rating col_one_third col_last" style="top: 0px; margin: 0px;">MSRP:&nbsp;$' + fields[3] + '</div>';
        }
        secondColumn += '<div class="clear"></div><div class="line"></div><form class="cart nobottommargin clearfix" method="post" enctype="multipart/form-data"><div class="quantity clearfix">';
@@ -375,6 +375,8 @@ function detailView()
 
        if (fields[2] === "ENC" )  {
          secondColumn += '<p>' + fields[8] + '</p><p>The value of this look is unbeatable, each necklace features fun and exciting packaging. She is getting multiple styles per necklace, while you’ll be making a 3x markup! Not to mention, this look serves a broad demographic so all of your customers will be sure to find the perfect design.</p>';
+       } else if (fields[2] === "IDT" )  {
+         secondColumn += '<p>' + fields[8] + '</p><p>The value of this look is unbeatable; each piece features an intricate, unique and trending design whether it is a lanyard, tassel or snap. You’ll be making a 2.5x markup, along with several opportunities to upsell this look. Not to mention, the look of Identify will serve her during numerous events and places she will go at an unbeatable price: the casino, at her corporate office or hospital job, or to school, these are just to name a few!</p>';
        } else {
          if (fields[8].length !== 0) {
            secondColumn += '<p>' + fields[8] + '</p>';

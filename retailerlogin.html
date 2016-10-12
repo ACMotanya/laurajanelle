@@ -8,7 +8,9 @@ layout: login
 
 						if ( Cookies.get('session_no') && typeof(Cookies.get('session_no')) === "string") {
 							if ( Cookies.get('session_no').length === 25 ) {
-								redirect("shop");
+
+								windowHash("shop");
+								redirect("store");
 							}
 			      }
 
@@ -47,7 +49,9 @@ layout: login
 											console.log( invoiceLines );
 											if (invoiceLines >= 3) {
 												Cookies.set('newCustomer', "false");
-												redirect("shop");
+												windowHash("shop");
+												redirect("store");
+
 											} else {
 							          $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APIORDLST&session_no=" + session_no + "", function( data ) {
 							            openOrderLines = data.split("\n");
@@ -56,10 +60,12 @@ layout: login
 //													console.log(openOrderLines + invoiceLines);
 						              if (openOrderLines <= 2) {
 						                Cookies.set('newCustomer', "true");
-						                redirect("shop");
+														windowHash("shop");
+						                redirect("store");
 						              } else {
 						                Cookies.set('newCustomer', "false");
-						                redirect("shop");
+														windowHash("shop");
+						                redirect("store");
 						              }
 					            	});
 											}

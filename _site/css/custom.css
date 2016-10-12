@@ -221,7 +221,7 @@ label {
 	color: #888;
 }
 
-#ex1 > span > img.zoomImg {
+.ex1 > span > img.zoomImg {
   width: 630px !important;
   height: 630px !important;
   cursor :zoom-in;

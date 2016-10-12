@@ -100,9 +100,9 @@
                 {% endif %}
                 </li>
 
-                <li><a href="#"><div>MY ACCOUNT</div></a>
+                <li><a href="#profile"><div>MY ACCOUNT</div></a>
                   <ul>
-                    {% if page.url == "/profile/" %}
+                    {% if page.url == "/store/#profile" %}
                     <li class="current"><a href="#profile"><div>PROFILE</div></a></li>
                     {% else %}
                     <li><a href="#profile"><div>PROFILE</div></a></li>
@@ -201,9 +201,11 @@
     $(window).on('hashchange', function() {
       whichPage();
     });
-    
+
+
     $(function() {
-      $('nav ul li a').click(function() {
+      filterFunction2('APISTKLST','','','','','');
+/*      $('nav ul li a').click(function() {
         var $linkClicked = $(this).attr('href');
         document.location.hash = $linkClicked;
         if (!$(this).hasClass("current")) {
@@ -211,12 +213,11 @@
           $(this).addClass("current");
           $('#content div div section').hide();
           $($linkClicked).fadeIn();
-          whichPage();
           return false;
         } else {
           return false;
         }
-      });
+      }); */
     });
     </script>
 
