@@ -171,6 +171,7 @@ function createUser()
 ////////////////////////////////////////
 function addItemGeneric(session_no, stock_no, qty)
 {
+  event.preventDefault();
   $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no="+ session_no +"&stock_no="+ stock_no +"&qty="+qty+"");
 }
 //////////////////////////////////////////////
@@ -183,7 +184,7 @@ function addItemDetailView()
   } else {
     detailViewQty = "1";
   }
-
+  console.log(stock_no);
     // Save color and type in the sessionStorage
     if (!sessionStorage.getItem(stock_no) || sessionStorage.getItem(stock_no) === "undefined" || sessionStorage.getItem(stock_no) === null ) {
       sessionStorage.setItem(stock_no, detailString);
@@ -202,6 +203,7 @@ function addItemDetailView()
 /////////////////////////////////////////
 function removeItemGeneric(session_no, line_no)
 {
+  event.preventDefault();
   $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICARTREM&session_no="+ session_no +"&line_no="+ line_no +"");
 }
 //////////////////////////////////
@@ -281,7 +283,7 @@ function cartList()
         for (i=1; i<cartitems.length - 1; i++) {
           data = cartitems[i].split("|");
 
-          item = '<tr class="cart_item products"><td class="cart-product-remove"><a href="#" class="remove" onclick="removeItem(this.id)" id="' + data[1].replace(/\s+/g,'') + '" title="Remove this item"><i class="icon-trash2"></i></a></td>';
+          item = '<tr class="cart_item products"><td class="cart-product-remove"><a href="#cart" class="remove" onclick="removeItem(this.id)" id="' + data[1].replace(/\s+/g,'') + '" title="Remove this item"><i class="icon-trash2"></i></a></td>';
           item += '<td class="cart-product-thumbnail"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '"></a></td>';
           item += '<td class="cart-product-name"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '">' + data[3] + '</a></td>';
           item += '<td class="cart-product-price"><span class="amount">$' + data[7].substring(0, data[7].length - 3) + '</span></td>';
@@ -301,7 +303,7 @@ function cartList()
         $("#minicart").append(html2.join(''));
 
       } else if ( window.location.hash === "#checkout") {
-    //    jQuery(".cart_item").empty();
+        jQuery("#checkout-cartItemTable").empty();
         for (i=1; i<cartitems.length - 1; i++) {
           data = cartitems[i].split("|");
 
@@ -345,11 +347,13 @@ function detailView()
   var type;
   var hash = window.location.hash.split("+");
   var stock_no = hash[1].replace();
+  console.log(stock_no);
 
   if (hash.length === 4 ) {
     detailString = window.location.hash;
     color = hash[2].replace( /^\D+/g, '');
     type  = hash[3].replace( /^\D+/g, '');
+    sessionStorage.setItem(stock_no, detailString);
   } else if ( sessionStorage.getItem(stock_no) !== null && sessionStorage.getItem(stock_no) != "undefined" && sessionStorage.getItem(stock_no).length >= 15 ) {
     var dets = sessionStorage.getItem(stock_no).split("+");
     color = dets[2].replace( /^\D+/g, '');
@@ -361,7 +365,6 @@ function detailView()
     url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
     data: {request_id: "APISTKDTL", stock_no: stock_no},
     success: function(response) {
-      console.log(response);
       lines = response.split("\n");
       // lines[0] is header row
       // lines[1]+ are data lines
@@ -369,14 +372,17 @@ function detailView()
 
        /* Fill in the pictures for the product */
 
-       var pics =  '<div class="slide" style="display: block" data-thumb="../ljimages/' + fields[0] + '-sm.png"><a href="../ljimages/' + fields[0] + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom" id="ex1"><img src="../ljimages/' + fields[0] + '-md.png" alt="' + fields[1] + '"></span></a></div>';
-       if (fields[2] === "ENC" && stock_no !== "CD103" || fields[2] === "GLB" && stock_no === "34737029")  {
-         pics += '<div class="slide" data-thumb="../packaging/' + fields[0] + '-sm.JPG"><a href="../packaging/' + fields[0] + '-lg.JPG" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom" id="ex1"><img src="../packaging/' + fields[0] + '-md.JPG" alt="' + fields[1] + '"></span></a></div>';
-       } else if (fields[2] === "GLB" && stock_no !== "CD107" && stock_no >= 10713 && stock_no <= 10748) {
-         pics += '<div class="slide" data-thumb="../backs/' + fields[0] + 'bk-sm.png"><a href="../backs/' + fields[0] + 'bk-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom" id="ex1"><img src="../backs/' + fields[0] + 'bk-md.png" alt="' + fields[1] + '"></span></a></div>';
-       }
+       var pics =  '<div class="fslider" data-pagi="false" data-arrows="false" data-thumbs="true"><div class="flexslider"><div class="slider-wrap" data-lightbox="gallery">';
 
-       secondColumn  = '<div><a href="#" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div>';
+           pics += '<div class="slide" data-thumb="../ljimages/' + fields[0] + '-sm.png"><a href="../ljimages/' + fields[0] + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="../ljimages/' + fields[0] + '-md.png" alt="' + fields[1] + '"></span></a></div>';
+       if (fields[2] === "ENC" && stock_no !== "CD103" || fields[2] === "GLB" && stock_no === "34737029")  {
+           pics += '<div class="slide" data-thumb="../packaging/' + fields[0] + '-sm.JPG"><a href="../packaging/' + fields[0] + '-lg.JPG" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="../packaging/' + fields[0] + '-md.JPG" alt="' + fields[1] + '"></span></a></div>';
+       } else if (fields[2] === "GLB" && stock_no !== "CD107" && stock_no >= 10713 && stock_no <= 10748) {
+           pics += '<div class="slide" data-thumb="../backs/' + fields[0] + 'bk-sm.png"><a href="../backs/' + fields[0] + 'bk-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="../backs/' + fields[0] + 'bk-md.png" alt="' + fields[1] + '"></span></a></div>';
+       }
+           pics += '</div></div></div>';
+
+       secondColumn  = '<div><a href="'+ detailString +'" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div>';
        secondColumn += '<div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + fields[0].replace(/\s+/g,'') + '</span></span></div><div class="line"></div>';
        secondColumn += '<div class="product-price col_one_third" style="font-size: 16px; font-weight: 400;"> <ins>COST:&nbsp;' + fields[4] + '</ins></div><div class="col_one_third hidden-xs" style="top: 0px; margin: 0px;">MIN: 1</div>';
        if (stock_no !== "CD111" && stock_no !== "CD103" && stock_no !== "CD105" && stock_no !== "CD107" && stock_no !== "CD100" && stock_no !== "11100A" && stock_no !== "10000A" && stock_no !== "10300A" && stock_no !== "10500A" && stock_no !== "10700A" && stock_no !== "10700B" && stock_no !== "10700C" && stock_no !== "10700D" && stock_no !== "PIL107" && stock_no !== "34737029" )  {
@@ -386,10 +392,12 @@ function detailView()
        secondColumn += '<input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant[1]" onclick="changeQuantity(this)">';
        secondColumn += '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + fields[0].replace(/\s+/g,'') + '" />';
        secondColumn += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant[1]" onclick="changeQuantity(this)"></div>';
-       secondColumn += '<button type="button" id="add-item" class="add-to-cart button nomargin" onclick="addItemDetailView();">Add to cart</button></form><div class="clear"></div><div class="line"></div>';
+       secondColumn += '<button type="button" id="add-item" class="add-to-cart button nomargin" onclick="stock_no=\'' + fields[0].trim() + '\'; addItemDetailView();">Add to cart</button></form><div class="clear"></div><div class="line"></div>';
 
        if (fields[2] === "ENC" )  {
          secondColumn += '<p>' + fields[8] + '</p><p>The value of this look is unbeatable, each necklace features fun and exciting packaging. She is getting multiple styles per necklace, while you’ll be making a 3x markup! Not to mention, this look serves a broad demographic so all of your customers will be sure to find the perfect design.</p>';
+       } else if (fields[2] === "IDT" )  {
+         secondColumn += '<p>' + fields[8] + '</p><p>The value of this look is unbeatable; each piece features an intricate, unique and trending design whether it is a lanyard, tassel or snap. You’ll be making a 2.5x markup, along with several opportunities to upsell this look. Not to mention, the look of Identify will serve her during numerous events and places she will go at an unbeatable price: the casino, at her corporate office or hospital job, or to school, these are just to name a few!</p>';
        } else {
          if (fields[8].length !== 0) {
            secondColumn += '<p>' + fields[8] + '</p>';
@@ -397,19 +405,23 @@ function detailView()
            secondColumn += '<p>' + fields[1] + '</p>';
          }
        }
-       $("#images").append(pics);
-       $("#secondColumn").append(secondColumn);
 
        info =  '<tr><td>Description</td><td>' + fields[1] + '</td></tr>';
        info += '<tr><td>Dimensions</td><td>' + fields[6] + '</td></tr>';
        info += '<tr><td>Color</td><td>' + whatColor(color) +'</td></tr>';
        info += '<tr><td>Type</td><td>' + whatType(type) + '</td></tr>';
        info += '<tr><td>Look</td><td>' + whatLook(fields[2]) + '</td></tr>';
-       $("#addInfo").append(info);
-   },
-   complete: function () {
-     $('#ex1 img').wrap('<span style="display:inline-block"></span>').css('display', 'block').parent().zoom();
-   }
+       $("#images").html(pics);
+       $("#secondColumn").html(secondColumn);
+       $("#addInfo").html(info);
+       $('#ex1 img').wrap('<span style="display:inline-block"></span>').css('display', 'block').parent().zoom();
+     },
+     complete: function () {
+
+       setTimeout(function(){
+         SEMICOLON.widget.loadFlexSlider();
+       },1000);
+     }
   });
 }
 
@@ -474,6 +486,7 @@ function updateCart1()
 
 function updateCart2()
 {
+  event.preventDefault();
   $("#updateCartButton").hide();
   shoppingCart = {};
 
@@ -502,7 +515,7 @@ function updateCart2()
 /////////////////////////
 function creditCard()
 {
-  document.getElementById("creditcard").src="http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICC&session_no=" + session_no + "";
+
 
   $.ajax({
     type: "GET",
@@ -541,6 +554,7 @@ function creditCard()
             document.body.addEventListener("click", function(){
               $.get("http://72.64.152.18:8082/ace/mailer/order_confirmation.php?session_no=" + session_no + "&order_no="+ newOrder + "");
               windowHash("orders");
+              redirect('store');
             });
           }
         });
@@ -643,78 +657,6 @@ function saveAddresses()
 }
 
 
-
-/////////////////////
-// Filter Function //
-/////////////////////
-function filterFunction(a,b,c,d,e,f)
-{
-  $.ajax({
-    type: "GET",
-    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
-    data: {
-      request_id: a,
-      level1: b,
-      level2: c,
-      level3: d,
-      level4: e,
-      level5: f},
-    success: function(response) {
-      console.log(response);
-      fillShop2(response);
-    },
-    complete: function(){
-      hideFilter();
-      setTimeout(function(){
-        SEMICOLON.initialize.lightbox();
-      },1000);
-    }
-  });
-}
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-      // POPULATE THE STORE PAGE //
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function fillShop2(response)
-{
-  lines = response.split("\n");
-  lines.shift();
-  linesPlus = [];
-  for (i=0; i<lines.length - 1; i++) {
-    linesPlus.push(lines[i].split("|"));
-  }
-  linesPlus.sort( function( a, b ) {
-    retVal=0;
-    if (sortItems.indexOf(a[0].trim()) != sortItems.indexOf( b[0].trim() )) retVal= sortItems.indexOf( a[0].trim() ) > sortItems.indexOf( b[0].trim() )?1:-1;
-    return retVal;
-  });
-  // lines[1]+ are data lines
-  $('#shopItems').empty();
-  html = [];
-  if ( lines.length <= 1) {
-    document.getElementById("shopItems").innerHTML += '<h1>There are no results</h1>';
-  } else {
-    for (i=0; i<linesPlus.length; i++) {
-      flds = linesPlus[i];
-
-      prod = '<div class="product clearfix ' + flds[2] +" "+ flds[8].trim() +" "+ flds[9].trim() + '"><div class="product-image"><a href="#detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
-      prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim()  + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '\'; addItemDetailView(); SEMICOLON.widget.notifications(this); cartHeader(); cartList();"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-      prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="event.preventDefault(); stock_no=\'' + flds[0].trim() + '\'; quickView(this.id);" id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '"><i class="icon-zoom-in2"></i><span id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '">Quick View</span></a></div></div>';
-      prod += '<div class="product-desc" style="height: 80px;"><div class="product-title"><h3><a href="#detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '">' + flds[1] +'</a></h3></div><div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div></div></div>';
-
-      html.push(prod);
-    }
-  }
-  document.getElementById("shopItems").innerHTML += html.join('');
-
-  $(document).trigger("filters");
-  $(document).trigger("priceFilters");
-}
-
-
-
 /////////////////////////
 // Search API Function //
 /////////////////////////
@@ -759,8 +701,8 @@ function search()
                  continue;
                } else {
                 prod = '<div class="product clearfix ' + flds[2] + '"><div class="product-image"><a href="#detail-view+' + flds[0].trim() +'"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
-                prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim()  + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'' + flds[0].trim() + '\'; addItemDetailView(); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-                prod += '<a href="#detail-view+' + flds[0].trim() + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].trim()  + '">Detail View</span></a></div></div>';
+                prod += '<a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim()  + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'detail-view+' + flds[0].trim() + '\'; addItemDetailView(); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+                prod += '<a href="#detail-view+' + flds[0].trim() + '" class="item-quick-view"><i class="icon-zoom-in2"></i><span class="' + flds[0].trim()  + '">Detail View</span></a></div></div>';
                 prod += '<div class="product-desc" style="height: 80px;"><div class="product-title"><h3><a href="#detail-view+' + flds[0].trim() + '">' + flds[1] +'</a></h3></div><div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div></div></div>';
 
                 html.push(prod);
@@ -797,8 +739,8 @@ function search()
                  continue;
                } else {
                 prod = '<div class="product clearfix ' + flds[2] + '"><div class="product-image"><a href="#detail-view+' + flds[0].trim() +'"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
-                prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim()  + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'' + flds[0].trim() + '\'; addItemDetailView(); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-                prod += '<a href="#detail-view+' + flds[0].trim() + '" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span class="' + flds[0].trim()  + '">Detail View</span></a></div></div>';
+                prod += '<a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim()  + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'detail-view+' + flds[0].trim() + '\'; addItemDetailView(); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+                prod += '<a href="#detail-view+' + flds[0].trim() + '" class="item-quick-view"><i class="icon-zoom-in2"></i><span class="' + flds[0].trim()  + '">Detail View</span></a></div></div>';
                 prod += '<div class="product-desc" style="height: 80px;"><div class="product-title"><h3><a href="#detail-view+' + flds[0].trim() + '">' + flds[1] +'</a></h3></div><div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div></div></div>';
 
                 html.push(prod);
@@ -852,7 +794,12 @@ function orderHistory()
    },
    complete: function(){
      table = $('#datatable2').DataTable();
+     table.clear();
      table.rows.add( fldsArray_json.data ).draw();
+
+     table5 = $('#datatable5').DataTable();
+     table5.clear();
+     table5.rows.add( fldsArray_json.data ).draw();
    }
  });
 }
@@ -921,10 +868,10 @@ function searchOrders(orderSearchNumber)
       lines = response.split("\n");
       // lines[0] is header row
       // lines[1]+ are data lines
-      $('#orderDetails').empty();
+      $('#orders-orderDetails').empty();
       html = [];
       if ( lines.length <= 2) {
-        document.getElementById("orderDetails").innerHTML += '<tr><td><h1>There are no results</h1></td><td></td></tr>';
+        document.getElementById("orders-orderDetails").innerHTML += '<tr><td><h1>There are no results</h1></td><td></td></tr>';
       } else {
         for (i=1; i<lines.length - 1; i++) {
           details = lines[i].split("|");
@@ -950,7 +897,7 @@ function searchOrders(orderSearchNumber)
           line += '<tr><td>Total Other Charges</td><td>'+details[33]+'</td></tr>';
           line += '<tr><td>Total Freight</td><td>'+details[34]+'</td></tr>';
           html.push(line);
-          document.getElementById("orderDetails").innerHTML += html.join('');
+          document.getElementById("orders-orderDetails").innerHTML += html.join('');
         }
       }
     }
@@ -982,7 +929,6 @@ function searchOrders(orderSearchNumber)
     complete: function(){
       if (fields === "" ) {
         $("#datatable3").hide();
-        table3.clear();
       } else {
         $("#datatable3").show();
 
@@ -1159,6 +1105,7 @@ function billToAddress()
 /////////////////////////////////////////////
 function shipToAddress()
 {
+
   $.ajax({
     type: "GET",
     url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
@@ -1238,23 +1185,6 @@ function sessionNumber()
 
 
 
-function Comparator(a,b)
-{
-  if (a[8] < b[8]) return -1;
-  if (a[8] > b[8]) return 1;
-  return 0;
-}
-
-Array.min = function( array ){
-    return Math.min.apply( Math, array );
-};
-
-Array.max = function( array ){
-    return Math.max.apply( Math, array );
-};
-
-
-
 function displayAddress(index) {
   var ind = index - 1;
   document.getElementById("shipping-form-companyname").value = shippingAddresses[ind][0].trim();
@@ -1281,7 +1211,7 @@ function logoff()
       Cookies.set('session_no', "Logged Out");
     },
     complete: function() {
-      windowHash("");
+      redirect("");
     }
   });
 }
@@ -1353,20 +1283,6 @@ function changeQuantity(element)
     var valueCurrent = parseInt(input.val());
   });
   return false;
-}
-
-
-
-/////////////////////////////////////
-// Hide filter on the Program Page //
-/////////////////////////////////////
-function hideFilter()
-{
-  if (window.location.hash === "#sleek" || window.location.hash === "#rglb" || window.location.hash === "#encharming" || window.location.hash === "#identify" || window.location.hash === "#aura") {
-    $("#portfolio-filter").css({"visibility":"hidden"});
-  } else {
-    $("#portfolio-filter").css({"visibility":"visible"});
-  }
 }
 
 
@@ -1524,17 +1440,17 @@ function filterFunction2(a,b,c,d,e,f)
           flds = linesPlus[i];
 
           prod =  '<div class="product clearfix ' + flds[2] +" "+ flds[8].trim() +" "+ flds[9].trim() + '"><div class="product-image"><a href="#detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
-          prod += '<a href="#" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim() + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '\'; addItemDetailView(); cartHeader(); cartList(); SEMICOLON.widget.notifications(this);"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+          prod += '<a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim() + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '\'; addItemDetailView(); cartHeader(); cartList(); SEMICOLON.widget.notifications(this);"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
           prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="event.preventDefault(); stock_no=\'' + flds[0].trim() + '\'; quickView(this.id);" id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '"><i class="icon-zoom-in2"></i><span id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '">Quick View</span></a></div></div>';
           prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '">' + flds[1] +'</a></h3></div><div class="product-price">cost &nbsp;<ins>$' + flds[4].trim() + '</ins></div></div></div>';
 
           html.push(prod);
         }
         document.getElementById("shopItems").innerHTML += html.join('');
-        $(document).trigger("filters2");
       }
     },
     complete: function(){
+      $(document).trigger("filters2");
       SEMICOLON.initialize.lightbox();
     }
   });
@@ -1573,16 +1489,16 @@ function quickView(clicked_id)
       var prodtype = fields[1].split(/(\s+)/);
 					prodtype = prodtype[2];
 
-			document.getElementById("images").innerHTML = '<div class="slide" style="display: block;"><a href="#detail-view+' + clicked_id + '" title="' + fields[1] + '"><img src="../ljimages/' + stock_no + '-md.png" alt="' + fields[1] + '"></a></div>';
+			document.getElementById("quickViewimages").innerHTML = '<div class="slide" style="display: block;"><a href="#shop"><img src="../ljimages/' + stock_no + '-md.png" alt="' + fields[1] + '"></a></div>';
 
-      jQuery( "#secondColumn").prepend('<div><a href="#" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div><div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + stock_no + '</span></span></div><div class="line"></div><div class="product-price col_half" style="font-size: 16px; font-weight: 400;"><ins>COST:&nbsp;' + fields[4] + '</ins></div><div class="product-rating col_half col_last" style="top: 0px; margin: 0px;">MSRP:&nbsp;' + fields[3] + '</div>');
+      jQuery( "#secondColumn").prepend('<div><a href="#shop" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div><div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + stock_no + '</span></span></div><div class="line"></div><div class="product-price col_half" style="font-size: 16px; font-weight: 400;"><ins>COST:&nbsp;' + fields[4] + '</ins></div><div class="product-rating col_half col_last" style="top: 0px; margin: 0px;">MSRP:&nbsp;' + fields[3] + '</div>');
       jQuery( ".minus" ).after( '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + stock_no + '" />' );
       if (fields[8].length !== 0)  {
          secondColumn = '<p>' + fields[8] + '</p>';
       } else {
          secondColumn = '<p>' + fields[1] + '</p>';
       }
-      $("#quickViewForm").append('<button type="button" id="add-item" class="add-to-cart button nomargin" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>The item(s) have been added to your cart!" onclick="detailString=\'' + clicked_id + '\'; addItemDetailView(); SEMICOLON.widget.notifications(this); cartList(); return false;">Add to cart</button>');
+      $("#quickViewForm").append('<button type="button" id="add-item" class="add-to-cart button nomargin" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>The item(s) have been added to your cart!" onclick="detailString=\'detail-view+' + clicked_id + '\'; addItemDetailView(); SEMICOLON.widget.notifications(this); cartList(); return false;">Add to cart</button>');
       $("#description").append(secondColumn);
     }
   });
@@ -1612,7 +1528,8 @@ function quickView(clicked_id)
 
 function shopPage()
 {
-filterFunction2('APISTKLST','','','','','');
+//filterFunction2('APISTKLST','','','','','');
+
 cartHeader();
 cartList();
 }
@@ -1639,7 +1556,7 @@ function priceFilter() {
   });
 }
 
-jQuery(document).on("filters2", function(){
+$(function() {
   $container = $('#shopItems');
 //      $container.isotope('destroy');
   $container.imagesLoaded(function(){
@@ -1759,10 +1676,13 @@ function cartPage()
 
 function checkoutPage()
 {
+  shippingAddresses = [];
+  $("#shipping-address").empty();
   cartList();
-  cartHeader(minimumTotal);
+  cartHeader(); //cartHeader(minimumTotal);
   shipToAddress();
   $("#creditcard").hide();
+  document.getElementById("creditcard").src="http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICC&session_no=" + session_no + "";
 
   $("#myButton").click(function() {
     console.log("is this working?");

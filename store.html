@@ -10,8 +10,12 @@ layout: singlepage
   		<!-- Content
   		============================================= -->
   		<section id="content">
+
   			<div class="content-wrap">
+
   				<div class="container clearfix">
+
+
 
           <section id="shop">
 
@@ -85,12 +89,16 @@ layout: singlepage
                         <label for="checkbox-12" class="checkbox-style-1-label">SNAPS</label>
                       </div>
                       <div>
-                        <input id="checkbox-31" class="checkbox-style" name="checkbox-5" type="checkbox" autocomplete="off" value=".850" >
+                        <input id="checkbox-31" class="checkbox-style" name="checkbox-31" type="checkbox" autocomplete="off" value=".850" >
                         <label for="checkbox-31" class="checkbox-style-1-label">DISPLAYS</label>
                       </div>
                       <div>
-                        <input id="checkbox-32" class="checkbox-style" name="checkbox-6" type="checkbox" autocomplete="off" value=".900" >
+                        <input id="checkbox-32" class="checkbox-style" name="checkbox-32" type="checkbox" autocomplete="off" value=".900" >
                         <label for="checkbox-32" class="checkbox-style-1-label">OIL</label>
+                      </div>
+                      <div>
+                        <input id="checkbox-33" class="checkbox-style" name="checkbox-33" type="checkbox" autocomplete="off" value=".950" >
+                        <label for="checkbox-33" class="checkbox-style-1-label">ACCESSORIES</label>
                       </div>
                     </div>
                   </div>
@@ -217,7 +225,7 @@ layout: singlepage
                         </div>
                         <div class="col-md-8 col-xs-8 nopadding">
                           <a href="#" class="button button-3d nomargin fright" id="updateCartButton" onclick="updateCart2()">Update Cart</a>
-                          <a href="#" class="button button-3d notopmargin fright" onclick='windowHash("checkout"); whichPage();'>Proceed to Checkout</a>
+                          <a href="#" class="button button-3d notopmargin fright" onclick='windowHash("checkout");'>Proceed to Checkout</a>
                         </div>
                       </div>
                     </td>
@@ -1110,7 +1118,7 @@ layout: singlepage
 
                     </div>
                     <div class="modal-footer">
-          					  <button type="button" class="btn btn-default" data-dismiss="modal" onclick="redirect('/');">Close</button>
+          					  <button type="button" class="btn btn-default" data-dismiss="modal" onclick="windowHash('orders'); redirect('store');">Close</button>
           					</div>
                   </div>
                 </div>
@@ -1698,7 +1706,7 @@ layout: singlepage
 
             <div class="table-responsive">
 
-              <table id="datatable2" class="table table-striped table-bordered" cellspacing="0" width="100%">
+              <table id="datatable5" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                   <tr>
                     <th>Order #</th>
@@ -1735,16 +1743,12 @@ layout: singlepage
 
   								<!-- Product Single - Gallery
   								============================================= -->
-  								<div class="product-image">
-  									<div class="fslider" data-pagi="false" data-arrows="false" data-thumbs="true">
-  										<div class="flexslider">
-  											<div class="slider-wrap" data-lightbox="gallery" id="images">
+  								<div class="product-image"  id="images">
+
 
   												<!-- 1st Column -->
 
-  										  </div>
-  										</div>
-  									</div>
+
   								</div><!-- Product Single - Gallery End -->
   							</div>
 
@@ -1767,6 +1771,7 @@ layout: singlepage
                     <div class="togglec detailViewAddInfo">
                       <table class="table table-striped table-bordered topmargin-sm">
                         <tbody id="addInfo">
+
                         </tbody>
                       </table>
                     </div>
