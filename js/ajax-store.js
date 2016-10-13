@@ -269,67 +269,59 @@ function cartList()
       session_no: session_no
     },
     success: function(response) {
-
       cartitems = response.split("\n");
       // lines[0] is header row
       // lines[1]+ are data lines
-
       jQuery("#minicart").empty();
-      html = [];
       html2 = [];
 
       if ( window.location.hash === "#cart") {
-        jQuery(".cart_item.products").empty();
-        for (i=1; i<cartitems.length - 1; i++) {
-          data = cartitems[i].split("|");
-
-          item = '<tr class="cart_item products"><td class="cart-product-remove"><a href="#cart" class="remove" onclick="removeItem(this.id)" id="' + data[1].replace(/\s+/g,'') + '" title="Remove this item"><i class="icon-trash2"></i></a></td>';
-          item += '<td class="cart-product-thumbnail"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '"></a></td>';
-          item += '<td class="cart-product-name"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '">' + data[3] + '</a></td>';
-          item += '<td class="cart-product-price"><span class="amount">$' + data[7].substring(0, data[7].length - 3) + '</span></td>';
-          item += '<td class="cart-product-quantity"><div class="quantity clearfix">';
-          item += '<input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant['+i+']" onclick="changeQuantity(this)">';
-          item += '<input type="text" name="quant['+i+']" min="1" value="' + data[6].replace(/\s+/g,'') + '" class="qty form-control input-number" id="' + data[2].replace(/\s+/g,'') + '" />';
-          item += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant['+i+']" onclick="changeQuantity(this)"></div></td>';
-          item += '<td class="cart-product-subtotal"><span class="amount">$' + data[8].substring(0, data[8].length - 4) + '</span></td></tr>';
-          html.push(item);
-
-          miniitem = '<div class="top-cart-item clearfix"><div class="top-cart-item-image"><a href="#"><img src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '" /></a></div>';
-          miniitem += '<div class="top-cart-item-desc"><a href="#">' + data[3] + '</a><span class="top-cart-item-price">$' + data[7].substring(0, data[7].length - 3) + '</span><span class="top-cart-item-quantity">x ' + data[6].replace(/\s+/g,'') + '</span></div></div>';
-          html2.push(miniitem);
-        }
-        $("#cartItemTable").prepend(html.join(''));
+        html = [];
+        $(".cart_item.products").empty();
+        cartHelper();
         $("#updateCartButton").show();
-        $("#minicart").append(html2.join(''));
-
-      } else if ( window.location.hash === "#checkout") {
+        $("#cartItemTable").prepend(html.join(''));
+      } else if ( window.location.hash === "#checkout" ){
         jQuery("#checkout-cartItemTable").empty();
-        for (i=1; i<cartitems.length - 1; i++) {
-          data = cartitems[i].split("|");
-
-          item1 =  '<tr class="cart_item"><td class="cart-product-thumbnail"><a href=#detail-view+' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '"></a></td>';
-          item1 += '<td class="cart-product-name"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '">' + data[3] + '</a></td>';
-          item1 += '<td class="cart-product-quantity"><div class="quantity clearfix">' + data[6].replace(/\s+/g,'') + '</div></td>';
-          item1 += '<td class="cart-product-subtotal"><span class="amount">$' + data[8].substring(0, data[8].length - 4) + '</span></td></tr>';
-          jQuery("#checkout-cartItemTable").append(item1);
-
-          miniitem = '<div class="top-cart-item clearfix"><div class="top-cart-item-image"><a href="#"><img src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '" /></a></div>';
-          miniitem += '<div class="top-cart-item-desc"><a href="#">' + data[3] + '</a><span class="top-cart-item-price">$' + data[7].substring(0, data[7].length - 3) + '</span><span class="top-cart-item-quantity">x ' + data[6].replace(/\s+/g,'') + '</span></div></div>';
-          html2.push(miniitem);
-        }
-        $("#minicart").append(html2.join(''));
-      } else {
-        for (i=1; i<cartitems.length - 1; i++) {
-          data = cartitems[i].split("|");
-
-          miniitem = '<div class="top-cart-item clearfix"><div class="top-cart-item-image"><a href="#"><img src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '" /></a></div>';
-          miniitem += '<div class="top-cart-item-desc"><a href="#">' + data[3] + '</a><span class="top-cart-item-price">$' + data[7].substring(0, data[7].length - 3) + '</span><span class="top-cart-item-quantity">x ' + data[6].replace(/\s+/g,'') + '</span></div></div>';
-          html2.push(miniitem);
-        }
-        jQuery("#minicart").append(html2.join(''));
+        cartHelper();
       }
+      $("#minicart").append(html2.join(''));
     }
   });
+}
+
+/////////////////////////////////////////////
+// SUBROUTINE - CONSTRUCTING THE CART LIST //
+/////////////////////////////////////////////
+function cartHelper()
+{
+  for (i=1; i<cartitems.length - 1; i++) {
+    data = cartitems[i].split("|");
+    miniitem = '<div class="top-cart-item clearfix"><div class="top-cart-item-image"><a href="#"><img src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '" /></a></div>';
+    miniitem += '<div class="top-cart-item-desc"><a href="#">' + data[3] + '</a><span class="top-cart-item-price">$' + data[7].substring(0, data[7].length - 3) + '</span><span class="top-cart-item-quantity">x ' + data[6].replace(/\s+/g,'') + '</span></div></div>';
+    html2.push(miniitem);
+
+    if ( window.location.hash === "#cart") {
+      item = '<tr class="cart_item products"><td class="cart-product-remove"><a href="#cart" class="remove" onclick="removeItem(this.id)" id="' + data[1].replace(/\s+/g,'') + '" title="Remove this item"><i class="icon-trash2"></i></a></td>';
+      item += '<td class="cart-product-thumbnail"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '"></a></td>';
+      item += '<td class="cart-product-name"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '">' + data[3] + '</a></td>';
+      item += '<td class="cart-product-price"><span class="amount">$' + data[7].substring(0, data[7].length - 3) + '</span></td>';
+      item += '<td class="cart-product-quantity"><div class="quantity clearfix">';
+      item += '<input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant['+i+']" onclick="changeQuantity(this)">';
+      item += '<input type="text" name="quant['+i+']" min="1" value="' + data[6].replace(/\s+/g,'') + '" class="qty form-control input-number" id="' + data[2].replace(/\s+/g,'') + '" />';
+      item += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant['+i+']" onclick="changeQuantity(this)"></div></td>';
+      item += '<td class="cart-product-subtotal"><span class="amount">$' + data[8].substring(0, data[8].length - 4) + '</span></td></tr>';
+      html.push(item);
+
+      $("#updateCartButton").show();
+    } else if ( window.location.hash === "#checkout") {
+      item1 =  '<tr class="cart_item"><td class="cart-product-thumbnail"><a href=#detail-view+' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '"></a></td>';
+      item1 += '<td class="cart-product-name"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '">' + data[3] + '</a></td>';
+      item1 += '<td class="cart-product-quantity"><div class="quantity clearfix">' + data[6].replace(/\s+/g,'') + '</div></td>';
+      item1 += '<td class="cart-product-subtotal"><span class="amount">$' + data[8].substring(0, data[8].length - 4) + '</span></td></tr>';
+      $("#checkout-cartItemTable").append(item1);
+    }
+  }
 }
 
 
@@ -375,7 +367,7 @@ function detailView()
        var pics =  '<div class="fslider" data-pagi="false" data-arrows="false" data-thumbs="true"><div class="flexslider"><div class="slider-wrap" data-lightbox="gallery">';
 
            pics += '<div class="slide" data-thumb="../ljimages/' + fields[0] + '-sm.png"><a href="../ljimages/' + fields[0] + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="../ljimages/' + fields[0] + '-md.png" alt="' + fields[1] + '"></span></a></div>';
-       if (fields[2] === "ENC" && stock_no !== "CD103" || fields[2] === "GLB" && stock_no === "34737029")  {
+       if (fields[2] === "ENC" && stock_no !== "CD103" && stock_no !== "10300A" || fields[2] === "GLB" && stock_no === "34737029" && stock_no !== "10700A" && stock_no !== "10700B" && stock_no !== "10700C" && stock_no !== "10700D"  && stock_no !== "PIL107")  {
            pics += '<div class="slide" data-thumb="../packaging/' + fields[0] + '-sm.JPG"><a href="../packaging/' + fields[0] + '-lg.JPG" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="../packaging/' + fields[0] + '-md.JPG" alt="' + fields[1] + '"></span></a></div>';
        } else if (fields[2] === "GLB" && stock_no !== "CD107" && stock_no >= 10713 && stock_no <= 10748) {
            pics += '<div class="slide" data-thumb="../backs/' + fields[0] + 'bk-sm.png"><a href="../backs/' + fields[0] + 'bk-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="../backs/' + fields[0] + 'bk-md.png" alt="' + fields[1] + '"></span></a></div>';
@@ -414,10 +406,9 @@ function detailView()
        $("#images").html(pics);
        $("#secondColumn").html(secondColumn);
        $("#addInfo").html(info);
-       $('#ex1 img').wrap('<span style="display:inline-block"></span>').css('display', 'block').parent().zoom();
      },
      complete: function () {
-
+       $('.ex1 img').wrap('<span style="display:inline-block"></span>').css('display', 'block').parent().zoom();
        setTimeout(function(){
          SEMICOLON.widget.loadFlexSlider();
        },1000);
@@ -675,90 +666,52 @@ function search()
         query: searchTerm},
       success: function(response) {
 
-        var data = response;
-        if (window.location.hash === "#shop") {
-///////////////// Leave in until McPhate changes the fields for the SearchAPI call put this back after changes -->  fillShop2(data);
-          lines = response.split("\n");
-          lines.shift();
-          linesPlus = [];
-          for (i=0; i<lines.length - 1; i++) {
-            linesPlus.push(lines[i].split("|"));
-          }
-          linesPlus.sort( function( a, b ) {
-            retVal=0;
-            if (sortItems.indexOf(a[0].trim()) != sortItems.indexOf( b[0].trim() )) retVal= sortItems.indexOf( a[0].trim() ) > sortItems.indexOf( b[0].trim() )?1:-1;
-            return retVal;
-          });
-          // lines[1]+ are data lines
-          $('#shopItems').empty();
-          html = [];
-          if ( lines.length <= 1) {
-            document.getElementById("shopItems").innerHTML += '<h1>There are no results</h1>';
-          } else {
-            for (i=0; i<linesPlus.length; i++) {
-              flds = linesPlus[i];
-               if ( flds[2].trim() === "ZEN" || !isNaN(flds[2]) ) {
-                 continue;
-               } else {
-                prod = '<div class="product clearfix ' + flds[2] + '"><div class="product-image"><a href="#detail-view+' + flds[0].trim() +'"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
-                prod += '<a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim()  + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'detail-view+' + flds[0].trim() + '\'; addItemDetailView(); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-                prod += '<a href="#detail-view+' + flds[0].trim() + '" class="item-quick-view"><i class="icon-zoom-in2"></i><span class="' + flds[0].trim()  + '">Detail View</span></a></div></div>';
-                prod += '<div class="product-desc" style="height: 80px;"><div class="product-title"><h3><a href="#detail-view+' + flds[0].trim() + '">' + flds[1] +'</a></h3></div><div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div></div></div>';
-
-                html.push(prod);
-              }
-            }
-            document.getElementById("shopItems").innerHTML += html.join('');
-
-            $(document).trigger("filters");
-            $(document).trigger("priceFilters");
-          }
+///////////////// Leave in until McPhate changes the fields for the SearchAPI call put this back after changes -->  fillShop3(data);
+        oldhash = window.location.hash;
+        windowHash("shop");
+        lines = response.split("\n");
+        lines.shift();
+        linesPlus = [];
+        for (i=0; i<lines.length - 1; i++) {
+          linesPlus.push(lines[i].split("|"));
+        }
+        linesPlus.sort( function( a, b ) {
+          retVal=0;
+          if (sortItems.indexOf(a[0].trim()) != sortItems.indexOf( b[0].trim() )) retVal= sortItems.indexOf( a[0].trim() ) > sortItems.indexOf( b[0].trim() )?1:-1;
+          return retVal;
+        });
+        // lines[1]+ are data lines
+        $('#shopItems').empty();
+        html = [];
+        if ( lines.length <= 1) {
+          document.getElementById("shopItems").innerHTML += '<h1>There are no results</h1>';
         } else {
-          $("section").append('<section id="content"><div class="content-wrap"><div class="container clearfix"><div class="shop grid-container clearfix" id="shop"></div></div></div></div>');
-///////////////// Leave in until McPhate changes the fields for the SearchAPI call  put this back after changes -->  fillShop2(data);
-          lines = response.split("\n");
-          lines.shift();
-          linesPlus = [];
-          for (i=0; i<lines.length - 1; i++) {
-            linesPlus.push(lines[i].split("|"));
-          }
-          linesPlus.sort( function( a, b ) {
-            retVal=0;
-            if (sortItems.indexOf(a[0].trim()) != sortItems.indexOf( b[0].trim() )) retVal= sortItems.indexOf( a[0].trim() ) > sortItems.indexOf( b[0].trim() )?1:-1;
-            return retVal;
-          });
-          // lines[1]+ are data lines
-          $('#shopItems').empty();
-          html = [];
-          if ( lines.length <= 1) {
-            document.getElementById("shopItems").innerHTML += '<h1>There are no results</h1>';
-          } else {
-            for (i=0; i<linesPlus.length; i++) {
-              flds = linesPlus[i];
-               if ( flds[2].trim() === "ZEN" || !isNaN(flds[2]) ) {
-                 continue;
-               } else {
-                prod = '<div class="product clearfix ' + flds[2] + '"><div class="product-image"><a href="#detail-view+' + flds[0].trim() +'"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
-                prod += '<a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim()  + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'detail-view+' + flds[0].trim() + '\'; addItemDetailView(); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-                prod += '<a href="#detail-view+' + flds[0].trim() + '" class="item-quick-view"><i class="icon-zoom-in2"></i><span class="' + flds[0].trim()  + '">Detail View</span></a></div></div>';
-                prod += '<div class="product-desc" style="height: 80px;"><div class="product-title"><h3><a href="#detail-view+' + flds[0].trim() + '">' + flds[1] +'</a></h3></div><div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div></div></div>';
+          for (i=0; i<linesPlus.length; i++) {
+            flds = linesPlus[i];
+             if ( flds[2].trim() === "ZEN" || !isNaN(flds[2]) ) {
+               continue;
+             } else {
+              prod = '<div class="product clearfix ' + flds[2] + '"><div class="product-image"><a href="#detail-view+' + flds[0].trim() +'"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
+              prod += '<a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim()  + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'detail-view+' + flds[0].trim() + '\'; addItemDetailView(); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+              prod += '<a href="#detail-view+' + flds[0].trim() + '" class="item-quick-view"><i class="icon-zoom-in2"></i><span class="' + flds[0].trim()  + '">Detail View</span></a></div></div>';
+              prod += '<div class="product-desc" style="height: 80px;"><div class="product-title"><h3><a href="#detail-view+' + flds[0].trim() + '">' + flds[1] +'</a></h3></div><div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div></div></div>';
 
-                html.push(prod);
-              }
+              html.push(prod);
             }
-            document.getElementById("shopItems").innerHTML += html.join('');
-
-            $(document).trigger("filters");
-            $(document).trigger("priceFilters");
           }
+          document.getElementById("shopItems").innerHTML += html.join('');
+          $("#shopItems").prepend('<button style="display: block; bottommargin-sm" type="button" class="button button-3d button-mini button-rounded button-black" onclick="$(\'#shopItems\').empty(); windowHash(\''+oldhash+'\'); filterFunction2(\'APISTKLST\',\'\',\'\',\'\',\'\',\'\');">Close Search</button>');
         }
       }
     });
   }
 }
 
-
-
+if (window.location.hash === "#shop") {
+} else {
+  $("#content").append('<section id="search"><div class="content-wrap"><div class="container clearfix"><div class="shop grid-container clearfix" id="shopsearch"></div></div></div></div>');
+///////////////// Leave in until McPhate changes the fields for the SearchAPI call  put this back after changes -->  fillShop2(data);
+}
 /////////////////////////////////////////////
 // ORDER/INVOICE API Function - APIHISTLST //
 /////////////////////////////////////////////
@@ -773,7 +726,6 @@ function orderHistory()
      session_no: session_no
    },
    success: function(response) {
-
      lines = response.split("\n");
      // lines[0] is header row
      // lines[1]+ are data lines
@@ -1041,6 +993,7 @@ function searchInvoices(invoiceSearchNumber)
 }
 
 
+
 /////////////////////////////////////////////
          // GET ACCOUNT DETAILS //
 /////////////////////////////////////////////
@@ -1132,21 +1085,13 @@ function shipToAddress()
 
 
 ///////////////////////////////////////////////////////////////////////////////
-
 ///////////////////////////////////////////////////////////////////////////////
-
 ///////////////////////////////////////////////////////////////////////////////
-
 ///////////////////////////////////////////////////////////////////////////////
-
 //////////////////////// HELPER FUNCTIONS / SUBROUTINES ///////////////////////
-
 ///////////////////////////////////////////////////////////////////////////////
-
 ///////////////////////////////////////////////////////////////////////////////
-
 ///////////////////////////////////////////////////////////////////////////////
-
 ///////////////////////////////////////////////////////////////////////////////
 
 
@@ -1491,7 +1436,7 @@ function quickView(clicked_id)
 
 			document.getElementById("quickViewimages").innerHTML = '<div class="slide" style="display: block;"><a href="#shop"><img src="../ljimages/' + stock_no + '-md.png" alt="' + fields[1] + '"></a></div>';
 
-      jQuery( "#secondColumn").prepend('<div><a href="#shop" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div><div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + stock_no + '</span></span></div><div class="line"></div><div class="product-price col_half" style="font-size: 16px; font-weight: 400;"><ins>COST:&nbsp;' + fields[4] + '</ins></div><div class="product-rating col_half col_last" style="top: 0px; margin: 0px;">MSRP:&nbsp;' + fields[3] + '</div>');
+      jQuery( "#secondColumn").prepend('<div><a href="#shop" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div><div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + stock_no + '</span></span></div><div class="line"></div><div class="product-price col_half" style="font-size: 16px; font-weight: 400;"><ins>COST:&nbsp;' + fields[4] + '</ins></div>');
       jQuery( ".minus" ).after( '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + stock_no + '" />' );
       if (fields[8].length !== 0)  {
          secondColumn = '<p>' + fields[8] + '</p>';
