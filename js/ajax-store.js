@@ -279,8 +279,8 @@ function cartList()
         html = [];
         $(".cart_item.products").empty();
         cartHelper();
-        $("#updateCartButton").show();
         $("#cartItemTable").prepend(html.join(''));
+        $("#updateCartButton").show();
       } else if ( window.location.hash === "#checkout" ){
         jQuery("#checkout-cartItemTable").empty();
         cartHelper();
