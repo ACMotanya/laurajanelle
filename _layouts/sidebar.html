@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html dir="ltr" lang="en-US">
+
+  {% include head-one-page.html %}
+
+  <style>
+  @media (min-width: 992px) {
+    .side-header:not(.open-header) #wrapper {
+      margin: 0 260px 0 0 !important;
+    }
+    .side-header #primary-menu ul li a {
+      text-align: right;
+    }
+    .side-header #logo:not(.nobottomborder):after, .side-header #primary-menu:not(.nobottomborder):after {
+      width: 0%;
+    }
+    .side-header #primary-menu ul li {
+      margin: 15px 15px 0 0;
+    }
+    .side-header #header .container {
+      padding: 0 10px !important;
+    }
+  }
+
+  #primary-menu ul li > a {
+    font-size: 14px;
+  }
+  </style>
+
+  <body class="stretched side-header">
+    <div id="wrapper" class="clearfix">
+      <!-- Header
+      ============================================= -->
+      <header id="header" data-sticky-class="no-sticky" style="right: 0; left: initial;">
+        <div id="header-wrap">
+          <div class="container clearfix">
+            <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+            <!--  Logo
+            =============================================
+            <div id="logo">
+              <a href="#" class="standard-logo" data-dark-logo="one-page/images/lj-white-2.png"><img style="padding-bottom: 20px"src="{{ site.baseurl }}/img/lj-newlogo-shop.png" alt="Laura Janelle Logo"></a>
+              <a href="#" class="retina-logo" data-dark-logo="one-page/images/lj-white-2.png"><img src="{{ site.baseurl }}/img/lj-newlogo-shop.png" alt="Laura Janelle Logo"></a>
+            </div><!-- #logo end -->
+
+            <!-- Primary Navigation
+            ============================================= -->
+            <nav id="primary-menu">
+              <ul class="one-page-menu" data-easing="easeInOutExpo" data-speed="1250" data-offset="0">
+
+                <li class="current"><a href="#"><div>HOME</div></a></li>
+                <li><a href="about"><div>ABOUT US</div></a></li>
+                <li><a href="meet"><div>MEET OUR TEAM</div></a></li>
+                <li><a href="comingsoon"><div>FIND A STORE</div></a></li>
+                <li><a href="retailerlogin"><div>SHOP</div></a></li>
+                <li><a href="https://www.ivystone.com/find/search-for-a-sales-representative.asp" target="_blank"><div>FIND A REP</div></a></li>
+                <li><a href="contact"><div>CAREERS</div></a></li>
+                <li><a href="contact"><div>CUSTOMER SERVICE</div></a></li>
+                <li><a href="http://www.cousin.com" target="_blank"><div>COUSIN.COM</div></a></li>
+              </ul>
+            </nav><!-- #primary-menu end
+            <div class="clearfix visible-md visible-lg">
+                <a href="#" class="social-icon si-small si-borderless si-facebook">
+                    <i class="icon-facebook"></i>
+                    <i class="icon-facebook"></i>
+                </a>
+
+                <a href="#" class="social-icon si-small si-borderless si-twitter">
+                    <i class="icon-twitter"></i>
+                    <i class="icon-twitter"></i>
+                </a>
+
+                <a href="#" class="social-icon si-small si-borderless si-gplus">
+                    <i class="icon-gplus"></i>
+                    <i class="icon-gplus"></i>
+                </a>
+
+                <a href="#" class="social-icon si-small si-borderless si-pinterest">
+                    <i class="icon-pinterest"></i>
+                    <i class="icon-pinterest"></i>
+                </a>
+
+                <a href="#" class="social-icon si-small si-borderless si-github">
+                    <i class="icon-github"></i>
+                    <i class="icon-github"></i>
+                </a>
+            </div> -->
+          </div>
+        </div>
+      </header><!-- #header end -->
+
+      {{ content }}
+
+      {% include footer.html %}
+    </div>
+    {% include js.html %}
+
+  </body>
+
+</html>
