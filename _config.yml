@@ -12,7 +12,8 @@ description: Fashion accessories for the gift market
 url: https://www.laurajanelle.com
 
 
-#baseurl: "/cousin-op"
+baseurl: "/cousin-op"
+
 
 # Footer settings
 footer: Laura Janelle
