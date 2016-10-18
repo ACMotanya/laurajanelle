@@ -139,6 +139,12 @@
                 <li><a href="#cart"><div>Cart</div></a></li>
                 {% endif %}
 
+                {% if page.url == "/faq/" %}
+                <li class="current"><a href="#faq"><div>FAQ</div></a></li>
+                {% else %}
+                <li><a href="#faq"><div>FAQ</div></a></li>
+                {% endif %}
+
                 <li><a href="#" onclick="logoff();"><div>Log Out</div></a></li>
               </ul>
 

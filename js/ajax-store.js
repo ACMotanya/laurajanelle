@@ -506,8 +506,6 @@ function updateCart2()
 /////////////////////////
 function creditCard()
 {
-
-
   $.ajax({
     type: "GET",
     url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
@@ -520,6 +518,7 @@ function creditCard()
       numberOfOrders = openlines.length;
     },
     complete: function (){
+      var email_num = session_no;
       var findNewOrder = setInterval(function(){
         $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APIORDLST&session_no=" + session_no + "", function( data ) {
           openlines = data.split("\n");
@@ -536,14 +535,14 @@ function creditCard()
               return a[1] > b[1] ? -1 : 1;
             });
             newOrder = orders[0][0];
-            $( "#success" ).trigger( "click" );
+            $( "#success" ).click();
            	var message =  '<h4 style="font-family: Lato;">The order # is: ' + newOrder + '</h4>';
 
                 message += '<p>This is a confirmation that your order has been successfully received and is currently under process. You will receive an email soon with a copy of your invoice, which also includes the details of your order.</p>';
                 message += '<p class="nobottommargin">Laura Janelle values your business and is continuously looking for ways to better satisfy their customers. Please do share with us if there is a way we can serve you better.</p>';
             document.getElementById("successMessage").innerHTML += message;
             document.body.addEventListener("click", function(){
-              $.get("http://72.64.152.18:8082/ace/mailer/order_confirmation.php?session_no=" + session_no + "&order_no="+ newOrder + "");
+              $.get("http://72.64.152.18:8082/ace/mailer/order_confirmation.php?session_no=" + email_num + "&order_no="+ newOrder + "").always(function(){ email_num = 1;});
               windowHash("orders");
               redirect('store');
             });
@@ -1624,7 +1623,7 @@ function checkoutPage()
   shippingAddresses = [];
   $("#shipping-address").empty();
   cartList();
-  cartHeader(); //cartHeader(minimumTotal);
+  cartHeader(); // cartHeader(); cartHeader(minimumTotal);
   shipToAddress();
   $("#creditcard").hide();
   document.getElementById("creditcard").src="http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICC&session_no=" + session_no + "";
