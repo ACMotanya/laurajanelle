@@ -176,11 +176,6 @@ div.container.clearfix video.about {
 /* \\\\\\\\\\\\\\\\\\\\\
 	/* Careers Page Styles
 /* \\\\\\\\\\\\\\\\\\\*/
-/* gets rid of random line of demarcation  on headings*/
-.heading-block:after {
-  display: none;
-}
-
 .iconlist-color li i {
 	color: #777;
 }
@@ -326,6 +321,22 @@ div.team-title h4 a:hover {
 	color: #999;
   cursor: pointer;
 }
+
+/*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  /* FAQ SECTION
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
+
+#contact-faq > div > div.togglet {
+  border-bottom: 2px solid #444;
+  font-family: "Source Sans Pro";
+  font-size: 21px;
+  font-weight: 300;
+}
+.toggle.toggle-bg .togglet i {
+  font-size: 12px;
+}
+
+
 
 
 /* The scroller on the bottom Empower Entice and Stuff */

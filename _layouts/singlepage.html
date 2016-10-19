@@ -73,15 +73,15 @@
 
 </head>
 
-  <body id="body" class="stretched side-header side-header-right">
+  <body id="body" class="stretched">
     <div id="wrapper" class="clearfix">
-
+      {% include topbar.html %}
       <script type="text/javascript">
         sessionNumber();
       </script>
       <!-- Header
       ============================================= -->
-      <header id="header" class="no-sticky">
+      <header id="header" class="full-header">
 
         <div id="header-wrap">
 
@@ -137,12 +137,6 @@
                 <li class="current"><a href="#cart"><div>Cart</div></a></li>
                 {% else %}
                 <li><a href="#cart"><div>Cart</div></a></li>
-                {% endif %}
-
-                {% if page.url == "/faq/" %}
-                <li class="current"><a href="#faq"><div>FAQ</div></a></li>
-                {% else %}
-                <li><a href="#faq"><div>FAQ</div></a></li>
                 {% endif %}
 
                 <li><a href="#" onclick="logoff();"><div>Log Out</div></a></li>
@@ -236,7 +230,6 @@
       }); */
     });
     </script>
-
 
   </body>
 
