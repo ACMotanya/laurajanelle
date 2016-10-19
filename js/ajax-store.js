@@ -1784,6 +1784,10 @@ function whichPage()
       $('#detail-view').show();
       detailViewPage();
       break;
+    case '#faq' :
+      $('#content div div section').hide();
+      $('#faq').show();
+      break;
     default :
       $('#content div div section').hide();
       $('#shop').show();
