@@ -485,20 +485,75 @@ function updateCart2()
 
   // loop thru cart and flatten the items that are repeated
   table.find('tr.products').each(function () {
+    console.log(this);
     var line_no     = $(this).find('td:first-child a').attr('id');
     var stockNumber = $(this).find('td:nth-child(5) div input:nth-child(2)').attr('id');
     var qty         = parseInt($(this).find('td:nth-child(5) div input:nth-child(2)').val());
     shoppingCart[stockNumber] = [qty, line_no];
     removeItemGeneric(session_no, line_no);
+  }).promise().done(function(){
+    table = "";
   });
 
+//  $.each( shoppingCart, function( key, value ) {
+//    addItemGeneric(session_no, key, value[0]);
+//  });
+//  cartList();
+//  cartHeader();
+  var promises = [];
   $.each( shoppingCart, function( key, value ) {
-    addItemGeneric(session_no, key, value[0]);
+    console.log(value[0]);
+    promises.push(addItemGeneric(session_no, key, value[0]));
   });
-  cartList();
-  cartHeader();
+  $.when.apply($, promises).then(function() {
+    cartList();
+    cartHeader();
+  });
 }
 
+function updateCart3()
+{
+  event.preventDefault();
+  $("#updateCartButton").hide();
+  shoppingCart = {};
+
+  $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICARTL&session_no=" + session_no + "", function (data) {
+    cartlines = data.split("\n");
+
+    cartlines.shift();
+    cartlinesPlus = [];
+    for (i=0; i<cartlines.length - 1; i++) {
+      cartlinesPlus.push(cartlines[i].split("|"));
+    }
+
+    for (i=0; i<cartlinesPlus.length; i++) {
+      cartfields = cartlinesPlus[i];
+//      shoppingCart[cartfields[2]] = [cartfields[6], cartfields[1]];
+//    }
+      if (!shoppingCart.hasOwnProperty(cartfields[2])) {
+        shoppingCart[cartfields[2]] = [cartfields[6], cartfields[1]];
+//        removeItemGeneric(session_no, cartfields[1]);
+      } else {
+        shoppingCart[cartfields[2]][0] += cartfields[6];
+//        removeItemGeneric(session_no, shoppingCart[cartfields[2]][1]);
+//        removeItemGeneric(session_no, cartfields[1]);
+      }
+    }
+    console.log(Object.keys(shoppingCart));
+  }).done( function(){
+    $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICARTDEL&session_no=" + session_no + "").done( function(){
+      var promises = [];
+      $.each( shoppingCart, function( key, value ) {
+        promises.push(addItemGeneric(session_no, key.trim(), value[0].trim()));
+      });
+      $.when.apply($, promises).then(function() {
+        cartList();
+        cartHeader();
+      });
+    });
+  });
+
+}
 
 
 /////////////////////////
@@ -687,16 +742,14 @@ function search()
         } else {
           for (i=0; i<linesPlus.length; i++) {
             flds = linesPlus[i];
-             if ( flds[2].trim() === "ZEN" || !isNaN(flds[2]) ) {
-               continue;
-             } else {
-              prod = '<div class="product clearfix ' + flds[2] + '"><div class="product-image"><a href="#detail-view+' + flds[0].trim() +'"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
-              prod += '<a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim()  + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'detail-view+' + flds[0].trim() + '\'; addItemDetailView(); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-              prod += '<a href="#detail-view+' + flds[0].trim() + '" class="item-quick-view"><i class="icon-zoom-in2"></i><span class="' + flds[0].trim()  + '">Detail View</span></a></div></div>';
-              prod += '<div class="product-desc" style="height: 80px;"><div class="product-title"><h3><a href="#detail-view+' + flds[0].trim() + '">' + flds[1] +'</a></h3></div><div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div></div></div>';
 
-              html.push(prod);
-            }
+            prod = '<div class="product clearfix ' + flds[2] + '"><div class="product-image"><a href="#detail-view+' + flds[0].trim() +'"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
+            prod += '<a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim()  + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'detail-view+' + flds[0].trim() + '\'; addItemDetailView(); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+            prod += '<a href="#detail-view+' + flds[0].trim() + '" class="item-quick-view"><i class="icon-zoom-in2"></i><span class="' + flds[0].trim()  + '">Detail View</span></a></div></div>';
+            prod += '<div class="product-desc" style="height: 80px;"><div class="product-title"><h3><a href="#detail-view+' + flds[0].trim() + '">' + flds[1] +'</a></h3></div><div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div></div></div>';
+
+            html.push(prod);
+
           }
           document.getElementById("shopItems").innerHTML += html.join('');
           $("#shopItems").prepend('<button style="display: block; bottommargin-sm" type="button" class="button button-3d button-mini button-rounded button-black" onclick="$(\'#shopItems\').empty(); windowHash(\''+oldhash+'\'); filterFunction2(\'APISTKLST\',\'\',\'\',\'\',\'\',\'\');">Close Search</button>');
@@ -706,11 +759,6 @@ function search()
   }
 }
 
-if (window.location.hash === "#shop") {
-} else {
-  $("#content").append('<section id="search"><div class="content-wrap"><div class="container clearfix"><div class="shop grid-container clearfix" id="shopsearch"></div></div></div></div>');
-///////////////// Leave in until McPhate changes the fields for the SearchAPI call  put this back after changes -->  fillShop2(data);
-}
 /////////////////////////////////////////////
 // ORDER/INVOICE API Function - APIHISTLST //
 /////////////////////////////////////////////
@@ -1623,7 +1671,7 @@ function checkoutPage()
   shippingAddresses = [];
   $("#shipping-address").empty();
   cartList();
-  cartHeader(); // cartHeader(); cartHeader(minimumTotal);
+  cartHeader(minimumTotal); // cartHeader(); cartHeader(minimumTotal);
   shipToAddress();
   $("#creditcard").hide();
   document.getElementById("creditcard").src="http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICC&session_no=" + session_no + "";
