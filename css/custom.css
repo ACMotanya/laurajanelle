@@ -16,8 +16,15 @@
 	}
 }
 /* randomly broken fixes on shop page END */
+
+
 .margin-auto {
 	margin: auto;
+}
+
+
+body.stretched #header.full-header .container {
+	box-shadow: 0px 3px 3px grey;
 }
 
 #header.transparent-header.full-header #header-wrap {
