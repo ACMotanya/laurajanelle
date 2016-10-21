@@ -229,6 +229,16 @@
         }
       }); */
     });
+
+    $( "a#showDeliveryChart" ).click( function () {
+      $("a#showDeliveryChart").hide();
+      $("#deliveryChart").show();
+    });
+
+    $("#contactform-back").click(function () {
+      $("#deliveryChart").hide();
+      $("a#showDeliveryChart").show();
+    });
     </script>
 
   </body>
