@@ -179,6 +179,9 @@ div.container.clearfix video.about {
 	display: none;
 }
 
+.team-title span {
+	font-style: normal;
+}
 
 /* \\\\\\\\\\\\\\\\\\\\\
 	/* Careers Page Styles

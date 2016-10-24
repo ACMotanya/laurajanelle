@@ -33,7 +33,7 @@ label,
 .nav-tree li a,
 .wedding-head .first-name,
 .wedding-head .last-name,
-.font-primary { font-family: 'Raleway', sans-serif; }
+.font-primary { font-family: Bodoni-Sans, Oranienbaum, sans-serif; }
 
 .entry-meta li,
 .entry-link span,
@@ -173,7 +173,7 @@ h6 {
 
 label {
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
