@@ -171,7 +171,6 @@ function createUser()
 ////////////////////////////////////////
 function addItemGeneric(session_no, stock_no, qty)
 {
-  event.preventDefault();
   $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no="+ session_no +"&stock_no="+ stock_no +"&qty="+qty+"");
 }
 //////////////////////////////////////////////
@@ -194,6 +193,7 @@ function addItemDetailView()
   if ( window.location.hash !== "#shop" ) {
     windowHash("cart");
   }
+  return false;
 }
 
 
@@ -203,7 +203,6 @@ function addItemDetailView()
 /////////////////////////////////////////
 function removeItemGeneric(session_no, line_no)
 {
-  event.preventDefault();
   $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICARTREM&session_no="+ session_no +"&line_no="+ line_no +"");
 }
 //////////////////////////////////
@@ -215,6 +214,7 @@ function removeItem(clicked_id)
   removeItemGeneric(session_no, line_no);
   cartHeader();
   cartList();
+  return false;
 }
 
 
@@ -252,6 +252,7 @@ function cartHeader(callback)
       }
     }
   });
+  return false;
 }
 
 
@@ -288,6 +289,7 @@ function cartList()
       $("#minicart").append(html2.join(''));
     }
   });
+  return false;
 }
 
 /////////////////////////////////////////////
@@ -302,14 +304,14 @@ function cartHelper()
     html2.push(miniitem);
 
     if ( window.location.hash === "#cart") {
-      item = '<tr class="cart_item products"><td class="cart-product-remove"><a href="#cart" class="remove" onclick="removeItem(this.id)" id="' + data[1].replace(/\s+/g,'') + '" title="Remove this item"><i class="icon-trash2"></i></a></td>';
+      item = '<tr class="cart_item products"><td class="cart-product-remove"><a href="#cart" class="remove" onclick="removeItem(this.id); return false;" id="' + data[1].replace(/\s+/g,'') + '" title="Remove this item"><i class="icon-trash2"></i></a></td>';
       item += '<td class="cart-product-thumbnail"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '"></a></td>';
       item += '<td class="cart-product-name"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '">' + data[3] + '</a></td>';
       item += '<td class="cart-product-price"><span class="amount">$' + data[7].substring(0, data[7].length - 3) + '</span></td>';
       item += '<td class="cart-product-quantity"><div class="quantity clearfix">';
-      item += '<input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant['+i+']" onclick="changeQuantity(this)">';
+      item += '<input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant['+i+']" onclick="changeQuantity(this);">';
       item += '<input type="text" name="quant['+i+']" min="1" value="' + data[6].replace(/\s+/g,'') + '" class="qty form-control input-number" id="' + data[2].replace(/\s+/g,'') + '" />';
-      item += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant['+i+']" onclick="changeQuantity(this)"></div></td>';
+      item += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant['+i+']" onclick="changeQuantity(this);"></div></td>';
       item += '<td class="cart-product-subtotal"><span class="amount">$' + data[8].substring(0, data[8].length - 4) + '</span></td></tr>';
       html.push(item);
 
@@ -477,7 +479,6 @@ function updateCart1()
 
 function updateCart2()
 {
-  event.preventDefault();
   $("#updateCartButton").hide();
   shoppingCart = {};
 
@@ -485,7 +486,6 @@ function updateCart2()
 
   // loop thru cart and flatten the items that are repeated
   table.find('tr.products').each(function () {
-    console.log(this);
     var line_no     = $(this).find('td:first-child a').attr('id');
     var stockNumber = $(this).find('td:nth-child(5) div input:nth-child(2)').attr('id');
     var qty         = parseInt($(this).find('td:nth-child(5) div input:nth-child(2)').val());
@@ -509,6 +509,7 @@ function updateCart2()
     cartList();
     cartHeader();
   });
+  return false;
 }
 
 function updateCart3()
@@ -573,7 +574,7 @@ function creditCard()
       numberOfOrders = openlines.length;
     },
     complete: function (){
-      var email_num = session_no;
+
       var findNewOrder = setInterval(function(){
         $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APIORDLST&session_no=" + session_no + "", function( data ) {
           openlines = data.split("\n");
@@ -591,16 +592,13 @@ function creditCard()
             });
             newOrder = orders[0][0];
             $( "#success" ).click();
+            $("#successMessage").empty();
            	var message =  '<h4 style="font-family: Lato;">The order # is: ' + newOrder + '</h4>';
-
                 message += '<p>This is a confirmation that your order has been successfully received and is currently under process. You will receive an email soon with a copy of your invoice, which also includes the details of your order.</p>';
                 message += '<p class="nobottommargin">Laura Janelle values your business and is continuously looking for ways to better satisfy their customers. Please do share with us if there is a way we can serve you better.</p>';
+
             document.getElementById("successMessage").innerHTML += message;
-            document.body.addEventListener("click", function(){
-              $.get("http://72.64.152.18:8082/ace/mailer/order_confirmation.php?session_no=" + email_num + "&order_no="+ newOrder + "").always(function(){ email_num = 1;});
-              windowHash("orders");
-              redirect('store');
-            });
+            document.body.addEventListener("click", sendEmail);
           }
         });
       }, 3000);
@@ -608,6 +606,13 @@ function creditCard()
   });
 }
 
+function sendEmail()
+{
+  var email_num = session_no;
+  $.get("http://72.64.152.18:8082/ace/mailer/order_confirmation.php?session_no=" + email_num + "&order_no="+ newOrder + "").always(function(){ email_num = 1;});
+    document.body.removeEventListener("click", sendEmail);
+    windowHash("orders");
+}
 
 
 /////////////////////////////////////////
@@ -840,6 +845,7 @@ function openOrders()
    },
    complete: function(){
      table1 = $('#datatable1').DataTable();
+     table1.clear();
      table1.rows.add( openfldsArray_json.data ).draw();
    }
  });
@@ -1067,6 +1073,7 @@ function accountDetails()
         line += '<tr><td>Phone Number</td><td>'+details[4]+'</td></tr>';
         line += '<tr><td>Default Ship Via Code</td><td>'+details[5]+'</td></tr>';
         line += '<tr><td>Terms Code</td><td>'+details[6]+'</td></tr>';
+        line += '<tr><td>Current Session Number</td><td>'+session_no+'</td></tr>';
         document.getElementById("accountDetails").innerHTML += line;
       }
     }
@@ -1105,7 +1112,6 @@ function billToAddress()
 /////////////////////////////////////////////
 function shipToAddress()
 {
-
   $.ajax({
     type: "GET",
     url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
@@ -1155,7 +1161,6 @@ function redirect(pathname)
 
 function windowHash(name)
 {
-  event.preventDefault();
   window.location.hash = name;
   return false;
 }
@@ -1226,6 +1231,8 @@ function minimumTotal()
     if (newCustomer === "false") {
       document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + parseFloat((100 - orderAmtFloat)).toFixed(2) + ' more to reach the minimum order requirement of $100.</h2>';
     }
+  } else {
+    $("#myButton").show();
   }
 }
 
@@ -1432,7 +1439,7 @@ function filterFunction2(a,b,c,d,e,f)
           flds = linesPlus[i];
 
           prod =  '<div class="product clearfix ' + flds[2] +" "+ flds[8].trim() +" "+ flds[9].trim() + '"><div class="product-image"><a href="#detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
-          prod += '<a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim() + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '\'; addItemDetailView(); cartHeader(); cartList(); SEMICOLON.widget.notifications(this);"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+          prod += '<a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim() + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '\'; addItemDetailView(); cartHeader(); cartList(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
           prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="event.preventDefault(); stock_no=\'' + flds[0].trim() + '\'; quickView(this.id);" id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '"><i class="icon-zoom-in2"></i><span id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '">Quick View</span></a></div></div>';
           prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '">' + flds[1] +'</a></h3></div><div class="product-price">cost &nbsp;<ins>$' + flds[4].trim() + '</ins></div></div></div>';
 
@@ -1669,6 +1676,7 @@ function cartPage()
 function checkoutPage()
 {
   shippingAddresses = [];
+  $("#minimumTotalWarning").empty();
   $("#shipping-address").empty();
   cartList();
   cartHeader(minimumTotal); // cartHeader(); cartHeader(minimumTotal);
@@ -1787,6 +1795,10 @@ function whichPage()
     case '#faq' :
       $('#content div div section').hide();
       $('#faq').show();
+      break;
+    case '#customerservice' :
+      $('#content div div section').hide();
+      $('#customerservice').show();
       break;
     default :
       $('#content div div section').hide();

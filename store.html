@@ -2,7 +2,7 @@
 layout: singlepage
 ---
 <style>
-#cart, #checkout, #invoices, #profile, #orders, #shop, #detail-view, #faq {
+#cart, #checkout, #invoices, #profile, #orders, #shop, #detail-view, #faq, #customerservice {
   display: none;
 }
 </style>
@@ -219,8 +219,8 @@ layout: singlepage
                             </div>
                           </div>
                           <div class="col-md-8 col-xs-8 nopadding">
-                            <a href="#" class="button button-3d nomargin fright" id="updateCartButton" onclick="updateCart2()">Update Cart</a>
-                            <a href="#" class="button button-3d notopmargin fright" onclick='windowHash("checkout");'>Proceed to Checkout</a>
+                            <a href="#" class="button button-3d nomargin fright" id="updateCartButton" onclick="updateCart2(); return false;">Update Cart</a>
+                            <a href="#" class="button button-3d notopmargin fright" onclick='windowHash("checkout"); return false;'>Proceed to Checkout</a>
                           </div>
                         </div>
                       </td>
@@ -1090,7 +1090,10 @@ layout: singlepage
                 </div>
                 <div class="clear bottommargin"></div>
                 <div class="col-md-6">
-                  <div id="minimumTotalWarning" class="form-group">
+                  <div id="minimumTotalWarning">
+
+                  </div>
+                  <div class="form-group">
                     <button type="button" class="button button-3d fright" form="billing-form" id="myButton">Place Order</button>
                   </div>
                 </div>
@@ -1779,6 +1782,7 @@ layout: singlepage
     					<div class="clear"></div><div class="line"></div>
             </section>
 
+
             <section id="faq">
               <div id="contact-faq">
                 <h2 class="team-title notoppadding center">FAQS</h2>
@@ -2095,6 +2099,30 @@ layout: singlepage
                 <div class="line"></div>
               </div>
 
+            </section>
+
+
+            <section id="customerservice">
+              <div class="col-md-6">
+                <h3>Change Session Number</h3>
+
+                <form role="form" class="nobottommargin" action="#" method="">
+
+                  <div class="form-group">
+                    <div class="col_full">
+                      <label for="shipping-form-companyname">New Session Number:</label>
+                      <input id="newSessionNumber" type="text" maxlength="30" value="" required class="sm-form-control form-control" />
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col_full">
+                      <button type="button" class="button button-3d fright" form="shipping-form" data-notify-position="top-right" data-notify-type="danger" data-notify-msg="<i class=icon-info-sign></i>Session Number has been changed!" onclick="session_no=$('#newSessionNumber').val(); SEMICOLON.widget.notifications(this); return false;">Change Number</button>
+                    </div>
+                  </div>
+
+                </form>
+              </div>
             </section>
 
 				  </div>

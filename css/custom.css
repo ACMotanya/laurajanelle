@@ -23,8 +23,8 @@
 }
 
 
-body.stretched #header.full-header .container {
-	box-shadow: 0px 3px 3px grey;
+body.stretched #header.full-header.sticky-header .container {
+	box-shadow: 0px 3px 3px lightgrey;
 }
 
 #header.transparent-header.full-header #header-wrap {
