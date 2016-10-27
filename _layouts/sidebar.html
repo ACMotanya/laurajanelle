@@ -46,24 +46,24 @@
             <nav id="primary-menu">
               <ul>
 
-                <li><a href="{{ site.baseurl }}/" target="_blank"><div>HOME</div></a></li>
+                <li><a href="{{ site.baseurl }}/"><div>HOME</div></a></li>
 
                 {% if page.url == "/about/" %}
-                  <li class="current"><a href="{{ site.baseurl }}/about" target="_blank"><div>ABOUT US</div></a></li>
+                  <li class="current"><a href="{{ site.baseurl }}/about"><div>ABOUT US</div></a></li>
                 {% else %}
-                  <li><a href="{{ site.baseurl }}/about" target="_blank"><div>ABOUT US</div></a></li>
+                  <li><a href="{{ site.baseurl }}/about"><div>ABOUT US</div></a></li>
                 {% endif %}
 
                 {% if page.url == "/meet/" %}
-                  <li class="current"><a href="{{ site.baseurl }}/meet" target="_blank"><div>MEET OUR TEAM</div></a></li>
+                  <li class="current"><a href="{{ site.baseurl }}/meet"><div>MEET OUR TEAM</div></a></li>
                 {% else %}
-                  <li><a href="{{ site.baseurl }}/meet" target="_blank"><div>MEET OUR TEAM</div></a></li>
+                  <li><a href="{{ site.baseurl }}/meet"><div>MEET OUR TEAM</div></a></li>
                 {% endif %}
 
                 {% if page.url == "/findstore/" %}
-                <li class="current"><a href="{{ site.baseurl }}/findstore" target="_blank"><div>FIND A STORE</div></a></li>
+                <li class="current"><a href="{{ site.baseurl }}/findstore"><div>FIND A STORE</div></a></li>
                 {% else %}
-                <li><a href="{{ site.baseurl }}/findstore" target="_blank"><div>FIND A STORE</div></a></li>
+                <li><a href="{{ site.baseurl }}/findstore"><div>FIND A STORE</div></a></li>
                 {% endif %}
 
                 <li><a href="{{ site.baseurl }}/retailerlogin" target="_blank"><div>SHOP</div></a></li>
@@ -71,22 +71,22 @@
 
                 {% if page.url == "/careers/" %}
                   <li class="current">
-                    <a href="{{ site.baseurl }}/careers" target="_blank">
+                    <a href="{{ site.baseurl }}/careers">
                       <div>CAREERS</div>
                     </a>
                   </li>
                 {% else %}
                   <li>
-                    <a href="{{ site.baseurl }}/careers" target="_blank">
+                    <a href="{{ site.baseurl }}/careers">
                       <div>CAREERS</div>
                     </a>
                   </li>
                 {% endif %}
 
                 {% if page.url == "/contact/" %}
-                  <li class="current"><a href="{{ site.baseurl }}/contact" target="_blank"><div>CONTACT</div></a></li>
+                  <li class="current"><a href="{{ site.baseurl }}/contact" ><div>CONTACT</div></a></li>
                 {% else %}
-                  <li><a href="{{ site.baseurl }}/contact" target="_blank"><div>CONTACT</div></a></li>
+                  <li><a href="{{ site.baseurl }}/contact"><div>CONTACT</div></a></li>
                 {% endif %}
 
                 <li><a href="http://www.cousin.com" target="_blank"><div>COUSIN.COM</div></a></li>
@@ -127,11 +127,15 @@
         <a href="{{ site.baseurl }}/" class="retina-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/lj-newlogo-shop.png" alt="Laura Janelle Logo"></a>
       </div><!-- #logo end -->
 
-      {{ content }}
+
+    {{ content }}
+
+
 
       {% include footer.html %}
     </div>
     {% include js.html %}
+
 
   </body>
 

@@ -612,6 +612,7 @@ function sendEmail()
   $.get("http://72.64.152.18:8082/ace/mailer/order_confirmation.php?session_no=" + email_num + "&order_no="+ newOrder + "").always(function(){ email_num = 1;});
     document.body.removeEventListener("click", sendEmail);
     windowHash("orders");
+    // add the search for the new order number and display the data.
 }
 
 
@@ -1197,21 +1198,14 @@ function displayAddress(index) {
 
 function logoff()
 {
-  $.ajax({
-    type: "GET",
-    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
-    data: {
-      request_id: "APILOGOFF",
-      session_no: session_no
-    },
-    success: function(response) {
+
       Cookies.set('session_no', "Logged Out");
-    },
-    complete: function() {
+
+
       redirect("");
-    }
-  });
+
 }
+
 
 
 
