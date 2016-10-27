@@ -665,7 +665,7 @@ var SEMICOLON = SEMICOLON || {};
 					loaderBgStyle = ' style="background-color:'+ loaderColor +';"';
 					loaderBorderStyle = ' style="border-color:'+ loaderColor +';"';
 				}
-				loaderStyleHtml = '<div class="css3-spinner-bounce1'+ loaderBgClass +'"'+ loaderBgStyle +'></div><div class="css3-spinner-bounce2'+ loaderBgClass +'"'+ loaderBgStyle +'></div><div class="css3-spinner-bounce3'+ loaderBgClass +'"'+ loaderBgStyle +'></div>'
+				loaderStyleHtml = '<div class="css3-spinner-bounce1'+ loaderBgClass +'"'+ loaderBgStyle +'></div><div class="css3-spinner-bounce2'+ loaderBgClass +'"'+ loaderBgStyle +'></div><div class="css3-spinner-bounce3'+ loaderBgClass +'"'+ loaderBgStyle +'></div>';
 			}
 
 			if( loaderStyle == '2' ) {
@@ -701,7 +701,7 @@ var SEMICOLON = SEMICOLON || {};
 				outClass : animationOut,
 				inDuration : Number(durationIn),
 				outDuration : Number(durationOut),
-				linkElement : '#primary-menu ul li a:not([target="_blank"]):not([href*=#]):not([data-lightbox])',
+				linkElement : '#primary-menu ul li a:not([target="_blank"]):not([href*=\\#]):not([data-lightbox])',  
 				loading : true,
 				loadingParentElement : 'body',
 				loadingClass : 'css3-spinner',
