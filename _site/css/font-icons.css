@@ -32,19 +32,17 @@
 }
 
 @font-face {
-	font-family: Bodoni-Sans;
-	src:url('fonts/BodoniSans.otf');
+	font-family: 'Bodoni-Sans';
 	src:url('fonts/BodoniSans.eot');
 	src:url('fonts/BodoniSans.eot?#iefix') format('embedded-opentype'),
+		url('fonts/BodoniSans.woff2') format('woff2'),
 		url('fonts/BodoniSans.woff') format('woff'),
 		url('fonts/BodoniSans.ttf') format('truetype'),
-		url('fonts/BodoniSans.woff2') format('woff2');
-	font-weight: normal;
-	font-style: normal;
+		url('fonts/BodoniSans.otf') format('opentype');
 }
 
 @font-face {
-	font-family: BelovedScriptBasic;
+	font-family: 'BelovedScriptBasic';
 	src:url('fonts/BelovedScriptBasic.otf');
 	font-weight: normal;
 	font-style: normal;

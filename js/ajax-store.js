@@ -285,8 +285,9 @@ function cartList()
       } else if ( window.location.hash === "#checkout" ){
         jQuery("#checkout-cartItemTable").empty();
         cartHelper();
+      } else {
+        cartHelper();
       }
-      $("#minicart").append(html2.join(''));
     }
   });
   return false;
@@ -324,6 +325,7 @@ function cartHelper()
       $("#checkout-cartItemTable").append(item1);
     }
   }
+  $("#minicart").append(html2.join(''));
 }
 
 
@@ -828,12 +830,11 @@ function openOrders()
      session_no: session_no
    },
    success: function(response) {
-
      openlines = response.split("\n");
      // lines[0] is header row
      // lines[1]+ are data lines
-     // $('#tableBody').empty();
-     for (i=1; i< openlines.length - 1; i++) {
+
+     for (i=1; i < openlines.length - 1; i++) {
        fields = openlines[i].split("|");
        fields.splice(3, 1);
        fields.splice(6, 1);
@@ -918,14 +919,15 @@ function searchOrders(orderSearchNumber)
       session_no: session_no,
       order_no: orderSearchNumber},
     success: function(response) {
+      console.log(response);
       openlines = response.split("\n");
       // lines[0] is header row
       // lines[1]+ are data lines
       for (i=1; i< openlines.length - 1; i++) {
         fields = openlines[i].split("|");
         fields.splice(0, 1);
-        fields.splice(4, 1);
-        fields.splice(4, 1);
+        fields.splice(3, 1);
+        fields.splice(3, 1);
         fields.splice(6, 1);
         openfldsArray.data.push(fields);
       }
@@ -1486,11 +1488,11 @@ function quickView(clicked_id)
 
       jQuery( "#secondColumn").prepend('<div><a href="#shop" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div><div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + stock_no + '</span></span></div><div class="line"></div><div class="product-price col_half" style="font-size: 16px; font-weight: 400;"><ins>COST:&nbsp;' + fields[4] + '</ins></div>');
       jQuery( ".minus" ).after( '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + stock_no + '" />' );
-      if (fields[8].length !== 0)  {
-         secondColumn = '<p>' + fields[8] + '</p>';
-      } else {
+    //  if (fields[8].length !== 0)  {
+    //     secondColumn = '<p>' + fields[8] + '</p>';
+    //  } else {
          secondColumn = '<p>' + fields[1] + '</p>';
-      }
+  //    }
       $("#quickViewForm").append('<button type="button" id="add-item" class="add-to-cart button nomargin" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>The item(s) have been added to your cart!" onclick="detailString=\'detail-view+' + clicked_id + '\'; addItemDetailView(); SEMICOLON.widget.notifications(this); cartList(); return false;">Add to cart</button>');
       $("#description").append(secondColumn);
     }

@@ -145,7 +145,7 @@
               <!-- Top Cart
               ============================================= -->
               <div id="top-cart">
-                <a href="{{ site.baseurl }}/cart" id="top-cart-trigger"><i class="icon-shopping-cart"></i>
+                <a href="#cart" id="top-cart-trigger"><i class="icon-shopping-cart"></i>
           <!--        <span></span> -->
                 </a>
                 <div class="top-cart-content">
@@ -213,7 +213,7 @@
             </div>
             <div class="col_half col_last tright">
               <div class="copyrights-menu copyright-links fright clearfix">
-  							<a href="#">ABOUT</a>/<a href="#">MEET</a>/<a href="#">FIND</a>/<a href="#">CAREERS</a>/<a href="#">CONTACT</a>
+  							<a href="{{ site.baseurl }}/about">ABOUT</a>/<a href="{{ site.baseurl }}/meet">MEET</a>/<a href="{{ site.baseurl }}/findstore">FIND</a>/<a href="{{ site.baseurl }}/careers">CAREERS</a>/<a href="{{ site.baseurl }}/contact">CONTACT</a>
   						</div>
               <div class="clear"></div>
               <div class="fright clearfix">
@@ -257,22 +257,19 @@
       whichPage();
     });
 
-
     $(function() {
       filterFunction2('APISTKLST','','','','','');
-/*      $('nav ul li a').click(function() {
+      $('nav ul li a').click(function() {
         var $linkClicked = $(this).attr('href');
         document.location.hash = $linkClicked;
-        if (!$(this).hasClass("current")) {
-          $("nav ul li a").removeClass("current");
-          $(this).addClass("current");
-          $('#content div div section').hide();
-          $($linkClicked).fadeIn();
+        if (!$(this).parent().hasClass("current")) {
+          $("nav ul li").removeClass("current");
+          $(this).parent().addClass("current");
           return false;
         } else {
           return false;
         }
-      }); */
+      });
     });
 
     $( "a#showDeliveryChart" ).click( function () {
