@@ -1,5 +1,6 @@
 ---
 layout: singlepage
+title: Store - Laura Janelle
 ---
 <style>
 #cart, #checkout, #invoices, #profile, #orders, #shop, #detail-view, #faq, #customerservice {
@@ -232,7 +233,7 @@ layout: singlepage
               <div class="row clearfix">
                 <div class="col-md-6 clearfix">
                   <div class="table-responsive">
-                    <h4>Cart Totals</h4>
+                    <h4 class="ls1">CART TOTALS</h4>
                     <table class="table cart">
                       <tbody id="cart-totals">
                         <tr class="cart_item">
@@ -274,7 +275,7 @@ layout: singlepage
               <div class="row clearfix">
                 <div class="col-md-6">
                   <div class="table-responsive clearfix">
-                    <h3>Your Orders</h3>
+                    <h3 class="ls1">YOUR ORDERS</h3>
 
                     <table class="table cart">
                       <thead>
@@ -352,7 +353,7 @@ layout: singlepage
                   <div class="divider divider-center"><i class="icon-diamond"></i></div>
 
                   <div class="table-responsive">
-                    <h3>Cart Totals</h3>
+                    <h3 class="ls1">CART TOTALS</h3>
 
                     <table class="table cart">
                       <tbody id="cart-totals">
@@ -733,7 +734,7 @@ layout: singlepage
                   </form>
                 </div> -->
                 <div class="col-md-6">
-                  <h3>Shipping Address</h3>
+                  <h3 class="ls1">SHIPPING ADDRESS</h3>
 
                   <form data-toggle="validator" role="form" id="shipping-form" name="shipping-form" class="nobottommargin" action="#" method="">
 
@@ -1129,7 +1130,7 @@ layout: singlepage
               <div class="row clearfix">
                 <div class="col-md-6">
                   <div class="table-responsive clearfix">
-                    <h3>Account Details</h3>
+                    <h3 class="ls1">ACCOUNT DETAILS</h3>
 
                     <table class="table table-bordered">
                       <thead>
@@ -1144,7 +1145,7 @@ layout: singlepage
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <h3>Save New Shipping Address</h3>
+                  <h3 class="ls1">SAVE SHIPPING ADDRESS</h3>
 
                   <form data-toggle="validator" role="form" id="shipping-form" name="shipping-form" class="nobottommargin" action="#" method="">
 
@@ -1503,21 +1504,22 @@ layout: singlepage
 
             <section id="invoices">
               <div class="widget subscribe-widget clearfix">
-                <h3>Search by invoice number to display the line items and invoice details.</h3>
-                <div class="widget-subscribe-form-result"></div>
-                <form id="widget-subscribe-form" role="form" method="" class="nobottommargin">
-                  <div class="input-group divcenter">
-                    <span class="input-group-addon"><i class="icon-search3" style="font-size: 19px;"></i></span>
-                    <input type="number" id="invoiceNumber" name="invoiceNumber" class="form-control" value="" placeholder="Enter Invoice Number">
-                    <span class="input-group-btn">
-                      <button class="btn btn-secondary" type="submit" id="searchForInvoices">Search Invoices</button>
-                    </span>
-                  </div>
-                </form>
+                <h3>SEARCH BY INVOICE NUMBER TO VIEW DETAILS</h3>
+                <div class="row">
+                  <form id="widget-subscribe-form" role="form" method="" class="nobottommargin col-sm-6">
+                    <div class="input-group divcenter">
+                      <span class="input-group-addon"><i class="icon-search3" style="font-size: 19px;"></i></span>
+                      <input type="number" id="invoiceNumber" name="invoiceNumber" class="form-control" value="" placeholder="Enter Invoice Number">
+                      <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="submit" id="searchForInvoices">Search Invoices</button>
+                      </span>
+                    </div>
+                  </form>
+                </div>
               </div>
 
               <div class="fancy-title title-double-border topmargin" id="details-title">
-                <h1>Invoice Details</h1>
+                <h3>INVOICE DETAILS</h3>
               </div>
 
               <table class="table table-bordered" id="details-table">
@@ -1532,7 +1534,7 @@ layout: singlepage
 
 
               <div class="fancy-title title-double-border topmargin" id="line-item-title">
-                <h1>Line Items</h1>
+                <h3>LINE ITEMS</h3>
               </div>
 
               <div class="table-responsive" id="line-item-table">
@@ -1568,7 +1570,7 @@ layout: singlepage
               <div class="divider divider-short divider-center"><i class="icon-connection-empty"></i></div>
 
               <div class="fancy-title title-double-border topmargin">
-                <h1>Past Invoices</h1>
+                <h3>PAST INVOICES</h3>
               </div>
 
               <div class="table-responsive">
@@ -1607,21 +1609,23 @@ layout: singlepage
             <section id="orders">
 
               <div class="widget subscribe-widget clearfix">
-                <h3>Search by order number to display the line items and order details.</h3>
-                <div class="widget-subscribe-form-result"></div>
-                <form id="widget-subscribe-form" role="form" method="" class="nobottommargin">
-                  <div class="input-group divcenter">
-                    <span class="input-group-addon"><i class="icon-search3" style="font-size: 19px;"></i></span>
-                    <input type="number" id="orderNumber" name="orderNumber" class="form-control" value="" placeholder="Enter Order Number">
-                    <span class="input-group-btn">
-                      <button class="btn btn-secondary" type="submit" id="searchForOrders">Search Orders</button>
-                    </span>
-                  </div>
-                </form>
+                <h3>SEARCH BY ORDER NUMBER TO VIEW DETAILS</h3>
+                <div class="row">
+                  <form id="widget-subscribe-form" role="form" method="" class="nobottommargin col-sm-6">
+                    <div class="input-group divcenter">
+                      <span class="input-group-addon"><i class="icon-search3" style="font-size: 19px;"></i></span>
+                      <input type="number" id="orderNumber" name="orderNumber" class="form-control" value="" placeholder="Enter Order Number">
+                      <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="submit" id="searchForOrders">Search Orders</button>
+                      </span>
+                    </div>
+                  </form>
+                </div>
               </div>
 
+
               <div class="fancy-title title-double-border topmargin" id="orders-details-title">
-                <h1>Order Details</h1>
+                <h3>ORDER DETAILS</h3>
               </div>
 
               <table class="table table-bordered" id="orders-details-table">
@@ -1636,7 +1640,7 @@ layout: singlepage
 
 
               <div class="fancy-title title-double-border topmargin" id="orders-line-item-title">
-                <h1>Line Items</h1>
+                <h3>LINE ITEMS</h3>
               </div>
 
               <div class="table-responsive" id="orders-line-item-table">
@@ -1668,7 +1672,7 @@ layout: singlepage
                 <div class="divider divider-short divider-center"><i class="icon-connection-empty"></i></div>
 
               <div class="fancy-title title-double-border topmargin">
-                <h1>Open Orders</h1>
+                <h3>OPEN ORDERS</h3>
               </div>
 
               <div class="table-responsive">
@@ -1700,7 +1704,7 @@ layout: singlepage
               </div>
 
               <div class="fancy-title title-double-border topmargin">
-                <h1>Past Orders</h1>
+                <h3>PAST ORDERS</h3>
               </div>
 
               <div class="table-responsive">
