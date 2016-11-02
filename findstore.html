@@ -2,21 +2,6 @@
 layout: sidebar
 ---
 
-<script>
-$("#primary-menu-trigger").click( function() {
-  $("#primary-menu").children("ul").toggle();
-});
-var limitFunc = function(){
-    if (window.innerWidth>992){
-      $("#primary-menu").children("ul").css("display", "block");
-      console.log('bigScreen');
-    } else {
-      $("#primary-menu").children("ul").css("display", "none");
-      console.log('smallScreen');
-    }
-};
-window.addEventListener("resize", limitFunc);
-</script>
 
   <link rel="stylesheet" type="text/css" href="{{ "/assets/css/storelocator.css" | prepend: site.baseurl }}">
 
@@ -56,11 +41,11 @@ window.addEventListener("resize", limitFunc);
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
 
-<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 <script type="text/javascript" src="{{ "/assets/js/libs/handlebars.min.js" | prepend: site.baseurl }}"></script>
 <script src="https://maps.google.com/maps/api/js?key=AIzaSyDr-wWyQRq0K-iZWQLc2E5IjCt0TP-AkOo"></script>
 <script type="text/javascript" src="{{ "/assets/js/plugins/storeLocator/jquery.storelocator.js" | prepend: site.baseurl }}"></script>
@@ -75,7 +60,7 @@ $(function() {
 			zoom: 10,
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		},
-    'storeLimit': 1000,
+    'storeLimit': 2500,
     'fullMapStart': true,
     'autoGeocode': true,
     'maxDistance': true,
