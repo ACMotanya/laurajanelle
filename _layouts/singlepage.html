@@ -272,7 +272,7 @@
       });
     });
 
-    $( "a#showDeliveryChart" ).click( function () {
+    $("a#showDeliveryChart" ).click( function () {
       $("a#showDeliveryChart").hide();
       $("#deliveryChart").show();
     });
@@ -281,6 +281,15 @@
       $("#deliveryChart").hide();
       $("a#showDeliveryChart").show();
     });
+
+    function pageMe(){
+				$('#shop').pajinate({
+					items_per_page : 30,
+					item_container_id : '.shop',
+					nav_panel_id : '.alt_page_navigation'
+
+				});
+			};
     </script>
 
   </body>

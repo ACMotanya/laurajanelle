@@ -1200,12 +1200,8 @@ function displayAddress(index) {
 
 function logoff()
 {
-
-      Cookies.set('session_no', "Logged Out");
-
-
-      redirect("");
-
+    Cookies.set('session_no', "Logged Out");
+    redirect("");
 }
 
 
@@ -1412,7 +1408,7 @@ function filterFunction2(a,b,c,d,e,f)
       level4: e,
       level5: f},
     success: function(response) {
-
+       console.log(response);
       lines = response.split("\n");
       lines.shift();
       linesPlus = [];
@@ -1445,8 +1441,8 @@ function filterFunction2(a,b,c,d,e,f)
       }
     },
     complete: function(){
-      $(document).trigger("filters2");
       SEMICOLON.initialize.lightbox();
+      pageMe();
     }
   });
 }
@@ -1533,8 +1529,6 @@ function priceFilter() {
   var priceRangefrom = parseFloat($("#min").val());
   var priceRangeto = parseFloat($("#max").val());
 
-//  $container.isotope('destroy');
-//  $(document).trigger("filters2");
   $container.isotope({
     transitionDuration: '0.65s',
     filter: function() {
@@ -1550,7 +1544,7 @@ function priceFilter() {
     }
   });
 }
-
+//.page_link:visible'
 $(function() {
   $container = $('#shopItems');
 //      $container.isotope('destroy');
@@ -1571,11 +1565,14 @@ $(function() {
           transitionDuration: '0.65s',
           filter: comboFilter
          });
-
         $output.text( comboFilter );
+    
+      }).promise().done(function(){
+        pageMe();
       });
     });
   });
+
 });
 
 function getComboFilter( filters ) {
