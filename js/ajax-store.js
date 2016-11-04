@@ -1442,7 +1442,6 @@ function filterFunction2(a,b,c,d,e,f)
     },
     complete: function(){
       SEMICOLON.initialize.lightbox();
-      pageMe();
     }
   });
 }
@@ -1566,7 +1565,7 @@ $(function() {
           filter: comboFilter
          });
         $output.text( comboFilter );
-    
+
       }).promise().done(function(){
         pageMe();
       });
@@ -1690,17 +1689,6 @@ function checkoutPage()
   });
 }
 
-/////////////////////////////////////////////
-/////////////////////////////////////////////
-
-
-function detailViewPage()
-{
-  detailView();
-  cartHeader();
-  cartList();
-}
-
 
 /////////////////////////////////////////////
 /////////////////////////////////////////////
@@ -1783,7 +1771,9 @@ function whichPage()
     case '#detail-view' :
       $('#content div div section').hide();
       $('#detail-view').show();
-      detailViewPage();
+      detailView();
+      cartHeader();
+      cartList();
       break;
     case '#faq' :
       $('#content div div section').hide();
