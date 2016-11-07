@@ -1565,9 +1565,6 @@ $(function() {
           filter: comboFilter
          });
         $output.text( comboFilter );
-
-      }).promise().done(function(){
-        pageMe();
       });
     });
   });
