@@ -1523,10 +1523,8 @@ function quickView(clicked_id)
 
 function shopPage()
 {
-//filterFunction2('APISTKLST','','','','','');
-
-cartHeader();
-cartList();
+  cartHeader();
+  cartList();
 }
 
 function priceFilter() {
