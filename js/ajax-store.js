@@ -361,6 +361,7 @@ function detailView()
     url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
     data: {request_id: "APISTKDTL", stock_no: stock_no},
     success: function(response) {
+      console.log(response);
       lines = response.split("\n");
       // lines[0] is header row
       // lines[1]+ are data lines
@@ -377,6 +378,11 @@ function detailView()
            pics += '<div class="slide" data-thumb="../backs/' + fields[0] + 'bk-sm.png"><a href="../backs/' + fields[0] + 'bk-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="../backs/' + fields[0] + 'bk-md.png" alt="' + fields[1] + '"></span></a></div>';
        }
            pics += '</div></div></div>';
+       if (fields[7].trim().length === 3) {
+         pics += '<div class="sale-flash">NEW!</div>';
+       } else {
+         console.log(flds[7].trim().length);
+       }
 
        secondColumn  = '<div><a href="'+ detailString +'" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div>';
        secondColumn += '<div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + fields[0].replace(/\s+/g,'') + '</span></span></div><div class="line"></div>';
