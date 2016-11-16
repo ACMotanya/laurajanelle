@@ -767,8 +767,8 @@ function search()
 
           }
           document.getElementById("shopItems").innerHTML += html.join('');
-          $("#shopItems").prepend('<button style="display: block; bottommargin-sm" type="button" class="button button-3d button-mini button-rounded button-black" onclick="$(\'#shopItems\').empty(); windowHash(\''+oldhash+'\'); filterFunction2(\'APISTKLST\',\'\',\'\',\'\',\'\',\'\');">Close Search</button>');
         }
+        $("#shopItems").prepend('<button style="display: block; bottommargin-sm" type="button" class="button button-3d button-mini button-rounded button-black" onclick="$(\'#shopItems\').empty(); windowHash(\''+oldhash+'\'); filterFunction2(\'APISTKLST\',\'\',\'\',\'\',\'\',\'\');">Close Search</button>');
       }
     });
   }
