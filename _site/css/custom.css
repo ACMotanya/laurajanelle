@@ -22,6 +22,11 @@
 	margin: auto;
 }
 
+@media (min-width: 992px) {
+	.side-header #header {
+		width: 220px;
+	}
+}
 
 body.stretched #header.full-header.sticky-header .container {
 	box-shadow: 0px 3px 3px lightgrey;
