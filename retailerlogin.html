@@ -37,10 +37,9 @@ layout: login
 					 	           password: password},
 					 	    success: function(response) {
 					        if (response.replace(/\s+/g,'').length === 25) {
-										$.get("http://www.laurajanelle.com/phphelper/savecart/session.php?customer=" + username.toLowerCase() + "", function(answer){
-											console.log(typeof answer);
+										$.get("https://www.laurajanelle.com/phphelper/savecart/session.php?customer=" + username.toLowerCase() + "", function(answer){
 											if (answer === "0") {
-												$.get("http://www.laurajanelle.com/phphelper/savecart/session.php?customer=" + username.toLowerCase() + "&sessid=" + response + "");
+												$.get("https://www.laurajanelle.com/phphelper/savecart/session.php?customer=" + username.toLowerCase() + "&sessid=" + response + "");
 												session_no = response;
 							  				session_no = session_no.replace(/\s+/g,'');
 											  Cookies.set('session_no', session_no);

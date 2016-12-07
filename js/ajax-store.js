@@ -1400,7 +1400,7 @@ function whatLook(lookCode)
 
 
 //////////////////////////
-// Filter Function Test //
+// Filter Function      //
 //////////////////////////
 function filterFunction2(a,b,c,d,e,f)
 {
@@ -1427,6 +1427,13 @@ function filterFunction2(a,b,c,d,e,f)
         if (sortItems.indexOf(a[0].trim()) != sortItems.indexOf( b[0].trim() )) retVal= sortItems.indexOf( a[0].trim() ) > sortItems.indexOf( b[0].trim() )?1:-1;
         return retVal;
       });
+
+      //////////////////////////
+      // This is for when I am not blocking the new items
+      // linesPlus = linesPlus.slice((linesPlus.length-259), linesPlus.length);
+      // This is for when I am not blocking the new items
+      //////////////////////////
+
 
       $('#shopItems').empty();
       html = [];
