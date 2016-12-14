@@ -3,57 +3,113 @@ layout: sidebar
 title: Laura Janelle
 ---
 
+<style>
+div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
+  visibility: hidden;
+}
+</style>
+
+
 <link rel="stylesheet" type="text/css" href="{{ "/include/rs-plugin/css/settings.css" | prepend: site.baseurl }}" media="screen" />
 <link rel="stylesheet" type="text/css" href="{{ "/include/rs-plugin/css/layers.css" | prepend: site.baseurl }}">
 <link rel="stylesheet" type="text/css" href="{{ "/include/rs-plugin/css/navigation.css" | prepend: site.baseurl }}">
 
 
-<!--
-Content
-============================================= -->
-<section id="content">
-  <div class="content-wrap nobottompadding" >
-    <div class="container clearfix">
-      <div class="content center col-sm-12" style="margin: auto;">
-        <h1>THE WINTER 2017 LAUNCH IS HERE!</h1>
+    <!--
+    Content
+    ============================================= -->
+    <section id="content">
+      <div class="content-wrap nobottompadding" >
+        <div class="container clearfix">
+          <div class="content center col-sm-12">
+            <h1 class="winterindex">THE WINTER 2017 LAUNCH IS HERE!</h1>
+          </div>
+        </div>
+
+        <div class="row clearfix common-height">
+    			<div class="col-md-3 col-sm-6 dark center col-padding" style="background-color: #5C5C5C;">
+    				<div id="showDateAtlanta">
+    					<div class="counter counter-lined"> Atlanta</div>
+    					<h4>January 10-20</h4>
+              <a href="#" id="buttonShowInfo" onclick="$('#buttonShowInfo').click(toggleInfo('#showDateAtlanta', '#showInfoAtlanta'));"><h5 style="text-decoration: underline;">View Details</h5></a>
+    				</div>
+            <div id="showInfoAtlanta" style="display: none">
+              <address>
+              Atlanta Gift Mart, Bldg 2, #1801<br>
+              40 John Portman Boulevard, N.W.<br>
+              Atlanta, GA 30303<br>
+              <abbr title="Phone Number">PHONE:</abbr> (404) 260 6201<br>
+              <abbr title="Email Address"></abbr> atlanta@ivystone.com
+              </address>
+              <a href="#" id="buttonShowDate" onclick="$('#buttonShowDate').click(toggleInfo('#showInfoAtlanta', '#showDateAtlanta'));"><h5 style="text-decoration: underline;">Back</h5></a>
+    				</div>
+    			</div>
+
+
+    			<div class="col-md-3 col-sm-6 dark center col-padding" style="background-color: #828282;">
+    				<div id="showDatePhilly">
+    					<div class="counter counter-lined">Philadelphia</div>
+    					<h4>January 27-30</h4>
+              <a href="#" id="buttonShowInfo1" onclick="$('#buttonShowInfo1').click(toggleInfo('#showDatePhilly', '#showInfoPhilly'));"><h5 style="text-decoration: underline;">View Details</h5></a>
+    				</div>
+            <div id="showInfoPhilly" style="display: none">
+              <address>
+
+              301 Commerce Drive<br>
+              Exton, PA 19341<br>
+              <abbr title="Phone Number">PHONE:</abbr> (877) 466 7895<br>
+
+              </address>
+              <a href="#" id="buttonShowDate1" onclick="$('#buttonShowDate1').click(toggleInfo('#showInfoPhilly', '#showDatePhilly'));"><h5 style="text-decoration: underline;">Back</h5></a>
+    				</div>
+    			</div>
+
+
+    			<div class="col-md-3 col-sm-6 dark center col-padding" style="background-color: #ABABAB;">
+    				<div id="showDateDallas">
+    					<div class="counter counter-lined">Dallas</div>
+    					<h4>February 7-10</h4>
+              <a href="#" id="buttonShowInfo2" onclick="$('#buttonShowInfo2').click(toggleInfo('#showDateDallas', '#showInfoDallas'));"><h5 style="text-decoration: underline;">View Details</h5></a>
+    				</div>
+            <div id="showInfoDallas" style="display: none">
+              <address>
+                Dallas World Trade Center, #236<br>
+                2050 N Stemmons Freeway<br>
+                Dallas, TX 75207<br>
+                <abbr title="Phone Number">PHONE:</abbr> (214) 231 4256<br>
+                <abbr title="Email Address"></abbr> dallas@ivystone.com
+              </address>
+              <a href="#" id="buttonShowDate2" onclick="$('#buttonShowDate2').click(toggleInfo('#showInfoDallas', '#showDateDallas'));"><h5 style="text-decoration: underline;">Back</h5></a>
+    				</div>
+    			</div>
+
+
+
+    			<div class="col-md-3 col-sm-6 dark center col-padding" style="background-color: #C2C2C2;">
+    				<div id="showDateLasVegas">
+    					<div class="counter counter-lined">Las Vegas</div>
+    					<h4>February 17-20</h4>
+              <a href="#" id="buttonShowInfo3" onclick="$('#buttonShowInfo3').click(toggleInfo('#showDateLasVegas', '#showInfoLasVegas'));"><h5 style="text-decoration: underline;">View Details</h5></a>
+    				</div>
+            <div id="showInfoLasVegas" style="display: none">
+              <address>
+              World Market Center, Building C, Showroom 696<br>
+              455 S. Grand Central Pkwy<br>
+              Las Vegas, NV 89106<br>
+              <abbr title="Phone Number">PHONE:</abbr> (877) 466 6201<br>
+              <abbr title="Email Address"></abbr> atlanta@ivystone.com
+              </address>
+              <a href="#" id="buttonShowDate3" onclick="$('#buttonShowDate3').click(toggleInfo('#showInfoLasVegas', '#showDateLasVegas'));"><h5 style="text-decoration: underline;">Back</h5></a>
+    				</div>
+    			</div>
+    		</div>
       </div>
-    </div>
-    <div class="row clearfix common-height">
-			<div class="col-md-3 col-sm-6 dark center col-padding" style="background-color: #5C5C5C;">
-				<div>
-					<div class="counter counter-lined"> Atlanta</div>
-					<h4>January 10-20</h4>
-				</div>
-			</div>
-
-			<div class="col-md-3 col-sm-6 dark center col-padding" style="background-color: #828282;">
-				<div>
-					<div class="counter counter-lined">Philadelphia</div>
-					<h4>January 27-30</h4>
-				</div>
-			</div>
-
-			<div class="col-md-3 col-sm-6 dark center col-padding" style="background-color: #ABABAB;">
-				<div>
-					<div class="counter counter-lined">Dallas</div>
-					<h4>February 7-10</h4>
-				</div>
-			</div>
-
-			<div class="col-md-3 col-sm-6 dark center col-padding" style="background-color: #C2C2C2;">
-				<div>
-					<div class="counter counter-lined">Las Vegas</div>
-					<h4>February 17-20</h4>
-				</div>
-			</div>
-		</div>
-  </div>
-</section>
+    </section>
 
 
 
 
-<section id="slider" class="revslider-wrap clearfix">
+    <section id="slider" class="revslider-wrap clearfix">
 
 			<div id="rev_slider_108_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-alias="food-carousel80" style="margin:0px auto; background-color:#FFF; padding:0px; margin-top:0px; margin-bottom:0px;">
 				<!-- START REVOLUTION SLIDER 5.0.7 fullwidth mode -->
@@ -244,13 +300,11 @@ Content
 
 								 data-end="bytrigger"
 								data-lasttriggerstate="reset"
-								style="z-index: 5; min-width: 420px; max-width: 420px; max-width: 420px; max-width: 420px; white-space: normal;"><span class="foodcarousel-headline">Classic Bolognese</span><br/>
-					250g Spaghettis<br/>
-					500g of Mixed Minced Beef<br/>
-					3 Large Tomatoes
-					<hr  style="border-top: 1px solid #292e31;">
-					Chop everything up into small bits and put into a bowl. That was easy huh?<br/>
-					Enjoy this special dish brought to you by <a href="#" target="_blank">Canvas</a>.
+								style="z-index: 5; min-width: 420px; max-width: 420px; max-width: 420px; max-width: 420px; white-space: normal;"><span class="foodcarousel-headline">RGLB <BR>Complete your look with this collection of chic,
+                bold, and runway-esque magnetic cuffs! Each cuff is fashion forward and offers a closure of magnetic ease.
+                They feature vibin' colors and on point designs. Whichever cuff you choose, it will make an astounding statement to your outfit!
+					           <hr  style="border-top: 1px solid #292e31;">
+					      This fashion forward, mixed media magnetic focal bracelet has a value that is unbeatable, not to mention you will be making a 3x markup! She will love having the convenience of the signature engraved magnetic closure.
 							</div>
 
 							<!-- LAYER NR. 2 -->
@@ -324,13 +378,8 @@ Content
 
 								 data-end="bytrigger"
 								data-lasttriggerstate="reset"
-								style="z-index: 5; min-width: 420px; max-width: 420px; max-width: 420px; max-width: 420px; white-space: normal;"><span class="foodcarousel-headline">Cottage Cheese & Chives</span><br/>
-					15g Chives<br/>
-					100g Cottage Cheese<br/>
-					1 Bun
-					<hr  style="border-top: 1px solid #292e31;">
-					Chop everything up into small bits and put into a bowl. That was easy huh?<br/>
-					Enjoy this special dish brought to you by <a href="#" target="_blank">Canvas</a>.
+								style="z-index: 5; min-width: 420px; max-width: 420px; max-width: 420px; max-width: 420px; white-space: normal;"><span class="foodcarousel-headline">SLEEK</span><br/>
+					The value of this look is unbeatable, each piece features an eye-catching icon with bold Swarovski® crystals. You'll be making a 2-3x markup while she is receiving a timeless Swarovski® crystal at an unbeatable price! Not to mention, this look will serve her during many events.
 							</div>
 
 							<!-- LAYER NR. 2 -->
@@ -404,14 +453,8 @@ Content
 
 								 data-end="bytrigger"
 								data-lasttriggerstate="reset"
-								style="z-index: 5; min-width: 420px; max-width: 420px; max-width: 420px; max-width: 420px; white-space: normal;"><span class="foodcarousel-headline">Colorful Salad</span><br/>
-					250g Mixed Salad<br/>
-					50g Nuts<br/>
-					100g Beetroot<br/>
-					Your Favorite Dressing
-					<hr  style="border-top: 1px solid #292e31;">
-					Chop everything up into small bits and put into a bowl. That was easy huh?<br/>
-					Enjoy this special dish brought to you by <a href="#" target="_blank">Canvas</a>.
+								style="z-index: 5; min-width: 420px; max-width: 420px; max-width: 420px; max-width: 420px; white-space: normal;">enCHARMing<br>
+					The value of this look is unbeatable, each necklace features fun and exciting packaging. She is getting multiple styles per necklace, while you’ll be making a 3x markup! Not to mention, this look serves a broad demographic so all of your customers will be sure to find the perfect design.
 							</div>
 
 							<!-- LAYER NR. 2 -->
@@ -485,13 +528,9 @@ Content
 
 								 data-end="bytrigger"
 								data-lasttriggerstate="reset"
-								style="z-index: 5; min-width: 420px; max-width: 420px; max-width: 420px; max-width: 420px; white-space: normal;"><span class="foodcarousel-headline">It's Just Cornflakes</span><br/>
-					150ml Milk<br/>
-					50g Cornflakes<br/>
-					That's it!
+								style="z-index: 5; min-width: 420px; max-width: 420px; max-width: 420px; max-width: 420px; white-space: normal;"><span class="foodcarousel-headline">AURA<br/>
 					<hr  style="border-top: 1px solid #292e31;">
-					Chop everything up into small bits and put into a bowl. That was easy huh?<br/>
-					Enjoy this special dish brought to you by <a href="#" target="_blank">Canvas</a>.
+					This fashion forward mixed-media look of Aura has a value that is unbeatable and you'll be making a 2.5x markup, along with several opportunities to upsell this look, while she has the option to give one piece six varying scents. Not to mention, the look of Aura is unique and one of a kind. She can wear Aura in many ways with necklaces, earrings, bracelets and fashion tassels..
 							</div>
 
 							<!-- LAYER NR. 2 -->
@@ -565,13 +604,10 @@ Content
 
 								 data-end="bytrigger"
 								data-lasttriggerstate="reset"
-								style="z-index: 5; min-width: 420px; max-width: 420px; max-width: 420px; max-width: 420px; white-space: normal;"><span class="foodcarousel-headline">Tasty Muesli</span><br/>
-					150ml Milk<br/>
-					50g Granola<br/>
-					50g Blueberries
+								style="z-index: 5; min-width: 420px; max-width: 420px; max-width: 420px; max-width: 420px; white-space: normal;"><span class="foodcarousel-headline">iDentify</span><br/>
+
 					<hr  style="border-top: 1px solid #292e31;">
-					Chop everything up into small bits and put into a bowl. That was easy huh?<br/>
-					Enjoy this special dish brought to you by <a href="#" target="_blank">Canvas</a>.
+					The value of this look is unbeatable; each piece features an intricate, unique and trending design whether it is a lanyard, tassel or snap. You’ll be making a 2.5x markup, along with several opportunities to upsell this look. Not to mention, the look of Identify will serve her during numerous events and places she will go at an unbeatable price: the casino, at her corporate office or hospital job, or to school, these are just to name a few!.
 							</div>
 
 							<!-- LAYER NR. 2 -->
@@ -639,6 +675,15 @@ Content
 	<script type="text/javascript" src="{{ "/include/rs-plugin/js/extensions/revolution.extension.video.min.js" | prepend: site.baseurl }}"></script>
 
 	<script type="text/javascript">
+
+
+function toggleInfo (hide, show) {
+  $(hide).hide("fade", "fast");
+  $(show).show("fade", "slow");
+}
+
+
+
 		var tpj=jQuery;
 		var revapi108;
 		tpj(document).ready(function() {

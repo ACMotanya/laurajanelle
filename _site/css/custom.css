@@ -125,7 +125,34 @@ i.icon-search3 {
 	margin-bottom: 7px;
 }
 
+/*
+/* \\\\\\\\\\\\\\\\\\\
+ winter 2017 page styling
+/* \\\\\\\\\\\\\\\\\\\
+*/
 
+.winterindex {
+	font-size: 67px;
+	font-weight: 500;
+}
+
+@media (max-width: 991px) {
+	.winterindex {
+		font-size: 55px;
+	}
+}
+
+@media (max-width: 768px) {
+	.winterindex {
+		font-size: 47px;
+	}
+}
+
+@media (max-width: 468px) {
+	.winterindex {
+		font-size: 31px;
+	}
+}
 
 /*
 /* \\\\\\\\\\\\\\\\\\\
