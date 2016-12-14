@@ -7,6 +7,12 @@ title: Laura Janelle
 div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
   visibility: hidden;
 }
+.col-padding.date{
+  padding: 0px;
+}
+.toppadding-sm {
+  padding-top: 10px;
+}
 </style>
 
 
@@ -19,21 +25,23 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
     Content
     ============================================= -->
     <section id="content">
-      <div class="content-wrap nobottompadding" >
+      <div class="content-wrap nobottompadding" style="padding-top: 30px;">
         <div class="container clearfix">
           <div class="content center col-sm-12">
-            <h1 class="winterindex">THE WINTER 2017 LAUNCH IS HERE!</h1>
+            <h1 class="winterindex nobottommargin">THE WINTER 2017 LAUNCH IS HERE!</h1>
           </div>
         </div>
 
         <div class="row clearfix common-height">
-    			<div class="col-md-3 col-sm-6 dark center col-padding" style="background-color: #5C5C5C;">
-    				<div id="showDateAtlanta">
+    			<div id="showDateAtlanta" class="col-md-3 col-sm-6 dark center col-padding date" style="background-color: #5C5C5C;">
+    				<div>
     					<div class="counter counter-lined"> Atlanta</div>
-    					<h4>January 10-20</h4>
+    					<h4 class="nobottommargin">January 10-20</h4>
               <a href="#" id="buttonShowInfo" onclick="$('#buttonShowInfo').click(toggleInfo('#showDateAtlanta', '#showInfoAtlanta'));"><h5 style="text-decoration: underline;">View Details</h5></a>
     				</div>
-            <div id="showInfoAtlanta" style="display: none">
+    			</div>
+          <div id="showInfoAtlanta" style="display: none; background-color: #000000;" class="col-md-3 col-sm-6 dark center col-padding toppadding-sm">
+            <div>
               <address>
               Atlanta Gift Mart, Bldg 2, #1801<br>
               40 John Portman Boulevard, N.W.<br>
@@ -42,36 +50,38 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
               <abbr title="Email Address"></abbr> atlanta@ivystone.com
               </address>
               <a href="#" id="buttonShowDate" onclick="$('#buttonShowDate').click(toggleInfo('#showInfoAtlanta', '#showDateAtlanta'));"><h5 style="text-decoration: underline;">Back</h5></a>
-    				</div>
-    			</div>
+            </div>
+          </div>
 
 
-    			<div class="col-md-3 col-sm-6 dark center col-padding" style="background-color: #828282;">
-    				<div id="showDatePhilly">
+    			<div id="showDatePhilly" class="col-md-3 col-sm-6 dark center col-padding date" style="background-color: #828282;">
+    				<div>
     					<div class="counter counter-lined">Philadelphia</div>
-    					<h4>January 27-30</h4>
+    					<h4 class="nobottommargin">January 27-30</h4>
               <a href="#" id="buttonShowInfo1" onclick="$('#buttonShowInfo1').click(toggleInfo('#showDatePhilly', '#showInfoPhilly'));"><h5 style="text-decoration: underline;">View Details</h5></a>
     				</div>
-            <div id="showInfoPhilly" style="display: none">
+          </div>
+          <div id="showInfoPhilly" style="display: none; background-color: #000000;" class="col-md-3 col-sm-6 dark center col-padding toppadding-sm">
+            <div>
               <address>
-
               301 Commerce Drive<br>
               Exton, PA 19341<br>
               <abbr title="Phone Number">PHONE:</abbr> (877) 466 7895<br>
-
               </address>
               <a href="#" id="buttonShowDate1" onclick="$('#buttonShowDate1').click(toggleInfo('#showInfoPhilly', '#showDatePhilly'));"><h5 style="text-decoration: underline;">Back</h5></a>
     				</div>
     			</div>
 
 
-    			<div class="col-md-3 col-sm-6 dark center col-padding" style="background-color: #ABABAB;">
-    				<div id="showDateDallas">
+    			<div id="showDateDallas" class="col-md-3 col-sm-6 dark center col-padding date" style="background-color: #ABABAB;">
+    				<div>
     					<div class="counter counter-lined">Dallas</div>
-    					<h4>February 7-10</h4>
+    					<h4 class="nobottommargin">February 7-10</h4>
               <a href="#" id="buttonShowInfo2" onclick="$('#buttonShowInfo2').click(toggleInfo('#showDateDallas', '#showInfoDallas'));"><h5 style="text-decoration: underline;">View Details</h5></a>
     				</div>
-            <div id="showInfoDallas" style="display: none">
+          </div>
+          <div id="showInfoDallas" style="display: none; background-color: #000000;" class="col-md-3 col-sm-6 dark center col-padding toppadding-sm">
+            <div>
               <address>
                 Dallas World Trade Center, #236<br>
                 2050 N Stemmons Freeway<br>
@@ -85,13 +95,15 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
 
 
 
-    			<div class="col-md-3 col-sm-6 dark center col-padding" style="background-color: #C2C2C2;">
-    				<div id="showDateLasVegas">
+    			<div id="showDateLasVegas" class="col-md-3 col-sm-6 dark center col-padding date" style="background-color: #C2C2C2;">
+    				<div>
     					<div class="counter counter-lined">Las Vegas</div>
-    					<h4>February 17-20</h4>
+    					<h4 class="nobottommargin">February 17-20</h4>
               <a href="#" id="buttonShowInfo3" onclick="$('#buttonShowInfo3').click(toggleInfo('#showDateLasVegas', '#showInfoLasVegas'));"><h5 style="text-decoration: underline;">View Details</h5></a>
     				</div>
-            <div id="showInfoLasVegas" style="display: none">
+          </div>
+          <div id="showInfoLasVegas" style="display: none; background-color: #000000;" class="col-md-3 col-sm-6 dark center col-padding toppadding-sm">
+            <div>
               <address>
               World Market Center, Building C, Showroom 696<br>
               455 S. Grand Central Pkwy<br>
@@ -678,8 +690,8 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
 
 
 function toggleInfo (hide, show) {
-  $(hide).hide("fade", "fast");
-  $(show).show("fade", "slow");
+  $(hide).hide("slideup");
+  $(show).show("slideup");
 }
 
 
@@ -695,7 +707,7 @@ function toggleInfo (hide, show) {
 					jsFileLocation:"{{site.baseurl }}/include/rs-plugin/js/",
 				//	sliderLayout:"fullwidth",
 					dottedOverlay:"none",
-					delay:4000,
+					delay:5000,
 					navigation: {
 						keyboardNavigation:"off",
 						keyboard_direction: "horizontal",
