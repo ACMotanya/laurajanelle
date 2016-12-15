@@ -8,10 +8,20 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
   display: none;
 }
 .col-padding.date{
-  padding: 0px;
+  padding: 10px;
 }
 .toppadding-sm {
   padding-top: 10px;
+}
+.row.vertical-divider > div[class^="col-"] {
+  border-left: 3px solid #000;
+  border-right: 3px solid #000;
+}
+.row.vertical-divider div[class^="col-"]:first-child {
+  border-left: none;
+}
+.row.vertical-divider div[class^="col-"]:last-child {
+  border-right: none;
 }
 </style>
 
@@ -28,18 +38,26 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
       <div class="content-wrap nobottompadding" style="padding-top: 30px;">
         <div class="container clearfix">
           <div class="content center col-sm-12">
-            <h1 class="winterindex nobottommargin">THE WINTER 2017 LAUNCH IS HERE!</h1>
+            <h1 class="winterindex bottommargin-sm">THE WINTER 2017 LAUNCH IS HERE!</h1>
           </div>
         </div>
 
-        <div class="row clearfix common-height">
-    			<div id="showDateAtlanta" class="col-md-3 col-sm-6 dark center col-padding date" style="background-color: #5C5C5C;">
+        <div class="row vertical-divider clearfix common-height">
+    			<div id="showDateAtlanta" class="col-md-3 col-sm-6 center col-padding date">
     				<div>
-    					<div class="counter counter-lined"> Atlanta</div>
-    					<h4 class="nobottommargin">January 10-20</h4>
-              <a href="#" id="buttonShowInfo" onclick="$('#buttonShowInfo').click(toggleInfo('#showDateAtlanta', '#showInfoAtlanta'));"><h5 style="text-decoration: underline;">View Details</h5></a>
+    					<h3 class="nobottommargin"> Atlanta</h3>
+    					<h4 class="nobottommargin">January 10-17</h4>
+              <!--     <a href="#" id="buttonShowInfo" onclick="$('#buttonShowInfo').click(toggleInfo('#showDateAtlanta', '#showInfoAtlanta'));"><h5 style="text-decoration: underline;">View Details</h5></a> -->
+              <a type="button" class="button button-small" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="<center><address>
+              Atlanta Gift Mart, Bldg 2, #1801<br>
+              40 John Portman Boulevard, N.W.<br>
+              Atlanta, GA 30303<br>
+              <abbr title='Phone Number'>PHONE:</abbr> (404) 260 6201<br>
+              <abbr title='Email Address'></abbr> atlanta@ivystone.com
+            </address></center>" data-original-title="" title="">Details</a>
     				</div>
     			</div>
+          <!--
           <div id="showInfoAtlanta" style="display: none; background-color: #000000;" class="col-md-3 col-sm-6 dark center col-padding toppadding-sm">
             <div>
               <address>
@@ -52,15 +70,22 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
               <a href="#" id="buttonShowDate" onclick="$('#buttonShowDate').click(toggleInfo('#showInfoAtlanta', '#showDateAtlanta'));"><h5 style="text-decoration: underline;">Back</h5></a>
             </div>
           </div>
+          -->
 
-
-    			<div id="showDatePhilly" class="col-md-3 col-sm-6 dark center col-padding date" style="background-color: #828282;">
+    			<div id="showDatePhilly" class="col-md-3 col-sm-6 center col-padding date" >
     				<div>
-    					<div class="counter counter-lined">Philadelphia</div>
-    					<h4 class="nobottommargin">January 27-30</h4>
-              <a href="#" id="buttonShowInfo1" onclick="$('#buttonShowInfo1').click(toggleInfo('#showDatePhilly', '#showInfoPhilly'));"><h5 style="text-decoration: underline;">View Details</h5></a>
+    					<h3 class="nobottommargin">Philadelphia</h3>
+    					<h4 class="nobottommargin">January 6-9</h4>
+            <!--  <a href="#" id="buttonShowInfo1" onclick="$('#buttonShowInfo1').click(toggleInfo('#showDatePhilly', '#showInfoPhilly'));"><h5 style="text-decoration: underline;">View Details</h5></a> -->
+            <a type="button" class="button button-small" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="<center><address>
+            301 Commerce Drive<br>
+            Exton, PA 19341<br>
+            <abbr title='Phone Number'>PHONE:</abbr> (877) 466 7895<br>
+            </address></center>" data-original-title="" title="">Details</a>
     				</div>
           </div>
+
+          <!--
           <div id="showInfoPhilly" style="display: none; background-color: #000000;" class="col-md-3 col-sm-6 dark center col-padding toppadding-sm">
             <div>
               <address>
@@ -71,15 +96,24 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
               <a href="#" id="buttonShowDate1" onclick="$('#buttonShowDate1').click(toggleInfo('#showInfoPhilly', '#showDatePhilly'));"><h5 style="text-decoration: underline;">Back</h5></a>
     				</div>
     			</div>
+          -->
 
-
-    			<div id="showDateDallas" class="col-md-3 col-sm-6 dark center col-padding date" style="background-color: #ABABAB;">
+    			<div id="showDateDallas" class="col-md-3 col-sm-6 center col-padding date" >
     				<div>
-    					<div class="counter counter-lined">Dallas</div>
-    					<h4 class="nobottommargin">February 7-10</h4>
-              <a href="#" id="buttonShowInfo2" onclick="$('#buttonShowInfo2').click(toggleInfo('#showDateDallas', '#showInfoDallas'));"><h5 style="text-decoration: underline;">View Details</h5></a>
+    					<h3 class="nobottommargin">Dallas</h3>
+    					<h4 class="nobottommargin">January 18-24</h4>
+              <!-- <a href="#" id="buttonShowInfo2" onclick="$('#buttonShowInfo2').click(toggleInfo('#showDateDallas', '#showInfoDallas'));"><h5 style="text-decoration: underline;">View Details</h5></a> -->
+              <a type="button" class="button button-small" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="<center><address>
+                Dallas World Trade Center, #236<br>
+                2050 N Stemmons Freeway<br>
+                Dallas, TX 75207<br>
+                <abbr title='Phone Number'>PHONE:</abbr> (214) 231 4256<br>
+                <abbr title='Email Address'></abbr> dallas@ivystone.com
+              </address></center>" data-original-title="" title="">Details</a>
     				</div>
           </div>
+
+          <!--
           <div id="showInfoDallas" style="display: none; background-color: #000000;" class="col-md-3 col-sm-6 dark center col-padding toppadding-sm">
             <div>
               <address>
@@ -92,16 +126,25 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
               <a href="#" id="buttonShowDate2" onclick="$('#buttonShowDate2').click(toggleInfo('#showInfoDallas', '#showDateDallas'));"><h5 style="text-decoration: underline;">Back</h5></a>
     				</div>
     			</div>
+          -->
 
 
-
-    			<div id="showDateLasVegas" class="col-md-3 col-sm-6 dark center col-padding date" style="background-color: #C2C2C2;">
+    			<div id="showDateLasVegas" class="col-md-3 col-sm-6 center col-padding date">
     				<div>
-    					<div class="counter counter-lined">Las Vegas</div>
-    					<h4 class="nobottommargin">February 17-20</h4>
-              <a href="#" id="buttonShowInfo3" onclick="$('#buttonShowInfo3').click(toggleInfo('#showDateLasVegas', '#showInfoLasVegas'));"><h5 style="text-decoration: underline;">View Details</h5></a>
+    					<h3 class="nobottommargin">Las Vegas</h3>
+    					<h4 class="nobottommargin">January 22-26</h4>
+              <!-- <a href="#" id="buttonShowInfo3" onclick="$('#buttonShowInfo3').click(toggleInfo('#showDateLasVegas', '#showInfoLasVegas'));"><h5 style="text-decoration: underline;">View Details</h5></a> -->
+              <a type="button" class="button button-small" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="<center><address>
+              World Market Center, Building C, Showroom 696<br>
+              455 S. Grand Central Pkwy<br>
+              Las Vegas, NV 89106<br>
+              <abbr title='Phone Number'>PHONE:</abbr> (877) 466 6201<br>
+              <abbr title='Email Address'></abbr> atlanta@ivystone.com
+              </address></center>" data-original-title="" title="">Details</a>
     				</div>
           </div>
+
+          <!--
           <div id="showInfoLasVegas" style="display: none; background-color: #000000;" class="col-md-3 col-sm-6 dark center col-padding toppadding-sm">
             <div>
               <address>
@@ -114,6 +157,8 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
               <a href="#" id="buttonShowDate3" onclick="$('#buttonShowDate3').click(toggleInfo('#showInfoLasVegas', '#showDateLasVegas'));"><h5 style="text-decoration: underline;">Back</h5></a>
     				</div>
     			</div>
+          -->
+
     		</div>
       </div>
     </section>
