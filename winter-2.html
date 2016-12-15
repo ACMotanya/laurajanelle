@@ -4,25 +4,25 @@ title: Laura Janelle
 ---
 
 <style>
-div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
-  display: none;
-}
-.col-padding.date{
-  padding: 10px;
-}
-.toppadding-sm {
-  padding-top: 10px;
-}
-.row.vertical-divider > div[class^="col-"] {
-  border-left: 3px solid #000;
-  border-right: 3px solid #000;
-}
-.row.vertical-divider div[class^="col-"]:first-child {
-  border-left: none;
-}
-.row.vertical-divider div[class^="col-"]:last-child {
-  border-right: none;
-}
+  div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
+    display: none;
+  }
+  .col-padding.date {
+    padding: 10px 0 0 0;
+  }
+  .toppadding-sm {
+    padding-top: 10px;
+  }
+  .row.vertical-divider > div[class^="col-"] {
+    border-left: 3px solid #666;
+    border-right: 3px solid #666;
+  }
+  .row.vertical-divider div[class^="col-"]:first-child {
+    border-left: none;
+  }
+  .row.vertical-divider div[class^="col-"]:last-child {
+    border-right: none;
+  }
 </style>
 
 
@@ -47,62 +47,122 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
     				<div>
     					<h3 class="nobottommargin"> Atlanta</h3>
     					<h4 class="nobottommargin">January 10-17</h4>
-              <!--     <a href="#" id="buttonShowInfo" onclick="$('#buttonShowInfo').click(toggleInfo('#showDateAtlanta', '#showInfoAtlanta'));"><h5 style="text-decoration: underline;">View Details</h5></a> -->
+              <a data-toggle="modal" data-target="#myModal"><h5 style="text-decoration: underline;">View Details</h5></a>
+
+
+              <!-- Modal -->
+  						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  							<div class="modal-dialog modal-sm">
+  								<div class="modal-body">
+  									<div class="modal-content">
+  										<div class="modal-header">
+  											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  											<h4 class="modal-title" id="myModalLabel">Atlanta</h4>
+  										</div>
+  										<div class="modal-body">
+  											<address>
+                        Atlanta Gift Mart, Bldg 2, #1801<br>
+                        40 John Portman Boulevard, N.W.<br>
+                        Atlanta, GA 30303<br>
+                        <abbr title='Phone Number'>PHONE:</abbr> (404) 260 6201<br>
+                        <abbr title='Email Address'></abbr> atlanta@ivystone.com
+                        </address>
+  										</div>
+  										<div class="modal-footer">
+  											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+  										</div>
+  									</div>
+  								</div>
+  							</div>
+  						</div>
+              <!--
               <a type="button" class="button button-small" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="<center><address>
               Atlanta Gift Mart, Bldg 2, #1801<br>
               40 John Portman Boulevard, N.W.<br>
               Atlanta, GA 30303<br>
               <abbr title='Phone Number'>PHONE:</abbr> (404) 260 6201<br>
               <abbr title='Email Address'></abbr> atlanta@ivystone.com
-            </address></center>" data-original-title="" title="">Details</a>
+              </address></center>" data-original-title="" title="">Details</a>
+              -->
     				</div>
     			</div>
-          <!--
-          <div id="showInfoAtlanta" style="display: none; background-color: #000000;" class="col-md-3 col-sm-6 dark center col-padding toppadding-sm">
-            <div>
-              <address>
-              Atlanta Gift Mart, Bldg 2, #1801<br>
-              40 John Portman Boulevard, N.W.<br>
-              Atlanta, GA 30303<br>
-              <abbr title="Phone Number">PHONE:</abbr> (404) 260 6201<br>
-              <abbr title="Email Address"></abbr> atlanta@ivystone.com
-              </address>
-              <a href="#" id="buttonShowDate" onclick="$('#buttonShowDate').click(toggleInfo('#showInfoAtlanta', '#showDateAtlanta'));"><h5 style="text-decoration: underline;">Back</h5></a>
-            </div>
-          </div>
-          -->
+
 
     			<div id="showDatePhilly" class="col-md-3 col-sm-6 center col-padding date" >
     				<div>
     					<h3 class="nobottommargin">Philadelphia</h3>
     					<h4 class="nobottommargin">January 6-9</h4>
-            <!--  <a href="#" id="buttonShowInfo1" onclick="$('#buttonShowInfo1').click(toggleInfo('#showDatePhilly', '#showInfoPhilly'));"><h5 style="text-decoration: underline;">View Details</h5></a> -->
+              <a data-toggle="modal" data-target="#myModal1"><h5 style="text-decoration: underline;">View Details</h5></a>
+
+
+              <!-- Modal -->
+              <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                  <div class="modal-body">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Philadelphia</h4>
+                      </div>
+                      <div class="modal-body">
+                        <address>
+                        301 Commerce Drive<br>
+                        Exton, PA 19341<br>
+                        <abbr title='Phone Number'>PHONE:</abbr> (877) 466 7895<br>
+                        </address>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <!--
             <a type="button" class="button button-small" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="<center><address>
             301 Commerce Drive<br>
             Exton, PA 19341<br>
             <abbr title='Phone Number'>PHONE:</abbr> (877) 466 7895<br>
             </address></center>" data-original-title="" title="">Details</a>
+            -->
     				</div>
           </div>
 
-          <!--
-          <div id="showInfoPhilly" style="display: none; background-color: #000000;" class="col-md-3 col-sm-6 dark center col-padding toppadding-sm">
-            <div>
-              <address>
-              301 Commerce Drive<br>
-              Exton, PA 19341<br>
-              <abbr title="Phone Number">PHONE:</abbr> (877) 466 7895<br>
-              </address>
-              <a href="#" id="buttonShowDate1" onclick="$('#buttonShowDate1').click(toggleInfo('#showInfoPhilly', '#showDatePhilly'));"><h5 style="text-decoration: underline;">Back</h5></a>
-    				</div>
-    			</div>
-          -->
 
     			<div id="showDateDallas" class="col-md-3 col-sm-6 center col-padding date" >
     				<div>
     					<h3 class="nobottommargin">Dallas</h3>
     					<h4 class="nobottommargin">January 18-24</h4>
-              <!-- <a href="#" id="buttonShowInfo2" onclick="$('#buttonShowInfo2').click(toggleInfo('#showDateDallas', '#showInfoDallas'));"><h5 style="text-decoration: underline;">View Details</h5></a> -->
+              <a data-toggle="modal" data-target="#myModal2"><h5 style="text-decoration: underline;">View Details</h5></a>
+
+
+              <!-- Modal -->
+              <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                  <div class="modal-body">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Dallas</h4>
+                      </div>
+                      <div class="modal-body">
+                        <address>
+                        301 Commerce Drive<br>
+                        Exton, PA 19341<br>
+                        <abbr title='Phone Number'>PHONE:</abbr> (877) 466 7895<br>
+                        </address>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <!--
               <a type="button" class="button button-small" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="<center><address>
                 Dallas World Trade Center, #236<br>
                 2050 N Stemmons Freeway<br>
@@ -110,30 +170,45 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
                 <abbr title='Phone Number'>PHONE:</abbr> (214) 231 4256<br>
                 <abbr title='Email Address'></abbr> dallas@ivystone.com
               </address></center>" data-original-title="" title="">Details</a>
+            -->
     				</div>
           </div>
-
-          <!--
-          <div id="showInfoDallas" style="display: none; background-color: #000000;" class="col-md-3 col-sm-6 dark center col-padding toppadding-sm">
-            <div>
-              <address>
-                Dallas World Trade Center, #236<br>
-                2050 N Stemmons Freeway<br>
-                Dallas, TX 75207<br>
-                <abbr title="Phone Number">PHONE:</abbr> (214) 231 4256<br>
-                <abbr title="Email Address"></abbr> dallas@ivystone.com
-              </address>
-              <a href="#" id="buttonShowDate2" onclick="$('#buttonShowDate2').click(toggleInfo('#showInfoDallas', '#showDateDallas'));"><h5 style="text-decoration: underline;">Back</h5></a>
-    				</div>
-    			</div>
-          -->
 
 
     			<div id="showDateLasVegas" class="col-md-3 col-sm-6 center col-padding date">
     				<div>
     					<h3 class="nobottommargin">Las Vegas</h3>
     					<h4 class="nobottommargin">January 22-26</h4>
-              <!-- <a href="#" id="buttonShowInfo3" onclick="$('#buttonShowInfo3').click(toggleInfo('#showDateLasVegas', '#showInfoLasVegas'));"><h5 style="text-decoration: underline;">View Details</h5></a> -->
+              <a data-toggle="modal" data-target="#myModal3"><h5 style="text-decoration: underline;">View Details</h5></a>
+
+
+              <!-- Modal -->
+              <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                  <div class="modal-body">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Las Vegas</h4>
+                      </div>
+                      <div class="modal-body">
+                        <address>
+                        World Market Center, Building C, Showroom 696<br>
+                        455 S. Grand Central Pkwy<br>
+                        Las Vegas, NV 89106<br>
+                        <abbr title='Phone Number'>PHONE:</abbr> (877) 466 6201<br>
+                        <abbr title='Email Address'></abbr> atlanta@ivystone.com
+                        </address>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <!--
               <a type="button" class="button button-small" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="<center><address>
               World Market Center, Building C, Showroom 696<br>
               455 S. Grand Central Pkwy<br>
@@ -141,23 +216,9 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
               <abbr title='Phone Number'>PHONE:</abbr> (877) 466 6201<br>
               <abbr title='Email Address'></abbr> atlanta@ivystone.com
               </address></center>" data-original-title="" title="">Details</a>
+            -->
     				</div>
           </div>
-
-          <!--
-          <div id="showInfoLasVegas" style="display: none; background-color: #000000;" class="col-md-3 col-sm-6 dark center col-padding toppadding-sm">
-            <div>
-              <address>
-              World Market Center, Building C, Showroom 696<br>
-              455 S. Grand Central Pkwy<br>
-              Las Vegas, NV 89106<br>
-              <abbr title="Phone Number">PHONE:</abbr> (877) 466 6201<br>
-              <abbr title="Email Address"></abbr> atlanta@ivystone.com
-              </address>
-              <a href="#" id="buttonShowDate3" onclick="$('#buttonShowDate3').click(toggleInfo('#showInfoLasVegas', '#showDateLasVegas'));"><h5 style="text-decoration: underline;">Back</h5></a>
-    				</div>
-    			</div>
-          -->
 
     		</div>
       </div>
@@ -165,19 +226,19 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
 
 
 
-
+    <!--
     <section id="slider" class="revslider-wrap clearfix">
 
 			<div id="rev_slider_108_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-alias="food-carousel80" style="margin:0px auto; background-color:#FFF; padding:0px; margin-top:0px; margin-bottom:0px;">
-				<!-- START REVOLUTION SLIDER 5.0.7 fullwidth mode -->
+				<!-- START REVOLUTION SLIDER 5.0.7 fullwidth mode --><!--
 				<div id="rev_slider_108_1" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.0.7">
-					<ul>	<!-- SLIDE  -->
+					<ul>	<!-- SLIDE  --><!--
 						<li data-index="rs-325" data-transition="fade" data-slotamount="7"  data-easein="default" data-easeout="default" data-masterspeed="300"  data-thumb="{{site.baseurl }}/img/slider/saltrock-thumb.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="The Healthy Bowl" data-description="">
-							<!-- MAIN IMAGE -->
+							<!-- MAIN IMAGE --><!--
 							<img src="{{site.baseurl }}/img/slider/saltrock.jpg"  alt=""  data-bgposition="center center" data-bgfit="contain" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
 							<!-- LAYERS -->
 
-							<!-- LAYER NR. 1 -->
+							<!-- LAYER NR. 1 --><!--
 							<div class="tp-caption FoodCarousel-Content   tp-resizeme"
 								 id="slide-325-layer-3"
 								 data-x="center" data-hoffset=""
@@ -205,7 +266,7 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
 					Enjoy this special dish brought to you by <a href="#" target="_blank">Canvas</a>.
 							</div>
 
-							<!-- LAYER NR. 2 -->
+							<!-- LAYER NR. 2 --><!--
 							<div class="tp-caption FoodCarousel-Button rev-btn "
 								 id="slide-325-layer-1"
 								 data-x="center" data-hoffset=""
@@ -228,7 +289,7 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
 								style="z-index: 6; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box; color: #444;"><i class="icon-file-alt" style="font-size: 21px; float: left;margin-top:0px;margin-right:10px;"></i> MORE INFO
 							</div>
 
-							<!-- LAYER NR. 3 -->
+							<!-- LAYER NR. 3 --><!--
 							<div class="tp-caption FoodCarousel-CloseButton rev-btn  tp-resizeme"
 								 id="slide-325-layer-5"
 								 data-x="441"
@@ -252,13 +313,13 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
 								style="z-index: 7; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box; color:#444"><i class="icon-remove"></i>
 							</div>
 						</li>
-						<!-- SLIDE  -->
+						<!-- SLIDE  --><!--
 						<li data-index="rs-326" data-transition="fade" data-slotamount="7"  data-easein="default" data-easeout="default" data-masterspeed="300"  data-thumb="{{site.baseurl }}/img/slider/mantra-thumb.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Spicy Chili Soup" data-description="">
-							<!-- MAIN IMAGE -->
+							<!-- MAIN IMAGE --><!--
 							<img src="{{site.baseurl }}/img/slider/mantra.jpg"  alt=""  data-bgposition="center center" data-bgfit="contain" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
 							<!-- LAYERS -->
 
-							<!-- LAYER NR. 1 -->
+							<!-- LAYER NR. 1 --><!--
 							<div class="tp-caption FoodCarousel-Content   tp-resizeme"
 								 id="slide-326-layer-3"
 								 data-x="center" data-hoffset=""
@@ -286,7 +347,7 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
 					Enjoy this special dish brought to you by <a href="#" target="_blank">Canvas</a>.
 							</div>
 
-							<!-- LAYER NR. 2 -->
+							<!-- LAYER NR. 2 --><!--
 							<div class="tp-caption FoodCarousel-Button rev-btn "
 								 id="slide-326-layer-1"
 								 data-x="center" data-hoffset=""
@@ -309,7 +370,7 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
 								style="z-index: 6; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box; color: #444;"><i class="icon-file-alt" style="font-size: 21px; float: left;margin-top:0px;margin-right:10px;"></i> MORE INFO
 							</div>
 
-							<!-- LAYER NR. 3 -->
+							<!-- LAYER NR. 3 --><!--
 							<div class="tp-caption FoodCarousel-CloseButton rev-btn  tp-resizeme"
 								 id="slide-326-layer-5"
 								 data-x="441"
@@ -333,13 +394,13 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
 								style="z-index: 7; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box; color:#444"><i class="icon-remove"></i>
 							</div>
 						</li>
-						<!-- SLIDE  -->
+						<!-- SLIDE  --><!--
 						<li data-index="rs-327" data-transition="fade" data-slotamount="7"  data-easein="default" data-easeout="default" data-masterspeed="300"  data-thumb="{{site.baseurl }}/img/slider/rglb-thumb.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Classic Bolognese" data-description="">
-							<!-- MAIN IMAGE -->
+							<!-- MAIN IMAGE --><!--
 							<img src="{{site.baseurl }}/img/slider/rglb.jpg"  alt=""  data-bgposition="center center" data-bgfit="contain" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
 							<!-- LAYERS -->
 
-							<!-- LAYER NR. 1 -->
+							<!-- LAYER NR. 1 --><!--
 							<div class="tp-caption FoodCarousel-Content   tp-resizeme"
 								 id="slide-327-layer-3"
 								 data-x="center" data-hoffset=""
@@ -364,7 +425,7 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
 					      This fashion forward, mixed media magnetic focal bracelet has a value that is unbeatable, not to mention you will be making a 3x markup! She will love having the convenience of the signature engraved magnetic closure.
 							</div>
 
-							<!-- LAYER NR. 2 -->
+							<!-- LAYER NR. 2 --><!--
 							<div class="tp-caption FoodCarousel-Button rev-btn "
 								 id="slide-327-layer-1"
 								 data-x="center" data-hoffset=""
@@ -387,7 +448,7 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
 								style="z-index: 6; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box; color: #444;"><i class="icon-file-alt" style="font-size: 21px; float: left;margin-top:0px;margin-right:10px;"></i> MORE INFO
 							</div>
 
-							<!-- LAYER NR. 3 -->
+							<!-- LAYER NR. 3 --><!--
 							<div class="tp-caption FoodCarousel-CloseButton rev-btn  tp-resizeme"
 								 id="slide-327-layer-5"
 								 data-x="441"
@@ -411,13 +472,13 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
 								style="z-index: 7; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box; color:#444"><i class="icon-remove"></i>
 							</div>
 						</li>
-						<!-- SLIDE  -->
+						<!-- SLIDE  --><!--
 						<li data-index="rs-328" data-transition="fade" data-slotamount="7"  data-easein="default" data-easeout="default" data-masterspeed="300"  data-thumb="{{site.baseurl }}/img/slider/sleek-thumb.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Cottage Cheese &amp; Chives" data-description="">
-							<!-- MAIN IMAGE -->
+							<!-- MAIN IMAGE --><!--
 							<img src="{{site.baseurl }}/img/slider/sleek.jpg"  alt=""  data-bgposition="center center" data-bgfit="contain" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
 							<!-- LAYERS -->
 
-							<!-- LAYER NR. 1 -->
+							<!-- LAYER NR. 1 --><!--
 							<div class="tp-caption FoodCarousel-Content   tp-resizeme"
 								 id="slide-328-layer-3"
 								 data-x="center" data-hoffset=""
@@ -439,7 +500,7 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
 					The value of this look is unbeatable, each piece features an eye-catching icon with bold Swarovski® crystals. You'll be making a 2-3x markup while she is receiving a timeless Swarovski® crystal at an unbeatable price! Not to mention, this look will serve her during many events.
 							</div>
 
-							<!-- LAYER NR. 2 -->
+							<!-- LAYER NR. 2 --><!--
 							<div class="tp-caption FoodCarousel-Button rev-btn "
 								 id="slide-328-layer-1"
 								 data-x="center" data-hoffset=""
@@ -462,7 +523,7 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
 								style="z-index: 6; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box; color: #444;"><i class="icon-file-alt" style="font-size: 21px; float: left;margin-top:0px;margin-right:10px;"></i> MORE INFO
 							</div>
 
-							<!-- LAYER NR. 3 -->
+							<!-- LAYER NR. 3 --><!--
 							<div class="tp-caption FoodCarousel-CloseButton rev-btn  tp-resizeme"
 								 id="slide-328-layer-5"
 								 data-x="441"
@@ -486,13 +547,13 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
 								style="z-index: 7; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box; color:#444"><i class="icon-remove"></i>
 							</div>
 						</li>
-						<!-- SLIDE  -->
+						<!-- SLIDE  --><!--
 						<li data-index="rs-329" data-transition="fade" data-slotamount="7"  data-easein="default" data-easeout="default" data-masterspeed="300"  data-thumb="{{site.baseurl }}/img/slider/encharming-thumb.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Colorful Salad" data-description="">
-							<!-- MAIN IMAGE -->
+							<!-- MAIN IMAGE --><!--
 							<img src="{{site.baseurl }}/img/slider/encharming.jpg"  alt=""  data-bgposition="center center" data-bgfit="contain" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
-							<!-- LAYERS -->
+							<!-- LAYERS --><!--
 
-							<!-- LAYER NR. 1 -->
+							<!-- LAYER NR. 1 --><!--
 							<div class="tp-caption FoodCarousel-Content   tp-resizeme"
 								 id="slide-329-layer-3"
 								 data-x="center" data-hoffset=""
@@ -514,7 +575,7 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
 					The value of this look is unbeatable, each necklace features fun and exciting packaging. She is getting multiple styles per necklace, while you’ll be making a 3x markup! Not to mention, this look serves a broad demographic so all of your customers will be sure to find the perfect design.
 							</div>
 
-							<!-- LAYER NR. 2 -->
+							<!-- LAYER NR. 2 --><!--
 							<div class="tp-caption FoodCarousel-Button rev-btn "
 								 id="slide-329-layer-1"
 								 data-x="center" data-hoffset=""
@@ -537,7 +598,7 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
 								style="z-index: 6; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box; color: #444;"><i class="icon-file-alt" style="font-size: 21px; float: left;margin-top:0px;margin-right:10px;"></i> MORE INFO
 							</div>
 
-							<!-- LAYER NR. 3 -->
+							<!-- LAYER NR. 3 --><!--
 							<div class="tp-caption FoodCarousel-CloseButton rev-btn  tp-resizeme"
 								 id="slide-329-layer-5"
 								 data-x="441"
@@ -561,13 +622,13 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
 								style="z-index: 7; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box; color:#444"><i class="icon-remove"></i>
 							</div>
 						</li>
-						<!-- SLIDE  -->
+						<!-- SLIDE  --><!--
 						<li data-index="rs-330" data-transition="fade" data-slotamount="7"  data-easein="default" data-easeout="default" data-masterspeed="300"  data-thumb="{{site.baseurl }}/img/slider/aura-thumb.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Its Just Cornflakes" data-description="">
-							<!-- MAIN IMAGE -->
+							<!-- MAIN IMAGE --><!--
 							<img src="{{site.baseurl }}/img/slider/aura.jpg"  alt=""  data-bgposition="center center" data-bgfit="contain" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
 							<!-- LAYERS -->
 
-							<!-- LAYER NR. 1 -->
+							<!-- LAYER NR. 1 --><!--
 							<div class="tp-caption FoodCarousel-Content   tp-resizeme"
 								 id="slide-330-layer-3"
 								 data-x="center" data-hoffset=""
@@ -590,7 +651,7 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
 					This fashion forward mixed-media look of Aura has a value that is unbeatable and you'll be making a 2.5x markup, along with several opportunities to upsell this look, while she has the option to give one piece six varying scents. Not to mention, the look of Aura is unique and one of a kind. She can wear Aura in many ways with necklaces, earrings, bracelets and fashion tassels..
 							</div>
 
-							<!-- LAYER NR. 2 -->
+							<!-- LAYER NR. 2 --><!--
 							<div class="tp-caption FoodCarousel-Button rev-btn "
 								 id="slide-330-layer-1"
 								 data-x="center" data-hoffset=""
@@ -613,7 +674,7 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
 								style="z-index: 6; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box; color: #444;"><i class="icon-file-alt" style="font-size: 21px; float: left;margin-top:0px;margin-right:10px;"></i> MORE INFO
 							</div>
 
-							<!-- LAYER NR. 3 -->
+							<!-- LAYER NR. 3 --><!--
 							<div class="tp-caption FoodCarousel-CloseButton rev-btn  tp-resizeme"
 								 id="slide-330-layer-5"
 								 data-x="441"
@@ -637,13 +698,13 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
 								style="z-index: 7; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box; color:#444"><i class="icon-remove"></i>
 							</div>
 						</li>
-						<!-- SLIDE  -->
+						<!-- SLIDE  --><!--
 						<li data-index="rs-331" data-transition="fade" data-slotamount="7"  data-easein="default" data-easeout="default" data-masterspeed="300"  data-thumb="{{site.baseurl }}/img/slider/identify-thumb.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Tasty Muesli" data-description="">
-							<!-- MAIN IMAGE -->
+							<!-- MAIN IMAGE --><!--
 							<img src="{{site.baseurl }}/img/slider/identify.jpg"  alt=""  data-bgposition="center center" data-bgfit="contain" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
 							<!-- LAYERS -->
 
-							<!-- LAYER NR. 1 -->
+							<!-- LAYER NR. 1 --><!--
 							<div class="tp-caption FoodCarousel-Content   tp-resizeme"
 								 id="slide-331-layer-3"
 								 data-x="center" data-hoffset=""
@@ -667,7 +728,7 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
 					The value of this look is unbeatable; each piece features an intricate, unique and trending design whether it is a lanyard, tassel or snap. You’ll be making a 2.5x markup, along with several opportunities to upsell this look. Not to mention, the look of Identify will serve her during numerous events and places she will go at an unbeatable price: the casino, at her corporate office or hospital job, or to school, these are just to name a few!.
 							</div>
 
-							<!-- LAYER NR. 2 -->
+							<!-- LAYER NR. 2 --><!--
 							<div class="tp-caption FoodCarousel-Button rev-btn "
 								 id="slide-331-layer-1"
 								 data-x="center" data-hoffset=""
@@ -690,7 +751,7 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
 								style="z-index: 6; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box; color: #444;"><i class="icon-file-alt" style="font-size: 21px; float: left;margin-top:0px;margin-right:10px;"></i> MORE INFO
 							</div>
 
-							<!-- LAYER NR. 3 -->
+							<!-- LAYER NR. 3 --><!--
 							<div class="tp-caption FoodCarousel-CloseButton rev-btn  tp-resizeme"
 								 id="slide-331-layer-5"
 								 data-x="441"
@@ -716,15 +777,200 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
 						</li>
 					</ul>
 					<div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>
-				</div><!-- END REVOLUTION SLIDER -->
+				</div><!-- END REVOLUTION SLIDER --><!--
 			</div>
 
 		</section><!-- #content end -->
 
 
+
+
+    <!-- Slider
+    ============================================= -->
+    <section id="slider" class="revslider-wrap">
+
+      <div id="rev_slider_287_1_wrapper" class="rev_slider_wrapper" data-alias="better-youtube-gallery" style="padding:0px;">
+        <!-- START REVOLUTION SLIDER 5.1.4 fullscreen mode -->
+        <div id="rev_slider_287_1" class="rev_slider" style="display:none;" data-version="5.1.4">
+          <ul>
+
+            <!-- SLIDE 5 -->
+            <li data-index="rs-38" data-fstransition="fade" data-slotamount="7" data-easein="default" data-easeout="default" data-masterspeed="1500" data-rotate="0" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off" data-title="Intro">
+              <!-- MAIN IMAGE -->
+
+                <img src="{{ site.baseurl }}/img/auramodel.jpg" alt="Aura Model" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
+                <!-- LAYERS -->
+
+              <!-- LAYER NR. 1 -->
+              <div class="tp-caption tp-resizeme"
+                data-x="['left','left','right','right']" data-hoffset="['100','60','20','390']"
+                data-y="['middle','top','top','top']" data-voffset="['-20','130','150','90']"
+                data-fontsize="['25','25','22','17']"
+                data-lineheight="['25','25','22','22']"
+                data-width="none"
+                data-height="none"
+                data-whitespace="nowrap"
+                data-transform_idle="o:1;"
+                data-visibility="['on','on','on','off']"
+
+                data-transform_in="z:0;rX:0deg;rY:0;rZ:0;sX:1.5;sY:1.5;skX:0;skY:0;opacity:0;s:1500;e:Power3.easeOut;"
+                data-transform_out="opacity:0;s:1000;s:1000;"
+                data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                data-start="500"
+                data-splitin="none"
+                data-splitout="none"
+                data-basealign="slide"
+                data-responsive_offset="on"
+                style="z-index: 13; font-family: Bodoni-Sans, 'Oranienbaum';"> <img src="{{ site.baseurl }}/img/ZEN-logo.png"><br>Gold Toned Cage<br>Crystal Necklace<br/>
+                $19.99<br/>
+              </div>
+            </li>
+
+
+            <!-- SLIDE 1 -->
+            <li data-index="rs-34" data-transition="fade" data-slotamount="7"  data-easein="default" data-easeout="default" data-masterspeed="1500" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="Intro" data-description="">
+              <!-- MAIN IMAGE -->
+              <img src="{{ site.baseurl }}/img/ljhero-2.jpg" alt="Sleek Model" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
+              <!-- LAYERS -->
+
+              <!-- LAYER NR. 1 -->
+              <div class="tp-caption tp-resizeme"
+                data-x="['left','left','left','left']" data-hoffset="['100','100','30','41']"
+                data-y="['middle','top','top','middle']" data-voffset="['-15','130','130','50']"
+                data-fontsize="['25','25','22','17']"
+                data-lineheight="['25','25','22','22']"
+                data-width="none"
+                data-height="none"
+                data-whitespace="nowrap"
+                data-transform_idle="o:1;"
+                data-transform_in="z:0;rX:0deg;rY:0;rZ:0;sX:1.5;sY:1.5;skX:0;skY:0;opacity:0;s:1500;e:Power3.easeOut;"
+                data-transform_out="opacity:0;s:1000;s:1000;"
+                data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                data-start="500"
+                data-splitin="none"
+                data-splitout="none"
+                data-basealign="slide"
+                data-visibility="['on','on','on','off']"
+
+                data-responsive_offset="on"
+                style="z-index: 2; font-family: Bodoni-Sans, 'Oranienbaum';"> <img src="{{ site.baseurl }}/img/SLK-logo.png"><br>Earring Drop<br/>
+                Aquamarine Blue<br/>
+                $21.99<br/>
+              </div>
+            </li>
+
+            <!-- SLIDE 2 -->
+            <li data-index="rs-35" data-fstransition="fade" data-slotamount="7"  data-easein="default" data-easeout="default" data-masterspeed="1500"  data-rotate="0" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="Intro">
+              <!-- MAIN IMAGE -->
+              <img src="{{ site.baseurl }}/img/rglbhero-2.jpg" alt="RGLB Model" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
+              <!-- LAYERS -->
+
+              <!-- LAYER NR. 1 -->
+              <div class="tp-caption tp-resizeme"
+                data-x="['left','left','left','left']" data-hoffset="['150','100','30','0']"
+                data-y="['middle','top','top','bottom']" data-voffset="['-10','130','130','30']"
+                data-fontsize="['25','25','22','17']"
+                data-lineheight="['25','25','22','22']"
+                data-width="none"
+                data-height="none"
+                data-whitespace="nowrap"
+                data-transform_idle="o:1;"
+                data-visibility="['on','on','on','off']"
+
+                data-transform_in="z:0;rX:0deg;rY:0;rZ:0;sX:1.5;sY:1.5;skX:0;skY:0;opacity:0;s:1500;e:Power3.easeOut;"
+                data-transform_out="opacity:0;s:1000;s:1000;"
+                data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                data-start="500"
+                data-splitin="none"
+                data-splitout="none"
+                data-basealign="slide"
+                data-responsive_offset="on"
+                style="z-index: 5; min-width: 219px; max-width: 219px; min-height: 161px; max-height: 161px; white-space: normal; font-family: Bodoni-Sans, 'Oranienbaum';"> <img src="{{ site.baseurl }}/img/GLB-logo.png"><br>Magnetic Focal<br/>
+                Bracelet<br/>
+                $19.99
+              </div>
+            </li>
+
+            <!-- SLIDE 3 -->
+            <li data-index="rs-36" data-fstransition="fade" data-slotamount="7" data-easein="default" data-easeout="default" data-masterspeed="1500" data-rotate="0" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="Intro">
+              <!-- MAIN IMAGE -->
+              <img src="{{ site.baseurl }}/img/encharminghero.jpg" alt="enCHARMing Model" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
+              <!-- LAYERS -->
+
+              <!-- LAYER NR. 1 -->
+              <div class="tp-caption tp-resizeme"
+                data-x="['left','left','left','left']" data-hoffset="['100','100','35','0']"
+                data-y="['middle','top','top','bottom']" data-voffset="['-27','130','130','00']"
+                data-fontsize="['25','25','22','17']"
+                data-lineheight="['25','25','22','22']"
+                data-width="none"
+                data-height="none"
+                data-whitespace="nowrap"
+                data-transform_idle="o:1;"
+                data-transform_in="z:0;rX:0deg;rY:0;rZ:0;sX:1.5;sY:1.5;skX:0;skY:0;opacity:0;s:1500;e:Power3.easeOut;"
+                data-transform_out="opacity:0;s:1000;s:1000;"
+                data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                data-start="500"
+                data-splitin="none"
+                data-splitout="none"
+                data-basealign="slide"
+                data-visibility="['on','on','on','off']"
+
+                data-responsive_offset="on"
+                style="z-index: 9; font-family: Bodoni-Sans, 'Oranienbaum';"> <img src="{{ site.baseurl }}/img/ENC-logo.png"><br>Charm Necklace<br/>
+                $9.99
+              </div>
+            </li>
+
+            <!-- SLIDE 4 -->
+            <li data-index="rs-37" data-fstransition="fade" data-slotamount="7" data-easein="default" data-easeout="default" data-masterspeed="1500" data-rotate="0" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off" data-title="Intro">
+              <!-- MAIN IMAGE -->
+              <img src="{{ site.baseurl }}/img/identifyhero.jpg" alt="Identify Model" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
+              <!-- LAYERS -->
+
+              <!-- LAYER NR. 1 -->
+              <div class="tp-caption tp-resizeme"
+                data-x="['left','left','right','right']" data-hoffset="['150','80','92','0']"
+                data-y="['middle','top','top','top']" data-voffset="['0','130','150','0']"
+                data-fontsize="['25','25','22','17']"
+                data-lineheight="['25','25','22','22']"
+                data-width="none"
+                data-height="none"
+                data-whitespace="nowrap"
+                data-transform_idle="o:1;"
+                data-visibility="['on','on','on','off']"
+
+                data-transform_in="z:0;rX:0deg;rY:0;rZ:0;sX:1.5;sY:1.5;skX:0;skY:0;opacity:0;s:1500;e:Power3.easeOut;"
+                data-transform_out="opacity:0;s:1000;s:1000;"
+                data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                data-start="500"
+                data-splitin="none"
+                data-splitout="none"
+                data-basealign="slide"
+                data-responsive_offset="on"
+                style="z-index: 12; font-family: Bodoni-Sans, 'Oranienbaum';"> <img src="{{ site.baseurl }}/img/IDT-logo.png"> <br>Lanyard &amp; Snap<br/>
+                $15.99
+              </div>
+            </li>
+
+          </ul>
+
+          <div class="tp-static-layers">
+
+
+
+          </div>
+
+          <div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>
+        </div>
+      </div><!-- END REVOLUTION SLIDER -->
+
+    </section>
+
   <script type="text/javascript" src="{{ "/include/rs-plugin/js/jquery.themepunch.tools.min.js" | prepend: site.baseurl }}"></script>
 	<script type="text/javascript" src="{{ "/include/rs-plugin/js/jquery.themepunch.revolution.min.js" | prepend: site.baseurl }}"></script>
-
+  <script type="text/javascript" src="{{ "/include/rs-plugin/js/extensions/revolution.extension.parallax.min.js" | prepend: site.baseurl }}"></script>
+  <script type="text/javascript" src="{{ "/include/rs-plugin/js/extensions/revolution.extension.slideanims.min.js" | prepend: site.baseurl }}"></script>
 	<script type="text/javascript" src="{{ "/include/rs-plugin/js/extensions/revolution.extension.carousel.min.js" | prepend: site.baseurl }}"></script>
 	<script type="text/javascript" src="{{ "/include/rs-plugin/js/extensions/revolution.extension.actions.min.js" | prepend: site.baseurl }}"></script>
 	<script type="text/javascript" src="{{ "/include/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js" | prepend: site.baseurl }}"></script>
@@ -734,13 +980,92 @@ div.tp-thumbs.tp-span-wrapper.outer-bottom.erinyen {
 	<script type="text/javascript">
 
 
-function toggleInfo (hide, show) {
-  $(hide).hide("slideup");
-  $(show).show("slideup");
-}
+$( "div#logo a img" ).addClass( "divcenter" );
 
+var tpj = jQuery;
+var revapi287;
+tpj(document).ready(function() {
+  if (tpj("#rev_slider_287_1").revolution == undefined) {
+    revslider_showDoubleJqueryError("#rev_slider_287_1");
+  } else {
+    revapi287 = tpj("#rev_slider_287_1").show().revolution({
+      sliderType: "standard",
+      jsFileLocation: "../include/rs-plugin/js/",
+    //  sliderLayout: "fullscreen",
+      dottedOverlay: "none",
+      delay: 5000,
+      navigation: {
+        keyboardNavigation: "off",
+        keyboard_direction: "horizontal",
+        mouseScrollNavigation: "off",
+        onHoverStop: "off",
+        touch: {
+          touchenabled: "on",
+          swipe_threshold: 75,
+          swipe_min_touches: 50,
+          swipe_direction: "horizontal",
+          drag_block_vertical: false
+        },
+        arrows: {
+          style: "uranus",
+          enable: true,
+          hide_onmobile: true,
+          hide_under: 778,
+          hide_onleave: true,
+          hide_delay: 200,
+          hide_delay_mobile: 1200,
+          tmp: '',
+          left: {
+            h_align: "left",
+            v_align: "center",
+            h_offset: 20,
+            v_offset: 0
+          },
+          right: {
+            h_align: "right",
+            v_align: "center",
+            h_offset: 20,
+            v_offset: 0
+          }
+        }
+      },
+      responsiveLevels: [1240, 991, 778, 480],
+      gridwidth: [1240, 1024, 778, 480],
+      gridheight:[868,768,960,720],
+      lazyType: "none",
+//      parallax: {
+//        type: "scroll",
+//        origo: "enterpoint",
+//        speed: 400,
+//        levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 46, 47, 48, 49, 50, 51, 55],
+//        type: "scroll",
+//    },
+      shadow: 0,
+      spinner: "off",
+      stopLoop: "off",     // change back to off
+      stopAfterLoops: -1,  // change back to -1
+      stopAtSlide: -1,     // change back to -1
 
-
+      shuffle: "on",     // change back to on
+      autoHeight: "on",
+      fullScreenAutoWidth: "off",
+      fullScreenAlignForce: "off",
+      fullScreenOffsetContainer: "",
+      disableProgressBar: "off",
+      hideThumbsOnMobile: "off",
+      hideSliderAtLimit: 0,
+      hideCaptionAtLimit: 0,
+      hideAllCaptionAtLilmit: 0,
+      debugMode: false,
+      fallbacks: {
+        simplifyAll: "off",
+        nextSlideOnWindowFocus: "off",
+        disableFocusListener: false,
+      }
+    });
+  }
+}); /*ready*/
+/*
 		var tpj=jQuery;
 		var revapi108;
 		tpj(document).ready(function() {
