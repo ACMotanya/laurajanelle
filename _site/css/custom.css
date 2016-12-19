@@ -132,25 +132,25 @@ i.icon-search3 {
 */
 
 .winterindex {
-	font-size: 67px;
+	font-size: 55px;
 	font-weight: 500;
 }
 
 @media (max-width: 991px) {
 	.winterindex {
-		font-size: 55px;
+		font-size: 43px;
 	}
 }
 
 @media (max-width: 768px) {
 	.winterindex {
-		font-size: 47px;
+		font-size: 35px;
 	}
 }
 
 @media (max-width: 468px) {
 	.winterindex {
-		font-size: 31px;
+		font-size: 19px;
 	}
 }
 
