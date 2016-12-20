@@ -1574,10 +1574,11 @@ function shopPage()
 function priceFilter() {
   var priceRangefrom = parseFloat($("#min").val());
   var priceRangeto = parseFloat($("#max").val());
-
+  $('.ui-group').trigger( 'change');
   $container.isotope({
     transitionDuration: '0.65s',
     filter: function() {
+
       if( jQuery(this).is(':visible')) {
         if( jQuery(this).find('.product-price').find('ins').length > 0 ) {
           price = jQuery(this).find('.product-price ins').text();
@@ -1591,10 +1592,10 @@ function priceFilter() {
   });
 }
 //.page_link:visible'
-$(function() {
-  $container = $('#shopItems');
+//$(function() {
+//  $container = $('#shopItems');
 //      $container.isotope('destroy');
-  $container.imagesLoaded(function(){
+//  $container.imagesLoaded(function(){
     $(function(){
       $container = $('#shopItems');
       var $output = $('#output');
@@ -1614,9 +1615,9 @@ $(function() {
         $output.text( comboFilter );
       });
     });
-  });
+//  });
 
-});
+//});
 
 function getComboFilter( filters ) {
   var i = 0;

@@ -134,6 +134,7 @@ i.icon-search3 {
 .winterindex {
 	font-size: 55px;
 	font-weight: 500;
+	color: #222;
 }
 
 @media (max-width: 991px) {
@@ -203,6 +204,11 @@ div.container.clearfix video.about {
 	/* Meet Us Styles
 /* \\\\\\\\\\\\\\\\\\\*/
 .boss-man {
+  margin:auto;
+  width:66.6666%;
+}
+
+.bott-man {
   margin:auto;
   width:66.6666%;
 }
