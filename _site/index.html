@@ -55,7 +55,7 @@
     <title>Laura Janelle</title>
     <style>
     body {
-      cursor: pointer;
+  /*    cursor: pointer; */
     }
 
     @media (max-width: 468px) {
@@ -63,10 +63,21 @@
         top: 3px;
       }
     }
+    #box-link {
+  		position: absolute;
+  		bottom: 1px;
+
+  		width: 453px;
+  		height: 490px;
+  		background-color: transparent;
+  
+      z-index: 99;
+    }
     </style>
   </head>
 
-  <body class="stretched" onclick="location.href='retailerlogin';">
+
+  <body class="stretched">
     <div id="wrapper" class="clearfix">
 
       <!-- Header
@@ -157,6 +168,27 @@
                   <img src="img/ZEN-logo.png" data-ww="['125px','125px','75px','50px']" data-hh="['125px','125px','75px','50px']">&nbsp;
                   The Scent of Happiness
                 </div>
+
+                <!-- LAYER NR. 2 -->
+                <div class="tp-caption uppercase"
+                  data-x="['middle','middle','middle','middle']" data-hoffset="['0','0','0','0']"
+                  data-y="['bottom','bottom','bottom','bottom']" data-voffset="['0','0','0','0']"
+
+                  data-visibility="['on','on','on','on']"
+                  data-width="660"
+                  data-whitespace="normal"
+                  data-transform_idle="o:1;"
+                  data-transform_in="z:0;rX:0deg;rY:0;rZ:0;sX:1.5;sY:1.5;skX:0;skY:0;opacity:0;s:1500;e:Power3.easeOut;"
+                  data-transform_out="opacity:0;s:1000;s:1000;"
+                  data-start="500"
+                  data-splitin="none"
+                  data-splitout="none"
+
+                  data-responsive_offset="on"
+
+                  style="z-index: 30;">
+                  <a id="box-link" href="retailerlogin" onclick="location.href='retailerlogin';"></a>
+                </div>
               </li>
 
             </ul>
@@ -234,7 +266,7 @@
                 data-startslide="0"
                 data-endslide="9"
 
-                style="z-index: 0; white-space: nowrap; font-size: 21px; line-height: 22px; font-weight: 400; color: rgba(255, 255, 255, 1.00);background-color:rgba(0, 0, 0, .80);padding:6px 10px 4px 11px;border-radius:30px 30px 30px 30px;"><i class="icon-facebook"></i>
+                style="z-index: 31; white-space: nowrap; font-size: 21px; line-height: 22px; font-weight: 400; color: rgba(255, 255, 255, 1.00);background-color:rgba(0, 0, 0, .80);padding:6px 10px 4px 11px;border-radius:30px 30px 30px 30px;"><i class="icon-facebook"></i>
               </a>
 
               <!-- LAYER NR. 5 -->
@@ -261,7 +293,7 @@
                 data-startslide="0"
                 data-endslide="9"
 
-                style="z-index: 0; white-space: nowrap; font-size: 11px; line-height: 24px; font-weight: 400; color: rgba(255, 255, 255, 1.00);background-color:rgba(0, 0, 0, .80);padding:6px 10px 4px 11px;border-radius:30px 30px 30px 30px;"><i class="icon-twitter"></i>
+                style="z-index: 32; white-space: nowrap; font-size: 11px; line-height: 24px; font-weight: 400; color: rgba(255, 255, 255, 1.00);background-color:rgba(0, 0, 0, .80);padding:6px 10px 4px 11px;border-radius:30px 30px 30px 30px;"><i class="icon-twitter"></i>
               </a>
 
               <!-- LAYER NR. 7 target="_blank" -->
@@ -288,7 +320,7 @@
                 data-startslide="0"
                 data-endslide="9"
 
-                style="z-index: 7; white-space: nowrap; font-size: 14px; line-height: 23px; font-weight: 400; color: rgba(255, 255, 255, 1.00);background-color:rgba(0, 0, 0, .80);padding:6px 10px 4px 11px;border-radius:30px 30px 30px 30px;"><i class="icon-instagram"></i>
+                style="z-index: 33; white-space: nowrap; font-size: 14px; line-height: 23px; font-weight: 400; color: rgba(255, 255, 255, 1.00);background-color:rgba(0, 0, 0, .80);padding:6px 10px 4px 11px;border-radius:30px 30px 30px 30px;"><i class="icon-instagram"></i>
               </a>
 
               <!-- LAYER NR. 8 target="_blank" -->
@@ -315,7 +347,7 @@
                 data-startslide="0"
                 data-endslide="9"
 
-                style="z-index: 7; white-space: nowrap; font-size: 17px; line-height: 22px; font-weight: 400; color: rgba(255, 255, 255, 1.00);background-color:rgba(0, 0, 0, .80);padding:6px 10px 4px 11px;border-radius:30px 30px 30px 30px;"><i class="icon-pinterest"></i>
+                style="z-index: 34; white-space: nowrap; font-size: 17px; line-height: 22px; font-weight: 400; color: rgba(255, 255, 255, 1.00);background-color:rgba(0, 0, 0, .80);padding:6px 10px 4px 11px;border-radius:30px 30px 30px 30px;"><i class="icon-pinterest"></i>
               </a>
 
               <!-- LAYER NR. 8 target="_blank" -->
@@ -342,7 +374,7 @@
                 data-startslide="0"
                 data-endslide="9"
 
-                style="z-index: 7; white-space: nowrap; font-size: 12px; line-height: 22px; font-weight: 400; color: rgba(255, 255, 255, 1.00);background-color:rgba(0, 0, 0, .80);padding:6px 10px 4px 11px;border-radius:30px 30px 30px 30px;"><i class="icon-linkedin"></i>
+                style="z-index: 35; white-space: nowrap; font-size: 12px; line-height: 22px; font-weight: 400; color: rgba(255, 255, 255, 1.00);background-color:rgba(0, 0, 0, .80);padding:6px 10px 4px 11px;border-radius:30px 30px 30px 30px;"><i class="icon-linkedin"></i>
               </a>
 
             </div>
