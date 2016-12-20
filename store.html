@@ -6,6 +6,13 @@ title: Store - Laura Janelle
 #cart, #checkout, #invoices, #profile, #orders, #shop, #detail-view, #faq, #customerservice {
   display: none;
 }
+@media (min-width: 992px) {
+  .Fixed {
+    position: fixed;
+    overflow-y: auto;
+    height: 50vh;
+  }
+}
 </style>
 
   		<!-- Content
@@ -18,7 +25,7 @@ title: Store - Laura Janelle
 
               <!-- Sidebar
     					============================================= -->
-    					<div class="sidebar nobottommargin">
+    					<div class="sidebar nobottommargin Fixed">
     						<div class="sidebar-widgets-wrap">
     							<h4>SHOP CATEGORIES</h4>
                   <div class="widget clearfix">

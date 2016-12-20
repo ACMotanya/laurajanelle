@@ -1608,7 +1608,7 @@ $(function() {
         var comboFilter = getComboFilter( filters );
 
         $container.isotope({
-          transitionDuration: '0.65s',
+        //  transitionDuration: '0.15s',
           filter: comboFilter
          });
         $output.text( comboFilter );
