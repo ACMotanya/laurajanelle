@@ -16,6 +16,7 @@ var head;
 var item;
 var lines;
 var min;
+var mantra = ["10375", "10376", "10377", "10378", "10379", "10380", "10381", "10382"];
 var max;
 var numberOfOrders;
 var newCustomerNumber;
@@ -413,18 +414,23 @@ function detailView()
 
            pics += '<div class="slide" data-thumb="../ljimages/' + fields[0] + '-sm.png"><a href="../ljimages/' + fields[0] + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="../ljimages/' + fields[0] + '-md.png" alt="' + fields[1] + '"></span></a></div>';
        if (fields[2] === "ENC" && stock_no !== "CD103" && stock_no !== "10300A" || fields[2] === "GLB" && stock_no === "34737029" && stock_no !== "10700A" && stock_no !== "10700B" && stock_no !== "10700C" && stock_no !== "10700D"  && stock_no !== "PIL107")  {
-           pics += '<div class="slide" data-thumb="../packaging/' + fields[0] + '-sm.JPG"><a href="../packaging/' + fields[0] + '-lg.JPG" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="../packaging/' + fields[0] + '-md.JPG" alt="' + fields[1] + '"></span></a></div>';
+           pics += '<div class="slide" data-thumb="../packaging/' + fields[0] + '-sm.png"><a href="../packaging/' + fields[0] + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="../packaging/' + fields[0] + '-md.png" alt="' + fields[1] + '"></span></a></div>';
        } else if (fields[2] === "GLB" && stock_no !== "CD107" && stock_no >= 10701 && stock_no <= 10748) {
            pics += '<div class="slide" data-thumb="../backs/' + fields[0] + 'bk-sm.png"><a href="../backs/' + fields[0] + 'bk-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="../backs/' + fields[0] + 'bk-md.png" alt="' + fields[1] + '"></span></a></div>';
+       } else if ( mantra.includes(stock_no) ) {
+           pics += '<div class="slide" data-thumb="../packaging/' + fields[0] + '-sm.png"><a href="../packaging/' + fields[0] + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="../packaging/' + fields[0] + '-md.png" alt="' + fields[1] + '"></span></a></div>';
        }
            pics += '</div></div></div>';
        if (fields[7].trim().length === 3) {
          pics += '<div class="sale-flash">NEW!</div>';
-       } else {
-         console.log(flds[7].trim().length);
        }
 
-       secondColumn  = '<div><a href="'+ detailString +'" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div>';
+       secondColumn  = '<div><a href="'+ detailString +'" title="Brand Logo" class="hidden-xs">';
+       if ( mantra.includes(stock_no) ) {
+         secondColumn += '<img class="image_fade" src="../img/MAN-logo.png" alt="Brand Logo"></a></div>';
+       } else {
+         secondColumn += '<img class="image_fade" src="../img/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div>';
+       }
        secondColumn += '<div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + fields[0].replace(/\s+/g,'') + '</span></span></div><div class="line"></div>';
        secondColumn += '<div class="product-price col_one_third" style="font-size: 16px; font-weight: 400;"> <ins>COST:&nbsp;' + fields[4] + '</ins></div><div class="col_one_third hidden-xs" style="top: 0px; margin: 0px;">MIN: 1</div>';
        if (stock_no !== "CD111" && stock_no !== "CD103" && stock_no !== "CD105" && stock_no !== "CD107" && stock_no !== "CD100" && stock_no !== "11100A" && stock_no !== "10000A" && stock_no !== "10300A" && stock_no !== "10500A" && stock_no !== "10700A" && stock_no !== "10700B" && stock_no !== "10700C" && stock_no !== "10700D" && stock_no !== "PIL107" && stock_no !== "34737029" )  {
@@ -770,23 +776,24 @@ function search()
 
 ///////////////// Leave in until McPhate changes the fields for the SearchAPI call put this back after changes -->  fillShop3(data);
         oldhash = window.location.hash;
-        windowHash("shop");
+        windowHash("search");
         lines = response.split("\n");
+        console.log( lines );
         lines.shift();
         linesPlus = [];
         for (i=0; i<lines.length - 1; i++) {
           linesPlus.push(lines[i].split("|"));
         }
-        linesPlus.sort( function( a, b ) {
-          retVal=0;
-          if (sortItems.indexOf(a[0].trim()) != sortItems.indexOf( b[0].trim() )) retVal= sortItems.indexOf( a[0].trim() ) > sortItems.indexOf( b[0].trim() )?1:-1;
-          return retVal;
-        });
+        //linesPlus.sort( function( a, b ) {
+        //  retVal=0;
+        //  if (sortItems.indexOf(a[0].trim()) != sortItems.indexOf( b[0].trim() )) retVal= sortItems.indexOf( a[0].trim() ) > sortItems.indexOf( b[0].trim() )?1:-1;
+        //  return retVal;
+        //});
         // lines[1]+ are data lines
-        $('#shopItems').empty();
+        $('#searchDiv').empty();
         html = [];
         if ( lines.length <= 1) {
-          document.getElementById("shopItems").innerHTML += '<h1>There are no results</h1>';
+          document.getElementById("searchDiv").innerHTML += '<h1>There are no results</h1>';
         } else {
           for (i=0; i<linesPlus.length; i++) {
             flds = linesPlus[i];
@@ -799,9 +806,9 @@ function search()
             html.push(prod);
 
           }
-          document.getElementById("shopItems").innerHTML += html.join('');
+          document.getElementById("searchDiv").innerHTML += html.join('');
         }
-        $("#shopItems").prepend('<button style="display: block; bottommargin-sm" type="button" class="button button-3d button-mini button-rounded button-black" onclick="$(\'#shopItems\').empty(); windowHash(\''+oldhash+'\'); filterFunction2(\'APISTKLST\',\'\',\'\',\'\',\'\',\'\');">Close Search</button>');
+        $("#searchDiv").prepend('<button style="display: block; bottommargin-sm" type="button" class="button button-3d button-mini button-rounded button-black" onclick="$(\'#searchDiv\').empty(); windowHash(\''+oldhash+'\');">Close Search</button>');
       }
     });
   }
@@ -1463,7 +1470,7 @@ function filterFunction2(a,b,c,d,e,f)
 
       //////////////////////////
       // This is for when I am not blocking the new items
-      // linesPlus = linesPlus.slice((linesPlus.length-259), linesPlus.length);
+      // LinesPlus = linesPlus.slice((linesPlus.length-259), linesPlus.length);
       // This is for when I am not blocking the new items
       //////////////////////////
 
@@ -1596,7 +1603,7 @@ function priceFilter() {
 //  $container = $('#shopItems');
 //      $container.isotope('destroy');
 //  $container.imagesLoaded(function(){
-    $(function(){
+    $(function goFilters(){
       $container = $('#shopItems');
       var $output = $('#output');
 
@@ -1827,6 +1834,10 @@ function whichPage()
     case '#customerservice' :
       $('#content div div section').hide();
       $('#customerservice').show();
+      break;
+    case '#search' :
+      $('#content div div section').hide();
+      $('#search').show();
       break;
     default :
       $('#content div div section').hide();
