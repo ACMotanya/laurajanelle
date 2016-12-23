@@ -1,0 +1,30 @@
+{
+  "name": "laurajanelle",
+  "version": "1.0.0",
+  "description": "gift industry fashion company",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ACMotanya/cousin-op.git"
+  },
+  "keywords": [
+    "laurajanelle"
+  ],
+  "author": "Ace",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ACMotanya/cousin-op/issues"
+  },
+  "homepage": "https://github.com/ACMotanya/cousin-op#readme",
+  "devDependencies": {
+    "browser-sync": "^2.18.5",
+    "cssnano": "^3.9.1",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-util": "^3.0.7"
+  }
+}

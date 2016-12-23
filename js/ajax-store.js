@@ -400,7 +400,7 @@ function detailView()
   $.ajax({
     type: "GET",
     url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
-    data: {request_id: "APISTKDTL", stock_no: stock_no},
+    data: {request_id: "APISTKDTL", stock_no: stock_no, session_no: session_no},
     success: function(response) {
       console.log(response);
       lines = response.split("\n");
@@ -1512,7 +1512,7 @@ function quickView(clicked_id)
   jQuery.ajax({
     type: "GET",
     url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
-    data: {request_id: "APISTKDTL", stock_no: stock_no},
+    data: {request_id: "APISTKDTL", stock_no: stock_no, session_no: session_no},
     success: function(response) {
       lines = response.split("\n");
       fields = lines[1].split("|");

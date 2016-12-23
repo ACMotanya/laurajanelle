@@ -14,7 +14,11 @@ url: https://www.laurajanelle.com
 
 #baseurl: "/cousin-op"
 
-
+exclude:
+  - package.json
+  - node_modules
+  - gulpfile.js
+  - oldhtml
 
 # Footer settings
 footer: Laura Janelle
