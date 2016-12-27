@@ -1,29 +1,40 @@
-var breadtitle;
+
 var cartheader;
 var cartitems;
 var cartQty;
 var collection;
 var country;
 var countrylines;
-var cust_name;
 var detailViewQty;
 var fields;
 var filters = {};
 var flds;
 var fldsArray = { "data": []};
 var fldsArray_json;
-var head;
 var item;
 var lines;
-var min;
 var mantra = ["10375", "10376", "10377", "10378", "10379", "10380", "10381", "10382"];
-var max;
+var backImages = [
+  "10707", "10712", "10710", "10703",
+"10704", "10711", "10701", "10705", "10702", "10706", "10708",
+"10709","11349", "11350", "11351", "11352", "11353", "11354",
+"11355", "11356", "11357", "11358", "11359", "11360", "11361",
+"11362", "11363", "11364", "11365", "11366", "11367", "11368",
+"11369", "11370", "11371", "11372", "11373", "11374", "11375",
+"11376", "11377", "11378", "11379", "11380", "11381", "11382",
+"11383", "11384", "10713", "10714", "10721", "10715", "10900A",
+"10716", "10723", "10717", "10718", "10725", "10719", "10720",
+"10727", "10722", "10729", "10730", "10724", "10731", "10732",
+"10726", "10733", "10734", "10728", "10735", "10736", "10743",
+"10744", "10745", "10746", "10747", "10748", "10737", "10738",
+"10739", "10740", "10741", "10742", "11337", "11338", "11339",
+"11340", "11341", "11342", "11343", "11344", "11345", "11346",
+"11347", "11348"];
 var numberOfOrders;
 var newCustomerNumber;
 var newNumberOfOrders;
 var neworder;
 var orderAmt;
-var pictureSlider;
 var prices = [];
 var prod;
 var searchField = document.getElementById('searchvalue');
@@ -31,7 +42,6 @@ var searchTerm;
 var secondColumn;
 var session_no;
 var shippingAddresses = [];
-var shippingCost;
 var shoppingCart;
 var sortItems = [
   "11300B", "11349", "11350", "11351", "11352", "11353", "11354",
@@ -200,6 +210,103 @@ function createUser()
 }
 
 
+
+////////////////////////////////////////
+/// LOGIN INTO THE STORE AND VERIFY  ///
+////////////////////////////////////////
+
+function login()
+{
+  var password;
+  var goHead;
+
+  if ( Cookies.get('session_no') && typeof(Cookies.get('session_no')) === "string") {
+    if ( Cookies.get('session_no').length === 25 ) {
+      windowHash("shop");
+      redirect("store");
+    }
+  }
+
+  var $loading = $('#loadingDiv').hide();
+
+  $(document).ajaxStart(function () {
+    $loading.show();
+  }).ajaxStop(function () {
+    $loading.hide();
+  });
+
+  $("#content").hide();
+  $("#login-form").on("submit", function(e) {
+     e.preventDefault();
+     username = $('#login-form-username').val();
+     password = $('#login-form-password').val();
+     var openOrderLines;
+     var invoiceLines;
+
+     $.ajax({
+      type: "GET",
+      url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+      data: {request_id: "APICLOGIN",
+             username: username,
+             password: password},
+      success: function(response) {
+        if (response.replace(/\s+/g,'').length === 25) {
+          $.get("https://www.laurajanelle.com/phphelper/savecart/session.php?customer=" + username.toLowerCase() + "", function(answer){
+            if (answer === "0") {
+              $.get("https://www.laurajanelle.com/phphelper/savecart/session.php?customer=" + username.toLowerCase() + "&sessid=" + response + "");
+              session_no = response;
+              session_no = session_no.replace(/\s+/g,'');
+              Cookies.set('session_no', session_no);
+              Cookies.set('username', username);
+            } else if (answer.length === 25 ) {
+              Cookies.set('session_no', answer);
+              Cookies.set('username', username);
+            }
+          });
+        } else {
+          alert("Login credentials are incorrect, try again.");
+          goHead = "stop";
+        }
+      }, complete: function() {
+        if (goHead != "stop") {
+          $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APIHISTLST&session_no=" + session_no + "", function( data ) {
+            invoiceLines = data.split("\n");
+            invoiceLines = invoiceLines.length;
+
+            if (invoiceLines >= 3) {
+              $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APILOGOFF&session_no=" + session_no + "");
+              Cookies.set('newCustomer', "false");
+
+              windowHash("shop");
+              redirect("store");
+            } else {
+              $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APIORDLST&session_no=" + session_no + "", function( data ) {
+                $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APILOGOFF&session_no=" + session_no + "");
+                openOrderLines = data.split("\n");
+                openOrderLines = openOrderLines.length;
+
+                if (openOrderLines <= 2) {
+                  Cookies.set('newCustomer', "true");
+                  windowHash("shop");
+                  redirect("store");
+                } else {
+                  Cookies.set('newCustomer', "false");
+                  windowHash("shop");
+                  redirect("store");
+                }
+              });
+            }
+          });
+        }
+      }
+    });
+  });
+}
+
+
+
+
+
 ////////////////////////////////////////
 /// SUBROUTINE- Add item to the cart ///
 ////////////////////////////////////////
@@ -268,15 +375,12 @@ function cartHeader(callback)
     success: function(response) {
       cartheader = response.split("\n");
       if (cartheader.length >=3 ){
-        cartheader = cartheader[1].split("|");
-        orderAmt = cartheader[22];
-        subtotal = cartheader[19];
-        cartQty = cartheader[24];
-        document.getElementById("top-cart-trigger").innerHTML += '<span>' + cartQty.trim() + '</span>';
+        cartHeaderFields = cartheader[1].split("|");
+        document.getElementById("top-cart-trigger").innerHTML += '<span>' + cartHeaderFields[24].trim() + '</span>';
 
         if ( window.location.hash === "#cart" || window.location.hash === "#checkout") {
-          $(".cart-product-name.subtotal").html( '<span class="amount">' + subtotal.trim() + '</span>' );
-          $(".cart-product-name.total").html( '<span class="amount color lead"><strong>' + orderAmt.trim() + '</strong></span>');
+          $(".cart-product-name.subtotal").html( '<span class="amount">' + cartHeaderFields[19].trim() + '</span>' );
+          $(".cart-product-name.total").html( '<span class="amount color lead"><strong>' + cartHeaderFields[22].trim() + '</strong></span>');
         }
       }
     },
@@ -415,7 +519,7 @@ function detailView()
            pics += '<div class="slide" data-thumb="../ljimages/' + fields[0] + '-sm.png"><a href="../ljimages/' + fields[0] + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="../ljimages/' + fields[0] + '-md.png" alt="' + fields[1] + '"></span></a></div>';
        if (fields[2] === "ENC" && stock_no !== "CD103" && stock_no !== "10300A" || fields[2] === "GLB" && stock_no === "34737029" && stock_no !== "10700A" && stock_no !== "10700B" && stock_no !== "10700C" && stock_no !== "10700D"  && stock_no !== "PIL107")  {
            pics += '<div class="slide" data-thumb="../packaging/' + fields[0] + '-sm.png"><a href="../packaging/' + fields[0] + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="../packaging/' + fields[0] + '-md.png" alt="' + fields[1] + '"></span></a></div>';
-       } else if (fields[2] === "GLB" && stock_no !== "CD107" && stock_no >= 10701 && stock_no <= 10748) {
+       } else if (backImages.includes(stock_no)) {
            pics += '<div class="slide" data-thumb="../backs/' + fields[0] + 'bk-sm.png"><a href="../backs/' + fields[0] + 'bk-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="../backs/' + fields[0] + 'bk-md.png" alt="' + fields[1] + '"></span></a></div>';
        } else if ( mantra.includes(stock_no) ) {
            pics += '<div class="slide" data-thumb="../packaging/' + fields[0] + '-sm.png"><a href="../packaging/' + fields[0] + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="../packaging/' + fields[0] + '-md.png" alt="' + fields[1] + '"></span></a></div>';
@@ -1231,7 +1335,6 @@ function sessionNumber()
 }
 
 
-
 function displayAddress(index) {
   var ind = index - 1;
   document.getElementById("shipping-form-companyname").value = shippingAddresses[ind][0].trim();
@@ -1247,8 +1350,8 @@ function displayAddress(index) {
 
 function logoff()
 {
-    Cookies.set('session_no', "Logged Out");
-    redirect("");
+  Cookies.set('session_no', "Logged Out");
+  redirect("");
 }
 
 
@@ -1260,7 +1363,7 @@ function logoff()
 function minimumTotal()
 {
   newCustomer = Cookies.get('newCustomer');
-  orderAmt.trim();
+  orderAmt = cartHeaderFields[22].trim();
   orderAmtFloat = parseFloat(orderAmt.replace(/,/g,''));
   if (newCustomer === "false" && orderAmtFloat < 100 || newCustomer === "true" && orderAmtFloat < 200 ){
     $("#myButton").hide();
@@ -1553,7 +1656,7 @@ function quickView(clicked_id)
 
 
 /////////////////////////////////////////////
-// Tabs loads ajax. Makes this go faster.. //
+//  Tabs loads ajax. Make this go faster.. //
 /////////////////////////////////////////////
 /////////////////////////////////////////////
 /////////////////////////////////////////////

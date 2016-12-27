@@ -1,8 +1,12 @@
+---
+layout: compress
+---
+
 <!DOCTYPE html>
 
 <html dir="ltr" lang="en-US">
 
-  {% include head-one-page.html %}
+  {% include head.html %}
 
   <style>
   @media (min-width: 992px) {
@@ -127,14 +131,102 @@
         <a href="{{ site.baseurl }}/" class="retina-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/lj-newlogo-shop.png" alt="Laura Janelle Logo"></a>
       </div><!-- #logo end -->
 
-
     {{ content }}
-
-
 
       {% include footer.html %}
     </div>
     {% include js.html %}
+
+    {% if page.url == "/findstore/" %}
+    <style>
+    footer {
+      margin-top: 24px !important;
+    }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="{{ "/find-assets/css/storelocator.css" | prepend: site.baseurl }}">
+    <script type="text/javascript" src="{{ "/find-assets/js/libs/handlebars.min.js" | prepend: site.baseurl }}"></script>
+    <script src="https://maps.google.com/maps/api/js?key=AIzaSyDr-wWyQRq0K-iZWQLc2E5IjCt0TP-AkOo"></script>
+    <script type="text/javascript" src="{{ "/find-assets/js/plugins/storeLocator/jquery.storelocator.js" | prepend: site.baseurl }}"></script>
+
+
+    <script>
+    $(function() {
+      $('#bh-sl-map-container').storeLocator({
+        'dataType': 'json',
+        'dataLocation': '../data/fulllocations.json',
+        'mapSettings': {
+    			zoom: 10,
+    			mapTypeId: google.maps.MapTypeId.ROADMAP
+    		},
+        'storeLimit': 2500,
+        'fullMapStart': true,
+        'autoGeocode': true,
+        'maxDistance': true,
+        'infowindowTemplatePath': '../find-assets/js/plugins/storeLocator/templates/infowindow-description.html',
+    		'listTemplatePath': '../find-assets/js/plugins/storeLocator/templates/location-list-description.html'
+      });
+    });
+    </script>
+    {% endif %}
+
+    {% if page.url == "/careers/" %}
+    <!-- gets rid of random line of demarcation  on headings*/ -->
+      <style>
+      .heading-block:after {
+        display: none;
+      }
+      </style>
+
+
+      <script>
+  		$(document).ready(function() {
+        $("#validateButton").click(function() {
+  				var hasErrors = $('#template-jobform').validator('validate').has('.has-error').length;
+  		    if (hasErrors) {
+  		      alert('Job application has errors.');
+  		    } else {
+  					$("#apply").click();
+  				}
+  			});
+  		});
+  		</script>
+    {% endif %}
+
+    {% if page.url == "/contact/" %}
+    <script type="text/javascript">
+
+      $( "a.showContactForm" ).click( function () {
+        $(".contact-img").hide("slow");
+        $("#contact-form").show( "fade", 2000 );
+      });
+
+      $("#contactform-back").click(function () {
+        $("#contact-form").hide("slow");
+        $(".contact-img").show("slow");
+      });
+
+
+      var $window = $(window);
+
+      // Function to handle changes to style classes based on window width
+      function checkWidth() {
+        if ($window.width() < 1200) {
+            $('.row').children("div").removeClass('col-sm-3').addClass('col-sm-6');
+        };
+
+        if ($window.width() >= 1200) {
+            $('.row').children("div").removeClass('col-sm-6').addClass('col-sm-3');
+        }
+      }
+
+      // Execute on load
+      checkWidth();
+
+      // Bind event listener
+      $(window).resize(checkWidth);
+    </script>
+    {% endif %}
 
 
   </body>

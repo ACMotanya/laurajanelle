@@ -1,3 +1,7 @@
+---
+layout: compress
+---
+
 <!DOCTYPE html>
 
 <html dir="ltr" lang="en-US">
@@ -7,9 +11,6 @@
   <body id="body" class="stretched">
     <div id="wrapper" class="clearfix">
       {% include topbar.html %}
-      <script type="text/javascript">
-        sessionNumber();
-      </script>
       <!-- Header
       ============================================= -->
       <header id="header" class="full-header">
@@ -103,7 +104,7 @@
                         <span class="top-cart-item-price">$24.99</span>
                         <span class="top-cart-item-quantity">x 3</span>
                       </div>
-                    </div>-->
+                    </div> -->
                   </div>
                   <div class="top-cart-action clearfix">
                   <!--  <span class="fleft top-checkout-price">$114.95</span> -->
@@ -178,17 +179,17 @@
         </div><!-- #copyrights end -->
       </footer><!-- #footer end -->
     </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.3/js.cookie.min.js"></script>
     {% include js.html %}
-    <script type="text/javascript" src="{{ "/js/validator.min.js" | prepend: site.baseurl }}"></script>
-    <script type="text/javascript" src="{{ "/js/jquery.zoom.min.js" | prepend: site.baseurl }}"></script>
-    <script type="text/javascript" src="{{ "/js/components/bs-datatable.js" | prepend: site.baseurl }}"></script>
+
 
     <script>
     $(window).on('hashchange', function() {
       whichPage();
     });
-
     $(function() {
+      sessionNumber();
+      whichPage();
       filterFunction2('APISTKLST','','','','','', session_no);
       $('nav ul li a').click(function() {
         var $linkClicked = $(this).attr('href');

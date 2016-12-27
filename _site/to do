@@ -1,6 +1,6 @@
 rethink check setinterval settings..
 
-RGOT9DTDD9GER9ATTGBG9OT7Z - sitetester
+
 
 89th0pWfJNMx - database password
 laurajanelle
@@ -18,3 +18,9 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 RewriteCond %{HTTP_HOST} ^laurajanelleonline\.com$ [OR]
 RewriteCond %{HTTP_HOST} ^www\.laurajanelleonline\.com$
 RewriteRule ^/?$ "http\:\/\/laurajanelle\.com" [R=301,L]
+
+
+optimize homepage images
+optimize login
+
+add back images for program displays for detail view

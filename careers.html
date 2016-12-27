@@ -2,26 +2,7 @@
 layout: sidebar
 title: Careers - Laura Janelle
 ---
-  <!-- gets rid of random line of demarcation  on headings*/ -->
-    <style>
-    .heading-block:after {
-      display: none;
-    }
-    </style>
-
-
-    <script>
-		$(document).ready(function() {
-      $("#validateButton").click(function() {
-				var hasErrors = $('#template-jobform').validator('validate').has('.has-error').length;
-		    if (hasErrors) {
-		      alert('Job application has errors.');
-		    } else {
-					$("#apply").click();
-				}
-			});
-		});
-		</script>
+  
 
     <div class="content-wrap nopadding">
       <div class="container clearfix center notopmargin nobottommargin">
@@ -105,7 +86,7 @@ title: Careers - Laura Janelle
 
             <a href="#" data-scrollto="#job-apply" data-highlight="yellow" class="button button-3d button-black nomargin">Apply Now</a>
 
-            
+
             <div class="divider divider-short"><i class="icon-star3"></i></div>
 
             <div class="fancy-title title-bottom-border">
@@ -276,5 +257,3 @@ title: Careers - Laura Janelle
 			</div>
 		</section><!-- #content end -->
     <iframe width="0" height="0" border="0" name="dummyframe" id="dummyframe"></iframe>
-
-    <script type="text/javascript" src="{{ "/js/validator.min.js" | prepend: site.baseurl }}"></script>

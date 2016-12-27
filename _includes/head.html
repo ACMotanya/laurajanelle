@@ -1,5 +1,5 @@
 <head>
-  <meta charset="UTF-8" />
+
   <link rel="apple-touch-icon" sizes="57x57" href="{{ site.baseurl }}/favicon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="{{ site.baseurl }}/favicon/apple-icon-60x60.png">
   <link rel="apple-touch-icon" sizes="72x72" href="{{ site.baseurl }}/favicon/apple-icon-72x72.png">
@@ -17,29 +17,27 @@
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="{{ site.baseurl }}/favicon/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
-
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta name="author" content="Laura Janelle" />
   <meta name="description" content="{{ site.description }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Stylesheets
   ============================================= -->
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 
-  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Adamina:300,400,500,600,700,800,900|Raleway:300,400,500,600,700,800,900|Roboto:400,100,300,500,700,900|EB+Garamond:300,400,500,700" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700,800,900|Roboto:400,100,300,500,700,900|EB+Garamond:300,400,500,700" rel="stylesheet" type="text/css" />
   <link href='https://fonts.googleapis.com/css?family=Oranienbaum' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="{{ "/assests/all.css" | prepend: site.baseurl }}" type="text/css">
-
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script src="https://code.jquery.com/jquery-1.12.3.min.js"
-  integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ="
-  crossorigin="anonymous"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.3/js.cookie.min.js"></script>
-  <script type="text/javascript" src="{{ "/js/ajax-store.js" | prepend: site.baseurl }}"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ "/assets/all.css" | prepend: site.baseurl }}" type="text/css">
 
   <!--[if lt IE 9]>
     <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
   <![endif]-->
+
+  <!-- Document Title
+  ============================================= -->
+  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
 
   <script>
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -51,9 +49,5 @@
 	ga('send', 'pageview');
 
 	</script>
-
-  <!-- Document Title
-  ============================================= -->
-  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
 
 </head>

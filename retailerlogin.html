@@ -1,107 +1,9 @@
 ---
 layout: login
 ---
-					<script>
-					var password;
-					var goHead;
-					$(document).ready(function() {
+				
 
-						if ( Cookies.get('session_no') && typeof(Cookies.get('session_no')) === "string") {
-							if ( Cookies.get('session_no').length === 25 ) {
-								windowHash("shop");
-								redirect("store");
-							}
-			      }
-
-						var $loading = $('#loadingDiv').hide();
-
-						$(document).ajaxStart(function () {
-							$loading.show();
-						}).ajaxStop(function () {
-							$loading.hide();
-						});
-
-						$("#content").hide();
-					  $("#login-form").on("submit", function(e) {
-					     e.preventDefault();
-					     username = $('#login-form-username').val();
-					     password = $('#login-form-password').val();
-					     var openOrderLines;
-					     var invoiceLines;
-
-							 $.ajax({
-					 	    type: "GET",
-					 	    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
-					 	    data: {request_id: "APICLOGIN",
-					 	           username: username,
-					 	           password: password},
-					 	    success: function(response) {
-					        if (response.replace(/\s+/g,'').length === 25) {
-										$.get("https://www.laurajanelle.com/phphelper/savecart/session.php?customer=" + username.toLowerCase() + "", function(answer){
-											if (answer === "0") {
-												$.get("https://www.laurajanelle.com/phphelper/savecart/session.php?customer=" + username.toLowerCase() + "&sessid=" + response + "");
-												session_no = response;
-							  				session_no = session_no.replace(/\s+/g,'');
-											  Cookies.set('session_no', session_no);
-							          Cookies.set('username', username);
-											} else if (answer.length === 25 ) {
-											  Cookies.set('session_no', answer);
-							          Cookies.set('username', username);
-											}
-										});
-					        } else {
-					          alert("Login credentials are incorrect, try again.");
-										goHead = "stop";
-					        }
-					 			}, complete: function() {
-									if (goHead != "stop") {
-										$.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APIHISTLST&session_no=" + session_no + "", function( data ) {
-											invoiceLines = data.split("\n");
-											invoiceLines = invoiceLines.length;
-
-											if (invoiceLines >= 3) {
-												$.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APILOGOFF&session_no=" + session_no + "");
-												Cookies.set('newCustomer', "false");
-
-												windowHash("shop");
-												redirect("store");
-											} else {
-												$.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APIORDLST&session_no=" + session_no + "", function( data ) {
-													$.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APILOGOFF&session_no=" + session_no + "");
-													openOrderLines = data.split("\n");
-													openOrderLines = openOrderLines.length;
-
-													if (openOrderLines <= 2) {
-														Cookies.set('newCustomer', "true");
-														windowHash("shop");
-														redirect("store");
-													} else {
-														Cookies.set('newCustomer', "false");
-														windowHash("shop");
-														redirect("store");
-													}
-												});
-											}
-										});
-									}
-								}
-					  	});
-						});
-
-						$("#validateButton").click(function() {
-
-							var hasErrors = $('#register-form').validator('validate').has('.has-error').length;
-					    if (hasErrors) {
-					      alert('Customer application has errors.');
-					    } else {
-								$("#register-form-submit").click();
-							}
-						});
-					});
-
-					</script>
-
-		      <!-- Slider
+		    <!-- Slider
 				============================================= -->
 				<section id="slider" class="slider-parallax full-screen">
 
@@ -398,5 +300,3 @@ layout: login
 						<a href="#" class="cookie-accept cookie-noti-btn fright btn btn-danger btn-sm">Accept</a>
 					</div>
 				</div>
-				<script type="text/javascript" src="{{ "/js/js.cookie.js" | prepend: site.baseurl }}"></script>
-			  <script type="text/javascript" src="{{ "/js/ajax-store.js" | prepend: site.baseurl }}"></script>

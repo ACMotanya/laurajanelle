@@ -218,6 +218,8 @@ div.container.clearfix video.about {
 }
 
 .team-title span {
+	text-transform: uppercase;
+	color: #888;
 	font-style: normal;
 }
 
