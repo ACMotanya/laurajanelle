@@ -8,12 +8,12 @@ var cssnano = require('gulp-cssnano');
 var uglify = require('gulp-uglify');
 
 var siteRoot = '_site';
-var cssShopFiles = ['./css/style.css','./css/dark.css','./css/font-icons.css','./css/animate.css','./css/magnific-popup.css','./css/fonts.css','./css/responsive.css','./css/components/bs-rating.css','./css/components/bs-switches.css','./css/components/radio-checkbox.css','./css/components/bs-datatable.css','./css/components/bs-filestyle.css','./css/custom.css'];
-var jsFiles = ['./js/plugins.js','./js/functions.js','./js/validator.min.js','./js/ajax-store.js','./js/jquery.zoom.min.js','./js/components/bs-datatable.js'];
+var cssFiles = ['./css/style.css','./css/dark.css','./css/font-icons.css','./css/animate.css','./css/magnific-popup.css','./css/fonts.css','./css/responsive.css','./css/components/bs-rating.css','./css/components/bs-switches.css','./css/components/radio-checkbox.css','./css/components/bs-datatable.css','./css/components/bs-filestyle.css','./css/custom.css'];
+var jsFiles  = ['./js/plugins.js','./js/functions.js','./js/validator.min.js','./js/ajax-store.js','./js/jquery.zoom.min.js','./js/components/bs-datatable.js'];
 
 
 gulp.task('css', function() {
-  gulp.src(cssShopFiles)
+  gulp.src(cssFiles)
     .pipe(concat('all.css'))
     .pipe(gulp.dest('css'));
 });
@@ -64,8 +64,11 @@ gulp.task('serve', function() {
     }
   });
 
-  gulp.watch(cssShopFiles, ['css']);
+  gulp.watch(cssFiles, ['css']);
+  gulp.watch(jsFiles, ['scripts']);
+  gulp.watch('./css/all.css', ['nano']);
+  gulp.watch('./js/all.js', ['compress']);
 });
 
 
-gulp.task('default', ['css', 'scripts', 'compress', 'nano', 'jekyll', 'serve']);
+gulp.task('default', ['css', 'scripts', 'nano', 'compress', 'jekyll', 'serve']);

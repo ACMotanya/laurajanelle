@@ -41,8 +41,9 @@ layout: compress
 
             <!--  Logo
             ============================================= -->
-            <div id="logo" class="nobottommargin topmargin-sm">
-
+            <div id="logo" class="page-logo sidebar-mobile-logo nobottommargin topmargin-sm">
+              <a href="{{ site.baseurl }}/" class="standard-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/lj-newlogo-shop.png" alt="Laura Janelle Logo"></a>
+              <a href="{{ site.baseurl }}/" class="retina-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/lj-newlogo-shop.png" alt="Laura Janelle Logo"></a>
             </div><!-- #logo end -->
 
             <!-- Primary Navigation
@@ -126,7 +127,7 @@ layout: compress
           </div>
         </div>
       </header><!-- #header end -->
-      <div id="logo" class="notopmargin nobottommargin leftmargin">
+      <div id="logo" class="notopmargin nobottommargin leftmargin sidebar-desktop-logo">
         <a href="{{ site.baseurl }}/" class="standard-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/lj-newlogo-shop.png" alt="Laura Janelle Logo"></a>
         <a href="{{ site.baseurl }}/" class="retina-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/lj-newlogo-shop.png" alt="Laura Janelle Logo"></a>
       </div><!-- #logo end -->
@@ -209,7 +210,7 @@ layout: compress
 
       var $window = $(window);
 
-      // Function to handle changes to style classes based on window width
+      /* Function to handle changes to style classes based on window width */
       function checkWidth() {
         if ($window.width() < 1200) {
             $('.row').children("div").removeClass('col-sm-3').addClass('col-sm-6');
@@ -220,12 +221,114 @@ layout: compress
         }
       }
 
-      // Execute on load
+      /* Execute on load */
       checkWidth();
 
-      // Bind event listener
+      /* Bind event listener */
       $(window).resize(checkWidth);
     </script>
+    {% endif %}
+
+    {% if page.url == "/winter-2/" %}
+    <script type="text/javascript" src="{{ "/include/rs-plugin/js/jquery.themepunch.tools.min.js" | prepend: site.baseurl }}"></script>
+  	<script type="text/javascript" src="{{ "/include/rs-plugin/js/jquery.themepunch.revolution.min.js" | prepend: site.baseurl }}"></script>
+    <script type="text/javascript" src="{{ "/include/rs-plugin/js/extensions/revolution.extension.parallax.min.js" | prepend: site.baseurl }}"></script>
+    <script type="text/javascript" src="{{ "/include/rs-plugin/js/extensions/revolution.extension.slideanims.min.js" | prepend: site.baseurl }}"></script>
+  	<script type="text/javascript" src="{{ "/include/rs-plugin/js/extensions/revolution.extension.carousel.min.js" | prepend: site.baseurl }}"></script>
+  	<script type="text/javascript" src="{{ "/include/rs-plugin/js/extensions/revolution.extension.actions.min.js" | prepend: site.baseurl }}"></script>
+  	<script type="text/javascript" src="{{ "/include/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js" | prepend: site.baseurl }}"></script>
+  	<script type="text/javascript" src="{{ "/include/rs-plugin/js/extensions/revolution.extension.navigation.min.js" | prepend: site.baseurl }}"></script>
+  	<script type="text/javascript" src="{{ "/include/rs-plugin/js/extensions/revolution.extension.video.min.js" | prepend: site.baseurl }}"></script>
+
+  	<script type="text/javascript">
+
+  $( "div#logo a img" ).addClass( "divcenter" );
+
+  var tpj = jQuery;
+  var revapi287;
+  tpj(document).ready(function() {
+    if (tpj("#rev_slider_287_1").revolution == undefined) {
+      revslider_showDoubleJqueryError("#rev_slider_287_1");
+    } else {
+      revapi287 = tpj("#rev_slider_287_1").show().revolution({
+        sliderType: "carousel",
+        jsFileLocation: "../include/rs-plugin/js/",
+      /*  sliderLayout: "fullscreen", */
+        dottedOverlay: "none",
+        delay: 5000,
+        navigation: {
+          keyboardNavigation: "off",
+          keyboard_direction: "horizontal",
+          mouseScrollNavigation: "off",
+          onHoverStop: "off",
+          touch: {
+            touchenabled: "on",
+            swipe_threshold: 75,
+            swipe_min_touches: 50,
+            swipe_direction: "horizontal",
+            drag_block_vertical: false
+          },
+          arrows: {
+            style: "uranus",
+            enable: true,
+            hide_onmobile: true,
+            hide_under: 778,
+            hide_onleave: true,
+            hide_delay: 200,
+            hide_delay_mobile: 1200,
+            tmp: '',
+            left: {
+              h_align: "left",
+              v_align: "center",
+              h_offset: 20,
+              v_offset: 0
+            },
+            right: {
+              h_align: "right",
+              v_align: "center",
+              h_offset: 20,
+              v_offset: 0
+            }
+          }
+        },
+        responsiveLevels: [1240, 991, 778, 480],
+        gridwidth: [1240, 1024, 778, 480],
+        gridheight:[868,768,960,720],
+        lazyType: "none",
+        parallax: {
+          type: "scroll",
+          origo: "enterpoint",
+          speed: 400,
+          levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 46, 47, 48, 49, 50, 51, 55],
+          type: "scroll",
+        },
+        shadow: 0,
+        spinner: "off",
+        stopLoop: "off",
+        stopAfterLoops: -1,
+        stopAtSlide: -1,
+
+        shuffle: "on",
+        autoHeight: "on",
+        fullScreenAutoWidth: "off",
+        fullScreenAlignForce: "off",
+        fullScreenOffsetContainer: "",
+        disableProgressBar: "off",
+        hideThumbsOnMobile: "off",
+        hideSliderAtLimit: 0,
+        hideCaptionAtLimit: 0,
+        hideAllCaptionAtLilmit: 0,
+        debugMode: false,
+        fallbacks: {
+          simplifyAll: "off",
+          nextSlideOnWindowFocus: "off",
+          disableFocusListener: false,
+        }
+      });
+    }
+  }); /*ready*/
+
+  	</script>
     {% endif %}
 
 
