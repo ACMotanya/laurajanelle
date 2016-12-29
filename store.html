@@ -2,18 +2,26 @@
 layout: singlepage
 title: Store - Laura Janelle
 ---
-<style>
-#cart, #checkout, #invoices, #profile, #orders, #shop, #detail-view, #faq, #customerservice, #search {
-  display: none;
-}
-@media (min-width: 992px) {
-  .Fixed {
-    position: fixed;
-    overflow-y: auto;
-    height: 50vh;
-  }
-}
-</style>
+      <style>
+      #cart, #checkout, #invoices, #profile, #orders, #shop, #detail-view, #faq, #customerservice, #search {
+        display: none;
+      }
+      @media (min-width: 992px) {
+        .Fixed {
+          position: fixed;
+          overflow-y: auto;
+          height: 65vh;
+        }
+        #shop .sidebar .sidebar-widgets-wrap .widget {
+          padding-top: 15px;
+          margin-top: 10px;
+        }
+
+        #shop .sidebar .sidebar-widgets-wrap .widget .toggle {
+          margin: 0 0 7px;
+        }
+      }
+      </style>
 
   		<!-- Content
   		============================================= -->
@@ -210,6 +218,27 @@ title: Store - Laura Janelle
                       </div>
                     </div>
                   </div>
+
+                  <div class="widget subscribe-widget clearfix">
+                    <div class="toggle ui-group">
+                      <div class="togglet"><i class="toggle-closed icon-chevron-down"></i><i class="toggle-open icon-chevron-up"></i>METAL COLOR</div>
+                      <div class="togglec" data-group="color">
+                        <div>
+                          <input id="checkbox-41" class="checkbox-style" name="checkbox-41" type="checkbox" value=".101">
+                          <label for="checkbox-41" class="checkbox-style-1-label">GOLD</label>
+                        </div>
+                        <div>
+                          <input id="checkbox-42" class="checkbox-style" name="checkbox-42" type="checkbox" value=".201">
+                          <label for="checkbox-42" class="checkbox-style-1-label">SILVER</label>
+                        </div>
+                        <div>
+                          <input id="checkbox-43" class="checkbox-style" name="checkbox-43" type="checkbox" value=".301">
+                          <label for="checkbox-43" class="checkbox-style-1-label">ANTIQUE GOLD</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </div>
 

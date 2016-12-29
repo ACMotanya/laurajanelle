@@ -4804,19 +4804,22 @@ function detailView()
   var detailString;
   var color;
   var type;
+  var metal;
   var hash = window.location.hash.split("+");
   var stock_no = hash[1].replace();
   console.log(stock_no);
 
-  if (hash.length === 4 ) {
+  if (hash.length === 5 ) {
     detailString = window.location.hash;
     color = hash[2].replace( /^\D+/g, '');
     type  = hash[3].replace( /^\D+/g, '');
+    metal = hash[4].replace( /^\D+/g, '');
     sessionStorage.setItem(stock_no, detailString);
   } else if ( sessionStorage.getItem(stock_no) !== null && sessionStorage.getItem(stock_no) != "undefined" && sessionStorage.getItem(stock_no).length >= 15 ) {
     var dets = sessionStorage.getItem(stock_no).split("+");
     color = dets[2].replace( /^\D+/g, '');
     type  = dets[3].replace( /^\D+/g, '');
+    metal = dets[4].replace( /^\D+/g, '');
   }
 
   $.ajax({
@@ -4864,16 +4867,10 @@ function detailView()
        secondColumn += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant[1]" onclick="changeQuantity(this)"></div>';
        secondColumn += '<button type="button" id="add-item" class="add-to-cart button nomargin" onclick="stock_no=\'' + fields[0].trim() + '\'; addItemDetailView();">Add to cart</button></form><div class="clear"></div><div class="line"></div>';
 
-       if (fields[2] === "ENC" )  {
-         secondColumn += '<p>' + fields[8] + '</p><p>The value of this look is unbeatable, each necklace features fun and exciting packaging. She is getting multiple styles per necklace, while you’ll be making a 3x markup! Not to mention, this look serves a broad demographic so all of your customers will be sure to find the perfect design.</p>';
-       } else if (fields[2] === "IDT" )  {
-         secondColumn += '<p>' + fields[8] + '</p><p>The value of this look is unbeatable; each piece features an intricate, unique and trending design whether it is a lanyard, tassel or snap. You’ll be making a 2.5x markup, along with several opportunities to upsell this look. Not to mention, the look of Identify will serve her during numerous events and places she will go at an unbeatable price: the casino, at her corporate office or hospital job, or to school, these are just to name a few!</p>';
+       if (fields[8].length !== 0) {
+         secondColumn += '<p>' + fields[8] + '</p>';
        } else {
-         if (fields[8].length !== 0) {
-           secondColumn += '<p>' + fields[8] + '</p>';
-         } else {
-           secondColumn += '<p>' + fields[1] + '</p>';
-         }
+         secondColumn += '<p>' + fields[1] + '</p>';
        }
 
        info =  '<tr><td>Description</td><td>' + fields[1] + '</td></tr>';
@@ -4881,6 +4878,7 @@ function detailView()
        info += '<tr><td>Color</td><td>' + whatColor(color) +'</td></tr>';
        info += '<tr><td>Type</td><td>' + whatType(type) + '</td></tr>';
        info += '<tr><td>Look</td><td>' + whatLook(fields[2]) + '</td></tr>';
+       info += '<tr><td>Metal Color</td><td>' + whatMetal(metal) + '</td></tr>';
        $("#images").html(pics);
        $("#secondColumn").html(secondColumn);
        $("#addInfo").html(info);
@@ -5000,15 +4998,14 @@ function updateCart3()
     for (i=0; i<cartlinesPlus.length; i++) {
       cartfields = cartlinesPlus[i];
 //      shoppingCart[cartfields[2]] = [cartfields[6], cartfields[1]];
-//    }
+    }
       if (!shoppingCart.hasOwnProperty(cartfields[2])) {
         shoppingCart[cartfields[2]] = [cartfields[6], cartfields[1]];
 //        removeItemGeneric(session_no, cartfields[1]);
-      } else {
+    } else {
         shoppingCart[cartfields[2]][0] += cartfields[6];
 //        removeItemGeneric(session_no, shoppingCart[cartfields[2]][1]);
 //        removeItemGeneric(session_no, cartfields[1]);
-      }
     }
     console.log(Object.keys(shoppingCart));
   }).done( function(){
@@ -5023,7 +5020,6 @@ function updateCart3()
       });
     });
   });
-
 }
 
 
@@ -5195,7 +5191,7 @@ function search()
         request_id: "APISTKSEARCH",
         query: searchTerm},
       success: function(response) {
-
+        console.log(response);
 ///////////////// Leave in until McPhate changes the fields for the SearchAPI call put this back after changes -->  fillShop3(data);
         oldhash = window.location.hash;
         windowHash("search");
@@ -5860,6 +5856,26 @@ function whatLook(lookCode)
 
 
 
+/////////////////////////////////////
+ // SUBROUTINE TO FIND METAL TYPE //
+/////////////////////////////////////
+function whatMetal(metalCode)
+{
+  switch (metalCode) {
+    case "10": metal = "Gold";
+    break;
+    case "20": metal = "Silver";
+    break;
+    case "30": metal = "Antique Gold";
+    break;
+    default:
+    metal = "N/A";
+  }
+  return metal;
+}
+
+
+
 //////////////////////////
 // Filter Function      //
 //////////////////////////
@@ -5904,13 +5920,13 @@ function filterFunction2(a,b,c,d,e,f)
         for (i=0; i<linesPlus.length; i++) {
           flds = linesPlus[i];
 
-          prod =  '<div class="product clearfix ' + flds[2] +" "+ flds[8].trim() +" "+ flds[9].trim() + '"><div class="product-image"><a href="#detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a>';
+          prod =  '<div class="product clearfix ' + flds[2] +" "+ flds[8].trim() +" "+ flds[9].trim() +" "+ flds[10].trim() + 1 +'"><div class="product-image"><a href="#detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim() + '"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a>';
           if (flds[7].trim().length === 3) {
             prod += '<div class="sale-flash">NEW!</div>';
           }
           prod += '<div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim() + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '\'; addItemDetailView(); cartHeader(); cartList(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
           prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="event.preventDefault(); stock_no=\'' + flds[0].trim() + '\'; quickView(this.id);" id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '"><i class="icon-zoom-in2"></i><span id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '">Quick View</span></a></div></div>';
-          prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '">' + flds[1] +'</a></h3></div><div class="product-price">cost &nbsp;<ins>$' + flds[4].trim() + '</ins></div></div></div>';
+          prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim() + '">' + flds[1] +'</a></h3></div><div class="product-price">cost &nbsp;<ins>$' + flds[4].trim() + '</ins></div></div></div>';
 
           html.push(prod);
         }
