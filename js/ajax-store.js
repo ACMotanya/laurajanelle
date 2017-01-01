@@ -1,4 +1,19 @@
-
+var backImages = [
+  "10707", "10712", "10710", "10703",
+  "10704", "10711", "10701", "10705", "10702", "10706", "10708",
+  "10709","11349", "11350", "11351", "11352", "11353", "11354",
+  "11355", "11356", "11357", "11358", "11359", "11360", "11361",
+  "11362", "11363", "11364", "11365", "11366", "11367", "11368",
+  "11369", "11370", "11371", "11372", "11373", "11374", "11375",
+  "11376", "11377", "11378", "11379", "11380", "11381", "11382",
+  "11383", "11384", "10713", "10714", "10721", "10715", "10900A",
+  "10716", "10723", "10717", "10718", "10725", "10719", "10720",
+  "10727", "10722", "10729", "10730", "10724", "10731", "10732",
+  "10726", "10733", "10734", "10728", "10735", "10736", "10743",
+  "10744", "10745", "10746", "10747", "10748", "10737", "10738",
+  "10739", "10740", "10741", "10742", "11337", "11338", "11339",
+  "11340", "11341", "11342", "11343", "11344", "11345", "11346",
+  "11347", "11348"];
 var cartheader;
 var cartitems;
 var cartQty;
@@ -14,26 +29,11 @@ var fldsArray_json;
 var item;
 var lines;
 var mantra = ["10375", "10376", "10377", "10378", "10379", "10380", "10381", "10382"];
-var backImages = [
-  "10707", "10712", "10710", "10703",
-"10704", "10711", "10701", "10705", "10702", "10706", "10708",
-"10709","11349", "11350", "11351", "11352", "11353", "11354",
-"11355", "11356", "11357", "11358", "11359", "11360", "11361",
-"11362", "11363", "11364", "11365", "11366", "11367", "11368",
-"11369", "11370", "11371", "11372", "11373", "11374", "11375",
-"11376", "11377", "11378", "11379", "11380", "11381", "11382",
-"11383", "11384", "10713", "10714", "10721", "10715", "10900A",
-"10716", "10723", "10717", "10718", "10725", "10719", "10720",
-"10727", "10722", "10729", "10730", "10724", "10731", "10732",
-"10726", "10733", "10734", "10728", "10735", "10736", "10743",
-"10744", "10745", "10746", "10747", "10748", "10737", "10738",
-"10739", "10740", "10741", "10742", "11337", "11338", "11339",
-"11340", "11341", "11342", "11343", "11344", "11345", "11346",
-"11347", "11348"];
-var numberOfOrders;
+
 var newCustomerNumber;
 var newNumberOfOrders;
 var neworder;
+var numberOfOrders;
 var orderAmt;
 var prices = [];
 var prod;
@@ -137,7 +137,7 @@ function createCustomer()
 
   $.ajax({
    type: "GET",
-   url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+   url: "http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?",
    data: {
      request_id: "APINEWCUST",
      cust_name: createcompanyname,
@@ -181,13 +181,13 @@ function createUser()
   var userEmail       = $("#create-user-email").val();
   var userContactName = $("#create-user-contactname").val();
 
-  $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICHECKUSER&session_no=2UD24M4BDN2D4RDAWABU9D254&username="+ userName.toUpperCase() +"", function( data ) {
+  $.get("http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?request_id=APICHECKUSER&session_no=2UD24M4BDN2D4RDAWABU9D254&username="+ userName.toUpperCase() +"", function( data ) {
     if ( data.length > 4 ) {
       alert("Pick a different username.");
     } else {
       $.ajax({
        type: "GET",
-       url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+       url: "http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?",
        data: {
          request_id: "APINEWUSER",
          new_username: userName,
@@ -245,7 +245,7 @@ function login()
 
      $.ajax({
       type: "GET",
-      url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+      url: "http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?",
       data: {request_id: "APICLOGIN",
              username: username,
              password: password},
@@ -269,19 +269,19 @@ function login()
         }
       }, complete: function() {
         if (goHead != "stop") {
-          $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APIHISTLST&session_no=" + session_no + "", function( data ) {
+          $.get("http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?request_id=APIHISTLST&session_no=" + session_no + "", function( data ) {
             invoiceLines = data.split("\n");
             invoiceLines = invoiceLines.length;
 
             if (invoiceLines >= 3) {
-              $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APILOGOFF&session_no=" + session_no + "");
+              $.get("http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?request_id=APILOGOFF&session_no=" + session_no + "");
               Cookies.set('newCustomer', "false");
 
               windowHash("shop");
               redirect("store");
             } else {
-              $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APIORDLST&session_no=" + session_no + "", function( data ) {
-                $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APILOGOFF&session_no=" + session_no + "");
+              $.get("http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?request_id=APIORDLST&session_no=" + session_no + "", function( data ) {
+                $.get("http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?request_id=APILOGOFF&session_no=" + session_no + "");
                 openOrderLines = data.split("\n");
                 openOrderLines = openOrderLines.length;
 
@@ -312,7 +312,7 @@ function login()
 ////////////////////////////////////////
 function addItemGeneric(session_no, stock_no, qty)
 {
-  $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no="+ session_no +"&stock_no="+ stock_no +"&qty="+qty+"");
+  $.get("http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no="+ session_no +"&stock_no="+ stock_no +"&qty="+qty+"");
 }
 //////////////////////////////////////////////
 // Add item to the cart for the detail page //
@@ -344,7 +344,7 @@ function addItemDetailView()
 /////////////////////////////////////////
 function removeItemGeneric(session_no, line_no)
 {
-  $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICARTREM&session_no="+ session_no +"&line_no="+ line_no +"");
+  $.get("http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?request_id=APICARTREM&session_no="+ session_no +"&line_no="+ line_no +"");
 }
 //////////////////////////////////
   // REMOVE ITEMS FROM CART //
@@ -353,8 +353,7 @@ function removeItem(clicked_id)
 {
   line_no = clicked_id;
   removeItemGeneric(session_no, line_no);
-  cartHeader();
-  cartList();
+  shopPage();
   return false;
 }
 
@@ -367,7 +366,7 @@ function cartHeader(callback)
 {
   jQuery.ajax({
     type: "GET",
-    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    url: "http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?",
     data: {
       request_id: "APICARTH",
       session_no: session_no
@@ -402,7 +401,7 @@ function cartList()
 {
   jQuery.ajax({
     type: "GET",
-    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    url: "http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?",
     data: {
       request_id: "APICARTL",
       session_no: session_no
@@ -480,16 +479,14 @@ function cartHelper()
 //////////////////////////////
 function detailView()
 {
-  jQuery("#images").empty();
-  jQuery("#secondColumn").empty();
-  jQuery("#addInfo").empty();
+  jQuery("#images, #secondColumn, #addInfo").empty();
+
   var detailString;
   var color;
   var type;
   var metal;
   var hash = window.location.hash.split("+");
   var stock_no = hash[1].replace();
-  console.log(stock_no);
 
   if (hash.length === 5 ) {
     detailString = window.location.hash;
@@ -506,7 +503,7 @@ function detailView()
 
   $.ajax({
     type: "GET",
-    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    url: "http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?",
     data: {request_id: "APISTKDTL", stock_no: stock_no, session_no: session_no},
     success: function(response) {
       console.log(response);
@@ -583,7 +580,7 @@ function countryCode()
 {
   $.ajax({
     type: "GET",
-    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    url: "http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?",
     data: {
       request_id: "APICOUNTRY",
       session_no: session_no
@@ -629,8 +626,7 @@ function updateCart1()
   $.each( shoppingCart, function( key, value ) {
     addItemGeneric(session_no, key, value[0]);
   });
-  cartList();
-  cartHeader();
+  shopPage();
 }
 
 function updateCart2()
@@ -656,8 +652,7 @@ function updateCart2()
     promises.push(addItemGeneric(session_no, key, value[0]));
   });
   $.when.apply($, promises).then(function() {
-    cartList();
-    cartHeader();
+    shopPage();
   });
   return false;
 }
@@ -668,7 +663,7 @@ function updateCart3()
   $("#updateCartButton").hide();
   shoppingCart = {};
 
-  $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICARTL&session_no=" + session_no + "", function (data) {
+  $.get("http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?request_id=APICARTL&session_no=" + session_no + "", function (data) {
     cartlines = data.split("\n");
 
     cartlines.shift();
@@ -691,14 +686,13 @@ function updateCart3()
     }
     console.log(Object.keys(shoppingCart));
   }).done( function(){
-    $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICARTDEL&session_no=" + session_no + "").done( function(){
+    $.get("http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?request_id=APICARTDEL&session_no=" + session_no + "").done( function(){
       var promises = [];
       $.each( shoppingCart, function( key, value ) {
         promises.push(addItemGeneric(session_no, key.trim(), value[0].trim()));
       });
       $.when.apply($, promises).then(function() {
-        cartList();
-        cartHeader();
+        shopPage();
       });
     });
   });
@@ -712,7 +706,7 @@ function creditCard()
 {
   $.ajax({
     type: "GET",
-    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    url: "http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?",
     data: {
       request_id: "APIORDLST",
       session_no: session_no
@@ -724,7 +718,7 @@ function creditCard()
     complete: function (){
 
       var findNewOrder = setInterval(function(){
-        $.get("http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APIORDLST&session_no=" + session_no + "", function( data ) {
+        $.get("http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?request_id=APIORDLST&session_no=" + session_no + "", function( data ) {
           openlines = data.split("\n");
           newNumberOfOrders = openlines.length;
           if (numberOfOrders != newNumberOfOrders) {
@@ -808,7 +802,7 @@ function saveAddresses()
   if ( window.location.hash === "#checkout" ) {
     $.ajax({
       type: "GET",
-      url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+      url: "http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?",
       data: {
         request_id: "APICARTUPD",
         session_no: session_no,
@@ -835,7 +829,7 @@ function saveAddresses()
     var shippingformcontactname = $("#shipping-form-contactname").val();
      $.ajax({
       type: "GET",
-      url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+      url: "http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?",
       data: {
         request_id: "APINEWSHIP",
         cust_no: cust_no,
@@ -868,7 +862,7 @@ function search()
     searchTerm = $('#searchvalue').val();
     $.ajax({
       type: "GET",
-      url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+      url: "http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?",
       data: {
         request_id: "APISTKSEARCH",
         query: searchTerm},
@@ -899,7 +893,7 @@ function search()
             flds = linesPlus[i];
 
             prod = '<div class="product clearfix ' + flds[2] + '"><div class="product-image"><a href="#detail-view+' + flds[0].trim() +'"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
-            prod += '<a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim()  + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'detail-view+' + flds[0].trim() + '\'; addItemDetailView(); cartList(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+            prod += '<a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim()  + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'detail-view+' + flds[0].trim() + '\'; addItemDetailView(); shopPage(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
             prod += '<a href="#detail-view+' + flds[0].trim() + '" class="item-quick-view"><i class="icon-zoom-in2"></i><span class="' + flds[0].trim()  + '">Detail View</span></a></div></div>';
             prod += '<div class="product-desc" style="height: 80px;"><div class="product-title"><h3><a href="#detail-view+' + flds[0].trim() + '">' + flds[1] +'</a></h3></div><div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div></div></div>';
 
@@ -922,7 +916,7 @@ function orderHistory()
   var fldsArray = { "data": []};
   $.ajax({
    type: "GET",
-   url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+   url: "http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?",
    data: {
      request_id: "APIHISTLST",
      session_no: session_no
@@ -971,7 +965,7 @@ function openOrders()
       fields;
   $.ajax({
    type: "GET",
-   url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+   url: "http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?",
    data: {
      request_id: "APIORDLST",
      session_no: session_no
@@ -1007,13 +1001,11 @@ function openOrders()
 /////////////////////////////////////////////
 function searchOrders(orderSearchNumber)
 {
-  $("#orders-details-title").show();
-  $("#orders-details-table").show();
-  $("#orders-line-item-title").show();
-  $("#orders-line-item-table").show();
+  $("#orders-details-title, #orders-details-table, #orders-line-item-title, #orders-line-item-table").show();
+
   $.ajax({
     type: "GET",
-    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    url: "http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?",
     data: {
       request_id: "APIORDH",
       session_no: session_no,
@@ -1060,7 +1052,7 @@ function searchOrders(orderSearchNumber)
   fields = "";
   $.ajax({
     type: "GET",
-    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    url: "http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?",
     data: {
       request_id: "APIORDL",
       session_no: session_no,
@@ -1102,13 +1094,11 @@ function searchOrders(orderSearchNumber)
 /////////////////////////////////////////////
 function searchInvoices(invoiceSearchNumber)
 {
-  $("#details-title").show();
-  $("#details-table").show();
-  $("#line-item-title").show();
-  $("#line-item-table").show();
+  $("#details-title, #details-table, #line-item-title, #line-item-table").show();
+
   $.ajax({
     type: "GET",
-    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    url: "http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?",
     data: {
       request_id: "APIHISTH",
       session_no: session_no,
@@ -1156,7 +1146,7 @@ function searchInvoices(invoiceSearchNumber)
   fields = "";
   $.ajax({
     type: "GET",
-    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    url: "http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?",
     data: {
       request_id: "APIHISTL",
       session_no: session_no,
@@ -1204,7 +1194,7 @@ function accountDetails()
 {
   $.ajax({
     type: "GET",
-    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    url: "http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?",
     data: {
       request_id: "APIACCTINFO",
       user: username},
@@ -1239,7 +1229,7 @@ function billToAddress()
 {
   $.ajax({
     type: "GET",
-    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    url: "http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?",
     data: {
       request_id: "APIBIILLST",
       session_no: session_no
@@ -1264,7 +1254,7 @@ function shipToAddress()
 {
   $.ajax({
     type: "GET",
-    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    url: "http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?",
     data: {
       request_id: "APISHIPLST",
       session_no: session_no
@@ -1565,7 +1555,7 @@ function filterFunction2(a,b,c,d,e,f)
 {
   $.ajax({
     type: "GET",
-    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    url: "http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?",
     data: {
       request_id: a,
       level1: b,
@@ -1574,31 +1564,30 @@ function filterFunction2(a,b,c,d,e,f)
       level4: e,
       level5: f},
     success: function(response) {
+      $('#shopItems').empty();
       lines = response.split("\n");
       lines.shift();
-      linesPlus = [];
-      for (i=0; i<lines.length - 1; i++) {
-        linesPlus.push(lines[i].split("|"));
-      }
-
-      linesPlus.sort( function( a, b ) {
-        retVal=0;
-        if (sortItems.indexOf(a[0].trim()) != sortItems.indexOf( b[0].trim() )) retVal= sortItems.indexOf( a[0].trim() ) > sortItems.indexOf( b[0].trim() )?1:-1;
-        return retVal;
-      });
-
-      //////////////////////////
-      // This is for when I am not blocking the new items
-      // LinesPlus = linesPlus.slice((linesPlus.length-259), linesPlus.length);
-      // This is for when I am not blocking the new items
-      //////////////////////////
-
-
-      $('#shopItems').empty();
-      html = [];
       if ( lines.length <= 1) {
         document.getElementById("shopItems").innerHTML += '<h1>There are no results</h1>';
       } else {
+        html = [];
+        linesPlus = [];
+        for (i=0; i<lines.length - 1; i++) {
+          linesPlus.push(lines[i].split("|"));
+        }
+
+        linesPlus.sort( function( a, b ) {
+          retVal=0;
+          if (sortItems.indexOf(a[0].trim()) != sortItems.indexOf( b[0].trim() )) retVal= sortItems.indexOf( a[0].trim() ) > sortItems.indexOf( b[0].trim() )?1:-1;
+          return retVal;
+        });
+
+        //////////////////////////
+        // This is for when I am not blocking the new items
+        // LinesPlus = linesPlus.slice((linesPlus.length-259), linesPlus.length);
+        // This is for when I am not blocking the new items
+        //////////////////////////
+
         for (i=0; i<linesPlus.length; i++) {
           flds = linesPlus[i];
 
@@ -1606,7 +1595,7 @@ function filterFunction2(a,b,c,d,e,f)
           if (flds[7].trim().length === 3) {
             prod += '<div class="sale-flash">NEW!</div>';
           }
-          prod += '<div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim() + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '\'; addItemDetailView(); cartHeader(); cartList(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+          prod += '<div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim() + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '\'; addItemDetailView(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
           prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="event.preventDefault(); stock_no=\'' + flds[0].trim() + '\'; quickView(this.id);" id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '"><i class="icon-zoom-in2"></i><span id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '">Quick View</span></a></div></div>';
           prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim() + '">' + flds[1] +'</a></h3></div><div class="product-price">cost &nbsp;<ins>$' + flds[4].trim() + '</ins></div></div></div>';
 
@@ -1630,7 +1619,7 @@ function quickView(clicked_id)
 {
   jQuery.ajax({
     type: "GET",
-    url: "http://72.64.152.18:8081/nlhtml/custom/netlink.php?",
+    url: "http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?",
     data: {request_id: "APISTKDTL", stock_no: stock_no, session_no: session_no},
     success: function(response) {
       lines = response.split("\n");
@@ -1646,6 +1635,10 @@ function quickView(clicked_id)
         case "IDT": collection = "iDentify";
           break;
         case "ZEN": collection = "AURA";
+          break;
+        case "SRK": collection = "Salt Rock";
+          break;
+        case "MAN": collection = "MANTRA";
           break;
         default:
           collection = fields[2];
@@ -1663,7 +1656,7 @@ function quickView(clicked_id)
     //  } else {
          secondColumn = '<p>' + fields[1] + '</p>';
   //    }
-      $("#quickViewForm").append('<button type="button" id="add-item" class="add-to-cart button nomargin" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>The item(s) have been added to your cart!" onclick="detailString=\'detail-view+' + clicked_id + '\'; addItemDetailView(); SEMICOLON.widget.notifications(this); cartList(); return false;">Add to cart</button>');
+      $("#quickViewForm").append('<button type="button" id="add-item" class="add-to-cart button nomargin" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>The item(s) have been added to your cart!" onclick="detailString=\'detail-view+' + clicked_id + '\'; addItemDetailView(); SEMICOLON.widget.notifications(this); shopPage(); return false;">Add to cart</button>');
       $("#description").append(secondColumn);
     }
   });
@@ -1717,33 +1710,27 @@ function priceFilter() {
     }
   });
 }
-//.page_link:visible'
-//$(function() {
-//  $container = $('#shopItems');
-//      $container.isotope('destroy');
-//  $container.imagesLoaded(function(){
-    $(function goFilters(){
-      $container = $('#shopItems');
-      var $output = $('#output');
 
-      // do stuff when checkbox change
-      $('.ui-group').on( 'change', function( jQEvent ) {
+$(function (){
+  $container = $('#shopItems');
+  var $output = $('#output');
 
-        var $checkbox = $( jQEvent.target );
-        manageCheckbox( $checkbox );
+  // do stuff when checkbox change
+  $('.ui-group').on( 'change', function( jQEvent ) {
 
-        var comboFilter = getComboFilter( filters );
+    var $checkbox = $( jQEvent.target );
+    manageCheckbox( $checkbox );
 
-        $container.isotope({
-        //  transitionDuration: '0.15s',
-          filter: comboFilter
-         });
-        $output.text( comboFilter );
-      });
-    });
-//  });
+    var comboFilter = getComboFilter( filters );
 
-//});
+    $container.isotope({
+    //  transitionDuration: '0.15s',
+      filter: comboFilter
+     });
+    $output.text( comboFilter );
+  });
+});
+
 
 function getComboFilter( filters ) {
   var i = 0;
@@ -1790,44 +1777,15 @@ function manageCheckbox( $checkbox ) {
     filterGroup = filters[ group ] = [];
   }
 
-  var isAll = $checkbox.hasClass('all');
-  // reset filter group if the all box was checked
-  if ( isAll ) {
-    delete filters[ group ];
-    if ( !checkbox.checked ) {
-      checkbox.checked = 'checked';
-    }
-  }
   // index of
   var index = $.inArray( checkbox.value, filterGroup );
 
-  if ( checkbox.checked ) {
-    var selector = isAll ? 'input' : 'input.all';
-    $checkbox.siblings( selector ).removeAttr('checked');
-
-    if ( !isAll && index === -1 ) {
-      // add filter to group
-      filters[ group ].push( checkbox.value );
-    }
-  } else if ( !isAll ) {
+  if ( checkbox.checked && index === -1) {
+    filters[ group ].push( checkbox.value );
+  } else {
     // remove filter from group
     filters[ group ].splice( index, 1 );
-    // if unchecked the last box, check the all
-    if ( !$checkbox.siblings('[checked]').length ) {
-      $checkbox.siblings('input.all').attr('checked', 'checked');
-    }
   }
-}
-
-
-/////////////////////////////////////////////
-/////////////////////////////////////////////
-
-
-function cartPage()
-{
-  cartList();
-  cartHeader();
 }
 
 
@@ -1839,13 +1797,13 @@ function cartPage()
 function checkoutPage()
 {
   shippingAddresses = [];
-  $("#minimumTotalWarning").empty();
-  $("#shipping-address").empty();
+  $("#minimumTotalWarning, #shipping-address").empty();
+
   cartList();
   cartHeader(minimumTotal); // cartHeader(); cartHeader(minimumTotal);
   shipToAddress();
   $("#creditcard").hide();
-  document.getElementById("creditcard").src="http://72.64.152.18:8081/nlhtml/custom/netlink.php?request_id=APICC&session_no=" + session_no + "";
+  document.getElementById("creditcard").src="http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?request_id=APICC&session_no=" + session_no + "";
 
   $("#myButton").click(function() {
     console.log("is this working?");
@@ -1868,29 +1826,24 @@ function whichPage()
 {
   var hashy = window.location.hash.split("+");
   var locale = hashy[0];
+  $('#content div div section').hide();
   switch (locale) {
     case '#shop' :
-      $('#content div div section').hide();
       $('#shop').show();
-      shopPage();
       break;
     case '#cart' :
-      $('#content div div section').hide();
       $('#cart').show();
-      cartPage();
+      shopPage();
       break;
     case '#checkout' :
-      $('#content div div section').hide();
       $('#checkout').show();
       checkoutPage();
       break;
     case '#profile' :
-      $('#content div div section').hide();
       $('#profile').show();
       username = Cookies.get('username').toUpperCase();
       accountDetails();
       $("#myButton").click(function() {
-        console.log("is this working?");
         var hasErrors = $('#shipping-form').validator('validate').has('.has-error').length;
         if (hasErrors) {
           alert('Shipping address form has errors.');
@@ -1900,15 +1853,10 @@ function whichPage()
       });
       break;
     case '#invoices' :
-      $('#content div div section').hide();
       $('#invoices').show();
-      $("#details-title").hide();
-      $("#details-table").hide();
-      $("#line-item-title").hide();
-      $("#line-item-table").hide();
+      $("#details-title, #details-table, #line-item-title, #line-item-table").hide();
 
       orderHistory();
-      cartList();
       $('#searchForInvoices').click(function(){
         var invoiceSearchNumber = $('#invoiceNumber').val();
         searchInvoices(invoiceSearchNumber);
@@ -1920,15 +1868,10 @@ function whichPage()
       });
       break;
     case '#orders' :
-      $('#content div div section').hide();
       $('#orders').show();
-      $("#orders-details-title").hide();
-      $("#orders-details-table").hide();
-      $("#orders-line-item-title").hide();
-      $("#orders-line-item-table").hide();
+      $("#orders-details-title, #orders-details-table, #orders-line-item-title, #orders-line-item-table").hide();
       openOrders();
       orderHistory();
-      cartList();
       $('#searchForOrders').click(function(){
         var orderSearchNumber = $('#orderNumber').val();
         searchOrders(orderSearchNumber);
@@ -1940,26 +1883,19 @@ function whichPage()
       });
       break;
     case '#detail-view' :
-      $('#content div div section').hide();
       $('#detail-view').show();
       detailView();
-      cartHeader();
-      cartList();
       break;
     case '#faq' :
-      $('#content div div section').hide();
       $('#faq').show();
       break;
     case '#customerservice' :
-      $('#content div div section').hide();
       $('#customerservice').show();
       break;
     case '#search' :
-      $('#content div div section').hide();
       $('#search').show();
       break;
     default :
-      $('#content div div section').hide();
       $('#shop').show();
       shopPage();
   }

@@ -10,8 +10,30 @@ title: Store - Laura Janelle
         .Fixed {
           position: fixed;
           overflow-y: auto;
-          height: 65vh;
+          height: 60vh;
+          transform: translatez(0);
         }
+        #shop .sidebar .sidebar-widgets-wrap .widget {
+          padding-top: 15px;
+          margin-top: 10px;
+        }
+
+        #shop .sidebar .sidebar-widgets-wrap .widget .toggle {
+          margin: 0 0 7px;
+        }
+      }
+
+      @media (min-width: 768px) and (max-width: 991px) {
+        #shop .sidebar .sidebar-widgets-wrap .widget {
+          padding-top: 15px;
+          margin: 0;
+        }
+
+        #shop .sidebar .sidebar-widgets-wrap .widget .toggle {
+          margin: 0 0 7px;
+        }
+      }
+      @media (max-width: 767px) {
         #shop .sidebar .sidebar-widgets-wrap .widget {
           padding-top: 15px;
           margin-top: 10px;
@@ -25,12 +47,12 @@ title: Store - Laura Janelle
 
   		<!-- Content
   		============================================= -->
-  		<section id="content">
+  		<section id="content" style="min-height:100%; position:relative;">
   			<div class="content-wrap">
   				<div class="container clearfix">
 
             <section id="shop">
-
+              
               <!-- Sidebar
     					============================================= -->
     					<div class="sidebar nobottommargin Fixed">
@@ -222,7 +244,7 @@ title: Store - Laura Janelle
                   <div class="widget subscribe-widget clearfix">
                     <div class="toggle ui-group">
                       <div class="togglet"><i class="toggle-closed icon-chevron-down"></i><i class="toggle-open icon-chevron-up"></i>METAL COLOR</div>
-                      <div class="togglec" data-group="color">
+                      <div class="togglec" data-group="metal">
                         <div>
                           <input id="checkbox-41" class="checkbox-style" name="checkbox-41" type="checkbox" value=".101">
                           <label for="checkbox-41" class="checkbox-style-1-label">GOLD</label>
