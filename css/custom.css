@@ -10,8 +10,14 @@
 	margin-right: 0px !important;
 }
 
-@media (max-width: 1199px) and (min-width: 450px) {
-	.product:not(.product-2):not(.product-3) .product-title h3 {
+@media (max-width: 1199px) and (min-width: 481px) {
+	.product:not(.product-2):not(.product-3) .product-title h3, .product:not(.product-2):not(.product-3) .product-price  {
+		font-size: 12px;
+	}
+}
+
+@media (max-width: 480px) {
+	.product:not(.product-2):not(.product-3) .product-title h3, .product:not(.product-2):not(.product-3) .product-price {
 		font-size: 14px;
 	}
 }
