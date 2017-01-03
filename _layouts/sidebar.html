@@ -13,6 +13,7 @@ layout: compress
 
     .side-header #primary-menu ul li a {
       text-align: right;
+      font-size: 14px;
     }
     .side-header #logo:not(.nobottomborder):after, .side-header #primary-menu:not(.nobottomborder):after {
       width: 0%;
@@ -93,33 +94,34 @@ layout: compress
                 <li><a href="http://www.cousin.com" target="_blank"><div>COUSIN.COM</div></a></li>
                 <li><a href="{{ site.baseurl }}/thelooks.html" target="_blank"><div>THE LOOKS</div></a></li>
               </ul>
-            </nav><!-- #primary-menu end
+            </nav>  <!-- #primary-menu end -->
             <div class="clearfix visible-md visible-lg">
-                <a href="#" class="social-icon si-small si-borderless si-facebook">
-                    <i class="icon-facebook"></i>
-                    <i class="icon-facebook"></i>
+                
+                <a href="https://www.facebook.com/laurajanellebycousin/" target="_blank" class="social-icon si-small si-borderless si-facebook">
+                  <i class="icon-facebook"></i>
+                  <i class="icon-facebook"></i>
                 </a>
 
-                <a href="#" class="social-icon si-small si-borderless si-twitter">
-                    <i class="icon-twitter"></i>
-                    <i class="icon-twitter"></i>
+                <a href="https://twitter.com/LJbyCousin" target="_blank" class="social-icon si-small si-borderless si-twitter">
+                  <i class="icon-twitter"></i>
+                  <i class="icon-twitter"></i>
                 </a>
 
-                <a href="#" class="social-icon si-small si-borderless si-gplus">
-                    <i class="icon-gplus"></i>
-                    <i class="icon-gplus"></i>
+                <a href="https://www.instagram.com/laurajanellebycousin/" target="_blank" class="social-icon si-small si-borderless si-instagram">
+                  <i class="icon-instagram"></i>
+                  <i class="icon-instagram"></i>
                 </a>
 
-                <a href="#" class="social-icon si-small si-borderless si-pinterest">
-                    <i class="icon-pinterest"></i>
-                    <i class="icon-pinterest"></i>
+                <a href="https://www.pinterest.com/laurajbycousin/" target="_blank" class="social-icon si-small si-borderless si-pinterest">
+                  <i class="icon-pinterest"></i>
+                  <i class="icon-pinterest"></i>
                 </a>
 
-                <a href="#" class="social-icon si-small si-borderless si-github">
-                    <i class="icon-github"></i>
-                    <i class="icon-github"></i>
+                <a href="https://www.linkedin.com/company/laura-janelle" target="_blank" class="social-icon si-small si-borderless si-linkedin">
+                  <i class="icon-linkedin"></i>
+                  <i class="icon-linkedin"></i>
                 </a>
-            </div> -->
+            </div>
           </div>
         </div>
       </header><!-- #header end -->
@@ -137,7 +139,7 @@ layout: compress
     {% if page.url == "/findstore/" %}
     <style>
     footer {
-    /*  margin-top: 24px !important; */
+      margin-top: 24px !important;
     }
     </style>
 
@@ -203,7 +205,6 @@ layout: compress
         $(".contact-img").show("slow");
       });
 
-
       var $window = $(window);
 
       /* Function to handle changes to style classes based on window width */
@@ -237,96 +238,94 @@ layout: compress
   	<script type="text/javascript" src="{{ "/include/rs-plugin/js/extensions/revolution.extension.video.min.js" | prepend: site.baseurl }}"></script>
 
   	<script type="text/javascript">
+    $( "div#logo a img" ).addClass( "divcenter" );
 
-  $( "div#logo a img" ).addClass( "divcenter" );
-
-  var tpj = jQuery;
-  var revapi287;
-  tpj(document).ready(function() {
-    if (tpj("#rev_slider_287_1").revolution == undefined) {
-      revslider_showDoubleJqueryError("#rev_slider_287_1");
-    } else {
-      revapi287 = tpj("#rev_slider_287_1").show().revolution({
-        sliderType: "carousel",
-        jsFileLocation: "../include/rs-plugin/js/",
-      /*  sliderLayout: "fullscreen", */
-        dottedOverlay: "none",
-        delay: 5000,
-        navigation: {
-          keyboardNavigation: "off",
-          keyboard_direction: "horizontal",
-          mouseScrollNavigation: "off",
-          onHoverStop: "off",
-          touch: {
-            touchenabled: "on",
-            swipe_threshold: 75,
-            swipe_min_touches: 50,
-            swipe_direction: "horizontal",
-            drag_block_vertical: false
-          },
-          arrows: {
-            style: "uranus",
-            enable: true,
-            hide_onmobile: true,
-            hide_under: 778,
-            hide_onleave: true,
-            hide_delay: 200,
-            hide_delay_mobile: 1200,
-            tmp: '',
-            left: {
-              h_align: "left",
-              v_align: "center",
-              h_offset: 20,
-              v_offset: 0
+    var tpj = jQuery;
+    var revapi287;
+    tpj(document).ready(function() {
+      if (tpj("#rev_slider_287_1").revolution == undefined) {
+        revslider_showDoubleJqueryError("#rev_slider_287_1");
+      } else {
+        revapi287 = tpj("#rev_slider_287_1").show().revolution({
+          sliderType: "carousel",
+          jsFileLocation: "../include/rs-plugin/js/",
+        /*  sliderLayout: "fullscreen", */
+          dottedOverlay: "none",
+          delay: 5000,
+          navigation: {
+            keyboardNavigation: "off",
+            keyboard_direction: "horizontal",
+            mouseScrollNavigation: "off",
+            onHoverStop: "off",
+            touch: {
+              touchenabled: "on",
+              swipe_threshold: 75,
+              swipe_min_touches: 50,
+              swipe_direction: "horizontal",
+              drag_block_vertical: false
             },
-            right: {
-              h_align: "right",
-              v_align: "center",
-              h_offset: 20,
-              v_offset: 0
+            arrows: {
+              style: "uranus",
+              enable: true,
+              hide_onmobile: true,
+              hide_under: 778,
+              hide_onleave: true,
+              hide_delay: 200,
+              hide_delay_mobile: 1200,
+              tmp: '',
+              left: {
+                h_align: "left",
+                v_align: "center",
+                h_offset: 20,
+                v_offset: 0
+              },
+              right: {
+                h_align: "right",
+                v_align: "center",
+                h_offset: 20,
+                v_offset: 0
+              }
             }
-          }
-        },
-        responsiveLevels: [1240, 991, 778, 480],
-        gridwidth: [1240, 1024, 778, 480],
-        gridheight:[868,768,960,720],
-        lazyType: "none",
-        parallax: {
-          type: "scroll",
-          origo: "enterpoint",
-          speed: 400,
-          levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 46, 47, 48, 49, 50, 51, 55],
-          type: "scroll",
-        },
-        shadow: 0,
-        spinner: "off",
-        stopLoop: "off",
-        stopAfterLoops: -1,
-        stopAtSlide: -1,
+          },
+          responsiveLevels: [1240, 991, 778, 480],
+          gridwidth: [1240, 1024, 778, 480],
+          gridheight:[868,768,960,720],
+          lazyType: "none",
+          parallax: {
+            type: "scroll",
+            origo: "enterpoint",
+            speed: 400,
+            levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 46, 47, 48, 49, 50, 51, 55],
+            type: "scroll",
+          },
+          shadow: 0,
+          spinner: "off",
+          stopLoop: "off",
+          stopAfterLoops: -1,
+          stopAtSlide: -1,
 
-        shuffle: "on",
-        autoHeight: "on",
-        fullScreenAutoWidth: "off",
-        fullScreenAlignForce: "off",
-        fullScreenOffsetContainer: "",
-        disableProgressBar: "off",
-        hideThumbsOnMobile: "off",
-        hideSliderAtLimit: 0,
-        hideCaptionAtLimit: 0,
-        hideAllCaptionAtLilmit: 0,
-        debugMode: false,
-        fallbacks: {
-          simplifyAll: "off",
-          nextSlideOnWindowFocus: "off",
-          disableFocusListener: false,
-        }
-      });
-    }
-  }); /*ready*/
+          shuffle: "on",
+          autoHeight: "on",
+          fullScreenAutoWidth: "off",
+          fullScreenAlignForce: "off",
+          fullScreenOffsetContainer: "",
+          disableProgressBar: "off",
+          hideThumbsOnMobile: "off",
+          hideSliderAtLimit: 0,
+          hideCaptionAtLimit: 0,
+          hideAllCaptionAtLilmit: 0,
+          debugMode: false,
+          fallbacks: {
+            simplifyAll: "off",
+            nextSlideOnWindowFocus: "off",
+            disableFocusListener: false,
+          }
+        });
+      }
+    }); /*ready*/
 
   	</script>
     {% endif %}
-
 
   </body>
 

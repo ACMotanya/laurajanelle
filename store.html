@@ -6,55 +6,7 @@ title: Store - Laura Janelle
       #cart, #checkout, #invoices, #profile, #orders, #shop, #detail-view, #faq, #customerservice, #search {
         display: none;
       }
-      @media (min-width: 992px) {
-        .Fixed {
-          position: fixed;
-          overflow-y: auto;
-          height: 60vh;
-          transform: translatez(0);
-
-        }
-        div.wrap-filter.toggle.Fixed div.sidebar.nobottommargin.togglec {
-          display: block !important;
-        }
-
-        .sidebar .sidebar-widgets-wrap .widget {
-          padding-top: 15px;
-          margin-top: 10px;
-        }
-
-        .sidebar .sidebar-widgets-wrap .widget .toggle {
-          margin: 0 0 7px;
-        }
-      }
-
-      @media (min-width: 768px) and (max-width: 991px) {
-        div.sidebar-widgets-wrap div.widget {
-          padding-top: 15px;
-          margin: 0;
-        }
-
-        .widget .toggle .togglet {
-          background-color: transparent;
-        }
-
-        .widget .toggle {
-          margin: 0 0 7px;
-        }
-        div.sidebar.nobottommargin.togglec {
-          border-bottom: none;
-        }
-      }
-      @media (max-width: 767px) {
-        .sidebar-widgets-wrap .widget {
-          padding-top: 15px;
-          margin-top: 10px;
-        }
-
-        .sidebar-widgets-wrap .widget .toggle {
-          margin: 0 0 7px;
-        }
-      }
+      
       </style>
 
   		<!-- Content
@@ -68,7 +20,7 @@ title: Store - Laura Janelle
               <!-- Sidebar
     					============================================= -->
 
-              <div class='wrap-filter toggle Fixed'>
+              <div class='wrap-filter toggle toggle-bg Fixed'>
                 <div class='togglet'><i class='toggle-closed icon-chevron-down'></i><i class='toggle-open icon-chevron-up'></i>SHOP CATEGORIES</div>
       					<div class="sidebar nobottommargin togglec">
       						<div class="sidebar-widgets-wrap">
@@ -2095,7 +2047,7 @@ title: Store - Laura Janelle
 
                         <a id="showDeliveryChart" href"#" class="button button-3d button-rounded button-black">View Estimated Delivery Chart</a>
 
-                <!--        <div class="container clearfix topmargin-lg">
+                <!--   <div class="container clearfix topmargin-lg">
                  					<div class="divcenter notopmargin" style="max-width: 850px;"> -->
                  						<div class="contact-widget" id="deliveryChart" style="display: none" >
                  							<div class="contact-form-result"></div>

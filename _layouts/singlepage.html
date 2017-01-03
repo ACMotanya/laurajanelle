@@ -223,25 +223,6 @@ layout: compress
 				});
 		 };
      */
-
-     var $window = $(window);
-
-     /* Function to handle changes to style classes based on window width */
-     function checkWidth() {
-       if ($window.width() < 991) {
-         $('.wrap-filter').addClass('toggle-bg');
-       };
-
-       if ($window.width() >= 991) {
-         $('.wrap-filter').removeClass('toggle-bg');
-       };
-     }
-
-     /* Execute on load */
-     checkWidth();
-
-     /* Bind event listener */
-     $(window).resize(checkWidth);
     </script>
 
   </body>

@@ -168,6 +168,67 @@ i.icon-search3 {
 	}
 }
 
+
+
+/*
+/* \\\\\\\\\\\\\\\\\\\
+ #shop page styling mostly filters
+/* \\\\\\\\\\\\\\\\\\\
+*/
+
+
+@media (min-width: 992px) {
+	.Fixed {
+		position: fixed;
+		overflow-y: auto;
+		height: 60vh;
+		transform: translatez(0);
+	}
+	div.wrap-filter.toggle.Fixed div.sidebar.nobottommargin.togglec {
+		display: block !important;
+	}
+	div.wrap-filter.toggle.Fixed > div.togglet {
+		background-color: transparent;
+	}
+
+	.sidebar .sidebar-widgets-wrap .widget {
+		padding-top: 15px;
+		margin-top: 10px;
+	}
+
+	.sidebar .sidebar-widgets-wrap .widget .toggle {
+		margin: 0 0 7px;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+	div.sidebar-widgets-wrap div.widget {
+		padding-top: 15px;
+		margin: 0;
+	}
+
+	.widget .toggle .togglet {
+		background-color: transparent;
+	}
+
+	.widget .toggle {
+		margin: 0 0 7px;
+	}
+	div.sidebar.nobottommargin.togglec {
+		border-bottom: none;
+	}
+}
+@media (max-width: 767px) {
+	.sidebar-widgets-wrap .widget {
+		padding-top: 15px;
+		margin-top: 10px;
+	}
+
+	.sidebar-widgets-wrap .widget .toggle {
+		margin: 0 0 7px;
+	}
+}
+
 /*
 /* \\\\\\\\\\\\\\\\\\\
 	About page styling

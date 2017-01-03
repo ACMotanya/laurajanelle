@@ -21,15 +21,22 @@ var collection;
 var country;
 var countrylines;
 var detailViewQty;
+var encharming = ["10336",
+"10335", "10337", "10334", "10338", "10340", "10339", "10350",
+"10345", "10346", "10347", "10333", "10341", "10342", "10348",
+"10343", "10349", "10344"];
 var fields;
 var filters = {};
 var flds;
 var fldsArray = { "data": []};
 var fldsArray_json;
 var item;
+var knot = ["12100A", "CD121", "12101", "12102", "12103", "12104",
+"12105", "12106", "12107", "12108", "12109", "12110", "12111",
+"12112", "12113", "12114", "12115", "12116", "12117", "12118",
+"12119", "12120", "12121", "12122", "12123", "12124", "12100B", "CD121A"];
 var lines;
 var mantra = ["10375", "10376", "10377", "10378", "10379", "10380", "10381", "10382"];
-
 var newCustomerNumber;
 var newNumberOfOrders;
 var neworder;
@@ -37,12 +44,26 @@ var numberOfOrders;
 var orderAmt;
 var prices = [];
 var prod;
+var rglb = ["11300B", "11349", "11350", "11351", "11352", "11353", "11354",
+"11355", "11356", "11357", "11358", "11359", "11360", "11361",
+"11362", "11363", "11364", "11365", "11366", "11367", "11368",
+"11369", "11370", "11371", "11372", "11373", "11374", "11375",
+"11376", "11377", "11378", "11379", "11380", "11381", "11382",
+"11383", "11384", "11300C", "11313", "11314",
+"11315", "11316", "11317", "11318", "11319", "11320", "11321",
+"11322", "11323", "11324", "11325", "11326", "11327", "11328",
+"11329", "11330", "11331", "11332", "11333", "11334", "11335",
+"11336", "11301", "11302", "11303", "11304", "11305", "11306",
+"11307", "11308", "11309", "11310", "11311", "11312","11300A", "11337", "11338", "11339",
+"11340", "11341", "11342", "11343", "11344", "11345", "11346",
+"11347", "11348"];
 var searchField = document.getElementById('searchvalue');
 var searchTerm;
 var secondColumn;
 var session_no;
 var shippingAddresses = [];
 var shoppingCart;
+var sleek = ["10001A","10092", "10093", "10094", "10095", "10096", "10097"];
 var sortItems = [
   "11300B", "11349", "11350", "11351", "11352", "11353", "11354",
   "11355", "11356", "11357", "11358", "11359", "11360", "11361",
@@ -530,11 +551,9 @@ function detailView()
        }
 
        secondColumn  = '<div><a href="'+ detailString +'" title="Brand Logo" class="hidden-xs">';
-       if ( mantra.includes(stock_no) ) {
-         secondColumn += '<img class="image_fade" src="../img/MAN-logo.png" alt="Brand Logo"></a></div>';
-       } else {
-         secondColumn += '<img class="image_fade" src="../img/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div>';
-       }
+
+      secondColumn += '<img class="image_fade" src="../img/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div>';
+
        secondColumn += '<div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + fields[0].replace(/\s+/g,'') + '</span></span></div><div class="line"></div>';
        secondColumn += '<div class="product-price col_one_third" style="font-size: 16px; font-weight: 400;"> <ins>COST:&nbsp;' + fields[4] + '</ins></div><div class="col_one_third hidden-xs" style="top: 0px; margin: 0px;">MIN: 1</div>';
        if (stock_no !== "CD111" && stock_no !== "CD103" && stock_no !== "CD105" && stock_no !== "CD107" && stock_no !== "CD100" && stock_no !== "11100A" && stock_no !== "10000A" && stock_no !== "10300A" && stock_no !== "10500A" && stock_no !== "10700A" && stock_no !== "10700B" && stock_no !== "10700C" && stock_no !== "10700D" && stock_no !== "PIL107" && stock_no !== "34737029" )  {
@@ -545,6 +564,21 @@ function detailView()
        secondColumn += '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + fields[0].replace(/\s+/g,'') + '" />';
        secondColumn += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant[1]" onclick="changeQuantity(this)"></div>';
        secondColumn += '<button type="button" id="add-item" class="add-to-cart button nomargin" onclick="stock_no=\'' + fields[0].trim() + '\'; addItemDetailView();">Add to cart</button></form><div class="clear"></div><div class="line"></div>';
+
+       if ( mantra.includes(stock_no) ) {
+         secondColumn += '<p style="color: red;">PENDING SHIP DATE: March 4th</p><div class="line"></div>';
+       } else if ( sleek.includes(stock_no) ) {
+         secondColumn += '<p style="color: red;">PENDING SHIP DATE: February 19th</p><div class="line"></div>';
+       } else if ( encharming.includes(stock_no) ) {
+         secondColumn += '<p style="color: red;">PENDING SHIP DATE: February 15th</p><div class="line"></div>';
+       } else if ( knot.includes(stock_no) ) {
+         secondColumn += '<p style="color: red;">PENDING SHIP DATE: February 28th</p><div class="line"></div>';
+       } else if ( rglb.includes(stock_no) ) {
+         secondColumn += '<p style="color: red;">PENDING SHIP DATE: January 16th</p><div class="line"></div>';
+       } else if ( fields[2] === "SRK" ) {
+         secondColumn += '<p style="color: red;">PENDING SHIP DATE: February 28th</p><div class="line"></div>';
+       }
+
 
        if (fields[8].length !== 0) {
          secondColumn += '<p>' + fields[8] + '</p>';
@@ -752,8 +786,8 @@ function sendEmail()
 {
   var email_num = session_no;
   $.get("http://72.64.152.18:8082/ace/mailer/order_confirmation.php?session_no=" + email_num + "&order_no="+ newOrder + "").always(function(){ email_num = 1;});
-    document.body.removeEventListener("click", sendEmail);
-    windowHash("orders");
+  document.body.removeEventListener("click", sendEmail);
+  windowHash("orders");
     // add the search for the new order number and display the data.
 }
 
@@ -1683,6 +1717,7 @@ function quickView(clicked_id)
 /////////////////////////////////////////////
 /////////////////////////////////////////////
 /////////////////////////////////////////////
+
 
 function shopPage()
 {
