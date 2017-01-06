@@ -52,6 +52,22 @@ body.stretched #header.full-header.sticky-header .container {
 	border-right: none;
 }
 
+@media (min-width: 992px) {
+	.side-header #primary-menu ul li a {
+		text-align: right;
+		font-size: 14px;
+	}
+	.side-header #logo:not(.nobottomborder):after, .side-header #primary-menu:not(.nobottomborder):after {
+		width: 0%;
+	}
+	.side-header #primary-menu ul li {
+		margin: 15px 40px 0 0;
+	}
+	.side-header.side-header-right:not(.open-header) #wrapper {
+		margin: 0 220px 0 0 !important;
+	}
+}
+
 i.icon-shopping-cart,
 i.icon-search3 {
 	font-size: 22px;

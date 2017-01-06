@@ -403,11 +403,11 @@ span.middot {
 
 .nolineheight { line-height: 0 !important; }
 
-.font-body { font-family: 'bodoni-sans', 'Oranienbaum', sans-serif; }
+.font-body { font-family: 'Bodoni-Sans', sans-serif; }
 
-.font-primary { font-family: 'bodoni-sans', 'Oranienbaum', sans-serif; }
+.font-primary { font-family: 'Bodoni-Sans', sans-serif; }
 
-.font-secondary { font-family: 'Crete Round', serif; }
+.font-secondary { font-family: 'Lato', serif; }
 
 .bgicon {
 	display: block;
@@ -4762,7 +4762,7 @@ body.device-touch.device-xxs .portfolio-notitle .portfolio-overlay { display: no
 	line-height: 14px;
 	margin: 0 10px 15px 0;
 	color: #999;
-	font-family: 'Crete Round', serif;
+	font-family: 'Lato', serif;
 	font-style: italic;
 }
 
@@ -4832,7 +4832,7 @@ body:not(.device-touch) .entry-link {
 .entry-link span {
 	display: block;
 	margin-top: 5px;
-	font-family: 'Crete Round', serif;
+	font-family: 'Lato', serif;
 	font-style: italic;
 	font-weight: normal;
 	text-transform: none;
@@ -4845,7 +4845,7 @@ body:not(.device-touch) .entry-link {
 
 .entry blockquote p {
 	font-weight: 400;
-	font-family: 'Crete Round', serif;
+	font-family: 'Lato', serif;
 	font-style: italic;
 }
 
@@ -5190,7 +5190,7 @@ body:not(.device-touch) .entry-link {
 	display: inline-block;
 	border-bottom: 1px solid #000;
 	padding: 0 2px;
-	font-family: 'Crete Round', serif;
+	font-family: 'Lato', serif;
 	font-style: italic;
 }
 
@@ -5460,7 +5460,7 @@ body:not(.device-touch) .entry-link {
 .comment-content .comment-author span a {
 	font-size: 12px;
 	font-weight: normal;
-	font-family: 'Crete Round', serif;
+	font-family: 'Lato', serif;
 	font-style: italic;
 	color: #AAA;
 }
@@ -6479,7 +6479,7 @@ body:not(.device-touch) .button {
 	font-size: 14px;
 	font-weight: 400;
 	letter-spacing: 1px;
-	font-family: 'Crete Round', serif;
+	font-family: 'Lato', serif;
 	font-style: italic;
 	text-transform: none;
 }
@@ -9227,7 +9227,7 @@ body:not(.device-touch) .clients-grid li a {
 
 .testi-content p {
 	margin-bottom: 0;
-	font-family: 'Crete Round', serif;
+	font-family: 'Lato', serif;
 	font-style: italic;
 }
 
@@ -9418,7 +9418,7 @@ body:not(.device-touch) .clients-grid li a {
 	display: block;
 	color: #000;
 	font-weight: 400;
-	font-family: 'Crete Round', serif;
+	font-family: 'Lato', serif;
 	font-style: italic;
 	font-size: 15px;
 	margin-top: 5px;
@@ -10890,7 +10890,7 @@ label.error { display: none !important; }
 	display: block;
 	margin: 0 0 5px;
 	font-size: 16px;
-	font-family: 'Crete Round', serif;
+	font-family: 'Lato', serif;
 	font-style: italic;
 	font-weight: 400;
 	color: #999;
@@ -11860,7 +11860,7 @@ body:not(.device-touch) .tagcloud a {
 	font-size: 56px;
 	font-weight: 400;
 	font-style: italic;
-	font-family: 'Crete Round', serif;
+	font-family: 'Lato', serif;
 	text-transform: none;
 }
 

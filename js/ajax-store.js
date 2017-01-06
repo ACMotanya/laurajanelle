@@ -344,7 +344,7 @@ function addItemDetailView()
   } else {
     detailViewQty = "1";
   }
-  console.log(stock_no);
+
     // Save color and type in the sessionStorage
     if (!sessionStorage.getItem(stock_no) || sessionStorage.getItem(stock_no) === "undefined" || sessionStorage.getItem(stock_no) === null ) {
       sessionStorage.setItem(stock_no, detailString);
@@ -435,7 +435,7 @@ function cartList()
       if ( window.location.hash === "#cart") {
         html = [];
         $(".cart_item.products").empty();
-        console.log(response);
+
         cartHelper();
         $("#cartItemTable").prepend(html.join(''));
         $("#updateCartButton").show();
@@ -485,7 +485,7 @@ function cartHelper()
       }
     }
   } else {
-    console.log("I am here");
+
     item = '<tr class="cart_item products"><td class="cart-product-remove"><h1> Cart is empty</h1></td></tr>';
     html.push(item);
   }
@@ -526,7 +526,7 @@ function detailView()
     url: "http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?",
     data: {request_id: "APISTKDTL", stock_no: stock_no, session_no: session_no},
     success: function(response) {
-      console.log(response);
+
       lines = response.split("\n");
       // lines[0] is header row
       // lines[1]+ are data lines
@@ -539,9 +539,9 @@ function detailView()
            pics += '<div class="slide" data-thumb="../ljimages/' + fields[0] + '-sm.png"><a href="../ljimages/' + fields[0] + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="../ljimages/' + fields[0] + '-md.png" alt="' + fields[1] + '"></span></a></div>';
        if (fields[2] === "ENC" && stock_no !== "CD103" && stock_no !== "10300A" || fields[2] === "GLB" && stock_no === "34737029" && stock_no !== "10700A" && stock_no !== "10700B" && stock_no !== "10700C" && stock_no !== "10700D"  && stock_no !== "PIL107")  {
            pics += '<div class="slide" data-thumb="../packaging/' + fields[0] + '-sm.png"><a href="../packaging/' + fields[0] + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="../packaging/' + fields[0] + '-md.png" alt="' + fields[1] + '"></span></a></div>';
-       } else if (backImages.includes(stock_no)) {
+       } else if ( backImages.join(" ").indexOf(stock_no) > -1 ) {
            pics += '<div class="slide" data-thumb="../backs/' + fields[0] + 'bk-sm.png"><a href="../backs/' + fields[0] + 'bk-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="../backs/' + fields[0] + 'bk-md.png" alt="' + fields[1] + '"></span></a></div>';
-       } else if ( mantra.includes(stock_no) ) {
+       } else if ( mantra.join(" ").indexOf(stock_no) > -1 ) {
            pics += '<div class="slide" data-thumb="../packaging/' + fields[0] + '-sm.png"><a href="../packaging/' + fields[0] + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="../packaging/' + fields[0] + '-md.png" alt="' + fields[1] + '"></span></a></div>';
        }
            pics += '</div></div></div>';
@@ -551,7 +551,7 @@ function detailView()
 
        secondColumn  = '<div><a href="'+ detailString +'" title="Brand Logo" class="hidden-xs">';
 
-      secondColumn += '<img class="image_fade" src="../img/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div>';
+       secondColumn += '<img class="image_fade" src="../img/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div>';
 
        secondColumn += '<div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + fields[0].replace(/\s+/g,'') + '</span></span></div><div class="line"></div>';
        secondColumn += '<div class="product-price col_one_third" style="font-size: 16px; font-weight: 400;"> <ins>COST:&nbsp;' + fields[4] + '</ins></div><div class="col_one_third hidden-xs" style="top: 0px; margin: 0px;">MIN: 1</div>';
@@ -564,20 +564,17 @@ function detailView()
        secondColumn += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant[1]" onclick="changeQuantity(this)"></div>';
        secondColumn += '<button type="button" id="add-item" class="add-to-cart button nomargin" onclick="stock_no=\'' + fields[0].trim() + '\'; addItemDetailView();">Add to cart</button></form><div class="clear"></div><div class="line"></div>';
 
-       if ( mantra.includes(stock_no) ) {
-         secondColumn += '<p style="color: red;">PENDING SHIP DATE: March 4th</p><div class="line"></div>';
-       } else if ( sleek.includes(stock_no) ) {
-         secondColumn += '<p style="color: red;">PENDING SHIP DATE: February 19th</p><div class="line"></div>';
-       } else if ( encharming.includes(stock_no) ) {
-         secondColumn += '<p style="color: red;">PENDING SHIP DATE: February 15th</p><div class="line"></div>';
-       } else if ( knot.includes(stock_no) ) {
-         secondColumn += '<p style="color: red;">PENDING SHIP DATE: February 28th</p><div class="line"></div>';
-       } else if ( rglb.includes(stock_no) ) {
-         secondColumn += '<p style="color: red;">PENDING SHIP DATE: January 16th</p><div class="line"></div>';
-       } else if ( fields[2] === "SRK" ) {
-         secondColumn += '<p style="color: red;">PENDING SHIP DATE: February 28th</p><div class="line"></div>';
+       if ( fields[2] === "MAN" ) {
+         secondColumn += '<p style="color: red;">EXPECTED SHIP DATE: March 4th</p><div class="line"></div>';
+       } else if ( sleek.join(" ").indexOf(stock_no) > -1 ) {
+         secondColumn += '<p style="color: red;">EXPECTED SHIP DATE: February 19th</p><div class="line"></div>';
+       } else if ( encharming.join(" ").indexOf(stock_no) > -1 ) {
+         secondColumn += '<p style="color: red;">EXPECTED SHIP DATE: February 15th</p><div class="line"></div>';
+       } else if ( knot.join(" ").indexOf(stock_no) > -1 || fields[2] === "SRK" ) {
+         secondColumn += '<p style="color: red;">EXPECTED SHIP DATE: February 28th</p><div class="line"></div>';
+       } else if ( rglb.join(" ").indexOf(stock_no) > -1 ) {
+         secondColumn += '<p style="color: red;">EXPECTED SHIP DATE: January 16th</p><div class="line"></div>';
        }
-
 
        if (fields[8].length !== 0) {
          secondColumn += '<p>' + fields[8] + '</p>';
@@ -888,8 +885,6 @@ function saveAddresses()
 /////////////////////////
 function search()
 {
-  stock_no = window.location.hash;
-
   if(event.keyCode == 13) {
     event.preventDefault();
     searchTerm = $('#searchvalue').val();
@@ -900,41 +895,10 @@ function search()
         request_id: "APISTKSEARCH",
         query: searchTerm},
       success: function(response) {
-        console.log(response);
-///////////////// Leave in until McPhate changes the fields for the SearchAPI call put this back after changes -->  fillShop3(data);
+        $('#searchDiv').empty();
         oldhash = window.location.hash;
         windowHash("search");
-        lines = response.split("\n");
-        console.log( lines );
-        lines.shift();
-        linesPlus = [];
-        for (i=0; i<lines.length - 1; i++) {
-          linesPlus.push(lines[i].split("|"));
-        }
-        //linesPlus.sort( function( a, b ) {
-        //  retVal=0;
-        //  if (sortItems.indexOf(a[0].trim()) != sortItems.indexOf( b[0].trim() )) retVal= sortItems.indexOf( a[0].trim() ) > sortItems.indexOf( b[0].trim() )?1:-1;
-        //  return retVal;
-        //});
-        // lines[1]+ are data lines
-        $('#searchDiv').empty();
-        html = [];
-        if ( lines.length <= 1) {
-          document.getElementById("searchDiv").innerHTML += '<h1>There are no results</h1>';
-        } else {
-          for (i=0; i<linesPlus.length; i++) {
-            flds = linesPlus[i];
-
-            prod = '<div class="product clearfix ' + flds[2] + '"><div class="product-image"><a href="#detail-view+' + flds[0].trim() +'"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a><div class="product-overlay">';
-            prod += '<a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim()  + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'detail-view+' + flds[0].trim() + '\'; addItemDetailView(); shopPage(); SEMICOLON.widget.notifications(this); return false;" id="' + flds[0].replace(/\s+/g,'') + '"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-            prod += '<a href="#detail-view+' + flds[0].trim() + '" class="item-quick-view"><i class="icon-zoom-in2"></i><span class="' + flds[0].trim()  + '">Detail View</span></a></div></div>';
-            prod += '<div class="product-desc" style="height: 80px;"><div class="product-title"><h3><a href="#detail-view+' + flds[0].trim() + '">' + flds[1] +'</a></h3></div><div class="product-price"><ins>$' + parseFloat(flds[4]).toFixed(2) + '</ins></div></div></div>';
-
-            html.push(prod);
-
-          }
-          document.getElementById("searchDiv").innerHTML += html.join('');
-        }
+        itemRender("searchDiv", response);
         $("#searchDiv").prepend('<button style="display: block; bottommargin-sm" type="button" class="button button-3d button-mini button-rounded button-black" onclick="$(\'#searchDiv\').empty(); windowHash(\''+oldhash+'\');">Close Search</button>');
       }
     });
@@ -1091,7 +1055,7 @@ function searchOrders(orderSearchNumber)
       session_no: session_no,
       order_no: orderSearchNumber},
     success: function(response) {
-      console.log(response);
+
       openlines = response.split("\n");
       // lines[0] is header row
       // lines[1]+ are data lines
@@ -1529,6 +1493,10 @@ function whatType(typeCode)
     break;
     case "950": type = "Accessories";
     break;
+    case "1000": type = "Scarves";
+    break;
+    case "1100": type = "Pendants";
+    break;
     default:
     type = "N/A";
   }
@@ -1552,6 +1520,10 @@ function whatLook(lookCode)
     case "IDT": look = "iDentify";
     break;
     case "ZEN": look = "AURA";
+    break;
+    case "SRK": look = "Salt Rock";
+    break;
+    case "MAN": look = "MANTRA";
     break;
     default:
     look = "N/A";
@@ -1598,44 +1570,7 @@ function filterFunction2(a,b,c,d,e,f)
       level5: f},
     success: function(response) {
       $('#shopItems').empty();
-      lines = response.split("\n");
-      lines.shift();
-      if ( lines.length <= 1) {
-        document.getElementById("shopItems").innerHTML += '<h1>There are no results</h1>';
-      } else {
-        html = [];
-        linesPlus = [];
-        for (i=0; i<lines.length - 1; i++) {
-          linesPlus.push(lines[i].split("|"));
-        }
-
-        linesPlus.sort( function( a, b ) {
-          retVal=0;
-          if (sortItems.indexOf(a[0].trim()) != sortItems.indexOf( b[0].trim() )) retVal= sortItems.indexOf( a[0].trim() ) > sortItems.indexOf( b[0].trim() )?1:-1;
-          return retVal;
-        });
-
-        //////////////////////////
-        // This is for when I am not blocking the new items
-        // LinesPlus = linesPlus.slice((linesPlus.length-259), linesPlus.length);
-        // This is for when I am not blocking the new items
-        //////////////////////////
-
-        for (i=0; i<linesPlus.length; i++) {
-          flds = linesPlus[i];
-
-          prod =  '<div class="product clearfix ' + flds[2] +" "+ flds[8].trim() +" "+ flds[9].trim() +" "+ flds[10].trim() + 1 +'"><div class="product-image"><a href="#detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim() + '"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a>';
-          if (flds[7].trim().length === 3) {
-            prod += '<div class="sale-flash">NEW!</div>';
-          }
-          prod += '<div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim() + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '\'; addItemDetailView(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-          prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="event.preventDefault(); stock_no=\'' + flds[0].trim() + '\'; quickView(this.id);" id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '"><i class="icon-zoom-in2"></i><span id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '">Quick View</span></a></div></div>';
-          prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim() + '">' + flds[1] +'</a></h3></div><div class="product-price">cost &nbsp;<ins>$' + flds[4].trim() + '</ins></div></div></div>';
-
-          html.push(prod);
-        }
-        document.getElementById("shopItems").innerHTML += html.join('');
-      }
+      itemRender("shopItems", response);
     },
     complete: function(){
       SEMICOLON.initialize.lightbox();
@@ -1643,7 +1578,40 @@ function filterFunction2(a,b,c,d,e,f)
   });
 }
 
+function itemRender(div,response)
+{
+  lines = response.split("\n");
+  lines.shift();
+  if ( lines.length <= 1) {
+    document.getElementById("shopItems").innerHTML += '<h1>There are no results</h1>';
+  } else {
+    html = [];
+    linesPlus = [];
+    for (i=0; i<lines.length - 1; i++) {
+      linesPlus.push(lines[i].split("|"));
+    }
 
+    linesPlus.sort( function( a, b ) {
+      retVal=0;
+      if (sortItems.indexOf(a[0].trim()) != sortItems.indexOf( b[0].trim() )) retVal= sortItems.indexOf( a[0].trim() ) > sortItems.indexOf( b[0].trim() )?1:-1;
+      return retVal;
+    });
+    for (i=0; i<linesPlus.length; i++) {
+      flds = linesPlus[i];
+
+      prod =  '<div class="product clearfix ' + flds[2] +" "+ flds[8].trim() +" "+ flds[9].trim() +" "+ flds[10].trim() + 1 +'"><div class="product-image"><a href="#detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim() + '"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a>';
+      if (flds[7].trim().length === 3) {
+        prod += '<div class="sale-flash">NEW!</div>';
+      }
+      prod += '<div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim() + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '\'; addItemDetailView(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+      prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="event.preventDefault(); stock_no=\'' + flds[0].trim() + '\'; quickView(this.id);" id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '"><i class="icon-zoom-in2"></i><span id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '">Quick View</span></a></div></div>';
+      prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim() + '">' + flds[1] +'</a></h3></div><div class="product-price">cost &nbsp;<ins>$' + flds[4].trim() + '</ins></div></div></div>';
+
+      html.push(prod);
+    }
+    document.getElementById(div).innerHTML += html.join('');
+  }
+}
 
 /////////////////////////////////////////////
 // Get Information for the Item Quick View //
@@ -1745,83 +1713,66 @@ function priceFilter() {
   });
 }
 
-$(function (){
-  $container = $('#shopItems');
-  var $output = $('#output');
 
-  // do stuff when checkbox change
-  $('.ui-group').on( 'change', function( jQEvent ) {
+var $container = $('#shopItems');
 
-    var $checkbox = $( jQEvent.target );
-    manageCheckbox( $checkbox );
+$container.isotope();
 
-    var comboFilter = getComboFilter( filters );
+// do stuff when checkbox change
+$('.ui-group').on( 'change', function( event ) {
+  $container.isotope('destroy');
+  var checkbox = event.target;
 
-    $container.isotope({
-    //  transitionDuration: '0.15s',
-      filter: comboFilter
-     });
-    $output.text( comboFilter );
-  });
-});
-
-
-function getComboFilter( filters ) {
-  var i = 0;
-  var comboFilters = [];
-  var message = [];
-
-  for ( var prop in filters ) {
-    message.push( filters[ prop ].join(' ') );
-    var filterGroup = filters[ prop ];
-    // skip to next filter group if it doesn't have any values
-    if ( !filterGroup.length ) {
-      continue;
-    }
-    if ( i === 0 ) {
-      // copy to new array
-      comboFilters = filterGroup.slice(0);
-    } else {
-      var filterSelectors = [];
-      // copy to fresh array
-      var groupCombo = comboFilters.slice(0); // [ A, B ]
-      // merge filter Groups
-      for (var k=0, len3 = filterGroup.length; k < len3; k++) {
-        for (var j=0, len2 = groupCombo.length; j < len2; j++) {
-          filterSelectors.push( groupCombo[j] + filterGroup[k] ); // [ 1, 2 ]
-        }
-      }
-      // apply filter selectors to combo filters for next group
-      comboFilters = filterSelectors;
-    }
-    i++;
-  }
-
-  var comboFilter = comboFilters.join(', ');
-  return comboFilter;
-}
-
-function manageCheckbox( $checkbox ) {
-  var checkbox = $checkbox[0];
-
+  var $checkbox = $( checkbox );
   var group = $checkbox.parents('.togglec').attr('data-group');
   // create array for filter group, if not there yet
   var filterGroup = filters[ group ];
   if ( !filterGroup ) {
     filterGroup = filters[ group ] = [];
   }
-
-  // index of
-  var index = $.inArray( checkbox.value, filterGroup );
-
-  if ( checkbox.checked && index === -1) {
-    filters[ group ].push( checkbox.value );
+  // add/remove filter
+  if ( checkbox.checked ) {
+    // add filter
+    filterGroup.push( checkbox.value );
   } else {
-    // remove filter from group
-    filters[ group ].splice( index, 1 );
+    // remove filter
+    var index = filterGroup.indexOf( checkbox.value );
+    filterGroup.splice( index, 1 );
   }
-}
 
+  var comboFilter = getComboFilter();
+
+  $container.isotope({ filter: comboFilter });
+});
+
+
+function getComboFilter() {
+  var combo = [];
+  for ( var prop in filters ) {
+    var group = filters[ prop ];
+    if ( !group.length ) {
+      // no filters in group, carry on
+      continue;
+    }
+    // add first group
+    if ( !combo.length ) {
+      combo = group.slice(0);
+      continue;
+    }
+    // add additional groups
+    var nextCombo = [];
+    // split group into combo: [ A, B ] & [ 1, 2 ] => [ A1, A2, B1, B2 ]
+    for ( var i=0; i < combo.length; i++ ) {
+      for ( var j=0; j < group.length; j++ ) {
+        var item = combo[i] + group[j];
+        nextCombo.push( item );
+      }
+    }
+    combo = nextCombo;
+  }
+  var comboFilter = combo.join(', ');
+  return comboFilter;
+}
 
 
 /////////////////////////////////////////////
@@ -1840,7 +1791,7 @@ function checkoutPage()
   document.getElementById("creditcard").src="http://netlink.laurajanelle.com:8081/nlhtml/custom/netlink.php?request_id=APICC&session_no=" + session_no + "";
 
   $("#myButton").click(function() {
-    console.log("is this working?");
+
     var hasErrors = $('#shipping-form').validator('validate').has('.has-error').length;
     if (hasErrors) {
       alert('Shipping address form has errors.');
