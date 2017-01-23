@@ -4361,7 +4361,7 @@ var numberOfOrders;
 var orderAmt;
 var prices = [];
 var prod;
-var rglb = ["11300B", "11349", "11350", "11351", "11352", "11353", "11354",
+/*var rglb = ["11300B", "11349", "11350", "11351", "11352", "11353", "11354",
   "11355", "11356", "11357", "11358", "11359", "11360", "11361",
   "11362", "11363", "11364", "11365", "11366", "11367", "11368",
   "11369", "11370", "11371", "11372", "11373", "11374", "11375",
@@ -4373,7 +4373,7 @@ var rglb = ["11300B", "11349", "11350", "11351", "11352", "11353", "11354",
   "11336", "11301", "11302", "11303", "11304", "11305", "11306",
   "11307", "11308", "11309", "11310", "11311", "11312","11300A", "11337", "11338", "11339",
   "11340", "11341", "11342", "11343", "11344", "11345", "11346",
-  "11347", "11348"];
+  "11347", "11348"]; */
 var searchField = document.getElementById('searchvalue');
 var searchTerm;
 var secondColumn;
@@ -4537,7 +4537,7 @@ function createUser()
        success: function(response) {
          if ( response === response.toUpperCase() ) {
            alert("Laura Janelle user has been created. Double check SouthWare and make sure everything was entered correctly.");
-           $.get("http://72.64.152.18:8082/ace/mailer/logincred.php?username="+ userName+"&email="+ userEmail +"&password="+ userPassword +"&name="+userContactName+"");
+           $.get("https://netlink.laurajanelle.com:444/mailer/logincred.php?username="+ userName +"&email="+ userEmail +"&password="+ userPassword +"&name="+userContactName+"");
          } else {
            alert("User not created, try again.");
          }
@@ -4556,7 +4556,7 @@ function createUser()
 function login()
 {
   var password;
-  var goHead;
+
 
   if ( Cookies.get('session_no') && typeof(Cookies.get('session_no')) === "string" && Cookies.get('session_no').length === 25 ) {
     windowHash("shop");
@@ -4573,6 +4573,7 @@ function login()
 
   $("#content").hide();
   $("#login-form").on("submit", function(e) {
+     var goHead;
      e.preventDefault();
      username = $('#login-form-username').val();
      password = $('#login-form-password').val();
@@ -4585,6 +4586,7 @@ function login()
       data: {request_id: "APICLOGIN",
              username: username,
              password: password},
+      async: false,
       success: function(response) {
         if (response.replace(/\s+/g,'').length === 25) {
           $.get("https://www.laurajanelle.com/phphelper/savecart/session.php?customer=" + username.toLowerCase() + "", function(answer){
@@ -4618,6 +4620,7 @@ function login()
                 }
               });
             }
+          }).complete(function (){
             windowHash("shop");
             redirect("store");
           });
@@ -4876,9 +4879,11 @@ function detailView()
          secondColumn += '<p style="color: red;">EXPECTED SHIP DATE: February 15th</p><div class="line"></div>';
        } else if ( knot.join(" ").indexOf(stock_no) > -1 || fields[2] === "SRK" ) {
          secondColumn += '<p style="color: red;">EXPECTED SHIP DATE: February 28th</p><div class="line"></div>';
-       } else if ( rglb.join(" ").indexOf(stock_no) > -1 ) {
-         secondColumn += '<p style="color: red;">EXPECTED SHIP DATE: January 16th</p><div class="line"></div>';
        }
+
+       //else if ( rglb.join(" ").indexOf(stock_no) > -1 ) {
+         //secondColumn += '<p style="color: red;">EXPECTED SHIP DATE: January 23th</p><div class="line"></div>';
+       //}
 
        if (fields[8].length !== 0) {
          secondColumn += '<p>' + fields[8] + '</p>';
@@ -5085,7 +5090,7 @@ function creditCard()
 function sendEmail()
 {
   var email_num = session_no;
-  $.get("http://72.64.152.18:8082/ace/mailer/order_confirmation.php?session_no=" + email_num + "&order_no="+ newOrder + "").always(function(){ email_num = 1;});
+  $.get("https://netlink.laurajanelle.com:444/mailer/order_confirmation.php?session_no=" + email_num + "&order_no="+ newOrder + "").always(function(){ email_num = 1;});
   document.body.removeEventListener("click", sendEmail);
   windowHash("orders");
     // add the search for the new order number and display the data.
@@ -5917,6 +5922,8 @@ function itemRender(div,response)
   }
 }
 
+
+
 /////////////////////////////////////////////
 // Get Information for the Item Quick View //
 /////////////////////////////////////////////
@@ -5968,34 +5975,9 @@ function quickView(clicked_id)
 }
 
 
-
-/////////////////////////////////////////////
-//  Tabs loads ajax. Make this go faster.. //
-/////////////////////////////////////////////
-/////////////////////////////////////////////
-/////////////////////////////////////////////
-/////////////////////////////////////////////
-/////////////////////////////////////////////
-/////////////////////////////////////////////
-/////////////////////////////////////////////
-/////////////////////////////////////////////
-/////////////////////////////////////////////
-/////////////////////////////////////////////
-/////////////////////////////////////////////
-/////////////////////////////////////////////
-/////////////////////////////////////////////
-/////////////////////////////////////////////
-/////////////////////////////////////////////
-/////////////////////////////////////////////
-/////////////////////////////////////////////
-
-
-function shopPage()
-{
-  cartHeader();
-  cartList();
-}
-
+//////////////////////////////////////////////
+  // Filter the Products on the Shop Page //
+//////////////////////////////////////////////
 function priceFilter() {
   var priceRangefrom = parseFloat($("#min").val());
   var priceRangeto = parseFloat($("#max").val());
@@ -6080,8 +6062,31 @@ function getComboFilter() {
 
 
 /////////////////////////////////////////////
+//  Hash loads ajax. Make this go faster.. //
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
 /////////////////////////////////////////////
 
+
+function shopPage()
+{
+  cartHeader();
+  cartList();
+}
 
 function checkoutPage()
 {
@@ -6091,16 +6096,11 @@ function checkoutPage()
   cartList();
   cartHeader(minimumTotal); // cartHeader(); cartHeader(minimumTotal);
   shipToAddress();
+  $('#shipping-form-companyname').focus();
   $("#creditcard").hide();
-//  document.getElementById("creditcard").src="https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICC&session_no=" + session_no + "";
-
-  $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICC&session_no=" + session_no + "", function (creditcarddata) {
-
-    $("#creditcard").append(creditcarddata);
-  });
+  document.getElementById("creditcard").src="https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICC&session_no=" + session_no + "";
 
   $("#myButton").click(function() {
-
     var hasErrors = $('#shipping-form').validator('validate').has('.has-error').length;
     if (hasErrors) {
       alert('Shipping address form has errors.');
