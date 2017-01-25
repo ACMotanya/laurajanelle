@@ -34,43 +34,15 @@ layout: compress
 
               <ul>
                 <li><a href="/"><div>Home</div></a></li>
-
-                {% if page.url == "/shop/" %}
-                <li class="current"><a href="#shop"><div>Shop</div></a>
-                {% else %}
-                <li><a href="#shop"><div>Shop</div></a>
-                {% endif %}
-                </li>
-
-                <li><a href="#profile"><div>MY ACCOUNT</div></a>
+                <li><a href="#shop"><div>Shop</div></a></li>
+                <li><a href="#profile"><div>MY ACCOUNT&nbsp;<i class="toggle-closed icon-chevron-down"></i></div></a>
                   <ul>
-                    {% if page.url == "/store/#profile" %}
-                    <li class="current"><a href="#profile"><div>PROFILE</div></a></li>
-                    {% else %}
                     <li><a href="#profile"><div>PROFILE</div></a></li>
-                    {% endif %}
-
-
-                    {% if page.url == "/invoices/" %}
-                    <li class="current"><a href="#invoices"><div>INVOICES</div></a></li>
-                    {% else %}
                     <li><a href="#invoices"><div>INVOICES</div></a></li>
-                    {% endif %}
-
-                    {% if page.url == "/orders/" %}
-                    <li class="current"><a href="#orders"><div>ORDERS</div></a></li>
-                    {% else %}
                     <li><a href="#orders"><div>ORDERS</div></a></li>
-                    {% endif %}
                   </ul>
                 </li>
-
-                {% if page.url == "/cart/" %}
-                <li class="current"><a href="#cart"><div>Cart</div></a></li>
-                {% else %}
                 <li><a href="#cart"><div>Cart</div></a></li>
-                {% endif %}
-
                 <li><a href="#" onclick="logoff();"><div>Log Out</div></a></li>
               </ul>
 
@@ -188,7 +160,7 @@ layout: compress
       whichPage();
     });
     $(function() {
-      sessionNumber();
+
       whichPage();
       filterFunction2('APISTKLST','','','','','', session_no);
       $('nav ul li a').click(function() {
@@ -203,6 +175,7 @@ layout: compress
         }
       });
       shopPage();
+      sessionNumber();
     });
 
     $("a#showDeliveryChart" ).click( function () {

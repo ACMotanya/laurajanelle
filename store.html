@@ -126,12 +126,14 @@ title: Store - Laura Janelle
                       <div class="toggle toggle-bg">
                         <div class="togglet"><i class="toggle-closed icon-chevron-down"></i><i class="toggle-open icon-chevron-up"></i>PRICE</div>
                         <div class="togglec" style="padding-left: 0px;">
-                          <form>
+                          <form id="priceForm">
                             <input type="number" step="0.25" id="min" style="width: 30%; margin-right: 5px; border: 2px solid lightgrey; border-radius: 2px; line-height: 30px; padding-left: 5px;" placeholder="  min">
                              <strong>to</strong>
                             <input type="number" step="0.25" id="max" style="width: 30%; margin: 0px; margin-left: 5px; border: 2px solid lightgrey; border-radius: 2px; line-height: 30px; padding-left: 5px;" placeholder="  max">
                             <button class="button button-3d button-mini button-rounded button-black" style="height: 36px; margin: 0px; bottom: 3px;" type="button" onclick="priceFilter();">GO</button>
                           </form>
+                          <hr/>
+                          <button class="button button-3d button-mini button-rounded button-black" style="height: 36px; margin: 0px; bottom: 3px;" type="button" onclick="$('#priceForm').find('input[type=number]').val(''); priceFilter();">Clear Price Filter</button>
                         </div>
                       </div>
       							</div>
@@ -1155,33 +1157,16 @@ title: Store - Laura Janelle
                 <div class="clear bottommargin"></div>
                 <iframe id="creditcard" width=99% height=365></iframe>
               </div>
-
-              <!-- Large modal -->
-              <button id="success" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg" style="visibility: hidden;">Large modal</button>
-
-              <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                  <div class="modal-body">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h3 class="modal-title" id="myModalLabel">Thank you for your order!</h3>
-                      </div>
-                      <div id="successMessage" class="modal-body" style="font-family: Lato; font-size: 19px;">
-
-                      </div>
-                      <div class="modal-footer">
-            					  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            					</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </section>
 
 
             <section id="profile">
               <div class="row clearfix">
+
+                <div class="alert alert-success" id='addressSaveMessage' style="display: none;">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    						  <i class="icon-gift"></i><strong>Well done!</strong> You successfully saved a new address.
+    						</div>
                 <div class="col-md-6">
                   <div class="table-responsive clearfix">
                     <h3 class="ls1">ACCOUNT DETAILS</h3>
@@ -1201,12 +1186,12 @@ title: Store - Laura Janelle
                 <div class="col-md-6">
                   <h3 class="ls1">SAVE SHIPPING ADDRESS</h3>
 
-                  <form data-toggle="validator" role="form" id="shipping-form" name="shipping-form" class="nobottommargin" action="#" method="">
+                  <form data-toggle="validator" role="form" id="shipping-form-profile" name="shipping-form" class="nobottommargin" action="#" method="">
 
                     <div class="form-group">
                       <div class="col_full">
                         <label for="shipping-form-companyname">Company Name:</label>
-                        <input type="text" id="shipping-form-companyname" name="shipping-form-companyname" maxlength="30" required value="" required class="sm-form-control form-control" />
+                        <input type="text" id="shipping-form-companyname-profile" name="shipping-form-companyname" maxlength="30" required value="" required class="sm-form-control form-control" />
                         <div class="help-block with-errors"></div>
                       </div>
                     </div>
@@ -1214,21 +1199,21 @@ title: Store - Laura Janelle
                     <div class="form-group">
                       <div class="col_full">
                         <label for="shipping-form-address">Address:</label>
-                        <input type="text" id="shipping-form-address" name="shipping-form-address" maxlength="30" required value="" class="sm-form-control form-control" />
+                        <input type="text" id="shipping-form-address-profile" name="shipping-form-address" maxlength="30" required value="" class="sm-form-control form-control" />
                         <div class="help-block with-errors"></div>
                       </div>
                     </div>
 
                     <div class="form-group">
                       <div class="col_full">
-                        <input type="text" id="shipping-form-address2" name="shipping-form-adress2" maxlength="30" value="" class="sm-form-control form-control" />
+                        <input type="text" id="shipping-form-address2-profile" name="shipping-form-adress2" maxlength="30" value="" class="sm-form-control form-control" />
                         <div class="help-block with-errors"></div>
                       </div>
                     </div>
 
                     <div class="form-group">
                       <div class="col_full">
-                        <input type="text" id="shipping-form-address3" name="shipping-form-adress3" maxlength="30" value="" class="sm-form-control form-control" />
+                        <input type="text" id="shipping-form-address3-profile" name="shipping-form-adress3" maxlength="30" value="" class="sm-form-control form-control" />
                         <div class="help-block with-errors"></div>
                       </div>
                     </div>
@@ -1236,7 +1221,7 @@ title: Store - Laura Janelle
                     <div class="form-group">
                       <div class="col_full">
                         <label for="shipping-form-city">City / Town</label>
-                        <input type="text" id="shipping-form-city" name="shipping-form-city" maxlength="30" required value="" class="sm-form-control form-control" />
+                        <input type="text" id="shipping-form-city-profile" name="shipping-form-city" maxlength="30" required value="" class="sm-form-control form-control" />
                         <div class="help-block with-errors"></div>
                       </div>
                     </div>
@@ -1244,7 +1229,7 @@ title: Store - Laura Janelle
                     <div class="form-group">
                       <div class="col_half">
                         <label for="shipping-form-state">State:</label>
-                        <input type="text" id="shipping-form-state" name="shipping-form-state" maxlength="2" required value="" class="sm-form-control form-control" />
+                        <input type="text" id="shipping-form-state-profile" name="shipping-form-state" maxlength="2" required value="" class="sm-form-control form-control" />
                         <div class="help-block with-errors"></div>
                       </div>
                     </div>
@@ -1252,13 +1237,13 @@ title: Store - Laura Janelle
                     <div class="form-group">
                       <div class="col_half col_last">
                         <label for="shipping-form-zipcode">Zip Code:</label>
-                        <input type="text" id="shipping-form-zipcode" name="shipping-form-zipcode" maxlength="10" required value="" class="sm-form-control form-control" />
+                        <input type="text" id="shipping-form-zipcode-profile" name="shipping-form-zipcode" maxlength="10" required value="" class="sm-form-control form-control" />
                         <div class="help-block with-errors"></div>
                       </div>
                     </div>
 
                     <div class="col_full">
-                      <select class="sm-form-control" id="countries">
+                      <select class="sm-form-control" id="shipping-form-country-profile">
                         <option value="AX">&#197;land Islands</option>
                         <option value="AF">Afghanistan</option>
                         <option value="AL">Albania</option>
@@ -1510,7 +1495,7 @@ title: Store - Laura Janelle
                     <div class="form-group">
                       <div class="col_full">
                         <label for="shipping-form-contactname">Contact Name:</label>
-                        <input type="text" id="shipping-form-contactname" name="shipping-form-contactname" value="" class="sm-form-control form-control" />
+                        <input type="text" id="shipping-form-contactname-profile" name="shipping-form-contactname" value="" class="sm-form-control form-control" />
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         <div class="help-block with-errors"></div>
                       </div>
@@ -1519,7 +1504,7 @@ title: Store - Laura Janelle
                     <div class="form-group">
                       <div class="col_half">
                         <label for="shipping-form-email">Email Address:</label>
-                        <input type="email" id="shipping-form-email" name="shipping-form-email" data-error="Email address is invalid" required value="" class="sm-form-control form-control required email" />
+                        <input type="email" id="shipping-form-email-profile" name="shipping-form-email" data-error="Email address is invalid" required value="" class="sm-form-control form-control required email" />
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         <div class="help-block with-errors"></div>
                       </div>
@@ -1528,7 +1513,7 @@ title: Store - Laura Janelle
                     <div class="form-group">
                       <div class="col_half col_last">
                         <label for="shipping-form-phone">Phone:</label>
-                        <input type="text" id="shipping-form-phone" name="shipping-form-phone" data-error="Must be 10 digits" data-minlength="10" required value="" class="sm-form-control form-control" />
+                        <input type="number" id="shipping-form-phone-profile" name="shipping-form-phone" data-error="Must be 10 digits" data-minlength="10" required value="" class="sm-form-control form-control" />
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         <div class="help-block with-errors"></div>
                       </div>
@@ -1537,7 +1522,7 @@ title: Store - Laura Janelle
                     <div class="col-md-6">
                       <div class="form-group">
                         <div class="col_full">
-                        <button type="button" class="button button-3d fright" form="shipping-form" id="myButton" >Add New Address</button>
+                        <button type="button" class="button button-3d fright" form="shipping-form" id="myButtonProfile" >Add New Address</button>
                         </div>
                       </div>
                     </div>
@@ -2192,3 +2177,26 @@ title: Store - Laura Janelle
 				  </div>
 			  </div>
 		  </section><!-- #content end -->
+
+
+      <!-- Large modal -->
+      <button id="success" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg" style="visibility: hidden;">Large modal</button>
+
+      <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-body">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title" id="myModalLabel">Thank you for your order!</h3>
+              </div>
+              <div id="successMessage" class="modal-body" style="font-family: Lato; font-size: 19px;">
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

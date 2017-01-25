@@ -29,6 +29,7 @@ var filters = {};
 var flds;
 var fldsArray = { "data": []};
 var fldsArray_json;
+var hideCC = true;
 var item;
 var knot = ["12100A", "CD121", "12101", "12102", "12103", "12104",
   "12105", "12106", "12107", "12108", "12109", "12110", "12111",
@@ -239,7 +240,6 @@ function login()
 {
   var password;
 
-
   if ( Cookies.get('session_no') && typeof(Cookies.get('session_no')) === "string" && Cookies.get('session_no').length === 25 ) {
     windowHash("shop");
     redirect("store");
@@ -271,6 +271,7 @@ function login()
       async: false,
       success: function(response) {
         if (response.replace(/\s+/g,'').length === 25) {
+          goHead = "go";
           $.get("https://www.laurajanelle.com/phphelper/savecart/session.php?customer=" + username.toLowerCase() + "", function(answer){
             if (answer === "0") {
               $.get("https://www.laurajanelle.com/phphelper/savecart/session.php?customer=" + username.toLowerCase() + "&sessid=" + response + "");
@@ -281,31 +282,28 @@ function login()
               $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APILOGOFF&session_no=" + response + "");
             }
             Cookies.set('username', username);
+            $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APIHISTLST&session_no=" + session_no + "", function( data ) {
+              invoiceLines = data.split("\n");
+              if (invoiceLines.length >= 3) {
+                Cookies.set('newCustomer', "false");
+              } else {
+                $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APIORDLST&session_no=" + session_no + "", function( ordData ) {
+                  openOrderLines = ordData.split("\n");
+                  if ( openOrderLines.length <= 2) {
+                    Cookies.set('newCustomer', "true");
+                  } else {
+                    Cookies.set('newCustomer', "false");
+                  }
+                });
+              }
+            });
+          }).done(function() {
+            windowHash("shop");
+            redirect("store");
           });
         } else {
           alert("Login credentials are incorrect, try again.");
           goHead = "stop";
-        }
-      }, complete: function() {
-        if (goHead != "stop") {
-          $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APIHISTLST&session_no=" + session_no + "", function( data ) {
-            invoiceLines = data.split("\n");
-            if (invoiceLines.length >= 3) {
-              Cookies.set('newCustomer', "false");
-            } else {
-              $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APIORDLST&session_no=" + session_no + "", function( ordData ) {
-                openOrderLines = ordData.split("\n");
-                if ( openOrderLines.length <= 2) {
-                  Cookies.set('newCustomer', "true");
-                } else {
-                  Cookies.set('newCustomer', "false");
-                }
-              });
-            }
-          }).complete(function (){
-            windowHash("shop");
-            redirect("store");
-          });
         }
       }
     });
@@ -420,9 +418,10 @@ function cartList()
 
       jQuery("#minicart").empty();
       html2 = [];
+      html = [];
 
       if ( window.location.hash === "#cart") {
-        html = [];
+
         $(".cart_item.products").empty();
 
         cartHelper();
@@ -723,7 +722,7 @@ function updateCart3()
 /////////////////////////
 // Credit Card Process //
 /////////////////////////
-function creditCard()
+function creditCard(n)
 {
   $.ajax({
     type: "GET",
@@ -734,48 +733,37 @@ function creditCard()
     },
     success: function(response) {
       openlines = response.split("\n");
-      numberOfOrders = openlines.length;
-    },
-    complete: function (){
+      if (n === 1 ) {
+        numberOfOrders = openlines.length;
+      }
+      newNumberOfOrders = openlines.length;
 
-      var findNewOrder = setInterval(function(){
-        $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APIORDLST&session_no=" + session_no + "", function( data ) {
-          openlines = data.split("\n");
-          newNumberOfOrders = openlines.length;
-          if (numberOfOrders != newNumberOfOrders) {
-            clearInterval(findNewOrder);
-
-            orders = [];
-            for (i=1; i< openlines.length - 1; i++) {
-              fields = openlines[i].split("|");
-              orders.push(fields);
-            }
-            orders = orders.sort(function(a, b) {
-              return a[1] > b[1] ? -1 : 1;
-            });
-            newOrder = orders[0][0];
-            $( "#success" ).click();
-            $("#successMessage").empty();
-           	var message =  '<h4 style="font-family: Lato;">The order # is: ' + newOrder + '</h4>';
-                message += '<p>This is a confirmation that your order has been successfully received and is currently under process. You will receive an email soon with a copy of your invoice, which also includes the details of your order.</p>';
-                message += '<p class="nobottommargin">Laura Janelle values your business and is continuously looking for ways to better satisfy their customers. Please do share with us if there is a way we can serve you better.</p>';
-
-            document.getElementById("successMessage").innerHTML += message;
-            document.body.addEventListener("click", sendEmail);
-          }
+      if (numberOfOrders != newNumberOfOrders) {
+        hideCC = true;
+        orders = [];
+        for (i=1; i< openlines.length - 1; i++) {
+          fields = openlines[i].split("|");
+          orders.push(fields);
+        }
+        orders = orders.sort(function(a, b) {
+          return a[1] > b[1] ? -1 : 1;
         });
-      }, 3000);
+        newOrder = orders[0][0];
+        $( "#success" ).click();
+        $("#successMessage").empty();
+       	var message =  '<h4 style="font-family: Lato;">The order # is: ' + newOrder + '</h4>';
+            message += '<p>This is a confirmation that your order has been successfully received and is currently under process. You will receive an email soon with a copy of your invoice, which also includes the details of your order.</p>';
+            message += '<p class="nobottommargin">Laura Janelle values your business and is continuously looking for ways to better satisfy their customers. Please do share with us if there is a way we can serve you better.</p>';
+
+        document.getElementById("successMessage").innerHTML += message;
+        $.get("https://netlink.laurajanelle.com:444/mailer/order_confirmation.php?session_no=" + session_no + "&order_no="+ newOrder + "");
+        windowHash("orders");
+
+      } else {
+        return setTimeout(function(){ creditCard(n+1); }, 3000);
+      }
     }
   });
-}
-
-function sendEmail()
-{
-  var email_num = session_no;
-  $.get("https://netlink.laurajanelle.com:444/mailer/order_confirmation.php?session_no=" + email_num + "&order_no="+ newOrder + "").always(function(){ email_num = 1;});
-  document.body.removeEventListener("click", sendEmail);
-  windowHash("orders");
-    // add the search for the new order number and display the data.
 }
 
 
@@ -820,54 +808,67 @@ function saveAddresses()
     }
   }
 
-  if ( window.location.hash === "#checkout" ) {
-    $.ajax({
-      type: "GET",
-      url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
-      data: {
-        request_id: "APICARTUPD",
-        session_no: session_no,
-        shipname: shippingformcompanyname,
-        shipadd1: shippingformaddress,
-        shipadd2: shippingformaddress2,
-        shipadd3: shippingformaddress3,
-        shipcity: shippingformcity,
-        shipstate: shippingformstate,
-        shipzip: shippingformzipcode,
-        shipcountry: shippingformcountry,
-        phone: phone,
-        email_addr: email_addr,
-        po_no: ponumber,
-        text1: text1,
-        text2: text2,
-        text3: text3,
-        text4: text4,
-        text5: text5
-      }
-    });
-  } else if ( window.location.hash === "#profile" ) {
-    cust_no = $("#cust_no").html().trim();
-    var shippingformcontactname = $("#shipping-form-contactname").val();
-     $.ajax({
-      type: "GET",
-      url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
-      data: {
-        request_id: "APINEWSHIP",
-        cust_no: cust_no,
-        ship_to_name: shippingformcompanyname,
-        address1: shippingformaddress,
-        address2: shippingformaddress2,
-        address3: shippingformaddress3,
-        city: shippingformcity,
-        state: shippingformstate,
-        zip: shippingformzipcode,
-        country: shippingformcountry,
-        contact_name: shippingformcontactname,
-        phone: phone,
-        email: email_addr
-      }
-    });
-  }
+  $.ajax({
+    type: "GET",
+    url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APICARTUPD",
+      session_no: session_no,
+      shipname: shippingformcompanyname,
+      shipadd1: shippingformaddress,
+      shipadd2: shippingformaddress2,
+      shipadd3: shippingformaddress3,
+      shipcity: shippingformcity,
+      shipstate: shippingformstate,
+      shipzip: shippingformzipcode,
+      shipcountry: shippingformcountry,
+      phone: phone,
+      email_addr: email_addr,
+      po_no: ponumber,
+      text1: text1,
+      text2: text2,
+      text3: text3,
+      text4: text4,
+      text5: text5
+    }
+  });
+}
+function saveAddressProfile()
+{
+  var shippingformcompanyname = $("#shipping-form-companyname-profile").val();
+  var shippingformaddress     = $("#shipping-form-address-profile").val();
+  var shippingformaddress2    = $("#shipping-form-address2-profile").val();
+  var shippingformaddress3    = $("#shipping-form-address3-profile").val();
+  var shippingformcity        = $("#shipping-form-city-profile").val();
+  var shippingformstate       = $("#shipping-form-state-profile").val();
+  var shippingformzipcode     = $("#shipping-form-zipcode-profile").val();
+  var shippingformcountry     = $("#shipping-form-country-profile").val();
+  var email_addr              = $("#billing-form-email-profile").val();
+  var phone                   = $("#billing-form-phone-profile").val();
+  var cust_no                 = $("#cust_no").html().trim();
+  var shippingformcontactname = $("#shipping-form-contactname-profile").val();
+
+  $.ajax({
+    type: "GET",
+    url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APINEWSHIP",
+      cust_no: cust_no,
+      ship_to_name: shippingformcompanyname,
+      address1: shippingformaddress,
+      address2: shippingformaddress2,
+      address3: shippingformaddress3,
+      city: shippingformcity,
+      state: shippingformstate,
+      zip: shippingformzipcode,
+      country: shippingformcountry,
+      contact_name: shippingformcontactname,
+      phone: phone,
+      email: email_addr
+    }
+  });
+  $("#addressSaveMessage").show();
+  $("#shipping-form-profile").empty();
 }
 
 
@@ -1321,14 +1322,11 @@ function displayAddress(index) {
 }
 
 
-
 function logoff()
 {
   Cookies.set('session_no', "Logged Out");
   redirect("");
 }
-
-
 
 
 ////////////////////////////////
@@ -1347,8 +1345,10 @@ function minimumTotal()
     if (newCustomer === "false") {
       document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + parseFloat((100 - orderAmtFloat)).toFixed(2) + ' more to reach the minimum order requirement of $100.</h2>';
     }
-  } else {
-    $("#myButton").show();
+  } else  {
+    if ( hideCC === true) {
+      $("#myButton").show();
+    }
   }
 }
 
@@ -1661,8 +1661,8 @@ function quickView(clicked_id)
   // Filter the Products on the Shop Page //
 //////////////////////////////////////////////
 function priceFilter() {
-  var priceRangefrom = parseFloat($("#min").val());
-  var priceRangeto = parseFloat($("#max").val());
+  var priceRangefrom = ( isNaN(parseFloat($("#min").val())) ? 1 : parseFloat($("#min").val()) );
+  var priceRangeto   = ( isNaN(parseFloat($("#max").val())) ? 9999 : parseFloat($("#max").val()) );
   $('.ui-group').trigger( 'change');
   $container.isotope({
     transitionDuration: '0.65s',
@@ -1772,14 +1772,17 @@ function shopPage()
 
 function checkoutPage()
 {
-  shippingAddresses = [];
-  $("#minimumTotalWarning, #shipping-address").empty();
   session_no = Cookies.get('session_no');
   cartList();
   cartHeader(minimumTotal); // cartHeader(); cartHeader(minimumTotal);
-  shipToAddress();
+
   $('#shipping-form-companyname').focus();
-  $("#creditcard").hide();
+  if (hideCC === true ) {
+    shippingAddresses = [];
+    $("#creditcard").hide();
+    $("#minimumTotalWarning, #shipping-address").empty();
+    shipToAddress();
+  }
   document.getElementById("creditcard").src="https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICC&session_no=" + session_no + "";
 
   $("#myButton").click(function() {
@@ -1787,9 +1790,11 @@ function checkoutPage()
     if (hasErrors) {
       alert('Shipping address form has errors.');
     } else {
+      hideCC = false;
       saveAddresses();
-      creditCard();
+      creditCard(1);
       $( "#creditcard" ).slideDown( "slow" );
+      $("#myButton").hide();
     }
   });
 }
@@ -1819,12 +1824,13 @@ function whichPage()
       $('#profile').show();
       username = Cookies.get('username').toUpperCase();
       accountDetails();
-      $("#myButton").click(function() {
-        var hasErrors = $('#shipping-form').validator('validate').has('.has-error').length;
+      $("#myButtonProfile").click(function() {
+        var hasErrors = $('#shipping-form-profile').validator('validate').has('.has-error').length;
         if (hasErrors) {
           alert('Shipping address form has errors.');
         } else {
-          saveAddresses();
+          saveAddressProfile();
+          $("#shipping-form-profile").find("input[type=text], textarea, input[type=number], input[type=email]").val("");
         }
       });
       break;
