@@ -872,30 +872,7 @@ function saveAddressProfile()
 }
 
 
-/////////////////////////
-// Search API Function //
-/////////////////////////
-function search()
-{
-  if(event.keyCode == 13) {
-    event.preventDefault();
-    searchTerm = $('#searchvalue').val();
-    $.ajax({
-      type: "GET",
-      url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
-      data: {
-        request_id: "APISTKSEARCH",
-        query: searchTerm},
-      success: function(response) {
-        $('#searchDiv').empty();
-        oldhash = window.location.hash;
-        windowHash("search");
-        itemRender("searchDiv", response);
-        $("#searchDiv").prepend('<button style="display: block; bottommargin-sm" type="button" class="button button-3d button-mini button-rounded button-black" onclick="$(\'#searchDiv\').empty(); windowHash(\''+oldhash+'\');">Close Search</button>');
-      }
-    });
-  }
-}
+
 
 /////////////////////////////////////////////
 // ORDER/INVOICE API Function - APIHISTLST //
@@ -1544,10 +1521,39 @@ function whatMetal(metalCode)
 
 
 
+/////////////////////////
+// Search API Function //
+/////////////////////////
+function search()
+{
+  if(event.keyCode == 13) {
+    event.preventDefault();
+    searchTerm = $('#searchvalue').val();
+    $.ajax({
+      type: "GET",
+      url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
+      data: {
+        request_id: "APISTKSEARCH",
+        query: searchTerm},
+      success: function(response) {
+        $('#searchDiv').empty();
+        oldhash = window.location.hash;
+        windowHash("search");
+        itemRender("searchDiv", response);
+        $("#searchDiv").prepend('<button style="display: block; bottommargin-sm" type="button" class="button button-3d button-mini button-rounded button-black" onclick="$(\'#searchDiv\').empty(); windowHash(\''+oldhash+'\');">Close Search</button>');
+      },
+      complete: function(){
+        SEMICOLON.initialize.lightbox();
+      }
+    });
+  }
+}
+
+
 //////////////////////////
 // Filter Function      //
 //////////////////////////
-function filterFunction2(a,b,c,d,e,f)
+function filterFunction2(a,b,c,d,e,f,session_no)
 {
   $.ajax({
     type: "GET",
@@ -1558,7 +1564,8 @@ function filterFunction2(a,b,c,d,e,f)
       level2: c,
       level3: d,
       level4: e,
-      level5: f},
+      level5: f,
+      session_no: session_no},
     success: function(response) {
       $('#shopItems').empty();
       itemRender("shopItems", response);
@@ -1574,7 +1581,8 @@ function itemRender(div,response)
   lines = response.split("\n");
   lines.shift();
   if ( lines.length <= 1) {
-    document.getElementById("shopItems").innerHTML += '<h1>There are no results</h1>';
+
+    document.getElementById(div).innerHTML += '<h1>There are no results</h1>';
   } else {
     html = [];
     linesPlus = [];
@@ -1595,7 +1603,7 @@ function itemRender(div,response)
         prod += '<div class="sale-flash">NEW!</div>';
       }
       prod += '<div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim() + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '\'; addItemDetailView(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-      prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="event.preventDefault(); stock_no=\'' + flds[0].trim() + '\'; quickView(this.id);" id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '"><i class="icon-zoom-in2"></i><span id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '">Quick View</span></a></div></div>';
+      prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'' + flds[0].trim() + '\'; quickView(this.id);" id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '"><i class="icon-zoom-in2"></i><span id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '">Quick View</span></a></div></div>';
       prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim() + '">' + flds[1] +'</a></h3></div><div class="product-price">cost &nbsp;<ins>$' + flds[4].trim() + '</ins></div></div></div>';
 
       html.push(prod);

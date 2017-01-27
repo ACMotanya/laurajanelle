@@ -162,6 +162,7 @@ layout: compress
     $(function() {
 
       whichPage();
+      sessionNumber();
       filterFunction2('APISTKLST','','','','','', session_no);
       $('nav ul li a').click(function() {
         var $linkClicked = $(this).attr('href');
@@ -175,7 +176,7 @@ layout: compress
         }
       });
       shopPage();
-      sessionNumber();
+
     });
 
     $("a#showDeliveryChart" ).click( function () {
