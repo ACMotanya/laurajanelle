@@ -4600,21 +4600,7 @@ function login()
               $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APILOGOFF&session_no=" + response + "");
             }
             Cookies.set('username', username);
-            $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APIHISTLST&session_no=" + session_no + "", function( data ) {
-              invoiceLines = data.split("\n");
-              if (invoiceLines.length >= 3) {
-                Cookies.set('newCustomer', "false");
-              } else {
-                $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APIORDLST&session_no=" + session_no + "", function( ordData ) {
-                  openOrderLines = ordData.split("\n");
-                  if ( openOrderLines.length <= 2) {
-                    Cookies.set('newCustomer', "true");
-                  } else {
-                    Cookies.set('newCustomer', "false");
-                  }
-                });
-              }
-            });
+
           }).done(function() {
             windowHash("shop");
             redirect("store");
@@ -4628,6 +4614,33 @@ function login()
   });
 }
 
+
+
+///////////////////////////////////////
+/// FIND IF THEY ARE A NEW CUSTOMER ///
+///////////////////////////////////////
+function newCustomerSession()
+{
+  if (!Cookies.get('newCustomer')) {
+    $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APIHISTLST&session_no=" + session_no + "", function( data ) {
+      invoiceLines = data.split("\n");
+      if (invoiceLines.length >= 3) {
+        Cookies.set('newCustomer', "false");
+      } else {
+        $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APIORDLST&session_no=" + session_no + "", function( ordData ) {
+          openOrderLines = ordData.split("\n");
+          if ( openOrderLines.length <= 2) {
+            Cookies.set('newCustomer', "true");
+          } else {
+            Cookies.set('newCustomer', "false");
+          }
+        });
+      }
+    });
+  } else {
+    console.log("hello world");
+  }
+}
 
 
 
@@ -5619,7 +5632,9 @@ function displayAddress(index) {
 
 function logoff()
 {
-  Cookies.set('session_no', "Logged Out");
+  Cookies.remove('session_no');
+  Cookies.remove('newCustomer');
+  Cookies.remove('username');
   redirect("");
 }
 
@@ -5640,7 +5655,7 @@ function minimumTotal()
     if (newCustomer === "false") {
       document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + parseFloat((100 - orderAmtFloat)).toFixed(2) + ' more to reach the minimum order requirement of $100.</h2>';
     }
-  } else  {
+  } else {
     if ( hideCC === true) {
       $("#myButton").show();
     }
