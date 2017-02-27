@@ -564,10 +564,10 @@ function detailView()
 
        if ( fields[2] === "MAN" ) {
          secondColumn += '<p style="color: red;">EXPECTED SHIP DATE: March 4th</p><div class="line"></div>';
-       } else if ( sleek.join(" ").indexOf(stock_no) > -1 ) {
-         secondColumn += '<p style="color: red;">EXPECTED SHIP DATE: February 19th</p><div class="line"></div>';
-       } else if ( encharming.join(" ").indexOf(stock_no) > -1 ) {
-         secondColumn += '<p style="color: red;">EXPECTED SHIP DATE: February 15th</p><div class="line"></div>';
+    //  }  else if ( sleek.join(" ").indexOf(stock_no) > -1 ) {
+       //  secondColumn += '<p style="color: red;">EXPECTED SHIP DATE: February 19th</p><div class="line"></div>';
+     //  } else if ( encharming.join(" ").indexOf(stock_no) > -1 ) {
+       //  secondColumn += '<p style="color: red;">EXPECTED SHIP DATE: February 15th</p><div class="line"></div>';
        } else if ( knot.join(" ").indexOf(stock_no) > -1 || fields[2] === "SRK" ) {
          secondColumn += '<p style="color: red;">EXPECTED SHIP DATE: February 28th</p><div class="line"></div>';
        }
@@ -766,8 +766,9 @@ function creditCard(n)
             message += '<p class="nobottommargin">Laura Janelle values your business and is continuously looking for ways to better satisfy their customers. Please do share with us if there is a way we can serve you better.</p>';
 
         document.getElementById("successMessage").innerHTML += message;
-        $.get("https://netlink.laurajanelle.com:444/mailer/order_confirmation.php?session_no=" + session_no + "&order_no="+ newOrder + "");
+
         windowHash("orders");
+        return $.get("https://netlink.laurajanelle.com:444/mailer/order_confirmation.php?session_no=" + session_no + "&order_no="+ newOrder + "");
 
       } else {
         return setTimeout(function(){ creditCard(n+1); }, 3000);
@@ -1540,6 +1541,7 @@ function search()
 {
   if(event.keyCode == 13) {
     event.preventDefault();
+    oldhash = window.location.hash;
     searchTerm = $('#searchvalue').val();
     $.ajax({
       type: "GET",
@@ -1549,7 +1551,7 @@ function search()
         query: searchTerm},
       success: function(response) {
         $('#searchDiv').empty();
-        oldhash = window.location.hash;
+        
         windowHash("search");
         itemRender("searchDiv", response);
         $("#searchDiv").prepend('<button style="display: block; bottommargin-sm" type="button" class="button button-3d button-mini button-rounded button-black" onclick="$(\'#searchDiv\').empty(); windowHash(\''+oldhash+'\');">Close Search</button>');

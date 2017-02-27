@@ -4553,7 +4553,6 @@ function createUser()
 ////////////////////////////////////////
 /// LOGIN INTO THE STORE AND VERIFY  ///
 ////////////////////////////////////////
-
 function login()
 {
   var password;
@@ -4600,7 +4599,6 @@ function login()
               $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APILOGOFF&session_no=" + response + "");
             }
             Cookies.set('username', username);
-
           }).done(function() {
             windowHash("shop");
             redirect("store");
@@ -4641,7 +4639,6 @@ function newCustomerSession()
     console.log("hello world");
   }
 }
-
 
 
 
