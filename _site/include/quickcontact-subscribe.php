@@ -2,8 +2,8 @@
 
 require_once('phpmailer/PHPMailerAutoload.php');
 
-$apiKey = ''; // Your MailChimp API Key
-$listId = ''; // Your MailChimp List ID
+$apiKey = '9084de3d533812184a53480e583e6fd8-us5'; // Your MailChimp API Key
+$listId = '69350e983d'; // Your MailChimp List ID
 
 $toemails = array();
 
@@ -16,7 +16,7 @@ $toemails[] = array(
 $message_success = 'We have <strong>successfully</strong> received your Message and will get Back to you as soon as possible.';
 
 // Add this only if you use reCaptcha with your Contact Forms
-$recaptcha_secret = 'your-recaptcha-secret-key'; // Your reCaptcha Secret
+$recaptcha_secret = ''; // Your reCaptcha Secret
 
 $mail = new PHPMailer();
 
@@ -68,6 +68,13 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 					die;
 				}
 			}
+
+			// Uncomment the following Lines of Code if you want to Force reCaptcha Validation
+
+			// if( !isset( $_POST['g-recaptcha-response'] ) ) {
+			// 	echo '{ "alert": "error", "message": "Captcha not Submitted! Please Try Again." }';
+			// 	die;
+			// }
 
 			$mail->MsgHTML( $body );
 			$sendEmail = $mail->Send();

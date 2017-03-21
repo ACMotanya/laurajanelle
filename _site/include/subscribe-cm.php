@@ -2,8 +2,8 @@
 
 require_once 'campaign-monitor/csrest_subscribers.php';
 
-$apiKey = ''; // Your MailChimp API Key
-$listId = ''; // Your MailChimp List ID
+$apiKey = ''; // Your Campaign Monitor API Key
+$listId = ''; // Your Campaign Monitor List ID
 
 if( isset( $_GET['list'] ) AND $_GET['list'] != '' ) {
 	$listId = $_GET['list'];

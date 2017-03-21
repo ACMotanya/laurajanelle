@@ -13,7 +13,7 @@ $toemails[] = array(
 $message_success = 'We have <strong>successfully</strong> received your Message and will get Back to you as soon as possible.';
 
 // Add this only if you use reCaptcha with your Contact Forms
-$recaptcha_secret = 'your-recaptcha-secret-key'; // Your reCaptcha Secret
+$recaptcha_secret = ''; // Your reCaptcha Secret
 
 $mail = new PHPMailer();
 $autoresponder = new PHPMailer();
@@ -45,8 +45,8 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 			$mail->Subject = $subject;
 
 			// AutoResponder Settings
-			$autoresponder->SetFrom( $toemail , $toname );
-			$autoresponder->AddReplyTo( $toemail , $toname );
+			$autoresponder->SetFrom( $toemails[0]['email'] , $toemails[0]['name'] );
+			$autoresponder->AddReplyTo( $toemails[0]['email'] , $toemails[0]['name'] );
 			$autoresponder->AddAddress( $email , $name );
 			$autoresponder->Subject = 'We\'ve received your Email';
 
@@ -82,8 +82,15 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 				}
 			}
 
+			// Uncomment the following Lines of Code if you want to Force reCaptcha Validation
+
+			// if( !isset( $_POST['g-recaptcha-response'] ) ) {
+			// 	echo '{ "alert": "error", "message": "Captcha not Submitted! Please Try Again." }';
+			// 	die;
+			// }
+
 			$mail->MsgHTML( $body );
-			$autoresponder->MsgHTML( $body );
+			$autoresponder->MsgHTML( $ar_body );
 			$sendEmail = $mail->Send();
 
 			if( $sendEmail == true ):
