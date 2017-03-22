@@ -12,7 +12,7 @@ description: Fashion accessories for the gift market
 url: https://www.laurajanelle.com
 
 
-#baseurl: "/cousin-op"
+baseurl: "/laurajanelle"
 
 exclude:
   - package.json
