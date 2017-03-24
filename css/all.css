@@ -24902,7 +24902,7 @@ div.acc_content.clearfix {
 }
 
 label {
-	font-family: 'Bodoni-Sans', 'Oranienbaum';
+	font-family: 'Bodoni-Sans';
 }
 
 /*\\\\\\\\\\\\\\\\\\\\
@@ -24918,7 +24918,6 @@ label {
   -webkit-transition-duration: .25s; /* Safari */
   transition-duration: .25s;
 }
-
 
 .product-image > a > img {
 	border: 2px solid lightgrey;

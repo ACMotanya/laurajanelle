@@ -4332,6 +4332,9 @@ var backImages = [
   "10739", "10740", "10741", "10742", "11337", "11338", "11339",
   "11340", "11341", "11342", "11343", "11344", "11345", "11346",
   "11347", "11348"];
+var barnecklaces = [
+  "10599A", "CD051", "10584", "10585", "10586", "10587", "10588",
+  "10589", "10590", "10591", "10592", "10593", "10594", "10595"];
 var cartheader;
 var cartitems;
 var cartQty;
@@ -5900,6 +5903,11 @@ function itemRender(div,response)
     for (i=0; i<linesPlus.length; i++) {
       flds = linesPlus[i];
 
+     /*
+      if ( barnecklaces.join(" ").indexOf(flds[0].trim()) > -1) {
+        continue;
+      }
+      */
       prod =  '<div class="product clearfix ' + flds[2] +" "+ flds[8].trim() +" "+ flds[9].trim() +" "+ flds[10].trim() + 1 +'"><div class="product-image"><a href="#detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim() + '"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a>';
       if (flds[7].trim().length === 3) {
         prod += '<div class="sale-flash">NEW!</div>';

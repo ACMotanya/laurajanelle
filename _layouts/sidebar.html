@@ -423,6 +423,7 @@ layout: compress
     <script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.parallax.min.js" | prepend: site.baseurl }}"></script>
 
     <script defer>
+    $( "div#logo a img" ).addClass( "divcenter" );
 		var tpj=jQuery;
 
 		var revapi4;
@@ -439,7 +440,7 @@ layout: compress
 					navigation: {
 						keyboardNavigation:"on",
 						keyboard_direction: "horizontal",
-						mouseScrollNavigation:"on",
+						mouseScrollNavigation:"off",
 						 mouseScrollReverse:"default",
 						onHoverStop:"off",
 						touch:{
