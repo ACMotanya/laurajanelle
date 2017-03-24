@@ -4512,7 +4512,8 @@ function createUser()
          new_password: userPassword,
          cust_no: userNumber,
          contact_name: userContactName,
-         email: userEmail
+         email: userEmail,
+         loc_no: 800
        },
        success: function(response) {
          if ( response === response.toUpperCase() ) {
@@ -4563,7 +4564,8 @@ function login()
       url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
       data: {request_id: "APICLOGIN",
              username: username,
-             password: password},
+             password: password,
+            loc_no: 800},
       async: false,
       success: function(response) {
         if (response.replace(/\s+/g,'').length === 25) {
@@ -5831,7 +5833,8 @@ function search()
       url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
       data: {
         request_id: "APISTKSEARCH",
-        query: searchTerm},
+        query: searchTerm,
+        loc_no: 800},
       success: function(response) {
         $('#searchDiv').empty();
         
@@ -5862,7 +5865,9 @@ function filterFunction2(a,b,c,d,e,f,session_no)
       level3: d,
       level4: e,
       level5: f,
-      session_no: session_no},
+      session_no: session_no,
+      loc_no: 800
+    },
     success: function(response) {
       $('#shopItems').empty();
       itemRender("shopItems", response);
