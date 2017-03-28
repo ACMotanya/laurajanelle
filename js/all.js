@@ -4342,6 +4342,7 @@ var collection;
 var country;
 var countrylines;
 var detailViewQty;
+var employee;
 var fields;
 var filters = {};
 var flds;
@@ -4365,6 +4366,8 @@ var session_no;
 var shippingAddresses = [];
 var shoppingCart;
 var sortItems = [
+  "10599A", "10584", "10585", "10586", "10587", "10588", "10589",
+  "10590", "10591", "10592", "10593", "10594", "10595", "CD051",
   "11300B", "11349", "11350", "11351", "11352", "11353", "11354",
   "11355", "11356", "11357", "11358", "11359", "11360", "11361",
   "11362", "11363", "11364", "11365", "11366", "11367", "11368",
@@ -5610,12 +5613,21 @@ function logoff()
 ////////////////////////////////
 // Find Minimum for the order //
 ////////////////////////////////
-function minimumTotal()
+function employeeDiscount()
 {
+ username = Cookies.get("username");
+ usernameSplit = username.split("");
+ employee = usernameSplit.slice(0,3).join("");
+}
+
+function minimumTotal()
+{ 
+
   newCustomer = Cookies.get('newCustomer');
   orderAmt = cartHeaderFields[22].trim();
   orderAmtFloat = parseFloat(orderAmt.replace(/,/g,''));
-  if (newCustomer === "false" && orderAmtFloat < 100 || newCustomer === "true" && orderAmtFloat < 200 ){
+
+  if ( (newCustomer === "false" && orderAmtFloat < 100 || newCustomer === "true" && orderAmtFloat < 200) && employee !== "sit") {
     $("#myButton").hide();
     if (newCustomer === "true") {
       document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + parseFloat((200 - orderAmtFloat)).toFixed(2) + ' more to reach the minimum order requirement of $200 for new customers.</h2>';
@@ -6090,9 +6102,10 @@ function shopPage()
 
 function checkoutPage()
 {
+  employeeDiscount();
   session_no = Cookies.get('session_no');
   cartList();
-  cartHeader(); // cartHeader(); cartHeader(minimumTotal);
+  cartHeader(minimumTotal); // cartHeader(); cartHeader(minimumTotal);
 
   $('#shipping-form-companyname').focus();
   if (hideCC === true ) {
