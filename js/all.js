@@ -5627,7 +5627,7 @@ function minimumTotal()
   orderAmt = cartHeaderFields[22].trim();
   orderAmtFloat = parseFloat(orderAmt.replace(/,/g,''));
 
-  if ( (newCustomer === "false" && orderAmtFloat < 100 || newCustomer === "true" && orderAmtFloat < 200) && employee !== "sit") {
+  if ( (newCustomer === "false" && orderAmtFloat < 100 || newCustomer === "true" && orderAmtFloat < 200) && employee !== "CCA") {
     $("#myButton").hide();
     if (newCustomer === "true") {
       document.getElementById("minimumTotalWarning").innerHTML += '<h2>You need spend $' + parseFloat((200 - orderAmtFloat)).toFixed(2) + ' more to reach the minimum order requirement of $200 for new customers.</h2>';
