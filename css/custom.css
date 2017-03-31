@@ -384,7 +384,6 @@ div.widget.clearfix form {
 
 @media (max-width: 991px) {
 
-
 	#header.transparent-header.full-header #header-wrap {
 		background: lightgrey;
 	}
@@ -478,6 +477,14 @@ div.team-title h4 a:hover {
   font-size: 12px;
 }
 
+
+/*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  /* FOOTER
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
+
+.fright.clearfix a {
+	font-size: 25px;
+}
 
 
 

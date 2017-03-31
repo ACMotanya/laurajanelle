@@ -13738,7 +13738,7 @@ body.top-search-open .dark #header-wrap:not(.not-dark) #top-search a,
 }
 
 .dark #footer .social-icon.si-borderless,
-#footer.dark .social-icon.si-borderless { color: #555 !important; }
+#footer.dark .social-icon.si-borderless { color: #fff !important; } /* original color #555 */
 
 .dark .si-dark {
 	background-color: rgba(0,0,0,0.2);
@@ -14038,7 +14038,7 @@ body.top-search-open .dark #header-wrap:not(.not-dark) #top-search a,
 
 .dark #copyrights {
 	background-color: rgba(0,0,0,0.2);
-	color: rgba(255,255,255,0.25);
+	color: #fff; /* original color   rgba(255,255,255,0.25); */
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
 }
 
@@ -24954,7 +24954,6 @@ div.widget.clearfix form {
 
 @media (max-width: 991px) {
 
-
 	#header.transparent-header.full-header #header-wrap {
 		background: lightgrey;
 	}
@@ -25048,6 +25047,14 @@ div.team-title h4 a:hover {
   font-size: 12px;
 }
 
+
+/*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  /* FOOTER
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
+
+.fright.clearfix a {
+	font-size: 25px;
+}
 
 
 
