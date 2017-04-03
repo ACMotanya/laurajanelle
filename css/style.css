@@ -157,11 +157,11 @@ h3,
 h4,
 h5,
 h6 {
-	color: #444;
+	color: #222;
 	font-weight: 600;
 	line-height: 1.5;
 	margin: 0 0 30px 0;
-	font-family: Bodoni-Sans, 'Oranienbaum', sans-serif;
+	font-family: Bodoni-Sans, sans-serif;
 }
 
 h5,

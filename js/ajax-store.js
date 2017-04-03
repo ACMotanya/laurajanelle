@@ -39,7 +39,6 @@ var newNumberOfOrders;
 var neworder;
 var numberOfOrders;
 var orderAmt;
-var prices = [];
 var prod;
 var searchField = document.getElementById('searchvalue');
 var searchTerm;
