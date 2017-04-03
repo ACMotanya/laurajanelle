@@ -293,18 +293,22 @@ function login()
 ///////////////////////////////////////
 function newCustomerSession()
 {
-  if (!Cookies.get('newCustomer')) {
+  /* if (!Cookies.get('newCustomer')) { */
+  if (!sessionStorage.getItem('newCustomer')) {
     $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APIHISTLST&session_no=" + session_no + "", function( data ) {
       invoiceLines = data.split("\n");
       if (invoiceLines.length >= 3) {
-        Cookies.set('newCustomer', "false");
+        /* Cookies.set('newCustomer', "false"); */
+        sessionStorage.setItem('newCustomer', "false");
       } else {
         $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APIORDLST&session_no=" + session_no + "", function( ordData ) {
           openOrderLines = ordData.split("\n");
           if ( openOrderLines.length <= 2) {
-            Cookies.set('newCustomer', "true");
+            /* Cookies.set('newCustomer', "true"); */
+            sessionStorage.setItem('newCustomer', "true");
           } else {
-            Cookies.set('newCustomer', "false");
+            /* Cookies.set('newCustomer', "false"); */
+            sessionStorage.setItem('newCustomer', "false");
           }
         });
       }
@@ -1306,7 +1310,8 @@ function logoff()
 ////////////////////////////////
 function employeeDiscount()
 {
- username = Cookies.get("username");
+ /* username = Cookies.get("username"); */
+ username = sessionStorage.getItem("username");
  usernameSplit = username.split("");
  employee = usernameSplit.slice(0,3).join("");
 }
@@ -1314,7 +1319,8 @@ function employeeDiscount()
 function minimumTotal()
 { 
 
-  newCustomer = Cookies.get('newCustomer');
+  /* newCustomer = Cookies.get('newCustomer'); */
+  newCustomer = sessionStorage.getItem('newCustomer');
   orderAmt = cartHeaderFields[22].trim();
   orderAmtFloat = parseFloat(orderAmt.replace(/,/g,''));
 
@@ -1794,7 +1800,8 @@ function shopPage()
 function checkoutPage()
 {
   employeeDiscount();
-  session_no = Cookies.get('session_no');
+  /* session_no = Cookies.get('session_no'); */
+  session_no = sessionStorage.getItem('session_no');
   cartList();
   cartHeader(minimumTotal); // cartHeader(); cartHeader(minimumTotal);
 
@@ -1844,7 +1851,8 @@ function whichPage()
       break;
     case '#profile' :
       $('#profile').show();
-      username = Cookies.get('username').toUpperCase();
+      /* username = Cookies.get('username').toUpperCase(); */
+      username = sessionStorage.getItem('username').toUpperCase();
       accountDetails();
       $("#myButtonProfile").click(function() {
         var hasErrors = $('#shipping-form-profile').validator('validate').has('.has-error').length;
