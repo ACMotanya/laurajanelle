@@ -96,7 +96,7 @@ i.icon-search3 {
 }
 
 #primary-menu ul li > a {
-	font-family: Bodoni-Sans, 'Oranienbaum';
+	font-family: Bodoni-Sans;
 	font-weight: 600;
 	font-size: 14px;
 	letter-spacing: 1px;
@@ -144,6 +144,17 @@ i.icon-search3 {
 
 #primary-menu ul li:hover > a, #primary-menu ul li.current > a {
 	color: #999;
+}
+
+/*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  /* FOOTER
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
+
+.fright.clearfix a i {
+	font-size: 25px;
+}
+.copyrights-menu.copyright-links a {
+	color: white;
 }
 
 #footer.dark, .dark #footer {
@@ -477,14 +488,6 @@ div.team-title h4 a:hover {
   font-size: 12px;
 }
 
-
-/*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-  /* FOOTER
-\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
-
-.fright.clearfix a {
-	font-size: 25px;
-}
 
 
 

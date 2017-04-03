@@ -4543,7 +4543,9 @@ function login()
 {
   var password;
 
-  if ( Cookies.get('session_no') && typeof(Cookies.get('session_no')) === "string" && Cookies.get('session_no').length === 25 ) {
+ /* if ( Cookies.get('session_no') && typeof(Cookies.get('session_no')) === "string" && Cookies.get('session_no').length === 25 ) { */
+  if ( sessionStorage.getItem('session_no') && typeof(sessionStorage.getItem('session_no')) === "string" && sessionStorage.getItem('session_no').length === 25 ) {
+    
     windowHash("shop");
     redirect("store");
   }
@@ -4580,12 +4582,15 @@ function login()
             if (answer === "0") {
               $.get("https://www.laurajanelle.com/phphelper/savecart/session.php?customer=" + username.toLowerCase() + "&sessid=" + response + "");
               session_no = response.replace(/\s+/g,'');
-              Cookies.set('session_no', session_no);
+              /* Cookies.set('session_no', session_no); */
+              sessionStorage.setItem('session_no', session_no);
             } else if (answer.length === 25 ) {
-              Cookies.set('session_no', answer);
+              /* Cookies.set('session_no', answer); */
+              sessionStorage.setItem('session_no', answer);
               $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APILOGOFF&session_no=" + response + "");
             }
-            Cookies.set('username', username);
+            /* Cookies.set('username', username); */
+            sessionStorage.setItem('username', username);
           }).done(function() {
             windowHash("shop");
             redirect("store");
@@ -4647,7 +4652,7 @@ function addItemDetailView()
     detailViewQty = "1";
   }
 
-    // Save color and type in the sessionStorage
+    // Save color and type in the 
     if (!sessionStorage.getItem(stock_no) || sessionStorage.getItem(stock_no) === "undefined" || sessionStorage.getItem(stock_no) === null ) {
       sessionStorage.setItem(stock_no, detailString);
     }
@@ -5579,7 +5584,8 @@ function windowHash(name)
 /////////////////////////////////////////////////////
 function sessionNumber()
 {
-  session_no = Cookies.get('session_no');
+  /* session_no = Cookies.get('session_no'); */
+  session_no = sessionStorage.getItem('session_no');
   if (typeof(session_no) === "undefined" || session_no.length !== 25) {
     pathArray = window.location.pathname.split( '/' );
     pathArray[pathArray.length - 2] = "retailerlogin";
@@ -5603,9 +5609,12 @@ function displayAddress(index) {
 
 function logoff()
 {
-  Cookies.remove('session_no');
-  Cookies.remove('newCustomer');
-  Cookies.remove('username');
+ /* Cookies.remove('session_no'); */
+  sessionStorage.removeItem('session_no');
+/*  Cookies.remove('newCustomer'); */
+  sessionStorage.removeItem('newCustomer');
+ /* Cookies.remove('username'); */
+  sessionStorage.removeItem('username');
   redirect("");
 }
 
