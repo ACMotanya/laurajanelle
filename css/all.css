@@ -24765,6 +24765,11 @@ i.icon-search3 {
 @media (max-width: 468px) {
 	.winterindex {
 		font-size: 22px;
+		line-height: 27px
+	}
+	#slider{
+		top:-16px;
+		
 	}
 }
 
