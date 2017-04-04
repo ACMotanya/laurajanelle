@@ -24740,7 +24740,7 @@ i.icon-search3 {
  winter 2017 page styling
 /* \\\\\\\\\\\\\\\\\\\
 */
-#slider {
+#slider.revslider-wrap {
 		top:-62px;
 	}
 
@@ -24763,7 +24763,7 @@ i.icon-search3 {
 	.backofpage {
 		background-color: rgba(255, 255, 255, 0.1);
 	}
-	#slider {
+	#slider.revslider-wrap {
 		top:-40px;
 	}
 }
@@ -24773,7 +24773,7 @@ i.icon-search3 {
 		font-size: 24aujr px;
 	
 	}
-	#slider{
+	#slider.revslider-wrap{
 		top:-16px;
 		
 	}

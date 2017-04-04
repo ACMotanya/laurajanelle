@@ -19,6 +19,7 @@ exclude:
   - node_modules
   - gulpfile.js
   - oldhtml
+  - one-page
 
 # Footer settings
 footer: Laura Janelle

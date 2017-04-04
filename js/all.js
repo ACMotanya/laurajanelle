@@ -4316,32 +4316,10 @@ var SEMICOLON = SEMICOLON || {};
 
 +function(a){"use strict";function b(b){return b.is('[type="checkbox"]')?b.prop("checked"):b.is('[type="radio"]')?!!a('[name="'+b.attr("name")+'"]:checked').length:a.trim(b.val())}function c(b){return this.each(function(){var c=a(this),e=a.extend({},d.DEFAULTS,c.data(),"object"==typeof b&&b),f=c.data("bs.validator");(f||"destroy"!=b)&&(f||c.data("bs.validator",f=new d(this,e)),"string"==typeof b&&f[b]())})}var d=function(c,e){this.options=e,this.$element=a(c),this.$inputs=this.$element.find(d.INPUT_SELECTOR),this.$btn=a('button[type="submit"], input[type="submit"]').filter('[form="'+this.$element.attr("id")+'"]').add(this.$element.find('input[type="submit"], button[type="submit"]')),e.errors=a.extend({},d.DEFAULTS.errors,e.errors);for(var f in e.custom)if(!e.errors[f])throw new Error("Missing default error message for custom validator: "+f);a.extend(d.VALIDATORS,e.custom),this.$element.attr("novalidate",!0),this.toggleSubmit(),this.$element.on("input.bs.validator change.bs.validator focusout.bs.validator",d.INPUT_SELECTOR,a.proxy(this.onInput,this)),this.$element.on("submit.bs.validator",a.proxy(this.onSubmit,this)),this.$element.find("[data-match]").each(function(){var c=a(this),d=c.data("match");a(d).on("input.bs.validator",function(){b(c)&&c.trigger("input.bs.validator")})})};d.INPUT_SELECTOR=':input:not([type="submit"], button):enabled:visible',d.FOCUS_OFFSET=20,d.DEFAULTS={delay:500,html:!1,disable:!0,focus:!0,custom:{},errors:{match:"Does not match",minlength:"Not long enough"},feedback:{success:"glyphicon-ok",error:"glyphicon-remove"}},d.VALIDATORS={"native":function(a){var b=a[0];return b.checkValidity?b.checkValidity():!0},match:function(b){var c=b.data("match");return!b.val()||b.val()===a(c).val()},minlength:function(a){var b=a.data("minlength");return!a.val()||a.val().length>=b}},d.prototype.onInput=function(b){var c=this,d=a(b.target),e="focusout"!==b.type;this.validateInput(d,e).done(function(){c.toggleSubmit()})},d.prototype.validateInput=function(c,d){var e=b(c),f=c.data("bs.validator.previous"),g=c.data("bs.validator.errors");if(f===e)return a.Deferred().resolve();c.data("bs.validator.previous",e),c.is('[type="radio"]')&&(c=this.$element.find('input[name="'+c.attr("name")+'"]'));var h=a.Event("validate.bs.validator",{relatedTarget:c[0]});if(this.$element.trigger(h),!h.isDefaultPrevented()){var i=this;return this.runValidators(c).done(function(b){c.data("bs.validator.errors",b),b.length?d?i.defer(c,i.showErrors):i.showErrors(c):i.clearErrors(c),g&&b.toString()===g.toString()||(h=b.length?a.Event("invalid.bs.validator",{relatedTarget:c[0],detail:b}):a.Event("valid.bs.validator",{relatedTarget:c[0],detail:g}),i.$element.trigger(h)),i.toggleSubmit(),i.$element.trigger(a.Event("validated.bs.validator",{relatedTarget:c[0]}))})}},d.prototype.runValidators=function(c){function e(a){return c.data(a+"-error")||c.data("error")||"native"==a&&c[0].validationMessage||h.errors[a]}var f=[],g=a.Deferred(),h=this.options;return c.data("bs.validator.deferred")&&c.data("bs.validator.deferred").reject(),c.data("bs.validator.deferred",g),a.each(d.VALIDATORS,a.proxy(function(a,d){if((b(c)||c.attr("required"))&&(c.data(a)||"native"==a)&&!d.call(this,c)){var g=e(a);!~f.indexOf(g)&&f.push(g)}},this)),!f.length&&b(c)&&c.data("remote")?this.defer(c,function(){var d={};d[c.attr("name")]=b(c),a.get(c.data("remote"),d).fail(function(a,b,c){f.push(e("remote")||c)}).always(function(){g.resolve(f)})}):g.resolve(f),g.promise()},d.prototype.validate=function(){var b=this;return a.when(this.$inputs.map(function(){return b.validateInput(a(this),!1)})).then(function(){b.toggleSubmit(),b.focusError()}),this},d.prototype.focusError=function(){if(this.options.focus){var b=a(".has-error:first :input");0!==b.length&&(a(document.body).animate({scrollTop:b.offset().top-d.FOCUS_OFFSET},250),b.focus())}},d.prototype.showErrors=function(b){var c=this.options.html?"html":"text",d=b.data("bs.validator.errors"),e=b.closest(".form-group"),f=e.find(".help-block.with-errors"),g=e.find(".form-control-feedback");d.length&&(d=a("<ul/>").addClass("list-unstyled").append(a.map(d,function(b){return a("<li/>")[c](b)})),void 0===f.data("bs.validator.originalContent")&&f.data("bs.validator.originalContent",f.html()),f.empty().append(d),e.addClass("has-error has-danger"),e.hasClass("has-feedback")&&g.removeClass(this.options.feedback.success)&&g.addClass(this.options.feedback.error)&&e.removeClass("has-success"))},d.prototype.clearErrors=function(a){var c=a.closest(".form-group"),d=c.find(".help-block.with-errors"),e=c.find(".form-control-feedback");d.html(d.data("bs.validator.originalContent")),c.removeClass("has-error has-danger"),c.hasClass("has-feedback")&&e.removeClass(this.options.feedback.error)&&b(a)&&e.addClass(this.options.feedback.success)&&c.addClass("has-success")},d.prototype.hasErrors=function(){function b(){return!!(a(this).data("bs.validator.errors")||[]).length}return!!this.$inputs.filter(b).length},d.prototype.isIncomplete=function(){function c(){return!b(a(this))}return!!this.$inputs.filter("[required]").filter(c).length},d.prototype.onSubmit=function(a){this.validate(),(this.isIncomplete()||this.hasErrors())&&a.preventDefault()},d.prototype.toggleSubmit=function(){this.options.disable&&this.$btn.toggleClass("disabled",this.isIncomplete()||this.hasErrors())},d.prototype.defer=function(b,c){return c=a.proxy(c,this,b),this.options.delay?(window.clearTimeout(b.data("bs.validator.timeout")),void b.data("bs.validator.timeout",window.setTimeout(c,this.options.delay))):c()},d.prototype.destroy=function(){return this.$element.removeAttr("novalidate").removeData("bs.validator").off(".bs.validator").find(".form-control-feedback").removeClass([this.options.feedback.error,this.options.feedback.success].join(" ")),this.$inputs.off(".bs.validator").removeData(["bs.validator.errors","bs.validator.deferred","bs.validator.previous"]).each(function(){var b=a(this),c=b.data("bs.validator.timeout");window.clearTimeout(c)&&b.removeData("bs.validator.timeout")}),this.$element.find(".help-block.with-errors").each(function(){var b=a(this),c=b.data("bs.validator.originalContent");b.removeData("bs.validator.originalContent").html(c)}),this.$element.find('input[type="submit"], button[type="submit"]').removeClass("disabled"),this.$element.find(".has-error, .has-danger").removeClass("has-error has-danger"),this};var e=a.fn.validator;a.fn.validator=c,a.fn.validator.Constructor=d,a.fn.validator.noConflict=function(){return a.fn.validator=e,this},a(window).on("load",function(){a('form[data-toggle="validator"]').each(function(){var b=a(this);c.call(b,b.data())})})}(jQuery);
 
-var backImages = [
-  "10707", "10712", "10710", "10703",
-  "10704", "10711", "10701", "10705", "10702", "10706", "10708",
-  "10709","11349", "11350", "11351", "11352", "11353", "11354",
-  "11355", "11356", "11357", "11358", "11359", "11360", "11361",
-  "11362", "11363", "11364", "11365", "11366", "11367", "11368",
-  "11369", "11370", "11371", "11372", "11373", "11374", "11375",
-  "11376", "11377", "11378", "11379", "11380", "11381", "11382",
-  "11383", "11384", "10713", "10714", "10721", "10715", "10900A",
-  "10716", "10723", "10717", "10718", "10725", "10719", "10720",
-  "10727", "10722", "10729", "10730", "10724", "10731", "10732",
-  "10726", "10733", "10734", "10728", "10735", "10736", "10743",
-  "10744", "10745", "10746", "10747", "10748", "10737", "10738",
-  "10739", "10740", "10741", "10742", "11337", "11338", "11339",
-  "11340", "11341", "11342", "11343", "11344", "11345", "11346",
-  "11347", "11348"];
-var barnecklaces = [
-  "10599A", "CD051", "10584", "10585", "10586", "10587", "10588",
-  "10589", "10590", "10591", "10592", "10593", "10594", "10595"];
 var cartheader;
 var cartitems;
-var cartQty;
-var collection;
-var country;
-var countrylines;
-var detailViewQty;
+//var country;
+//var countrylines;
 var employee;
 var fields;
 var filters = {};
@@ -4349,21 +4327,12 @@ var flds;
 var fldsArray = { "data": []};
 var fldsArray_json;
 var hideCC = true;
-var item;
 var lines;
-var mantra = ["10375", "10376", "10377", "10378", "10379", "10380", "10381", "10382"];
-var newCustomerNumber;
 var newNumberOfOrders;
-var neworder;
 var numberOfOrders;
 var orderAmt;
-var prod;
-var searchField = document.getElementById('searchvalue');
-var searchTerm;
-var secondColumn;
 var session_no;
 var shippingAddresses = [];
-var shoppingCart;
 var sortItems = [
   "10599A", "10584", "10585", "10586", "10587", "10588", "10589",
   "10590", "10591", "10592", "10593", "10594", "10595", "CD051",
@@ -4434,8 +4403,6 @@ var sortItems = [
   "10538", "10539", "10540", "10544", "10542", "10541", "10543",
 ];
 var stock_no;
-var subtotal;
-var type;
 var username;
 
 
@@ -4480,7 +4447,7 @@ function createCustomer()
      if (response.length <= 10) {
        alert("An errror occured, try again.");
      } else {
-       newCustomerNumber = response;
+       var newCustomerNumber = response;
        $("#newCustomer").hide();
        $("#newUser").show();
        document.getElementById("create-user-number").value = newCustomerNumber.trim();
@@ -4542,9 +4509,7 @@ function login()
 {
   var password;
 
- /* if ( Cookies.get('session_no') && typeof(Cookies.get('session_no')) === "string" && Cookies.get('session_no').length === 25 ) { */
-  if ( sessionStorage.getItem('session_no') && typeof(sessionStorage.getItem('session_no')) === "string" && sessionStorage.getItem('session_no').length === 25 ) {
-    
+  if ( sessionStorage.getItem('session_no') && typeof(sessionStorage.getItem('session_no')) === "string" && sessionStorage.getItem('session_no').length === 25 ) {   
     windowHash("shop");
     redirect("store");
   }
@@ -4581,14 +4546,11 @@ function login()
             if (answer === "0") {
               $.get("https://www.laurajanelle.com/phphelper/savecart/session.php?customer=" + username.toLowerCase() + "&sessid=" + response + "");
               session_no = response.replace(/\s+/g,'');
-              /* Cookies.set('session_no', session_no); */
               sessionStorage.setItem('session_no', session_no);
             } else if (answer.length === 25 ) {
-              /* Cookies.set('session_no', answer); */
               sessionStorage.setItem('session_no', answer);
               $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APILOGOFF&session_no=" + response + "");
             }
-            /* Cookies.set('username', username); */
             sessionStorage.setItem('username', username);
           }).done(function() {
             windowHash("shop");
@@ -4610,28 +4572,22 @@ function login()
 ///////////////////////////////////////
 function newCustomerSession()
 {
-  /* if (!Cookies.get('newCustomer')) { */
   if (!sessionStorage.getItem('newCustomer')) {
     $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APIHISTLST&session_no=" + session_no + "", function( data ) {
       invoiceLines = data.split("\n");
       if (invoiceLines.length >= 3) {
-        /* Cookies.set('newCustomer', "false"); */
         sessionStorage.setItem('newCustomer', "false");
       } else {
         $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APIORDLST&session_no=" + session_no + "", function( ordData ) {
           openOrderLines = ordData.split("\n");
           if ( openOrderLines.length <= 2) {
-            /* Cookies.set('newCustomer', "true"); */
             sessionStorage.setItem('newCustomer', "true");
           } else {
-            /* Cookies.set('newCustomer', "false"); */
             sessionStorage.setItem('newCustomer', "false");
           }
         });
       }
     });
-  } else {
-    console.log("hello world");
   }
 }
 
@@ -4649,16 +4605,17 @@ function addItemGeneric(session_no, stock_no, qty)
 //////////////////////////////////////////////
 function addItemDetailView()
 {
+  var detailViewQty;
   if (document.getElementById(stock_no)) {
     detailViewQty = document.getElementById(stock_no).value;
   } else {
     detailViewQty = "1";
   }
 
-    // Save color and type in the 
-    if (!sessionStorage.getItem(stock_no) || sessionStorage.getItem(stock_no) === "undefined" || sessionStorage.getItem(stock_no) === null ) {
-      sessionStorage.setItem(stock_no, detailString);
-    }
+  // Save color and type in the 
+  if (!sessionStorage.getItem(stock_no) || sessionStorage.getItem(stock_no) === "undefined" || sessionStorage.getItem(stock_no) === null ) {
+    sessionStorage.setItem(stock_no, detailString);
+  }
 
   addItemGeneric(session_no, stock_no, detailViewQty);
   if ( window.location.hash !== "#shop" ) {
@@ -4770,14 +4727,14 @@ function cartHelper()
   if ( cartitems.length > 2 ) {
     for (i=1; i<cartitems.length - 1; i++) {
       data = cartitems[i].split("|");
-      miniitem = '<div class="top-cart-item clearfix"><div class="top-cart-item-image"><a href="#"><img src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '" /></a></div>';
+      miniitem = '<div class="top-cart-item clearfix"><div class="top-cart-item-image"><a href="#"><img src="https://www.laurajanelle.com/ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '" /></a></div>';
       miniitem += '<div class="top-cart-item-desc"><a href="#">' + data[3] + '</a><span class="top-cart-item-price">$' + data[7].substring(0, data[7].length - 3) + '</span><span class="top-cart-item-quantity">x ' + data[6].replace(/\s+/g,'') + '</span></div></div>';
       html2.push(miniitem);
 
       if ( window.location.hash === "#cart" ) {
 
         item = '<tr class="cart_item products"><td class="cart-product-remove"><a href="#cart" class="remove" onclick="removeItem(this.id); return false;" id="' + data[1].replace(/\s+/g,'') + '" title="Remove this item"><i class="icon-trash2"></i></a></td>';
-        item += '<td class="cart-product-thumbnail"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '"></a></td>';
+        item += '<td class="cart-product-thumbnail"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="https://www.laurajanelle.com/ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '"></a></td>';
         item += '<td class="cart-product-name"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '">' + data[3] + '</a></td>';
         item += '<td class="cart-product-price"><span class="amount">$' + data[7].substring(0, data[7].length - 3) + '</span></td>';
         item += '<td class="cart-product-quantity"><div class="quantity clearfix">';
@@ -4788,7 +4745,7 @@ function cartHelper()
         html.push(item);
         $("#updateCartButton").show();
       } else if ( window.location.hash === "#checkout" ) {
-        item1 =  '<tr class="cart_item"><td class="cart-product-thumbnail"><a href=#detail-view+' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="../ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '"></a></td>';
+        item1 =  '<tr class="cart_item"><td class="cart-product-thumbnail"><a href=#detail-view+' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="https://www.laurajanelle.com/ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '"></a></td>';
         item1 += '<td class="cart-product-name"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '">' + data[3] + '</a></td>';
         item1 += '<td class="cart-product-quantity"><div class="quantity clearfix">' + data[6].replace(/\s+/g,'') + '</div></td>';
         item1 += '<td class="cart-product-subtotal"><span class="amount">$' + data[8].substring(0, data[8].length - 4) + '</span></td></tr>';
@@ -4812,12 +4769,14 @@ function detailView()
 {
   jQuery("#images, #secondColumn, #addInfo").empty();
 
+  var secondColumn;
   var detailString;
   var color;
   var type;
   var metal;
+  var secondImage;
   var hash = window.location.hash.split("+");
-  var stock_no = hash[1].replace();
+  var stock_no = hash[1];
 
   if (hash.length === 5 ) {
     detailString = window.location.hash;
@@ -4831,6 +4790,15 @@ function detailView()
     type  = dets[3].replace( /^\D+/g, '');
     metal = dets[4].replace( /^\D+/g, '');
   }
+  
+  url = "../ljimages-2/" + stock_no + "-2-sm.png";
+  $.get(url)
+    .done(function() { 
+        secondImage = '<div class="slide" data-thumb="https://www.laurajanelle.com/ljimages-2/' + stock_no + '-2-sm.png"><a href="https://www.laurajanelle.com/ljimages-2/' + stock_no + '-2-lg.png" data-lightbox="gallery-item"><span class="zoom ex1"><img src="https://www.laurajanelle.com/ljimages-2/' + stock_no + '-2-md.png"></span></a></div>';
+    }).fail(function() { 
+        // not exists code
+        console.log("hey guys, there isn't a second image.");
+    });
 
   $.ajax({
     type: "GET",
@@ -4846,27 +4814,18 @@ function detailView()
        /* Fill in the pictures for the product */
 
        var pics =  '<div class="fslider" data-pagi="false" data-arrows="false" data-thumbs="true"><div class="flexslider"><div class="slider-wrap" data-lightbox="gallery">';
-
-           pics += '<div class="slide" data-thumb="../ljimages/' + fields[0] + '-sm.png"><a href="../ljimages/' + fields[0] + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="../ljimages/' + fields[0] + '-md.png" alt="' + fields[1] + '"></span></a></div>';
-       if (fields[2] === "ENC" && stock_no !== "CD103" && stock_no !== "10300A" || fields[2] === "GLB" && stock_no === "34737029" && stock_no !== "10700A" && stock_no !== "10700B" && stock_no !== "10700C" && stock_no !== "10700D"  && stock_no !== "PIL107")  {
-           pics += '<div class="slide" data-thumb="../packaging/' + fields[0] + '-sm.png"><a href="../packaging/' + fields[0] + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="../packaging/' + fields[0] + '-md.png" alt="' + fields[1] + '"></span></a></div>';
-       } else if ( backImages.join(" ").indexOf(stock_no) > -1 ) {
-           pics += '<div class="slide" data-thumb="../backs/' + fields[0] + 'bk-sm.png"><a href="../backs/' + fields[0] + 'bk-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="../backs/' + fields[0] + 'bk-md.png" alt="' + fields[1] + '"></span></a></div>';
-       } else if ( mantra.join(" ").indexOf(stock_no) > -1 ) {
-           pics += '<div class="slide" data-thumb="../packaging/' + fields[0] + '-sm.png"><a href="../packaging/' + fields[0] + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="../packaging/' + fields[0] + '-md.png" alt="' + fields[1] + '"></span></a></div>';
-       }
+           pics += '<div class="slide" data-thumb="https://www.laurajanelle.com/ljimages/' + fields[0] + '-sm.png"><a href="https://www.laurajanelle.com/ljimages/' + fields[0] + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="https://www.laurajanelle.com/ljimages/' + fields[0] + '-md.png" alt="' + fields[1] + '"></span></a></div>';      
+           pics += secondImage;
            pics += '</div></div></div>';
-       if (fields[7].trim().length === 3) {
-         pics += '<div class="sale-flash">NEW!</div>';
-       }
+        if (fields[7].trim().length === 3) {
+          pics += '<div class="sale-flash">NEW!</div>';
+        }
 
        secondColumn  = '<div><a href="'+ detailString +'" title="Brand Logo" class="hidden-xs">';
-
        secondColumn += '<img class="image_fade" src="../img/logos/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div>';
-
        secondColumn += '<div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + fields[0].replace(/\s+/g,'') + '</span></span></div><div class="line"></div>';
        secondColumn += '<div class="product-price col_one_third" style="font-size: 16px; font-weight: 400;"> <ins>COST:&nbsp;' + fields[4] + '</ins></div><div class="col_one_third hidden-xs" style="top: 0px; margin: 0px;">MIN: 1</div>';
-       if (stock_no !== "CD111" && stock_no !== "CD103" && stock_no !== "CD105" && stock_no !== "CD107" && stock_no !== "CD100" && stock_no !== "11100A" && stock_no !== "10000A" && stock_no !== "10300A" && stock_no !== "10500A" && stock_no !== "10700A" && stock_no !== "10700B" && stock_no !== "10700C" && stock_no !== "10700D" && stock_no !== "PIL107" && stock_no !== "34737029" )  {
+       if ( fields[3] != ".00" )  {
          secondColumn += '<div class="product-rating col_one_third col_last" style="top: 0px; margin: 0px;">MSRP:&nbsp;' + fields[3] + '</div>';
        }
        secondColumn += '<div class="clear"></div><div class="line"></div><form class="cart nobottommargin clearfix" method="post" enctype="multipart/form-data"><div class="quantity clearfix">';
@@ -4930,10 +4889,10 @@ function countryCode()
 ////////////////////////\\
 // Update Cart Function \\
 //\\\\\\\\\\\\\\\\\\\\\\\\
-function updateCart1()
+function updateCart()
 {
   $("#updateCartButton").hide();
-  shoppingCart = {};
+  var shoppingCart = {};
   var table = $("table tbody#cartItemTable");
 
   // loop thru cart and flatten the items that are repeated
@@ -4951,80 +4910,10 @@ function updateCart1()
       removeItemGeneric(session_no, line_no);
     }
   });
-
   $.each( shoppingCart, function( key, value ) {
     addItemGeneric(session_no, key, value[0]);
   });
   shopPage();
-}
-
-function updateCart2()
-{
-  $("#updateCartButton").hide();
-  shoppingCart = {};
-
-  var table = $("table tbody#cartItemTable");
-
-  // loop thru cart and flatten the items that are repeated
-  table.find('tr.products').each(function () {
-    var line_no     = $(this).find('td:first-child a').attr('id');
-    var stockNumber = $(this).find('td:nth-child(5) div input:nth-child(2)').attr('id');
-    var qty         = parseInt($(this).find('td:nth-child(5) div input:nth-child(2)').val());
-    shoppingCart[stockNumber] = [qty, line_no];
-    removeItemGeneric(session_no, line_no);
-  }).promise().done(function(){
-    table = "";
-  });
-
-  var promises = [];
-  $.each( shoppingCart, function( key, value ) {
-    promises.push(addItemGeneric(session_no, key, value[0]));
-  });
-  $.when.apply($, promises).then(function() {
-    shopPage();
-  });
-  return false;
-}
-
-function updateCart3()
-{
-  event.preventDefault();
-  $("#updateCartButton").hide();
-  shoppingCart = {};
-
-  $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTL&session_no=" + session_no + "", function (data) {
-    cartlines = data.split("\n");
-
-    cartlines.shift();
-    cartlinesPlus = [];
-    for (i=0; i<cartlines.length - 1; i++) {
-      cartlinesPlus.push(cartlines[i].split("|"));
-    }
-
-    for (i=0; i<cartlinesPlus.length; i++) {
-      cartfields = cartlinesPlus[i];
-//      shoppingCart[cartfields[2]] = [cartfields[6], cartfields[1]];
-    }
-      if (!shoppingCart.hasOwnProperty(cartfields[2])) {
-        shoppingCart[cartfields[2]] = [cartfields[6], cartfields[1]];
-//        removeItemGeneric(session_no, cartfields[1]);
-    } else {
-        shoppingCart[cartfields[2]][0] += cartfields[6];
-//        removeItemGeneric(session_no, shoppingCart[cartfields[2]][1]);
-//        removeItemGeneric(session_no, cartfields[1]);
-    }
-    console.log(Object.keys(shoppingCart));
-  }).done( function(){
-    $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTDEL&session_no=" + session_no + "").done( function(){
-      var promises = [];
-      $.each( shoppingCart, function( key, value ) {
-        promises.push(addItemGeneric(session_no, key.trim(), value[0].trim()));
-      });
-      $.when.apply($, promises).then(function() {
-        shopPage();
-      });
-    });
-  });
 }
 
 
@@ -5033,6 +4922,7 @@ function updateCart3()
 /////////////////////////
 function creditCard(n)
 {
+  var neworder;
   $.ajax({
     type: "GET",
     url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
@@ -5143,6 +5033,7 @@ function saveAddresses()
     }
   });
 }
+
 function saveAddressProfile()
 {
   var shippingformcompanyname = $("#shipping-form-companyname-profile").val();
@@ -5587,7 +5478,6 @@ function windowHash(name)
 /////////////////////////////////////////////////////
 function sessionNumber()
 {
-  /* session_no = Cookies.get('session_no'); */
   session_no = sessionStorage.getItem('session_no');
   if (typeof(session_no) === "undefined" || session_no.length !== 25) {
     pathArray = window.location.pathname.split( '/' );
@@ -5612,11 +5502,8 @@ function displayAddress(index) {
 
 function logoff()
 {
- /* Cookies.remove('session_no'); */
   sessionStorage.removeItem('session_no');
-/*  Cookies.remove('newCustomer'); */
   sessionStorage.removeItem('newCustomer');
- /* Cookies.remove('username'); */
   sessionStorage.removeItem('username');
   redirect("");
 }
@@ -5627,7 +5514,6 @@ function logoff()
 ////////////////////////////////
 function employeeDiscount()
 {
- /* username = Cookies.get("username"); */
  username = sessionStorage.getItem("username");
  usernameSplit = username.split("");
  employee = usernameSplit.slice(0,3).join("");
@@ -5635,8 +5521,6 @@ function employeeDiscount()
 
 function minimumTotal()
 { 
-
-  /* newCustomer = Cookies.get('newCustomer'); */
   newCustomer = sessionStorage.getItem('newCustomer');
   orderAmt = cartHeaderFields[22].trim();
   orderAmtFloat = parseFloat(orderAmt.replace(/,/g,''));
@@ -5856,7 +5740,7 @@ function search()
   if(event.keyCode == 13) {
     event.preventDefault();
     oldhash = window.location.hash;
-    searchTerm = $('#searchvalue').val();
+    var searchTerm = $('#searchvalue').val();
     $.ajax({
       type: "GET",
       url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
@@ -5928,13 +5812,7 @@ function itemRender(div,response)
     });
     for (i=0; i<linesPlus.length; i++) {
       flds = linesPlus[i];
-
-     /*
-      if ( barnecklaces.join(" ").indexOf(flds[0].trim()) > -1) {
-        continue;
-      }
-      */
-      prod =  '<div class="product clearfix ' + flds[2] +" "+ flds[8].trim() +" "+ flds[9].trim() +" "+ flds[10].trim() + 1 +'"><div class="product-image"><a href="#detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim() + '"><img class="shopimg" src="../ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a>';
+      prod =  '<div class="product clearfix ' + flds[2] +" "+ flds[8].trim() +" "+ flds[9].trim() +" "+ flds[10].trim() + 1 +'"><div class="product-image"><a href="#detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim() + '"><img class="shopimg" src="https://www.laurajanelle.com/ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a>';
       if (flds[7].trim().length === 3) {
         prod += '<div class="sale-flash">NEW!</div>';
       }
@@ -5955,6 +5833,7 @@ function itemRender(div,response)
 /////////////////////////////////////////////
 function quickView(clicked_id)
 {
+  var secondColumnQuick;
   jQuery.ajax({
     type: "GET",
     url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
@@ -5963,39 +5842,20 @@ function quickView(clicked_id)
       lines = response.split("\n");
       fields = lines[1].split("|");
 
-      switch (fields[2]) {
-        case "SLK": collection = 'SLEEK';
-          break;
-        case "GLB": collection = "RGLB";
-          break;
-        case "ENC": collection = "enCHARMing";
-          break;
-        case "IDT": collection = "iDentify";
-          break;
-        case "ZEN": collection = "AURA";
-          break;
-        case "SRK": collection = "Salt Rock";
-          break;
-        case "MAN": collection = "MANTRA";
-          break;
-        default:
-          collection = fields[2];
-      }
-
       var prodtype = fields[1].split(/(\s+)/);
 					prodtype = prodtype[2];
 
-			document.getElementById("quickViewimages").innerHTML = '<div class="slide" style="display: block;"><a href="#shop"><img src="../ljimages/' + stock_no + '-md.png" alt="' + fields[1] + '"></a></div>';
+			document.getElementById("quickViewimages").innerHTML = '<div class="slide" style="display: block;"><a href="#shop"><img src="https://www.laurajanelle.com/ljimages/' + stock_no + '-md.png" alt="' + fields[1] + '"></a></div>';
 
       jQuery( "#secondColumn").prepend('<div><a href="#shop" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/logos/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div><div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + stock_no + '</span></span></div><div class="line"></div><div class="product-price col_half" style="font-size: 16px; font-weight: 400;"><ins>COST:&nbsp;' + fields[4] + '</ins></div>');
       jQuery( ".minus" ).after( '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + stock_no + '" />' );
-    //  if (fields[8].length !== 0)  {
-    //     secondColumn = '<p>' + fields[8] + '</p>';
-    //  } else {
-         secondColumn = '<p>' + fields[1] + '</p>';
-  //    }
+      if (fields[8].length !== 0)  {
+         secondColumnQuick = '<p>' + fields[8] + '</p>';
+      } else {
+         secondColumnQuick = '<p>' + fields[1] + '</p>';
+      }
       $("#quickViewForm").append('<button type="button" id="add-item" class="add-to-cart button nomargin" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>The item(s) have been added to your cart!" onclick="detailString=\'detail-view+' + clicked_id + '\'; addItemDetailView(); SEMICOLON.widget.notifications(this); shopPage(); return false;">Add to cart</button>');
-      $("#description").append(secondColumn);
+      $("#description").append(secondColumnQuick);
     }
   });
 }
@@ -6076,8 +5936,8 @@ function getComboFilter() {
     // split group into combo: [ A, B ] & [ 1, 2 ] => [ A1, A2, B1, B2 ]
     for ( var i=0; i < combo.length; i++ ) {
       for ( var j=0; j < group.length; j++ ) {
-        var item = combo[i] + group[j];
-        nextCombo.push( item );
+        var itemForCombo = combo[i] + group[j];
+        nextCombo.push( itemForCombo );
       }
     }
     combo = nextCombo;
@@ -6088,7 +5948,7 @@ function getComboFilter() {
 
 
 /////////////////////////////////////////////
-//  Hash loads ajax. Make this go faster.. //
+//  Hash loads Ajax. Make this go faster.. //
 /////////////////////////////////////////////
 /////////////////////////////////////////////
 /////////////////////////////////////////////
@@ -6117,7 +5977,6 @@ function shopPage()
 function checkoutPage()
 {
   employeeDiscount();
-  /* session_no = Cookies.get('session_no'); */
   session_no = sessionStorage.getItem('session_no');
   cartList();
   cartHeader(minimumTotal); // cartHeader(); cartHeader(minimumTotal);
@@ -6168,7 +6027,6 @@ function whichPage()
       break;
     case '#profile' :
       $('#profile').show();
-      /* username = Cookies.get('username').toUpperCase(); */
       username = sessionStorage.getItem('username').toUpperCase();
       accountDetails();
       $("#myButtonProfile").click(function() {
