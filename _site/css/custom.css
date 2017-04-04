@@ -170,6 +170,9 @@ i.icon-search3 {
  winter 2017 page styling
 /* \\\\\\\\\\\\\\\\\\\
 */
+#slider {
+		top:-62px;
+	}
 
 .winterindex {
 	font-size: 55px;
@@ -190,11 +193,14 @@ i.icon-search3 {
 	.backofpage {
 		background-color: rgba(255, 255, 255, 0.1);
 	}
+	#slider {
+		top:-40px;
+	}
 }
 
 @media (max-width: 468px) {
 	.winterindex {
-		font-size: 24px;
+		font-size: 24aujr px;
 	
 	}
 	#slider{
