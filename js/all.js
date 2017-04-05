@@ -4323,9 +4323,6 @@ var cartitems;
 var employee;
 var fields;
 var filters = {};
-var flds;
-var fldsArray = { "data": []};
-var fldsArray_json;
 var hideCC = true;
 var lines;
 var newNumberOfOrders;
@@ -5080,7 +5077,10 @@ function saveAddressProfile()
 /////////////////////////////////////////////
 function orderHistory()
 {
-  var fldsArray = { "data": []};
+  var fldsArray = { "data": []},
+      lines,
+      fldsArray_json, 
+      flds;
   $.ajax({
    type: "GET",
    url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
