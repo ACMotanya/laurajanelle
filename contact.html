@@ -118,7 +118,7 @@ permalink: /contact/
                 <div class="col_full">
                   <button class="button button-border button-circle t500 noleftmargin topmargin-sm" type="button" id="contactform-back">Back</button>
                 </div>
- 								<form class="nobottommargin" id="contactform" name="contactform" action="http://72.64.152.18:8082/ace/mailer/contact.php" method="POST" enctype="multipart/form-data">
+ 								<form class="nobottommargin" id="contactform" name="contactform" action="http://72.64.152.18:8083/nlhelpers/mailer/contact.php" method="POST" enctype="multipart/form-data">
                   <input type='hidden' name='realsubject' value='Laura Janelle Contact Form' />
  									<div class="form-process"></div>
 
@@ -145,8 +145,12 @@ permalink: /contact/
  										<textarea class="required sm-form-control border-form-control" id="contactform-message" name="message" rows="7" cols="30" placeholder="Your Message"></textarea>
  									</div>
 
+									<div class="col_full center">
+                  	<div class="g-recaptcha" data-sitekey="6LfczRsUAAAAAHQJ16IpqWnd9KUDIjhX2sCLjzDg"  data-callback="enableBtn"></div>
+                	</div>
+
  									<div class="col_full center">
- 										<button class="button button-border button-circle t500 noleftmargin topmargin-sm" type="submit" id="contactform-submit" name="submit" value="submit">Send Message</button>
+ 										<button class="button button-border button-circle t500 noleftmargin topmargin-sm" type="submit" id="contactform-submit" name="submit" value="submit" onclick="$('#contactform').hide(); $('#thanks').show();">Send Message</button>
  										<br>
  									<!--	<small style="display: block; font-size: 13px; margin-top: 15px;">We'll do our best to get back to you within 6-8 working hours.</small> -->
  									</div>
@@ -154,6 +158,18 @@ permalink: /contact/
  									<div class="clear"></div>
  								</form>
    						</div>
+
+							 <div id='thanks' style="display:none;">
+								<h1>Thank You for getting in touch!</h1>
+								<h3>
+									We have received your message and would like to thank you for writing to us. <br><br>
+									If your inquiry is urgent, please use the telephone number listed in the contact section to talk to one of our staff members. Otherwise, we will reply by email shortly.
+									<br><br>
+									Talk to you soon, 
+									<br>
+									- Laura Janelle
+								</h3>
+							</div>
    					</div>
    				</div>
         </div>
