@@ -4766,6 +4766,7 @@ function detailView()
 {
   jQuery("#images, #secondColumn, #addInfo").empty();
 
+  var dets;
   var secondColumn;
   var detailString;
   var color;
@@ -4777,15 +4778,15 @@ function detailView()
 
   if (hash.length === 5 ) {
     detailString = window.location.hash;
-    color = hash[2].replace( /^\D+/g, '');
-    type  = hash[3].replace( /^\D+/g, '');
-    metal = hash[4].replace( /^\D+/g, '');
+    color = hash[2];
+    type  = hash[3];
+    metal = hash[4];
     sessionStorage.setItem(stock_no, detailString);
-  } else if ( sessionStorage.getItem(stock_no) !== null && sessionStorage.getItem(stock_no) != "undefined" && sessionStorage.getItem(stock_no).length >= 15 ) {
-    var dets = sessionStorage.getItem(stock_no).split("+");
-    color = dets[2].replace( /^\D+/g, '');
-    type  = dets[3].replace( /^\D+/g, '');
-    metal = dets[4].replace( /^\D+/g, '');
+  } else if ( sessionStorage.getItem(stock_no) !== null  && sessionStorage.getItem(stock_no) != "undefined" && sessionStorage.getItem(stock_no).length >= 15 ) {      //  add back if undefined ever comes up again
+    dets = sessionStorage.getItem(stock_no).split("+");
+    color = dets[2];
+    type  = dets[3];
+    metal = dets[4];
   }
   
   url = "../ljimages-2/" + stock_no + "-2-sm.png";
@@ -5596,24 +5597,42 @@ function changeQuantity(element)
 function whatColor(colorCode)
 {
   switch (colorCode) {
-    case "01": color = "Silver";
-    break;
-    case "02": color = "Gold";
-    break;
-    case "03": color = "Black";
-    break;
-    case "04": color = "Blue";
-    break;
-    case "05": color = "Brown";
-    break;
-    case "06": color = "Clear";
-    break;
-    case "07": color = "Green";
-    break;
-    case "08": color = "Grey";
-    break;
-    case "09": color = "Opal";
-    break;
+    case "01":
+    case "1": 
+      color = "Silver";
+      break;
+    case "02":
+    case "2": 
+      color = "Gold";
+      break;
+    case "03":
+    case "3": 
+      color = "Black";
+      break;
+    case "04":
+    case "4": 
+      color = "Blue";
+      break;
+    case "05":
+    case "5": 
+      color = "Brown";
+      break;
+    case "06":
+    case "6": 
+      color = "Clear";
+      break;
+    case "07":
+    case "7": 
+      color = "Green";
+      break;
+    case "08": 
+    case "8": 
+      color = "Grey";
+      break;
+    case "09": 
+    case "9":  
+      color = "Opal";
+      break;
     case "10": color = "Orange";
     break;
     case "11": color = "Pink";
@@ -5766,7 +5785,7 @@ function search()
 //////////////////////////
 // Filter Function      //
 //////////////////////////
-function filterFunction2(a,b,c,d,e,f,session_no)
+function filterFunction2(a,b,c,d,e,f,g,h)
 {
   $.ajax({
     type: "GET",
@@ -5778,8 +5797,8 @@ function filterFunction2(a,b,c,d,e,f,session_no)
       level3: d,
       level4: e,
       level5: f,
-      session_no: session_no,
-      loc_no: 800
+      session_no: g,
+      loc_no: h
     },
     success: function(response) {
       $('#shopItems').empty();
@@ -5812,13 +5831,14 @@ function itemRender(div,response)
     });
     for (i=0; i<linesPlus.length; i++) {
       flds = linesPlus[i];
-      prod =  '<div class="product clearfix ' + flds[2] +" "+ flds[8].trim() +" "+ flds[9].trim() +" "+ flds[10].trim() + 1 +'"><div class="product-image"><a href="#detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim() + '"><img class="shopimg" src="https://www.laurajanelle.com/ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a>';
+      stringOfDetails = flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim();
+      prod =  '<div class="product clearfix ' + flds[2] +" "+ flds[8].trim() +" "+ flds[9].trim() +" "+ flds[10].trim() + 1 +'"><div class="product-image"><a href="#detail-view+' + stringOfDetails + '"><img class="shopimg" src="https://www.laurajanelle.com/ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a>';
       if (flds[7].trim().length === 3) {
         prod += '<div class="sale-flash">NEW!</div>';
       }
-      prod += '<div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim() + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '\'; addItemDetailView(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-      prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'' + flds[0].trim() + '\'; quickView(this.id);" id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '"><i class="icon-zoom-in2"></i><span id="' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '">Quick View</span></a></div></div>';
-      prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+' + flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim() + '">' + flds[1] +'</a></h3></div><div class="product-price">cost &nbsp;<ins>$' + flds[4].trim() + '</ins></div></div></div>';
+      prod += '<div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim() + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'#detail-view+' + stringOfDetails + '\'; addItemDetailView(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+      prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'' + flds[0].trim() + '\'; quickView(this.id);" id="' + stringOfDetails + '"><i class="icon-zoom-in2"></i><span id="' + stringOfDetails + '">Quick View</span></a></div></div>';
+      prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+' + stringOfDetails + '">' + flds[1] +'</a></h3></div><div class="product-price">cost &nbsp;<ins>$' + flds[4].trim() + '</ins></div></div></div>';
 
       html.push(prod);
     }
@@ -5854,7 +5874,7 @@ function quickView(clicked_id)
       } else {
          secondColumnQuick = '<p>' + fields[1] + '</p>';
       }
-      $("#quickViewForm").append('<button type="button" id="add-item" class="add-to-cart button nomargin" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>The item(s) have been added to your cart!" onclick="detailString=\'detail-view+' + clicked_id + '\'; addItemDetailView(); SEMICOLON.widget.notifications(this); shopPage(); return false;">Add to cart</button>');
+      $("#quickViewForm").append('<button type="button" id="add-item" class="add-to-cart button nomargin" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>The item(s) have been added to your cart!" onclick="detailString=\'#detail-view+' + clicked_id + '\'; addItemDetailView(); SEMICOLON.widget.notifications(this); shopPage(); return false;">Add to cart</button>');
       $("#description").append(secondColumnQuick);
     }
   });
