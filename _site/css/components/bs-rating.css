@@ -20,6 +20,7 @@
 		background: transparent url('../../images/preloader.gif') top left no-repeat;
 		border: none;
 	}
+
 	.fontawesome-icon { font-family: 'font-icons'; }
 	.line-icon { font-family: 'lined-icons'; }
 	.line2-icon { font-family: 'Simple-Line-Icons'; }
@@ -135,6 +136,21 @@
 
 	.star-rating .caption { padding-left: 5px; }
 	.star-rating-rtl .caption { padding-right: 5px; }
+
+	.rtl .star-rating { direction: ltr; }
+
+	.rtl .star-rating .clear-rating,
+	.rtl .star-rating .rating-container,
+	.rtl .star-rating .caption {
+		display: block;
+		float: right;
+		padding-left: 0;
+		margin: 8px 5px 8px 0;
+	}
+
+	.rtl .star-rating .rating-container { line-height: 1; }
+
+	.rtl .star-rating .caption { margin-top: 10px; }
 
 	/**
 	 * Print

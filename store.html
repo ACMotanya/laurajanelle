@@ -2,6 +2,9 @@
 layout: store-layout
 title: Store - Laura Janelle
 ---
+
+      
+
       <style>
       #cart, #checkout, #invoices, #profile, #orders, #shop, #detail-view, #faq, #customerservice, #search {
         display: none;
@@ -1934,6 +1937,13 @@ title: Store - Laura Janelle
 
                                       <div class="clear"></div>
 
+                                      <div class="col-md-6 bottommargin-sm">
+                                        <div class="white-section">
+                                          <label>Rating:</label>
+                                          <input id="input-4" type="number" class="rating" data-symbol="&#xe667;" max="5" data-step=".5" data-stars="5" data-size="sm" data-glyphicon="false" data-rating-class="fontawesome-icon">
+                                        </div>
+                                      </div>
+
                                       <div class="col_full col_last">
                                         <label for="template-reviewform-rating">Rating</label>
                                         <select id="template-reviewform-rating" name="template-reviewform-rating" class="form-control">
@@ -1981,7 +1991,7 @@ title: Store - Laura Janelle
                       <form id="widget-subscribe-form" role="form" method="" class="nobottommargin col-sm-8">
                         <div class="input-group divcenter">
                           <span class="input-group-addon"><i class="icon-comment" style="font-size: 19px;"></i></span>
-                          <input type="text" class="form-control" value="" placeholder="Have a question?">
+                          <input type="text" class="form-control" value="" id="questionField" placeholder="Have a question?">
                           <!--
                           <span class="input-group-btn">
                             <button class="btn btn-secondary" type="submit" id="searchForOrders">Enter</button>
@@ -1994,29 +2004,64 @@ title: Store - Laura Janelle
                   
                   <div class="panel panel-default">
                     <div class="panel-body">
-                    <strong>Q:</strong> Are these avilable in red?
+                    <strong>Q:</strong> Are these available in red?
                     </div>
                     <div class="panel-footer">
                     <strong>A:</strong> No they are not and you are stupid to even ask that.   
                     </div>
                   </div>
-                   <div class="panel panel-default">
+                  <div class="panel panel-default">
                     <div class="panel-body">
-                    Q: Are these avilable in red?
+                    Q: Are these available in red?
                     </div>
                     <div class="panel-footer">
                     A: No they are not and you are so very dumb to fix your fingers and actually type that.   
                     </div>
                   </div>
-                   <div class="panel panel-default">
+                  <div class="panel panel-default">
                     <div class="panel-body">
-                    Q: Are these avilable in red?
+                    Q: Are these available in red?
                     </div>
                     <div class="panel-footer">
                     A: No they are not and you are stupid to even ask that.   
                     </div>
                   </div>
 
+                  <!-- Hidden Button Question and Answer trigger modal -->
+						      <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myQuestionModal" id="questionModal" style="visibility:hidden;">Launch Question Modal</button>
+                  <!-- Question & Answer Modal -->
+                  <div class="modal fade" id="myQuestionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-body">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Your question is about to be submitted...</h4>
+                          </div>
+                          <div class="modal-body">
+                         
+      
+                            <p>Your question will be posted under your username and will be answered between 24 and 72 hours.</p>
+                            <p>The answer will be posted on the site and you will get a notification by email.</p>
+                            <div id="q-contact" class="widget quick-contact-widget clearfix">
+                              <div class="quick-contact-form-result"></div>
+                              <form id="question-form" name="question-form" action="" method="post" class="quick-contact-form nobottommargin">
+                                <div class="form-process"></div>
+                                <input type="text" class="required sm-form-control input-block-level" id="questionEditField" name="question-form-question" value="I am the best?"  readonly="readonly" />
+                                <a class="button button-small button-dark button-rounded" onclick="$('#questionEditField').removeAttr('readonly'); return false;"></i>EDIT</a> | <a href="" class="button button-small button-dark button-rounded" data-dismiss="modal"></i>DELETE</a>
+                                <input type="text" class="hidden" id="quick-contact-form-botcheck" name="quick-contact-form-botcheck" value="" />
+                                <button type="submit" id="quick-contact-form-submit" name="quick-contact-form-submit" class="button button-small button-3d nomargin" value="submit" style="visibility: hidden;">Send Email</button>
+                              </form>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="button button-small button-3d nomargin">Submit</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                       
                 </div>
               </div>

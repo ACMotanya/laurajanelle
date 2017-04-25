@@ -541,6 +541,15 @@ function detailView()
 
 
 
+//////////////////////////////
+  // Populate the Question //
+//////////////////////////////
+function populateQuestionModal ()
+{
+  var qLines = "";
+}
+
+
 /////////////////////////////////
 // Get Country Codes and Stuff //
 /////////////////////////////////
@@ -1773,7 +1782,14 @@ function whichPage()
       break;
     case '#detail-view' :
       $('#detail-view').show();
+
       detailView();
+      $('#questionField').keypress(function(e){
+        if(e.which == 13 && ($('#questionField').val() !== "")) {//Enter key pressed
+          $('#questionModal').click();
+          $('#questionField').val("");//Trigger search button click event
+        }
+      });
       break;
     case '#faq' :
       $('#faq').show();
