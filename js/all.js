@@ -4862,9 +4862,24 @@ function detailView()
 //////////////////////////////
   // Populate the Question //
 //////////////////////////////
-function populateQuestionModal ()
+function populateQuestionModal()
 {
-  var qLines = "";
+  var username = sessionStorage.getItem("username");
+  var question = $('#questionField').val();
+  var qLines;
+
+  $("#myModalBody").empty();
+ 
+  qLines =  '<p>Your question will be posted under your username, '+ username +', and will be answered between 24 and 72 hours.</p>';                
+  qLines += '<p>The answer will be posted on the site and you will get a notification by email.</p><div id="q-contact" class="widget quick-contact-widget clearfix"><div class="quick-contact-form-result"></div>';
+  qLines += '<form id="question-form" name="question-form" action="" method="post" class="quick-contact-form nobottommargin"><div class="form-process"></div>';                             
+  qLines += '<input type="text" class="required sm-form-control input-block-level" id="questionEditField" name="question-form-question" value="'+ question +'" readonly="readonly" />';                         
+  qLines += '<a class="button button-small button-dark button-rounded" onclick="$(\'#questionEditField\').removeAttr(\'readonly\'); return false;"></i>EDIT</a> | <a href="" class="button button-small button-dark button-rounded" data-dismiss="modal"></i>DELETE</a>';
+  qLines += '<input type="text" class="hidden" id="quick-contact-form-botcheck" name="quick-contact-form-botcheck" value="" />';            
+  qLines += '<button type="submit" id="quick-contact-form-submit" name="quick-contact-form-submit" class="button button-small button-3d nomargin" value="submit" style="visibility: hidden;">Send Email</button></form></div></div>';
+
+  $("#myModalBody").html(qLines);
+  $('#questionField').val("");
 }
 
 
@@ -5385,8 +5400,8 @@ function accountDetails()
         details = lines[i].split("|");
         line =  '<tr><td>Username</td><td>'+details[0]+'</td></tr>';
         line += '<tr><td>Customer Number</td><td id="cust_no">'+details[1]+'</td></tr>';
-        line += '<tr><td>Customer Name</td><td>'+details[2]+'</td></tr>';
-        line += '<tr><td>Email Address</td><td>'+details[3]+'</td></tr>';
+        line += '<tr><td>Customer Name</td><td id="cust_name">'+details[2]+'</td></tr>';
+        line += '<tr><td>Email Address</td><td id="email_addr">'+details[3]+'</td></tr>';
         line += '<tr><td>Phone Number</td><td>'+details[4]+'</td></tr>';
         line += '<tr><td>Default Ship Via Code</td><td>'+details[5]+'</td></tr>';
         line += '<tr><td>Terms Code</td><td>'+details[6]+'</td></tr>';
@@ -6104,8 +6119,8 @@ function whichPage()
       detailView();
       $('#questionField').keypress(function(e){
         if(e.which == 13 && ($('#questionField').val() !== "")) {//Enter key pressed
-          $('#questionModal').click();
-          $('#questionField').val("");//Trigger search button click event
+          $('#questionModal').click();//Trigger search button click event
+          populateQuestionModal();
         }
       });
       break;
