@@ -4462,13 +4462,13 @@ function createCustomer()
 /////////////////////////////////////////
 function createUser()
 {
-  var userName        = $("#create-user-name").val();
+  var newUserName        = $("#create-user-name").val();
   var userPassword    = $("#create-user-password").val();
   var userNumber      = $("#create-user-number").val();
   var userEmail       = $("#create-user-email").val();
   var userContactName = $("#create-user-contactname").val();
 
-  $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICHECKUSER&session_no=2UD24M4BDN2D4RDAWABU9D254&username="+ userName.toUpperCase() +"", function( data ) {
+  $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICHECKUSER&session_no=2UD24M4BDN2D4RDAWABU9D254&username="+ newUserName.toUpperCase() +"", function( data ) {
     if ( data.length > 4 ) {
       alert("Pick a different username.");
     } else {
@@ -4477,7 +4477,7 @@ function createUser()
        url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
        data: {
          request_id: "APINEWUSER",
-         new_username: userName,
+         new_username: newUserName,
          new_password: userPassword,
          cust_no: userNumber,
          contact_name: userContactName,
@@ -4487,7 +4487,7 @@ function createUser()
        success: function(response) {
          if ( response === response.toUpperCase() ) {
            alert("Laura Janelle user has been created. Double check SouthWare and make sure everything was entered correctly.");
-           $.get("https://netlink.laurajanelle.com:444/mailer/logincred.php?username="+ userName +"&email="+ userEmail +"&password="+ userPassword +"&name="+userContactName+"");
+           $.get("https://netlink.laurajanelle.com:444/mailer/logincred.php?username="+ newUserName +"&email="+ userEmail +"&password="+ userPassword +"&name="+userContactName+"");
          } else {
            alert("User not created, try again.");
          }
@@ -4546,7 +4546,6 @@ function login()
               sessionStorage.setItem('session_no', session_no);
             } else if (answer.length === 25 ) {
               sessionStorage.setItem('session_no', answer);
-              $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APILOGOFF&session_no=" + response + "");
             }
             sessionStorage.setItem('username', username);
           }).done(function() {
@@ -4586,6 +4585,29 @@ function newCustomerSession()
       }
     });
   }
+
+  username = sessionStorage.getItem('username').toUpperCase();
+
+  $.ajax({
+    type: "GET",
+    url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
+    data: {
+      request_id: "APIACCTINFO",
+      user: username},
+    success: function(response) {
+
+      lines = response.split("\n");
+      // lines[0] is header row
+      // lines[1]+ are data lines
+     
+      for (i=0; i<lines.length - 1; i++) {
+        details = lines[i].split("|");
+        sessionStorage.setItem('cust_no', details[1]);
+        sessionStorage.setItem('cust_name', details[2]);
+        sessionStorage.setItem('email_addr', details[3]);
+      }
+    }
+  });
 }
 
 
@@ -4865,21 +4887,37 @@ function detailView()
 function populateQuestionModal()
 {
   var username = sessionStorage.getItem("username");
+  var cust_name = sessionStorage.getItem("cust_name").trim();
+  var cust_no = sessionStorage.getItem("cust_no").trim();
+  var email_addr = sessionStorage.getItem("email_addr").trim();
   var question = $('#questionField').val();
+  var hash = window.location.hash.split("+");
+  var stock_no = hash[1];
   var qLines;
+
+  console.log(''+ cust_name +' and '+ cust_no+'');
 
   $("#myModalBody").empty();
  
-  qLines =  '<p>Your question will be posted under your username, '+ username +', and will be answered between 24 and 72 hours.</p>';                
+  qLines =  '<p>Your question will be posted under your name, '+ cust_name +', and will be answered between 24 and 72 hours.</p>';                
   qLines += '<p>The answer will be posted on the site and you will get a notification by email.</p><div id="q-contact" class="widget quick-contact-widget clearfix"><div class="quick-contact-form-result"></div>';
-  qLines += '<form id="question-form" name="question-form" action="" method="post" class="quick-contact-form nobottommargin"><div class="form-process"></div>';                             
-  qLines += '<input type="text" class="required sm-form-control input-block-level" id="questionEditField" name="question-form-question" value="'+ question +'" readonly="readonly" />';                         
+  qLines += '<form id="question-form" name="question-form" action="https://netlink.laurajanelle.com:444/nlhelpers/mailer/questionSubmitEmail.php?cust_name=' + custName + '&question='+ question + '&email=' + email_addr + '" method="post" class="quick-contact-form nobottommargin"><div class="form-process"></div>';
+  qLines += '<input type="hidden" name="item" value="'+ stock_no +'" />';
+  qLines += '<input type="hidden" name="customer" value="'+ cust_name +'" />';
+  qLines += '<input type="hidden" name="customer_no" value="'+ cust_no +'" />' ;                            
+  qLines += '<input type="text" class="required sm-form-control input-block-level" id="questionEditField" name="question" value="'+ question +'" readonly="readonly" />';                         
   qLines += '<a class="button button-small button-dark button-rounded" onclick="$(\'#questionEditField\').removeAttr(\'readonly\'); return false;"></i>EDIT</a> | <a href="" class="button button-small button-dark button-rounded" data-dismiss="modal"></i>DELETE</a>';
   qLines += '<input type="text" class="hidden" id="quick-contact-form-botcheck" name="quick-contact-form-botcheck" value="" />';            
-  qLines += '<button type="submit" id="quick-contact-form-submit" name="quick-contact-form-submit" class="button button-small button-3d nomargin" value="submit" style="visibility: hidden;">Send Email</button></form></div></div>';
+  qLines += '<button type="submit" id="question-submit" name="question-submit" class="button button-small button-3d nomargin" value="submit" style="visibility: hidden;">Send Email</button></form></div></div>';
 
   $("#myModalBody").html(qLines);
   $('#questionField').val("");
+
+  $("#fakeSubQuestion").on("click", function() {
+     $.get("http://72.64.152.18:8083/nlhelpers/websiteAPI/question.php?item="+ stock_no +"&question="+ question +"&customer="+ cust_name +"&customer_no="+ cust_no +"");
+     //$.get("https://netlink.laurajanelle.com:444/mailer/questionSubmitEmail.php?cust_name=" + cust_name + "&question="+ question + "&email=" + email_addr + "");
+     $('#question-submit').click();
+  });
 }
 
 
