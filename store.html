@@ -1822,7 +1822,7 @@ title: Store - Laura Janelle
                       </div>
                     </div>
                   </div>
-                  -->
+                 
                   <div class="col_full nobottommargin">
 
                     <div class="tabs clearfix nobottommargin" id="tab-1">
@@ -1878,14 +1878,14 @@ title: Store - Laura Janelle
 
                               <li class="comment even thread-even depth-1" id="li-comment-1">
                                 <div id="comment-1" class="comment-wrap clearfix">
-                                  <!--
+                                  
                                   <div class="comment-meta">
                                     <div class="comment-author vcard">
                                       <span class="comment-avatar clearfix">
                                       <img alt='' src='http://0.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=60' height='60' width='60' /></span>
                                     </div>
                                   </div>
-                                  -->
+                                 
                                   <div class="comment-content clearfix">
                                     <div class="comment-author">Mary Jane<span><a href="#" title="Permalink to this comment">June 16, 2017 at 6:00PM</a></span></div>
                                     <p>Quasi, blanditiis, neque ipsum numquam odit asperiores hic dolor necessitatibus libero sequi amet voluptatibus ipsam velit qui harum temporibus cum nemo iste aperiam explicabo fuga odio ratione sint fugiat consequuntur vitae adipisci delectus eum incidunt possimus tenetur excepturi at accusantium quod doloremque reprehenderit aut expedita labore error atque?</p>
@@ -1975,60 +1975,41 @@ title: Store - Laura Janelle
                                 </div><!-- /.modal-content -->
                               </div><!-- /.modal-dialog -->
                             </div><!-- /.modal -->
-                            <!-- Modal Reviews End -->
+                            <!-- Modal Reviews End --> <!--
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-
+                  -->
                   <div class="clear"></div><div class="line"></div>
                  
                   <h2>Customer Questions &amp; Answers</h2>
 
-                  <div class="widget subscribe-widget clearfix bottommargin-sm">
+                  <div id="questionWidget" class="widget subscribe-widget clearfix bottommargin-sm">
                     <div class="row">
                       <form id="widget-subscribe-form" role="form" method="" class="nobottommargin col-sm-8">
                         <div class="input-group divcenter">
                           <span class="input-group-addon"><i class="icon-comment" style="font-size: 19px;"></i></span>
                           <input type="text" class="form-control" value="" id="questionField" placeholder="Have a question?">
-                          <!--
-                          <span class="input-group-btn">
-                            <button class="btn btn-secondary" type="submit" id="searchForOrders">Enter</button>
-                          </span>
-                          -->
                         </div>
                       </form>
                     </div>
                   </div>
-                  
-                  <div class="panel panel-default">
-                    <div class="panel-body">
-                    <strong>Q:</strong> Are these available in red?
-                    </div>
-                    <div class="panel-footer">
-                    <strong>A:</strong> No they are not and you are stupid to even ask that.   
-                    </div>
-                  </div>
-                  <div class="panel panel-default">
+                  <!--
+                  <div class="questionSection panel panel-default">
                     <div class="panel-body">
                     Q: Are these available in red?
                     </div>
                     <div class="panel-footer">
-                    A: No they are not and you are so very dumb to fix your fingers and actually type that.   
+                    A: No they are not and you are so very dumb to fix your fingers and actually type that.
+                     <br>
+                        <span class="label label-default"> By Ace Motanya on January 21, 2016</span>
                     </div>
                   </div>
-                  <div class="panel panel-default">
-                    <div class="panel-body">
-                    Q: Are these available in red?
-                    </div>
-                    <div class="panel-footer">
-                    A: No they are not and you are stupid to even ask that.   
-                    </div>
-                  </div>
-
+                  -->
                   <!-- Hidden Button Question and Answer trigger modal -->
-						      <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myQuestionModal" id="questionModal" style="visibility:hidden;">Launch Question Modal</button>
+						      <button data-toggle="modal" data-target="#myQuestionModal" id="questionModal" style="visibility:hidden;">Launch Question Modal</button>
                   <!-- Question & Answer Modal -->
                   <div class="modal fade" id="myQuestionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -2059,7 +2040,7 @@ title: Store - Laura Janelle
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="button button-small button-3d nomargin" id="fakeSubQuestion">Submit</button>
+                            <button type="button" class="button button-small button-3d nomargin" id="fakeSubQuestion" data-dismiss="modal">Submit</button>
                           </div>
                         </div>
                       </div>
@@ -2390,29 +2371,6 @@ title: Store - Laura Janelle
 
             </section>
 
-
-            <section id="customerservice">
-              <div class="col-md-6">
-                <h3>Change Session Number</h3>
-
-                <form role="form" class="nobottommargin" action="#" method="">
-
-                  <div class="form-group">
-                    <div class="col_full">
-                      <label for="shipping-form-companyname">New Session Number:</label>
-                      <input id="newSessionNumber" type="text" maxlength="30" value="" required class="sm-form-control form-control" />
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <div class="col_full">
-                      <button type="button" class="button button-3d fright" form="shipping-form" data-notify-position="top-right" data-notify-type="danger" data-notify-msg="<i class=icon-info-sign></i>Session Number has been changed!" onclick="session_no=$('#newSessionNumber').val(); SEMICOLON.widget.notifications(this); return false;">Change Number</button>
-                    </div>
-                  </div>
-
-                </form>
-              </div>
-            </section>
 
 
             <section id="search">

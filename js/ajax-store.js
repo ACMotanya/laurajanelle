@@ -507,6 +507,7 @@ function detailView()
     url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
     data: {request_id: "APISTKDTL", stock_no: stock_no, session_no: session_no},
     success: function(response) {
+      console.log(response);
 
       lines = response.split("\n");
       // lines[0] is header row
@@ -559,6 +560,8 @@ function detailView()
        },1000);
      }
   });
+
+  getQuestions(stock_no);
 }
 
 
@@ -577,13 +580,11 @@ function populateQuestionModal()
   var stock_no = hash[1];
   var qLines;
 
-  console.log(''+ cust_name +' and '+ cust_no+'');
-
   $("#myModalBody").empty();
  
   qLines =  '<p>Your question will be posted under your name, '+ cust_name +', and will be answered between 24 and 72 hours.</p>';                
   qLines += '<p>The answer will be posted on the site and you will get a notification by email.</p><div id="q-contact" class="widget quick-contact-widget clearfix"><div class="quick-contact-form-result"></div>';
-  qLines += '<form id="question-form" name="question-form" action="https://netlink.laurajanelle.com:444/nlhelpers/mailer/questionSubmitEmail.php?cust_name=' + custName + '&question='+ question + '&email=' + email_addr + '" method="post" class="quick-contact-form nobottommargin"><div class="form-process"></div>';
+  qLines += '<form id="question-form" name="question-form" action="" target="dummyframe" method="POST" role="form" enctype="multipart/form-data" class="quick-contact-form nobottommargin"><div class="form-process"></div>';
   qLines += '<input type="hidden" name="item" value="'+ stock_no +'" />';
   qLines += '<input type="hidden" name="customer" value="'+ cust_name +'" />';
   qLines += '<input type="hidden" name="customer_no" value="'+ cust_no +'" />' ;                            
@@ -596,9 +597,31 @@ function populateQuestionModal()
   $('#questionField').val("");
 
   $("#fakeSubQuestion").on("click", function() {
-     $.get("http://72.64.152.18:8083/nlhelpers/websiteAPI/question.php?item="+ stock_no +"&question="+ question +"&customer="+ cust_name +"&customer_no="+ cust_no +"");
-     //$.get("https://netlink.laurajanelle.com:444/mailer/questionSubmitEmail.php?cust_name=" + cust_name + "&question="+ question + "&email=" + email_addr + "");
-     $('#question-submit').click();
+    question = $('#questionEditField').val();
+    $.get("http://72.64.152.18:8083/nlhelpers/websiteAPI/question.php?item="+ stock_no +"&question="+ question +"&customer="+ cust_name +"&customer_no="+ cust_no +"+&loc_no=800");
+    $.get("https://netlink.laurajanelle.com:444/nlhelpers/mailer/questionSubmitEmail.php?custName=" + cust_name + "&question="+ question + "&email=" + email_addr + "");
+  });
+}
+
+function getQuestions(stock_no) 
+{ 
+  jQuery(".questionSection").remove();
+
+  $.get("http://72.64.152.18:8083/nlhelpers/websiteAPI/question.php?item="+ stock_no +"&question&customer&customer_no&loc_no", function ( questdata ) {
+    qdata = questdata.split("\n");
+    console.log(questdata);
+    if (qdata.length < 2) {
+      custqLines =  '<p class="questionSection lead topmargin-sm">No questions have been submitted for this item.</>';
+      $("#questionWidget").after(custqLines);
+    } else {
+      for (i=0; i<qdata.length - 1; i++) {
+        datalines = qdata[i].split("|");
+        custqLines =  '<div class="questionSection panel panel-default"><div class="panel-body">Q: "'+ datalines[0].replace(/['"]+/g, '') +'"</div>';
+        custqLines += '<div class="panel-footer">A: "'+ datalines[1] +'"<br><span class="label label-default"> By "'+ datalines[5].split('"').join('') +'" on "'+ datalines[2] +'"</span></div></div>';
+
+        $("#questionWidget").after(custqLines);
+      }
+    }
   });
 }
 
@@ -1628,6 +1651,11 @@ function quickView(clicked_id)
 //////////////////////////////////////////////
   // Filter the Products on the Shop Page //
 //////////////////////////////////////////////
+
+var $container = $('#shopItems');
+
+$container.isotope();
+
 function priceFilter() {
   var priceRangefrom = ( isNaN(parseFloat($("#min").val())) ? 1 : parseFloat($("#min").val()) );
   var priceRangeto   = ( isNaN(parseFloat($("#max").val())) ? 9999 : parseFloat($("#max").val()) );
@@ -1648,11 +1676,6 @@ function priceFilter() {
     }
   });
 }
-
-
-var $container = $('#shopItems');
-
-$container.isotope();
 
 // do stuff when checkbox change
 $('.ui-group').on( 'change', function( event ) {
