@@ -151,10 +151,14 @@ layout: compress
         </div><!-- #copyrights end -->
       </footer><!-- #footer end -->
     </div>
-    
+    <!-- Star Rating CSS -->
+	    <link rel="stylesheet" href="{{ "/css/components/bs-rating.min.css" | prepend: site.baseurl }}" type="text/css">
+     <!-- Star Rating Plugin -->
+	    
     {% include js.html %}
 
-
+    <script defer type="text/javascript" src="{{ "/js/components/star-rating.min.js" | prepend: site.baseurl }}"></script>
+ 
     <script defer>
     $(window).on('hashchange', function() {
       whichPage();
@@ -198,33 +202,17 @@ layout: compress
 		 };
      */
     </script>
-
-    <!-- Star Rating CSS -->
-	    <link rel="stylesheet" href="{{ "/css/components/bs-rating.css" | prepend: site.baseurl }}" type="text/css" />
-      <!-- Star Rating Plugin -->
-	    <script type="text/javascript" src="{{ "/js/components/star-rating.js" | prepend: site.baseurl }}"></script>
-
-      <script type="text/javascript">
-
-        $("#input-11").rating({
-          starCaptions: {0: "Not Rated",1: "Very Poor", 2: "Poor", 3: "Ok", 4: "Good", 5: "Very Good"},
-          starCaptionClasses: {0: "text-danger", 1: "text-danger", 2: "text-warning", 3: "text-info", 4: "text-primary", 5: "text-success"},
+    <script defer>
+    $(document).on('ready', function(){
+        $('#input-2').rating({
+            step: 1,
+            starCaptions: {1: 'I hate it', 2: 'I don\'t like it', 3: 'It\'s okay', 4: 'I like it', 5: 'I love it'},
+            starCaptionClasses: {1: 'text-danger', 2: 'text-warning', 3: 'text-info', 4: 'text-primary', 5: 'text-success', 
+            showClear: false, 
+            showCaption: true}
         });
-
-        $("#input-13").on("rating.clear", function(event) {
-          $('#rating-notification-message').attr('data-notify-type','error').attr('data-notify-msg', 'Your rating is reset');
-          SEMICOLON.widget.notifications( jQuery('#rating-notification-message') );
-        });
-        $("#input-13").on("rating.change", function(event, value, caption) {
-          $('#rating-notification-message').attr('data-notify-msg', 'You rated: ' + value + ' Stars');
-          SEMICOLON.widget.notifications( jQuery('#rating-notification-message') );
-        });
-
-        $("#input-14").on("rating.change", function(event, value, caption) {
-            $("#input-14").rating("refresh", {disabled: true, showClear: false});
-        });
-
-      </script>
+      });
+    </script>
 
   </body>
 

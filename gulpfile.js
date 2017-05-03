@@ -14,9 +14,6 @@ var jsFiles  = ['./js/functions.js','./js/validator.min.js','./js/jquery.zoom.mi
 gulp.task('css', function() {
   gulp.src(cssFiles)
     .pipe(concat('all.css'))
-    .pipe(gulp.dest('css'));
-
-  gulp.src('./css/all.css')
     .pipe(cssnano())
     .pipe(gulp.dest('assets'));
 });
@@ -24,9 +21,6 @@ gulp.task('css', function() {
 gulp.task('scripts', function() {
   gulp.src(jsFiles)
     .pipe(concat('all.js'))
-    .pipe(gulp.dest('js'));
-  
-  gulp.src('./js/all.js')
     .pipe(uglify())
     .pipe(gulp.dest('assets'));
 });
