@@ -520,12 +520,13 @@ function detailView()
            pics += '<div class="slide" data-thumb="https://www.laurajanelle.com/ljimages/' + fields[0] + '-sm.png"><a href="https://www.laurajanelle.com/ljimages/' + fields[0] + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="https://www.laurajanelle.com/ljimages/' + fields[0] + '-md.png" alt="' + fields[1] + '"></span></a></div>';      
            pics += secondImage;
            pics += '</div></div></div>';
-        if (fields[7].trim().length === 3) {
-          pics += '<div class="sale-flash">NEW!</div>';
+        if (fields[7]) {
+          if (fields[7].trim().length === 3) {
+            pics += '<div class="sale-flash">NEW!</div>';
+          }
         }
-
        secondColumn  = '<div><a href="'+ detailString +'" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/logos/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div>';
-       secondColumn += '<div class="col_half nobottommargin"><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + fields[0].replace(/\s+/g,'') + '</span></span></div><div class="col_half col_last nobottommargin"><div class="white-section"><input id="input-4" type="number" class="rating" max="5" value="4" data-size="sm" data-glyphicon="false" data-rating-class="fontawesome-icon" disabled></div></div><div class="line"></div>';
+       secondColumn += '<div class="col_half nobottommargin"><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + fields[0].replace(/\s+/g,'') + '</span></span></div><div class="col_half col_last nobottommargin"><div class="white-section"><input id="input-4" type="number" class="rating" max="5" value="4" data-size="xs" data-glyphicon="false" data-rating-class="fontawesome-icon" disabled></div></div><div class="line"></div>';
        secondColumn += '<div class="product-price col_one_third" style="font-size: 16px; font-weight: 400;"> <ins>COST:&nbsp;' + fields[4] + '</ins></div><div class="col_one_third hidden-xs" style="top: 0px; margin: 0px;">MIN: 1</div>';
        if ( fields[3] != ".00" )  {
          secondColumn += '<div class="product-rating col_one_third col_last" style="top: 0px; margin: 0px;">MSRP:&nbsp;' + fields[3] + '</div>';
@@ -561,6 +562,8 @@ function detailView()
   });
 
   getQuestions(stock_no);
+
+ // $('#input-4').rating('refresh', {showClear: false}).val();
 }
 
 
