@@ -507,7 +507,7 @@ function detailView()
     url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
     data: {request_id: "APISTKDTL", stock_no: stock_no, session_no: session_no},
     success: function(response) {
-      console.log(response);
+
 
       lines = response.split("\n");
       // lines[0] is header row
@@ -526,7 +526,7 @@ function detailView()
           }
         }
        secondColumn  = '<div><a href="'+ detailString +'" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/logos/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div>';
-       secondColumn += '<div class="col_half nobottommargin"><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + fields[0].replace(/\s+/g,'') + '</span></span></div><div class="col_half col_last nobottommargin"><div class="white-section"><input id="input-4" type="number" class="rating" max="5" value="4" data-size="xs" data-glyphicon="false" data-rating-class="fontawesome-icon" disabled></div></div><div class="line"></div>';
+       secondColumn += '<div class="col_half nobottommargin"><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + fields[0].replace(/\s+/g,'') + '</span></span></div><div class="col_half col_last nobottommargin"><div class="white-section"><input id="mainRating" type="number" class="rating" max="5" value="4" data-size="xs" disabled></div></div><div class="line"></div>';
        secondColumn += '<div class="product-price col_one_third" style="font-size: 16px; font-weight: 400;"> <ins>COST:&nbsp;' + fields[4] + '</ins></div><div class="col_one_third hidden-xs" style="top: 0px; margin: 0px;">MIN: 1</div>';
        if ( fields[3] != ".00" )  {
          secondColumn += '<div class="product-rating col_one_third col_last" style="top: 0px; margin: 0px;">MSRP:&nbsp;' + fields[3] + '</div>';
@@ -537,10 +537,12 @@ function detailView()
        secondColumn += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant[1]" onclick="changeQuantity(this)"></div>';
        secondColumn += '<button type="button" id="add-item" class="add-to-cart button nomargin" onclick="stock_no=\'' + fields[0].trim() + '\'; addItemDetailView();">Add to cart</button></form><div class="clear"></div><div class="line"></div>';
 
-       if (fields[8].length !== 0) {
-         secondColumn += '<p>' + fields[8] + '</p>';
-       } else {
-         secondColumn += '<p>' + fields[1] + '</p>';
+       if (fields[8]) {
+          if (fields[8].length !== 0) {
+            secondColumn += '<p>' + fields[8] + '</p>';
+          } else {
+            secondColumn += '<p>' + fields[1] + '</p>';
+          }
        }
 
        info =  '<tr><td>Description</td><td>' + fields[1] + '</td></tr>';
@@ -555,6 +557,7 @@ function detailView()
      },
      complete: function () {
        $('.ex1 img').wrap('<span style="display:inline-block"></span>').css('display', 'block').parent().zoom();
+       $('#mainRating').rating('refresh', {showClear: false, showCaption: false}).val();
        setTimeout(function(){
          SEMICOLON.widget.loadFlexSlider();
        },1000);
@@ -562,8 +565,7 @@ function detailView()
   });
 
   getQuestions(stock_no);
-
- // $('#input-4').rating('refresh', {showClear: false}).val();
+  
 }
 
 
@@ -601,17 +603,18 @@ function populateQuestionModal()
   $("#fakeSubQuestion").on("click", function() {
     question = $('#questionEditField').val();
     $.get("http://72.64.152.18:8083/nlhelpers/websiteAPI/question.php?item="+ stock_no +"&question="+ question +"&customer="+ cust_name +"&customer_no="+ cust_no +"+&loc_no=800");
-    $.get("https://netlink.laurajanelle.com:444/nlhelpers/mailer/questionSubmitEmail.php?custName=" + cust_name + "&question="+ question + "&email=" + email_addr + "");
+    $.get("https://netlink.laurajanelle.com:444/nlhelpers/mailer/questionSubmitEmail.php?custName=" + cust_name + "&question="+ question + "&email=" + email_addr + "", function() {
+      location.reload();
+    });
   });
 }
 
 function getQuestions(stock_no) 
 { 
   jQuery(".questionSection").remove();
-
+  questionhtml = [];
   $.get("http://72.64.152.18:8083/nlhelpers/websiteAPI/question.php?item="+ stock_no +"&question&customer&customer_no&loc_no", function ( questdata ) {
     qdata = questdata.split("\n");
-    console.log(questdata);
     if (qdata.length < 2) {
       custqLines =  '<p class="questionSection lead topmargin-sm">No questions have been submitted for this item.</>';
       $("#questionWidget").after(custqLines);
@@ -620,11 +623,17 @@ function getQuestions(stock_no)
         datalines = qdata[i].split("|");
         datePre  = Date(datalines[3]).split(" ");
         datePost = datePre[1] + " "+ datePre[2].replace(/^[0]+/g,"")+ ", "+ datePre[3];
-        custqLines =  '<div class="questionSection panel panel-default"><div class="panel-body">Q: '+ datalines[0] +'</div>';
-        custqLines += '<div class="panel-footer">A: '+ datalines[1] +'<br><span class="label label-default"> By '+ datalines[5] +' on '+ datePost +'</span></div></div>';
-
-        $("#questionWidget").after(custqLines);
+        custqLines =  '<div class="questionSection panel panel-default"><div class="panel-body"><strong>Q:&nbsp;</strong> '+ datalines[0] +'</div>';
+        custqLines += '<div class="panel-footer"><strong>A:&nbsp;</strong> '+ datalines[1] +'<br><span class="label label-default"> By '+ datalines[5] +' on '+ datePost +'</span></div></div>';
+        
+        if (datalines[6] === "1") {
+          questionhtml.unshift(custqLines);
+          console.log(datalines[0]+ " and "+ datalines[6]);
+        } else {
+          questionhtml.push(custqLines);
+        }   
       }
+      $("#questionWidget").after(questionhtml.join(''));
     }
   });
 }
@@ -1586,7 +1595,6 @@ function itemRender(div,response)
   lines = response.split("\n");
   lines.shift();
   if ( lines.length <= 1) {
-
     document.getElementById(div).innerHTML += '<h1>There are no results</h1>';
   } else {
     html = [];
