@@ -214,7 +214,28 @@ i.icon-search3 {
  #shop page styling mostly filters
 /* \\\\\\\\\\\\\\\\\\\
 */
+.commentlist li {
+	margin-left: 0px;
+}
 
+.comment.odd {
+	 margin-left: 85px;
+}
+.comment-avatar {
+	border: none;
+}
+
+.comment-avatar img {
+	border-radius: 0%;
+}
+
+.different-stars .rating-container .filled-stars {
+	color: #999;
+}
+
+.rating-xs {
+    font-size: 1.5em;
+}
 
 @media (min-width: 992px) {
 	.Fixed {

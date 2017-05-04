@@ -526,7 +526,7 @@ function detailView()
           }
         }
        secondColumn  = '<div><a href="'+ detailString +'" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/logos/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div>';
-       secondColumn += '<div class="col_half nobottommargin"><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + fields[0].replace(/\s+/g,'') + '</span></span></div><div class="col_half col_last nobottommargin"><div class="white-section"><input id="mainRating" type="number" class="rating" max="5" value="4" data-size="xs" disabled></div></div><div class="line"></div>';
+       secondColumn += '<div class="col_half nobottommargin"><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + fields[0].replace(/\s+/g,'') + '</span></span></div><div class="col_half col_last nobottommargin"><div class="white-section different-stars"><input id="mainRating" type="number" class="rating" max="5" value="4" data-size="xs" disabled></div></div><div class="line"></div>';
        secondColumn += '<div class="product-price col_one_third" style="font-size: 16px; font-weight: 400;"> <ins>COST:&nbsp;' + fields[4] + '</ins></div><div class="col_one_third hidden-xs" style="top: 0px; margin: 0px;">MIN: 1</div>';
        if ( fields[3] != ".00" )  {
          secondColumn += '<div class="product-rating col_one_third col_last" style="top: 0px; margin: 0px;">MSRP:&nbsp;' + fields[3] + '</div>';
@@ -575,7 +575,6 @@ function detailView()
 //////////////////////////////
 function populateQuestionModal()
 {
-  var username = sessionStorage.getItem("username");
   var cust_name = sessionStorage.getItem("cust_name").trim();
   var cust_no = sessionStorage.getItem("cust_no").trim();
   var email_addr = sessionStorage.getItem("email_addr").trim();
@@ -588,32 +587,23 @@ function populateQuestionModal()
  
   qLines =  '<p>Your question will be posted under your name, '+ cust_name +', and will be answered between 24 and 72 hours.</p>';                
   qLines += '<p>The answer will be posted on the site and you will get a notification by email.</p><div id="q-contact" class="widget quick-contact-widget clearfix"><div class="quick-contact-form-result"></div>';
-  qLines += '<form id="question-form" name="question-form" action="" target="dummyframe" method="POST" role="form" enctype="multipart/form-data" class="quick-contact-form nobottommargin"><div class="form-process"></div>';
-  qLines += '<input type="hidden" name="item" value="'+ stock_no +'" />';
-  qLines += '<input type="hidden" name="customer" value="'+ cust_name +'" />';
-  qLines += '<input type="hidden" name="customer_no" value="'+ cust_no +'" />' ;                            
+  qLines += '<form id="question-form" name="question-form" target="dummyframe" action="https://netlink.laurajanelle.com:444/nlhelpers/mailer/questionSubmitEmail.php" method="GET" class="quick-contact-form nobottommargin"><div class="form-process"></div>';
+  qLines += '<input type="hidden" name="item" value="'+ stock_no +'" /><input type="hidden" name="customer" value="'+ cust_name +'" />';
+  qLines += '<input type="hidden" name="customer_no" value="'+ cust_no +'" /><input type="hidden" name="loc_no" value="800" /><input type="hidden" name="email" value="'+ email_addr +'" />';                        
   qLines += '<input type="text" class="required sm-form-control input-block-level" id="questionEditField" name="question" value="'+ question +'" readonly="readonly" />';                         
-  qLines += '<a class="button button-small button-dark button-rounded" onclick="$(\'#questionEditField\').removeAttr(\'readonly\'); return false;"></i>EDIT</a> | <a href="" class="button button-small button-dark button-rounded" data-dismiss="modal"></i>DELETE</a>';
+  qLines += '<a class="button button-small button-dark button-rounded" onclick="$(\'#questionEditField\').removeAttr(\'readonly\');"></i>EDIT</a> | <a href="" class="button button-small button-dark button-rounded" data-dismiss="modal"></i>DELETE</a>';
   qLines += '<input type="text" class="hidden" id="quick-contact-form-botcheck" name="quick-contact-form-botcheck" value="" />';            
-  qLines += '<button type="submit" id="question-submit" name="question-submit" class="button button-small button-3d nomargin" value="submit" style="visibility: hidden;">Send Email</button></form></div></div>';
+  qLines += '<button type="submit" id="question-submit" name="question-submit" class="button button-small button-3d nomargin" value="submit" onclick="$(\'#fakeSubQuestion\').click();">Send Email</button></form></div></div>';
 
   $("#myModalBody").html(qLines);
   $('#questionField').val("");
-
-  $("#fakeSubQuestion").on("click", function() {
-    question = $('#questionEditField').val();
-    $.get("http://72.64.152.18:8083/nlhelpers/websiteAPI/question.php?item="+ stock_no +"&question="+ question +"&customer="+ cust_name +"&customer_no="+ cust_no +"+&loc_no=800");
-    $.get("https://netlink.laurajanelle.com:444/nlhelpers/mailer/questionSubmitEmail.php?custName=" + cust_name + "&question="+ question + "&email=" + email_addr + "", function() {
-      location.reload();
-    });
-  });
 }
 
 function getQuestions(stock_no) 
 { 
   jQuery(".questionSection").remove();
   questionhtml = [];
-  $.get("http://72.64.152.18:8083/nlhelpers/websiteAPI/question.php?item="+ stock_no +"&question&customer&customer_no&loc_no", function ( questdata ) {
+  $.get("https://netlink.laurajanelle.com:444/nlhelpers/mailer/questionSubmitEmail.php?item="+ stock_no +"&question&customer&customer_no&loc_no&email", function ( questdata ) {
     qdata = questdata.split("\n");
     if (qdata.length < 2) {
       custqLines =  '<p class="questionSection lead topmargin-sm">No questions have been submitted for this item.</>';
@@ -636,6 +626,43 @@ function getQuestions(stock_no)
       $("#questionWidget").after(questionhtml.join(''));
     }
   });
+}
+
+
+
+//////////////////////////////
+  // Populate the Review //
+//////////////////////////////
+function populateReviewModal()
+{
+  var cust_name = sessionStorage.getItem("cust_name").trim();
+  var cust_no = sessionStorage.getItem("cust_no").trim();
+  var email_addr = sessionStorage.getItem("email_addr").trim();
+  var question = $('#questionField').val();
+  var hash = window.location.hash.split("+");
+  var stock_no = hash[1];
+  var rLines;
+
+  $("#reviewModalBody").empty();
+
+  rLines  = '<form class="nobottommargin" id="template-reviewform" target="dummyframe" name="template-reviewform" action="https://netlink.laurajanelle.com:444/nlhelpers/mailer/review.php" method="POST"><div class="bottommargin-sm">';
+  rLines += '<div class="white-section"><label>Rating:</label><input id="cust-rating" name="rating" class="rating-loading" data-size="sm"></div></div><div class="clear"></div>';
+  rLines += '<div class="col_full"><label for="template-reviewform-comment">Comment <small>*</small></label><input type="hidden" name="custname" value="'+ cust_name +'" />';
+  rLines += '<textarea class="required form-control" id="template-reviewform-comment" name="comment" rows="6" cols="30"></textarea></div><input type="hidden" name="custnum" value="'+ cust_no +'" />';
+  rLines += '<input type="hidden" name="email" value="'+ email_addr +'" /><input type="hidden" name="item" value="'+ stock_no +'" /><input type="hidden" name="source" value="LJ website" /><div class="col_full nobottommargin">';
+  rLines += '<button class="button button-3d nomargin" type="submit" id="template-reviewform-submit" name="template-reviewform-submit" value="submit" onclick="$(\'#fakeRevQuestion\').click();">Submit Review</button></div></form>';
+
+  $("#reviewModalBody").html(rLines);
+  
+  $('#cust-rating').rating({
+      step: 1,
+      starCaptions: {1: 'I hate it', 2: 'I don\'t like it', 3: 'It\'s okay', 4: 'I like it', 5: 'I love it'},
+      starCaptionClasses: {1: 'text-danger', 2: 'text-warning', 3: 'text-info', 4: 'text-primary', 5: 'text-success'}, 
+      showClear: false, 
+      showCaption: true
+  });
+
+  cust_rating = $("#cust-rating").val();
 }
 
 
