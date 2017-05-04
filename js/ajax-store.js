@@ -570,9 +570,9 @@ function detailView()
 
 
 
-//////////////////////////////
-  // Populate the Question //
-//////////////////////////////
+///////////////////////////////////
+  // Populate the Question Area //
+///////////////////////////////////
 function populateQuestionModal()
 {
   var cust_name = sessionStorage.getItem("cust_name").trim();
@@ -593,7 +593,7 @@ function populateQuestionModal()
   qLines += '<input type="text" class="required sm-form-control input-block-level" id="questionEditField" name="question" value="'+ question +'" readonly="readonly" />';                         
   qLines += '<a class="button button-small button-dark button-rounded" onclick="$(\'#questionEditField\').removeAttr(\'readonly\');"></i>EDIT</a> | <a href="" class="button button-small button-dark button-rounded" data-dismiss="modal"></i>DELETE</a>';
   qLines += '<input type="text" class="hidden" id="quick-contact-form-botcheck" name="quick-contact-form-botcheck" value="" />';            
-  qLines += '<button type="submit" id="question-submit" name="question-submit" class="button button-small button-3d nomargin" value="submit" onclick="$(\'#fakeSubQuestion\').click();">Send Email</button></form></div></div>';
+  qLines += '<button type="submit" id="question-submit" name="question-submit" class="button button-small button-3d nomargin" value="submit" style="float: right;"onclick="$(\'#fakeSubQuestion\').click();">Send Email</button></form></div></div>';
 
   $("#myModalBody").html(qLines);
   $('#questionField').val("");
@@ -1638,7 +1638,7 @@ function itemRender(div,response)
     for (i=0; i<linesPlus.length; i++) {
       flds = linesPlus[i];
       stringOfDetails = flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim();
-      prod =  '<div class="product clearfix ' + flds[2] +" "+ flds[8].trim() +" "+ flds[9].trim() +" "+ flds[10].trim() + 1 +'"><div class="product-image"><a href="#detail-view+' + stringOfDetails + '"><img class="shopimg" src="https://www.laurajanelle.com/ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a>';
+      prod =  '<div class="product clearfix ' + flds[2].trim() +" "+ flds[0].trim() +" "+ flds[8].trim() +" "+ flds[9].trim() +" "+ flds[10].trim() + 1 +'"><div class="product-image"><a href="#detail-view+' + stringOfDetails + '"><img class="shopimg" src="https://www.laurajanelle.com/ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a>';
       if (flds[7].trim().length === 3) {
         prod += '<div class="sale-flash">NEW!</div>';
       }
