@@ -466,7 +466,7 @@ function cartHelper()
 //////////////////////////////
 // Get Detail View for Item //
 //////////////////////////////
-function detailView()
+function detailView(callback, callback2)
 {
   jQuery("#images, #secondColumn, #addInfo").empty();
 
@@ -479,6 +479,7 @@ function detailView()
   var secondImage;
   var hash = window.location.hash.split("+");
   var stock_no = hash[1];
+  var productRating = [];
 
   if (hash.length === 5 ) {
     detailString = window.location.hash;
@@ -526,7 +527,7 @@ function detailView()
           }
         }
        secondColumn  = '<div><a href="'+ detailString +'" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/logos/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div>';
-       secondColumn += '<div class="col_half nobottommargin"><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + fields[0].replace(/\s+/g,'') + '</span></span></div><div class="col_half col_last nobottommargin"><div class="white-section different-stars"><input id="mainRating" type="number" class="rating" max="5" value="4" data-size="xs" disabled></div></div><div class="line"></div>';
+       secondColumn += '<div class="col_half nobottommargin"><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + fields[0].replace(/\s+/g,'') + '</span></span></div><div class="col_half col_last nobottommargin"><div class="white-section different-stars"><input id="mainRating" type="number" class="rating" max="5" value="" data-size="xs" disabled></div></div><div class="line"></div>';
        secondColumn += '<div class="product-price col_one_third" style="font-size: 16px; font-weight: 400;"> <ins>COST:&nbsp;' + fields[4] + '</ins></div><div class="col_one_third hidden-xs" style="top: 0px; margin: 0px;">MIN: 1</div>';
        if ( fields[3] != ".00" )  {
          secondColumn += '<div class="product-rating col_one_third col_last" style="top: 0px; margin: 0px;">MSRP:&nbsp;' + fields[3] + '</div>';
@@ -557,14 +558,23 @@ function detailView()
      },
      complete: function () {
        $('.ex1 img').wrap('<span style="display:inline-block"></span>').css('display', 'block').parent().zoom();
-       $('#mainRating').rating('refresh', {showClear: false, showCaption: false}).val();
        setTimeout(function(){
          SEMICOLON.widget.loadFlexSlider();
+        
        },1000);
+
+      if (callback && typeof(callback) === "function") {
+        callback(stock_no);
+      }
+      if (callback2 && typeof(callback2) === "function") {
+        callback2(stock_no);
+      }
+      
      }
   });
 
-  getQuestions(stock_no);
+//  getQuestions(stock_no);
+//  getReviews(stock_no);
   
 }
 
@@ -585,7 +595,7 @@ function populateQuestionModal()
 
   $("#myModalBody").empty();
  
-  qLines =  '<p>Your question will be posted under your name, '+ cust_name +', and will be answered between 24 and 72 hours.</p>';                
+  qLines =  '<p>Your question will be posted and answered between 24 and 72 hours.</p>';                
   qLines += '<p>The answer will be posted on the site and you will get a notification by email.</p><div id="q-contact" class="widget quick-contact-widget clearfix"><div class="quick-contact-form-result"></div>';
   qLines += '<form id="question-form" name="question-form" target="dummyframe" action="https://netlink.laurajanelle.com:444/nlhelpers/mailer/questionSubmitEmail.php" method="GET" class="quick-contact-form nobottommargin"><div class="form-process"></div>';
   qLines += '<input type="hidden" name="item" value="'+ stock_no +'" /><input type="hidden" name="customer" value="'+ cust_name +'" />';
@@ -618,7 +628,6 @@ function getQuestions(stock_no)
         
         if (datalines[6] === "1") {
           questionhtml.unshift(custqLines);
-          console.log(datalines[0]+ " and "+ datalines[6]);
         } else {
           questionhtml.push(custqLines);
         }   
@@ -638,7 +647,6 @@ function populateReviewModal()
   var cust_name = sessionStorage.getItem("cust_name").trim();
   var cust_no = sessionStorage.getItem("cust_no").trim();
   var email_addr = sessionStorage.getItem("email_addr").trim();
-  var question = $('#questionField').val();
   var hash = window.location.hash.split("+");
   var stock_no = hash[1];
   var rLines;
@@ -661,8 +669,64 @@ function populateReviewModal()
       showClear: false, 
       showCaption: true
   });
+}
 
-  cust_rating = $("#cust-rating").val();
+function getReviews(stock_no)
+{
+  productRating = [];
+
+  jQuery(".commentlist").empty();
+  var reviewhtml = [];
+  $.get("http://72.64.152.18:8083/nlhelpers/mailer/review.php?comment=&custname=&custnum=&rating=&item="+ stock_no +"&email=&source=", function ( reviewdata ) {
+    rdata = reviewdata.split("\n");
+    if (rdata.length < 2) {
+      custrLines = '<p class="reviewSection lead topmargin-sm">No reviews have been submitted for this item.</>';
+      $("#reviews").prepend(custrLines);
+    } else {
+      for (i=0; i<rdata.length - 1; i++) {
+        rdatalines    = rdata[i].split("|");
+        dateAddedPre  = Date(rdatalines[0]).split(" ");
+        dateAddedPost = dateAddedPre[1] + " "+ dateAddedPre[2].replace(/^[0]+/g,"")+ ", "+ dateAddedPre[3];
+        dateAppPre    = Date(rdatalines[1]).split(" ");
+        dateAppPost   = dateAppPre[1] + " "+ dateAppPre[2].replace(/^[0]+/g,"")+ ", "+ dateAppPre[3];
+
+        custrLines  = '<li class="comment even thread-even depth-1" id="li-comment-1"><div id="comment-1" class="comment-wrap clearfix"><div class="comment-content clearfix"><div class="comment-author">'+ rdatalines[3] +'<span>';
+        custrLines += '<a>'+ dateAddedPost +'</a></span></div><div class="white-section different-stars"><input id="rating-'+ i +'" value="'+ rdatalines[6] +'" class="rating-loading" data-size="xs" readonly></div>';
+        custrLines += '<p>'+ rdatalines[2] +'</p></div><div class="clear"></div></div></li>';
+
+        if (rdatalines[4].length>3) {
+          custrLines += '<li class="comment odd thread-odd depth-2" id="li-comment-1"><div id="comment-1" class="comment-wrap clearfix"><div class="comment-meta"><div class="comment-author vcard"><span class="comment-avatar clearfix">';
+          custrLines += '<img alt="reply arrow" src="../img/reply.png" height="60" width="60" /></span></div></div><div class="comment-content clearfix"><div class="comment-author">'+ rdatalines[5] +'<span><a>'+ dateAppPost +'</a>';
+          custrLines += '</span></div><p>'+ rdatalines[4] +'</p></div><div class="clear"></div></div></li>';
+        }
+
+        if (rdatalines[8] === "1") {
+          reviewhtml.unshift(custrLines);
+        } else {
+          reviewhtml.push(custrLines);
+        }
+        productRating.push(rdatalines[6]);
+      }
+
+      $(".commentlist").after(reviewhtml.join(''));
+      $("#number-of-reviews").html("Reviews ("+ (rdata.length - 1) +")");
+
+      for (i=0; i<rdata.length - 1; i++) {
+        $('#rating-'+i+'').rating({ showClear: false, showCaption: false });
+      }
+
+      $('#mainRating').val(getAvg(productRating));
+      $('#mainRating').rating('refresh', {showClear: false, showCaption: false});
+    }
+  });
+}
+
+function getAvg(rates)
+{
+  var sum = rates.reduce(function(a, b) { return a + b; });
+  var avg = sum / rates.length;
+  avg = Math.max( Math.round(avg * 10) / 10).toFixed(2);
+  return avg;
 }
 
 
@@ -1898,7 +1962,7 @@ function whichPage()
     case '#detail-view' :
       $('#detail-view').show();
 
-      detailView();
+      detailView(getQuestions, getReviews);
       $('#questionField').keypress(function(e){
         if(e.which == 13 && ($('#questionField').val() !== "")) {//Enter key pressed
           $('#questionModal').click();//Trigger search button click event
