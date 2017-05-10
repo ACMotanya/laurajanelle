@@ -675,13 +675,13 @@ function getReviews(stock_no)
 {
   productRating = [];
 
-  jQuery(".commentlist").empty();
+  $("#listOfReviews").empty();
   var reviewhtml = [];
   $.get("http://72.64.152.18:8083/nlhelpers/mailer/review.php?comment=&custname=&custnum=&rating=&item="+ stock_no +"&email=&source=", function ( reviewdata ) {
     rdata = reviewdata.split("\n");
     if (rdata.length < 2) {
       custrLines = '<p class="reviewSection lead topmargin-sm">No reviews have been submitted for this item.</>';
-      $("#reviews").prepend(custrLines);
+      $("#listOfReviews").prepend(custrLines);
     } else {
       for (i=0; i<rdata.length - 1; i++) {
         rdatalines    = rdata[i].split("|");
@@ -697,7 +697,7 @@ function getReviews(stock_no)
         if (rdatalines[4].length>3) {
           custrLines += '<li class="comment odd thread-odd depth-2" id="li-comment-1"><div id="comment-1" class="comment-wrap clearfix"><div class="comment-meta"><div class="comment-author vcard"><span class="comment-avatar clearfix">';
           custrLines += '<img alt="reply arrow" src="../img/reply.png" height="60" width="60" /></span></div></div><div class="comment-content clearfix"><div class="comment-author">'+ rdatalines[5] +'<span><a>'+ dateAppPost +'</a>';
-          custrLines += '</span></div><p>'+ rdatalines[4] +'</p></div><div class="clear"></div></div></li>';
+          custrLines += '</span></div><p style="margin-top: 15px;">'+ rdatalines[4] +'</p></div><div class="clear"></div></div></li>';
         }
 
         if (rdatalines[8] === "1") {
@@ -708,7 +708,7 @@ function getReviews(stock_no)
         productRating.push(rdatalines[6]);
       }
 
-      $(".commentlist").after(reviewhtml.join(''));
+      $("#listOfReviews").html(reviewhtml.join(''));
       $("#number-of-reviews").html("Reviews ("+ (rdata.length - 1) +")");
 
       for (i=0; i<rdata.length - 1; i++) {
