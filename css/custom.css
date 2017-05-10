@@ -500,7 +500,7 @@ div.team-social-icons a, div.team-social-icons p {
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
-	font-family: Bodoni-Sans, 'Oranienbaum';
+	font-family: Bodoni-Sans;
 }
 
 div.team-title h4 a:hover {
