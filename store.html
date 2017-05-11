@@ -145,15 +145,15 @@ title: Store - Laura Janelle
                         <div class="togglet"><i class="toggle-closed icon-chevron-down"></i><i class="toggle-open icon-chevron-up"></i>COLOR</div>
                         <div class="togglec" data-group="color">
                           <div>
-                            <input id="checkbox-13" class="checkbox-style" name="checkbox-13" type="checkbox" value=".03">
+                            <input id="checkbox-13" class="checkbox-style" name="checkbox-13" type="checkbox" value=".3">
                             <label for="checkbox-13" class="checkbox-style-1-label">BLACK</label>
                           </div>
                           <div>
-                            <input id="checkbox-14" class="checkbox-style" name="checkbox-14" type="checkbox" value=".04">
+                            <input id="checkbox-14" class="checkbox-style" name="checkbox-14" type="checkbox" value=".4">
                             <label for="checkbox-14" class="checkbox-style-1-label">BLUE</label>
                           </div>
                           <div>
-                            <input id="checkbox-15" class="checkbox-style" name="checkbox-15" type="checkbox" value=".06">
+                            <input id="checkbox-15" class="checkbox-style" name="checkbox-15" type="checkbox" value=".6">
                             <label for="checkbox-15" class="checkbox-style-1-label">CLEAR</label>
                           </div>
                           <div>
@@ -165,11 +165,11 @@ title: Store - Laura Janelle
                             <label for="checkbox-17" class="checkbox-style-1-label">PINK</label>
                           </div>
                           <div>
-                            <input id="checkbox-18" class="checkbox-style" name="checkbox-18" type="checkbox" value=".02">
+                            <input id="checkbox-18" class="checkbox-style" name="checkbox-18" type="checkbox" value=".2">
                             <label for="checkbox-18" class="checkbox-style-1-label">GOLD</label>
                           </div>
                           <div>
-                            <input id="checkbox-20" class="checkbox-style" name="checkbox-20" type="checkbox" value=".07">
+                            <input id="checkbox-20" class="checkbox-style" name="checkbox-20" type="checkbox" value=".7">
                             <label for="checkbox-20" class="checkbox-style-1-label">GREEN</label>
                           </div>
                           <div>
@@ -177,7 +177,7 @@ title: Store - Laura Janelle
                             <label for="checkbox-21" class="checkbox-style-1-label">RED</label>
                           </div>
                           <div>
-                            <input id="checkbox-22" class="checkbox-style" name="checkbox-22" type="checkbox" value=".01">
+                            <input id="checkbox-22" class="checkbox-style" name="checkbox-22" type="checkbox" value=".1">
                             <label for="checkbox-22" class="checkbox-style-1-label">SILVER</label>
                           </div>
                           <div>
@@ -189,7 +189,7 @@ title: Store - Laura Janelle
                             <label for="checkbox-26" class="checkbox-style-1-label">TAN</label>
                           </div>
                           <div>
-                            <input id="checkbox-38" class="checkbox-style" name="checkbox-38" type="checkbox" value=".08">
+                            <input id="checkbox-38" class="checkbox-style" name="checkbox-38" type="checkbox" value=".8">
                             <label for="checkbox-38" class="checkbox-style-1-label">GREY</label>
                           </div>
                           <div>
@@ -205,7 +205,7 @@ title: Store - Laura Janelle
                             <label for="checkbox-28" class="checkbox-style-1-label">MULTI</label>
                           </div>
                           <div>
-                            <input id="checkbox-29" class="checkbox-style" name="checkbox-29" type="checkbox" value=".05">
+                            <input id="checkbox-29" class="checkbox-style" name="checkbox-29" type="checkbox" value=".5">
                             <label for="checkbox-29" class="checkbox-style-1-label">BROWN</label>
                           </div>
                         </div>
@@ -1892,46 +1892,8 @@ title: Store - Laura Janelle
 
                             <!-- Modal Reviews
                             ============================================= -->
-                            <a href="#" data-toggle="modal" data-target="#reviewFormModal" class="button button-3d nomargin fright" onclick="populateReviewModal();">Add a Review</a>
+                            <a id="addReviewButton" href="#" data-toggle="modal" data-target="#reviewFormModal" class="button button-3d nomargin" onclick="populateReviewModal(); return false;">Add a Review</a>
 
-                            <div class="modal fade" id="reviewFormModal" tabindex="-1" role="dialog" aria-labelledby="reviewFormModalLabel" aria-hidden="true">
-                              <div class="modal-dialog">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title" id="reviewFormModalLabel">SUBMIT A REVIEW</h4>
-                                  </div>
-                                  <div id="reviewModalBody"class="modal-body">
-                                    <form class="nobottommargin" id="template-reviewform" name="template-reviewform" action="#" method="post">
-
-                                      <div class="bottommargin-sm">
-                                        <div class="white-section">
-                                          <label>Rating:</label>
-                                          <input id="cust-rating" class="rating-loading" data-size="sm">
-                                        </div>
-                                      </div>                                      
-
-                                      <div class="clear"></div>
-
-                                      <div class="col_full">
-                                        <label for="template-reviewform-comment">Comment <small>*</small></label>
-                                        <textarea class="required form-control" id="template-reviewform-comment" name="template-reviewform-comment" rows="6" cols="30"></textarea>
-                                      </div>
-
-                                      <div class="col_full nobottommargin">
-                                        <button class="button button-3d nomargin" type="submit" id="template-reviewform-submit" name="template-reviewform-submit" value="submit">Submit Review</button>
-                                      </div>
-
-                                    </form>
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button id="fakeRevQuestion" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                  </div>
-                                </div><!-- /.modal-content -->
-                              </div><!-- /.modal-dialog -->
-                            </div><!-- /.modal -->
-                            <!-- Modal Reviews End --> 
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -1957,7 +1919,7 @@ title: Store - Laura Janelle
                   <!-- Question & Answer Modal -->
                   <div class="modal fade" id="myQuestionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
-                      <div class="modal-body">
+                      <div class="modal-content">
                         <div class="modal-content">
                           <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -1974,6 +1936,25 @@ title: Store - Laura Janelle
                       </div>
                     </div>
                   </div>
+
+                  <div class="modal fade" id="reviewFormModal" tabindex="-1" role="dialog" aria-labelledby="reviewFormModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h4 class="modal-title" id="reviewFormModalLabel">SUBMIT A REVIEW</h4>
+                        </div>
+                        <div id="reviewModalBody"class="modal-body">
+                        
+                        </div>
+                        <div class="modal-footer">
+                          <button id="fakeRevQuestion" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                  </div><!-- /.modal -->
+                  <!-- Modal Reviews End --> 
+                </div>
                       
                 </div>
               </div>
