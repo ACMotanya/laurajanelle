@@ -214,8 +214,13 @@ i.icon-search3 {
  #shop page styling mostly filters
 /* \\\\\\\\\\\\\\\\\\\
 */
-.commentlist li {
+.commentlist {
+	border-bottom: none;
+}
+
+#reviews .commentlist li {
 	margin-left: 0px;
+	margin-top: 0px;
 }
 
 .comment {
@@ -223,7 +228,7 @@ i.icon-search3 {
 }
 
 .comment.odd {
-	 margin-left: 85px;
+	 margin-left: 85px !important;
 }
 .comment-avatar {
 	border: none;
@@ -234,11 +239,16 @@ i.icon-search3 {
 }
 
 .different-stars .rating-container .filled-stars {
-	color: #999;
+	color: #000;
 }
 
 .rating-xs {
     font-size: 1.5em;
+}
+
+#mainRatingDiv a:hover {
+	color: blue;
+	text-decoration: underline !important;
 }
 
 @media (min-width: 992px) {
@@ -543,20 +553,25 @@ div.team-title h4 a:hover {
 }
 
 .rotator > li:first-child {
+	animation: loop 11s infinite;
   -webkit-animation: loop 11s infinite;
 }
 
 .rotator > li:nth-child(2) {
+	animation: opsecond 11s infinite;
   -webkit-animation: opsecond 11s infinite;
 }
 
 .rotator > li:nth-child(3) {
+	animation: opthird 11s infinite;
   -webkit-animation: opthird 11s infinite;
 }
 
 .rotator > li:last-child {
+	animation: oplast 11s infinite;
   -webkit-animation: oplast 11s infinite;
 }
+
 
 @-webkit-keyframes loop {
   0% { opacity: 0; }
@@ -580,6 +595,36 @@ div.team-title h4 a:hover {
 }
 
 @-webkit-keyframes oplast {
+  66% { opacity: 0; }
+  77% { opacity: 1; }
+  100% { opacity: 1; }
+  0% { opacity: 1; }
+  10% { opacity: 0; }
+}
+
+
+@keyframes loop {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+	17% { opacity: 1; }
+  25% { opacity: 0; }
+}
+
+@keyframes opsecond {
+  17% { opacity: 0; }
+  25% { opacity: 1; }
+  35% { opacity: 1; }
+  55% { opacity: 0; }
+}
+
+@keyframes opthird {
+  35% { opacity: 0; }
+  55% { opacity: 1; }
+  65% { opacity: 1; }
+  77% { opacity: 0; }
+}
+
+@keyframes oplast {
   66% { opacity: 0; }
   77% { opacity: 1; }
   100% { opacity: 1; }

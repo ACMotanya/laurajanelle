@@ -428,14 +428,14 @@ function cartHelper()
   if ( cartitems.length > 2 ) {
     for (i=1; i<cartitems.length - 1; i++) {
       data = cartitems[i].split("|");
-      miniitem = '<div class="top-cart-item clearfix"><div class="top-cart-item-image"><a href="#"><img src="https://www.laurajanelle.com/ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '" /></a></div>';
+      miniitem = '<div class="top-cart-item clearfix"><div class="top-cart-item-image"><a href="#"><img src="https://www.laurajanelle.com/ljjpgimages/' + data[2].replace(/\s+/g,'') + '-sm.jpg" alt="' + data[3] + '" /></a></div>';
       miniitem += '<div class="top-cart-item-desc"><a href="#">' + data[3] + '</a><span class="top-cart-item-price">$' + data[7].substring(0, data[7].length - 3) + '</span><span class="top-cart-item-quantity">x ' + data[6].replace(/\s+/g,'') + '</span></div></div>';
       html2.push(miniitem);
 
       if ( window.location.hash === "#cart" ) {
 
         item = '<tr class="cart_item products"><td class="cart-product-remove"><a href="#cart" class="remove" onclick="removeItem(this.id); return false;" id="' + data[1].replace(/\s+/g,'') + '" title="Remove this item"><i class="icon-trash2"></i></a></td>';
-        item += '<td class="cart-product-thumbnail"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="https://www.laurajanelle.com/ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '"></a></td>';
+        item += '<td class="cart-product-thumbnail"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="https://www.laurajanelle.com/ljjpgimages/' + data[2].replace(/\s+/g,'') + '-sm.jpg" alt="' + data[3] + '"></a></td>';
         item += '<td class="cart-product-name"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '">' + data[3] + '</a></td>';
         item += '<td class="cart-product-price"><span class="amount">$' + data[7].substring(0, data[7].length - 3) + '</span></td>';
         item += '<td class="cart-product-quantity"><div class="quantity clearfix">';
@@ -446,7 +446,7 @@ function cartHelper()
         html.push(item);
         $("#updateCartButton").show();
       } else if ( window.location.hash === "#checkout" ) {
-        item1 =  '<tr class="cart_item"><td class="cart-product-thumbnail"><a href=#detail-view+' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="https://www.laurajanelle.com/ljimages/' + data[2].replace(/\s+/g,'') + '-sm.png" alt="' + data[3] + '"></a></td>';
+        item1 =  '<tr class="cart_item"><td class="cart-product-thumbnail"><a href=#detail-view+' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="https://www.laurajanelle.com/ljjpgimages/' + data[2].replace(/\s+/g,'') + '-sm.jpg" alt="' + data[3] + '"></a></td>';
         item1 += '<td class="cart-product-name"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '">' + data[3] + '</a></td>';
         item1 += '<td class="cart-product-quantity"><div class="quantity clearfix">' + data[6].replace(/\s+/g,'') + '</div></td>';
         item1 += '<td class="cart-product-subtotal"><span class="amount">$' + data[8].substring(0, data[8].length - 4) + '</span></td></tr>';
@@ -494,10 +494,10 @@ function detailView(callback, callback2)
     metal = dets[4];
   }
   
-  url = "../ljimages-2/" + stock_no + "-2-sm.png";
+  url = "../ljjpgimages-2/" + stock_no + "-2-sm.jpg";
   $.get(url)
     .done(function() { 
-        secondImage = '<div class="slide" data-thumb="https://www.laurajanelle.com/ljimages-2/' + stock_no + '-2-sm.png"><a href="https://www.laurajanelle.com/ljimages-2/' + stock_no + '-2-lg.png" data-lightbox="gallery-item"><span class="zoom ex1"><img src="https://www.laurajanelle.com/ljimages-2/' + stock_no + '-2-md.png"></span></a></div>';
+        secondImage = '<div class="slide" data-thumb="https://www.laurajanelle.com/ljjpgimages-2/' + stock_no + '-2-sm.jpg"><a href="https://www.laurajanelle.com/ljjpgimages-2/' + stock_no + '-2-lg.jpg" data-lightbox="gallery-item"><span class="zoom ex1"><img src="https://www.laurajanelle.com/ljjpgimages-2/' + stock_no + '-2-md.jpg"></span></a></div>';
     }).fail(function() { 
         // not exists code
         console.log("hey guys, there isn't a second image.");
@@ -518,7 +518,7 @@ function detailView(callback, callback2)
        /* Fill in the pictures for the product */
 
        var pics =  '<div class="fslider" data-pagi="false" data-arrows="false" data-thumbs="true"><div class="flexslider"><div class="slider-wrap" data-lightbox="gallery">';
-           pics += '<div class="slide" data-thumb="https://www.laurajanelle.com/ljimages/' + fields[0] + '-sm.png"><a href="https://www.laurajanelle.com/ljimages/' + fields[0] + '-lg.png" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="https://www.laurajanelle.com/ljimages/' + fields[0] + '-md.png" alt="' + fields[1] + '"></span></a></div>';      
+           pics += '<div class="slide" data-thumb="https://www.laurajanelle.com/ljjpgimages/' + fields[0] + '-sm.jpg"><a href="https://www.laurajanelle.com/ljjpgimages/' + fields[0] + '-lg.jpg" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="https://www.laurajanelle.com/ljjpgimages/' + fields[0] + '-md.jpg" alt="' + fields[1] + '"></span></a></div>';      
            pics += secondImage;
            pics += '</div></div></div>';
         if (fields[7]) {
@@ -527,7 +527,7 @@ function detailView(callback, callback2)
           }
         }
        secondColumn  = '<div><a href="'+ detailString +'" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/logos/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div>';
-       secondColumn += '<div class="col_half nobottommargin"><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + fields[0].replace(/\s+/g,'') + '</span></span></div><div class="col_half col_last nobottommargin"><div class="white-section different-stars"><input id="mainRating" type="number" class="rating" max="5" value="" data-size="xs" disabled></div></div><div class="line"></div>';
+       secondColumn += '<div class="col_half nobottommargin"><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + fields[0].replace(/\s+/g,'') + '</span></span></div><div id="mainRatingDiv" class="col_half col_last nobottommargin"></div><div class="line"></div>';
        secondColumn += '<div class="product-price col_one_third" style="font-size: 16px; font-weight: 400;"> <ins>COST:&nbsp;' + fields[4] + '</ins></div><div class="col_one_third hidden-xs" style="top: 0px; margin: 0px;">MIN: 1</div>';
        if ( fields[3] != ".00" )  {
          secondColumn += '<div class="product-rating col_one_third col_last" style="top: 0px; margin: 0px;">MSRP:&nbsp;' + fields[3] + '</div>';
@@ -571,11 +571,7 @@ function detailView(callback, callback2)
       }
       
      }
-  });
-
-//  getQuestions(stock_no);
-//  getReviews(stock_no);
-  
+  });  
 }
 
 
@@ -603,7 +599,11 @@ function populateQuestionModal()
   qLines += '<input type="text" class="required sm-form-control input-block-level" id="questionEditField" name="question" value="'+ question +'" readonly="readonly" />';                         
   qLines += '<a class="button button-small button-dark button-rounded" onclick="$(\'#questionEditField\').removeAttr(\'readonly\');"></i>EDIT</a> | <a href="" class="button button-small button-dark button-rounded" data-dismiss="modal"></i>DELETE</a>';
   qLines += '<input type="text" class="hidden" id="quick-contact-form-botcheck" name="quick-contact-form-botcheck" value="" />';            
+<<<<<<< HEAD
   qLines += '<button type="submit" id="question-submit" name="question-submit" class="button button-small button-3d nomargin" value="submit" style="float: right;"onclick="$(\'#fakeSubQuestion\').click();">Send Email</button></form></div></div>';
+=======
+  qLines += '<button type="submit" id="question-submit" name="question-submit" class="button button-small button-3d nomargin" value="submit" onclick="$(\'#fakeSubQuestion\').click();" style="float: right;">Send Email</button></form></div></div>';
+>>>>>>> master
 
   $("#myModalBody").html(qLines);
   $('#questionField').val("");
@@ -653,7 +653,7 @@ function populateReviewModal()
 
   $("#reviewModalBody").empty();
 
-  rLines  = '<form class="nobottommargin" id="template-reviewform" target="dummyframe" name="template-reviewform" action="https://netlink.laurajanelle.com:444/nlhelpers/mailer/review.php" method="POST"><div class="bottommargin-sm">';
+  rLines  = '<form class="nobottommargin" id="template-reviewform" target="dummyframe" name="template-reviewform" action="https://netlink.laurajanelle.com:444/nlhelpers/mailer/review.php" method="GET"><div class="bottommargin-sm">';
   rLines += '<div class="white-section"><label>Rating:</label><input id="cust-rating" name="rating" class="rating-loading" data-size="sm"></div></div><div class="clear"></div>';
   rLines += '<div class="col_full"><label for="template-reviewform-comment">Comment <small>*</small></label><input type="hidden" name="custname" value="'+ cust_name +'" />';
   rLines += '<textarea class="required form-control" id="template-reviewform-comment" name="comment" rows="6" cols="30"></textarea></div><input type="hidden" name="custnum" value="'+ cust_no +'" />';
@@ -676,13 +676,16 @@ function getReviews(stock_no)
   productRating = [];
 
   $("#listOfReviews").empty();
+  $("#number-of-reviews").empty();
   var reviewhtml = [];
   $.get("http://72.64.152.18:8083/nlhelpers/mailer/review.php?comment=&custname=&custnum=&rating=&item="+ stock_no +"&email=&source=", function ( reviewdata ) {
     rdata = reviewdata.split("\n");
     if (rdata.length < 2) {
       custrLines = '<p class="reviewSection lead topmargin-sm">No reviews have been submitted for this item.</>';
       $("#listOfReviews").prepend(custrLines);
+      $("#mainRatingDiv").html('<a href="#" onclick="$(\'#addReviewButton\').click(); return false;">Be the first to review this item</a>');
     } else {
+      $("#mainRatingDiv").html('<div class="white-section different-stars"><input id="mainRating" type="number" class="rating" max="5" value="" data-size="xs" disabled></div>');
       for (i=0; i<rdata.length - 1; i++) {
         rdatalines    = rdata[i].split("|");
         dateAddedPre  = Date(rdatalines[0]).split(" ");
@@ -690,27 +693,26 @@ function getReviews(stock_no)
         dateAppPre    = Date(rdatalines[1]).split(" ");
         dateAppPost   = dateAppPre[1] + " "+ dateAppPre[2].replace(/^[0]+/g,"")+ ", "+ dateAppPre[3];
 
-        custrLines  = '<li class="comment even thread-even depth-1" id="li-comment-1"><div id="comment-1" class="comment-wrap clearfix"><div class="comment-content clearfix"><div class="comment-author">'+ rdatalines[3] +'<span>';
+        custrLines  = '<li class="comment even thread-even depth-1" id="li-comment-'+ i +'"><div id="comment-'+ i +'" class="comment-wrap clearfix"><div class="comment-content clearfix"><div class="comment-author">'+ rdatalines[3] +'<span>';
         custrLines += '<a>'+ dateAddedPost +'</a></span></div><div class="white-section different-stars"><input id="rating-'+ i +'" value="'+ rdatalines[6] +'" class="rating-loading" data-size="xs" readonly></div>';
-        custrLines += '<p>'+ rdatalines[2] +'</p></div><div class="clear"></div></div></li>';
+        custrLines += '<p class="notopmargin">'+ rdatalines[2] +'</p></div><div class="clear"></div></div></li>';
 
         if (rdatalines[4].length>3) {
-          custrLines += '<li class="comment odd thread-odd depth-2" id="li-comment-1"><div id="comment-1" class="comment-wrap clearfix"><div class="comment-meta"><div class="comment-author vcard"><span class="comment-avatar clearfix">';
+          custrLines += '<li class="comment odd thread-odd depth-2" id="li-comment-'+ i +'"><div id="comment-'+ i +'" class="comment-wrap clearfix"><div class="comment-meta"><div class="comment-author vcard"><span class="comment-avatar clearfix">';
           custrLines += '<img alt="reply arrow" src="../img/reply.png" height="60" width="60" /></span></div></div><div class="comment-content clearfix"><div class="comment-author">'+ rdatalines[5] +'<span><a>'+ dateAppPost +'</a>';
-          custrLines += '</span></div><p style="margin-top: 15px;">'+ rdatalines[4] +'</p></div><div class="clear"></div></div></li>';
+          custrLines += '</span></div><p>'+ rdatalines[4] +'</p></div><div class="clear"></div></div></li>';
         }
-
+         custrLines += '<hr>';
         if (rdatalines[8] === "1") {
           reviewhtml.unshift(custrLines);
         } else {
           reviewhtml.push(custrLines);
         }
+
         productRating.push(rdatalines[6]);
       }
 
       $("#listOfReviews").html(reviewhtml.join(''));
-      $("#number-of-reviews").html("Reviews ("+ (rdata.length - 1) +")");
-
       for (i=0; i<rdata.length - 1; i++) {
         $('#rating-'+i+'').rating({ showClear: false, showCaption: false });
       }
@@ -718,15 +720,20 @@ function getReviews(stock_no)
       $('#mainRating').val(getAvg(productRating));
       $('#mainRating').rating('refresh', {showClear: false, showCaption: false});
     }
+    $("#number-of-reviews").html("Reviews ("+ (rdata.length - 1) +")");
   });
 }
 
-function getAvg(rates)
+
+  
+function getAvg(elmt)
 {
-  var sum = rates.reduce(function(a, b) { return a + b; });
-  var avg = sum / rates.length;
-  avg = Math.max( Math.round(avg * 10) / 10).toFixed(2);
-  return avg;
+  var sum = 0;
+  for( var i = 0; i < elmt.length; i++ ){
+      sum += parseInt( elmt[i], 10 ); //don't forget to add the base
+  }
+  var avg = sum/elmt.length;
+  return avg.toFixed(2);
 }
 
 
@@ -1468,41 +1475,23 @@ function changeQuantity(element)
 function whatColor(colorCode)
 {
   switch (colorCode) {
-    case "01":
-    case "1": 
-      color = "Silver";
+    case "1": color = "Silver";
       break;
-    case "02":
-    case "2": 
-      color = "Gold";
+    case "2": color = "Gold";
       break;
-    case "03":
-    case "3": 
-      color = "Black";
+    case "3": color = "Black";
       break;
-    case "04":
-    case "4": 
-      color = "Blue";
-      break;
-    case "05":
-    case "5": 
-      color = "Brown";
-      break;
-    case "06":
-    case "6": 
-      color = "Clear";
-      break;
-    case "07":
-    case "7": 
-      color = "Green";
-      break;
-    case "08": 
-    case "8": 
-      color = "Grey";
-      break;
-    case "09": 
-    case "9":  
-      color = "Opal";
+    case "4": color = "Blue";
+      break;   
+    case "5": color = "Brown";
+      break;   
+    case "6": color = "Clear";
+      break;    
+    case "7": color = "Green";
+      break;    
+    case "8": color = "Grey";
+      break;   
+    case "9": color = "Opal";
       break;
     case "10": color = "Orange";
     break;
@@ -1701,8 +1690,13 @@ function itemRender(div,response)
     });
     for (i=0; i<linesPlus.length; i++) {
       flds = linesPlus[i];
+
       stringOfDetails = flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim();
+<<<<<<< HEAD
       prod =  '<div class="product clearfix ' + flds[2].trim() +" "+ flds[0].trim() +" "+ flds[8].trim() +" "+ flds[9].trim() +" "+ flds[10].trim() + 1 +'"><div class="product-image"><a href="#detail-view+' + stringOfDetails + '"><img class="shopimg" src="https://www.laurajanelle.com/ljimages/' + flds[0].trim()  + '-sm.png" alt="' + flds[1] + '"></a>';
+=======
+      prod =  '<div class="product clearfix ' + flds[2].trim() +" "+ flds[8].trim() +" "+ flds[9].trim() +" "+ flds[10].trim() + 1 +'"><div class="product-image"><a href="#detail-view+' + stringOfDetails + '"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/' + flds[0].trim()  + '-sm.jpg" alt="' + flds[1] + '"></a>';
+>>>>>>> master
       if (flds[7].trim().length === 3) {
         prod += '<div class="sale-flash">NEW!</div>';
       }
@@ -1735,7 +1729,7 @@ function quickView(clicked_id)
       var prodtype = fields[1].split(/(\s+)/);
 					prodtype = prodtype[2];
 
-			document.getElementById("quickViewimages").innerHTML = '<div class="slide" style="display: block;"><a href="#shop"><img src="https://www.laurajanelle.com/ljimages/' + stock_no + '-md.png" alt="' + fields[1] + '"></a></div>';
+			document.getElementById("quickViewimages").innerHTML = '<div class="slide" style="display: block;"><a href="#shop"><img src="https://www.laurajanelle.com/ljjpgimages/' + stock_no + '-md.jpg" alt="' + fields[1] + '"></a></div>';
 
       jQuery( "#secondColumn").prepend('<div><a href="#shop" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/logos/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div><div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + stock_no + '</span></span></div><div class="line"></div><div class="product-price col_half" style="font-size: 16px; font-weight: 400;"><ins>COST:&nbsp;' + fields[4] + '</ins></div>');
       jQuery( ".minus" ).after( '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + stock_no + '" />' );
@@ -1961,7 +1955,7 @@ function whichPage()
       break;
     case '#detail-view' :
       $('#detail-view').show();
-
+      window.scrollTo(0, 0);
       detailView(getQuestions, getReviews);
       $('#questionField').keypress(function(e){
         if(e.which == 13 && ($('#questionField').val() !== "")) {//Enter key pressed
