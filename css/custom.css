@@ -198,12 +198,11 @@ i.icon-search3 {
 
 @media (max-width: 468px) {
 	.winterindex {
-		font-size: 24aujr px;
+		font-size: 24px;
 	
 	}
 	#slider.revslider-wrap{
 		top:-16px;
-		
 	}
 }
 
