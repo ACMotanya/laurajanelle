@@ -12,6 +12,11 @@ var numberOfOrders;
 var orderAmt;
 var session_no;
 var shippingAddresses = [];
+var banned = [
+  "1041A", "1042A", "10388", "10389", "10390", "10391", "10392",
+  "10393", "10394", "10395", "10396", "10397", "10398", "10399",
+  "10400", "10416", "10415", "10417"];
+
 var sortItems = [
   "10599A", "10584", "10585", "10586", "10587", "10588", "10589",
   "10590", "10591", "10592", "10593", "10594", "10595", "CD051",
@@ -79,7 +84,7 @@ var sortItems = [
   "10509", "10510", "10511", "10512", "10526", "10527", "10528",
   "10521", "10533", "10534", "10535", "10536", "10513", "10514",
   "10515", "10516", "10529", "10530", "10531", "10532", "10537",
-  "10538", "10539", "10540", "10544", "10542", "10541", "10543",
+  "10538", "10539", "10540", "10544", "10542", "10541", "10543"
 ];
 var stock_no;
 var username;
@@ -1686,6 +1691,10 @@ function itemRender(div,response)
     });
     for (i=0; i<linesPlus.length; i++) {
       flds = linesPlus[i];
+      console.log(flds[0]);
+
+      // blocking out new items for encharming
+      // if ( banned.indexOf(flds[0].trim()) != -1 ) { continue; }
 
       stringOfDetails = flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim();
       prod =  '<div class="product clearfix ' + flds[2].trim() +" "+ flds[8].trim() +" "+ flds[9].trim() +" "+ flds[10].trim() + 1 +'"><div class="product-image"><a href="#detail-view+' + stringOfDetails + '"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/' + flds[0].trim()  + '-sm.jpg" alt="' + flds[1] + '"></a>';
