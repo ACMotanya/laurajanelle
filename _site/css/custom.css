@@ -178,10 +178,16 @@ i.icon-search3 {
 	color: #222;
 }
 
+@media (max-width: 1024px) {
+	#slider.revslider-wrap {
+		top: -75px;
+	}
+}
 @media (max-width: 991px) {
 	.winterindex {
 		font-size: 43px;
 	}
+	
 }
 
 @media (max-width: 768px) {
