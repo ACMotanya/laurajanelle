@@ -169,8 +169,8 @@ i.icon-search3 {
 /* \\\\\\\\\\\\\\\\\\\
 */
 #slider.revslider-wrap {
-		top:-62px;
-	}
+	top: -122px;
+}
 
 .winterindex {
 	font-size: 55px;
@@ -188,11 +188,9 @@ i.icon-search3 {
 	.winterindex {
 		font-size: 35px;
 	}
-	.backofpage {
-		background-color: rgba(255, 255, 255, 0.1);
-	}
+	
 	#slider.revslider-wrap {
-		top:-40px;
+		top: -40px;
 	}
 }
 
@@ -202,7 +200,7 @@ i.icon-search3 {
 	
 	}
 	#slider.revslider-wrap{
-		top:-16px;
+		top:-50px;
 	}
 }
 
