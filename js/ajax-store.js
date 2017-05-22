@@ -569,7 +569,7 @@ function detailView(callback, callback2)
        setTimeout(function(){
          SEMICOLON.widget.loadFlexSlider();
         
-       },1000);
+       },500);
 
       if (callback && typeof(callback) === "function") {
         callback(stock_no);
@@ -1392,6 +1392,29 @@ function logoff()
 }
 
 
+////////////////////////////////////////
+// Fill in Items for person to review //
+////////////////////////////////////////
+function reviewOrder()
+{
+  var reviewHash     = window.location.hash.split("+");
+  var customerNumber = reviewHash[0];
+  var invoiceNumber  = reviewHash[1];
+  var orderItems     = [];
+
+  $.get("http://72.64.152.18:8083/nlhelpers/mailer/review.php?comment=&custname=&custnum="+ customerNumber +"&rating=&item=&email=&source=", function( data ) {
+    $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?&request_id=APIHISTL&session_no=E9DZRD9OM9GRZZEOTGLOED411&inv_no="+ invoiceNumber + 0 +"", function( response ) {
+      lines = response.split("\n");
+      for (i=1; i < lines.length - 1; i++) {
+        fields = lines[i].split("|");
+        orderItems.push(fields[4].trim());   
+      }
+      console.log(orderItems);
+    });
+  });
+  
+}
+
 ////////////////////////////////
 // Find Minimum for the order //
 ////////////////////////////////
@@ -1665,6 +1688,7 @@ function filterFunction2(a,b,c,d,e,f,g,h)
       loc_no: h
     },
     success: function(response) {
+      console.log(response);
       $('#shopItems').empty();
       itemRender("shopItems", response);
     },
@@ -1694,10 +1718,9 @@ function itemRender(div,response)
     });
     for (i=0; i<linesPlus.length; i++) {
       flds = linesPlus[i];
-      console.log(flds[0]);
 
       // blocking out new items for encharming
-      // if ( banned.indexOf(flds[0].trim()) != -1 ) { continue; }
+      /* if ( banned.indexOf(flds[0].trim()) != -1 ) { continue; } */
 
       stringOfDetails = flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim();
       prod =  '<div class="product clearfix ' + flds[2].trim() +" "+ flds[8].trim() +" "+ flds[9].trim() +" "+ flds[10].trim() + 1 +'"><div class="product-image"><a href="#detail-view+' + stringOfDetails + '"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/' + flds[0].trim()  + '-sm.jpg" alt="' + flds[1] + '"></a>';
@@ -1779,12 +1802,12 @@ function priceFilter() {
 }
 
 // do stuff when checkbox change
-$('.ui-group').on( 'change', function( event ) {
+$('.filterbutton').on( 'change', function( event ) {
   $container.isotope('destroy');
   var checkbox = event.target;
 
   var $checkbox = $( checkbox );
-  var group = $checkbox.parents('.togglec').attr('data-group');
+  var group = $checkbox.parents('.filterbutton').attr('data-group');
   // create array for filter group, if not there yet
   var filterGroup = filters[ group ];
   if ( !filterGroup ) {
@@ -1799,7 +1822,7 @@ $('.ui-group').on( 'change', function( event ) {
     var index = filterGroup.indexOf( checkbox.value );
     filterGroup.splice( index, 1 );
   }
-
+  
   var comboFilter = getComboFilter();
 
   $container.isotope({ filter: comboFilter });
@@ -1831,6 +1854,7 @@ function getComboFilter() {
     combo = nextCombo;
   }
   var comboFilter = combo.join(', ');
+  console.log(comboFilter);
   return comboFilter;
 }
 
@@ -1898,6 +1922,7 @@ function checkoutPage()
 
 function whichPage()
 {
+
   var hashy = window.location.hash.split("+");
   var locale = hashy[0];
   $('#content div div section').hide();
@@ -1906,14 +1931,17 @@ function whichPage()
       $('#shop').show();
       break;
     case '#cart' :
+      window.scrollTo(0, 0);
       $('#cart').show();
       shopPage();
       break;
     case '#checkout' :
+      window.scrollTo(0, 0);
       $('#checkout').show();
       checkoutPage();
       break;
     case '#profile' :
+      window.scrollTo(0, 0);
       $('#profile').show();
       username = sessionStorage.getItem('username').toUpperCase();
       accountDetails();
@@ -1928,6 +1956,7 @@ function whichPage()
       });
       break;
     case '#invoices' :
+      window.scrollTo(0, 0);
       $('#invoices').show();
       $("#details-title, #details-table, #line-item-title, #line-item-table").hide();
 
@@ -1943,6 +1972,7 @@ function whichPage()
       });
       break;
     case '#orders' :
+      window.scrollTo(0, 0);
       $('#orders').show();
       $("#orders-details-title, #orders-details-table, #orders-line-item-title, #orders-line-item-table").hide();
       openOrders();
@@ -1969,15 +1999,19 @@ function whichPage()
       });
       break;
     case '#faq' :
+      window.scrollTo(0, 0);
       $('#faq').show();
       break;
     case '#customerservice' :
+      window.scrollTo(0, 0);
       $('#customerservice').show();
       break;
     case '#search' :
+      window.scrollTo(0, 0);
       $('#search').show();
       break;
     default :
+      window.scrollTo(0, 0);
       $('#shop').show();
       shopPage();
   }
