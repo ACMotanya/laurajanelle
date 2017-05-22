@@ -1,9 +1,7 @@
 ---
 layout: store-layout
 title: Store - Laura Janelle
----
-
-      
+---      
 
       <style>
       #cart, #checkout, #invoices, #profile, #orders, #shop, #detail-view, #faq, #customerservice, #search {
@@ -21,7 +19,6 @@ title: Store - Laura Janelle
 
               <!-- Sidebar
     					============================================= -->
-
               <div class='wrap-filter toggle toggle-bg Fixed'>
                 <div class='togglet'><i class='toggle-closed icon-chevron-down'></i><i class='toggle-open icon-chevron-up'></i>SHOP CATEGORIES</div>
       					<div class="sidebar nobottommargin togglec">
@@ -30,6 +27,7 @@ title: Store - Laura Janelle
                     <div class="widget clearfix">
                       <div class="toggle toggle-bg ui-group">
                         <div class="togglet"><i class="toggle-closed icon-chevron-down"></i><i class="toggle-open icon-chevron-up"></i>LOOK</div>
+                        <!--
                         <div class="togglec" data-group="brand">
                           <div>
       										  <input id="checkbox-2" class="checkbox-style" name="checkbox-2" type="checkbox" value=".GLB" >
@@ -61,13 +59,45 @@ title: Store - Laura Janelle
       										  <label for="checkbox-4" class="checkbox-style-1-label">iDentify</label>
       									  </div>
                         </div>
+                         -->
+
+                         <div class="togglec" data-group="brand">
+                           <div>
+                            <input id="radio-91" class="radio-style" name="radio-group-1" type="radio" onclick="filterFunction2('APISTKLST','80010700','','','','',session_no,'800');">
+                            <label for="radio-91" class="radio-style-1-label">RGLB</label>
+                          </div>
+                            <div>
+                            <input id="radio-92" class="radio-style" name="radio-group-1" type="radio" onclick="filterFunction2('APISTKLST','80010900','','','','',session_no,'800');">
+                            <label for="radio-92" class="radio-style-1-label">Salt Rock</label>
+                          </div>
+                          <div>
+                            <input id="radio-93" class="radio-style" name="radio-group-1" type="radio" onclick="filterFunction2('APISTKLST','80010000','','','','',session_no,'800');">
+                            <label for="radio-93" class="radio-style-1-label">SLEEK</label>
+                          </div>
+                          <div>
+                            <input id="radio-94" class="radio-style" name="radio-group-1" type="radio" onclick="filterFunction2('APISTKLST','80011300','','','','',session_no,'800');">
+                            <label for="radio-94" class="radio-style-1-label">MANTRA</label>
+                          </div>
+                           <div>
+                            <input id="radio-95" class="radio-style" name="radio-group-1" type="radio" checked onclick="filterFunction2('APISTKLST','80010300','','','','',session_no,'800');">
+                            <label for="radio-95" class="radio-style-1-label">enCHARMing</label>
+                          </div>
+                          <div>
+                            <input id="radio-96" class="radio-style" name="radio-group-1" type="radio" onclick="filterFunction2('APISTKLST','80011100','','','','',session_no,'800');">
+                            <label for="radio-96" class="radio-style-1-label">AURA</label>
+                          </div>
+                          <div>
+                            <input id="radio-97" class="radio-style" name="radio-group-1" type="radio" onclick="filterFunction2('APISTKLST','80010500','','','','',session_no,'800');">
+                            <label for="radio-97" class="radio-style-1-label">iDentify</label>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
       							<div class="widget clearfix">
                       <div class="toggle toggle-bg ui-group">
                         <div class="togglet"><i class="toggle-closed icon-chevron-down"></i><i class="toggle-open icon-chevron-up"></i>TYPE</div>
-                        <div class="togglec" data-group="type">
+                        <div class="togglec filterbutton" data-group="type">
                           <div>
                             <input id="checkbox-5" class="checkbox-style" name="checkbox-5" type="checkbox" value=".800" >
                             <label for="checkbox-5" class="checkbox-style-1-label">PROGRAMS</label>
@@ -127,7 +157,7 @@ title: Store - Laura Janelle
       							<div class="widget clearfix">
                       <div class="toggle toggle-bg">
                         <div class="togglet"><i class="toggle-closed icon-chevron-down"></i><i class="toggle-open icon-chevron-up"></i>PRICE</div>
-                        <div class="togglec" style="padding-left: 0px;">
+                        <div class="togglec filterbutton" style="padding-left: 0px;">
                           <form id="priceForm">
                             <input type="number" step="0.25" id="min" style="width: 30%; margin-right: 5px; border: 2px solid lightgrey; border-radius: 2px; line-height: 30px; padding-left: 5px;" placeholder="  min">
                              <strong>to</strong>
@@ -143,7 +173,7 @@ title: Store - Laura Janelle
                     <div class="widget clearfix">
                       <div class="toggle toggle-bg ui-group">
                         <div class="togglet"><i class="toggle-closed icon-chevron-down"></i><i class="toggle-open icon-chevron-up"></i>COLOR</div>
-                        <div class="togglec" data-group="color">
+                        <div class="togglec filterbutton" data-group="color">
                           <div>
                             <input id="checkbox-13" class="checkbox-style" name="checkbox-13" type="checkbox" value=".3">
                             <label for="checkbox-13" class="checkbox-style-1-label">BLACK</label>
@@ -215,7 +245,7 @@ title: Store - Laura Janelle
                     <div class="widget clearfix">
                       <div class="toggle toggle-bg ui-group">
                         <div class="togglet"><i class="toggle-closed icon-chevron-down"></i><i class="toggle-open icon-chevron-up"></i>METAL COLOR</div>
-                        <div class="togglec" data-group="metal">
+                        <div class="togglec filterbutton" data-group="metal">
                           <div>
                             <input id="checkbox-41" class="checkbox-style" name="checkbox-41" type="checkbox" value=".101">
                             <label for="checkbox-41" class="checkbox-style-1-label">GOLD</label>
@@ -239,7 +269,8 @@ title: Store - Laura Janelle
               <!-- Post Content
     					============================================= -->
     					<div class="postcontent nobottommargin col_last">
-                <div class="alt_page_navigation"></div>
+                <!-- ** for pagination **   <div class="alt_page_navigation"></div> -->
+                <!-- <h1> Welcome enCHARMing Holiday programs </h1> -->
     						<!-- Shop
     						============================================= -->
     						<div id="shopItems" class="shop product-3 clearfix">

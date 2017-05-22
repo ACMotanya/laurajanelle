@@ -167,7 +167,7 @@ layout: compress
 
       whichPage();
       sessionNumber();
-      filterFunction2('APISTKLST','','','','','',session_no,'800');
+      filterFunction2('APISTKLST','80010300','','','','',session_no,'800');
       $('nav ul li a').click(function() {
         var $linkClicked = $(this).attr('href');
         document.location.hash = $linkClicked;
@@ -210,14 +210,6 @@ layout: compress
             starCaptionClasses: {1: 'text-danger', 2: 'text-warning', 3: 'text-info', 4: 'text-primary', 5: 'text-success'}, 
             showClear: false, 
             showCaption: true
-        });
-        $('#rating-1').rating({ 
-            showClear: false, 
-            showCaption: false
-        });
-        $('#rating-2').rating({
-            showClear: false, 
-            showCaption: false      
         });
       });
     </script>
