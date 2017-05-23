@@ -571,13 +571,12 @@ function detailView(callback, callback2)
         
        },500);
 
-      if (callback && typeof(callback) === "function") {
-        callback(stock_no);
-      }
-      if (callback2 && typeof(callback2) === "function") {
-        callback2(stock_no);
-      }
-      
+        if (callback && typeof(callback) === "function") {
+          callback(stock_no);
+        }
+        if (callback2 && typeof(callback2) === "function") {
+          callback2(stock_no);
+        }
      }
   });  
 }
@@ -1401,7 +1400,9 @@ function reviewOrder()
   var customerNumber = reviewHash[0];
   var invoiceNumber  = reviewHash[1];
   var orderItems     = [];
+ // https://netlink.laurajanelle.com:444/test/rest-api/customer-exists/?customer=101
 
+ 
   $.get("http://72.64.152.18:8083/nlhelpers/mailer/review.php?comment=&custname=&custnum="+ customerNumber +"&rating=&item=&email=&source=", function( data ) {
     $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?&request_id=APIHISTL&session_no=E9DZRD9OM9GRZZEOTGLOED411&inv_no="+ invoiceNumber + 0 +"", function( response ) {
       lines = response.split("\n");
@@ -1409,7 +1410,19 @@ function reviewOrder()
         fields = lines[i].split("|");
         orderItems.push(fields[4].trim());   
       }
+      
+      orderItems = orderItems.filter(function(val) {
+        return data.indexOf(val) == -1;
+      });
+
       console.log(orderItems);
+
+      var pics =  '<div class="fslider" data-pagi="false" data-arrows="false" data-thumbs="true"><div class="flexslider"><div class="slider-wrap" data-lightbox="gallery">';
+          pics += '<div class="slide" data-thumb="https://www.laurajanelle.com/ljjpgimages/' + fields[0] + '-sm.jpg"><a href="https://www.laurajanelle.com/ljjpgimages/' + fields[0] + '-lg.jpg" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="https://www.laurajanelle.com/ljjpgimages/' + fields[0] + '-md.jpg" alt="' + fields[1] + '"></span></a></div>';      
+          pics += secondImage;
+          pics += '</div></div></div>';
+
+          $("#images").html(pics);
     });
   });
   
@@ -1645,7 +1658,9 @@ function search()
 {
   if(event.keyCode == 13) {
     event.preventDefault();
-    oldhash = window.location.hash;
+    if ( window.location.hash != "#search" ) {
+      oldhash = window.location.hash;
+    }
     var searchTerm = $('#searchvalue').val();
     $.ajax({
       type: "GET",
