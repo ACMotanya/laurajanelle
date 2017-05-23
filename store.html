@@ -4,14 +4,14 @@ title: Store - Laura Janelle
 ---      
 
       <style>
-      #cart, #checkout, #invoices, #profile, #orders, #shop, #detail-view, #faq, #customerservice, #search {
+      #cart, #checkout, #invoices, #profile, #orders, #shop, #detail-view, #faq, #search {
         display: none;
       }
       </style>
 
   		<!-- Content
   		============================================= -->
-  		<section id="content" style="min-height:100%; position:relative;">
+  		<section id="content">
   			<div class="content-wrap">
   				<div class="container clearfix">
 
@@ -1863,68 +1863,9 @@ title: Store - Laura Janelle
                         <div class="tab-content clearfix" id="tabs-3">
 
                           <div id="reviews" class="clearfix">
-
                             <ol id="listOfReviews" class="commentlist clearfix">
-                              
-                              <li class="comment even thread-even depth-1" id="li-comment-1">
-                                <div id="comment-1" class="comment-wrap clearfix">
-                                  <div class="comment-content clearfix">
-                                    <div class="comment-author">John Doe  <span><a href="#" title="Permalink to this comment">April 24, 2017 at 10:46AM</a></span></div>
-                                    
-                                    <p class="notopmargin">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo perferendis aliquid tenetur. Aliquid, tempora, sit aliquam officiis nihil autem eum at repellendus facilis quaerat consequatur commodi laborum saepe non nemo nam maxime quis error tempore possimus est quasi reprehenderit fuga!</p>
-                                    <div class="review-comment-ratings">
-                                      <div class="white-section different-stars">
-                                          <input id="rating-1" value="4" class="rating-loading" data-size="xs" readonly>
-                                        </div>
-                                    </div>
-                                  </div>
-
-                                  <div class="clear"></div>
-
-                                </div>
-                              </li>
-                              <li class="comment odd thread-odd depth-2" id="li-comment-1">
-                                <div id="comment-1" class="comment-wrap clearfix">
-                                  <div class="comment-meta">
-                                    <div class="comment-author vcard">
-                                      <span class="comment-avatar clearfix">
-                                      <img alt='' src='{{ site.baseurl }}/img/reply.png' height='60' width='60' /></span>
-                                    </div>
-                                  </div>
-                                  <div class="comment-content clearfix">
-                                    <div class="comment-author">John Doe<span><a href="#" title="Permalink to this comment">April 24, 2017 at 10:46AM</a></span></div>
-                                    
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo perferendis aliquid tenetur. Aliquid, tempora, sit aliquam officiis nihil autem eum at repellendus facilis quaerat consequatur commodi laborum saepe non nemo nam maxime quis error tempore possimus est quasi reprehenderit fuga!</p>
-                                  
-                                  </div>
-
-                                  <div class="clear"></div>
-
-                                </div>
-                              </li>
-
-                              <li class="comment even thread-even depth-1" id="li-comment-2">
-                                <div id="comment-2" class="comment-wrap clearfix">                                 
-                                  <div class="comment-content clearfix">
-                                    <div class="comment-author">Mary Jane<span><a href="#" title="Permalink to this comment">June 16, 2017 at 6:00PM</a></span></div>
-                                    <div class="white-section different-stars">
-                                      <input id="rating-2"  value="3" class="rating-loading" data-size="xs" class="rating-loading" readonly>
-                                    </div>
-                                    <p class="notopmargin">Quasi, blanditiis, neque ipsum numquam odit asperiores hic dolor necessitatibus libero sequi amet voluptatibus ipsam velit qui harum temporibus cum nemo iste aperiam explicabo fuga odio ratione sint fugiat consequuntur vitae adipisci delectus eum incidunt possimus tenetur excepturi at accusantium quod doloremque reprehenderit aut expedita labore error atque?</p>
-                                    
-                                  </div>
-
-                                  <div class="clear"></div>
-
-                                </div>
-                              </li>
-                          
-                            </ol>
-
-                            <!-- Modal Reviews
-                            ============================================= -->
+                            </ol>             
                             <a id="addReviewButton" href="#" data-toggle="modal" data-target="#reviewFormModal" class="button button-3d nomargin" onclick="populateReviewModal(); return false;">Add a Review</a>
-
                         </div>
                       </div>
                     </div>
@@ -1948,43 +1889,9 @@ title: Store - Laura Janelle
                   <!-- Hidden Button Question and Answer trigger modal -->
 						      <button data-toggle="modal" data-target="#myQuestionModal" id="questionModal" style="visibility:hidden;">Launch Question Modal</button>
                   <!-- Question & Answer Modal -->
-                  <div class="modal fade" id="myQuestionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="myModalLabel">Your question is about to be submitted...</h4>
-                          </div>
-                          <div id="myModalBody" class="modal-body">
-                        
-                          </div>
-                          <div class="modal-footer">
-                            <button id="fakeSubQuestion" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <!-- <button type="button" class="button button-small button-3d nomargin" data-dismiss="modal">Submit</button> -->
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  
 
-                  <div class="modal fade" id="reviewFormModal" tabindex="-1" role="dialog" aria-labelledby="reviewFormModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                          <h4 class="modal-title" id="reviewFormModalLabel">SUBMIT A REVIEW</h4>
-                        </div>
-                        <div id="reviewModalBody"class="modal-body">
-                        
-                        </div>
-                        <div class="modal-footer">
-                          <button id="fakeRevQuestion" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                      </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
-                  </div><!-- /.modal -->
-                  <!-- Modal Reviews End --> 
+                  
                 </div>
                       
                 </div>
@@ -2059,7 +1966,7 @@ title: Store - Laura Janelle
                   <div class="togglec">
                     Follow the steps below:<br><br>
                     <ol class="leftmargin">
-                      <li>	Click on the “CART” link in the upper-right corner of your computer screen. This will allow you to view all items currently in your cart. </li>
+                      <li>Click on the “CART” link in the upper-right corner of your computer screen. This will allow you to view all items currently in your cart. </li>
                       <li>Once you have identified the item that you would like to delete, click on the “TRASH” icon to the left of the item description and your changes will be immediately reflected.</li>
                     </ol>
                   </div>
@@ -2312,7 +2219,6 @@ title: Store - Laura Janelle
             </section>
 
 
-
             <section id="search">
               <div id="searchDiv" class="shop grid-container clearfix" >
               </div>
@@ -2344,4 +2250,42 @@ title: Store - Laura Janelle
           </div>
         </div>
       </div>
+
+      <div class="modal fade" id="myQuestionModal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Your question is about to be submitted...</h4>
+              </div>
+              <div id="myModalBody" class="modal-body">
+            
+              </div>
+              <div class="modal-footer">
+                <button id="fakeSubQuestion" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="button button-small button-3d nomargin" data-dismiss="modal">Submit</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="reviewFormModal" tabindex="-1" role="dialog" aria-labelledby="reviewFormModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="reviewFormModalLabel">SUBMIT A REVIEW</h4>
+            </div>
+            <div id="reviewModalBody"class="modal-body">
+            
+            </div>
+            <div class="modal-footer">
+              <button id="fakeRevQuestion" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+      <!-- Modal Reviews End --> 
       <iframe width="0" height="0" border="0" name="dummyframe" id="dummyframe"></iframe>
