@@ -19,6 +19,12 @@
 		font-size: 14px;
 	}
 }
+
+i.icon-shopping-cart,
+i.icon-search3 {
+	font-size: 22px;
+}
+
 /* randomly broken fixes on shop page END */
 
 
@@ -64,14 +70,6 @@ body.stretched #header.full-header.sticky-header .container {
 	.side-header.side-header-right:not(.open-header) #wrapper {
 		margin: 0 220px 0 0 !important;
 	}
-}
-
-i.icon-shopping-cart,
-i.icon-search3 {
-	font-size: 22px;
-}
-
-@media (min-width: 992px) {
 	#header, #header-wrap, #logo img {
 		height: 100px;
 	}
@@ -173,7 +171,7 @@ i.icon-search3 {
 }
 
 .winterindex {
-	font-size: 55px;
+	font-size: 45px;
 	font-weight: 500;
 	color: #222;
 }
