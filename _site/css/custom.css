@@ -167,7 +167,7 @@ body.stretched #header.full-header.sticky-header .container {
 /* \\\\\\\\\\\\\\\\\\\
 */
 #slider.revslider-wrap {
-	top: -122px;
+	top: -92px;
 }
 
 .winterindex {
@@ -178,7 +178,7 @@ body.stretched #header.full-header.sticky-header .container {
 
 @media (max-width: 1024px) {
 	#slider.revslider-wrap {
-		top: -75px;
+		top: -65px;
 	}
 }
  
@@ -193,6 +193,9 @@ body.stretched #header.full-header.sticky-header .container {
 	.winterindex {
 		font-size: 35px;
 	}
+	.holidayindex {
+		font-size: 20px;
+	}
 	
 	#slider.revslider-wrap {
 		top: -40px;
@@ -202,7 +205,10 @@ body.stretched #header.full-header.sticky-header .container {
 @media (max-width: 468px) {
 	.winterindex {
 		font-size: 24px;
-	
+	}
+
+	.holidayindex {
+		font-size: 18px;
 	}
 	#slider.revslider-wrap{
 		top:-50px;
