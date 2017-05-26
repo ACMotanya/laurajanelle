@@ -685,7 +685,7 @@ function getReviews(stock_no)
   $("#listOfReviews").empty();
   $("#number-of-reviews").empty();
   var reviewhtml = [];
-  $.get("http://72.64.152.18:8083/nlhelpers/mailer/review.php?comment=&custname=&custnum=&rating=&item="+ stock_no +"&email=&source=", function ( reviewdata ) {
+  $.get("https://netlink.laurajanelle.com:444/nlhelpers/mailer/review.php?comment=&custname=&custnum=&rating=&item="+ stock_no +"&email=&source=", function ( reviewdata ) {
     rdata = reviewdata.split("\n");
     if (rdata.length < 2) {
       custrLines = '<p class="reviewSection lead topmargin-sm">No reviews have been submitted for this item.</>';
