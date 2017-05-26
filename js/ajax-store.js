@@ -1400,36 +1400,51 @@ function logoff()
 ////////////////////////////////////////
 function reviewOrder()
 {
+  $('#posts').empty();
+  /// the testing URL  http://localhost:4000/review/#open+8801212+800015865
   var reviewHash     = window.location.hash.split("+");
-  var customerNumber = reviewHash[0];
-  var invoiceNumber  = reviewHash[1];
+  var customerNumber = reviewHash[1];
+  var invoiceNumber  = reviewHash[2];
   var orderItems     = [];
+  var reviewedItems;
+  var email_addr;
+  var cust_name;
+
  // https://netlink.laurajanelle.com:444/test/rest-api/customer-exists/?customer=101
-
- 
-  $.get("http://72.64.152.18:8083/nlhelpers/mailer/review.php?comment=&custname=&custnum="+ customerNumber +"&rating=&item=&email=&source=", function( data ) {
-    $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?&request_id=APIHISTL&session_no=E9DZRD9OM9GRZZEOTGLOED411&inv_no="+ invoiceNumber + 0 +"", function( response ) {
-      lines = response.split("\n");
-      for (i=1; i < lines.length - 1; i++) {
-        fields = lines[i].split("|");
-        orderItems.push(fields[4].trim());   
-      }
-      
-      orderItems = orderItems.filter(function(val) {
-        return data.indexOf(val) == -1;
-      });
-
-      console.log(orderItems);
-
-      var pics =  '<div class="fslider" data-pagi="false" data-arrows="false" data-thumbs="true"><div class="flexslider"><div class="slider-wrap" data-lightbox="gallery">';
-          pics += '<div class="slide" data-thumb="https://www.laurajanelle.com/ljjpgimages/' + fields[0] + '-sm.jpg"><a href="https://www.laurajanelle.com/ljjpgimages/' + fields[0] + '-lg.jpg" title="' + fields[1] + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="https://www.laurajanelle.com/ljjpgimages/' + fields[0] + '-md.jpg" alt="' + fields[1] + '"></span></a></div>';      
-          pics += secondImage;
-          pics += '</div></div></div>';
-
-          $("#images").html(pics);
-    });
+  $.get("https://netlink.laurajanelle.com:444/nlhelpers/api-customer-exists/?customer="+ customerNumber + "", function (information) {
+    custInfo = $.parseJSON(information);
+    email_addr = custInfo.customer.emailaddress;
+    cust_name = custInfo.customer.customername;
   });
-  
+ 
+  $.get("https://netlink.laurajanelle.com:444/nlhelpers/mailer/review.php?comment=&custname=&&rating=&item=&email=&source=&custnum="+ customerNumber +"", function( data ) {
+    reviewedItems = data;
+  });
+
+  $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?&request_id=APIHISTL&session_no=E9DZRD9OM9GRZZEOTGLOED411&inv_no="+ invoiceNumber + 0 +"", function( response ) {
+    lines = response.split("\n");
+    for (i=1; i < lines.length - 1; i++) {
+      fields = lines[i].split("|");
+      orderItems.push(fields[4].trim()); 
+    }
+    
+    orderItems = orderItems.filter(function(val) {
+      return reviewedItems.indexOf(val) == -1;
+    });
+    
+
+    orderItems.forEach(function(element) {
+      console.log(element);
+
+      reviewHTML =  '<div class="entry clearfix"><div class="entry-image"><a href="https://www.laurajanelle.com/ljjpgimages/10584-lg.jpg" data-lightbox="image"><img class="image_fade" src="https://www.laurajanelle.com/ljjpgimages/10584-sm.jpg" alt="Image of item"></a>';
+      reviewHTML += '</div><div class="entry-c"><form class="nobottommargin" id="template-reviewform" name="template-reviewform" action="#" method="post"><div class="col_full col_last"><div class="white-section"><label>Rating:</label><input id="cust-rating" name="rating" class="rating" data-size="sm">';
+      reviewHTML += '</div></div><div class="clear"></div><div class="col_three_fifth"><label for="template-reviewform-comment">Comment <small>*</small></label><textarea class="required form-control" id="template-reviewform-comment" name="template-reviewform-comment" rows="6" cols="30">';
+      reviewHTML += '</textarea></div><div class="col_full nobottommargin"><button class="button button-3d nomargin" type="submit" id="template-reviewform-submit" name="template-reviewform-submit" value="submit">Submit Review</button></div></form></div></div>';
+      $('#posts').append(reviewHTML);
+    });
+
+    
+  });
 }
 
 ////////////////////////////////
@@ -1437,9 +1452,9 @@ function reviewOrder()
 ////////////////////////////////
 function employeeDiscount()
 {
- username = sessionStorage.getItem("username");
- usernameSplit = username.split("");
- employee = usernameSplit.slice(0,3).join("");
+  username = sessionStorage.getItem("username");
+  usernameSplit = username.split("");
+  employee = usernameSplit.slice(0,3).join("");
 }
 
 function minimumTotal()
