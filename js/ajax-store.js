@@ -476,7 +476,7 @@ function cartHelper()
 //////////////////////////////
 function detailView(callback, callback2)
 {
-  jQuery("#images, #secondColumn, #addInfo").empty();
+  jQuery("#images, #secondColumn, #addInfo, #thirdColumn").empty();
 
   var dets;
   var secondColumn;
@@ -534,8 +534,8 @@ function detailView(callback, callback2)
             pics += '<div class="sale-flash">NEW!</div>';
           }
         }
-       secondColumn  = '<div><a href="'+ detailString +'" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/logos/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div>';
-       secondColumn += '<div class="col_half nobottommargin"><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + fields[0].replace(/\s+/g,'') + '</span></span></div><div id="mainRatingDiv" class="col_half col_last nobottommargin"></div><div class="line"></div>';
+   //    secondColumn  = '<div><a href="'+ detailString +'" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/logos/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div>';
+       secondColumn  = '<div class="col_half nobottommargin"><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + fields[0].replace(/\s+/g,'') + '</span></span></div><div id="mainRatingDiv" class="col_half col_last nobottommargin"></div><div class="line"></div>';
        secondColumn += '<div class="product-price col_one_third" style="font-size: 16px; font-weight: 400;"> <ins>COST:&nbsp;' + fields[4] + '</ins></div><div class="col_one_third hidden-xs" style="top: 0px; margin: 0px;">MIN: 1</div>';
        if ( fields[3] != ".00" )  {
          secondColumn += '<div class="product-rating col_one_third col_last" style="top: 0px; margin: 0px;">MSRP:&nbsp;' + fields[3] + '</div>';
@@ -554,6 +554,10 @@ function detailView(callback, callback2)
           }
        }
 
+       thirdColumn  = '<a href="'+ detailString +'" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/logos/'+ fields[2] +'-logo.png" alt="Brand Logo"></a>';
+       thirdColumn += '<div class="divider divider-center"><i class="icon-circle-blank"></i></div><a id="addReviewButton" href="#" data-toggle="modal" data-target="#reviewFormModal" class="button button-3d nomargin hidden-xs" onclick="populateReviewModal(); return false;">Add a Review</a>';
+
+
        info =  '<tr><td>Description</td><td>' + fields[1] + '</td></tr>';
        info += '<tr><td>Dimensions</td><td>' + fields[6] + '</td></tr>';
        info += '<tr><td>Color</td><td>' + whatColor(color) +'</td></tr>';
@@ -562,6 +566,7 @@ function detailView(callback, callback2)
        info += '<tr><td>Metal Color</td><td>' + whatMetal(metal) + '</td></tr>';
        $("#images").html(pics);
        $("#secondColumn").html(secondColumn);
+       $("#thirdColumn").prepend(thirdColumn);
        $("#addInfo").html(info);
      },
      complete: function () {
@@ -671,7 +676,7 @@ function populateReviewModal()
   
   $('#cust-rating').rating({
       step: 1,
-      starCaptions: {1: 'I hate it', 2: 'I don\'t like it', 3: 'It\'s okay', 4: 'I like it', 5: 'I love it'},
+      starCaptions: {1: 'Not for me', 2: 'I\’d probably re-gift it', 3: 'It\'s okay', 4: 'I really like it', 5: 'I love it'},
       starCaptionClasses: {1: 'text-danger', 2: 'text-warning', 3: 'text-info', 4: 'text-primary', 5: 'text-success'}, 
       showClear: false, 
       showCaption: true
