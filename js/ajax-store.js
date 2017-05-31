@@ -544,7 +544,7 @@ function detailView(callback, callback2)
        secondColumn += '<input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant[1]" onclick="changeQuantity(this)">';
        secondColumn += '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + fields[0].replace(/\s+/g,'') + '" />';
        secondColumn += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant[1]" onclick="changeQuantity(this)"></div>';
-       secondColumn += '<button type="button" id="add-item" class="add-to-cart button nomargin" onclick="stock_no=\'' + fields[0].trim() + '\'; addItemDetailView();">Add to cart</button></form><div class="clear"></div><div class="line"></div>';
+       secondColumn += '<button type="button" id="add-item" class="add-to-cart button-3d button button-small" onclick="stock_no=\'' + fields[0].trim() + '\'; addItemDetailView();">Add to cart</button><a id="addReviewButton" href="#" data-toggle="modal" data-target="#reviewFormModal" class="add-to-cart button button-3d button-mini nomargin hidden-xs" onclick="populateReviewModal(); return false;">Add Review</a></form><div class="clear"></div><div class="line"></div>';
 
        if (fields[8]) {
           if (fields[8].length !== 0) {
@@ -555,7 +555,7 @@ function detailView(callback, callback2)
        }
 
        thirdColumn  = '<a href="'+ detailString +'" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/logos/'+ fields[2] +'-logo.png" alt="Brand Logo"></a>';
-       thirdColumn += '<div class="divider divider-center"><i class="icon-circle-blank"></i></div><a id="addReviewButton" href="#" data-toggle="modal" data-target="#reviewFormModal" class="button button-3d nomargin hidden-xs" onclick="populateReviewModal(); return false;">Add a Review</a>';
+       thirdColumn += '<div class="divider divider-center"><i class="icon-circle-blank"></i></div>';
 
 
        info =  '<tr><td>Description</td><td>' + fields[1] + '</td></tr>';
