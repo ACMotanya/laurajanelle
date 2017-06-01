@@ -20,8 +20,8 @@ layout: compress
             <!--  Logo
             ============================================= -->
             <div id="logo" class="page-logo">
-              <a href="{{ site.baseurl }}/" class="standard-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/logos/lj-logo-2.png" alt="Laura Janelle Logo"></a>
-              <a href="{{ site.baseurl }}/" class="retina-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/logos/lj-logo-1.png" alt="Laura Janelle Logo"></a>
+              <a href="{{ site.baseurl }}/" class="standard-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/logos/lj-store.png" alt="Laura Janelle Logo"></a>
+              <a href="{{ site.baseurl }}/" class="retina-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/logos/lj-store.png" alt="Laura Janelle Logo"></a>
             </div><!-- #logo end -->
 
             <!-- Primary Navigation
@@ -109,11 +109,21 @@ layout: compress
           </div>
         </div>
       </header><!-- #header end -->
+
+      {% if page.url == "/" or page.url == "/holiday/" %}
       <div id="logo" class="notopmargin nobottommargin leftmargin sidebar-desktop-logo">
         <a style="position: relative; z-index:99;" href="{{ site.baseurl }}/" class="standard-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/logos/lj-logo-2.png" alt="Laura Janelle Logo"></a>
-        <a style="position: relative; z-index:99;" href="{{ site.baseurl }}/" class="retina-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/lj-newlogo-shop.png" alt="Laura Janelle Logo"></a>
+        <a style="position: relative; z-index:99;" href="{{ site.baseurl }}/" class="retina-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/logos/lj-logo-2.png" alt="Laura Janelle Logo"></a>
       </div><!-- #logo end -->
 
+      <style>
+        @media (min-width: 991px) {
+          div#logo.page-logo > a > img {
+            display: none !important;
+          }
+        }
+        </style>
+      {% endif %}
     {{ content }}
 
       {% include footer.html %}
