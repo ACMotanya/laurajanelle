@@ -110,7 +110,7 @@ layout: compress
         </div>
       </header><!-- #header end -->
 
-      {% if page.url == "/" or page.url == "/holiday/" %}
+      {% if page.url == "/" %}
       <div id="logo" class="notopmargin nobottommargin leftmargin sidebar-desktop-logo">
         <a style="position: relative; z-index:99;" href="{{ site.baseurl }}/" class="standard-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/logos/lj-logo-2.png" alt="Laura Janelle Logo"></a>
         <a style="position: relative; z-index:99;" href="{{ site.baseurl }}/" class="retina-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/logos/lj-logo-2.png" alt="Laura Janelle Logo"></a>
@@ -240,108 +240,6 @@ layout: compress
     </script>
     {% endif %}
 
-    {% if page.url == "/oldhtml/winterindex/" %}
-    <script defer src="{{ "/include/rs-plugin/js/jquery.themepunch.tools.min.js" | prepend: site.baseurl }}"></script>
-  	<script defer src="{{ "/include/rs-plugin/js/jquery.themepunch.revolution.min.js" | prepend: site.baseurl }}"></script>
-    <script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.parallax.min.js" | prepend: site.baseurl }}"></script>
-    <script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.slideanims.min.js" | prepend: site.baseurl }}"></script>
-  	<script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.carousel.min.js" | prepend: site.baseurl }}"></script>
-  	<script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.actions.min.js" | prepend: site.baseurl }}"></script>
-  	<script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js" | prepend: site.baseurl }}"></script>
-  	<script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.navigation.min.js" | prepend: site.baseurl }}"></script>
-  	<script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.video.min.js" | prepend: site.baseurl }}"></script>
-
-  	<script defer>
-    $( "div#logo a img" ).addClass( "divcenter" );
-    $( "div#logo" ).removeClass( "leftmargin" );
-
-    var tpj = jQuery;
-    var revapi287;
-    tpj(document).ready(function() {
-      if (tpj("#rev_slider_287_1").revolution == undefined) {
-        revslider_showDoubleJqueryError("#rev_slider_287_1");
-      } else {
-        revapi287 = tpj("#rev_slider_287_1").show().revolution({
-          sliderType: "carousel",
-          jsFileLocation: "../include/rs-plugin/js/",
-        /*  sliderLayout: "fullscreen", */
-          dottedOverlay: "none",
-          delay: 5000,
-          navigation: {
-            keyboardNavigation: "off",
-            keyboard_direction: "horizontal",
-            mouseScrollNavigation: "off",
-            onHoverStop: "off",
-            touch: {
-              touchenabled: "on",
-              swipe_threshold: 75,
-              swipe_min_touches: 50,
-              swipe_direction: "horizontal",
-              drag_block_vertical: false
-            },
-            arrows: {
-              style: "uranus",
-              enable: true,
-              hide_onmobile: true,
-              hide_under: 778,
-              hide_onleave: true,
-              hide_delay: 200,
-              hide_delay_mobile: 1200,
-              tmp: '',
-              left: {
-                h_align: "left",
-                v_align: "center",
-                h_offset: 20,
-                v_offset: 0
-              },
-              right: {
-                h_align: "right",
-                v_align: "center",
-                h_offset: 20,
-                v_offset: 0
-              }
-            }
-          },
-          responsiveLevels: [1240, 991, 778, 480],
-          gridwidth: [1240, 1024, 778, 480],
-          gridheight:[868,768,960,720],
-          lazyType: "none",
-          parallax: {
-            type: "scroll",
-            origo: "enterpoint",
-            speed: 400,
-            levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 46, 47, 48, 49, 50, 51, 55],
-            type: "scroll",
-          },
-          shadow: 0,
-          spinner: "off",
-          stopLoop: "off",
-          stopAfterLoops: -1,
-          stopAtSlide: -1,
-
-          shuffle: "on",
-          autoHeight: "on",
-          fullScreenAutoWidth: "off",
-          fullScreenAlignForce: "off",
-          fullScreenOffsetContainer: "",
-          disableProgressBar: "off",
-          hideThumbsOnMobile: "off",
-          hideSliderAtLimit: 0,
-          hideCaptionAtLimit: 0,
-          hideAllCaptionAtLilmit: 0,
-          debugMode: false,
-          fallbacks: {
-            simplifyAll: "off",
-            nextSlideOnWindowFocus: "off",
-            disableFocusListener: false,
-          }
-        });
-      }
-    }); /*ready*/
-
-  	</script>
-    {% endif %}
-
     {% if page.url == "/thelooks/" %}
     <!-- SLIDER REVOLUTION 5.x SCRIPTS  -->
     <script defer src="{{ "/include/rs-plugin/js/jquery.themepunch.tools.min.js" | prepend: site.baseurl }}"></script>
@@ -441,7 +339,7 @@ layout: compress
     </script>
     {% endif %}
 
-    {% if page.url == "/" or page.url == "/holiday/" %}
+    {% if page.url == "/" %}
 
     <!-- SLIDER REVOLUTION 5.x SCRIPTS  -->
     <script defer src="{{ "/include/rs-plugin/js/jquery.themepunch.tools.min.js" | prepend: site.baseurl }}"></script>
@@ -546,8 +444,6 @@ layout: compress
 		});	/*ready*/
 	</script>
     {% endif %}
-
-
 
   </body>
 
