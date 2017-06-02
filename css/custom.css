@@ -8,6 +8,13 @@
 	margin-right: 0px !important;
 }
 
+.product:not(.product-2):not(.product-3) .product-title h3, .product:not(.product-2):not(.product-3) .product-price  {
+		font-size: 13px;
+		font-family: Lato, sans-serif;
+		text-transform: uppercase;
+	}
+
+
 @media (max-width: 1199px) and (min-width: 481px) {
 	.product:not(.product-2):not(.product-3) .product-title h3, .product:not(.product-2):not(.product-3) .product-price  {
 		font-size: 12px;
@@ -22,7 +29,7 @@
 
 i.icon-shopping-cart,
 i.icon-search3 {
-	font-size: 22px;
+	font-size: 20px;
 }
 
 /* randomly broken fixes on shop page END */
@@ -90,8 +97,8 @@ body.stretched #header.full-header.sticky-header .container {
 }
 
 #primary-menu ul li > a {
-	font-family: Bodoni-Sans;
-	font-weight: 600;
+	font-family: Lato, sans-serif;
+	font-weight: 300;
 	font-size: 15px;
 	letter-spacing: 1px;
 }

@@ -52,18 +52,12 @@
 		left: 0;
 	}
 
-	#primary-menu ul li {
-		text-align: right !important;
-	}
+	#primary-menu ul li { text-align: right !important; }
 
-	#primary-menu.style-5 > ul > li > a > div i {
-		margin: 0 0 0 6px;
-	}
+	#primary-menu.style-5 > ul > li > a > div i { margin: 0 0 0 6px; }
 
 	#primary-menu > ul > li.sub-menu > a,
-	#primary-menu > .container > ul > li.sub-menu > a {
-		background-position: left center;
-	}
+	#primary-menu > .container > ul > li.sub-menu > a { background-position: left center; }
 
 
 	#primary-menu ul ul:not(.mega-menu-column),
@@ -102,6 +96,8 @@
 
 	#primary-menu ul li .mega-menu-content ul.mega-menu-column {
 		border-right: 0 !important;
+		padding-left: 0;
+		padding-right: 15px;
 	}
 	#primary-menu ul li .mega-menu-content.style-2 ul.mega-menu-column { padding: 0 15px 0 0; }
 
@@ -112,7 +108,8 @@
 
 	#top-search a,
 	#top-cart,
-	#side-panel-trigger {
+	#side-panel-trigger,
+	#top-account {
 		left: 15px;
 		right: auto;
 	}
@@ -138,11 +135,17 @@
 		left: 15px;
 	}
 
+	#page-menu nav li { float: none; }
+
 	#page-menu ul ul a {
 		padding-right: 25px;
 		padding-left: 0;
 	}
 
+	#top-account {
+		left: 75px;
+		right: auto;
+	}
 
 	/* Responsive Sticky Header
 	-----------------------------------------------------------------*/
@@ -350,6 +353,11 @@
 	}
 
 	#side-panel-trigger {
+		left: 43px;
+		right: auto;
+	}
+
+	#top-account {
 		left: 43px;
 		right: auto;
 	}

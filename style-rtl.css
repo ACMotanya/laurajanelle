@@ -1,3 +1,18 @@
+/*-----------------------------------------------------------------------------------
+
+	Theme Name: Canvas
+	Theme URI: http://themes.semicolonweb.com/html/canvas
+	Description: The Multi-Purpose Template
+	Author: SemiColonWeb
+	Author URI: http://themeforest.net/user/semicolonweb
+	Version: 4.4
+
+	-- RTL CSS --
+
+-----------------------------------------------------------------------------------*/
+
+
+
 html,
 body { direction: rtl; }
 
@@ -318,7 +333,9 @@ body:not(.device-sm):not(.device-xs):not(.device-xxs) #primary-menu.style-2.cent
 -----------------------------------------------------------------*/
 
 #primary-menu.style-6 > ul > li > a:after,
-#primary-menu.style-6 > ul > li.current > a:after {
+#primary-menu.style-6 > ul > li.current > a:after,
+#primary-menu.style-6 > div > ul > li > a:after,
+#primary-menu.style-6 > div > ul > li.current > a:after {
 	right: 0;
 	left: auto;
 }
@@ -346,6 +363,13 @@ body:not(.device-sm):not(.device-xs):not(.device-xxs) #primary-menu.style-2.cent
 #primary-menu.sub-title.style-2 > div #top-search,
 #primary-menu.sub-title.style-2 > div #top-cart,
 #primary-menu.sub-title.style-2 > div #side-panel-trigger { float: left; }
+
+/* Primary Menu - Split Menu
+-----------------------------------------------------------------*/
+
+#header.split-menu #primary-menu > ul:first-child { float: right; }
+
+#header.split-menu #primary-menu > ul:last-child { float: left; }
 
 
 /* Primary Menu - Overlay Menu
@@ -381,7 +405,8 @@ body:not(.device-sm):not(.device-xs):not(.device-xxs) #primary-menu.style-2.cent
 
 #top-search,
 #top-cart,
-#side-panel-trigger {
+#side-panel-trigger,
+#top-account {
 	float: left;
 	margin: 40px 15px 40px 0;
 }
@@ -433,6 +458,29 @@ body:not(.device-sm):not(.device-xs):not(.device-xxs) .container-fullwidth #top-
 	left: 0;
 	right: auto;
 }
+
+/* ----------------------------------------------------------------
+	Top Account
+-----------------------------------------------------------------*/
+
+
+#top-account { margin: 32px 20px 33px 0; }
+
+#top-account a span {
+	margin-right: 5px;
+	margin-left: 0;
+}
+
+#top-account a i.icon-angle-down {
+	margin-right: 5px;
+	margin-left: 0;
+}
+
+#top-account .dropdown-menu li a { text-align: right; }
+
+#top-account .dropdown-menu li a .badge { float: left; }
+
+#top-account .dropdown-menu li a i:last-child { margin-right: 5px; }
 
 /* ----------------------------------------------------------------
 	Sticky Header
@@ -843,6 +891,33 @@ body.stretched .container-fullwidth .breadcrumb {
 }
 
 .portfolio-filter li:last-child a { border-radius: 4px 0 0 4px; }
+
+/* Portfolio - Filter: Style 2
+-----------------------------------------------------------------*/
+
+.portfolio-filter.style-2 li:not(:first-child),
+.portfolio-filter.style-3 li:not(:first-child) {
+	margin-right: 10px;
+	margin-left: 0;
+}
+
+/* Portfolio - Filter: Style 4
+-----------------------------------------------------------------*/
+
+.portfolio-filter.style-4 li:not(:first-child) {
+	margin-right: 30px;
+	margin-left: 0;
+}
+
+.portfolio-filter.style-4 li a:after {
+	right: 50%;
+	left: auto;
+}
+
+.portfolio-filter.style-4 li.activeFilter a:after {
+	right: 0%;
+	left: auto;
+}
 
 /* Portfolio - Shuffle Icon
 -----------------------------------------------------------------*/
@@ -2193,6 +2268,15 @@ body:not(.device-touch) .button.button-reveal span {
 
 
 /* ----------------------------------------------------------------
+	Flipbox
+-----------------------------------------------------------------*/
+
+.flipbox-back {
+	left: auto;
+	right: 0;
+}
+
+/* ----------------------------------------------------------------
 	Process Steps
 -----------------------------------------------------------------*/
 
@@ -2248,6 +2332,10 @@ body:not(.device-touch) .button.button-reveal span {
 }
 
 
+.style-msg .close {
+	left: 10px;
+	right: auto;
+}
 /* ----------------------------------------------------------------
 	Styled Icons
 -----------------------------------------------------------------*/
@@ -2544,6 +2632,8 @@ ul.tab-nav li a i {
 }
 
 .side-tabs ul.tab-nav li {
+	float: none;
+	border-right: 1px solid #DDD;
 	border-left: 0;
 	text-align: right;
 }
@@ -2552,6 +2642,7 @@ ul.tab-nav li a i {
 	margin-right: 0;
 	margin-left: 0;
 	border-right: 1px solid #DDD;
+	border-left: 0;
 }
 
 .side-tabs ul.tab-nav li.ui-tabs-active a {
@@ -3289,6 +3380,25 @@ blockquote.pull-right {
 .widget-twitter-feed .twitter-feed-avatar > li a.twitter-avatar {
     right: -44px;
     left: auto;
+}
+
+/* Widget Filter Links
+-----------------------------------------------------------------*/
+
+.widget-filter-links .widget-filter-reset,
+.widget-filter-links li span {
+	left: 0;
+	right: auto;
+}
+
+.widget-filter-links li:hover a { color: #777; }
+
+.widget-filter-links li.active-filter a { font-weight: 700; }
+
+.widget-filter-links li.active-filter span {
+	color: #FFF;
+	background-color: #1ABC9C;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
 }
 
 
