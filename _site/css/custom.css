@@ -12,6 +12,7 @@
 		font-size: 13px;
 		font-family: Lato, sans-serif;
 		text-transform: uppercase;
+		font-weight: 300;
 	}
 
 
@@ -231,6 +232,11 @@ body.stretched #header.full-header.sticky-header .container {
 	text-decoration: underline !important;
 }
 
+div.toggle.toggle-bg.ui-group > div.togglec > div > label {
+	font-weight: 300;
+	font-family: 'Lato';
+}
+
 @media (min-width: 992px) {
 	.Fixed {
 		position: fixed;
@@ -281,6 +287,10 @@ body.stretched #header.full-header.sticky-header .container {
 	.sidebar-widgets-wrap .widget .toggle {
 		margin: 0 0 7px;
 	}
+}
+
+.toggle .togglet, .toggle .toggleta {
+	font-weight: 300;
 }
 
 /*
@@ -366,9 +376,7 @@ div.acc_content.clearfix {
   display: block !important;
 }
 
-label {
-	font-family: 'Bodoni-Sans';
-}
+
 
 /*\\\\\\\\\\\\\\\\\\\\
 	 Shop page Coolio
@@ -390,7 +398,8 @@ label {
 }
 
 .product-overlay a {
-	color: #888;
+	color: #ffffff;
+	background-color: rgba(0,0,0,1);
 }
 
 .ex1 > span > img.zoomImg {
@@ -418,11 +427,9 @@ div.widget.clearfix form {
 
 
 @media (max-width: 991px) {
-
 	#header.transparent-header.full-header #header-wrap {
 		background: lightgrey;
 	}
-
 
 	div.container.clearfix video.about {
 		display: block;
