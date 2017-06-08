@@ -194,13 +194,12 @@ function createUser()
 ////////////////////////////////////////
 function login()
 {
-  var password;
-
   if ( sessionStorage.getItem('session_no') && typeof(sessionStorage.getItem('session_no')) === "string" && sessionStorage.getItem('session_no').length === 25 ) {   
     windowHash("shop");
     redirect("store");
   }
 
+  var password;
   var $loading = $('#loadingDiv').hide();
 
   $(document).ajaxStart(function () {
@@ -215,8 +214,6 @@ function login()
      e.preventDefault();
      username = $('#login-form-username').val();
      password = $('#login-form-password').val();
-     var openOrderLines;
-     var invoiceLines;
 
      $.ajax({
       type: "GET",
@@ -224,8 +221,7 @@ function login()
       data: {request_id: "APICLOGIN",
              username: username,
              password: password,
-            loc_no: 800},
-      async: false,
+             loc_no: 800},
       success: function(response) {
         if (response.replace(/\s+/g,'').length === 25) {
           goHead = "go";
@@ -1079,12 +1075,12 @@ function searchOrders(orderSearchNumber)
       // lines[1]+ are data lines
       $('#orders-orderDetails').empty();
       html = [];
-      if ( lines.length <= 2) {
+      if ( lines.length <= 2 ) {
         document.getElementById("orders-orderDetails").innerHTML += '<tr><td><h1>There are no results</h1></td><td></td></tr>';
       } else {
         for (i=1; i<lines.length - 1; i++) {
           details = lines[i].split("|");
-          line = '<tr><td>Order Number</td><td>'+details[0]+'</td></tr>';
+          line =  '<tr><td>Order Number</td><td>'+details[0]+'</td></tr>';
           line += '<tr><td>Order Date</td><td>'+details[1]+'</td></tr>';
           line += '<tr><td>Shipping Date</td><td>'+details[2]+'</td></tr>';
           line += '<tr><td>Customer Number</td><td>'+details[3]+'</td></tr>';
@@ -1452,8 +1448,6 @@ function reviewOrder()
       reviewHTML += '</textarea></div><div class="col_full nobottommargin"><button class="button button-3d nomargin" type="submit" id="template-reviewform-submit" name="template-reviewform-submit" value="submit">Submit Review</button></div></form></div></div>';
       $('#posts').append(reviewHTML);
     });
-
-    
   });
 }
 
@@ -1799,7 +1793,7 @@ function quickView(clicked_id)
     url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
     data: {request_id: "APISTKDTL", stock_no: stock_no, session_no: session_no},
     success: function(response) {
-      lines = response.split("\n");
+      lines  = response.split("\n");
       fields = lines[1].split("|");
 
       var prodtype = fields[1].split(/(\s+)/);

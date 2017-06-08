@@ -55,7 +55,7 @@ gulp.task('serve', function() {
   gulp.watch(cssFiles, ['css']);
   gulp.watch(jsFiles, ['scripts']);
 // gulp.watch('./css/all.css', ['nano']);
-//  gulp.watch('./js/all.js', ['compress']);
+// gulp.watch('./js/all.js', ['compress']);
 });
 
 gulp.task('default', ['css', 'scripts', 'jekyll', 'serve']);
