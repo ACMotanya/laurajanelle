@@ -208,7 +208,8 @@ function login()
     $loading.hide();
   });
 
-  $("#content").hide();
+  // $("#content").hide();
+  $(".page-section").hide();
   $("#login-form").on("submit", function(e) {
      var goHead;
      e.preventDefault();
@@ -1965,7 +1966,6 @@ function checkoutPage()
 
 function whichPage()
 {
-
   var hashy = window.location.hash.split("+");
   var locale = hashy[0];
   $('#content div div section').hide();
@@ -2058,4 +2058,61 @@ function whichPage()
       $('#shop').show();
       shopPage();
   }
+}
+
+
+/////////////////////////////////////////////
+          // NON-STORE FUNCTIONS.. //
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+
+function peekView(clicked_id)
+{
+  var secondColumnQuick;
+  jQuery.ajax({
+    type: "GET",
+    url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
+    data: {request_id: "APISTKDTL", stock_no: stock_no, session_no: session_no},
+    success: function(response) {
+      lines  = response.split("\n");
+      fields = lines[1].split("|");
+
+      var prodtype = fields[1].split(/(\s+)/);
+					prodtype = prodtype[2];
+
+			document.getElementById("quickViewimages").innerHTML = '<div class="slide" style="display: block;"><a href="#shop"><img src="https://www.laurajanelle.com/ljjpgimages/' + stock_no + '-md.jpg" alt="' + fields[1] + '"></a></div>';
+
+      jQuery( "#secondColumn").prepend('<div><a href="#shop" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/logos/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div><div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + stock_no + '</span></span></div>');
+      secondColumnQuick = '<a href="#" class="button button-black side-panel-trigger t300">login to see pricing</a><div class="line"></div>'
+      if (fields[8].length !== 0)  {
+         secondColumnQuick += '<p>' + fields[8] + '</p>';
+      } else {
+         secondColumnQuick += '<p>' + fields[1] + '</p>';
+      }
+    
+      $("#description").append(secondColumnQuick);
+      $("#quickViewForm").remove();
+    }
+  });
+}
+
+function showLook(look)
+{
+  $(".sleek, .rglb, .SRK, .mantra, .encharming, .aura, .identify, #theLooks").fadeOut("slow");
+  $(""+look+", #shop").fadeIn("slow");
 }

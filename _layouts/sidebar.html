@@ -8,7 +8,41 @@ layout: compress
 
   {% include head.html %}
 
-  <body class="stretched side-header side-header-right">
+  <body class="stretched side-header side-header-right side-panel-left side-push-panel">
+    <div class="body-overlay"></div>
+
+    <div id="side-panel" class="dark">
+
+      <div id="side-panel-trigger-close" class="side-panel-trigger"><a href="#"><i class="icon-line-cross"></i></a></div>
+
+      <div class="side-panel-wrap">
+
+        <div class="widget clearfix">
+          <h4>retailer Login</h4>
+        </div>
+
+        <div class="widget quick-contact-widget clearfix">
+          <div class="quick-contact-form-result"></div>
+          <form id="login-form" name="login-form" action="#" class="clearfix" style="max-width: 300px;" method="">
+            <div class="col_full">
+              <label for="login-form-username" class="t600" style="color: white;">USERNAME</label>
+              <input type="text" id="login-form-username" name="login-form-username" value="" class="form-control not-dark" />
+            </div>
+            <div class="col_full">
+              <label for="login-form-password" class="t600" style="color: white;">PASSWORD</label>
+              <input type="password" id="login-form-password" name="login-form-password" value="" class="form-control not-dark" />
+            </div>
+            <div class="col_full nobottommargin">
+              <button class="t300 button button-border button-light nomargin" id="login-form-submit" name="login-form-submit" value="login">Login</button>
+              <a href="#" data-toggle="modal" data-target="#PasswordModal" class="fright" style="color: #c1c1c1;">Forgot Password?</a>
+            </div>
+          </form>
+          <p class="nobottommargin topmargin-sm">Not registered?<br><a class="t300 button button-border" href="#register" data-scrollto="#register" data-easing="easeInOutExpo" data-speed="2250" onclick="$('.page-section').show(); $('#doc-1').focus();" style="color: #ffffff;">Sign Up</a></p>
+        </div>
+
+      </div>
+
+    </div>
     <div id="wrapper" class="clearfix">
       <!-- Header
       ============================================= -->
@@ -109,10 +143,6 @@ layout: compress
           </div>
         </div>
       </header><!-- #header end -->
-
-      {% if page.url == "/" %}
-
-      {% endif %}
     {{ content }}
 
       {% include footer.html %}
@@ -444,7 +474,19 @@ layout: compress
 	  </script>
     {% endif %}
 
+    {% if page.url == "/discover/" %}
+    <style>
+      body #side-panel.dark {
+        background-color: #111;
+      }
+    </style>
 
+    <script async defer>
+      $(document).ready(function() {
+        login();
+      });
+    </script>
+    {% endif %}
   </body>
 
 </html>
