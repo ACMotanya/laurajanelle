@@ -208,7 +208,8 @@ function login()
     $loading.hide();
   });
 
-  $("#content").hide();
+  // $("#content").hide();
+  $(".page-section").hide();
   $("#login-form").on("submit", function(e) {
      var goHead;
      e.preventDefault();
@@ -2089,10 +2090,11 @@ function peekView(clicked_id)
 			document.getElementById("quickViewimages").innerHTML = '<div class="slide" style="display: block;"><a href="#shop"><img src="https://www.laurajanelle.com/ljjpgimages/' + stock_no + '-md.jpg" alt="' + fields[1] + '"></a></div>';
 
       jQuery( "#secondColumn").prepend('<div><a href="#shop" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/logos/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div><div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + stock_no + '</span></span></div>');
-       if (fields[8].length !== 0)  {
-         secondColumnQuick = '<p>' + fields[8] + '</p>';
+      secondColumnQuick = '<a href="#" class="button button-black side-panel-trigger t300">login to see pricing</a><div class="line"></div>'
+      if (fields[8].length !== 0)  {
+         secondColumnQuick += '<p>' + fields[8] + '</p>';
       } else {
-         secondColumnQuick = '<p>' + fields[1] + '</p>';
+         secondColumnQuick += '<p>' + fields[1] + '</p>';
       }
     
       $("#description").append(secondColumnQuick);
@@ -2103,6 +2105,6 @@ function peekView(clicked_id)
 
 function showLook(look)
 {
-  $(".sleek, .rglb, .SRK, .mantra, .encharming, .aura, .identify, #theLooks").hide("slow" );
-  $(""+look+", #shop").show("slow");
+  $(".sleek, .rglb, .SRK, .mantra, .encharming, .aura, .identify, #theLooks").fadeOut("slow");
+  $(""+look+", #shop").fadeIn("slow");
 }

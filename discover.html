@@ -10,16 +10,25 @@ title: Shop
 		width: 100%;
 	}
 
-	.sleek, .rglb, .SRK, .mantra, .encharming, .aura, .identify, #shop {
+	.sleek,
+	.rglb,
+	.SRK,
+	.mantra,
+	.encharming,
+	.aura,
+	.identify,
+	#shop {
 		display: none;
 	}
 </style>
 
 <!-- Content
-		============================================= -->
+============================================= -->
+
 <section id="content">
 	<div class="content-wrap">
 		<div class="container clearfix">
+			<a href="#" class="button button-black side-panel-trigger t300 fright">Retailer Login</a>
 			<div class="heading-block noborder center">
 				<h3>Explore Laura Janelle.</h3>
 				<!-- <span>Discover all your fashion possibilities with us </span> -->
@@ -55,7 +64,7 @@ title: Shop
 
 				<div class="col-md-8 nopadding">
 
-					<div class="col-md-6 noleftpadding"  style="margin-bottom: 10px; margin-top: 10px;">
+					<div class="col-md-6 noleftpadding" style="margin-bottom: 10px; margin-top: 10px;">
 						<a href="#shop" onclick="showLook('.treasures')"><img src="{{ site.baseurl }}/img/login/shop-3.png" alt="Image"></a>
 					</div>
 
@@ -76,22 +85,24 @@ title: Shop
 
 		<!-- Shop
 		============================================= -->
-
 		<div class="container clearfix">
 			<div id="shop" class="shop clearfix" data-layout="fitRows">
-			
-				<button type="button" class="button button-3d fright divcenter" style="width: 80%;" onclick="$('#theLooks').show(); $('#shop').hide()">See All Looks</button>
+				<div class="center">
+				<button type="button" class="button button-black t300" style="width: 80%;" onclick="$('#shop').fadeOut('slow'); $('#theLooks').fadeIn('slow');">See All Looks</button>
+				</div>
 				<div class="line"></div>
 				<div class="col_half center sleek">
 					<img src="{{ site.baseurl }}/img/logos/SLK-logo.png" />
 				</div>
 				<div class="col_half col_last center sleek">
-					<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus adipisci laborum placeat delectus labore cupiditate deserunt minus numquam consequatur esse, hic at earum illo animi eaque et, dolorem quo qui eos? Quam rerum possimus maxime veniam aut ratione eveniet aliquid cumque aspernatur ipsum libero quaerat, nam. Ad, sunt, error!</p>
+					<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus adipisci laborum placeat delectus labore
+						cupiditate deserunt minus numquam consequatur esse, hic at earum illo animi eaque et, dolorem quo qui eos? Quam rerum
+						possimus maxime veniam aut ratione eveniet aliquid cumque aspernatur ipsum libero quaerat, nam. Ad, sunt, error!</p>
 				</div>
 
 				<div class="product clearfix sleek">
 					<div class="product-image">
-						<img src="https://www.laurajanelle.com/ljjpgimages/10092-sm.jpg">
+						<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no='10092'; peekView(this.id);"><img src="https://www.laurajanelle.com/ljjpgimages/10092-sm.jpg"></a>
 						<div class="product-overlay showcase">
 							<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no='10092'; peekView(this.id);"><i class="icon-zoom-in2"></i><span>Quick View</span></a>
 						</div>
@@ -212,9 +223,11 @@ title: Shop
 					<img src="{{ site.baseurl }}/img/logos/GLB-logo.png" />
 				</div>
 				<div class="col_half col_last center rglb">
-					<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus adipisci laborum placeat delectus labore cupiditate deserunt minus numquam consequatur esse, hic at earum illo animi eaque et, dolorem quo qui eos? Quam rerum possimus maxime veniam aut ratione eveniet aliquid cumque aspernatur ipsum libero quaerat, nam. Ad, sunt, error!</p>
+					<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus adipisci laborum placeat delectus labore
+						cupiditate deserunt minus numquam consequatur esse, hic at earum illo animi eaque et, dolorem quo qui eos? Quam rerum
+						possimus maxime veniam aut ratione eveniet aliquid cumque aspernatur ipsum libero quaerat, nam. Ad, sunt, error!</p>
 				</div>
-				
+
 				<div class="product clearfix rglb">
 					<div class="product-image">
 						<img src="https://www.laurajanelle.com/ljjpgimages/11300B-sm.jpg">
@@ -337,7 +350,9 @@ title: Shop
 					<img src="{{ site.baseurl }}/img/logos/SRK-logo.png" />
 				</div>
 				<div class="col_half col_last center SRK">
-					<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus adipisci laborum placeat delectus labore cupiditate deserunt minus numquam consequatur esse, hic at earum illo animi eaque et, dolorem quo qui eos? Quam rerum possimus maxime veniam aut ratione eveniet aliquid cumque aspernatur ipsum libero quaerat, nam. Ad, sunt, error!</p>
+					<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus adipisci laborum placeat delectus labore
+						cupiditate deserunt minus numquam consequatur esse, hic at earum illo animi eaque et, dolorem quo qui eos? Quam rerum
+						possimus maxime veniam aut ratione eveniet aliquid cumque aspernatur ipsum libero quaerat, nam. Ad, sunt, error!</p>
 				</div>
 
 				<div class="product clearfix SRK">
@@ -460,7 +475,9 @@ title: Shop
 					<img src="{{ site.baseurl }}/img/logos/MAN-logo.png" />
 				</div>
 				<div class="col_half col_last center mantra">
-					<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus adipisci laborum placeat delectus labore cupiditate deserunt minus numquam consequatur esse, hic at earum illo animi eaque et, dolorem quo qui eos? Quam rerum possimus maxime veniam aut ratione eveniet aliquid cumque aspernatur ipsum libero quaerat, nam. Ad, sunt, error!</p>
+					<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus adipisci laborum placeat delectus labore
+						cupiditate deserunt minus numquam consequatur esse, hic at earum illo animi eaque et, dolorem quo qui eos? Quam rerum
+						possimus maxime veniam aut ratione eveniet aliquid cumque aspernatur ipsum libero quaerat, nam. Ad, sunt, error!</p>
 				</div>
 
 				<div class="product clearfix mantra">
@@ -584,10 +601,12 @@ title: Shop
 					<img src="{{ site.baseurl }}/img/logos/ENC-logo.png" />
 				</div>
 				<div class="col_half col_last center encharming">
-					<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus adipisci laborum placeat delectus labore cupiditate deserunt minus numquam consequatur esse, hic at earum illo animi eaque et, dolorem quo qui eos? Quam rerum possimus maxime veniam aut ratione eveniet aliquid cumque aspernatur ipsum libero quaerat, nam. Ad, sunt, error!</p>
+					<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus adipisci laborum placeat delectus labore
+						cupiditate deserunt minus numquam consequatur esse, hic at earum illo animi eaque et, dolorem quo qui eos? Quam rerum
+						possimus maxime veniam aut ratione eveniet aliquid cumque aspernatur ipsum libero quaerat, nam. Ad, sunt, error!</p>
 				</div>
 
-				 <div class="product clearfix encharming">
+				<div class="product clearfix encharming">
 					<div class="product-image">
 						<img src="https://www.laurajanelle.com/ljjpgimages/1042A-sm.jpg">
 						<div class="product-overlay showcase">
@@ -707,7 +726,9 @@ title: Shop
 					<img src="{{ site.baseurl }}/img/logos/ZEN-logo.png" />
 				</div>
 				<div class="col_half col_last center aura">
-					<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus adipisci laborum placeat delectus labore cupiditate deserunt minus numquam consequatur esse, hic at earum illo animi eaque et, dolorem quo qui eos? Quam rerum possimus maxime veniam aut ratione eveniet aliquid cumque aspernatur ipsum libero quaerat, nam. Ad, sunt, error!</p>
+					<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus adipisci laborum placeat delectus labore
+						cupiditate deserunt minus numquam consequatur esse, hic at earum illo animi eaque et, dolorem quo qui eos? Quam rerum
+						possimus maxime veniam aut ratione eveniet aliquid cumque aspernatur ipsum libero quaerat, nam. Ad, sunt, error!</p>
 				</div>
 
 				<div class="product clearfix aura">
@@ -829,7 +850,9 @@ title: Shop
 					<img src="{{ site.baseurl }}/img/logos/IDT-logo.png" />
 				</div>
 				<div class="col_half col_last center identify">
-					<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus adipisci laborum placeat delectus labore cupiditate deserunt minus numquam consequatur esse, hic at earum illo animi eaque et, dolorem quo qui eos? Quam rerum possimus maxime veniam aut ratione eveniet aliquid cumque aspernatur ipsum libero quaerat, nam. Ad, sunt, error!</p>
+					<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus adipisci laborum placeat delectus labore
+						cupiditate deserunt minus numquam consequatur esse, hic at earum illo animi eaque et, dolorem quo qui eos? Quam rerum
+						possimus maxime veniam aut ratione eveniet aliquid cumque aspernatur ipsum libero quaerat, nam. Ad, sunt, error!</p>
 				</div>
 
 				<div class="product clearfix identify">
@@ -946,7 +969,212 @@ title: Shop
 				<div class="line identify"></div>
 
 
-			</div><!-- #shop end -->
+			</div>
+			<!-- #shop end -->
+		</div>
+
+
+
+
+
+
+		<div class="page-section">
+			<div class="container clearfix">
+
+				<h2 class="center topmargin bottommargin uppercase ls1">Register for Account</h2>
+
+				<p id="register" class="divcenter bottommargin-sm" style="max-width: 800px;"><strong>If you are an existing customer and would like to make purchases online, please email <a href="mailto:customerservice@laurajanelle.com?Subject=Website%20Login" target="_top">customerservice@laurajanelle.com</a> with your company name and email address to obtain a login.</strong>					</p>
+				<p class="divcenter bottommargin-sm" style="max-width: 800px;">To become a wholesale customer with Laura Janelle, please complete this application form. This is not a credit application.
+					We require a $200.00 opening order. You may apply for credit terms through our application process. Please contact Customer
+					Service for more information.</p>
+				<form data-toggle="validator" id="register-form" name="register-form" class="nobottommargin" action="http://72.64.152.18:8083/nlhelpers/mailer/register.php" target="dummyframe" method="post" role="form" enctype="multipart/form-data">
+				
+					<div class="form-process"></div>
+					<input type='hidden' name='realsubject' value='Laura Janelle Customer Application' />
+					<div class="row topmargin divcenter">
+						<div class="col-sm-6 bottommargin">
+							<div class="form-group">
+								<div class="col_full">
+									<label for="register-form-name">Name:</label>
+									<input type="text" id="register-form-name" name="register-form-name" value="" required class="sm-form-control form-control" />
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col_full">
+									<label for="register-form-name"> Business Name:</label>
+									<input type="text" id="register-form-business-name" name="register-form-business-name" value="" required class="sm-form-control form-control" />
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col_full">
+									<label for="business-form-address">Business Address:</label>
+									<input type="text" id="business-form-address" name="business-form-address" required value="" class="sm-form-control" />
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col_full">
+									<input type="text" id="business-form-address2" name="business-form-adresss2" value="" class="sm-form-control" />
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col_full">
+									<label for="business-form-city">City / Town</label>
+									<input type="text" id="business-form-city" name="business-form-city" required value="" class="sm-form-control" />
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col_half">
+									<input type="text" class="sm-form-control" name="business-form-state" required placeholder="State / Country" />
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col_half col_last">
+									<input type="text" class="sm-form-control" name="business-form-zipcode" maxlength="10" required placeholder="PostCode / Zip" />
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col_full">
+									<label for="register-form-email">Email Address:</label>
+									<input type="email" id="register-form-email" name="register-form-email" data-error="Email address is invalid" required value="" class="sm-form-control form-control" />
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col_half">
+									<label for="register-form-phone">Phone:</label>
+									<input type="number" id="register-form-phone" name="register-form-phone" data-error="Must be 10 digits" data-minlength="10" required value="" class="form-control sm-form-control" />
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col_half col_last">
+									<label for="register-form-fax">Fax Phone:</label>
+									<input type="number" id="register-form-fax" name="register-form-fax" value="" data-error="Must be 10 digits" class="form-control sm-form-control" />
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col_full">
+									<label for="register-form-website">Website:</label>
+									<input type="text" id="register-form-website" name="register-form-website" value="" class="form-control sm-form-control" />
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col_full">
+									<label for="register-form-username">Desired Username:</label>
+									<input type="text" id="register-form-username" name="register-form-username" required data-error="Must be at least 3 characters long" minlength="3" maxlength="30" value="" class="form-control sm-form-control" />
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-6 bottommargin">
+							<h4 class="uppercase">Required Documents</h4>
+							<p>Documentation of an active online business, Etsy, Artfire or similar account, a trade show contract or a copy of an
+								invoice where you have purchased from another wholesale company.</p>
+							<div class="form-group">
+								<div class="col_full">
+									<input id="doc-1" type="file" name="doc[0]" required class="file"/>
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<p>A copy of a Municipal occupational license from your local area, your Federal Tax ID or EIN, LLC, DBA or Vendor permit.</p>
+							<div class="form-group">
+								<div class="col_full">
+									<input id="taxId" type="file" name="doc[1]" required class="file"/>
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<p><strong>NOTE: If your business is in the State of Florida, a copy of a Tax ID must be provided also. STATE OF FLORIDA COMPTROLLER SALES TAX DIVISION RULE 39</strong></p>
+							<div class="line"></div>
+							<h4 class="uppercase">How did you hear about us?</h4>
+							<div class="col_one_third">
+								<input id="checkbox-1" class="checkbox-style" name="hear-about-us-website" type="checkbox"/>
+								<label for="checkbox-1" class="checkbox-style-2-label checkbox-small">Website</label>
+							</div>
+							<div class="col_one_third">
+								<input id="checkbox-2" class="checkbox-style" name="hear-about-us-packaging" type="checkbox"/>
+								<label for="checkbox-2" class="checkbox-style-2-label checkbox-small">Cousin Packaging</label>
+							</div>
+							<div class="col_one_third">
+								<input id="checkbox-3" class="checkbox-style" name="hear-about-us-search-engine" type="checkbox"/>
+								<label for="checkbox-3" class="checkbox-style-2-label checkbox-small">Search Engine</label>
+							</div>
+							<div class="col_one_third">
+								<input id="checkbox-4" class="checkbox-style" name="hear-about-us-social-media" type="checkbox"/>
+								<label for="checkbox-4" class="checkbox-style-2-label checkbox-small">Social Media</label>
+							</div>
+							<div class="col_one_third">
+								<input id="checkbox-5" class="checkbox-style" name="hear-about-us-friend" type="checkbox"/>
+								<label for="checkbox-5" class="checkbox-style-2-label checkbox-small">Friend</label>
+							</div>
+							<div class="col_one_third">
+								<input id="checkbox-6" class="checkbox-style" name="hear-about-us-sales-rep" type="checkbox"/>
+								<label for="checkbox-6" class="checkbox-style-2-label checkbox-small">Sales Rep</label>
+							</div>
+							<div class="col_one_third col_last">
+								<input id="checkbox-7" class="checkbox-style" name="hear-about-us-other" type="checkbox"/>
+								<label for="checkbox-7" class="checkbox-style-2-label checkbox-small">Other</label>
+							</div>
+							<div class="line" style="margin: 10px"></div>
+
+							<div class="col_full">
+								<input id="checkbox-8" class="checkbox-style" name="receive-promotions" type="checkbox"/>
+								<label for="checkbox-8" class="checkbox-style-3-label checkbox-small">Be the first to know about new products and promotions</label>
+							</div>
+
+							<div class="col_full nobottommargin">
+								<button class="button button-3d button-black nomargin" type="button" id="validateButton">Register Now</button>
+								<button class="button button-3d button-black nomargin" name="register-submit" type="submit" value="register" data-toggle="modal" data-target="#mymodal" id="register-form-submit" onclick="$('#register-form').hide();" style="visibility:hidden;">Register Now</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div id="mymodal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+		  aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-body">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="redirect('');">&times;</button>
+							<h3 class="modal-title" id="myModalLabel">Thank you for applying!</h3>
+						</div>
+						<div class="modal-body" style="font-family: Lato; font-size: 19px;">
+
+							<p>This is a confirmation that your application has been successfully received and is currently under process. You will
+								receive an email soon with your login credentials or asking for further information.</p>
+							<p class="nobottommargin">Laura Janelle values your business and is continuously looking for ways to better satisfy their customers. Please
+								do share with us if there is a way we can serve you better.</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal" onclick="redirect('');">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>
+
+<iframe width="0" height="0" border="0" name="dummyframe" id="dummyframe"></iframe>
