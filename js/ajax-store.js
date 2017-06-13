@@ -2090,7 +2090,7 @@ function peekView(clicked_id)
 			document.getElementById("quickViewimages").innerHTML = '<div class="slide" style="display: block;"><a href="#shop"><img src="https://www.laurajanelle.com/ljjpgimages/' + stock_no + '-md.jpg" alt="' + fields[1] + '"></a></div>';
 
       jQuery( "#secondColumn").prepend('<div><a href="#shop" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/logos/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div><div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + stock_no + '</span></span></div>');
-      secondColumnQuick = '<a href="#" class="button button-black side-panel-trigger t300">login to see pricing</a><div class="line"></div>'
+      secondColumnQuick = '<a href="#" class="button button-black side-panel-trigger t300">login to see pricing</a><div class="line"></div>';
       if (fields[8].length !== 0)  {
          secondColumnQuick += '<p>' + fields[8] + '</p>';
       } else {
@@ -2106,5 +2106,23 @@ function peekView(clicked_id)
 function showLook(look)
 {
   $(".sleek, .rglb, .SRK, .mantra, .encharming, .aura, .identify, #theLooks").fadeOut("slow");
-  $(""+look+", #shop").fadeIn("slow");
+  $("."+look+", #shop").fadeIn("slow");
+
+  programs = {
+    "sleek":      ["10092", "10000A", "10029", "10038", "10044", "10042", "10019", "10004"],
+    "rglb":       ["11300B", "11359", "10739", "11318", "11310", "10707", "12117", "11380"],
+    "SRK":        ["10900A", "10917", "10941", "10939", "10934", "10936", "10951", "10965"],
+    "mantra":     ["10301A", "10375", "10377", "10378", "10379", "10380", "10381", "10382"],
+    "encharming": ["1042A", "10389", "10399", "10336", "10340", "10339", "10334", "10328"],
+    "aura":       ["11100A", "11105", "11126", "11108", "11127", "11109", "11131", "11142"],
+    "identify":   ["10588", "10500A", "10501", "10519", "10505", "10525", "10516", "10599A"]
+  };
+  
+  programs[look].forEach( function (element) {
+    programPreview =  '<div class="product clearfix '+ look +'"><div class="product-image"><img src="https://www.laurajanelle.com/ljjpgimages/'+ element +'-sm.jpg"><div class="product-overlay showcase">';
+    programPreview += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no='+ element +'; peekView(this.id);"><i class="icon-zoom-in2"></i><span>Quick View</span></a></div></div>';
+    programPreview += '<div class="product-desc"><div class="product-title"><h3><a href="#">Green Trousers</a></h3></div></div></div><div class="line identify"></div>';
+
+    $("#shop").append(programPreview);
+  });
 }
