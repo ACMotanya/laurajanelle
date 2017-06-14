@@ -487,6 +487,39 @@ layout: compress
       });
     </script>
     {% endif %}
+
+    	<script type="text/javascript">
+
+		jQuery(document).ready(function($) {
+
+			var ocImages = $("#oc-images, #oc-images3");
+			ocImages.owlCarousel({
+				items: 1,
+        autoplay: true,
+				loop: true,
+				margin: 0,
+				nav: true,
+				navText: ['<i class="icon-angle-left"></i>','<i class="icon-angle-right"></i>'],
+				dots: false,
+				navRewind: false
+			});
+
+			var ocImages2 = $("#oc-images2, #oc-images4");
+			ocImages2.owlCarousel({
+				items: 1,
+        autoplay: true,
+				loop: true,
+				margin: 0,
+				nav: true,
+				navText: ['<i class="icon-angle-left"></i>','<i class="icon-angle-right"></i>'],
+				dots: false,
+				navRewind: false
+			});
+
+		});
+
+	</script>
+    
   </body>
 
 </html>
