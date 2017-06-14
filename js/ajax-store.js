@@ -2113,24 +2113,61 @@ function peekView(clicked_id)
 
 function showLook(look)
 {
-  $(".sleek, .rglb, .SRK, .mantra, .encharming, .aura, .identify, #theLooks").fadeOut("slow");
-  $("."+look+", #shop").fadeIn("slow");
-
   programs = {
-    "sleek":      ["10092", "10000A", "10029", "10038", "10044", "10042", "10019", "10004"],
-    "rglb":       ["11300B", "11359", "10739", "11318", "11310", "10707", "12117", "11380"],
-    "SRK":        ["10900A", "10917", "10941", "10939", "10934", "10936", "10951", "10965"],
-    "mantra":     ["10301A", "10375", "10377", "10378", "10379", "10380", "10381", "10382"],
-    "encharming": ["1042A", "10389", "10399", "10336", "10340", "10339", "10334", "10328"],
-    "aura":       ["11100A", "11105", "11126", "11108", "11127", "11109", "11131", "11142"],
-    "identify":   ["10588", "10500A", "10501", "10519", "10505", "10525", "10516", "10599A"]
+    "sleek":  { 
+      "items": ["10092", "10000A", "10029", "10038", "10044", "10042", "10019", "10004"],
+      "blurb": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus adipisci laborum placeat delectus labore cupiditate deserunt minus numquam consequatur esse, hic at earum illo animi eaque et, dolorem quo qui eos? Quam rerum possimus maxime veniam aut ratione eveniet aliquid cumque aspernatur ipsum libero quaerat, nam. Ad, sunt, error!",
+      "logo":  "SLK-logo.png"
+    },
+    "rglb":{ 
+      "items": ["11300B", "11359", "10739", "11318", "11310", "10707", "12117", "11380"],
+      "blurb": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus adipisci laborum placeat delectus labore cupiditate deserunt minus numquam consequatur esse, hic at earum illo animi eaque et, dolorem quo qui eos? Quam rerum possimus maxime veniam aut ratione eveniet aliquid cumque aspernatur ipsum libero quaerat, nam. Ad, sunt, error!",
+      "logo":  "GLB-logo.png"
+    },
+    "SRK":{ 
+      "items": ["10900A", "10917", "10941", "10939", "10934", "10936", "10951", "10965"],
+      "blurb": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus adipisci laborum placeat delectus labore cupiditate deserunt minus numquam consequatur esse, hic at earum illo animi eaque et, dolorem quo qui eos? Quam rerum possimus maxime veniam aut ratione eveniet aliquid cumque aspernatur ipsum libero quaerat, nam. Ad, sunt, error!",
+      "logo":  "SRK-logo.png"
+    },
+    "mantra":{ 
+      "items": ["10301A", "10375", "10377", "10378", "10379", "10380", "10381", "10382"],
+      "blurb": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus adipisci laborum placeat delectus labore cupiditate deserunt minus numquam consequatur esse, hic at earum illo animi eaque et, dolorem quo qui eos? Quam rerum possimus maxime veniam aut ratione eveniet aliquid cumque aspernatur ipsum libero quaerat, nam. Ad, sunt, error!",
+      "logo":  "MAN-logo.png"
+    },
+    "encharming":{ 
+      "items": ["1042A", "10389", "10399", "10336", "10340", "10339", "10334", "10328"],
+      "blurb": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus adipisci laborum placeat delectus labore cupiditate deserunt minus numquam consequatur esse, hic at earum illo animi eaque et, dolorem quo qui eos? Quam rerum possimus maxime veniam aut ratione eveniet aliquid cumque aspernatur ipsum libero quaerat, nam. Ad, sunt, error!",
+      "logo":  "ENC-logo.png"
+    },
+    "aura":{ 
+      "items": ["11100A", "11105", "11126", "11108", "11127", "11109", "11131", "11142"],
+      "blurb": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus adipisci laborum placeat delectus labore cupiditate deserunt minus numquam consequatur esse, hic at earum illo animi eaque et, dolorem quo qui eos? Quam rerum possimus maxime veniam aut ratione eveniet aliquid cumque aspernatur ipsum libero quaerat, nam. Ad, sunt, error!",
+      "logo":  "ZEN-logo.png"
+    },
+    "identify":{ 
+      "items": ["10588", "10500A", "10501", "10519", "10505", "10525", "10516", "10599A"],
+      "blurb": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus adipisci laborum placeat delectus labore cupiditate deserunt minus numquam consequatur esse, hic at earum illo animi eaque et, dolorem quo qui eos? Quam rerum possimus maxime veniam aut ratione eveniet aliquid cumque aspernatur ipsum libero quaerat, nam. Ad, sunt, error!",
+      "logo":  "IDT-logo.png"
+    }
   };
   
-  programs[look].forEach( function (element) {
-    programPreview =  '<div class="product clearfix '+ look +'"><div class="product-image"><img src="https://www.laurajanelle.com/ljjpgimages/'+ element +'-sm.jpg"><div class="product-overlay showcase">';
+  var programBlurb = '<div class="col_half center '+ look +'"><img src="../img/logos/'+programs[look].logo +'" /></div><div class="col_half col_last center '+ look +'"><p>'+programs[look].blurb +'</p></div>';
+
+  programs[look].items.forEach( function (element) {
+    programPreview =  '<div class="product clearfix '+ look +'"><div class="product-image"><a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no='+ element +'; peekView(this.id);"><img src="https://www.laurajanelle.com/ljjpgimages/'+ element +'-sm.jpg"></a><div class="product-overlay showcase">';
     programPreview += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no='+ element +'; peekView(this.id);"><i class="icon-zoom-in2"></i><span>Quick View</span></a></div></div>';
     programPreview += '<div class="product-desc"><div class="product-title"><h3><a href="#">Green Trousers</a></h3></div></div></div><div class="line identify"></div>';
 
     $("#shop").append(programPreview);
   });
+  $("#shop").prepend(programBlurb);
+
+
+  $(".sleek, .rglb, .SRK, .mantra, .encharming, .aura, .identify, #theLooks").fadeOut("slow");
+  $("."+look+", #shop").fadeIn("slow", function() {
+    // Animation complete
+    SEMICOLON.initialize.lightbox();
+  });
+
+  
 }
