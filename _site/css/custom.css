@@ -226,6 +226,9 @@ body.stretched #header.full-header.sticky-header .container {
 .rating-xs {
     font-size: 1.5em;
 }
+.toggle.toggle-bg.ui-group .togglec {
+	padding: 12px 0 0 6px
+}
 
 #mainRatingDiv a:hover {
 	color: blue;
