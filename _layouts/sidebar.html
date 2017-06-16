@@ -488,21 +488,9 @@ layout: compress
     </script>
     {% endif %}
 
-    	<script type="text/javascript">
+  <script type="text/javascript">
 
 		jQuery(document).ready(function($) {
-
-			var ocImages = $("#oc-images, #oc-images3");
-			ocImages.owlCarousel({
-				items: 1,
-        autoplay: true,
-				loop: true,
-				margin: 0,
-				nav: true,
-				navText: ['<i class="icon-angle-left"></i>','<i class="icon-angle-right"></i>'],
-				dots: false,
-				navRewind: false
-			});
 
 			var ocImages2 = $("#oc-slider");
 			ocImages2.owlCarousel({
@@ -518,6 +506,23 @@ layout: compress
 
 		});
 
+
+    /* Function to handle changes to style classes based on window width */
+      function checkWidth() {
+        if ($window.width() < 1300) {
+            $('#slider').removeClass('boxed-slider').addClass('slider-parallax');
+        };
+
+        if ($window.width() >= 1300) {
+            $("#slider").removeClass('slider-parallax').addClass('boxed-slider');
+        }
+      }
+        var $window = $(window);
+      /* Execute on load */
+      checkWidth();
+
+      /* Bind event listener */
+      $(window).resize(checkWidth);
 	</script>
     
   </body>
