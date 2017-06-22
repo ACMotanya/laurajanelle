@@ -12,236 +12,31 @@ var numberOfOrders;
 var orderAmt;
 var session_no;
 var shippingAddresses = [];
-var banned = [
-"11954",
-"11955",
-"11956",
-"11958",
-"11942",
-"11943",
-"11944",
-"11963",
-"11967",
-"11969",
-"11972",
-"11985",
-"11986",
-"11987",
-"11978",
-"11981",
-"11983",
-"11984",
-"11988",
-"11989",
-"11990",
-"11945",
-"11946",
-"11947",
-"11948",
-"11949",
-"11950",
-"11951",
-"11952",
-"11991",
-"11992",
-"11993",
-"11994",
-"11995",
-"11953",
-"11929",
-"11930",
-"11932",
-"11934",
-"11935",
-"11936",
-"11937",
-"11939",
-"11940",
-"11941",
-"10105",
-"10106",
-"10107",
-"10108",
-"10109",
-"10110",
-"10111",
-"10112",
-"10113",
-"10114",
-"11421",
-"11422",
-"11423",
-"11424",
-"11425",
-"11426",
-"11433",
-"11434",
-"11435",
-"11445",
-"11446",
-"11447",
-"11427",
-"11428",
-"11429",
-"11430",
-"11431",
-"11432",
-"11436",
-"11438",
-"11437",
-"11439",
-"11440",
-"11441",
-"11442",
-"11443",
-"11444",
-"11448",
-"11449",
-"11450",
-"11451",
-"11452",
-"11453",
-"11454",
-"11455",
-"11456",
-"11386",
-"11389",
-"11392",
-"11395",
-"11398",
-"11401",
-"11404",
-"11407",
-"11410",
-"11413",
-"11416",
-"11419",
-"11385",
-"11387",
-"11388",
-"11390",
-"11391",
-"11393",
-"11394",
-"11396",
-"11397",
-"11399",
-"11400",
-"11402",
-"11403",
-"11405",
-"11406",
-"11408",
-"11409",
-"11411",
-"11412",
-"11414",
-"11415",
-"11417",
-"11418",
-"11420",
-"13100",
-"13101",
-"13102",
-"13103",
-"13104",
-"13107",
-"13108",
-"13126",
-"13129",
-"13136",
-"13137",
-"13139",
-"12714",
-"12715",
-"12713",
-"12712",
-"12718",
-"12719",
-"12717",
-"12716",
-"12722",
-"12723",
-"12721",
-"12720",
-"12734",
-"12735",
-"12733",
-"12732",
-"12706",
-"12707",
-"12705",
-"12704",
-"12710",
-"12711",
-"12709",
-"12708",
-"12726",
-"12727",
-"12725",
-"12724",
-"12730",
-"12731",
-"12729",
-"12728",
-"11740",
-"11741",
-"10050",
-"10052",
-"11732",
-"11733",
-"10074",
-"10075",
-"10058",
-"10059",
-"10060",
-"10061",
-"10057",
-"10076",
-"10072",
-"10073",
-"12125",
-"12127",
-"12128",
-"12129",
-"12132",
-"12133",
-"12134",
-"12135",
-"12137",
-"12138",
-"12139",
-"12141",
-"12148",
-"12145",
-"12146",
-"12147",
-"10401",
-"10405",
-"10407",
-"10409",
-"10410",
-"10412",
-"10413",
-"10414",
-"12900",
-"12901",
-"12902",
-"12903",
-"12904",
-"12905",
-"12906",
-"12907"
-];
-
-
-
+var banned = [];
 var sortItems = [
-  "1041A", "1042A", "10388", "10389", "10390", "10391", "10392",
-  "10393", "10394", "10395", "10396", "10397", "10398", "10399",
-  "10400", "10416", "10415", "10417",
-  "10599A", "10584", "10585", "10586", "10587", "10588", "10589",
+  "11954", "11955", "11956", "11958", "11942", "11943", "11944", 
+  "11963", "11967", "11969", "11972", "11985", "11986", "11987", 
+  "11978", "11981", "11983", "11984", "11988", "11989", "11990", 
+  "11945", "11946", "11947", "11948", "11949", "11950", "11951", 
+  "11952", "11991", "11992", "11993", "11994", "11995", "11953", 
+  "11929", "11930", "11932", "11934", "11935", "11936", "11937",
+  "11939", "11940", "11941", "10105", "10106", "10107", "10108",
+  "10109", "10110", "10111", "10112", "10113", "10114", "1041A", 
+  "1042A", "10388","10389", "10390", "10391", "10392", "10393", "10394", 
+  "10395", "10396", "10397", "10398", "10399", "10400", "10416", "10415", 
+  "10417", "10599A", "10584", "10585", "10586", "10587", "10588", "10589",
   "10590", "10591", "10592", "10593", "10594", "10595", "CD051",
+  "11421", "11422", "11423", "11424", "11425", "11426", "11433",
+  "11434", "11435", "11445", "11446", "11447", "11427", "11428",
+  "11429", "11430", "11431", "11432", "11436", "11438", "11437", "11439",
+  "11440", "11441", "11442", "11443", "11444", "11448", "11449", "11450",
+  "11451", "11452", "11453", "11454", "11455", "11456", "11386", "11389",
+  "11392", "11395", "11398", "11401", "11404", "11407", "11410", "11413",
+  "11416", "11419", "11385", "11387", "11388", "11390", "11391", "11393",
+  "11394", "11396", "11397", "11399", "11400", "11402", "11403", "11405", 
+  "11406", "11408", "11409", "11411", "11412", "11414", "11415",
+  "11417", "11418", "11420", "1311A", "13100", "13101", "13102", "13103", 
+  "13104", "13107", "13108", "13126", "13129", "13136", "13137", "13139", 
   "11300B", "11349", "11350", "11351", "11352", "11353", "11354",
   "11355", "11356", "11357", "11358", "11359", "11360", "11361",
   "11362", "11363", "11364", "11365", "11366", "11367", "11368",
@@ -270,9 +65,15 @@ var sortItems = [
   "10709", "12100A", "CD121", "12101", "12102", "12103", "12104",
   "12105", "12106", "12107", "12108", "12109", "12110", "12111",
   "12112", "12113", "12114", "12115", "12116", "12117", "12118",
-  "12119", "12120", "12121", "12122", "12123", "12124", "12100B", "CD121A",
-  "PIL107", "CD107", "34737029", "EXT107G", "EXT107S", "10001A",
-  "10092", "10093", "10094", "10095", "10096", "10097", "10000A",
+  "12119", "12120", "12121", "12122", "12123", "12124", "12100B", 
+  "CD121A","PIL107", "CD107", "34737029", "EXT107G", "EXT107S", 
+  "12714", "12715", "12713", "12712", "12718", "12719", "12717", "12716",
+  "12722", "12723", "12721", "12720", "12734", "12735", "12733", "12732",
+  "12706", "12707", "12705", "12704", "12710", "12711", "12709", "12708",
+  "12726", "12727", "12725", "12724", "12730", "12731", "12729", "12728",
+  "11740", "11741", "10050", "10052", "11732", "11733", "10074", "10075",
+  "10058", "10059", "10060", "10061", "10057", "10076", "10072", "10073", 
+  "10001A", "10092", "10093", "10094", "10095", "10096", "10097", "10000A",
   "CD100", "10025", "10026", "10027", "10029", "10031", "10032",
   "10033", "10034", "10036", "10035", "10028", "10030", "10037",
   "10038", "10039", "10041", "10043", "10044", "10045", "10046",
@@ -283,11 +84,15 @@ var sortItems = [
   "10900A", "CD109", "10900B", "CD109A", "10929", "10969", "10978",
   "10917", "10941", "10942", "10943", "10930", "10939", "10947",
   "10944", "10945", "10946", "10954", "10932", "10934", "10935",
-  "10936", "10948", "10951", "10952", "10954","10955", "10957", "10959", "10970",
-  "10937", "10938", "10940", "10960", "10965", "10966", "10971",
+  "10936", "10948", "10951", "10952", "10954","10955", "10957", "10959",
+  "10970", "10937", "10938", "10940", "10960", "10965", "10966", "10971",
   "10974", "10975", "10976", "10972", "10973", "10977", "10979",
-  "10949", "10950", "10301A", "10375", "10376", "10377", "10378",
-  "10379", "10380", "10381", "10382", "10300A", "CD103", "10336",
+  "10949", "10950", "10401", "10405", "10407", "10409", "10410",
+  "10412", "10413", "10414",  "12900", "12901", "12902", "12903", 
+  "12904", "12905", "12906", "12907", "10301A", "10375", "10376", "10377", 
+  "10378", "10379", "10380", "10381", "10382", "12125", "12127", "12128",
+  "12129", "12132", "12133", "12134", "12135", "12137", "12138", "12139",
+  "12141", "12148", "12145", "12146", "12147", "10300A", "CD103", "10336",
   "10335", "10337", "10334", "10338", "10340", "10339", "10350",
   "10345", "10346", "10347", "10333", "10341", "10342", "10348",
   "10343", "10349", "10344", "10301", "10302", "10303", "10304",
@@ -371,7 +176,7 @@ function createCustomer()
 /////////////////////////////////////////
 function createUser()
 {
-  var newUserName        = $("#create-user-name").val();
+  var newUserName     = $("#create-user-name").val();
   var userPassword    = $("#create-user-password").val();
   var userNumber      = $("#create-user-number").val();
   var userEmail       = $("#create-user-email").val();
@@ -1828,11 +1633,21 @@ function whatType(typeCode)
     break;
     case "900": type = "Oil";
     break;
-    case "950": type = "Accessories";
+    case "950": type = "Accessory";
     break;
-    case "1000": type = "Scarves";
+    case "1000": type = "Scarf";
     break;
-    case "1100": type = "Pendants";
+    case "1100": type = "Pendant";
+    break;
+    case "1200": type = "Purse";
+    break;
+    case "1300": type = "Wristlet";
+    break;
+    case "1400": type = "Brooch";
+    break;
+    case "1500": type = "Ring";
+    break;
+    case "1600": type = "Versatile";
     break;
     default:
     type = "N/A";
@@ -1862,6 +1677,10 @@ function whatLook(lookCode)
     break;
     case "MAN": look = "MANTRA";
     break;
+    case "TRS": look = "Natural Treasures";
+    break;
+    case "TEM": look = "TEAM SPIRIT!";
+    break;
     default:
     look = "N/A";
   }
@@ -1881,6 +1700,8 @@ function whatMetal(metalCode)
     case "20": metal = "Silver";
     break;
     case "30": metal = "Antique Gold";
+    break;
+    case "40": metal = "Gunmetal";
     break;
     default:
     metal = "N/A";
@@ -2309,7 +2130,7 @@ function peekView(clicked_id)
 			document.getElementById("quickViewimages").innerHTML = '<div class="slide" style="display: block;"><a href="#shop"><img src="https://www.laurajanelle.com/ljjpgimages/' + stock_no + '-md.jpg" alt="' + fields[1] + '"></a></div>';
 
       jQuery( "#secondColumn").prepend('<div><a href="#shop" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/logos/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div><div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + stock_no + '</span></span></div>');
-      secondColumnQuick = '<a href="#" class="button button-black side-panel-trigger t300">login to see pricing</a><div class="line"></div>';
+      secondColumnQuick = '<a href="#" class="button button-black t300" onclick="showSidePanel();">login to see pricing</a><div class="line"></div>';
       if (fields[8].length !== 0)  {
          secondColumnQuick += '<p>' + fields[8] + '</p>';
       } else {
@@ -2322,11 +2143,22 @@ function peekView(clicked_id)
   });
 }
 
+
+function showSidePanel()
+{
+  $('.mfp-close').click();
+  setTimeout(function(){ $('a.side-panel-trigger').click(); }, 250);
+}
+
+
 function showLook(look)
 {
+  $("#shop").empty();
+
   programs = {
     "sleek":  { 
-      "items": ["10092", "10000A", "10029", "10038", "10044", "10042", "10019", "10004"],
+      "items": ["10092", '117BES', "10029", "10038", "10044", "10042", "10019", "10004"],
+      "description": [],
       "blurb": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus adipisci laborum placeat delectus labore cupiditate deserunt minus numquam consequatur esse, hic at earum illo animi eaque et, dolorem quo qui eos? Quam rerum possimus maxime veniam aut ratione eveniet aliquid cumque aspernatur ipsum libero quaerat, nam. Ad, sunt, error!",
       "logo":  "SLK-logo.png"
     },
@@ -2342,6 +2174,7 @@ function showLook(look)
     },
     "mantra":{ 
       "items": ["10301A", "10375", "10377", "10378", "10379", "10380", "10381", "10382"],
+      "description": [],
       "blurb": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus adipisci laborum placeat delectus labore cupiditate deserunt minus numquam consequatur esse, hic at earum illo animi eaque et, dolorem quo qui eos? Quam rerum possimus maxime veniam aut ratione eveniet aliquid cumque aspernatur ipsum libero quaerat, nam. Ad, sunt, error!",
       "logo":  "MAN-logo.png"
     },
@@ -2359,21 +2192,24 @@ function showLook(look)
       "items": ["10588", "10500A", "10501", "10519", "10505", "10525", "10516", "10599A"],
       "blurb": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus adipisci laborum placeat delectus labore cupiditate deserunt minus numquam consequatur esse, hic at earum illo animi eaque et, dolorem quo qui eos? Quam rerum possimus maxime veniam aut ratione eveniet aliquid cumque aspernatur ipsum libero quaerat, nam. Ad, sunt, error!",
       "logo":  "IDT-logo.png"
+    },
+    "treasures":{ 
+      "items": ["11958", "11942", "11954", "11953", "11956", "11951", "11986", "11934"],
+      "blurb": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus adipisci laborum placeat delectus labore cupiditate deserunt minus numquam consequatur esse, hic at earum illo animi eaque et, dolorem quo qui eos? Quam rerum possimus maxime veniam aut ratione eveniet aliquid cumque aspernatur ipsum libero quaerat, nam. Ad, sunt, error!",
+      "logo":  "TRS-logo.png"
     }
   };
   
-  var programBlurb = '<div class="col_half center '+ look +'"><img src="../img/logos/'+programs[look].logo +'" /></div><div class="col_half col_last center '+ look +'"><p>'+programs[look].blurb +'</p></div>';
+  var programBlurb  = '<div class="center showLooksButton"><button type="button" class="button button-black t300" style="width: 80%;" onclick="$(\'#shop\').fadeOut(\'slow\'); $(\'#theLooks\').fadeIn(\'slow\');">See All Looks</button></div><div class="line"></div>';
+      programBlurb += '<div class="col_half center '+ look +'"><img src="../img/logos/'+ programs[look].logo +'" /></div><div class="col_half col_last center '+ look +'"><p>'+ programs[look].blurb +'</p></div>';
 
   programs[look].items.forEach( function (element) {
-    programPreview =  '<div class="product clearfix '+ look +'"><div class="product-image"><a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no='+ element +'; peekView(this.id);"><img src="https://www.laurajanelle.com/ljjpgimages/'+ element +'-sm.jpg"></a><div class="product-overlay showcase">';
-    programPreview += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no='+ element +'; peekView(this.id);"><i class="icon-zoom-in2"></i><span>Quick View</span></a></div></div>';
-    programPreview += '<div class="product-desc"><div class="product-title"><h3><a href="#">Green Trousers</a></h3></div></div></div><div class="line identify"></div>';
-
+    programPreview =  '<div class="product clearfix "><div class="product-image"><a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\''+ element +'\'; peekView();"><img class="fadeInUp animated" src="https://www.laurajanelle.com/ljjpgimages/'+ element +'-sm.jpg"></a><div class="product-overlay showcase">';
+    programPreview += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\''+ element +'\'; peekView();"><i class="icon-zoom-in2"></i><span>Quick View</span></a></div></div></div>';
     $("#shop").append(programPreview);
   });
+
   $("#shop").prepend(programBlurb);
-
-
   $(".sleek, .rglb, .SRK, .mantra, .encharming, .aura, .identify, #theLooks").fadeOut("slow");
   $("."+look+", #shop").fadeIn("slow", function() {
     // Animation complete
