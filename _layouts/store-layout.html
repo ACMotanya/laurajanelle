@@ -146,11 +146,11 @@ layout: compress
     $(window).on('hashchange', function() {
       whichPage();
     });
-    $(function() {
 
+    $(function() {
       whichPage();
       sessionNumber();
-      filterFunction2('APISTKLST','80010300','','','','',session_no,'800');
+      filterFunction2('APISTKLST','80011400','','','','',session_no,'800');
       $('nav ul li a').click(function() {
         var $linkClicked = $(this).attr('href');
         document.location.hash = $linkClicked;
@@ -176,8 +176,6 @@ layout: compress
       $("a#showDeliveryChart").show();
     });
     </script>
-    	    
-
   </body>
 
 </html>
