@@ -306,6 +306,12 @@ div.toggle.toggle-bg.ui-group > div.togglec > div > label {
 	padding: 30px 0 0 0;
 }
 
+p.aboutblocks {
+	font-size: 17px; 
+	color:#111111; 
+	font-family: 'EB Garamond';
+}
+
 div.container.clearfix video.about {
 	display: block;
 	width: 70%;

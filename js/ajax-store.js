@@ -218,7 +218,7 @@ function createUser()
 ////////////////////////////////////////
 function login()
 {
-  if ( sessionStorage.getItem('session_no') && typeof(sessionStorage.getItem('session_no')) === "string" && sessionStorage.getItem('session_no').length === 25 ) {   
+  if ( localStorage.getItem('session_no') && typeof(localStorage.getItem('session_no')) === "string" && localStorage.getItem('session_no').length === 25 ) {   
     windowHash("shop");
     redirect("store");
   }
@@ -254,11 +254,11 @@ function login()
             if (answer === "0") {
               $.get("https://www.laurajanelle.com/phphelper/savecart/session.php?customer=" + username.toLowerCase() + "&sessid=" + response + "");
               session_no = response.replace(/\s+/g,'');
-              sessionStorage.setItem('session_no', session_no);
+              localStorage.setItem('session_no', session_no);
             } else if (answer.length === 25 ) {
-              sessionStorage.setItem('session_no', answer);
+              localStorage.setItem('session_no', answer);
             }
-            sessionStorage.setItem('username', username);
+            localStorage.setItem('username', username);
           }).done(function() {
             windowHash("shop");
             redirect("store");
@@ -279,25 +279,25 @@ function login()
 ///////////////////////////////////////
 function newCustomerSession()
 {
-  if (!sessionStorage.getItem('newCustomer')) {
+  if (!localStorage.getItem('newCustomer')) {
     $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APIHISTLST&session_no=" + session_no + "", function( data ) {
       invoiceLines = data.split("\n");
       if (invoiceLines.length >= 3) {
-        sessionStorage.setItem('newCustomer', "false");
+        localStorage.setItem('newCustomer', "false");
       } else {
         $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APIORDLST&session_no=" + session_no + "", function( ordData ) {
           openOrderLines = ordData.split("\n");
           if ( openOrderLines.length <= 2) {
-            sessionStorage.setItem('newCustomer', "true");
+            localStorage.setItem('newCustomer', "true");
           } else {
-            sessionStorage.setItem('newCustomer', "false");
+            localStorage.setItem('newCustomer', "false");
           }
         });
       }
     });
   }
 
-  username = sessionStorage.getItem('username').toUpperCase();
+  username = localStorage.getItem('username').toUpperCase();
 
   $.ajax({
     type: "GET",
@@ -313,9 +313,9 @@ function newCustomerSession()
      
       for (i=0; i<lines.length - 1; i++) {
         details = lines[i].split("|");
-        sessionStorage.setItem('cust_no', details[1]);
-        sessionStorage.setItem('cust_name', details[2]);
-        sessionStorage.setItem('email_addr', details[3]);
+        localStorage.setItem('cust_no', details[1]);
+        localStorage.setItem('cust_name', details[2]);
+        localStorage.setItem('email_addr', details[3]);
       }
     }
   });
@@ -343,8 +343,8 @@ function addItemDetailView()
   }
 
   // Save color and type in the 
-  if (!sessionStorage.getItem(stock_no) || sessionStorage.getItem(stock_no) === "undefined" || sessionStorage.getItem(stock_no) === null ) {
-    sessionStorage.setItem(stock_no, detailString);
+  if (!localStorage.getItem(stock_no) || localStorage.getItem(stock_no) === "undefined" || localStorage.getItem(stock_no) === null ) {
+    localStorage.setItem(stock_no, detailString);
   }
 
   addItemGeneric(session_no, stock_no, detailViewQty);
@@ -508,14 +508,14 @@ function detailView(callback, callback2) {
   var stock_no = hash[1];
   var productRating = [];
 
-  if (hash.length === 5) {
+  if (hash[3] !== "" && hash.length === 5) {
     detailString = window.location.hash;
     color = hash[2];
     type = hash[3];
     metal = hash[4];
-    sessionStorage.setItem(stock_no, detailString);
-  } else if (sessionStorage.getItem(stock_no) !== null && sessionStorage.getItem(stock_no) != "undefined" && sessionStorage.getItem(stock_no).length >= 15) { //  add back if undefined ever comes up again
-    dets = sessionStorage.getItem(stock_no).split("+");
+    localStorage.setItem(stock_no, detailString);
+  } else if (localStorage.getItem(stock_no) !== null && localStorage.getItem(stock_no) != "undefined" && localStorage.getItem(stock_no).length >= 15) { //  add back if undefined ever comes up again
+    dets = localStorage.getItem(stock_no).split("+");
     color = dets[2];
     type = dets[3];
     metal = dets[4];
@@ -620,9 +620,9 @@ function populateDetailView(secondImage, color, type, metal, callback, callback2
 ///////////////////////////////////
 function populateQuestionModal()
 {
-  var cust_name = sessionStorage.getItem("cust_name").trim();
-  var cust_no = sessionStorage.getItem("cust_no").trim();
-  var email_addr = sessionStorage.getItem("email_addr").trim();
+  var cust_name = localStorage.getItem("cust_name").trim();
+  var cust_no = localStorage.getItem("cust_no").trim();
+  var email_addr = localStorage.getItem("email_addr").trim();
   var question = $('#questionField').val();
   var hash = window.location.hash.split("+");
   var stock_no = hash[1];
@@ -683,9 +683,9 @@ function getQuestions(stock_no)
 //////////////////////////////
 function populateReviewModal()
 {
-  var cust_name = sessionStorage.getItem("cust_name").trim();
-  var cust_no = sessionStorage.getItem("cust_no").trim();
-  var email_addr = sessionStorage.getItem("email_addr").trim();
+  var cust_name = localStorage.getItem("cust_name").trim();
+  var cust_no = localStorage.getItem("cust_no").trim();
+  var email_addr = localStorage.getItem("email_addr").trim();
   var hash = window.location.hash.split("+");
   var stock_no = hash[1];
   var rLines;
@@ -1395,7 +1395,7 @@ function windowHash(name)
 /////////////////////////////////////////////////////
 function sessionNumber()
 {
-  session_no = sessionStorage.getItem('session_no');
+  session_no = localStorage.getItem('session_no');
   if (typeof(session_no) === "undefined" || session_no.length !== 25) {
     pathArray = window.location.pathname.split( '/' );
     pathArray[pathArray.length - 2] = "retailerlogin";
@@ -1419,9 +1419,9 @@ function displayAddress(index) {
 
 function logoff()
 {
-  sessionStorage.removeItem('session_no');
-  sessionStorage.removeItem('newCustomer');
-  sessionStorage.removeItem('username');
+  localStorage.removeItem('session_no');
+  localStorage.removeItem('newCustomer');
+  localStorage.removeItem('username');
   redirect("");
 }
 
@@ -1481,14 +1481,14 @@ function reviewOrder()
 ////////////////////////////////
 function employeeDiscount()
 {
-  username = sessionStorage.getItem("username");
+  username = localStorage.getItem("username");
   usernameSplit = username.split("");
   employee = usernameSplit.slice(0,3).join("");
 }
 
 function minimumTotal()
 { 
-  newCustomer = sessionStorage.getItem('newCustomer');
+  newCustomer = localStorage.getItem('newCustomer');
   orderAmt = cartHeaderFields[22].trim();
   orderAmtFloat = parseFloat(orderAmt.replace(/,/g,''));
 
@@ -1973,7 +1973,7 @@ function shopPage()
 function checkoutPage()
 {
   employeeDiscount();
-  session_no = sessionStorage.getItem('session_no');
+  session_no = localStorage.getItem('session_no');
   cartList();
   cartHeader(minimumTotal); // cartHeader(); cartHeader(minimumTotal);
 
@@ -2026,7 +2026,7 @@ function whichPage()
     case '#profile' :
       window.scrollTo(0, 0);
       $('#profile').show();
-      username = sessionStorage.getItem('username').toUpperCase();
+      username = localStorage.getItem('username').toUpperCase();
       accountDetails();
       $("#myButtonProfile").click(function() {
         var hasErrors = $('#shipping-form-profile').validator('validate').has('.has-error').length;
