@@ -9,16 +9,15 @@ title: Shop
 		float: none;
 		width: 100%;
 	}
-
 	
-	.sleek, .rglb,
-	.SRK,
-	.mantra,
-	.encharming,
-	.aura,
-	.identify,
-	#shop {
+	.sleek, .rglb, .SRK, .mantra, .encharming, .aura, .identify, #shop {
 		display: none;
+	}
+
+	@media (max-width: 991px) {
+		.addbottommargin {
+			margin-bottom: 10px;
+		}
 	}
 </style>
 
@@ -26,15 +25,15 @@ title: Shop
 ============================================= -->
 
 <section id="content">
-	<div class="content-wrap">
-		<div class="container clearfix">
-			<a href="#" class="button button-black side-panel-trigger t300 fright">Retailer Login</a>
+	<div class="content-wrap notoppadding">
+		<div id="retailerloginbutton" class="container clearfix">
+			<a href="#" class="button button-black side-panel-trigger t300 bottommargin-sm">Retailer Login</a>
 			<div class="heading-block noborder center">
 				<h3>Explore Laura Janelle.</h3>
 				<!-- <span>Discover all your fashion possibilities with us </span> -->
 			</div>
 		</div>
-		<div id="theLooks" class="container clearfix">
+		<div id="theLooks" class="container clearfix center">
 			<div style="max-width: 1170px; margin: auto;">
 				<div class="col-md-8 nopadding">
 					<div class="col-md-6 noleftpadding" style="margin-bottom: 15px;">
@@ -47,7 +46,7 @@ title: Shop
 
 					<div class="clear"></div>
 
-					<div class="col-md-12 noleftpadding">
+					<div class="col-md-12 noleftpadding addbottommargin">
 						<a href="#shop" onclick="showLook('rglb')"><img class="fadeInUp animated" src="{{ site.baseurl }}/img/login/shop-7.png" alt="Image"></a>
 					</div>
 				</div>

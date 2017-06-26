@@ -151,6 +151,11 @@ layout: compress
     {% include js.html %}
  
 
+
+
+
+
+
     {% if page.url == "/findstore/" %}
     <style>
     footer {
@@ -184,13 +189,20 @@ layout: compress
     </script>
     {% endif %}
 
+
+
+
+
+
+
+
     {% if page.url == "/careers/" %}
     <!-- gets rid of random line of demarcation  on headings*/ -->
-      <style>
-      .heading-block:after {
-        display: none;
-      }
-      </style>
+    <style>
+    .heading-block:after {
+      display: none;
+    }
+    </style>
 
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
@@ -201,20 +213,25 @@ layout: compress
       }
     </script>
 
-
-      <script defer>
-  		$(document).ready(function() {
-        $("#validateButton").click(function() {
-  				var hasErrors = $('#template-jobform').validator('validate').has('.has-error').length;
-  		    if (hasErrors) {
-  		      alert('Job application has errors.');
-  		    } else {
-  					$("#apply").click();
-  				}
-  			});
-  		});
-  		</script>
+    <script defer>
+    $(document).ready(function() {
+      $("#validateButton").click(function() {
+        var hasErrors = $('#template-jobform').validator('validate').has('.has-error').length;
+        if (hasErrors) {
+          alert('Job application has errors.');
+        } else {
+          $("#apply").click();
+        }
+      });
+    });
+    </script>
     {% endif %}
+
+
+
+
+
+
 
     {% if page.url == "/contact/" %}
     
@@ -259,220 +276,55 @@ layout: compress
     </script>
     {% endif %}
 
-    {% if page.url == "/thelooks/" %}
-    <!-- SLIDER REVOLUTION 5.x SCRIPTS  -->
-    <script defer src="{{ "/include/rs-plugin/js/jquery.themepunch.tools.min.js" | prepend: site.baseurl }}"></script>
-    <script defer src="{{ "/include/rs-plugin/js/jquery.themepunch.revolution.min.js" | prepend: site.baseurl }}"></script>
-    <script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.parallax.min.js" | prepend: site.baseurl }}"></script>
-    <script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.slideanims.min.js" | prepend: site.baseurl }}"></script>
-    <script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.carousel.min.js" | prepend: site.baseurl }}"></script>
-    <script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.actions.min.js" | prepend: site.baseurl }}"></script>
-    <script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js" | prepend: site.baseurl }}"></script>
-    <script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.navigation.min.js" | prepend: site.baseurl }}"></script>
-    <script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.video.min.js" | prepend: site.baseurl }}"></script>
+    
 
-    <script defer>
-      var tpj = jQuery;
-      var revapi287;
-      tpj(document).ready(function() {
-        if (tpj("#rev_slider_287_1").revolution == undefined) {
-          revslider_showDoubleJqueryError("#rev_slider_287_1");
-        } else {
-          revapi287 = tpj("#rev_slider_287_1").show().revolution({
-            sliderType: "standard",
-            jsFileLocation: "include/rs-plugin/js/",
-          /*  sliderLayout: "fullscreen", */
-            dottedOverlay: "none",
-            delay: 5000,
-            navigation: {
-              keyboardNavigation: "off",
-              keyboard_direction: "horizontal",
-              mouseScrollNavigation: "off",
-              onHoverStop: "off",
-              touch: {
-                touchenabled: "on",
-                swipe_threshold: 75,
-                swipe_min_touches: 50,
-                swipe_direction: "horizontal",
-                drag_block_vertical: false
-              },
-              arrows: {
-                style: "uranus",
-                enable: true,
-                hide_onmobile: true,
-                hide_under: 778,
-                hide_onleave: true,
-                hide_delay: 200,
-                hide_delay_mobile: 1200,
-                tmp: '',
-                left: {
-                  h_align: "left",
-                  v_align: "center",
-                  h_offset: 20,
-                  v_offset: 0
-                },
-                right: {
-                  h_align: "right",
-                  v_align: "center",
-                  h_offset: 20,
-                  v_offset: 0
-                }
-              }
-            },
-            responsiveLevels: [1240, 991, 778, 480],
-            gridwidth: [1240, 1024, 778, 480],
-            gridheight:[868,768,960,720],
-            lazyType: "none",
-            parallax: {
-              type: "scroll",
-              origo: "enterpoint",
-              speed: 400,
-              levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 46, 47, 48, 49, 50, 51, 55],
-              type: "scroll",
-            },
-            shadow: 0,
-            spinner: "off",
-            stopLoop: "off",
-            stopAfterLoops: -1,
-            stopAtSlide: -1,
 
-            shuffle: "on",
-            autoHeight: "off",
-            fullScreenAutoWidth: "off",
-            fullScreenAlignForce: "off",
-            fullScreenOffsetContainer: "",
-            disableProgressBar: "on",
-            hideThumbsOnMobile: "off",
-            hideSliderAtLimit: 0,
-            hideCaptionAtLimit: 0,
-            hideAllCaptionAtLilmit: 0,
-            debugMode: false,
-            fallbacks: {
-              simplifyAll: "off",
-              nextSlideOnWindowFocus: "off",
-              disableFocusListener: false,
-            }
-          });
-        }
-      }); /*ready*/
-    </script>
-    {% endif %}
+
+
+
 
     {% if page.url == "/" %}
-    <div id="logo" class="notopmargin nobottommargin leftmargin sidebar-desktop-logo">
-      <a style="position: relative; z-index:99;" href="{{ site.baseurl }}/" class="standard-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/logos/lj-logo-2.png" alt="Laura Janelle Logo"></a>
-      <a style="position: relative; z-index:99;" href="{{ site.baseurl }}/" class="retina-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/logos/lj-logo-2.png" alt="Laura Janelle Logo"></a>
-    </div><!-- #logo end -->
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        var ocImages2 = $("#oc-slider");
+        ocImages2.owlCarousel({
+          items: 1,
+          autoplay: true,
+          loop: true,
+          margin: 0,
+          nav: true,
+          navText: ['<i class="icon-angle-left"></i>','<i class="icon-angle-right"></i>'],
+          dots: false,
+          navRewind: false
+        });
+      });
 
-    <style>
-      @media (min-width: 991px) {
-        div#logo.page-logo > a > img {
-          display: none !important;
+
+      /* Function to handle changes to style classes based on window width */
+      var $window = $(window);
+      function checkWidth() {
+        if ($window.width() < 1300) {
+            $('#slider').removeClass('boxed-slider').addClass('slider-parallax');
+        };
+
+        if ($window.width() >= 1300) {
+            $("#slider").removeClass('slider-parallax').addClass('boxed-slider');
         }
       }
-      </style>
-    <!-- SLIDER REVOLUTION 5.x SCRIPTS  -->
-    <script defer src="{{ "/include/rs-plugin/js/jquery.themepunch.tools.min.js" | prepend: site.baseurl }}"></script>
-    <script defer src="{{ "/include/rs-plugin/js/jquery.themepunch.revolution.min.js" | prepend: site.baseurl }}"></script>
-    <script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.video.min.js" | prepend: site.baseurl }}"></script>
-    <script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.slideanims.min.js" | prepend: site.baseurl }}"></script>
-    <script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.actions.min.js" | prepend: site.baseurl }}"></script>
-    <script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js" | prepend: site.baseurl }}"></script>
-    <script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.navigation.min.js" | prepend: site.baseurl }}"></script>
-    <script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.parallax.min.js" | prepend: site.baseurl }}"></script>
+        
+      /* Execute on load */
+      checkWidth();
 
-    <script defer>
-    $( "div#logo a img" ).addClass( "divcenter" );
-    $( "div#logo" ).removeClass( "leftmargin" );
-
-		var tpj=jQuery;
-		var revapi4;
-
-		tpj(document).ready(function() {
-			if(tpj("#rev_slider_4_1").revolution == undefined){
-				revslider_showDoubleJqueryError("#rev_slider_4_1");
-			}else{
-				revapi4 = tpj("#rev_slider_4_1").show().revolution({
-					sliderType:"standard",
-					jsFileLocation:"include/rs-plugin/js/",
-				/*	sliderLayout:"fullwidth", */
-					dottedOverlay:"none",
-					delay: 2500,
-					navigation: {
-						keyboardNavigation:"on",
-						keyboard_direction: "horizontal",
-						mouseScrollNavigation:"off",
-						 mouseScrollReverse:"default",
-						onHoverStop:"off",
-						touch:{
-							touchenabled:"on",
-							swipe_threshold: 75,
-							swipe_min_touches: 1,
-							swipe_direction: "horizontal",
-							drag_block_vertical: false
-						}
-						,
-						arrows: {
-							style:"metis",
-							enable:true,
-							hide_onmobile:true,
-							hide_under:768,
-							hide_onleave:false,
-							tmp:'',
-							left: {
-								h_align:"left",
-								v_align:"center",
-								h_offset:0,
-								v_offset:0
-							},
-							right: {
-								h_align:"right",
-								v_align:"center",
-								h_offset:0,
-								v_offset:0
-							}
-						}
-					},
-					responsiveLevels:[1240,1024,778,480],
-					visibilityLevels:[1240,1024,778,480],
-					gridwidth:[1400,1200,1000,480],
-					gridheight:[1000,900,700,700],
-					lazyType:"single",
-					parallax: {
-						type:"", /* 3D */
-						origo:"slidercenter",
-						speed:400,
-						levels:[5,10,15,20,25,30,35,40,-5,-10,-15,-20,-25,-30,-35,55],
-						type:"", /* 3D */
-						ddd_shadow:"off",
-						ddd_bgfreeze:"off",
-						ddd_overflow:"visible",
-						ddd_layer_overflow:"visible",
-						ddd_z_correction:65,
-						disable_onmobile:"on"
-					},
-					spinner:"off",
-					stopLoop:"off",
-					stopAfterLoops:-1, /* 0 */
-					stopAtSlide:-1, /* 1 */
-					shuffle:"off",
-					autoHeight:"off",
-					disableProgressBar:"on",
-					hideThumbsOnMobile:"off",
-					hideSliderAtLimit:0,
-					hideCaptionAtLimit:0,
-					hideAllCaptionAtLilmit:0,
-					debugMode:false,
-					fallbacks: {
-						simplifyAll:"off",
-						nextSlideOnWindowFocus:"off",
-						disableFocusListener:false,
-					}
-				});
-			}
-		});	/*ready*/
+      /* Bind event listener */
+      $(window).resize(checkWidth);
 	  </script>
     {% endif %}
+
+
+
+
+
+
 
     {% if page.url == "/discover/" %}
     <style>
@@ -485,46 +337,24 @@ layout: compress
       $(document).ready(function() {
         login();
       });
-    </script>
-    {% endif %}
-
-  <script type="text/javascript">
-
-		jQuery(document).ready(function($) {
-
-			var ocImages2 = $("#oc-slider");
-			ocImages2.owlCarousel({
-				items: 1,
-        autoplay: true,
-				loop: true,
-				margin: 0,
-				nav: true,
-				navText: ['<i class="icon-angle-left"></i>','<i class="icon-angle-right"></i>'],
-				dots: false,
-				navRewind: false
-			});
-
-		});
-
-
-    /* Function to handle changes to style classes based on window width */
+      var $window = $(window);
       function checkWidth() {
-        if ($window.width() < 1300) {
-            $('#slider').removeClass('boxed-slider').addClass('slider-parallax');
+        if ($window.width() < 978) {
+            $('#retailerloginbutton').addClass('center');
         };
 
-        if ($window.width() >= 1300) {
-            $("#slider").removeClass('slider-parallax').addClass('boxed-slider');
-        }
+        if ($window.width() >= 978) {
+            $("#retailerloginbutton").removeClass('center');
+        };
       }
-        var $window = $(window);
+        
       /* Execute on load */
       checkWidth();
 
       /* Bind event listener */
       $(window).resize(checkWidth);
-	</script>
-    
+    </script>
+    {% endif %}    
   </body>
 
 </html>
