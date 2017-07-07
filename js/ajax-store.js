@@ -1578,27 +1578,27 @@ function whatColor(colorCode)
     case "9": color = "Opal";
       break;
     case "10": color = "Orange";
-    break;
+      break;
     case "11": color = "Pink";
-    break;
+      break;
     case "12": color = "Purple";
-    break;
+      break;
     case "13": color = "Rainbow";
-    break;
+      break;
     case "14": color = "Red";
-    break;
+      break;
     case "15": color = "Tan";
-    break;
+      break;
     case "16": color = "Teal";
-    break;
+      break;
     case "17": color = "Turquoise";
-    break;
+      break;
     case "18": color = "White";
-    break;
+      break;
     case "19": color = "Yellow";
-    break;
+      break;
     case "20": color = "Mulitcolored";
-    break;
+      break;
     default:
     color = "N/A";
   }
