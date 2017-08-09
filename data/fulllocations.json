@@ -17249,5 +17249,16 @@
     "state": "ME",
     "postal": "4030",
     "phone": "207-838-4929"
+  },
+  {
+    "id": "1567",
+    "name": "Spanky Jane's Bunker",
+    "lat": "35.7324758",
+    "lng": "-81.3420691",
+    "address": "204-D Union Square NW",
+    "city": "Hickory",
+    "state": "NC",
+    "postal": "28601",
+    "phone": "828-612-0102"
   }
 ]

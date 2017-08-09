@@ -1062,7 +1062,7 @@ function openOrders()
        fields.splice(6, 1);
        fields.splice(6, 1);
        openfldsArray.data.push(fields);
-     }
+    }
      openfldsArray = JSON.stringify(openfldsArray);
      openfldsArray_json = $.parseJSON(openfldsArray);
    },
@@ -1459,7 +1459,6 @@ function reviewOrder()
       return reviewedItems.indexOf(val) == -1;
     });
     
-
     orderItems.forEach(function(element) {
       console.log(element);
 
@@ -2042,7 +2041,7 @@ function whichPage()
       });
       $('#invoiceNumber').keypress(function(e){
         if(e.which == 13){//Enter key pressed
-          $('#searchButton').click();//Trigger search button click event
+          $('#searchForInvoices').click();//Trigger search button click event
         }
       });
       break;
@@ -2058,7 +2057,7 @@ function whichPage()
       });
       $('#orderNumber').keypress(function(e){
         if(e.which == 13){//Enter key pressed
-          $('#searchButton').click();//Trigger search button click event
+          $('#searchForOrders').click();//Trigger search button click event
         }
       });
       break;
@@ -2077,10 +2076,7 @@ function whichPage()
       window.scrollTo(0, 0);
       $('#faq').show();
       break;
-    case '#customerservice' :
-      window.scrollTo(0, 0);
-      $('#customerservice').show();
-      break;
+
     case '#search' :
       window.scrollTo(0, 0);
       $('#search').show();
