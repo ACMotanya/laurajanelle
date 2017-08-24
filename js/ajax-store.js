@@ -1765,6 +1765,8 @@ function search()
 //////////////////////////
 function filterFunction2(a,b,c,d,e,f,g,h)
 {
+  // Delete after October PLease!!!!
+  $('#breast-cancer-banner').remove();
   $.ajax({
     type: "GET",
     url: "https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?",
@@ -1810,7 +1812,7 @@ function itemRender(div,response)
       flds = linesPlus[i];
 
       // blocking out new items for encharming
-      /* if ( banned.indexOf(flds[0].trim()) != -1 ) { continue; } */
+       if ( banned.indexOf(flds[0].trim()) != -1 ) { continue; } 
 
       stringOfDetails = flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim();
 <<<<<<< HEAD
@@ -2105,6 +2107,19 @@ function whichPage()
       $('#shop').show();
       shopPage();
   }
+}
+
+function ljPink()
+{
+  $('#breast-cancer-banner').remove();
+  $('#shopItems').empty();
+
+  $('#shopItems').before('<img id="breast-cancer-banner" src="../img/lj-pink-banner.jpg">');
+  breastprod =  '<div class="product clearfix GLB 11 800 1"><div class="product-image"><a href="#detail-view+1238AST+11+800+"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/1238AST-sm.jpg" alt="RGLB BRACELET BC ASSORTMENT"></a><div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 1238AST has been added to your cart!" onclick="stock_no=\'1238AST\'; detailString=\'#detail-view+1238AST+11+800+\'; addItemDetailView(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a><a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'1238AST\'; quickView(this.id);" id="1238AST+11+800+"><i class="icon-zoom-in2"></i><span id="1238AST+11+800+">Quick View</span></a></div></div><div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+1238AST+11+800+">RGLB BRACELET BREAST CANCER ASSORTMENT</a></h3></div><div class="product-price">cost &nbsp;<ins>$225.75</ins></div></div></div>';
+  breastprod += '<div class="product clearfix MAN 11 1000 1"><div class="product-image"><a href="#detail-view+12330+11+1000+"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/12330-sm.jpg" alt="MANTRA SCARF"></a><div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 12330 has been added to your cart!" onclick="stock_no=\'12330\'; detailString=\'#detail-view+12330+11+1000+\'; addItemDetailView(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a><a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'12330\'; quickView(this.id);" id="12330+11+1000+"><i class="icon-zoom-in2"></i><span id="12330+11+1000+">Quick View</span></a></div></div><div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+12330+11+1000+">MANTRA BREAST CANCER AWARENESS SCARF</a></h3></div><div class="product-price">cost &nbsp;<ins>$8.75</ins></div></div></div>';
+  breastprod += '<div class="product clearfix GLB 800 1"><div class="product-image"><a href="#detail-view+12100B++800+"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/12100B-sm.jpg" alt="AWARENESS BRACELET ASSORTMENT"></a><div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 12100B has been added to your cart!" onclick="stock_no=\'12100B\'; detailString=\'#detail-view+12100B++800+\'; addItemDetailView(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a><a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'12100B\'; quickView(this.id);" id="12100B++800+"><i class="icon-zoom-in2"></i><span id="12100B++800+">Quick View</span></a></div></div><div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+12100B++800+">KNOT BRACELET BREAST CANCER AWARENESS ASSORTMENT</a></h3></div><div class="product-price">cost &nbsp;<ins>$232.00</ins></div></div></div>';
+  $('#shopItems').html(breastprod);
+
 }
 
 

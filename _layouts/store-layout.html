@@ -14,13 +14,9 @@ layout: compress
       <!-- Header
       ============================================= -->
       <header id="header" class="full-header">
-
         <div id="header-wrap">
-
           <div class="container clearfix">
-
             <div id="primary-menu-trigger" class="page-trigger"><i class="icon-reorder"></i></div>
-
             <!-- Logo
             ============================================= -->
             <div id="logo" class="page-logo">
@@ -31,7 +27,6 @@ layout: compress
             <!-- Primary Navigation
             ============================================= -->
             <nav id="primary-menu">
-
               <ul>
                 <li><a href="/"><div>Home</div></a></li>
                 <li><a href="#shop"><div>Shop</div></a></li>
@@ -49,9 +44,7 @@ layout: compress
               <!-- Top Cart
               ============================================= -->
               <div id="top-cart">
-                <a href="#cart" id="top-cart-trigger"><i class="icon-shopping-cart"></i>
-     
-                </a>
+                <a href="#cart" id="top-cart-trigger"><i class="icon-shopping-cart"></i></a>
                 <div class="top-cart-content">
                   <div class="top-cart-title">
                     <h4>Shopping Cart</h4>
@@ -74,13 +67,9 @@ layout: compress
                   <input id="searchvalue" type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter.." onKeyPress="return search();">
                 </form>
               </div><!-- #top-search end -->
-
             </nav><!-- #primary-menu end -->
-
           </div>
-
         </div>
-
       </header><!-- #header end -->
 
       {{ content }}
@@ -141,7 +130,7 @@ layout: compress
     {% include js.html %}
 
     <script defer type="text/javascript" src="{{ "/js/components/star-rating.min.js" | prepend: site.baseurl }}"></script>
- 
+ <!-- filterFunction2('APISTKLST','80011400','','','','',session_no,'800'); -->
     <script defer>
     $(window).on('hashchange', function() {
       whichPage();
@@ -150,7 +139,7 @@ layout: compress
     $(function() {
       whichPage();
       sessionNumber();
-      filterFunction2('APISTKLST','80011400','','','','',session_no,'800');
+      ljPink();
       $('nav ul li a').click(function() {
         var $linkClicked = $(this).attr('href');
         document.location.hash = $linkClicked;
