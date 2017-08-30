@@ -1808,7 +1808,7 @@ function itemRender(div,response)
       flds = linesPlus[i];
 
       // blocking out new items for encharming
-       if ( banned.indexOf(flds[0].trim()) != -1 ) { continue; } 
+      // if ( banned.indexOf(flds[0].trim()) != -1 ) { continue; } 
 
       stringOfDetails = flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim();
       prod =  '<div class="product clearfix ' + flds[2].trim() +" "+ flds[8].trim() +" "+ flds[9].trim() +" "+ flds[10].trim() + 1 +'"><div class="product-image"><a href="#detail-view+' + stringOfDetails + '"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/' + flds[0].trim()  + '-sm.jpg" alt="' + flds[1] + '"></a>';
