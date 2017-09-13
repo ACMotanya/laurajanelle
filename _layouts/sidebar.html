@@ -54,8 +54,8 @@ layout: compress
             <!--  Logo
             ============================================= -->
             <div id="logo" class="page-logo">
-              <a href="{{ site.baseurl }}/" class="standard-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/logos/lj-store.png" alt="Laura Janelle Logo"></a>
-              <a href="{{ site.baseurl }}/" class="retina-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/logos/lj-store.png" alt="Laura Janelle Logo"></a>
+              <a href="{{ site.baseurl }}/" class="standard-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/logos/laurajanellecircle.png" alt="Laura Janelle Logo"></a>
+              <a href="{{ site.baseurl }}/" class="retina-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/logos/laurajanellecircle.png" alt="Laura Janelle Logo"></a>
             </div><!-- #logo end -->
 
             <!-- Primary Navigation
@@ -284,40 +284,11 @@ layout: compress
 
 
     {% if page.url == "/" %}
-    <script type="text/javascript">
-      jQuery(document).ready(function($) {
-        var ocImages2 = $("#oc-slider");
-        ocImages2.owlCarousel({
-          items: 1,
-          autoplay: true,
-          loop: true,
-          margin: 0,
-          nav: true,
-          navText: ['<i class="icon-angle-left"></i>','<i class="icon-angle-right"></i>'],
-          dots: false,
-          navRewind: false
-        });
-      });
-
-
-      /* Function to handle changes to style classes based on window width */
-      var $window = $(window);
-      function checkWidth() {
-        if ($window.width() < 1300) {
-            $('#slider').removeClass('boxed-slider').addClass('slider-parallax');
-        };
-
-        if ($window.width() >= 1300) {
-            $("#slider").removeClass('slider-parallax').addClass('boxed-slider');
-        }
-      }
-        
-      /* Execute on load */
-      checkWidth();
-
-      /* Bind event listener */
-      $(window).resize(checkWidth);
-	  </script>
+    <style>
+    footer {
+      margin-top: 24px !important;
+    }
+    </style>
     {% endif %}
 
 

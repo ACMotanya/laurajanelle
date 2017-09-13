@@ -2,239 +2,45 @@
 layout: sidebar 
 title: Laura Janelle 
 ---
+<link rel="stylesheet" href="{{site.baseurl }}/css/swiper.css" type="text/css" />
 
-			 <style>
-			@media (min-width: 1200px) {
-				.dot:after {
-					content: url('../img/images.jpeg');
-					display: inline-block;
-					position: relative;
-					bottom: 45px;
-					right: 125px;
-				}
-			}
-
-			
-				.content-wrap {
-					padding-top: 30px;
-				}
-			
-
-			@media (max-width: 768px) {
-				.col-sm-3.nobottommargin {
-					padding-bottom: 10px;
-				}
-				.heading-block {
-					margin-bottom: 30px;
-				}
-				span.visible-xs.visible-sm {
-					display: inline-block !important;
-				}
-				.heading-block h1 {
-					font-size: 24px;
-				}
-				div.togglet h3 {
-					font-size: 15px;
-				}
-			}
-      </style>
-		
-		<section id="content">
-
-			<div class="content-wrap nobottompadding">
-
-				<div class="container clearfix center">
-					<div class="heading-block noborder center">
-						<h1><span class="hidden-xs hidden-sm">Laura Janelle</span> Summer 2017<span class="visible-xs visible-sm">&nbsp;Launch!</span></h1>
-					<!--	<span class="hidden-xs hidden-sm">Upcoming Showroom Events</span> -->
-					</div>
-					<!--
-					<div class="row hidden-xs">
-						<div class="col-sm-3 nobottommargin norightmargin">
-							<div class="feature-box fbox-center  nobottomborder">
-								
-								<a data-toggle="modal" data-target="#myModal"><h3 class="nobottommargin"style="text-decoration: underline; cursor: pointer; text-transform: uppercase; font-size:19px;">Philadelphia</h3></a><h3><span  class="subtitle t300" style="font-family: Lato;">July 23-26</span></h3>
-							</div>
-						</div>
-
-						<div class="col-sm-3 nobottommargin norightmargin dot">
-							<div class="feature-box fbox-center  nobottomborder">
-								
-								<a data-toggle="modal" data-target="#myModal1"><h3 class="nobottommargin"style="text-decoration: underline; cursor: pointer; text-transform: uppercase; font-size:19px;">Dallas</h3></a><h3><span  class="subtitle t300" style="font-family: Lato;">June 21-27</span></h3>
-							</div>
-						</div>
-
-						<div class="col-sm-3 nobottommargin norightmargin dot">
-							<div class="feature-box fbox-center  nobottomborder">
-								<a data-toggle="modal" data-target="#myModal3"><h3 class="nobottommargin" style="text-decoration: underline; cursor: pointer; text-transform: uppercase; font-size:19px;">Atlanta</h3></a><h3><span  class="subtitle t300" style="font-family: Lato;">July 11-18</span></h3>
-								
-							</div>
-						</div>
-
-						<div class="col-sm-3 dot nobottommargin norightmargin col_last">
-							<div class="feature-box fbox-center  nobottomborder">
-								
-								<a data-toggle="modal" data-target="#myModal2"><h3 class="nobottommargin"style="text-decoration: underline; cursor: pointer; text-transform: uppercase; font-size:19px;">Las Vegas</h3></a><h3><span class="subtitle t300" style="font-family: Lato;">July 30 - August 3</span></h3>
-							</div>
-						</div>
-					</div>
-				-->
-					<div class="clear"></div>
-				
-				
-				</div>
+<section id="slider" class="swiper_wrapper full-screen clearfix visible-md visible-lg" data-autoplay="4000" data-speed="650" data-loop="true">
+	<div class="slider-parallax-inner">
+		<div class="swiper-container swiper-parent">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide"      style="background-image: url('{{site.baseurl }}/img/fall2017/treasures-4-words.jpg'); background-position: center bottom;"></div>
+				<div class="swiper-slide dark" style="background-image: url('{{site.baseurl }}/img/fall2017/croc-clutch.jpg'); background-position: center bottom;"></div>
+				<div class="swiper-slide dark" style="background-image: url('{{site.baseurl }}/img/fall2017/treasures-1.jpg'); background-position: center bottom;"></div>						
+				<div class="swiper-slide"      style="background-image: url('{{site.baseurl }}/img/fall2017/treasures-3.jpg'); background-position: center top;"></div>
+				<div class="swiper-slide dark" style="background-image: url('{{site.baseurl }}/img/fall2017/oil-drop-words.jpg'); background-position: center top;"></div>			
+				<div class="swiper-slide dark" style="background-image: url('{{site.baseurl }}/img/fall2017/treasures-2.jpg'); background-position: center bottom;"></div>
 			</div>
-		</section> <!-- #content end -->
-
-		<section id="slider" class="slider-parallax">
-			<div id="oc-slider" class="owl-carousel carousel-widget" data-margin="0" data-items="1" data-animate-in="zoomIn" data-speed="2000" data-loop="true" data-animate-out="fadeOut">
-				<a href="#"><img src="{{ site.baseurl }}/img/summer2017/natural-1.png" alt="Slider"></a>
-				<a href="#"><img src="{{ site.baseurl }}/img/summer2017/sleekdanity.png" alt="Slider"></a>
-				<a href="#"><img src="{{ site.baseurl }}/img/summer2017/rglb-hands.png" alt="Slider"></a>
-				<a href="#"><img src="{{ site.baseurl }}/img/summer2017/mantra-scarves-1.png" alt="Slider"></a>
-				<a href="#"><img src="{{ site.baseurl }}/img/summer2017/morsecode-1.png" alt="Slider"></a>
-				<a href="#"><img src="{{ site.baseurl }}/img/summer2017/rglb-bar-1.png" alt="Slider"></a>
-			</div>
-		</section>
-
-		
-		<!--
-		<div class="clear"></div>
-	
-		<div class="container clearfix center">
-			<hr>
+			<div id="slider-arrow-left"><i class="icon-angle-left"></i></div>
+			<div id="slider-arrow-right"><i class="icon-angle-right"></i></div>
+			<div id="slide-number"><div id="slide-number-current"></div><span>/</span><div id="slide-number-total"></div></div>
+			<div class="swiper-pagination"></div>
 		</div>
-	
-			<div class="visible-xs toggle">
-				<div class="togglet"><h3 style="text-decoration: underline; text-transform: uppercase;">Click to View Show Dates</h3></div>
-				<div class="togglec">
-					<div class="row">
-						<div class="col-sm-3 nobottommargin norightmargin">
-							<div class="feature-box fbox-center  nobottomborder">
-								
-								<a data-toggle="modal" data-target="#myModal"><h3 class="nobottommargin"style="text-decoration: underline; cursor: pointer; text-transform: uppercase; font-size:19px;">Philadelphia</h3></a><h3><span  class="subtitle t300" style="font-family: Lato;">July 23-26</span></h3>
-							</div>
-						</div>
+	</div>
+</section>
 
-						<div class="col-sm-3 nobottommargin norightmargin dot">
-							<div class="feature-box fbox-center  nobottomborder">
-								
-								<a data-toggle="modal" data-target="#myModal1"><h3 class="nobottommargin"style="text-decoration: underline; cursor: pointer; text-transform: uppercase; font-size:19px;">Dallas</h3></a><h3><span  class="subtitle t300" style="font-family: Lato;">June 21-27</span></h3>
-							</div>
-						</div>
-
-						<div class="col-sm-3 nobottommargin norightmargin dot">
-							<div class="feature-box fbox-center  nobottomborder">
-								<a data-toggle="modal" data-target="#myModal3"><h3 class="nobottommargin" style="text-decoration: underline; cursor: pointer; text-transform: uppercase; font-size:19px;">Atlanta</h3></a><h3><span  class="subtitle t300" style="font-family: Lato;">July 11-18</span></h3>
-								
-							</div>
-						</div>
-
-						<div class="col-sm-3 dot nobottommargin norightmargin col_last">
-							<div class="feature-box fbox-center  nobottomborder">
-								
-								<a data-toggle="modal" data-target="#myModal2"><h3 class="nobottommargin"style="text-decoration: underline; cursor: pointer; text-transform: uppercase; font-size:19px;">Las Vegas</h3></a><h3><span class="subtitle t300" style="font-family: Lato;">July 30 - August 3</span></h3>
-							</div>
+<section id="content" class="hidden-md hidden-lg">
+	<div id="portfolio" class="portfolio grid-container portfolio-1 portfolio-fullwidth clearfix">
+		<article class="portfolio-item pf-icons pf-illustrations clearfix">
+			<div class="portfolio-image">
+				<div class="fslider" data-arrows="false" data-speed="400" data-pause="4000">
+					<div class="flexslider">
+						<div class="slider-wrap">				
+							<div class="slide"><a href="#"><img src="{{ site.baseurl }}/img/fall2017/treasures-4-words.jpg" alt=""></div>
+							<div class="slide"><a href="#"><img src="{{ site.baseurl }}/img/fall2017/croc-clutch-mobile.jpg" alt=""></div>
+							<div class="slide"><a href="#"><img src="{{ site.baseurl }}/img/fall2017/treasures-1.jpg" alt=""></div>
+							<div class="slide"><a href="#"><img src="{{ site.baseurl }}/img/fall2017/treasures-3.jpg" alt=""></div>
+							<div class="slide"><a href="#"><img src="{{ site.baseurl }}/img/fall2017/oil-drop-mobile.jpg" alt=""></div>
+							<div class="slide"><a href="#"><img src="{{ site.baseurl }}/img/fall2017/treasures-2.jpg" alt=""></div>
 						</div>
 					</div>
 				</div>
 			</div>
-
-		</div>
-	-->
-				
-		<!-- Modal -->
-		<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-body">
-					<div class="modal-content">
-						<div class="notopmargin" style="padding-top: 30px; padding-bottom: 30px;">
-							<div class="container center clearfix">
-								<img style="max-width: 30%;" src="{{ site.baseurl }}/img/ivystone.png"></a>
-									
-								<h3 style="margin-bottom: 15px;">DALLAS, TX</h3>
-								<div class="entry-date" style="margin-bottom: 7px;">June 21-27</span></div>
-								<address>
-									<strong>ADDRESS:</strong><br>
-									Dallas World Trade Center, #236<br>
-									2050 N Stemmons Freeway<br>
-									Dallas, TX 75207
-								</address>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-		<!-- Modal -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-body">
-					<div class="modal-content">
-						<div class="notopmargin" style="padding-top: 30px; padding-bottom: 30px;">
-							<div class="container center clearfix">
-								<img style="max-width: 30%;" src="{{ site.baseurl }}/img/ivystone.png"></a>
-									
-								<h3 style="margin-bottom: 15px;">EXTON, PA</h3>
-								<div class="entry-date" style="margin-bottom: 7px;">July 23-26</span></div>
-								<address>
-									<strong>ADDRESS:</strong><br>
-									301 Commerce Drive<br>
-									Exton, PA 19341
-								</address>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Modal -->
-		<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-body">
-					<div class="modal-content">
-						<div class="notopmargin" style="padding-top: 30px; padding-bottom: 30px;">
-							<div class="container center clearfix">
-								<img style="max-width: 30%;" src="{{ site.baseurl }}/img/ivystone.png"></a>
-									
-								<h3 style="margin-bottom: 15px;">LAS VEGAS, NV</h3>
-								<div class="entry-date" style="margin-bottom: 7px;">July 30 - August 3</span></div>
-								<address>
-									<strong>ADDRESS:</strong><br>
-									World Market Center, Building C, Showroom 696<br>
-									455 S Grand Central Pkwy<br>
-									Las Vegas, NV 89106
-								</address>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Modal -->
-		<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-body">
-					<div class="modal-content">
-						<div class="notopmargin" style="padding-top: 30px; padding-bottom: 30px;">
-							<div class="container center clearfix">
-								<img style="max-width: 30%;" src="{{ site.baseurl }}/img/ivystone.png"></a>
-									
-								<h3 style="margin-bottom: 15px;">ATLANTA, GA</h3>
-								<div class="entry-date" style="margin-bottom: 7px;">July 11-18</span></div>
-								<address>
-									<strong>ADDRESS:</strong><br>
-									Atlanta Gift Mart, Bldg 2, #1801<br>
-									40 John Portman Boulevard, N.W.<br>
-									Atlanta, GA 30303
-								</address>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		</article>
+	</div>
+	<a href="{{ site.baseurl }}/retailerlogin" target="_blank" class="divcenter center" style="text-decoration: underline !important; text-transform: uppercase; font-size: 28px; font-family: 'Bodoni-Sans'; display: block;">Shop New Items Now!</a>
+</section><!-- #content end -->
