@@ -3765,7 +3765,7 @@
     "lat": "41.448515",
     "lng": "-81.923581",
     "address": "27333 Center Ridge Rd",
-    "city": "Westlake ",
+    "city": "Westlake",
     "state": "OH",
     "postal": "44145",
     "phone": "440-871-2600"
@@ -17260,5 +17260,16 @@
     "state": "NC",
     "postal": "28601",
     "phone": "828-612-0102"
+  },
+  {
+    "id": "1568",
+    "name": "Wicked Sugar Fashion",
+    "lat": "41.3362765",
+    "lng": "-81.7877951",
+    "address": "10252 W 130th Stree",
+    "city": "Strongsville",
+    "state": "OH",
+    "postal": "44136",
+    "phone": "440-628-8022port"
   }
 ]
