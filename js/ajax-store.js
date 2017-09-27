@@ -267,7 +267,7 @@ function login()
       data: {request_id: "APICLOGIN",
              username: username,
              password: password,
-             loc_no: 800},
+             loc_no: "800"},
       success: function(response) {
         if (response.replace(/\s+/g,'').length === 25) {
           goHead = "go";
