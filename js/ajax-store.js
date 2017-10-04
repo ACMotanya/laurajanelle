@@ -1770,7 +1770,7 @@ function search()
 
 
 //////////////////////////
-// Filter Function      //
+//    Filter Function   //
 //////////////////////////
 function filterFunction2(a,b,c,d,e,f,g,h)
 {
@@ -1929,7 +1929,7 @@ $('.filterbutton').on( 'change', function( event ) {
   }
   
   var comboFilter = getComboFilter();
-
+  console.log(comboFilter);
   $container.isotope({ filter: comboFilter });
 });
 

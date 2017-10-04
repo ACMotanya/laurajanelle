@@ -2,25 +2,23 @@
 
 <html dir="ltr" lang="en-US">
 
-  {% include head.html %}
+{% include head.html %}
 
-  <body class="stretched">
-    <div id="wrapper" class="clearfix">
+<body class="stretched">
+  <div id="wrapper" class="clearfix">
 
-      {{ content }}
+    {{ content }}
 
-    </div>
-   
-    {% include js.html %}
+  </div>
 
-    {% if page.url == "/retailerlogin/" %}
-    <script>
-
-    $(document).ready(function() {
+  {% include js.html %} 
+  {% if page.url == "/retailerlogin/" %}
+  <script>
+    $(document).ready(function () {
 
       login();
 
-      $("#validateButton").click(function() {
+      $("#validateButton").click(function () {
         var hasErrors = $('#register-form').validator('validate').has('.has-error').length;
         if (hasErrors) {
           alert('Customer application has errors.');
@@ -29,9 +27,9 @@
         }
       });
     });
-    </script>
-    {% endif %}
+  </script>
+  {% endif %}
 
-  </body>
+</body>
 
 </html>

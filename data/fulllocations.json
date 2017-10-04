@@ -18629,18 +18629,6 @@
     "phone": "293-393-2405"
   },
   {
-    "id": "1682",
-    "name": "Kelly Crossan-EMP",
-    "lat": "0",
-    "lng": "0",
-    "address": "2251 Harbor Pointe Place",
-    "address2": "",
-    "city": "Palm Harbor",
-    "state": "FL",
-    "postal": "34683",
-    "phone": "727-536-3568"
-  },
-  {
     "id": "1683",
     "name": "C & J Cards",
     "lat": "41.341845",
@@ -18735,18 +18723,6 @@
     "state": "WV",
     "postal": "24983",
     "phone": "304-772-4726"
-  },
-  {
-    "id": "1691",
-    "name": "Samantha Fortier\/EMP",
-    "lat": "27.883949",
-    "lng": "-82.826525",
-    "address": "14640 Lowe Road",
-    "address2": "",
-    "city": "Largo",
-    "state": "FL",
-    "postal": "33774",
-    "phone": "727-536-3568"
   },
   {
     "id": "1692",
@@ -19903,9 +19879,9 @@
   {
     "id": "1788",
     "name": "Pine Grove Pharmacy",
-    "lat": "0",
-    "lng": "0",
-    "address": "10 Easy Pottsville Street",
+    "lat": "40.552327",
+    "lng": "-76.3870239",
+    "address": "10 East Pottsville Street",
     "address2": "",
     "city": "Pine Grove",
     "state": "PA",
@@ -19947,18 +19923,6 @@
     "state": "PA",
     "postal": "15090",
     "phone": "724-935-5673"
-  },
-  {
-    "id": "1792",
-    "name": "Develyn Sippel",
-    "lat": "27.908479",
-    "lng": "-82.756823",
-    "address": "3792 141 Ave N",
-    "address2": "",
-    "city": "Largo",
-    "state": "FL",
-    "postal": "33771",
-    "phone": "727-536-3568"
   },
   {
     "id": "1793",
@@ -23643,5 +23607,197 @@
     "state": "GA",
     "postal": "30721",
     "phone": "706-259-9789"
+  },
+  {
+    "id": "2100",
+    "name": "Loft, The",
+    "lat": "35.597134",
+    "lng": "-82.552555",
+    "address": "53 Broadway",
+    "address2": "",
+    "city": "Asheville",
+    "state": "NC",
+    "postal": "28801",
+    "phone": "828-259-9303"
+  },
+  {
+    "id": "2101",
+    "name": "Womens and Childrens Hospital",
+    "lat": "42.874741",
+    "lng": "-78.849655",
+    "address": "726 Exchange Street",
+    "address2": "Gift Shop",
+    "city": "Buffalo",
+    "state": "NY",
+    "postal": "14210",
+    "phone": "716-572-2973"
+  },
+  {
+    "id": "2102",
+    "name": "Traci's",
+    "lat": "34.421465",
+    "lng": "-85.740588",
+    "address": "2103 Gault Ave N",
+    "address2": "",
+    "city": "Fort Payne",
+    "state": "AL",
+    "postal": "35967",
+    "phone": "256-845-5806"
+  },
+  {
+    "id": "2103",
+    "name": "Cathy's Place",
+    "lat": "41.649799",
+    "lng": "-70.235074",
+    "address": "525 RT 28 Main Street",
+    "address2": "",
+    "city": "West Yarmouth",
+    "state": "MA",
+    "postal": "2673",
+    "phone": "508-394-0600"
+  },
+  {
+    "id": "2104",
+    "name": "Island Butterfly",
+    "lat": "37.934494",
+    "lng": "-75.376144",
+    "address": "4107 Main Street",
+    "address2": "",
+    "city": "Chincoteague Island",
+    "state": "VA",
+    "postal": "23336",
+    "phone": "757-894-2512"
+  },
+  {
+    "id": "2105",
+    "name": "Sweet Carolines",
+    "lat": "31.167228",
+    "lng": "-84.732821",
+    "address": "203 W Bush Street",
+    "address2": "",
+    "city": "Colquitt",
+    "state": "GA",
+    "postal": "39837",
+    "phone": "229-308-2284"
+  },
+  {
+    "id": "2106",
+    "name": "Best of Friends",
+    "lat": "37.020809",
+    "lng": "-76.351315",
+    "address": "4207 Victoria Blvd.",
+    "address2": "Hampton Public Library",
+    "city": "Hampton",
+    "state": "VA",
+    "postal": "23669",
+    "phone": "757-727-1253"
+  },
+  {
+    "id": "2107",
+    "name": "Lisa Domino",
+    "lat": "44.900362",
+    "lng": "-92.876231",
+    "address": "11712 Ivywood Trail",
+    "address2": "",
+    "city": "Woodbury",
+    "state": "MN",
+    "postal": "55129",
+    "phone": "815-988-4576"
+  },
+  {
+    "id": "2108",
+    "name": "Mint Museum Shop",
+    "lat": "35.224221",
+    "lng": "-80.847802",
+    "address": "500 South Tryon Street",
+    "address2": "",
+    "city": "Charlotte",
+    "state": "NC",
+    "postal": "28202",
+    "phone": "704-337-2038"
+  },
+  {
+    "id": "2109",
+    "name": "Gibraltar Savmor Pharmacy",
+    "lat": "42.092862",
+    "lng": "-83.203725",
+    "address": "29255 West Jefferson",
+    "address2": "",
+    "city": "Rockwood",
+    "state": "MI",
+    "postal": "48173",
+    "phone": "734-776-2949"
+  },
+  {
+    "id": "2110",
+    "name": "Rayfields Pharmacy",
+    "lat": "37.474099",
+    "lng": "-75.863587",
+    "address": "9502 Hospital Ave",
+    "address2": "",
+    "city": "Nassawadox",
+    "state": "VA",
+    "postal": "23413",
+    "phone": "757-442-6153"
+  },
+  {
+    "id": "2111",
+    "name": "Twisted Gypsy's Boutique",
+    "lat": "38.054476",
+    "lng": "-81.09839",
+    "address": "105 Academy Court",
+    "address2": "",
+    "city": "Fayetteville",
+    "state": "WV",
+    "postal": "25840",
+    "phone": "304-900-5521"
+  },
+  {
+    "id": "2112",
+    "name": "Terra Cottage",
+    "lat": "41.05145",
+    "lng": "-75.584016",
+    "address": "291 Lake Harmony Rd",
+    "address2": "",
+    "city": "Lake Harmony",
+    "state": "PA",
+    "postal": "18624",
+    "phone": "570-722-7467"
+  },
+  {
+    "id": "2113",
+    "name": "Molly's",
+    "lat": "27.258569",
+    "lng": "-82.524364",
+    "address": "1874 Stickney Point Road",
+    "address2": "",
+    "city": "Sarasota",
+    "state": "FL",
+    "postal": "34231",
+    "phone": "941-921-1221"
+  },
+  {
+    "id": "2114",
+    "name": "Girl Talk",
+    "lat": "43.322044",
+    "lng": "-83.740298",
+    "address": "925 S Main St Unit H2",
+    "address2": "",
+    "city": "Frankenmuth",
+    "state": "MI",
+    "postal": "48734",
+    "phone": "989-652-0166"
+  },
+  {
+    "id": "2115",
+    "name": "Lakeshore Salon",
+    "lat": "43.780711",
+    "lng": "-86.435123",
+    "address": "57 E First Street",
+    "address2": "",
+    "city": "Pentwater",
+    "state": "MI",
+    "postal": "49449",
+    "phone": "231-869-4602"
   }
 ]
