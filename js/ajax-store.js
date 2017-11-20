@@ -12,16 +12,7 @@ var numberOfOrders;
 var orderAmt;
 var session_no;
 var shippingAddresses = [];
-var notbanned = [
-  "1051A", "10614", "10615", "10616", "10617", "10619", "10620",
-  "10627", "10628", "10629", "10630", "10633", "10636", "10621",
-  "10622", "10624", "10625", "10639", "10642", "10643", "10644",
-  "12002", "12012", "12016", "12009", "11999", "12017", "12011",
-  "12019", "12014", "12003", "12007", "12006", "12008", "12001",
-  "11996", "11998", "12005", "12010", "12013", "11997", "12018",
-  "12015", "12000", "12004", "1010A", "10101", "10100", "10102",
-  "10103", "10104"
-  ];
+
 var sortItems = [
   "119002NA", "119002BA", "12002", "12012", "12016", "12009", 
   "11999", "12017", "12011", "12019", "12014", "12003", "12007", 
@@ -173,7 +164,8 @@ function createCustomer()
      phone: createphone,
      email: createemail,
      fax: createfax,
-     country: createcountry
+     country: createcountry,
+     loc_no: 800
    },
    success: function(response) {
      if (response.length <= 10) {
@@ -253,10 +245,9 @@ function login()
     $loading.hide();
   });
 
-  // $("#content").hide();
   $(".page-section").hide();
   $("#login-form").on("submit", function(e) {
-     var goHead;
+
      e.preventDefault();
      username = $('#login-form-username').val();
      password = $('#login-form-password').val();
@@ -270,13 +261,12 @@ function login()
              loc_no: "800"},
       success: function(response) {
         if (response.replace(/\s+/g,'').length === 25) {
-          goHead = "go";
           $.get("https://www.laurajanelle.com/phphelper/savecart/session.php?customer=" + username.toLowerCase() + "", function(answer){
             if (answer === "0") {
               $.get("https://www.laurajanelle.com/phphelper/savecart/session.php?customer=" + username.toLowerCase() + "&sessid=" + response + "");
               session_no = response.replace(/\s+/g,'');
               localStorage.setItem('session_no', session_no);
-            } else if (answer.length === 25 ) {
+            } else {
               localStorage.setItem('session_no', answer);
             }
             localStorage.setItem('username', username);
@@ -286,7 +276,6 @@ function login()
           });
         } else {
           alert("Login credentials are incorrect, try again.");
-          goHead = "stop";
         }
       }
     });
@@ -483,7 +472,6 @@ function cartHelper()
       html2.push(miniitem);
 
       if ( window.location.hash === "#cart" ) {
-
         item = '<tr class="cart_item products"><td class="cart-product-remove"><a href="#cart" class="remove" onclick="removeItem(this.id); return false;" id="' + data[1].replace(/\s+/g,'') + '" title="Remove this item"><i class="icon-trash2"></i></a></td>';
         item += '<td class="cart-product-thumbnail"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="https://www.laurajanelle.com/ljjpgimages/' + data[2].replace(/\s+/g,'') + '-sm.jpg" alt="' + data[3] + '"></a></td>';
         item += '<td class="cart-product-name"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '">' + data[3] + '</a></td>';
@@ -1759,7 +1747,7 @@ function search()
         
         windowHash("search");
         itemRender("searchDiv", response);
-        $("#searchDiv").prepend('<button style="display: block; bottommargin-sm" type="button" class="button button-3d button-mini button-rounded button-black" onclick="$(\'#searchDiv\').empty(); windowHash(\''+oldhash+'\');">Close Search</button>');
+        $("#searchDiv").prepend('<button style="display: block;" type="button" class="button button-3d button-mini button-rounded button-black" onclick="$(\'#searchDiv\').empty(); windowHash(\''+oldhash+'\');">Close Search</button>');
       },
       complete: function(){
         SEMICOLON.initialize.lightbox();
@@ -1829,6 +1817,92 @@ function itemRender(div,response)
 =======
       prod =  '<div class="product clearfix ' + flds[2].trim() +" "+ flds[8].trim() +" "+ flds[9].trim() +" "+ flds[10].trim() + 1 +'"><div class="product-image"><a href="#detail-view+' + stringOfDetails + '"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/' + flds[0].trim()  + '-sm.jpg" alt="' + flds[1] + '"></a>';
 >>>>>>> master
+      if (flds[7].trim().length === 3) {
+        prod += '<div class="sale-flash">NEW!</div>';
+      }
+      prod += '<div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim() + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'#detail-view+' + stringOfDetails + '\'; addItemDetailView(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+      prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'' + flds[0].trim() + '\'; quickView(this.id);" id="' + stringOfDetails + '"><i class="icon-zoom-in2"></i><span id="' + stringOfDetails + '">Quick View</span></a></div></div>';
+      prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+' + stringOfDetails + '">' + flds[1] +'</a></h3></div><div class="product-price">cost &nbsp;<ins>$' + flds[4].trim() + '</ins></div></div></div>';
+
+      html.push(prod);
+    }
+    document.getElementById(div).innerHTML += html.join('');
+  }
+}
+
+function filterFunction(a)
+{
+  // Delete after October PLease!!!!
+  $('#breast-cancer-banner').remove();
+  $.ajax({
+    type: "GET",
+    url: "https://netlink.laurajanelle.com:444/nlhelpers/laurajanelle-api/programs.php?",
+    data: {
+      data: a,
+      locaton: "800"
+    },
+    success: function(response) {
+      $('#shopItems').empty();
+      itemRender2("shopItems", response);
+    },
+    complete: function(){
+      SEMICOLON.initialize.lightbox();
+    }
+  });
+}
+function itemRender2(div,response)
+{
+  lines = response;
+
+  if ( lines.length <= 1) {
+    document.getElementById(div).innerHTML += '<h1>There are no results</h1>';
+  } else {
+    html = [];
+
+    Object.keys(lines).forEach(function(k){
+      // blocking out new items for encharming
+      // if ( banned.indexOf(flds[0].trim()) != -1 ) { continue; } 
+
+      stringOfDetails = lines[k].itemnum.trim();
+      prod =  '<div class="product clearfix ' + lines[k].look.trim() +" "+ lines[k].color.trim() +" "+ lines[k].func.trim() +" "+ lines[k].metalcolor.trim() +'"><div class="product-image"><a href="#detail-view+' + lines[k].itemnum.trim() + '"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/' + lines[k].itemnum.trim()  + '-sm.jpg" alt="' + lines[k].shortdescription + '"></a>';
+  //    if (flds[7].trim().length === 3) {
+  //      prod += '<div class="sale-flash">NEW!</div>';
+  //    }
+      prod += '<div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + lines[k].itemnum.trim() + ' has been added to your cart!" onclick="stock_no=\'' + lines[k].itemnum.trim() + '\'; detailString=\'#detail-view+' + lines[k].itemnum.trim() + '\'; addItemDetailView(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+      prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'' + lines[k].itemnum.trim() + '\'; quickView(this.id);" id="' + lines[k].itemnum.trim() + '"><i class="icon-zoom-in2"></i><span id="' + lines[k].itemnum.trim() + '">Quick View</span></a></div></div>';
+      prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+' + lines[k].itemnum.trim() + '">' + lines[k].shortdescription.trim() +'</a></h3></div><div class="product-price">cost &nbsp;<ins>$' + lines[k].price.trim() + '</ins></div></div></div>';
+
+      html.push(prod);
+    });
+    document.getElementById(div).innerHTML += html.join('');
+  }
+}
+function itemRender(div,response)
+{
+  lines = response.split("\n");
+  lines.shift();
+  if ( lines.length <= 1) {
+    document.getElementById(div).innerHTML += '<h1>There are no results</h1>';
+  } else {
+    html = [];
+    linesPlus = [];
+    for (i=0; i<lines.length - 1; i++) {
+      linesPlus.push(lines[i].split("|"));
+    }
+
+    linesPlus.sort( function( a, b ) {
+      retVal=0;
+      if (sortItems.indexOf(a[0].trim()) != sortItems.indexOf( b[0].trim() )) retVal= sortItems.indexOf( a[0].trim() ) > sortItems.indexOf( b[0].trim() )?1:-1;
+      return retVal;
+    });
+    for (i=0; i<linesPlus.length; i++) {
+      flds = linesPlus[i];
+
+      // blocking out new items for encharming
+      // if ( banned.indexOf(flds[0].trim()) != -1 ) { continue; } 
+
+      stringOfDetails = flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim();
+      prod =  '<div class="product clearfix ' + flds[2].trim() +" "+ flds[8].trim() +" "+ flds[9].trim() +" "+ flds[10].trim() + 1 +'"><div class="product-image"><a href="#detail-view+' + stringOfDetails + '"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/' + flds[0].trim()  + '-sm.jpg" alt="' + flds[1] + '"></a>';
       if (flds[7].trim().length === 3) {
         prod += '<div class="sale-flash">NEW!</div>';
       }
