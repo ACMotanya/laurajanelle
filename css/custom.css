@@ -100,8 +100,13 @@ body.stretched #header.full-header.sticky-header .container {
 #primary-menu ul li > a {
 	font-family: Lato, sans-serif;
 	font-weight: 300;
-	font-size: 15px;
+	font-size: 13px;
 	letter-spacing: 1px;
+}
+
+#primary-menu ul ul li>a {
+	font-weight: 300;
+	font-size: 13px;
 }
 
 #header.transparent-header.full-header #logo {

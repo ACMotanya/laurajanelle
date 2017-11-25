@@ -1863,11 +1863,35 @@ title: Store - Laura Janelle
     							</div>
                   
     							<div class="col_two_fifth product-desc" id="secondColumn">
-                    <div class="product-price" id="price-area">
+                    <!---<div class="product-price" id="price-area"></div>-->
+                    <!-- 2nd Column -->
+                    <div class="row">
+                      <div class="col-sm-6 nobottommargin">
+                        <span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku"></span></span>
+                      </div>
+                      <div id="mainRatingDiv" class="col-sm-6 nobottommargin"></div>
+                    </div>
 
-                    </div>               
-    								<!-- 2nd Column -->
-    							</div>
+                    <div class="line"></div>
+
+                    <div class="row">
+                      <div class="product-price col-sm-4" style="font-size: 16px; font-weight: 400;"> 
+                        <ins id="cost-field"></ins>
+                      </div>
+                      <div class="col-sm-4 hidden-xs" style="top: 0px; margin: 0px;">MIN: 1</div>
+                      <div class="product-rating col-sm-4" style="top: 0px; margin: 0px;" id="msrp-field"></div>
+                    </div>
+
+                    <div class="clear"></div>
+                    <div class="line"></div>
+                    
+                    <form class="cart nobottommargin clearfix" method="post" enctype="multipart/form-data" id="add-qty-form">
+                      
+                    </form>
+                    <div class="clear"></div>
+                    <div class="line"></div>
+                    <p id="item-description"></p>
+                  </div>
 
                   
                   <!--
@@ -1889,8 +1913,10 @@ title: Store - Laura Janelle
 
 
                   <div class="col_one_fifth col_last" id="thirdColumn">
+                     <a title="Brand Logo" class="hidden-xs"><img class="image_fade" alt="Brand Logo"></a>
+                     
                     <div class="divider divider-center"><i class="icon-circle-blank"></i></div>
-                     <a id="addReviewButton" href="#" data-toggle="modal" data-target="#reviewFormModal" class="button button-3d nomargin" onclick="populateReviewModal(); return false;">Add a Review</a>
+                     
                   </div>
 
 
