@@ -42,9 +42,9 @@
 }
 
 @font-face {
-	font-family: 'BelovedScriptBasic';
-	src:url('fonts/BelovedScriptBasic.otf');
-	font-weight: normal;
+	font-family: 'Segoe';
+	src:url('fonts/SegoeScriptBold.ttf') format('truetype');
+	font-weight: bold;
 	font-style: normal;
 }
 
