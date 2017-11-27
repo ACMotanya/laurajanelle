@@ -2027,7 +2027,7 @@ function itemRender2(div,response)
   //    }
       prod += '<div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + lines[k].itemnum.trim() + ' has been added to your cart!" onclick="stock_no=\'' + lines[k].itemnum.trim() + '\'; detailString=\'#detail-view+' + lines[k].itemnum.trim() + '\'; addItemDetailView(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
       prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'' + lines[k].itemnum.trim() + '\'; quickView(this.id);" id="' + lines[k].itemnum.trim() + '"><i class="icon-zoom-in2"></i><span id="' + lines[k].itemnum.trim() + '">Quick View</span></a></div></div>';
-      prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+' + lines[k].itemnum.trim() + '">' + lines[k].shortdescription.trim() +'</a></h3></div><div class="product-price">cost &nbsp;<ins>$' + lines[k].price.trim() + '</ins></div></div></div>';
+      prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+' + lines[k].itemnum.trim() + '">' + lines[k].shortdescription.trim() +'</a></h3></div><div class="product-price"><del>$24.99</del> cost &nbsp;<ins>$' + lines[k].price.trim() + '</ins></div></div></div>';
 
       html.push(prod);
     });
