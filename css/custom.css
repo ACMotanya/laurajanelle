@@ -9,11 +9,16 @@
 }
 
 .product:not(.product-2):not(.product-3) .product-title h3, .product:not(.product-2):not(.product-3) .product-price  {
-		font-size: 13px;
-		font-family: Lato, sans-serif;
-		text-transform: uppercase;
-		font-weight: 300;
-	}
+	font-size: 13px;
+	font-family: Lato, sans-serif;
+	text-transform: uppercase;
+	font-weight: 300;
+}
+.product-price > ins {
+	font-family: 'Shadows Into Light Two', cursive;
+	color: red;
+	font-size: 14px;
+}
 
 
 @media (max-width: 1199px) and (min-width: 481px) {
