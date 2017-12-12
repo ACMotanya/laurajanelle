@@ -1707,6 +1707,7 @@ function filterFunction5()
 function itemRender2(div,response)
 {
   lines = response;
+  console.log(lines);
   functiontype = [];
   colors = [];
   material = [];
