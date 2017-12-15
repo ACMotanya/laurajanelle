@@ -100,13 +100,13 @@ var sortItems = [
   "10959", "10970", "10937", "10938", "10940", "10960", "10965", 
   "10966", "10971", "10974", "10975", "10976", "10972", "10973",
   "10977", "10979", "10949", "10950", "12900A","CD104W","10300V2A", 
-  "10401", "10405", "10407", 
-  "10409", "10410", "10412", "10413", "10414",  "12900", "12901", 
-  "12902", "12903", "12904", "12905", "12906", "12907", "10301A",
-  "10375", "10376", "10377", "10378", "10379", "10380", "10381",
-  "10382", "12125", "12127", "12128", "12129", "12132", "12133", 
-  "12134", "12135", "12137", "12138", "12139", "12141", "12148", 
-  "12145", "12146", "12147", "10300A", "CD103", "10336",
+  "10401", "10405", "10407", "10409", "10410", "10412", "10413",
+  "10414", "12900", "12901", "12902", "12903", "12904", "12905",
+  "12906", "12907", "10301A", "10375", "10376", "10377", "10378",
+  "10379", "10380", "10381", "10382", "12125", "12127", "12128",
+  "12129", "12132", "12133", "12134", "12135", "12137", "12138",
+  "12139", "12141", "12148", "12145", "12146", "12147", "10300A",
+  "CD103", "10336",
   "10335", "10337", "10334", "10338", "10340", "10339", "10350",
   "10345", "10346", "10347", "10333", "10341", "10342", "10348",
   "10343", "10349", "10344", "10301", "10302", "10303", "10304",
@@ -1766,14 +1766,17 @@ function itemRender2(div,response)
 
       stringOfDetails = lines[k].itemnum;
       prod =  '<div class="product clearfix ' + lines[k].look +" "+ lines[k].color +" "+ lines[k].func +" "+ lines[k].metalcolor +'"><div class="product-image"><a href="#detail-view+' + lines[k].itemnum + '"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/' + lines[k].itemnum + '-sm.jpg" alt="' + lines[k].shortdescription + '"></a>';
-  //    if (flds[7].trim().length === 3) {
-  //      prod += '<div class="sale-flash">NEW!</div>';
-  //    }
+      if (lines[k].featured === 'Y') {
+        prod += '<div class="sale-flash">NEW!</div>';
+      }
+      if (lines[k].onsale === 'Y') {
+        prod += '<div class="sale-flash" style="background-color: red">SPECIAL!</div>';
+      }
       prod += '<div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + lines[k].itemnum + ' has been added to your cart!" onclick="stock_no=\'' + lines[k].itemnum + '\'; detailString=\'#detail-view+' + lines[k].itemnum + '\'; addItemDetailView2(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
       prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'' + lines[k].itemnum + '\'; quickView(this.id);" id="' + lines[k].itemnum + '"><i class="icon-zoom-in2"></i><span id="' + lines[k].itemnum + '">Quick View</span></a></div></div>';
       prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+' + lines[k].itemnum + '">' + lines[k].shortdescription +'</a></h3></div>';
       if ( lines[k].onsale === "Y") {
-        prod += '<div class="product-price">cost &nbsp;<del style="color:red"><span style="color:gray">$' + lines[k].msrp + '</span></del> <ins>&nbsp; $' + lines[k].price + '</ins></div></div></div>';
+        prod += '<div class="product-price">cost &nbsp;<del style="color:red"><span style="color:gray">$' + lines[k].msrp + '</span></del> <ins style="font-size: 17px">&nbsp; $' + lines[k].price + '</ins></div></div></div>';
       } else  {
         prod += '<div class="product-price"> cost &nbsp;$' + lines[k].price + '</div></div></div>';
       }
