@@ -37,28 +37,30 @@ layout: compress
                         <ul>
                           <li><a href="#shop" onclick="filterFunction('sleek');"><div>Sleek</div></a></li>
                           <li><a href="#shop" onclick="filterFunction('encharming');"><div>Encharming</div></a></li>
-                          <li><a href="#shop" onclick="filterFunction('salt rock');"><div>Salt Rock</div></a></li>
+                  
                           <li><a href="#shop" onclick="filterFunction('rglb');"><div>RGLB</div></a></li>
                           <li><a href="#shop" onclick="filterFunction('mantra');"><div>Mantra</div></a></li>
-                          <li><a href="#shop" onclick="filterFunction('aura');"><div>Aura</div></a></li>
+                        
                           <li><a href="#shop" onclick="filterFunction('identify');"><div>Identify</div></a></li>
                           <li><a href="#shop" onclick="filterFunction('natural treasures');"><div>Natural Treasures</div></a></li>
+                    
+                          <li><a href="#shop" onclick="filterFunction('apparel');"><div>LJ Apparel</div></a></li>
                           <li><a href="#shop" onclick="filterFunction('team spirit');"><div>Team Spirit</div></a></li>
-                          <li><a href="#shop" onclick="ljPink();"><div>LJ Pink</div></a></li>
+                          <!-- <li><a href="#shop" onclick="ljPink();"><div>LJ Pink</div></a></li> -->
                         </ul>
                       </li>
                     </ul>
                     <ul class="mega-menu-column col-md-4">
                       <li class="mega-menu-title"><a href="#"><div>Type</div></a>
                         <ul>
-                          <li><a href="#shop" onclick="filterFunction3('programs');"><div>Programs</div></a></li>
+                          <li><a href="#shop" onclick="filterFunction3('program');"><div>Programs</div></a></li>
                           <li><a href="#shop" onclick="filterFunction3('necklace');"><div>Necklaces</div></a></li>
                           <li><a href="#shop" onclick="filterFunction3('bracelet');"><div>Bracelets</div></a></li>
                           <li><a href="#shop" onclick="filterFunction3('earring');"><div>Earrings</div></a></li>
                           <li><a href="#shop" onclick="filterFunction3('lanyard');"><div>Lanyards</div></a></li>
-                          <li><a href="#shop" onclick="filterFunction3('snap');"><div>Snaps</div></a></li>
+                          <li><a href="#shop" onclick="filterFunction3('clip');"><div>clips</div></a></li>
                           <li><a href="#shop" onclick="filterFunction3('tassel');"><div>Tassels</div></a></li>
-                          <li><a href="#shop" onclick="filterFunction3('set');"><div>Sets</div></a></li>  <!-- not categorized right -->
+                          <li><a href="#shop" onclick="filterFunction3('set');"><div>Sets</div></a></li>  
                           <li><a href="#shop" onclick="filterFunction3('display');"><div>Displays</div></a></li>
                         </ul>
                       </li>
@@ -66,8 +68,8 @@ layout: compress
                     <ul class="mega-menu-column col-md-4">
                         <li class="mega-menu-title"><a href="#"><div>Type</div></a>
                           <ul>                            
-                            <li><a href="#shop" onclick="filterFunction3('oil');"><div>Oils</div></a></li>   <!-- not categorized right -->
-                            <li><a href="#shop" onclick="filterFunction3('accessory');"><div>Accesories</div></a></li>   <!-- not categorized right -->
+                            <li><a href="#shop" onclick="filterFunction3('Oil');"><div>Oils</div></a></li>  
+                            <li><a href="#shop" onclick="filterFunction3('accessories');"><div>Accesories</div></a></li>   <!-- not categorized right -->
                             <li><a href="#shop" onclick="filterFunction3('scarf');"><div>Scarves</div></a></li>
                             <li><a href="#shop" onclick="filterFunction3('pendant');"><div>Pendants</div></a></li>
                             <li><a href="#shop" onclick="filterFunction3('purse');"><div>Purse</div></a></li>
@@ -189,7 +191,8 @@ layout: compress
     $(function() {
       whichPage();
       sessionNumber();
-      ljPink();
+   
+   filterFunction5();
       $('nav ul li a').click(function() {
         var $linkClicked = $(this).attr('href');
         document.location.hash = $linkClicked;
