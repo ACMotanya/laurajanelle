@@ -42,10 +42,10 @@ layout: compress
                           <li><a href="#shop" onclick="filterFunction('mantra');"><div>Mantra</div></a></li>
                         
                           <li><a href="#shop" onclick="filterFunction('identify');"><div>Identify</div></a></li>
-                          <li><a href="#shop" onclick="filterFunction('natural treasures');"><div>Natural Treasures</div></a></li>
+                          <li><a href="#shop" onclick="filterFunction('treasures');"><div>Natural Treasures</div></a></li>
                     
                           <li><a href="#shop" onclick="filterFunction('apparel');"><div>LJ Apparel</div></a></li>
-                          <li><a href="#shop" onclick="filterFunction('team spirit');"><div>Team Spirit</div></a></li>
+                          <li><a href="#shop" onclick="filterFunction('spirit');"><div>Team Spirit</div></a></li>
                           <!-- <li><a href="#shop" onclick="ljPink();"><div>LJ Pink</div></a></li> -->
                         </ul>
                       </li>
@@ -191,8 +191,8 @@ layout: compress
     $(function() {
       whichPage();
       sessionNumber();
-   
-   filterFunction5();
+      filterFunction6();
+
       $('nav ul li a').click(function() {
         var $linkClicked = $(this).attr('href');
         document.location.hash = $linkClicked;

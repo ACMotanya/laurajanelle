@@ -504,7 +504,7 @@ function populateDetailView2(secondImage, callback, callback2, stock_no) {
           if (response[k].msrp != ".00") {
             $("#msrp-field").html('MSRP:&nbsp;$' + response[k].msrp);
           }
-          if (response[k].look.toUpperCase() === "MANTRA" && response[k].func.toUpperCase() === "SCARF" || response[k].look.toUpperCase() === "APPAREL" && response[k].func.toUpperCase() != "PURSE" || response[k].look.toUpperCase() === "APPAREL" && response[k].func.toUpperCase() != "WRISTLET" ) {
+          if ( min2.indexOf(response[k].itemnum) != -1 ) {
             $(".min-1").empty();
             $(".min-1").text("Packs of 2!").css("color", "red");
           }
@@ -512,7 +512,7 @@ function populateDetailView2(secondImage, callback, callback2, stock_no) {
 
 
 
-        if (response[k].look.toUpperCase() === "MANTRA" && response[k].func.toUpperCase() === "SCARF" || response[k].look.toUpperCase() === "APPAREL" && response[k].func.toUpperCase() != "PURSE" || response[k].look.toUpperCase() === "APPAREL" && response[k].func.toUpperCase() != "WRISTLET" ) {
+        if (min2.indexOf(response[k].itemnum) != -1 ) {
           formData =  '<div class="quantity clearfix"><input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant[1]" onclick="changeQuantity2(this)">';
           formData += '<input type="text" name="quant[1]" step="2" min="2" name="quantity" value="2" title="Qty" size="4" class="qty form-control input-number" id="' + response[k].itemnum + '-dtview" />';
           formData += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant[1]" onclick="changeQuantity2(this)"></div>';
@@ -1785,7 +1785,7 @@ function itemRender2(div,response)
           prod +=  lines[k].shortdescription +'</a></h3></div>';
         }
         if ( lines[k].onsale === "Y") {
-          prod += '<div class="product-price">cost &nbsp;<del style="color:red"><span style="color:gray">$' + lines[k].msrp + '</span></del> <ins style="font-size: 17px">&nbsp; $' + lines[k].price + '</ins></div></div></div>';
+          prod += '<div class="product-price">cost &nbsp;<del style="color:red"><span style="color:gray">$' + lines[k].msrp + '</span></del> <ins style="font-size: 17px; line-height: 1px;">&nbsp; $' + lines[k].price + '</ins></div></div></div>';
         } else  {
           prod += '<div class="product-price"> cost &nbsp;$' + lines[k].price + '</div></div></div>';
         }
