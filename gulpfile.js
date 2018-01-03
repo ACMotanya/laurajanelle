@@ -52,8 +52,9 @@ gulp.task('serve', function() {
     }
   });
 
-  gulp.watch(cssFiles, ['css']);
-  gulp.watch(jsFiles, ['scripts']);
+  gulp.watch('_site/**/*.*').on('change', browserSync.reload);
+//  gulp.watch(cssFiles, ['css']);
+//  gulp.watch(jsFiles, ['scripts']);
 // gulp.watch('./css/all.css', ['nano']);
 // gulp.watch('./js/all.js', ['compress']);
 });
