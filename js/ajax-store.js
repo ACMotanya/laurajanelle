@@ -431,6 +431,7 @@ function detailView2(callback, callback2) {
   });
   
 }
+
 function populateDetailView2(secondImage, callback, callback2, stock_no) {
   $.ajax({
     type: "GET",
@@ -443,21 +444,20 @@ function populateDetailView2(secondImage, callback, callback2, stock_no) {
       console.log(response);
       Object.keys(response).forEach(function(k){
         $(".sku").text(response[k].itemnum);
-
+        /*
         if ( response[k].onsale === "Y" ) {
           $("#cost-field").html('COST:&nbsp;<ins style="font-size: 18px;">$' + response[k].price + '</ins> <del style="color:red"><span style="color:gray">$' + response[k].msrp + '</span></del>');
         } else {
-          $("#cost-field").html('COST:&nbsp;$' + response[k].price);
-          if (response[k].msrp != ".00") {
-            $("#msrp-field").html('MSRP:&nbsp;$' + response[k].msrp);
-          }
-          if ( min2.indexOf(response[k].itemnum) != -1 ) {
-            $(".min-1").empty();
-            $(".min-1").text("Packs of 2!").css("color", "red");
-          }
+        */
+        $("#cost-field").html('COST:&nbsp;$' + response[k].price);
+        
+        if (response[k].msrp != ".00") {
+          $("#msrp-field").html('MSRP:&nbsp;$' + response[k].msrp);
         }
-
-
+        if ( min2.indexOf(response[k].itemnum) != -1 ) {
+          $(".min-1").empty();
+          $(".min-1").text("Packs of 2!").css("color", "red");
+        }
 
         if (min2.indexOf(response[k].itemnum) != -1 ) {
           formData =  '<div class="quantity clearfix"><input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant[1]" onclick="changeQuantity2(this)">';
@@ -481,13 +481,26 @@ function populateDetailView2(secondImage, callback, callback2, stock_no) {
         }
 
         $(".image_fade").attr({src: 'https://www.laurajanelle.com/img/logos/' + response[k].look + '-logo.png'});
-        info =  '<tr><td>Description</td><td>' + response[k].shortdescription + '</td></tr>';
-        info += '<tr><td>Dimensions</td><td></td></tr>';
-        info += '<tr><td>Color</td><td>' + response[k].color + '</td></tr>';
-        info += '<tr><td>Type</td><td>' + response[k].func + '</td></tr>';
-        info += '<tr><td>Look</td><td>' + response[k].look + '</td></tr>';
-        info += '<tr><td>Metal Color</td><td>' + response[k].metalcolor + '</td></tr>';
 
+        info =  '<tr><td>Description</td><td>' + response[k].shortdescription + '</td></tr>';
+        if ( response[k].dimensions !== "" ) {
+         info += '<tr><td>Dimensions</td><td>' + response[k].dimensions + '</td></tr>';
+        }
+        if ( response[k].color !== "" ) {
+         info += '<tr><td>Color</td><td>' + response[k].color + '</td></tr>';
+        }
+        if ( response[k].func !== "" ) {
+          info += '<tr><td>Type</td><td>' + response[k].func + '</td></tr>';
+        }
+        if ( response[k].look !== "" ) {
+          info += '<tr><td>Look</td><td>' + response[k].look + '</td></tr>';
+        }
+        if ( response[k].metalcolor !== "" ) {
+          info += '<tr><td>Metal Color</td><td>' + response[k].metalcolor + '</td></tr>';
+        }
+        if ( response[k].material !== "" ) {
+          info += '<tr><td>Material</td><td>' + response[k].material + '</td></tr>';
+        }
         /* Fill in the pictures for the product */
         var pics = '<div class="fslider" data-pagi="false" data-arrows="false" data-thumbs="true"><div class="flexslider"><div class="slider-wrap" data-lightbox="gallery">';
         pics += '<div class="slide" data-thumb="https://www.laurajanelle.com/ljjpgimages/' + response[k].itemnum + '-sm.jpg"><a href="https://www.laurajanelle.com/ljjpgimages/' + response[k].itemnum + '-lg.jpg" title="' + response[k].shortdescription + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="https://www.laurajanelle.com/ljjpgimages/' + response[k].itemnum + '-md.jpg" alt="' + response[k].shortdescription + '"></span></a></div>';
@@ -1598,26 +1611,6 @@ function itemRender(div,response)
 
 function filterFunction(look)
 {
-  // Delete after October PLease!!!!
-  /*
-  $('#breast-cancer-banner').remove();
-  $.ajax({
-    type: "GET",
-    url: "https://netlink.laurajanelle.com:444/nlhelpers/laurajanelle-api/programs.php?",
-    data: {
-      data: a,
-      locaton: "800"
-    },
-    success: function(response) {
-      $("#shopItems, div[data-group='color'], div[data-group='type'], div[data-group='metal']").empty();
-      itemRender2("shopItems", response);
-    },
-    complete: function(){
-      SEMICOLON.initialize.lightbox();
-    }
-  });
-
-  */ $('#breast-cancer-banner').remove();
   $.get("https://netlink.laurajanelle.com:444/nlhelpers/prima-api/productlist/lj/programs/look/"+ look + "/", function (response) {
     $("#shopItems, div[data-group='color'], div[data-group='type'], div[data-group='metal']").empty();
       itemRender2("shopItems", response);
@@ -1627,8 +1620,7 @@ function filterFunction(look)
 }
 function filterFunction3(a)
 {
-  // Delete after October PLease!!!!
-  $('#breast-cancer-banner').remove();
+
   $.ajax({
     type: "GET",
     url: "https://netlink.laurajanelle.com:444/nlhelpers/laurajanelle-api/functions.php?",
@@ -1647,8 +1639,6 @@ function filterFunction3(a)
 }
 function filterFunction4()
 {
-  // Delete after October PLease!!!!
-  $('#breast-cancer-banner').remove();
   $.ajax({
     type: "GET",
     url: "https://netlink.laurajanelle.com:444/nlhelpers/prima-api/productlist/lj/onsale/",
@@ -1663,7 +1653,6 @@ function filterFunction4()
 }
 function filterFunction5()
 {
-  $('#breast-cancer-banner').remove();
   $.ajax({
     type: "GET",
     url: "https://netlink.laurajanelle.com:444/nlhelpers/prima-api/productlist/lj/",
@@ -1696,7 +1685,7 @@ function itemRender2(div,response)
   console.log(lines);
   functiontype = [];
   colors = [];
-  material = [];
+  metalcolors = [];
   if ( lines.length <= 1) {
     document.getElementById(div).innerHTML += '<h1>There are no results</h1>';
   } else {
@@ -1710,7 +1699,7 @@ function itemRender2(div,response)
       if (sortItems2.indexOf(a[0][0].trim()) != sortItems2.indexOf( b[0][0].trim() )) retVal= sortItems2.indexOf( a[0][0].trim() ) > sortItems2.indexOf( b[0][0].trim() )?1:-1;
       return retVal;
     });
-    console.log(result);
+   
     
     Object.keys(lines).sort( function( a, b ) {
       retVal=0;
@@ -1729,9 +1718,11 @@ function itemRender2(div,response)
         if (lines[k].featured === 'Y') {
           prod += '<div class="sale-flash">NEW!</div>';
         }
+        /*
         if (lines[k].onsale === 'Y') {
           prod += '<div class="sale-flash" style="background-color: red">SPECIAL!</div>';
         }
+        */
         prod += '<div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + lines[k].itemnum + ' has been added to your cart!" onclick="stock_no=\'' + lines[k].itemnum + '\'; detailString=\'#detail-view+' + lines[k].itemnum + '\'; addItemDetailView2(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
         prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'' + lines[k].itemnum + '\'; quickView(this.id);" id="' + lines[k].itemnum + '"><i class="icon-zoom-in2"></i><span id="' + lines[k].itemnum + '">Quick View</span></a></div></div>';
         prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+' + lines[k].itemnum + '">';
@@ -1740,11 +1731,14 @@ function itemRender2(div,response)
         } else {
           prod +=  lines[k].shortdescription +'</a></h3></div>';
         }
+        prod += '<div class="product-price"> cost &nbsp;$' + lines[k].price + '</div></div></div>';
+        /*
         if ( lines[k].onsale === "Y") {
           prod += '<div class="product-price">cost &nbsp;<del style="color:red"><span style="color:gray">$' + lines[k].msrp + '</span></del> <ins style="font-size: 17px; line-height: 1px;">&nbsp; $' + lines[k].price + '</ins></div></div></div>';
         } else  {
           prod += '<div class="product-price"> cost &nbsp;$' + lines[k].price + '</div></div></div>';
         }
+        */
         html.unshift(prod);
         listOfAttributes(functiontype, lines[k].func );
         listOfAttributes(metalcolors, lines[k].metalcolor);
