@@ -4,7 +4,7 @@ var banned = [
   "18056PR",  "181200A",  "1044A",  "109BA",  "118V2A",  "18044LBLK",  "18041LTPL",  "18041LTPS",  "18041LGHL",  "18041LGHS",
   "18041LBSL",  "18041LBSS",  "18041BKL",  "18041BKS",  "1010A",  "11900BGA",  "TC119",  "1191421B",  "1138809B",  "1162747B",
   "1237AST",  "10541A",  "JR001",  "CD111S",  "CD107S",  "13139S",  "12148S",  "12101PP",  "12100PP",  "11995S",  "11300CS",  "11300CPP",
-  "11300BS",  "11100AS",  "10700CPP",  "10544S",  "10500AS",  "10400S",  ];
+  "11300BS",  "11100AS",  "10700CPP",  "10544S",  "10500AS"];
 
 var cartheader;
 var cartitems;
@@ -480,7 +480,7 @@ function populateDetailView2(secondImage, callback, callback2, stock_no) {
           $("#item-description").html( '<p>' + response[k].shortdescription + '</p>');
         }
 
-        $(".image_fade").attr({src: 'https://www.laurajanelle.com/img/logos/' + response[k].look + '-logo.png'});
+        $(".image_fade").attr({src: 'https://www.laurajanelle.com/img/logos/' + response[k].look.toUpperCase() + '-logo.png'});
 
         info =  '<tr><td>Description</td><td>' + response[k].shortdescription + '</td></tr>';
         if ( response[k].dimensions !== "" ) {
@@ -723,7 +723,7 @@ function updateCart2(callback)
 {
   //$("#updateCartButton").hide();
   UpdatedShoppingCart = {};
-  newItems ={};
+  newItems = {};
   var table = $("table tbody#cartItemTable");
   // loop thru cart and flatten the items that are repeated
   table.find('tr.products').each(function () {
@@ -739,7 +739,7 @@ function updateCart2(callback)
     UpdatedShoppingCart[line_no] = [parseInt(qty), stockNumber];
   });
   loopCart();
-  addItemsBack();
+  addItemsBack(shopPage);
   if (callback && typeof (callback) === "function") {
     callback();
   }
@@ -1564,50 +1564,12 @@ function search(event)
     });
   }
 }
-function itemRender(div,response)
-{
-  lines = response.split("\n");
-  lines.shift();
-  if ( lines.length <= 1) {
-    document.getElementById(div).innerHTML += '<h1>There are no results</h1>';
-  } else {
-    html = [];
-    linesPlus = [];
-    for (i=0; i<lines.length - 1; i++) {
-      linesPlus.push(lines[i].split("|"));
-    }
 
-    linesPlus.sort( function( a, b ) {
-      retVal=0;
-      if (sortItems.indexOf(a[0].trim()) != sortItems.indexOf( b[0].trim() )) retVal= sortItems.indexOf( a[0].trim() ) > sortItems.indexOf( b[0].trim() )?1:-1;
-      return retVal;
-    });
-    for (i=0; i<linesPlus.length; i++) {
-      flds = linesPlus[i];
-
-      // blocking out new items for encharming
-      // if ( banned.indexOf(flds[0].trim()) != -1 ) { continue; } 
-
-      stringOfDetails = flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim();
-      prod =  '<div class="product clearfix ' + flds[2].trim() +" "+ flds[8].trim() +" "+ flds[9].trim() +" "+ flds[10].trim() + 1 +'"><div class="product-image"><a href="#detail-view+' + stringOfDetails + '"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/' + flds[0].trim()  + '-sm.jpg" alt="' + flds[1] + '"></a>';
-      if (flds[7].trim().length === 3) {
-        prod += '<div class="sale-flash">NEW!</div>';
-      }
-      prod += '<div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim() + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'#detail-view+' + stringOfDetails + '\'; addItemDetailView(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-      prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'' + flds[0].trim() + '\'; quickView(this.id);" id="' + stringOfDetails + '"><i class="icon-zoom-in2"></i><span id="' + stringOfDetails + '">Quick View</span></a></div></div>';
-      prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+' + stringOfDetails + '">' + flds[1] +'</a></h3></div><div class="product-price">cost &nbsp;$' + flds[4].trim() + '</div></div></div>';
-
-      html.push(prod);
-    }
-    document.getElementById(div).innerHTML += html.join('');
-  }
-}
 
 
 //////////////////////////
 //    Filter Function   //
 //////////////////////////
-
 
 function filterFunction(look)
 {
@@ -1686,7 +1648,7 @@ function itemRender2(div,response)
   functiontype = [];
   colors = [];
   metalcolors = [];
-  if ( lines.length <= 1) {
+  if ( Object.keys(lines) == "items" ) {
     document.getElementById(div).innerHTML += '<h1>There are no results</h1>';
   } else {
     html = [];
@@ -1699,7 +1661,6 @@ function itemRender2(div,response)
       if (sortItems2.indexOf(a[0][0].trim()) != sortItems2.indexOf( b[0][0].trim() )) retVal= sortItems2.indexOf( a[0][0].trim() ) > sortItems2.indexOf( b[0][0].trim() )?1:-1;
       return retVal;
     });
-   
     
     Object.keys(lines).sort( function( a, b ) {
       retVal=0;
@@ -1713,8 +1674,8 @@ function itemRender2(div,response)
         console.log("hidden");
        } else {
 
-        stringOfDetails = lines[k].itemnum;
-        prod =  '<div class="product clearfix ' + lines[k].look +" "+ lines[k].color +" "+ lines[k].func +" "+ lines[k].metalcolor +'"><div class="product-image"><a href="#detail-view+' + lines[k].itemnum + '"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/' + lines[k].itemnum + '-sm.jpg" alt="' + lines[k].shortdescription + '"></a>';
+       // stringOfDetails = lines[k].itemnum;
+        prod =  '<div class="product clearfix ' + lines[k].color.toLowerCase() +" "+ lines[k].func.toLowerCase() +" "+ lines[k].metalcolor.toLowerCase() +'"><div class="product-image"><a href="#detail-view+' + lines[k].itemnum + '"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/' + lines[k].itemnum + '-sm.jpg" alt="' + lines[k].shortdescription + '"></a>';
         if (lines[k].featured === 'Y') {
           prod += '<div class="sale-flash">NEW!</div>';
         }
@@ -1723,8 +1684,8 @@ function itemRender2(div,response)
           prod += '<div class="sale-flash" style="background-color: red">SPECIAL!</div>';
         }
         */
-        prod += '<div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + lines[k].itemnum + ' has been added to your cart!" onclick="stock_no=\'' + lines[k].itemnum + '\'; detailString=\'#detail-view+' + lines[k].itemnum + '\'; addItemDetailView2(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-        prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'' + lines[k].itemnum + '\'; quickView(this.id);" id="' + lines[k].itemnum + '"><i class="icon-zoom-in2"></i><span id="' + lines[k].itemnum + '">Quick View</span></a></div></div>';
+        prod += '<div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + lines[k].itemnum + ' has been added to your cart!" onclick="stock_no=\'' + lines[k].itemnum + '\'; addItemDetailView2(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+        prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'' + lines[k].itemnum + '\'; quickView(\'' + lines[k].itemnum + '\');"><i class="icon-zoom-in2"></i><span>Quick View</span></a></div></div>';
         prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+' + lines[k].itemnum + '">';
         if ( lines[k].shortdescription.length === 0 ) {
           prod +=  lines[k].itemnum +'</a></h3></div>';
@@ -1740,14 +1701,15 @@ function itemRender2(div,response)
         }
         */
         html.unshift(prod);
-        listOfAttributes(functiontype, lines[k].func );
-        listOfAttributes(metalcolors, lines[k].metalcolor);
-        listOfAttributes(colors, lines[k].color);
+        listOfAttributes(functiontype, lines[k].func.toLowerCase());
+        listOfAttributes(metalcolors, lines[k].metalcolor.toLowerCase());
+        listOfAttributes(colors, lines[k].color.toLowerCase());
       }
     } );
     document.getElementById(div).innerHTML += html.join('');
+    fillTypeField();
   }
-  fillTypeField();
+  
 }
 
 function listOfAttributes(attr, field)
@@ -1801,14 +1763,14 @@ function quickView(clicked_id)
 
 			document.getElementById("quickViewimages").innerHTML = '<div class="slide" style="display: block;"><a href="#shop"><img src="https://www.laurajanelle.com/ljjpgimages/' + stock_no + '-md.jpg" alt="' + fields[1] + '"></a></div>';
 
-      jQuery( "#secondColumn").prepend('<div><a href="#shop" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/logos/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div><div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + stock_no + '</span></span></div><div class="line"></div><div class="product-price col_half" style="font-size: 16px; font-weight: 400;">COST:&nbsp;' + fields[4] + '</div>');
+      jQuery( "#secondColumn").prepend('<div><a href="#shop" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="https://www.laurajanelle.com/img/logos/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div><div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;"><br><br>ITEM # <span class="sku">' + stock_no + '</span></span></div><div class="line"></div><div class="product-price col_half" style="font-size: 16px; font-weight: 400;">COST:&nbsp;' + fields[4] + '</div>');
       jQuery( ".minus" ).after( '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + stock_no + '" />' );
       if (fields[8].length !== 0)  {
          secondColumnQuick = '<p>' + fields[8] + '</p>';
       } else {
          secondColumnQuick = '<p>' + fields[1] + '</p>';
       }
-      $("#quickViewForm").append('<button type="button" id="add-item" class="add-to-cart button nomargin" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>The item(s) have been added to your cart!" onclick="detailString=\'#detail-view+' + clicked_id + '\'; addItemDetailView(); SEMICOLON.widget.notifications(this); shopPage(); return false;">Add to cart</button>');
+      $("#quickViewForm").append('<button type="button" id="add-item" class="add-to-cart button nomargin" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>The item(s) have been added to your cart!" onclick="addItemDetailView(); SEMICOLON.widget.notifications(this); shopPage(); return false;">Add to cart</button>');
       $("#description").append(secondColumnQuick);
     }
   });
@@ -2062,9 +2024,9 @@ function ljPink()
   $('#shopItems').empty();
 
   $('#shopItems').before('<img id="breast-cancer-banner" src="../img/lj-pink-banner.jpg">');
-  breastprod =  '<div class="product clearfix GLB 11 800 1"><div class="product-image"><a href="#detail-view+1238AST+11+800+"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/1238AST-sm.jpg" alt="RGLB BRACELET BC ASSORTMENT"></a><div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 1238AST has been added to your cart!" onclick="stock_no=\'1238AST\'; detailString=\'#detail-view+1238AST+11+800+\'; addItemDetailView2(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a><a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'1238AST\'; quickView(this.id);" id="1238AST+11+800+"><i class="icon-zoom-in2"></i><span id="1238AST+11+800+">Quick View</span></a></div></div><div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+1238AST+11+800+">RGLB BRACELET BREAST CANCER ASSORTMENT</a></h3></div><div class="product-price">cost &nbsp;$225.75</div></div></div>';
-  breastprod += '<div class="product clearfix MAN 11 1000 1"><div class="product-image"><a href="#detail-view+12330+11+1000+"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/12330-sm.jpg" alt="MANTRA SCARF"></a><div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 12330 has been added to your cart!" onclick="stock_no=\'12330\'; detailString=\'#detail-view+12330+11+1000+\'; addItemDetailView2(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a><a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'12330\'; quickView(this.id);" id="12330+11+1000+"><i class="icon-zoom-in2"></i><span id="12330+11+1000+">Quick View</span></a></div></div><div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+12330+11+1000+">MANTRA BREAST CANCER AWARENESS SCARF</a></h3></div><div class="product-price">cost &nbsp;$8.75</div></div></div>';
-  breastprod += '<div class="product clearfix GLB 800 1"><div class="product-image"><a href="#detail-view+12100B++800+"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/12100B-sm.jpg" alt="AWARENESS BRACELET ASSORTMENT"></a><div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 12100B has been added to your cart!" onclick="stock_no=\'12100B\'; detailString=\'#detail-view+12100B++800+\'; addItemDetailView2(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a><a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'12100B\'; quickView(this.id);" id="12100B++800+"><i class="icon-zoom-in2"></i><span id="12100B++800+">Quick View</span></a></div></div><div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+12100B++800+">KNOT BRACELET BREAST CANCER AWARENESS ASSORTMENT</a></h3></div><div class="product-price">cost &nbsp;$232.00</div></div></div>';
+  breastprod =  '<div class="product clearfix GLB 11 800 1"><div class="product-image"><a href="#detail-view+1238AST+11+800+"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/1238AST-sm.jpg" alt="RGLB BRACELET BC ASSORTMENT"></a><div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 1238AST has been added to your cart!" onclick="stock_no=\'1238AST\';  addItemDetailView2(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a><a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'1238AST\'; quickView(this.id);" id="1238AST+11+800+"><i class="icon-zoom-in2"></i><span id="1238AST+11+800+">Quick View</span></a></div></div><div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+1238AST+11+800+">RGLB BRACELET BREAST CANCER ASSORTMENT</a></h3></div><div class="product-price">cost &nbsp;$225.75</div></div></div>';
+  breastprod += '<div class="product clearfix MAN 11 1000 1"><div class="product-image"><a href="#detail-view+12330+11+1000+"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/12330-sm.jpg" alt="MANTRA SCARF"></a><div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 12330 has been added to your cart!" onclick="stock_no=\'12330\'; addItemDetailView2(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a><a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'12330\'; quickView(this.id);" id="12330+11+1000+"><i class="icon-zoom-in2"></i><span id="12330+11+1000+">Quick View</span></a></div></div><div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+12330+11+1000+">MANTRA BREAST CANCER AWARENESS SCARF</a></h3></div><div class="product-price">cost &nbsp;$8.75</div></div></div>';
+  breastprod += '<div class="product clearfix GLB 800 1"><div class="product-image"><a href="#detail-view+12100B++800+"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/12100B-sm.jpg" alt="AWARENESS BRACELET ASSORTMENT"></a><div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 12100B has been added to your cart!" onclick="stock_no=\'12100B\'; addItemDetailView2(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a><a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'12100B\'; quickView(this.id);" id="12100B++800+"><i class="icon-zoom-in2"></i><span id="12100B++800+">Quick View</span></a></div></div><div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+12100B++800+">KNOT BRACELET BREAST CANCER AWARENESS ASSORTMENT</a></h3></div><div class="product-price">cost &nbsp;$232.00</div></div></div>';
   $('#shopItems').html(breastprod);
 
 }
