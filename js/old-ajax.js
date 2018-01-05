@@ -385,6 +385,45 @@ function detailView(callback, callback2) {
     });
 }
 
+function itemRender(div,response)
+{
+  lines = response.split("\n");
+  lines.shift();
+  if ( lines.length <= 1) {
+    document.getElementById(div).innerHTML += '<h1>There are no results</h1>';
+  } else {
+    html = [];
+    linesPlus = [];
+    for (i=0; i<lines.length - 1; i++) {
+      linesPlus.push(lines[i].split("|"));
+    }
+
+    linesPlus.sort( function( a, b ) {
+      retVal=0;
+      if (sortItems.indexOf(a[0].trim()) != sortItems.indexOf( b[0].trim() )) retVal= sortItems.indexOf( a[0].trim() ) > sortItems.indexOf( b[0].trim() )?1:-1;
+      return retVal;
+    });
+    for (i=0; i<linesPlus.length; i++) {
+      flds = linesPlus[i];
+
+      // blocking out new items for encharming
+      // if ( banned.indexOf(flds[0].trim()) != -1 ) { continue; } 
+
+      stringOfDetails = flds[0].trim() + '+' + flds[8].trim() + '+' + flds[9].trim() + '+' + flds[10].trim();
+      prod =  '<div class="product clearfix ' + flds[2].trim() +" "+ flds[8].trim() +" "+ flds[9].trim() +" "+ flds[10].trim() + 1 +'"><div class="product-image"><a href="#detail-view+' + stringOfDetails + '"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/' + flds[0].trim()  + '-sm.jpg" alt="' + flds[1] + '"></a>';
+      if (flds[7].trim().length === 3) {
+        prod += '<div class="sale-flash">NEW!</div>';
+      }
+      prod += '<div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + flds[0].trim() + ' has been added to your cart!" onclick="stock_no=\'' + flds[0].trim() + '\'; detailString=\'#detail-view+' + stringOfDetails + '\'; addItemDetailView(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+      prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'' + flds[0].trim() + '\'; quickView(this.id);" id="' + stringOfDetails + '"><i class="icon-zoom-in2"></i><span id="' + stringOfDetails + '">Quick View</span></a></div></div>';
+      prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+' + stringOfDetails + '">' + flds[1] +'</a></h3></div><div class="product-price">cost &nbsp;$' + flds[4].trim() + '</div></div></div>';
+
+      html.push(prod);
+    }
+    document.getElementById(div).innerHTML += html.join('');
+  }
+}
+
 
 var sortItems2 = [
   "18005BA",
