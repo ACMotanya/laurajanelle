@@ -1,11 +1,3 @@
-var banned = [
-  "10358",  "11115",  "11116",  "11118",  "11119",  "11120",  "11164",  "12908",  "18056LBLK",  "18056LBLU",  "18056LBRN",
-  "18056LDKO",  "18056LGLD",  "18056LGRN",  "18056LGRY",  "18056LPNK",  "180587LWHT",  "11900BA",  "11900ENA",  "18098PR",
-  "18056PR",  "181200A",  "1044A",  "109BA",  "118V2A",  "18044LBLK",  "18041LTPL",  "18041LTPS",  "18041LGHL",  "18041LGHS",
-  "18041LBSL",  "18041LBSS",  "18041BKL",  "18041BKS",  "1010A",  "11900BGA",  "TC119",  "1191421B",  "1138809B",  "1162747B",
-  "1237AST",  "10541A",  "JR001",  "CD111S",  "CD107S",  "13139S",  "12148S",  "12101PP",  "12100PP",  "11995S",  "11300CS",  "11300CPP",
-  "11300BS",  "11100AS",  "10700CPP",  "10544S",  "10500AS"];
-
 var cartheader;
 var cartitems;
 var colors = [];
@@ -544,10 +536,10 @@ function itemRender2(div,response)
     });
     */
     Object.keys(lines).forEach(function(k){
-      // blocking out new items for encharming
-      if ( banned.indexOf(lines[k].itemnum) != -1 ) {
-        console.log("hidden");
-       } else {
+      // blocking out items
+      //if ( banned.indexOf(lines[k].itemnum) != -1 ) {
+      // console.log("hidden");
+      // } else {
 
        // stringOfDetails = lines[k].itemnum;
         prod =  '<div class="product clearfix ' + lines[k].color.toLowerCase() +" "+ lines[k].func.toLowerCase() +" "+ lines[k].metalcolor.toLowerCase() +'"><div class="product-image"><a href="#detail-view+' + lines[k].itemnum + '"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/' + lines[k].itemnum + '-sm.jpg" alt="' + lines[k].shortdescription + '"></a>';
@@ -579,7 +571,7 @@ function itemRender2(div,response)
         listOfAttributes(functiontype, lines[k].func.toLowerCase());
         listOfAttributes(metalcolors, lines[k].metalcolor.toLowerCase());
         listOfAttributes(colors, lines[k].color.toLowerCase());
-      }
+    //  }
     } );
     document.getElementById(div).innerHTML += html.join('');
     fillTypeField();
