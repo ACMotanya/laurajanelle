@@ -870,7 +870,7 @@ function getReviews(stock_no)
   $.get("https://netlink.laurajanelle.com:444/nlhelpers/mailer/review.php?comment=&custname=&custnum=&rating=&item="+ stock_no +"&email=&source=", function ( reviewdata ) {
     rdata = reviewdata.split("\n");
     if (rdata.length < 2) {
-      custrLines = '<p class="reviewSection lead topmargin-sm">No reviews have been submitted for this item.</>';
+      custrLines = '<p class="reviewSection lead topmargin-sm">No reviews have been submitted for this item.</p>';
       $("#listOfReviews").prepend(custrLines);
       $("#mainRatingDiv").html('<a href="#" onclick="$(\'#addReviewButton\').click(); return false;">Be the first to review this item</a>');
     } else {
