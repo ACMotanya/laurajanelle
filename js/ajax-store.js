@@ -237,7 +237,8 @@ function addItemGeneric(session_no, stock_no, qty)
 function addItemDetailView2()
 {
   var detailViewQty;
-  realid = stock_no+"-dtview";
+  var realid = stock_no+"-dtview";
+  console.log(realid);
   if (document.getElementById(realid)) {
     detailViewQty = document.getElementById(realid).value;
   } else {
@@ -679,15 +680,20 @@ function populateDetailView2(secondImage, callback, callback2, stock_no) {
       console.log(response);
       Object.keys(response).forEach(function(k){
         $(".sku").text(response[k].itemnum);
-        /*
-        if ( response[k].onsale === "Y" ) {
-          $("#cost-field").html('COST:&nbsp;<ins style="font-size: 18px;">$' + response[k].price + '</ins> <del style="color:red"><span style="color:gray">$' + response[k].msrp + '</span></del>');
-        } else {
-        */
-        $("#cost-field").html('COST:&nbsp;$' + response[k].price);
         
-        if (response[k].msrp != ".00") {
+        if ( response[k].onsale === "Y" ) {
+          //$("#cost-field").html('COST:&nbsp;<ins style="font-size: 18px;">$' + response[k].price + '</ins> <del style="color:red"><span style="color:gray">$' + response[k].msrp + '</span></del>');
+          $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APISTKDTL&stock_no=" + stock_no + "", function( saleData ) {
+            
+          });
+        } else {
+        
+        $("#cost-field").html('COST:&nbsp;$' + response[k].price);
+        }
+        if (response[k].msrp !== ".00" || response[k].msrp !== "0.00" ) {
           $("#msrp-field").html('MSRP:&nbsp;$' + response[k].msrp);
+        } else {
+          $("#msrp-field").hide();
         }
         if ( min2.indexOf(response[k].itemnum) != -1 ) {
           $(".min-1").empty();

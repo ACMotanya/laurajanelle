@@ -39,6 +39,10 @@ i.icon-search3 {
 	margin: auto;
 }
 
+.button {
+	font-weight: 300;
+}
+
 
 body.stretched #header.full-header.sticky-header .container {
 	box-shadow: 0px 3px 3px lightgrey;
@@ -242,9 +246,7 @@ p.aboutblocks {
 }
 
 div.container.clearfix video.about {
-	display: block;
 	width: 70%;
-	margin: auto;
 }
 
 @media (min-width: 778px) and (max-width: 991px) {
