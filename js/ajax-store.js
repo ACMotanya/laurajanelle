@@ -665,7 +665,6 @@ function detailView2(callback, callback2) {
     noSecondImage = '';
     populateDetailView2(noSecondImage, callback, callback2, stock_no);
   });
-  
 }
 
 function populateDetailView2(secondImage, callback, callback2, stock_no) {
@@ -678,6 +677,7 @@ function populateDetailView2(secondImage, callback, callback2, stock_no) {
     },
     success: function (response) {
       console.log(response);
+      console.log (response.func);
       Object.keys(response).forEach(function(k){
         $(".sku").text(response[k].itemnum);
         
@@ -690,10 +690,12 @@ function populateDetailView2(secondImage, callback, callback2, stock_no) {
         
         $("#cost-field").html('COST:&nbsp;$' + response[k].price);
         }
-        if (response[k].msrp !== ".00" || response[k].msrp !== "0.00" ) {
+        if (response[k].msrp !== ".00" || response[k].msrp !== "0.00" || response[k].func === "Program") {
           $("#msrp-field").html('MSRP:&nbsp;$' + response[k].msrp);
+          console.log(response[k].msrp + " what the fuckk");
         } else {
           $("#msrp-field").hide();
+          console.log(response[k].msrp);
         }
         if ( min2.indexOf(response[k].itemnum) != -1 ) {
           $(".min-1").empty();
