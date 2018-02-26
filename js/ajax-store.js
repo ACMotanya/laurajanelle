@@ -547,11 +547,11 @@ function itemRender2(div,response)
         if (lines[k].featured === 'Y') {
           prod += '<div class="sale-flash">NEW!</div>';
         }
-        /*
+        
         if (lines[k].onsale === 'Y') {
           prod += '<div class="sale-flash" style="background-color: red">SPECIAL!</div>';
         }
-        */
+      
         prod += '<div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + lines[k].itemnum + ' has been added to your cart!" onclick="stock_no=\'' + lines[k].itemnum + '\'; addItemDetailView2(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
         prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'' + lines[k].itemnum + '\'; quickView(\'' + lines[k].itemnum + '\');"><i class="icon-zoom-in2"></i><span>Quick View</span></a></div></div>';
         prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+' + lines[k].itemnum + '">';
@@ -560,14 +560,14 @@ function itemRender2(div,response)
         } else {
           prod +=  lines[k].shortdescription +'</a></h3></div>';
         }
-        prod += '<div class="product-price"> cost &nbsp;$' + lines[k].price + '</div></div></div>';
-        /*
+        //prod += '<div class="product-price"> cost &nbsp;$' + lines[k].price + '</div></div></div>';
+        
         if ( lines[k].onsale === "Y") {
-          prod += '<div class="product-price">cost &nbsp;<del style="color:red"><span style="color:gray">$' + lines[k].msrp + '</span></del> <ins style="font-size: 17px; line-height: 1px;">&nbsp; $' + lines[k].price + '</ins></div></div></div>';
+          prod += '<div class="product-price">cost &nbsp;<span class="cross" style="color:gray">$' + lines[k].msrp + '</span> <ins style="font-size: 17px; line-height: 1px;">&nbsp; $' + lines[k].price + '</ins></div></div></div>';
         } else  {
           prod += '<div class="product-price"> cost &nbsp;$' + lines[k].price + '</div></div></div>';
         }
-        */
+        
         html.unshift(prod);
         listOfAttributes(functiontype, lines[k].func.toLowerCase());
         listOfAttributes(metalcolors, lines[k].metalcolor.toLowerCase());
@@ -677,26 +677,35 @@ function populateDetailView2(secondImage, callback, callback2, stock_no) {
     },
     success: function (response) {
       console.log(response);
-      console.log (response.func);
       Object.keys(response).forEach(function(k){
         $(".sku").text(response[k].itemnum);
         
         if ( response[k].onsale === "Y" ) {
-          //$("#cost-field").html('COST:&nbsp;<ins style="font-size: 18px;">$' + response[k].price + '</ins> <del style="color:red"><span style="color:gray">$' + response[k].msrp + '</span></del>');
+          $("#cost-field").html('COST:&nbsp; <span id="old-whole" class="cross"></span><ins style="font-size: 18px;">&nbsp;&nbsp;$' + response[k].price + '</ins>');
+          
           $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APISTKDTL&stock_no=" + stock_no + "", function( saleData ) {
-            
+            console.log(saleData);
+            lines  = saleData.split("\n");
+            fields = lines[1].split("|");
+            console.log( fields[2] );
+            $('#old-whole').html(fields[2]);
+            if (fields[8] && fields[8].length !== 0) {
+              $("#item-description").html('<p>' + fields[8] + '</p>');
+            }
           });
         } else {
-        
-        $("#cost-field").html('COST:&nbsp;$' + response[k].price);
+          $("#cost-field").html('COST:&nbsp;$' + response[k].price);
         }
-        if (response[k].msrp !== ".00" || response[k].msrp !== "0.00" || response[k].func === "Program") {
-          $("#msrp-field").html('MSRP:&nbsp;$' + response[k].msrp);
-          console.log(response[k].msrp + " what the fuckk");
-        } else {
+
+        if (response[k].msrp === ".00" || response[k].msrp === "0.00") {
           $("#msrp-field").hide();
           console.log(response[k].msrp);
+        } else {
+          $("#msrp-field").html('MSRP:&nbsp;$' + response[k].msrp);
+          $("#msrp-field").show();
+          console.log(response[k].msrp + " i went down");
         }
+
         if ( min2.indexOf(response[k].itemnum) != -1 ) {
           $(".min-1").empty();
           $(".min-1").text("Packs of 2!").css("color", "red");
@@ -725,7 +734,8 @@ function populateDetailView2(secondImage, callback, callback2, stock_no) {
 
         $(".image_fade").attr({src: 'https://www.laurajanelle.com/img/logos/' + response[k].look.toUpperCase() + '-logo.png'});
 
-        info =  '<tr><td>Description</td><td>' + response[k].shortdescription + '</td></tr>';
+        info = '<tr><td>Description</td><td>' + response[k].shortdescription + '</td></tr>';
+
         if ( response[k].dimensions !== "" ) {
          info += '<tr><td>Dimensions</td><td>' + response[k].dimensions + '</td></tr>';
         }
@@ -749,11 +759,14 @@ function populateDetailView2(secondImage, callback, callback2, stock_no) {
         pics += '<div class="slide" data-thumb="https://www.laurajanelle.com/ljjpgimages/' + response[k].itemnum + '-sm.jpg"><a href="https://www.laurajanelle.com/ljjpgimages/' + response[k].itemnum + '-lg.jpg" title="' + response[k].shortdescription + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="https://www.laurajanelle.com/ljjpgimages/' + response[k].itemnum + '-md.jpg" alt="' + response[k].shortdescription + '"></span></a></div>';
         pics += secondImage;
         pics += '</div></div></div>';
-        /*
-        if (fields[7] && fields[7].trim().length === 3) {
+        
+        if (response[k].onsale === "Y") {
+          pics += '<div class="sale-flash" style="background-color: red">SPECIAL!</div>';
+        }
+        if (response[k].featured === 'Y') {
           pics += '<div class="sale-flash">NEW!</div>';
         }
-        */
+        
         $("#images").html(pics);
         $("#addInfo").html(info);
       });

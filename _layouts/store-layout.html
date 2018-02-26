@@ -89,9 +89,9 @@ layout: compress
                     <li><a href="#orders"><div>ORDERS</div></a></li>
                   </ul>
                 </li>
-                <!--
+                
                 <li><a href="#shop" onclick="filterFunction4();"><div>Specials</div></a></li>
-                -->
+              
                 <li><a href="#cart"><div>Cart</div></a></li>
                 <li><a href="#" onclick="logoff();"><div>Log Out</div></a></li>
               </ul>
@@ -184,7 +184,7 @@ layout: compress
     {% include js.html %}
 
     <script defer type="text/javascript" src="{{ "/js/components/star-rating.min.js" | prepend: site.baseurl }}"></script>
- <!-- filterFunction2('APISTKLST','80011400','','','','',session_no,'800'); -->
+
     <script defer>
     $(window).on('hashchange', function() {
       whichPage();
@@ -193,7 +193,7 @@ layout: compress
     $(function() {
       whichPage();
       sessionNumber();
-      filterFunction6();
+      filterFunction4();
 
       $('nav ul li a').click(function() {
         var $linkClicked = $(this).attr('href');
