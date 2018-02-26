@@ -128,6 +128,10 @@ font-size:12px;
  #shop page styling mostly filters
 /* \\\\\\\\\\\\\\\\\\\
 */
+
+.single-product .add-to-cart.button {
+	margin-top: 0;
+}
 .commentlist {
 	border-bottom: none;
 }
@@ -318,6 +322,8 @@ div.acc_content.clearfix {
 
 
 
+
+
 /*\\\\\\\\\\\\\\\\\\\\
 	 Shop page Coolio
 \\\\\\\\\\\\\\\\\\\\*/
@@ -452,6 +458,26 @@ div.team-title h4 a:hover {
   font-size: 12px;
 }
 
+
+/*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  /* SPECIALS SECTION
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
+.cross {
+	position: relative;
+	display: inline-block;
+}
+.cross::before, .cross::after {
+	content: '';
+	width: 100%;
+	position: absolute;
+	right: 0;
+	top: 50%;
+}
+.cross::before {
+	border-bottom: 1.5px solid red;
+	-webkit-transform: skewY(-10deg);
+	transform: skewY(-10deg);
+}
 
 
 
