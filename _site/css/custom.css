@@ -60,16 +60,14 @@ body.stretched #header.full-header.sticky-header .container {
 	.side-header #primary-menu ul li a {
 		text-align: right;	
 	}
+	.side-header #logo img {
+		margin: auto;
+	}
 	.side-header #logo:not(.nobottomborder):after, .side-header #primary-menu:not(.nobottomborder):after {
 		width: 0%;
+
 	}
 
-}
-
-@media (max-width: 991px) {
-	#logo.sidebar-desktop-logo {
-		display: none !important;
-	}
 }
 
 #primary-menu ul li > a {
