@@ -1050,6 +1050,7 @@ function creditCard(n)
           fields = openlines[i].split("|");
           orders.push(fields);
         }
+       
         orders = orders.sort(function(a, b) {
           return a[1] > b[1] ? -1 : 1;
         });
@@ -1071,6 +1072,7 @@ function creditCard(n)
     }
   });
 }
+
 
 
 /////////////////////////////////////////
