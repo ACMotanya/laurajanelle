@@ -549,7 +549,7 @@ function itemRender2(div,response)
         }
         
         if (lines[k].onsale === 'Y') {
-          prod += '<div class="sale-flash" style="background-color: red">SPECIAL!</div>';
+          prod += '<div class="sale-flash" style="background-color: #cc0000">SPECIAL!</div>';
         }
       
         prod += '<div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + lines[k].itemnum + ' has been added to your cart!" onclick="stock_no=\'' + lines[k].itemnum + '\'; addItemDetailView2(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
@@ -708,7 +708,7 @@ function populateDetailView2(secondImage, callback, callback2, stock_no) {
 
         if ( min2.indexOf(response[k].itemnum) != -1 ) {
           $(".min-1").empty();
-          $(".min-1").text("Packs of 2!").css("color", "red");
+          $(".min-1").text("Packs of 2!").css("color", "#cc0000");
         }
 
         if (min2.indexOf(response[k].itemnum) != -1 ) {
@@ -761,7 +761,7 @@ function populateDetailView2(secondImage, callback, callback2, stock_no) {
         pics += '</div></div></div>';
         
         if (response[k].onsale === "Y") {
-          pics += '<div class="sale-flash" style="background-color: red">SPECIAL!</div>';
+          pics += '<div class="sale-flash" style="background-color: #cc0000">SPECIAL!</div>';
         }
         if (response[k].featured === 'Y') {
           pics += '<div class="sale-flash">NEW!</div>';
