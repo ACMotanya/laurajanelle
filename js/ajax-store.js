@@ -544,7 +544,7 @@ function itemRender2(div,response)
       } else {
 
        // stringOfDetails = lines[k].itemnum;
-        prod =  '<div class="product clearfix ' + lines[k].color.toLowerCase() +" "+ lines[k].func.toLowerCase() +" "+ lines[k].metalcolor.toLowerCase() +'"><div class="product-image"><a href="#detail-view+' + lines[k].itemnum + '"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/' + lines[k].itemnum + '-sm.jpg" alt="' + lines[k].shortdescription + '"></a>';
+        prod =  '<div class="product clearfix ' + lines[k].color.toLowerCase() +"omg "+ lines[k].func.toLowerCase() +" "+ lines[k].metalcolor.toLowerCase() +'"><div class="product-image"><a href="#detail-view+' + lines[k].itemnum + '"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/' + lines[k].itemnum + '-sm.jpg" alt="' + lines[k].shortdescription + '"></a>';
         if (lines[k].featured === 'Y') {
           prod += '<div class="sale-flash">NEW!</div>';
         }
@@ -603,7 +603,7 @@ function fillTypeField()
   });
   colors.forEach(function (element) {
     if ( element !== "" ) {
-      $("div[data-group='color']").append('<div><input id="checkbox-'+ counter +'" class="checkbox-style" type="checkbox" value=".' + element + '"><label for="checkbox-'+ counter +'" class="checkbox-style-1-label">' + element + '</label></div>');
+      $("div[data-group='color']").append('<div><input id="checkbox-'+ counter +'" class="checkbox-style" type="checkbox" value=".' + element + 'omg"><label for="checkbox-'+ counter +'" class="checkbox-style-1-label">' + element + '</label></div>');
       counter++;
     }
   });
@@ -2592,5 +2592,12 @@ specPrice =
 "1717AL":" $10.00 ",
 "1717PB":" $10.00 ",
 "1717PR":" $10.00 ",
-"1717SB":" $10.00 "};
+"1717SB":" $10.00 ",
+"CD103":"$55.00",
+"CD100":"$55.00",
+"CD105":"$55.00",
+"CD111":"$55.00",
+"EXT107G":"$1.50",
+"EXT107S":"$1.50",
+};
 
