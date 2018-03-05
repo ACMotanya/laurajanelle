@@ -1,0 +1,229 @@
+--- 
+layout: sidebar 
+title: Laura Janelle 
+---
+<link rel="stylesheet" href="{{site.baseurl }}/css/swiper.css" type="text/css" />
+
+<style>
+	/*
+	@media (min-width: 1200px) {
+		.dot:after {
+			content: url('../img/images.jpeg');
+			display: inline-block;
+			position: relative;
+			bottom: 45px;
+			right: 50%;
+		}
+	}
+	@media only screen and (max-width: 1199px) and (min-width: 768px) {
+		.dot:after {
+			content: url('../img/images.jpeg');
+			display: inline-block;
+			position: relative;
+			bottom: 45px;
+			right: 125px;
+		}
+	}
+
+
+		.content-wrap {
+			padding-top: 30px;
+		}
+	
+
+	@media (max-width: 768px) {
+		.col-sm-3.nobottommargin {
+			padding-bottom: 10px;
+		}
+		.heading-block {
+			margin-bottom: 30px;
+		}
+		span.visible-xs.visible-sm {
+			display: inline-block !important;
+		}
+		.heading-block h1 {
+			font-size: 24px;
+		}
+		div.togglet h3 {
+			font-size: 15px;
+		}
+	}
+		*/
+	</style>
+
+
+<section id="slider" class="swiper_wrapper full-screen clearfix visible-md visible-lg" data-autoplay="3000" data-speed="650" data-loop="true">
+	<div class="slider-parallax-inner">
+		<div class="swiper-container swiper-parent">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide" style="background-image: url('{{site.baseurl }}/img/winter2018/index-1.jpg'); background-position: center top;"></div>
+				<div class="swiper-slide" style="background-image: url('{{site.baseurl }}/img/winter2018/index-2.jpg'); background-position: center top;"></div>
+				<div class="swiper-slide" style="background-image: url('{{site.baseurl }}/img/winter2018/index-3.jpg'); background-position: center bottom;"></div>
+				<div class="swiper-slide" style="background-image: url('{{site.baseurl }}/img/winter2018/index-4.jpg'); background-position: center top;"></div>
+				<div class="swiper-slide" style="background-image: url('{{site.baseurl }}/img/winter2018/index-5.jpg'); background-position: center top;"></div>
+				<div class="swiper-slide" style="background-image: url('{{site.baseurl }}/img/winter2018/index-6.jpg'); background-position: center bottom;"></div>
+			</div>
+			<div id="slider-arrow-left"><i class="icon-angle-left"></i></div>
+			<div id="slider-arrow-right"><i class="icon-angle-right"></i></div>
+			<div id="slide-number"><div id="slide-number-current"></div><span>/</span><div id="slide-number-total"></div></div>
+			<div class="swiper-pagination"></div>
+		</div>
+	</div>
+</section>
+
+<section id="content" class="hidden-md hidden-lg">
+	<div id="portfolio" class="portfolio grid-container portfolio-1 portfolio-fullwidth clearfix">
+		<article class="portfolio-item pf-icons pf-illustrations clearfix">
+			<div class="portfolio-image">
+				<div class="fslider" data-arrows="false" data-speed="400" data-pause="4000">
+					<div class="flexslider">
+						<div class="slider-wrap">				
+							<div class="slide"><a href="#"><img src="{{ site.baseurl }}/img/winter2018/index-1.jpg" alt=""></div>
+							<div class="slide"><a href="#"><img src="{{ site.baseurl }}/img/winter2018/index-2.jpg" alt=""></div>
+							<div class="slide"><a href="#"><img src="{{ site.baseurl }}/img/winter2018/index-3.jpg" alt=""></div>
+							<div class="slide"><a href="#"><img src="{{ site.baseurl }}/img/winter2018/index-4.jpg" alt=""></div>
+							<div class="slide"><a href="#"><img src="{{ site.baseurl }}/img/winter2018/index-5.jpg" alt=""></div>
+							<div class="slide"><a href="#"><img src="{{ site.baseurl }}/img/winter2018/index-6.jpg" alt=""></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</article>
+	</div>
+	<a href="{{ site.baseurl }}/retailerlogin" target="_blank" class="divcenter center" style="text-decoration: underline !important; text-transform: uppercase; font-size: 28px; font-family: 'Bodoni-Sans'; display: block;">Shop New Items Now!</a>
+</section><!-- #content end -->
+
+
+		
+		
+			<!--
+<div class="clear"></div>
+
+<div class="container clearfix center">
+	<hr>
+</div>
+	
+<div class="visible-xs toggle">
+	<div class="togglet center">
+		<h3 style="text-decoration: underline; text-transform: uppercase;">Click to View Show Dates</h3>
+	</div>
+	<div class="togglec">
+		<div class="row">
+
+			<div class="col-sm-3 nobottommargin norightmargin dot">
+				<div class="feature-box fbox-center  nobottomborder">
+
+					<a data-toggle="modal" data-target="#myModal1">
+						<h3 class="nobottommargin" style="text-decoration: underline; cursor: pointer; text-transform: uppercase; font-size:19px;">Dallas</h3>
+					</a>
+					<h3>
+						<span class="subtitle t300" style="font-family: Lato;">January 17-23</span>
+					</h3>
+				</div>
+			</div>
+	
+			<div class="col-sm-3 nobottommargin norightmargin dot">
+				<div class="feature-box fbox-center  nobottomborder">
+					<a data-toggle="modal" data-target="#myModal3">
+						<h3 class="nobottommargin" style="text-decoration: underline; cursor: pointer; text-transform: uppercase; font-size:19px;">Atlanta</h3>
+					</a>
+					<h3>
+						<span class="subtitle t300" style="font-family: Lato;">January 9-16</span>
+					</h3>
+
+				</div>
+			</div>
+		
+			<div class="col-sm-12 dot nobottommargin norightmargin col_last">
+				<div class="feature-box fbox-center  nobottomborder">
+
+					<a data-toggle="modal" data-target="#myModal2">
+						<h3 class="nobottommargin" style="text-decoration: underline; cursor: pointer; text-transform: uppercase; font-size:19px;">Las Vegas</h3>
+					</a>
+					<h3>
+						<span class="subtitle t300" style="font-family: Lato;">January 28 - February 1</span>
+					</h3>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+	-->
+
+
+				
+<!-- Modal
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-body">
+			<div class="modal-content">
+				<div class="notopmargin" style="padding-top: 30px; padding-bottom: 30px;">
+					<div class="container center clearfix">
+						<img style="max-width: 30%;" src="{{ site.baseurl }}/img/ivystone.png">
+							
+						<h3 style="margin-bottom: 15px;">DALLAS, TX</h3>
+						<div class="entry-date" style="margin-bottom: 7px;"><span>January 17-23</span></div>
+						<address>
+							<strong>ADDRESS:</strong><br>
+							Dallas World Trade Center, #236<br>
+							2050 N Stemmons Freeway<br>
+							Dallas, TX 75207
+						</address>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+ -->
+<!-- Modal
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-body">
+			<div class="modal-content">
+				<div class="notopmargin" style="padding-top: 30px; padding-bottom: 30px;">
+					<div class="container center clearfix">
+						<img style="max-width: 30%;" src="{{ site.baseurl }}/img/ivystone.png">
+							
+						<h3 style="margin-bottom: 15px;">LAS VEGAS, NV</h3>
+						<div class="entry-date" style="margin-bottom: 7px;"><span>January 28 - February 1</span></div>
+						<address>
+							<strong>ADDRESS:</strong><br>
+							World Market Center, Building C, Showroom 696<br>
+							455 S Grand Central Pkwy<br>
+							Las Vegas, NV 89106
+						</address>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+-->
+<!-- Modal 
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-body">
+			<div class="modal-content">
+				<div class="notopmargin" style="padding-top: 30px; padding-bottom: 30px;">
+					<div class="container center clearfix">
+						<img style="max-width: 30%;" src="{{ site.baseurl }}/img/ivystone.png">
+							
+						<h3 style="margin-bottom: 15px;">ATLANTA, GA</h3>
+						<div class="entry-date" style="margin-bottom: 7px;"><span>January 9-16</span></div>
+						<address>
+							<strong>ADDRESS:</strong><br>
+							Atlanta Gift Mart, Bldg 2, #1801<br>
+							40 John Portman Boulevard, N.W.<br>
+							Atlanta, GA 30303
+						</address>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+-->
+
+<script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us14.list-manage.com","uuid":"786d98c15ffd8d115b6115c94","lid":"b5fc8f1516"}) })</script>
