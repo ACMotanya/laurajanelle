@@ -151,6 +151,7 @@ function login()
              password: password,
              loc_no: "800"},
       success: function(response) {
+        
         if (response.replace(/\s+/g,'').length === 25) {
           $.get("https://www.laurajanelle.com/phphelper/savecart/session.php?customer=" + username.toLowerCase() + "", function(answer){
             if (answer === "0") {
@@ -162,12 +163,15 @@ function login()
             }
             localStorage.setItem('username', username);
           }).done(function() {
+            
             windowHash("shop");
             redirect("store");
+            
           });
         } else {
           alert("Login credentials are incorrect, try again.");
         }
+        
       }
     });
   });
@@ -629,8 +633,10 @@ function quickView(clicked_id)
 					prodtype = prodtype[2];
 
 			document.getElementById("quickViewimages").innerHTML = '<div class="slide" style="display: block;"><a href="#shop"><img src="https://www.laurajanelle.com/ljjpgimages/' + stock_no + '-md.jpg" alt="' + fields[1] + '"></a></div>';
-
-      jQuery( "#secondColumn").prepend('<div><a href="#shop" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="https://www.laurajanelle.com/img/logos/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div><div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;"><br><br>ITEM # <span class="sku">' + stock_no + '</span></span></div><div class="line"></div><div class="product-price col_half" style="font-size: 16px; font-weight: 400;">COST:&nbsp;' + fields[4] + '</div>');
+     //brand logo
+     // jQuery( "#secondColumn").prepend('<div><a href="#shop" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="https://www.laurajanelle.com/img/logos/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div><div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;"><br><br>ITEM # <span class="sku">' + stock_no + '</span></span></div><div class="line"></div><div class="product-price col_half" style="font-size: 16px; font-weight: 400;">COST:&nbsp;' + fields[4] + '</div>');
+      jQuery( "#secondColumn").prepend('<div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;"><br><br>ITEM # <span class="sku">' + stock_no + '</span></span></div><div class="line"></div><div class="product-price col_half" style="font-size: 16px; font-weight: 400;">COST:&nbsp;' + fields[4] + '</div>');
+      
       jQuery( ".minus" ).after( '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + stock_no + '" />' );
       if (fields[8].length !== 0)  {
          secondColumnQuick = '<p>' + fields[8] + '</p>';

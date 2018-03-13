@@ -15,6 +15,9 @@
 	font-size: 14px;
 }
 
+.product-desc .product-title {
+	height: 30px;
+}
 
 @media (max-width: 1199px) and (min-width: 481px) {
 	.product:not(.product-2):not(.product-3) .product-title h3, .product:not(.product-2):not(.product-3) .product-price  {
@@ -85,6 +88,9 @@ body.stretched #header.full-header.sticky-header .container {
 font-size:12px;
 }
 
+.top-links li>a {
+	font-weight: 400;
+}
 
 #header.transparent-header.full-header #logo {
 	border-right-color: transparent;
