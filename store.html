@@ -2,7 +2,7 @@
 layout: store-layout
 title: Store - Laura Janelle
 ---      
-<script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
+
       <style>
       #cart, #checkout, #invoices, #profile, #orders, #shop, #detail-view, #faq, #search {
         display: none;
@@ -343,10 +343,10 @@ title: Store - Laura Janelle
                         <div class="row clearfix">
                           <div class="col-md-4 col-xs-4 nopadding hidden-xs">
                             <div class="col-md-8 col-xs-7 nopadding">
-                              <input type="text" value="" class="sm-form-control" placeholder="Enter Coupon Code.." />
+                              <input id="coupon1" type="text" value="" class="sm-form-control" placeholder="Enter Coupon Code.." />
                             </div>
                             <div class="col-md-4 col-xs-5">
-                              <a href="#" class="button button-3d button-black nomargin">Apply Coupon</a>
+                              <a href="#" onclick="couponCode();" class="button button-3d button-black nomargin">Apply Coupon</a>
                             </div>
                           </div>
                           <div class="col-md-8 col-xs-8 nopadding">
@@ -389,7 +389,7 @@ title: Store - Laura Janelle
                             <strong>Total</strong>
                           </td>
 
-                          <td class="cart-product-name total">
+                          <td class="cart-product-name total special">
                           <!--  <span class="amount color lead"><strong>$106.94</strong></span> -->
                           </td>
                         </tr>
