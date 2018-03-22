@@ -5,6 +5,7 @@ var colors = [];
 //var countrylines;
 var employee;
 var fields;
+
 var filters = {};
 var functiontype = [];
 var hideCC = true;
@@ -18,6 +19,11 @@ var shippingAddresses = [];
 var stock_no;
 var UpdatedShoppingCart = {};
 var username;
+
+
+var specials_subtotal_array;
+var specials_subtotal;
+var real_total;
 
 
 
@@ -235,6 +241,8 @@ function addItemGeneric(session_no, stock_no, qty)
 {
   $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTADD&session_no="+ session_no +"&stock_no="+ stock_no +"&qty="+qty+"");
 }
+
+
 //////////////////////////////////////////////
 // Add item to the cart for the detail page //
 //////////////////////////////////////////////
@@ -264,6 +272,7 @@ function addItemDetailView2()
 function removeItemGeneric(session_no, line_no)
 {
   $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTREM&session_no="+ session_no +"&line_no="+ line_no +"");
+
 }
 //////////////////////////////////
   // REMOVE ITEMS FROM CART //
@@ -278,6 +287,38 @@ function removeItem(clicked_id)
 
 
 
+///////////////////////
+// 10% off Coupon //
+///////////////////////
+$('#coupon1, #coupon2').keypress(function(e){
+  if(e.which == 13 ) {
+    e.preventDefault();
+    couponCode();
+  }
+});
+
+function couponCode()
+{
+  if (localStorage.getItem('couponUsed') !== "true") {
+    if ($('#coupon1').val().toUpperCase() === "SPRINGFLING2018" || $('#coupon2').val().toUpperCase() === "SPRINGFLING2018" ) {
+      localStorage.setItem('couponUsed', "true");
+      addItemGeneric(session_no, "SPRINGFLING2018", "1");
+    }
+  } else {
+    return false;
+  }
+}
+
+function calculateDiscount()
+{
+  var discount_amt;
+  real_total = parseFloat(real_total);
+  var fake_total =  real_total - specials_subtotal;
+  //console.log(fake_total.toFixed);
+  discount_amt = 0 - (fake_total * 0.1);
+  discount_amt = discount_amt.toFixed(2);
+  $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_code1=&misc_amt1=" + discount_amt + "");
+}
 //////////////////////////////
 // Get back the cart header //
 //////////////////////////////
@@ -301,15 +342,21 @@ function cartHeader(callback)
           $(".cart-product-name.subtotal").html( '<span class="amount">' + cartHeaderFields[19].trim() + '</span>' );
           $(".cart-product-name.total").html( '<span class="amount color lead"><strong>' + cartHeaderFields[22].trim() + '</strong></span>');
         }
+        if (localStorage.getItem('couponUsed') === "true") {
+          real_total = cartHeaderFields[19].trim();
+          calculateDiscount();
+        } else if (localStorage.getItem('couponUsed') === "false" || !localStorage.getItem('couponUsed')) {
+          $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_code1=&misc_amt1=0.00");
+        }
       }
     },
     complete: function () {
       if (callback && typeof(callback) === "function") {
         callback();
       }
+      cartList();
     }
   });
-  return false;
 }
 
 
@@ -334,9 +381,7 @@ function cartList()
       html = [];
 
       if ( window.location.hash === "#cart") {
-
         $(".cart_item.products").empty();
-
         cartHelper();
         $("#cartItemTable").prepend(html.join(''));
         $("#updateCartButton").show();
@@ -347,6 +392,9 @@ function cartList()
       } else {
         cartHelper();
       }
+    }, 
+    complete: function() {
+      
     }
   });
   return false;
@@ -395,14 +443,33 @@ function cartHelper()
         item1 += '<td class="cart-product-subtotal"><span class="amount">$' + data[8].substring(0, data[8].length - 4) + '</span></td></tr>';
         $("#checkout-cartItemTable").append(item1);
       }
+      
+      if (localStorage.getItem('couponUsed') === "true") {
+        specials_subtotal_array = [];
+        specials_subtotal = 0;
+        if (special_item_numbers.indexOf(data[2].replace(/\s+/g,'')) !== -1){
+        // var specialItem = data[2].replace(/\s+/g,'');
+        // fake_subtotal_array[specialItem] = parseFloat(data[8].substring(0, data[8].length - 4).trim());
+        specials_subtotal_array.push(parseFloat(data[8].substring(0, data[8].length - 4).trim()));
+        specials_subtotal = specials_subtotal_array.reduce(getSum);
+        }
+      }
+      if (data[2].replace(/\s+/g,'') === "SPRINGFLING2018" && (localStorage.getItem('couponUsed') !== "true" || !localStorage.getItem('couponUsed'))){
+        $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTREM&session_no="+ session_no +"&line_no=" + data[1].replace(/\s+/g,'') + "");
+      }
     }
   } else {
-
     item = '<tr class="cart_item products"><td class="cart-product-remove"><h1> Cart is empty</h1></td></tr>';
     html.push(item);
   }
   $("#minicart").append(html2.join(''));
 }
+
+
+function getSum(total, num) {
+  return total + num;
+}
+
 
 /////////////////////////
 // Search API Function //
@@ -583,6 +650,7 @@ function itemRender2(div,response)
     fillTypeField();
   } 
 }
+
 
 function listOfAttributes(attr, field)
 {
@@ -1621,6 +1689,7 @@ function logoff()
   localStorage.removeItem('session_no');
   localStorage.removeItem('newCustomer');
   localStorage.removeItem('username');
+  localStorage.removeItem('couponUsed');
   redirect("");
 }
 
@@ -2215,8 +2284,8 @@ var min2 = [
 "18044LBLU"
 ];
 
-specPrice = 
-{"10001":" $8.00 ",
+specPrice = {
+"10001":" $8.00 ",
 "10002":" $10.00 ",
 "10003":" $9.00 ",
 "10005":" $15.00 ",
@@ -2607,3 +2676,4 @@ specPrice =
 "EXT107S":"$1.50",
 };
 
+special_item_numbers = Object.keys(specPrice);
