@@ -303,6 +303,7 @@ function couponCode()
     if ($('#coupon1').val().toUpperCase() === "SPRINGFLING2018" || $('#coupon2').val().toUpperCase() === "SPRINGFLING2018" ) {
       localStorage.setItem('couponUsed', "true");
       addItemGeneric(session_no, "SPRINGFLING2018", "1");
+      shopPage();
     }
   } else {
     return false;
@@ -314,10 +315,11 @@ function calculateDiscount()
   var discount_amt;
   real_total = parseFloat(real_total);
   var fake_total =  real_total - specials_subtotal;
-  //console.log(fake_total.toFixed);
+  console.log(fake_total.toFixed(2) + " fake total");
   discount_amt = 0 - (fake_total * 0.1);
   discount_amt = discount_amt.toFixed(2);
-  $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_code1=&misc_amt1=" + discount_amt + "");
+  console.log( discount_amt + " full total");
+  $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APICARTUPD&session_no=" + session_no + "&misc_code1=CO&misc_amt1=" + discount_amt + "");
 }
 //////////////////////////////
 // Get back the cart header //
@@ -1119,6 +1121,9 @@ function creditCard(n)
       newNumberOfOrders = openlines.length;
 
       if (numberOfOrders != newNumberOfOrders) {
+        //windowHash("orders");
+        $( "#success" ).click();
+        //$("#successMessage").empty();
         hideCC = true;
         orders = [];
         for (i=1; i< openlines.length - 1; i++) {
@@ -1130,15 +1135,14 @@ function creditCard(n)
           return a[1] > b[1] ? -1 : 1;
         });
         newOrder = orders[0][0];
-        $( "#success" ).click();
-        $("#successMessage").empty();
+        /*
        	var message =  '<h4 style="font-family: Lato;">The order # is: ' + newOrder + '</h4>';
             message += '<p>This is a confirmation that your order has been successfully received and is currently under process. You will receive an email soon with a copy of your invoice, which also includes the details of your order.</p>';
             message += '<p class="nobottommargin">Laura Janelle values your business and is continuously looking for ways to better satisfy their customers. Please do share with us if there is a way we can serve you better.</p>';
 
         document.getElementById("successMessage").innerHTML += message;
-
-        windowHash("orders");
+        */
+        
         return $.get("https://netlink.laurajanelle.com:444/mailer/order_confirmation.php?session_no=" + session_no + "&order_no="+ newOrder + "");
 
       } else {
