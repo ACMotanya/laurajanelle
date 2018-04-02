@@ -1534,7 +1534,6 @@ function searchInvoices(invoiceSearchNumber)
         table4 = $('#datatable4').DataTable();
         table4.clear();
         table4.rows.add( openfldsArray_json.data ).draw();
-
       }
     }
   });
@@ -2030,6 +2029,11 @@ function whichPage()
       window.scrollTo(0, 0);
       $('#cart').show();
       shopPage();
+      if (localStorage.getItem('couponUsed') === "true") {
+        $('.couponDiv').hide();
+      } else {
+        $('.coupondDiv').show();
+      }
       break;
     case '#checkout' :
       window.scrollTo(0, 0);
