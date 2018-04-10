@@ -157,7 +157,6 @@ function login()
              password: password,
              loc_no: "800"},
       success: function(response) {
-        
         if (response.replace(/\s+/g,'').length === 25) {
           $.get("https://www.laurajanelle.com/phphelper/savecart/session.php?customer=" + username.toLowerCase() + "", function(answer){
             if (answer === "0") {
