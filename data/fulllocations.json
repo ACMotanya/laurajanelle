@@ -18593,18 +18593,6 @@
     "phone": "425-673-8905"
   },
   {
-    "id": "1679",
-    "name": "U Be Dazzled Boutique",
-    "lat": "0",
-    "lng": "0",
-    "address": "509 Scharf St.",
-    "address2": "",
-    "city": "New Washington",
-    "state": "OH",
-    "postal": "44854",
-    "phone": "419-545-1424"
-  },
-  {
     "id": "1680",
     "name": "Royal Birkdale Boutique",
     "lat": "34.07896",
@@ -23894,7 +23882,7 @@
     "lat": "44.589394",
     "lng": "-90.190595",
     "address": "611 St Joseph Ave",
-    "address2": "Attn: Partners Gift Shop",
+    "address2": "Partners Gift Shop",
     "city": "Marshfield",
     "state": "WI",
     "postal": "54449",
@@ -23910,4 +23898,26 @@
     "state": "PA",
     "postal": "19403",
     "phone": "610-635-0539"
+  }, {
+    "id": "2126",
+    "name": "Erika's Tea Room & Gifts",
+    "lat": "28.55499",
+    "lng": "-81.768289",
+    "address": "6787 West Montrose Street",
+    "address2": "",
+    "city": "Clermont",
+    "state": "FL",
+    "postal": "34711",
+    "phone": "908-670-2305"
+  }, {
+    "id": "2127",
+    "name": "The Great Floridian Marketplace",
+    "lat": "28.555291",
+    "lng": "-81.7778957",
+    "address": "789 West Montrose Street",
+    "address2": "",
+    "city": "Clermont",
+    "state": "FL",
+    "postal": "34711",
+    "phone": "352-989-4134"
   }]
