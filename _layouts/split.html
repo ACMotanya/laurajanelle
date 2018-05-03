@@ -1,0 +1,422 @@
+---
+layout: compress
+---
+
+<!DOCTYPE html>
+
+<html dir="ltr" lang="en-US">
+
+  {% include head.html %}
+
+  <body class="stretched">
+    
+    <div id="wrapper" class="clearfix">
+      <!-- Header
+      ============================================= -->
+      <header id="header" class="split-menu transparent-header" data-sticky-class="not-dark" data-responsive-class="not-dark">
+        <div id="header-wrap">
+          <div class="container clearfix">
+            <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+            <!--  Logo
+            ============================================= -->
+            <div id="logo">
+              <a href="{{ site.baseurl }}/" class="standard-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/logos/laurajanelle2018.png" alt="Laura Janelle Logo"></a>
+              <a href="{{ site.baseurl }}/" class="retina-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/logos/laurajanelle2018.png" alt="Laura Janelle Logo"></a>
+            </div><!-- #logo end -->
+
+            <!-- Primary Navigation
+            ============================================= -->
+            <nav id="primary-menu" class="with-arrows clearfix not-dark">
+							<!--
+              <ul>
+                
+                <li><a href="{{ site.baseurl }}/"><div>HOME</div></a></li>
+
+                {% if page.url == "/about/" %}
+                  <li class="current"><a href="{{ site.baseurl }}/about"><div>ABOUT US</div></a></li>
+                {% else %}
+                  <li><a href="{{ site.baseurl }}/about"><div>ABOUT US</div></a></li>
+                {% endif %}
+
+                {% if page.url == "/meet/" %}
+                  <li class="current"><a href="{{ site.baseurl }}/meet"><div>MEET OUR TEAM</div></a></li>
+                {% else %}
+                  <li><a href="{{ site.baseurl }}/meet"><div>MEET OUR TEAM</div></a></li>
+                {% endif %}
+                
+                {% if page.url == "/findstore/" %}
+                <li class="current"><a href="{{ site.baseurl }}/findstore"><div>FIND A STORE</div></a></li>
+                {% else %}
+                <li><a href="{{ site.baseurl }}/findstore"><div>FIND A STORE</div></a></li>
+                {% endif %}
+
+                <li><a href="{{ site.baseurl }}/retailerlogin" target="_blank"><div>SHOP</div></a></li>
+                <li><a href="https://www.ivystone.com/find/search-for-a-sales-representative.asp" target="_blank"><div>FIND A REP</div></a></li>
+
+                {% if page.url == "/careers/" %}
+                  <li class="current">
+                    <a href="{{ site.baseurl }}/careers">
+                      <div>CAREERS</div>
+                    </a>
+                  </li>
+                {% else %}
+                  <li>
+                    <a href="{{ site.baseurl }}/careers">
+                      <div>CAREERS</div>
+                    </a>
+                  </li>
+                {% endif %}
+
+                {% if page.url == "/contact/" %}
+                  <li class="current"><a href="{{ site.baseurl }}/contact" ><div>CONTACT</div></a></li>
+                {% else %}
+                  <li><a href="{{ site.baseurl }}/contact"><div>CONTACT</div></a></li>
+                {% endif %}
+
+                <li><a href="http://www.cousin.com" target="_blank"><div>COUSIN.COM</div></a></li>
+          
+                <li><a href="{{ site.baseurl }}/store/#specials" target="_blank"><div style="color: #cc0000">SPECIALS</div></a></li>
+             
+							</ul>
+						-->
+						<ul class="one-page-menu" data-easing="easeInOutExpo" data-speed="1250" data-offset="160">
+								<li><a href="#" data-href="#wrapper"><div>Home</div></a></li>
+								<li><a href="#" data-href="#section-nextgen"><div>Explore</div></a>
+									<ul>
+										<li><a href="#" data-href="#section-nextgen"><div>NextGen Framework</div></a></li>
+										<li><a href="#" data-href="#section-stunning-graphics"><div>Stunning Graphics</div></a></li>
+										<li><a href="#" data-href="#section-secured-solutions"><div>Secured Solutions</div></a></li>
+									</ul>
+								</li>
+								<li><a href="#" data-href="#section-pricing"><div>Pricing</div></a></li>
+							</ul>
+	
+							<ul class="one-page-menu" data-easing="easeInOutExpo" data-speed="1250" data-offset="160">
+								<li><a href="#" data-href="#section-faqs"><div>FAQs</div></a></li>
+								<li><a href="#" data-href="#section-gallery"><div>Gallery</div></a></li>
+								<li class="menu-item-emphasis"><a href="#modal-login" data-lightbox="inline"><div>Login</div></a></li>
+							</ul>
+              
+            </nav>  <!-- #primary-menu end
+            <div class="clearfix visible-md visible-lg">
+
+                <a href="https://www.facebook.com/laurajanellebycousin/" target="_blank" class="social-icon si-small si-borderless si-facebook">
+                  <i class="icon-facebook"></i>
+                  <i class="icon-facebook"></i>
+                </a>
+
+                <a href="https://twitter.com/LJbyCousin" target="_blank" class="social-icon si-small si-borderless si-twitter">
+                  <i class="icon-twitter"></i>
+                  <i class="icon-twitter"></i>
+                </a>
+
+                <a href="https://www.instagram.com/laurajanellebycousin/" target="_blank" class="social-icon si-small si-borderless si-instagram">
+                  <i class="icon-instagram"></i>
+                  <i class="icon-instagram"></i>
+                </a>
+
+                <a href="https://www.pinterest.com/laurajbycousin/" target="_blank" class="social-icon si-small si-borderless si-pinterest">
+                  <i class="icon-pinterest"></i>
+                  <i class="icon-pinterest"></i>
+                </a>
+
+                <a href="https://www.linkedin.com/company/laura-janelle" target="_blank" class="social-icon si-small si-borderless si-linkedin">
+                  <i class="icon-linkedin"></i>
+                  <i class="icon-linkedin"></i>
+                </a>
+            </div>
+            -->
+          </div>
+        </div>
+      </header><!-- #header end -->
+    {{ content }}
+
+      {% include footer.html %}
+    </div>
+
+    {% include js.html %}
+ 
+
+
+
+
+
+
+    {% if page.url == "/findstore/" %}
+    <style>
+    footer {
+      margin-top: 24px !important;
+    }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="{{ "/find-assets/css/storelocator.css" | prepend: site.baseurl }}">
+    <script defer src="{{ "/find-assets/js/libs/handlebars.min.js" | prepend: site.baseurl }}"></script>
+    <script defer src="https://maps.google.com/maps/api/js?key=AIzaSyDr-wWyQRq0K-iZWQLc2E5IjCt0TP-AkOo"></script>
+    <script defer type="text/javascript" src="{{ "/find-assets/js/plugins/storeLocator/jquery.storelocator.min.js" | prepend: site.baseurl }}"></script>
+
+
+    <script defer>
+    $(function() {
+      $('#bh-sl-map-container').storeLocator({
+        'dataType': 'json',
+        'dataLocation': '../data/fulllocations.json',
+        'mapSettings': {
+    			zoom: 10,
+    			mapTypeId: google.maps.MapTypeId.ROADMAP
+    		},
+        'storeLimit': 2500,
+        'fullMapStart': true,
+        'autoGeocode': true,
+        'maxDistance': true,
+        'infowindowTemplatePath': '../find-assets/js/plugins/storeLocator/templates/infowindow-description.html',
+    		'listTemplatePath': '../find-assets/js/plugins/storeLocator/templates/location-list-description.html'
+      });
+    });
+    </script>
+    {% endif %}
+
+
+
+
+
+
+
+
+    {% if page.url == "/careers/" %}
+    <!-- gets rid of random line of demarcation  on headings*/ -->
+    <style>
+    .heading-block:after {
+      display: none;
+    }
+    </style>
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <script>
+      document.getElementById("validateButton").disabled = true;
+      function enableBtn(){
+        document.getElementById("validateButton").disabled = false;
+      }
+    </script>
+
+    <script defer>
+    $(document).ready(function() {
+      $("#validateButton").click(function() {
+        var hasErrors = $('#template-jobform').validator('validate').has('.has-error').length;
+        if (hasErrors) {
+          alert('Job application has errors.');
+        } else {
+          $("#apply").click();
+        }
+      });
+    });
+    </script>
+    {% endif %}
+
+
+
+
+
+
+
+    {% if page.url == "/contact/" %}
+    
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <script>
+      document.getElementById("contactform-submit").disabled = true;
+      function enableBtn(){
+        document.getElementById("contactform-submit").disabled = false;
+      }
+    </script>
+    <script defer>
+      $( "a.showContactForm" ).click( function () {
+        $(".contact-img").hide("slow");
+        $("#contact-form").show( "fade", 2000 );
+      });
+
+      $("#contactform-back").click(function () {
+        $("#contact-form").hide("slow");
+        $("#thanks").hide("slow");
+        $(".contact-img").show("slow");
+      });
+
+      var $window = $(window);
+
+      /* Function to handle changes to style classes based on window width */
+      function checkWidth() {
+        if ($window.width() < 1200) {
+            $('.row').children("div").removeClass('col-sm-3').addClass('col-sm-6');
+        };
+
+        if ($window.width() >= 1200) {
+            $('.row').children("div").removeClass('col-sm-6').addClass('col-sm-3');
+        }
+      }
+
+      /* Execute on load */
+      checkWidth();
+
+      /* Bind event listener */
+      $(window).resize(checkWidth);
+    </script>
+    {% endif %}
+
+    
+
+
+
+
+
+
+    {% if page.url == "/" %}
+    <style>
+    footer {
+      margin-top: 24px !important;
+    }
+    </style>
+    {% endif %}
+
+
+
+
+
+
+
+    {% if page.url == "/discover/" %}
+    <style>
+      body #side-panel.dark {
+        background-color: #111;
+      }
+    </style>
+
+    <script async defer>
+      $(document).ready(function() {
+        login();
+      });
+      var $window = $(window);
+      function checkWidth() {
+        if ($window.width() < 978) {
+            $('#retailerloginbutton').addClass('center');
+        };
+
+        if ($window.width() >= 978) {
+            $("#retailerloginbutton").removeClass('center');
+        };
+      }
+        
+      /* Execute on load */
+      checkWidth();
+
+      /* Bind event listener */
+      $(window).resize(checkWidth);
+    </script>
+    {% endif %}
+    
+    {% if page.url == "/" or page.url == "/birthstone-index/"  %}
+    <!-- SLIDER REVOLUTION 5.x SCRIPTS  -->
+    <script defer src="{{ "/include/rs-plugin/js/jquery.themepunch.tools.min.js" | prepend: site.baseurl }}"></script>
+    <script defer src="{{ "/include/rs-plugin/js/jquery.themepunch.revolution.min.js" | prepend: site.baseurl }}"></script>
+    <script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.video.min.js" | prepend: site.baseurl }}"></script>
+    <script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.slideanims.min.js" | prepend: site.baseurl }}"></script>
+    <script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.actions.min.js" | prepend: site.baseurl }}"></script>
+    <script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js" | prepend: site.baseurl }}"></script>
+    <script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.navigation.min.js" | prepend: site.baseurl }}"></script>
+    <script defer src="{{ "/include/rs-plugin/js/extensions/revolution.extension.parallax.min.js" | prepend: site.baseurl }}"></script>
+
+    <script defer>
+  
+
+		var tpj=jQuery;
+		var revapi4;
+
+		tpj(document).ready(function() {
+			if(tpj("#rev_slider_4_1").revolution == undefined){
+				revslider_showDoubleJqueryError("#rev_slider_4_1");
+			}else{
+				revapi4 = tpj("#rev_slider_4_1").show().revolution({
+					sliderType:"standard",
+					jsFileLocation:"include/rs-plugin/js/",
+				/*	sliderLayout:"fullwidth", */
+					dottedOverlay:"none",
+					delay: 3500,
+					navigation: {
+						keyboardNavigation:"on",
+						keyboard_direction: "horizontal",
+						mouseScrollNavigation:"off",
+						 mouseScrollReverse:"default",
+						onHoverStop:"off",
+						touch:{
+							touchenabled:"on",
+							swipe_threshold: 75,
+							swipe_min_touches: 1,
+							swipe_direction: "horizontal",
+							drag_block_vertical: false
+						}
+						,
+						arrows: {
+							style:"metis",
+							enable:true,
+							hide_onmobile:true,
+							hide_under:768,
+							hide_onleave:false,
+							tmp:'',
+							left: {
+								h_align:"left",
+								v_align:"center",
+								h_offset:0,
+								v_offset:0
+							},
+							right: {
+								h_align:"right",
+								v_align:"center",
+								h_offset:0,
+								v_offset:0
+							}
+						}
+					},
+					responsiveLevels:[1240,1024,778,480],
+					visibilityLevels:[1240,1024,778,480],
+					gridwidth:[1400,1200,1000,480],
+					gridheight:[1000,900,700,700],
+					lazyType:"single",
+					parallax: {
+						type:"", /* 3D */
+						origo:"slidercenter",
+						speed:400,
+						levels:[5,10,15,20,25,30,35,40,-5,-10,-15,-20,-25,-30,-35,55],
+						type:"", /* 3D */
+						ddd_shadow:"off",
+						ddd_bgfreeze:"off",
+						ddd_overflow:"visible",
+						ddd_layer_overflow:"visible",
+						ddd_z_correction:65,
+						disable_onmobile:"on"
+					},
+					spinner:"off",
+					stopLoop:"off",
+					stopAfterLoops:-1, /* 0 */
+					stopAtSlide:-1, /* 1 */
+					shuffle:"off",
+					autoHeight:"off",
+					disableProgressBar:"on",
+					hideThumbsOnMobile:"off",
+					hideSliderAtLimit:0,
+					hideCaptionAtLimit:0,
+					hideAllCaptionAtLilmit:0,
+					debugMode:false,
+					fallbacks: {
+						simplifyAll:"off",
+						nextSlideOnWindowFocus:"off",
+						disableFocusListener:false,
+					}
+				});
+			}
+		});	/*ready*/
+
+     </script>
+      {% endif %}
+  </body>
+
+</html>
