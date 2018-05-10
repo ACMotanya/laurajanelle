@@ -8,43 +8,65 @@ layout: compress
 
   {% include head.html %}
 
-  <body class="stretched">
-    
+  <body class="stretched side-panel-left side-push-panel">
+    <div class="body-overlay"></div>
+
+    <div id="side-panel" class="dark">
+
+      <div id="side-panel-trigger-close" class="side-panel-trigger"><a href="#"><i class="icon-line-cross"></i></a></div>
+
+      <div class="side-panel-wrap">
+
+        <div class="widget clearfix">
+          <h4>Retailer Login</h4>
+        </div>
+
+        <div class="widget quick-contact-widget clearfix">
+          <div class="quick-contact-form-result"></div>
+          <form id="login-form" name="login-form" action="#" class="clearfix" style="max-width: 300px;" method="">
+            <div class="col_full">
+              <label for="login-form-username" class="t600" style="color: white;">USERNAME</label>
+              <input type="text" id="login-form-username" name="login-form-username" value="" class="form-control not-dark" />
+            </div>
+            <div class="col_full">
+              <label for="login-form-password" class="t600" style="color: white;">PASSWORD</label>
+              <input type="password" id="login-form-password" name="login-form-password" value="" class="form-control not-dark" />
+            </div>
+            <div class="col_full nobottommargin">
+              <button class="t300 button button-border button-light nomargin" id="login-form-submit" name="login-form-submit" value="login">Login</button>
+              <a href="#" data-toggle="modal" data-target="#PasswordModal" class="fright" style="color: #c1c1c1;">Forgot Password?</a>
+            </div>
+          </form>
+          <p class="nobottommargin topmargin-sm">Not registered?<br><a class="t300 button button-border noleftmargin" href="#register" data-scrollto="#register" data-easing="easeInOutExpo" data-speed="2250" onclick="$('.page-section').show(); $('#register-form-name').click(); $('#doc-1').focus();" style="color: #ffffff;">Sign Up</a></p>
+        </div>
+
+      </div>
+
+    </div>
     <div id="wrapper" class="clearfix">
       <!-- Header
       ============================================= -->
-      <header id="header" class="split-menu transparent-header" data-sticky-class="not-dark" data-responsive-class="not-dark">
+      <header id="header" class="static-sticky">
         <div id="header-wrap">
           <div class="container clearfix">
             <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
 
             <!--  Logo
             ============================================= -->
-            <div id="logo">
+            <div id="logo" class="page-logo">
               <a href="{{ site.baseurl }}/" class="standard-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/logos/laurajanelle2018.png" alt="Laura Janelle Logo"></a>
               <a href="{{ site.baseurl }}/" class="retina-logo" data-dark-logo="{{ site.baseurl }}/img/lj-white-2.png"><img src="{{ site.baseurl }}/img/logos/laurajanelle2018.png" alt="Laura Janelle Logo"></a>
             </div><!-- #logo end -->
 
             <!-- Primary Navigation
             ============================================= -->
-            <nav id="primary-menu" class="with-arrows clearfix not-dark">
-							<!--
+            <nav id="primary-menu">
               <ul>
-                
+
                 <li><a href="{{ site.baseurl }}/"><div>HOME</div></a></li>
 
-                {% if page.url == "/about/" %}
-                  <li class="current"><a href="{{ site.baseurl }}/about"><div>ABOUT US</div></a></li>
-                {% else %}
-                  <li><a href="{{ site.baseurl }}/about"><div>ABOUT US</div></a></li>
-                {% endif %}
-
-                {% if page.url == "/meet/" %}
-                  <li class="current"><a href="{{ site.baseurl }}/meet"><div>MEET OUR TEAM</div></a></li>
-                {% else %}
-                  <li><a href="{{ site.baseurl }}/meet"><div>MEET OUR TEAM</div></a></li>
-                {% endif %}
                 
+
                 {% if page.url == "/findstore/" %}
                 <li class="current"><a href="{{ site.baseurl }}/findstore"><div>FIND A STORE</div></a></li>
                 {% else %}
@@ -52,52 +74,17 @@ layout: compress
                 {% endif %}
 
                 <li><a href="{{ site.baseurl }}/retailerlogin" target="_blank"><div>SHOP</div></a></li>
-                <li><a href="https://www.ivystone.com/find/search-for-a-sales-representative.asp" target="_blank"><div>FIND A REP</div></a></li>
-
-                {% if page.url == "/careers/" %}
-                  <li class="current">
-                    <a href="{{ site.baseurl }}/careers">
-                      <div>CAREERS</div>
-                    </a>
-                  </li>
-                {% else %}
-                  <li>
-                    <a href="{{ site.baseurl }}/careers">
-                      <div>CAREERS</div>
-                    </a>
-                  </li>
-                {% endif %}
+              
 
                 {% if page.url == "/contact/" %}
                   <li class="current"><a href="{{ site.baseurl }}/contact" ><div>CONTACT</div></a></li>
                 {% else %}
                   <li><a href="{{ site.baseurl }}/contact"><div>CONTACT</div></a></li>
                 {% endif %}
-
-                <li><a href="http://www.cousin.com" target="_blank"><div>COUSIN.COM</div></a></li>
           
                 <li><a href="{{ site.baseurl }}/store/#specials" target="_blank"><div style="color: #cc0000">SPECIALS</div></a></li>
              
-							</ul>
-						-->
-						<ul class="one-page-menu" data-easing="easeInOutExpo" data-speed="1250" data-offset="160">
-								<li><a href="#" data-href="#wrapper"><div>Home</div></a></li>
-								<li><a href="#" data-href="#section-nextgen"><div>Explore</div></a>
-									<ul>
-										<li><a href="#" data-href="#section-nextgen"><div>NextGen Framework</div></a></li>
-										<li><a href="#" data-href="#section-stunning-graphics"><div>Stunning Graphics</div></a></li>
-										<li><a href="#" data-href="#section-secured-solutions"><div>Secured Solutions</div></a></li>
-									</ul>
-								</li>
-								<li><a href="#" data-href="#section-pricing"><div>Pricing</div></a></li>
-							</ul>
-	
-							<ul class="one-page-menu" data-easing="easeInOutExpo" data-speed="1250" data-offset="160">
-								<li><a href="#" data-href="#section-faqs"><div>FAQs</div></a></li>
-								<li><a href="#" data-href="#section-gallery"><div>Gallery</div></a></li>
-								<li class="menu-item-emphasis"><a href="#modal-login" data-lightbox="inline"><div>Login</div></a></li>
-							</ul>
-              
+              </ul>
             </nav>  <!-- #primary-menu end
             <div class="clearfix visible-md visible-lg">
 
@@ -132,7 +119,52 @@ layout: compress
       </header><!-- #header end -->
     {{ content }}
 
-      {% include footer.html %}
+        <!-- Footer
+      ============================================= -->
+      <footer id="footer" class="dark">
+        <!-- Copyrights
+        ============================================= -->
+        <div id="copyrights">
+          <div class="container clearfix">
+            <div class="col_half t300">
+              
+              Copyrights &copy; 2018 All Rights Reserved by Cousin Corporation.
+            </div>
+            <div class="col_half col_last tright">
+              <div class="copyrights-menu copyright-links clearfix">
+  							<a href="{{ site.baseurl }}/about">ABOUT</a>/<a href="{{ site.baseurl }}/meet">MEET</a>/<a href="{{ site.baseurl }}/findstore">FIND</a>/<a href="{{ site.baseurl }}/careers">CAREERS</a>/<a href="http://www.cousin.com">COUSIN.COM</a>
+  						</div>
+              <div class="clear"></div>
+              <div class="fright clearfix">
+                <a href="https://www.facebook.com/laurajanellebycousin/" target="_blank" class="social-icon si-small si-borderless si-facebook">
+                  <i class="icon-facebook"></i>
+                  <i class="icon-facebook"></i>
+                </a>
+
+                <a href="https://twitter.com/LJbyCousin" target="_blank" class="social-icon si-small si-borderless si-twitter">
+                  <i class="icon-twitter"></i>
+                  <i class="icon-twitter"></i>
+                </a>
+
+                <a href="https://www.instagram.com/laurajanellebycousin/" target="_blank" class="social-icon si-small si-borderless si-instagram">
+                  <i class="icon-instagram"></i>
+                  <i class="icon-instagram"></i>
+                </a>
+
+                <a href="https://www.pinterest.com/laurajbycousin/" target="_blank" class="social-icon si-small si-borderless si-pinterest">
+                  <i class="icon-pinterest"></i>
+                  <i class="icon-pinterest"></i>
+                </a>
+
+                <a href="https://www.linkedin.com/company/laura-janelle" target="_blank" class="social-icon si-small si-borderless si-linkedin">
+                  <i class="icon-linkedin"></i>
+                  <i class="icon-linkedin"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div><!-- #copyrights end -->
+      </footer><!-- #footer end -->
     </div>
 
     {% include js.html %}
