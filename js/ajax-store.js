@@ -744,6 +744,7 @@ function detailView2(callback, callback2) {
 }
 
 function populateDetailView2(secondImage, callback, callback2, stock_no) {
+   var relateColor;
   $.ajax({
     type: "GET",
     url: "https://netlink.laurajanelle.com:444/nlhelpers/laurajanelle-api/detail-views.php?",
@@ -760,10 +761,10 @@ function populateDetailView2(secondImage, callback, callback2, stock_no) {
           $("#cost-field").html('COST:&nbsp; <span id="old-whole" class="cross"></span><ins style="font-size: 18px;">&nbsp;&nbsp;$' + response[k].price + '</ins>');
           
           $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APISTKDTL&stock_no=" + stock_no + "", function( saleData ) {
-            console.log(saleData);
+            
             lines  = saleData.split("\n");
             fields = lines[1].split("|");
-            console.log( fields[2] );
+           
             $('#old-whole').html(fields[2]);
             if (fields[8] && fields[8].length !== 0) {
               $("#item-description").html('<p>' + fields[8] + '</p>');
@@ -804,31 +805,31 @@ function populateDetailView2(secondImage, callback, callback2, stock_no) {
       
         if (response[k].longdescription.length !== 0) {
           $("#item-description").html( '<p>' + response[k].longdescription + '</p>');
-        } else {
-          $("#item-description").html( '<p>' + response[k].shortdescription + '</p>');
-        }
+        } 
 
+        
         $(".image_fade").attr({src: 'https://www.laurajanelle.com/img/logos/' + response[k].look.toUpperCase() + '-logo.png'});
 
-        info = '<tr><td>Description</td><td>' + response[k].shortdescription + '</td></tr>';
+
+        info2 = '<li><i class="icon-caret-right"></i>' + response[k].shortdescription + '</li>';
 
         if ( response[k].dimensions !== "" ) {
-         info += '<tr><td>Dimensions</td><td>' + response[k].dimensions + '</td></tr>';
+         info2 += '<li><i class="icon-caret-right"></i>The dimensions for this product are ' + response[k].dimensions + '</li>';
         }
         if ( response[k].color !== "" ) {
-         info += '<tr><td>Color</td><td>' + response[k].color + '</td></tr>';
+         info2 += '<li><i class="icon-caret-right"></i>' + response[k].color + ' is the color group.</li>';
         }
         if ( response[k].func !== "" ) {
-          info += '<tr><td>Type</td><td>' + response[k].func + '</td></tr>';
+          info2 += '<li><i class="icon-caret-right"></i>This item is categorized under ' + response[k].func.toLowerCase() + '</li>';
         }
         if ( response[k].look !== "" ) {
-          info += '<tr><td>Look</td><td>' + response[k].look + '</td></tr>';
+          info2 += '<li><i class="icon-caret-right"></i>' + response[k].look + ' is the collection it belongs to.</li>';
         }
         if ( response[k].metalcolor !== "" ) {
-          info += '<tr><td>Metal Color</td><td>' + response[k].metalcolor + '</td></tr>';
+          info2 += '<li><i class="icon-caret-right"></i>The metal color is ' + response[k].metalcolor.toLowerCase() + '</li>';
         }
         if ( response[k].material !== "" ) {
-          info += '<tr><td>Material</td><td>' + response[k].material + '</td></tr>';
+          info2 += '<li><i class="icon-caret-right"></i>Some material(s) used to make this are ' + response[k].material.toLowerCase() + '</li>';
         }
         /* Fill in the pictures for the product */
         var pics = '<div class="fslider" data-pagi="false" data-arrows="false" data-thumbs="true"><div class="flexslider"><div class="slider-wrap" data-lightbox="gallery">';
@@ -844,8 +845,13 @@ function populateDetailView2(secondImage, callback, callback2, stock_no) {
         }
         
         $("#images").html(pics);
-        $("#addInfo").html(info);
+        
+        $("#attribute-list").html(info2);
+        relateColor = response[k].color;
       });
+
+      relatedItems(relateColor);
+      $("#oc-product").empty();
     },
     complete: function () {
       $('.ex1 img').wrap('<span style="display:inline-block"></span>').css('display', 'block').parent().zoom();
@@ -861,6 +867,43 @@ function populateDetailView2(secondImage, callback, callback2, stock_no) {
       }
     }
   });
+}
+
+
+
+//////////////////////////////
+  // Related Items //
+//////////////////////////////
+function relatedItems(color)
+{
+  var relate;
+  $.get("https://netlink.laurajanelle.com:444/nlhelpers/laurajanelle-api/related.php?color="+ color +"&location=800", function ( items ) {
+    console.log("Hellllo world " + items);
+    
+    Object.keys(items).forEach(function(i){
+      relate =  '<div class="oc-item"><div class="product iproduct clearfix"><div class="product-image"><a href="#"><img src="https://www.laurajanelle.com/ljjpgimages/' + items[i].itemnum + '-sm.jpg" alt=""></a>';
+            
+      if (items[i].onsale === "Y") {
+        relate += '<div class="sale-flash" style="background-color: #cc0000">SPECIAL!</div>';
+      }
+      if (items[i].featured === 'Y') {
+        relate += '<div class="sale-flash">NEW!</div>';
+      }
+      relate += '<div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + items[i].itemnum + ' has been added to your cart!" onclick="stock_no=\'' + items[i].itemnum + '\'; addItemDetailView2(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+      relate += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'' + items[i].itemnum + '\'; quickView(\'' + items[i].itemnum + '\');"><i class="icon-zoom-in2"></i><span>Quick View</span></a></div></div>';
+      relate += '<div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+' + items[i].itemnum + '">'+ items[i].shortdescription +'</a></h3></div>';
+
+      if ( items[i].onsale === "Y") {
+        relate += '<div class="product-price">cost &nbsp;<span class="cross" style="color:gray">' + specPrice[items[i].itemnum] + '</span> <ins style="font-size: 17px; line-height: 1px;">&nbsp; $' + items[i].price + '</ins></div></div></div>';
+      } else  {
+        relate += '<div class="product-price"> cost &nbsp;$' + items[i].price + '</div></div></div>';
+      }
+      console.log(relate);
+      $("#oc-product").append(relate);
+    });
+  });
+
+  
 }
 
 

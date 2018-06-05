@@ -75,13 +75,13 @@ body.stretched #header.full-header.sticky-header .container {
 
 #primary-menu ul li > a {
 	font-family: Lato, sans-serif;
-	font-weight: 300;
+	font-weight: 400;
 	font-size: 13px;
 	letter-spacing: 1px;
 }
 
 #primary-menu ul ul li>a {
-	font-weight: 300;
+	font-weight: 400;
 	font-size: 13px;
 }
 #primary-menu ul li>a i {
@@ -109,7 +109,7 @@ font-size:12px;
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
 
 .fright.clearfix a i {
-	font-size: 25px;
+	font-size: 18px;
 }
 .copyrights-menu.copyright-links a {
 	color: white;

@@ -1895,6 +1895,11 @@ title: Store - Laura Janelle
                     <div class="clear"></div>
                     <div class="line"></div>
                     <p id="item-description"></p>
+                    <ul id="attribute-list" class="iconlist">
+                      <li><i class="icon-caret-right"></i> Dynamic Color Options</li>
+                      <li><i class="icon-caret-right"></i> Lots of Size Options</li>
+                      <li><i class="icon-caret-right"></i> 30-Day Return Policy</li>
+                    </ul>
                   </div>
 
                   <div class="col_one_fifth col_last" id="thirdColumn">
@@ -1913,7 +1918,7 @@ title: Store - Laura Janelle
                         <li>
                           <a href="#tabs-2">
                             <i class="icon-info-sign"></i>
-                            <span class="hidden-xs"> Additional Information</span>
+                            <span class="hidden-xs"> Customer Question &amp; Answers</span>
                           </a>
                         </li>
                         <li>
@@ -1925,9 +1930,18 @@ title: Store - Laura Janelle
                       </ul>
                       <div class="tab-container">
                         <div class="tab-content clearfix detailViewAddInfo" id="tabs-2">
-                          <table class="table table-striped table-bordered topmargin-sm">
-                            <tbody id="addInfo"></tbody>
-                          </table>
+                          <div id="questionWidget" class="widget subscribe-widget clearfix bottommargin-sm">
+                            <div class="row">
+                              <form id="widget-subscribe-form" role="form" method="" class="nobottommargin col-sm-8">
+                                <div class="input-group divcenter">
+                                  <span class="input-group-addon">
+                                    <i class="icon-comment" style="font-size: 19px;"></i>
+                                  </span>
+                                  <input type="text" class="form-control" value="" id="questionField" placeholder="Have a question?">
+                                </div>
+                              </form>
+                            </div>
+                          </div>
                         </div>
                         <div class="tab-content clearfix" id="tabs-3">
 
@@ -1942,19 +1956,106 @@ title: Store - Laura Janelle
                     <div class="clear"></div>
                     <div class="line"></div>
 
-                    <h2>Customer Questions &amp; Answers</h2>
+                    <div class="col_full nobottommargin">
 
-                    <div id="questionWidget" class="widget subscribe-widget clearfix bottommargin-sm">
-                      <div class="row">
-                        <form id="widget-subscribe-form" role="form" method="" class="nobottommargin col-sm-8">
-                          <div class="input-group divcenter">
-                            <span class="input-group-addon">
-                              <i class="icon-comment" style="font-size: 19px;"></i>
-                            </span>
-                            <input type="text" class="form-control" value="" id="questionField" placeholder="Have a question?">
+                      <h4 >Related Products</h4>
+          
+                      <div id="oc-product" class="owl-carousel product-carousel carousel-widget" data-margin="30" data-pagi="false" data-autoplay="5000" data-items-xxs="1" data-items-sm="2" data-items-md="3" data-items-lg="4">
+          
+                        <div class="oc-item">
+                          <div class="product iproduct clearfix">
+                            <div class="product-image">
+                              <a href="#"><img src="{{ site.baseurl }}/images/shop/dress/1.jpg" alt="Checked Short Dress"></a>
+                              
+                              <div class="sale-flash">50% Off*</div>
+                              <div class="product-overlay">
+                                <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+                                <a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+                              </div>
+                            </div>
+                            <div class="product-desc center">
+                              <div class="product-title"><h3><a href="#">Checked Short Dress</a></h3></div>
+                              <div class="product-price"><del>$24.99</del> <ins>$12.49</ins></div>
+                              
+                            </div>
                           </div>
-                        </form>
+                        </div>
+          
+                        <div class="oc-item">
+                          <div class="product iproduct clearfix">
+                            <div class="product-image">
+                             
+                              <a href="#"><img src="{{ site.baseurl }}/images/shop/pants/1.jpg" alt="Slim Fit Chinos"></a>
+                              <div class="product-overlay">
+                                <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+                                <a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+                              </div>
+                            </div>
+                            <div class="product-desc center">
+                              <div class="product-title"><h3><a href="#">Slim Fit Chinos</a></h3></div>
+                              <div class="product-price">$39.99</div>
+                              
+                            </div>
+                          </div>
+                        </div>
+          
+                        <div class="oc-item">
+                          <div class="product iproduct clearfix">
+                            <div class="product-image">
+                              
+                              <a href="#"><img src="{{ site.baseurl }}/images/shop/shoes/1.jpg" alt="Dark Brown Boots"></a>
+                              <div class="product-overlay">
+                                <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+                                <a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+                              </div>
+                            </div>
+                            <div class="product-desc center">
+                              <div class="product-title"><h3><a href="#">Dark Brown Boots</a></h3></div>
+                              <div class="product-price">$49</div>
+                              
+                            </div>
+                          </div>
+                        </div>
+          
+                        <div class="oc-item">
+                          <div class="product iproduct clearfix">
+                            <div class="product-image">
+                              <a href="#"><img src="{{ site.baseurl }}/images/shop/dress/2.jpg" alt="Light Blue Denim Dress"></a>
+                             
+                              <div class="product-overlay">
+                                <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+                                <a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+                              </div>
+                            </div>
+                            <div class="product-desc center">
+                              <div class="product-title"><h3><a href="#">Light Blue Denim Dress</a></h3></div>
+                              <div class="product-price">$19.95</div>
+                              
+                            </div>
+                          </div>
+                        </div>
+          
+                        <div class="oc-item">
+                          <div class="product iproduct clearfix">
+                            <div class="product-image">
+                              <a href="#"><img src="{{ site.baseurl }}/images/shop/sunglasses/1.jpg" alt="Unisex Sunglasses"></a>
+                              
+                              <div class="sale-flash">Sale!</div>
+                              <div class="product-overlay">
+                                <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+                                <a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+                              </div>
+                            </div>
+                            <div class="product-desc center">
+                              <div class="product-title"><h3><a href="#">Unisex Sunglasses</a></h3></div>
+                              <div class="product-price"><del>$19.99</del> <ins>$11.99</ins></div>
+                              
+                            </div>
+                          </div>
+                        </div>
+          
                       </div>
+          
                     </div>
                     <!-- Hidden Button Question and Answer trigger modal -->
                     <button data-toggle="modal" data-target="#myQuestionModal" id="questionModal" style="visibility:hidden;">Launch Question Modal</button>

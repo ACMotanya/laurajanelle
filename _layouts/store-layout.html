@@ -238,6 +238,34 @@ layout: compress
       $("#deliveryChart").hide();
       $("a#showDeliveryChart").show();
     });
+
+
+
+		jQuery(window).load(function(){
+			var $container = $('#shopItems');
+			$container.infinitescroll({
+				loading: {
+					finishedMsg: '<i class="icon-line-check"></i>',
+					msgText: '<i class="icon-line-loader icon-spin"></i>',
+					img: "images/preloader-dark.gif",
+					speed: 'normal'
+				},
+				state: {
+					isDone: false
+				},
+				nextSelector: "#load-next-posts a",
+				navSelector: "#load-next-posts",
+				itemSelector: "div.product",
+				behavior: 'portfolioinfiniteitemsloader'
+			},
+			function( newElements ) {
+				$container.isotope( 'appended', $( newElements ) );
+				var t = setTimeout( function(){ $container.isotope('layout'); }, 2000 );
+				SEMICOLON.widget.loadFlexSlider();
+				SEMICOLON.portfolio.arrange();
+			});
+		});
+
     </script>
   </body>
 
