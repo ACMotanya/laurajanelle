@@ -5,7 +5,6 @@ var colors = [];
 //var countrylines;
 var employee;
 var fields;
-
 var filters = {};
 var functiontype = [];
 var hideCC = true;
@@ -19,8 +18,6 @@ var shippingAddresses = [];
 var stock_no;
 var UpdatedShoppingCart = {};
 var username;
-
-
 var specials_subtotal_array;
 var specials_subtotal;
 var real_total;
@@ -610,7 +607,7 @@ function itemRender2(div,response)
     */
     Object.keys(lines).forEach(function(k){
       // blocking out items
-      //if ( banned.indexOf(lines[k].itemnum) != -1 ) {
+     // if ( banned.indexOf(lines[k].itemnum) === -1 ) {
       if ( lines[k].onsale === 'Y' && lines[k].onhand <= 0.000 ) {
         console.log("hidden");
       } else {
@@ -646,6 +643,7 @@ function itemRender2(div,response)
         listOfAttributes(metalcolors, lines[k].metalcolor.toLowerCase());
         listOfAttributes(colors, lines[k].color.toLowerCase());
       }
+   // }
     } );
     document.getElementById(div).innerHTML += html.join('');
     fillTypeField();
@@ -724,7 +722,7 @@ function quickView(clicked_id)
 // Get Detail View for Item //
 //////////////////////////////
 function detailView2(callback, callback2) {
-  jQuery("#images, #addInfo, #cost-field, #msrp-field").empty();
+  jQuery("#images, #addInfo, #cost-field, #msrp-field, #item-description").empty();
   var formData;
   var secondImage;
   var hash = window.location.hash.split("+");
@@ -878,10 +876,9 @@ function relatedItems(color)
 {
   var relate;
   $.get("https://netlink.laurajanelle.com:444/nlhelpers/laurajanelle-api/related.php?color="+ color +"&location=800", function ( items ) {
-    console.log("Hellllo world " + items);
-    
+
     Object.keys(items).forEach(function(i){
-      relate =  '<div class="oc-item"><div class="product iproduct clearfix"><div class="product-image"><a href="#"><img src="https://www.laurajanelle.com/ljjpgimages/' + items[i].itemnum + '-sm.jpg" alt=""></a>';
+      relate =  '<div class="product clearfix"><div class="product-image"><a href="#detail-view+' + items[i].itemnum + '"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/' + items[i].itemnum + '-sm.jpg" alt="'+ items[i].shortdescription +'"></a>';
             
       if (items[i].onsale === "Y") {
         relate += '<div class="sale-flash" style="background-color: #cc0000">SPECIAL!</div>';
@@ -889,21 +886,26 @@ function relatedItems(color)
       if (items[i].featured === 'Y') {
         relate += '<div class="sale-flash">NEW!</div>';
       }
-      relate += '<div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + items[i].itemnum + ' has been added to your cart!" onclick="stock_no=\'' + items[i].itemnum + '\'; addItemDetailView2(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-      relate += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'' + items[i].itemnum + '\'; quickView(\'' + items[i].itemnum + '\');"><i class="icon-zoom-in2"></i><span>Quick View</span></a></div></div>';
+    //  relate += '<div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + items[i].itemnum + ' has been added to your cart!" onclick="stock_no=\'' + items[i].itemnum + '\'; addItemDetailView2(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+    //  relate += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'' + items[i].itemnum + '\'; quickView(\'' + items[i].itemnum + '\');"><i class="icon-zoom-in2"></i><span>Quick View</span></a></div></div>';
       relate += '<div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+' + items[i].itemnum + '">'+ items[i].shortdescription +'</a></h3></div>';
 
       if ( items[i].onsale === "Y") {
         relate += '<div class="product-price">cost &nbsp;<span class="cross" style="color:gray">' + specPrice[items[i].itemnum] + '</span> <ins style="font-size: 17px; line-height: 1px;">&nbsp; $' + items[i].price + '</ins></div></div></div>';
       } else  {
-        relate += '<div class="product-price"> cost &nbsp;$' + items[i].price + '</div></div></div>';
+        relate += '<div class="product-price divcenter"> cost &nbsp;$' + items[i].price + '</div></div></div>';
       }
       console.log(relate);
       $("#oc-product").append(relate);
     });
+    owl = $("#oc-product");
+    $('#oc-product').trigger('destroy.owl.carousel');
+    owl.owlCarousel({
+      items: 4,
+      autoPlay: 1000,
+      class: 'oc-item'
+    });
   });
-
-  
 }
 
 
@@ -2029,7 +2031,7 @@ function checkoutPage()
   employeeDiscount();
   session_no = localStorage.getItem('session_no');
   cartList();
-  cartHeader(minimumTotal); // cartHeader(); cartHeader(minimumTotal);
+  cartHeader(); // cartHeader(); cartHeader(minimumTotal);
 
   $('#shipping-form-companyname').focus();
   if (hideCC === true ) {
@@ -2066,6 +2068,8 @@ function whichPage()
   switch (locale) {
     case '#shop' :
       $('#shop').show();
+      $('#page-title').show();
+      $('#fill-page-title').text('SHOP');
       break;
     case '#cart' :
       window.scrollTo(0, 0);
@@ -2076,11 +2080,15 @@ function whichPage()
       } else {
         $('.coupondDiv').show();
       }
+      $('#page-title').show();
+      $('#fill-page-title').text('CART');
       break;
     case '#checkout' :
       window.scrollTo(0, 0);
       $('#checkout').show();
       checkoutPage();
+      $('#page-title').show();
+      $('#fill-page-title').text('CHECKOUT');
       break;
     case '#profile' :
       window.scrollTo(0, 0);
@@ -2096,6 +2104,8 @@ function whichPage()
           $("#shipping-form-profile").find("input[type=text], textarea, input[type=number], input[type=email]").val("");
         }
       });
+      $('#page-title').show();
+      $('#fill-page-title').text('MY ACCOUNT');
       break;
     case '#invoices' :
       window.scrollTo(0, 0);
@@ -2112,6 +2122,8 @@ function whichPage()
           $('#searchForInvoices').click();//Trigger search button click event
         }
       });
+      $('#page-title').show();
+      $('#fill-page-title').text('INVOICES');
       break;
     case '#orders' :
       window.scrollTo(0, 0);
@@ -2128,6 +2140,8 @@ function whichPage()
           $('#searchForOrders').click();//Trigger search button click event
         }
       });
+      $('#page-title').show();
+      $('#fill-page-title').text('ORDERS');
       break;
     case '#detail-view' :
       $('#detail-view').show();
@@ -2139,18 +2153,25 @@ function whichPage()
           populateQuestionModal();
         }
       });
+      $('#page-title').hide();
       break;
     case '#faq' :
       window.scrollTo(0, 0);
       $('#faq').show();
+      $('#page-title').show();
+      $('#fill-page-title').text('FAQ');
       break;
 
     case '#search' :
       window.scrollTo(0, 0);
       $('#search').show();
+      $('#page-title').show();
+      $('#fill-page-title').text('SEARCH');
       break;
+
     default :
       window.scrollTo(0, 0);
+      $('#page-title').show();
       $('#shop').show();
       shopPage();
   }

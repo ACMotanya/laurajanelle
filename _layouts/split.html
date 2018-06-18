@@ -63,7 +63,11 @@ layout: compress
             <nav id="primary-menu">
               <ul>
 
-      
+                {% if page.url == "/about/" %}
+                <li class="current"><a href="{{ site.baseurl }}/about"><div>ABOUT</div></a></li>
+                {% else %}
+                <li><a href="{{ site.baseurl }}/about"><div>ABOUT</div></a></li>
+                {% endif %}
 
                 {% if page.url == "/findstore/" %}
                 <li class="current"><a href="{{ site.baseurl }}/findstore"><div>FIND A STORE</div></a></li>
@@ -78,18 +82,16 @@ layout: compress
              
               </ul>
               <ul>
-
-                
-              
+                <li><a href="{{ site.baseurl }}/store/#specials" target="_blank"><div style="color: #cc0000">SPECIALS</div></a></li>
 
                 {% if page.url == "/contact/" %}
                   <li class="current"><a href="{{ site.baseurl }}/contact" ><div>CONTACT</div></a></li>
                 {% else %}
                   <li><a href="{{ site.baseurl }}/contact"><div>CONTACT</div></a></li>
                 {% endif %}
-          
-                <li><a href="{{ site.baseurl }}/store/#specials" target="_blank"><div style="color: #cc0000">SPECIALS</div></a></li>
-             
+                
+                
+                <li><a href="https://www.ivystone.com/find/search-for-a-sales-representative.asp" target="_blank">FIND A REP</a></li>
               </ul>
             </nav>  <!-- #primary-menu end
             <div class="clearfix visible-md visible-lg">
@@ -146,7 +148,7 @@ layout: compress
                             <li><a href="{{ site.baseurl }}/">HOME</a></li>
                             <li><a href="{{ site.baseurl }}/about">ABOUT</a></li>
                             <li><a href="{{ site.baseurl }}/meet">MEET</a></li>
-                            <li><a href="{{ site.baseurl }}/faqs">FAQS</a></li>
+                            <li><a href="{{ site.baseurl }}/faq">FAQS</a></li>
                         
                           </ul>
                         </div>
@@ -227,7 +229,7 @@ layout: compress
                           <div class="col-md-6">
                             <div class="footer-big-contacts" data-class-lg="fright" data-class-md="fright" data-class-sm="fleft">
                               <span>Email Us:</span>
-                              <a href="mailto:info@laurajanelle.com" style="color: #fff; font-size: 16px; text-transform: uppercase;">&nbsp; info@laurajanelle.com</a> 
+                              <a href="mailto:info@laurajanelle.com" style="color: #fff; font-size: 16px; text-transform: uppercase;">&nbsp; customerservice@laurajanelle.com</a> 
                             </div>
                             <div class="visible-xs bottommargin-sm"></div>
                           </div>
