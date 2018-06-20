@@ -70,7 +70,14 @@ body.stretched #header.full-header.sticky-header .container {
 		width: 0%;
 
 	}
-
+	#primary-menu > ul.nav-left {
+		left: 169px;
+		position: relative;
+	}
+	#primary-menu > ul.nav-right {
+		right: 109px;
+		position: relative;
+	}
 }
 
 #primary-menu ul li > a {

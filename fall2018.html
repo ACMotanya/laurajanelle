@@ -9,46 +9,34 @@ title: Fall 2018 - Laura Janelle
 	<link rel="stylesheet" href="{{ site.baseurl }}/css/swiper.css" type="text/css" />
 	<link rel="stylesheet" href="{{ site.baseurl }}/demos/ecommerce/ecommerce.css" type="text/css" />
 	<link rel="stylesheet" href="{{ site.baseurl }}/demos/ecommerce/css/fonts.css" type="text/css" />
-	<!-- /
+	<!-- / -->
+
+	<link rel="stylesheet" type="text/css" href="{{ "/include/rs-plugin/css/settings.css" | prepend: site.baseurl }}" media="screen"/>
+	<link rel="stylesheet" type="text/css" href="{{ "/include/rs-plugin/css/layers.css" | prepend: site.baseurl }}" />
+	<link rel="stylesheet" type="text/css" href="{{ "/include/rs-plugin/css/navigation.css" | prepend: site.baseurl }}" />
 
 
-
-<link rel="stylesheet" type="text/css" href="{{ "/include/rs-plugin/css/settings.css" | prepend: site.baseurl }}" media="screen"/>
-<link rel="stylesheet" type="text/css" href="{{ "/include/rs-plugin/css/layers.css" | prepend: site.baseurl }}" />
-<link rel="stylesheet" type="text/css" href="{{ "/include/rs-plugin/css/navigation.css" | prepend: site.baseurl }}" />
- -->
-<style>
-
-
-#primary-menu ul li > a {
-	font-family: Lato, sans-serif;
-	font-weight: 400;
-	font-size: 13px;
-	letter-spacing: 1px;
-}
-
-#primary-menu ul ul li>a {
-	font-weight: 400;
-	font-size: 13px;
-}
-#primary-menu ul li>a i {
-font-size:12px;
-}
-
-@media (min-width: 992px) {
-#primary-menu > ul > li > a {
-	color: #1A1A1A;
-}
-}
-</style>
+	<style>
+		
+	@media (min-width: 992px) {
+		#primary-menu > ul > li > a {
+			color: #1A1A1A;
+			font-size: 13px;
+		}
+	}
+	.device-md #primary-menu > ul > li > a {
+		font-size: 13px;
+	}
+	</style>
 
 	<!-- Slider
 		============================================= -->
-		<section id="slider" class="swiper_wrapper full-screen clearfix" data-autoplay="9000" data-speed="800" data-loop="true" data-grab="false">
+		<section id="slider" class="swiper_wrapper full-screen clearfix visible-md visible-lg" data-autoplay="9000" data-speed="800" data-loop="true" data-grab="false">
 
 			<div class="swiper-container swiper-parent">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide" style="background: #FFF url('../img/fall2018/cover.jpg') no-repeat center right; background-size: auto 100%;">
+					<div class="swiper-slide cover-image" style="background: #FFF url('../img/fall2018/cover-full.jpg') no-repeat center center; background-size: auto 100%;">
+						<!--
 						<div class="container clearfix">
 							<div class="slider-caption" style="margin-top: -30px;">
 								<div class="emphasis-title nobottommargin">
@@ -58,23 +46,15 @@ font-size:12px;
 								</div>
 							</div>
 						</div>
+							-->
 						<div class="slide-number font-primary hidden-sm">O1</div>
 						<div class="slide-number font-primary visible-sm">&nbsp;Fall/Winter</div>
+				
 					</div>
-					<div class="swiper-slide" style="background: #FFF url('../img/fall2018/sleek.jpg') no-repeat center right; background-size: auto 100%;">
-						<div class="container clearfix">
-							<div class="slider-caption" style="margin-top: -30px;">
-								<div class="emphasis-title nobottommargin">
-									<h2 class="bottommargin t700 hidden-sm" style="max-width: 600px; font-size: 80px; font-family: 'Montserrat'; line-height: 1.2;">SLEEK</h2>
 
-									<p class="lead topmargin-sm hidden-sm" style="max-width: 600px; font-family: 'Poppins'; color: #999; font-size: 18px;">Choose the side that best complements your style in the sophisticated Reversible Pav&eacute; Disc Collection.</p>
-								</div>
-							</div>
-						</div>
-						<div class="slide-number font-primary hidden-sm">O2</div>
-						<div class="slide-number font-primary visible-sm">&nbsp;SLEEK</div>
-					</div>
-					<div class="swiper-slide" style="background: #FFF url('../img/fall2018/mantra.jpg') no-repeat center right; background-size: auto 100%;">
+
+					<div class="swiper-slide" style="background: #FFF url('../img/fall2018/mantra-full.jpg') no-repeat center center; background-size: auto 100%;">
+						<!--
 						<div class="container clearfix">
 							<div class="slider-caption" style="margin-top: -30px;">
 								<div class="emphasis-title nobottommargin">
@@ -84,10 +64,13 @@ font-size:12px;
 								</div>
 							</div>
 						</div>
-						<div class="slide-number font-primary hidden-sm">O3</div>
+					-->
+						<div class="slide-number font-primary hidden-sm">O2</div>
 						<div class="slide-number font-primary visible-sm">&nbsp;MANTRA</div>
+						
 					</div>
-					<div class="swiper-slide" style="background: #FFF url('../img/fall2018/rglb-2.jpg') no-repeat center right; background-size: auto 100%;">
+					<!--
+					<div class="swiper-slide" style="background: #FFF url('../img/fall2018/rglb-bg.jpg') no-repeat center right; background-size: auto 100%;">
 						<div class="container clearfix">
 							<div class="slider-caption" style="margin-top: -30px;">
 								<div class="emphasis-title nobottommargin">
@@ -97,23 +80,28 @@ font-size:12px;
 								</div>
 							</div>
 						</div>
-						<div class="slide-number font-primary hidden-sm">O4</div>
+						<div class="slide-number font-primary hidden-sm">O3</div>
 						<div class="slide-number font-primary visible-sm">&nbsp;RGLB</div>
 					</div>
-					<div class="swiper-slide" style="background: #FFF url('../img/fall2018/boho-chic.jpg') no-repeat center right; background-size: auto 100%;">
+					-->
+					<div class="swiper-slide" style="background: #FFF url('../img/fall2018/boho-chic-full.jpg') no-repeat center center; background-size: auto 100%;">
+						<!--
 						<div class="container clearfix">
 							<div class="slider-caption" style="margin-top: -30px;">
 								<div class="emphasis-title nobottommargin">
-									<h2 class="bottommargin t700 hidden-sm" style="max-width: 600px; font-size: 80px; font-family: 'Montserrat'; line-height: 1.2;">Boho<br>Chic</h2>
+									<h2 class="bottommargin t700 hidden-sm" style="max-width: 600px; font-size: 80px; font-family: 'Montserrat'; line-height: 1.2;">Boho Chic</h2>
 
 									<p class="lead topmargin-sm hidden-sm" style="max-width: 600px; font-family: 'Poppins'; color: #999; font-size: 18px;">Contemporary bohemian style shines bright in the Alexandria Collection with sparkling crystals and natural gemstones.</p>
 								</div>
 							</div>
 						</div>
-						<div class="slide-number font-primary hidden-sm">O5</div>
+						-->
+						<div class="slide-number font-primary hidden-sm">O3</div>
 						<div class="slide-number font-primary visible-sm">&nbsp;BohoChic</div>
 					</div>
-					<div class="swiper-slide" style="background: #FFF url('../img/fall2018/apparel.jpg') no-repeat center right; background-size: auto 100%;">
+
+					<div class="swiper-slide" style="background: #FFF url('../img/fall2018/apparel-full.jpg') no-repeat center center; background-size: auto 100%;">
+						<!--
 						<div class="container clearfix">
 							<div class="slider-caption" style="margin-top: -30px;">
 								<div class="emphasis-title nobottommargin">
@@ -123,12 +111,38 @@ font-size:12px;
 								</div>
 							</div>
 						</div>
-						<div class="slide-number font-primary hidden-sm">O6</div>
+					-->
+						<div class="slide-number font-primary hidden-sm">O4</div>
 						<div class="slide-number font-primary visible-sm">&nbsp;Apparel</div>
 					</div>
 				</div>
+				
 				<div id="slider-arrow-left"><i class="icon-line-arrow-left"></i></div>
 				<div id="slider-arrow-right"><i class="icon-line-arrow-right"></i></div>
 			</div>
 
 		</section><!-- #Slider End -->
+
+
+		<section id="content" class="hidden-md hidden-lg">
+				<div id="portfolio" class="portfolio grid-container portfolio-1 portfolio-fullwidth clearfix">
+					<article class="portfolio-item pf-icons pf-illustrations clearfix">
+						<div class="portfolio-image">
+							<div class="fslider" data-arrows="false" data-speed="400" data-pause="4000">
+								<div class="flexslider">
+									<div class="slider-wrap">
+										<div class="slide"><a href="#"><img src="{{ site.baseurl }}/img/fall2018/cover-full.jpg" alt="Sleek"></div>
+										<div class="slide"><a href="#"><img src="{{ site.baseurl }}/img/fall2018/mantra-full.jpg" alt="mantra"></div>
+										<div class="slide"><a href="#"><img src="{{ site.baseurl }}/img/fall2018/boho-chic-full.jpg" alt="boho chic"></div>
+										<div class="slide"><a href="#"><img src="{{ site.baseurl }}/img/fall2018/apparel-full.jpg" alt="apparel"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</article>
+				</div>
+				<a href="{{ site.baseurl }}/retailerlogin" target="_blank" class="divcenter center" style="text-decoration: underline !important; text-transform: uppercase; font-size: 28px; font-family: 'Bodoni-Sans'; display: block;">Shop Now</a>
+			</section><!-- #content end -->
+
+
+
