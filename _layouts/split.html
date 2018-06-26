@@ -96,35 +96,7 @@ layout: compress
                 
                 <li><a href="https://www.ivystone.com/find/search-for-a-sales-representative.asp" target="_blank">FIND A REP</a></li>
               </ul>
-            </nav>  <!-- #primary-menu end
-            <div class="clearfix visible-md visible-lg">
-
-                <a href="https://www.facebook.com/laurajanellebycousin/" target="_blank" class="social-icon si-small si-borderless si-facebook">
-                  <i class="icon-facebook"></i>
-                  <i class="icon-facebook"></i>
-                </a>
-
-                <a href="https://twitter.com/LJbyCousin" target="_blank" class="social-icon si-small si-borderless si-twitter">
-                  <i class="icon-twitter"></i>
-                  <i class="icon-twitter"></i>
-                </a>
-
-                <a href="https://www.instagram.com/laurajanellebycousin/" target="_blank" class="social-icon si-small si-borderless si-instagram">
-                  <i class="icon-instagram"></i>
-                  <i class="icon-instagram"></i>
-                </a>
-
-                <a href="https://www.pinterest.com/laurajbycousin/" target="_blank" class="social-icon si-small si-borderless si-pinterest">
-                  <i class="icon-pinterest"></i>
-                  <i class="icon-pinterest"></i>
-                </a>
-
-                <a href="https://www.linkedin.com/company/laura-janelle" target="_blank" class="social-icon si-small si-borderless si-linkedin">
-                  <i class="icon-linkedin"></i>
-                  <i class="icon-linkedin"></i>
-                </a>
-            </div>
-            -->
+            </nav>  
           </div>
         </div>
       </header><!-- #header end -->
@@ -636,117 +608,27 @@ layout: compress
 
 
 
-      <script>
         
-		
-    var revapi95,
-		tpj=jQuery;
-			tpj(document).ready(function() {
-				if(tpj("#welcome").revolution == undefined){
-				revslider_showDoubleJqueryError("#welcome");
-			}else{
-				revapi95 = tpj("#welcome").show().revolution({
-					sliderType:"standard",
-					jsFileLocation:"include/rs-plugin/js/",
-					sliderLayout:"fullscreen",
-					dottedOverlay:"none",
-					delay:9000,
-					navigation: {
-						keyboardNavigation:"off",
-						keyboard_direction: "horizontal",
-						mouseScrollNavigation:"off",
-						 mouseScrollReverse:"default",
-						onHoverStop:"off",
-						touch:{
-							touchenabled:"on",
-							touchOnDesktop:"off",
-							swipe_threshold: 75,
-							swipe_min_touches: 1,
-							swipe_direction: "horizontal",
-							drag_block_vertical: false
-						}
-						,
-						arrows: {
-							style:"new-bullet-bar",
-							enable:true,
-							hide_onmobile:true,
-							hide_under:778,
-							hide_onleave:false,
-							tmp:'<div class="tp-title-wrap">  	<div class="tp-arr-imgholder"></div>    <div class="tp-arr-img-over"></div> </div>',
-							left: {
-								h_align:"left",
-								v_align:"center",
-								h_offset:40,
-								v_offset:-20
-							},
-							right: {
-								h_align:"right",
-								v_align:"center",
-								h_offset:40,
-								v_offset:-20
-							}
-						}
-						,
-						bullets: {
-							enable:true,
-							hide_onmobile:false,
-							hide_over:479,
-							style:"hermes",
-							hide_onleave:false,
-							direction:"horizontal",
-							h_align:"center",
-							v_align:"bottom",
-							h_offset:0,
-							v_offset:20,
-							space:5,
-							tmp:''
-						}
-					},
-					viewPort: {
-						enable:true,
-						outof:"wait",
-						visible_area:"80%",
-						presize:true
-					},
-					responsiveLevels:[1240,1024,778,480],
-					visibilityLevels:[1240,1024,778,480],
-					gridwidth:[1240,1024,778,480],
-					gridheight:[950,700,700,700],
-					lazyType:"single",
-					parallax: {
-						type:"scroll",
-						origo:"slidercenter",
-						speed:400,
-					  speedbg:0,
-					  speedls:0,
-						levels:[5,10,15,20,25,30,35,40,45,46,47,48,49,50,51,55],
-					},
-					shadow:0,
-					spinner:"spinner3",
-					stopLoop:"on",
-					stopAfterLoops:0,
-					stopAtSlide:1,
-					shuffle:"off",
-					autoHeight:"off",
-					fullScreenAutoWidth:"off",
-					fullScreenAlignForce:"off",
-					fullScreenOffsetContainer: "",
-					fullScreenOffset: "",
-					disableProgressBar:"on",
-					hideThumbsOnMobile:"off",
-					hideSliderAtLimit:0,
-					hideCaptionAtLimit:0,
-					hideAllCaptionAtLilmit:0,
-					debugMode:false,
-					fallbacks: {
-						simplifyAll:"off",
-						nextSlideOnWindowFocus:"off",
-						disableFocusListener:false,
-					}
-				});
-			}
+        <script>
+		/******************************************
+		-	PREPARE PLACEHOLDER FOR SLIDER	-
+		******************************************/
+
+		var revapi;
+		jQuery(document).ready(function() {
+			revapi = jQuery("#rev_slider").revolution({
+				sliderType:"standard",
+				sliderLayout:"boxed",
+				delay:4000,
+				navigation: {
+					arrows:{enable:true}
+				},
+				gridwidth:1140,
+				gridheight:800
+			});
 		});	/*ready*/
-    </script>
+	</script>
+
       {% endif %}
   </body>
 

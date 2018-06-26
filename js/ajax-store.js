@@ -512,14 +512,12 @@ function filterFunction(look)
 {
   $.get("https://netlink.laurajanelle.com:444/nlhelpers/prima-api/productlist/lj/programs/look/"+ look + "/", function (response) {
     $("#shopItems, div[data-group='color'], div[data-group='type'], div[data-group='metal']").empty();
-      itemRender2("shopItems", response);
-    });
-    
-    SEMICOLON.initialize.lightbox();
+    itemRender2("shopItems", response);
+  });
+  SEMICOLON.initialize.lightbox();
 }
 function filterFunction3(a)
 {
-
   $.ajax({
     type: "GET",
     url: "https://netlink.laurajanelle.com:444/nlhelpers/laurajanelle-api/functions.php?",
@@ -621,22 +619,25 @@ function itemRender2(div,response)
         if (lines[k].onsale === 'Y') {
           prod += '<div class="sale-flash" style="background-color: #cc0000">SPECIAL!</div>';
         }
-      
-        prod += '<div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + lines[k].itemnum + ' has been added to your cart!" onclick="stock_no=\'' + lines[k].itemnum + '\'; addItemDetailView2(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
-        prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'' + lines[k].itemnum + '\'; quickView(\'' + lines[k].itemnum + '\');"><i class="icon-zoom-in2"></i><span>Quick View</span></a></div></div>';
-        prod += '<div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+' + lines[k].itemnum + '">';
+        if ( localStorage.getItem('browsing') != "looky-loo" ) {
+          prod += '<div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item ' + lines[k].itemnum + ' has been added to your cart!" onclick="stock_no=\'' + lines[k].itemnum + '\'; addItemDetailView2(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>';
+          prod += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'' + lines[k].itemnum + '\'; quickView(\'' + lines[k].itemnum + '\');"><i class="icon-zoom-in2"></i><span>Quick View</span></a></div>';
+        }
+          prod += '</div><div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+' + lines[k].itemnum + '">';
         if ( lines[k].shortdescription.length === 0 ) {
           prod +=  lines[k].itemnum +'</a></h3></div>';
         } else {
           prod +=  lines[k].shortdescription +'</a></h3></div>';
         }
         //prod += '<div class="product-price"> cost &nbsp;$' + lines[k].price + '</div></div></div>';
-        
-        if ( lines[k].onsale === "Y") {
-          prod += '<div class="product-price">cost &nbsp;<span class="cross" style="color:gray">' + specPrice[lines[k].itemnum] + '</span> <ins style="font-size: 17px; line-height: 1px;">&nbsp; $' + lines[k].price + '</ins></div></div></div>';
-        } else  {
-          prod += '<div class="product-price"> cost &nbsp;$' + lines[k].price + '</div></div></div>';
+        if ( localStorage.getItem('browsing') != "looky-loo" ) {
+          if ( lines[k].onsale === "Y") {
+            prod += '<div class="product-price">cost &nbsp;<span class="cross" style="color:gray">' + specPrice[lines[k].itemnum] + '</span> <ins style="font-size: 17px; line-height: 1px;">&nbsp; $' + lines[k].price + '</ins></div>';
+          } else  {
+            prod += '<div class="product-price"> cost &nbsp;$' + lines[k].price + '</div>';
+          }
         }
+        prod += '</div></div>';
         
         html.unshift(prod);
         listOfAttributes(functiontype, lines[k].func.toLowerCase());
@@ -755,51 +756,55 @@ function populateDetailView2(secondImage, callback, callback2, stock_no) {
       Object.keys(response).forEach(function(k){
         $(".sku").text(response[k].itemnum);
         
-        if ( response[k].onsale === "Y" ) {
-          $("#cost-field").html('COST:&nbsp; <span id="old-whole" class="cross"></span><ins style="font-size: 18px;">&nbsp;&nbsp;$' + response[k].price + '</ins>');
-          
-          $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APISTKDTL&stock_no=" + stock_no + "", function( saleData ) {
+        if ( localStorage.getItem('browsing') != "looky-loo" ) {
+          if ( response[k].onsale === "Y" ) {
+            $("#cost-field").html('COST:&nbsp; <span id="old-whole" class="cross"></span><ins style="font-size: 18px;">&nbsp;&nbsp;$' + response[k].price + '</ins>');
             
-            lines  = saleData.split("\n");
-            fields = lines[1].split("|");
-           
-            $('#old-whole').html(fields[2]);
-            if (fields[8] && fields[8].length !== 0) {
-              $("#item-description").html('<p>' + fields[8] + '</p>');
-            }
-          });
+            $.get("https://netlink.laurajanelle.com:444/nlhtml/custom/netlink.php?request_id=APISTKDTL&stock_no=" + stock_no + "", function( saleData ) {
+              
+              lines  = saleData.split("\n");
+              fields = lines[1].split("|");
+            
+              $('#old-whole').html(fields[2]);
+              if (fields[8] && fields[8].length !== 0) {
+                $("#item-description").html('<p>' + fields[8] + '</p>');
+              }
+            });
+          } else {
+            $("#cost-field").html('COST:&nbsp;$' + response[k].price);
+          }
+
+          if ( min2.indexOf(response[k].itemnum) != -1 ) {
+            $(".min-1").empty();
+            $(".min-1").text("Packs of 2!").css("color", "#cc0000");
+          }
+
+          if (min2.indexOf(response[k].itemnum) != -1 ) {
+            formData =  '<div class="quantity clearfix"><input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant[1]" onclick="changeQuantity2(this)">';
+            formData += '<input type="text" name="quant[1]" step="2" min="2" name="quantity" value="2" title="Qty" size="4" class="qty form-control input-number" id="' + response[k].itemnum + '-dtview" />';
+            formData += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant[1]" onclick="changeQuantity2(this)"></div>';
+            formData += '<button type="button" id="add-item" class="add-to-cart button-3d button button-small" onclick="stock_no=\'' + response[k].itemnum + '\'; addItemDetailView2();">Add to cart</button>';
+            formData += '<a id="addReviewButton" href="#" data-toggle="modal" data-target="#reviewFormModal" class="add-to-cart button button-3d button-mini hidden-xs" onclick="populateReviewModal(); return false;">Add Review</a>';
+          } else {
+            formData =  '<div class="quantity clearfix"><input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant[1]" onclick="changeQuantity(this)">';
+            formData += '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + response[k].itemnum + '-dtview" />';
+            formData += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant[1]" onclick="changeQuantity(this)"></div>';
+            formData += '<button type="button" id="add-item" class="add-to-cart button-3d button button-small" onclick="stock_no=\'' + response[k].itemnum + '\'; addItemDetailView2();">Add to cart</button>';
+            formData += '<a id="addReviewButton" href="#" data-toggle="modal" data-target="#reviewFormModal" class="add-to-cart button button-3d button-mini hidden-xs" onclick="populateReviewModal(); return false;">Add Review</a>';
+          }
+          $("#add-qty-form").html(formData);
         } else {
-          $("#cost-field").html('COST:&nbsp;$' + response[k].price);
+          $("#add-qty-form").html('<h2 style="font-family: Lato;">Log in to see pricing.</h2>');
         }
 
         if (response[k].msrp === ".00" || response[k].msrp === "0.00") {
           $("#msrp-field").hide();
-          console.log(response[k].msrp);
+          
         } else {
           $("#msrp-field").html('MSRP:&nbsp;$' + response[k].msrp);
           $("#msrp-field").show();
-          console.log(response[k].msrp + " i went down");
+         
         }
-
-        if ( min2.indexOf(response[k].itemnum) != -1 ) {
-          $(".min-1").empty();
-          $(".min-1").text("Packs of 2!").css("color", "#cc0000");
-        }
-
-        if (min2.indexOf(response[k].itemnum) != -1 ) {
-          formData =  '<div class="quantity clearfix"><input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant[1]" onclick="changeQuantity2(this)">';
-          formData += '<input type="text" name="quant[1]" step="2" min="2" name="quantity" value="2" title="Qty" size="4" class="qty form-control input-number" id="' + response[k].itemnum + '-dtview" />';
-          formData += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant[1]" onclick="changeQuantity2(this)"></div>';
-          formData += '<button type="button" id="add-item" class="add-to-cart button-3d button button-small" onclick="stock_no=\'' + response[k].itemnum + '\'; addItemDetailView2();">Add to cart</button>';
-          formData += '<a id="addReviewButton" href="#" data-toggle="modal" data-target="#reviewFormModal" class="add-to-cart button button-3d button-mini hidden-xs" onclick="populateReviewModal(); return false;">Add Review</a>';
-        } else {
-          formData =  '<div class="quantity clearfix"><input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant[1]" onclick="changeQuantity(this)">';
-          formData += '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + response[k].itemnum + '-dtview" />';
-          formData += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant[1]" onclick="changeQuantity(this)"></div>';
-          formData += '<button type="button" id="add-item" class="add-to-cart button-3d button button-small" onclick="stock_no=\'' + response[k].itemnum + '\'; addItemDetailView2();">Add to cart</button>';
-          formData += '<a id="addReviewButton" href="#" data-toggle="modal" data-target="#reviewFormModal" class="add-to-cart button button-3d button-mini hidden-xs" onclick="populateReviewModal(); return false;">Add Review</a>';
-        }
-        $("#add-qty-form").html(formData);
       
         if (response[k].longdescription.length !== 0) {
           $("#item-description").html( '<p>' + response[k].longdescription + '</p>');
@@ -890,12 +895,16 @@ function relatedItems(color)
     //  relate += '<a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'' + items[i].itemnum + '\'; quickView(\'' + items[i].itemnum + '\');"><i class="icon-zoom-in2"></i><span>Quick View</span></a></div></div>';
       relate += '<div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+' + items[i].itemnum + '">'+ items[i].shortdescription +'</a></h3></div>';
 
-      if ( items[i].onsale === "Y") {
-        relate += '<div class="product-price">cost &nbsp;<span class="cross" style="color:gray">' + specPrice[items[i].itemnum] + '</span> <ins style="font-size: 17px; line-height: 1px;">&nbsp; $' + items[i].price + '</ins></div></div></div>';
-      } else  {
-        relate += '<div class="product-price divcenter"> cost &nbsp;$' + items[i].price + '</div></div></div>';
+      if ( localStorage.getItem('browsing') != "looky-loo" ) {
+        if ( items[i].onsale === "Y") {
+          relate += '<div class="product-price">cost &nbsp;<span class="cross" style="color:gray">' + specPrice[items[i].itemnum] + '</span> <ins style="font-size: 17px; line-height: 1px;">&nbsp; $' + items[i].price + '</ins></div>';
+        } else  {
+          relate += '<div class="product-price divcenter"> cost &nbsp;$' + items[i].price + '</div>';
+        }
       }
-      console.log(relate);
+
+      relate += '</div></div>';
+
       $("#oc-product").append(relate);
     });
     owl = $("#oc-product");
@@ -1710,11 +1719,12 @@ function windowHash(name)
 function sessionNumber()
 {
   session_no = localStorage.getItem('session_no');
-  if (typeof(session_no) === "undefined" || session_no.length !== 25) {
-    pathArray = window.location.pathname.split( '/' );
-    pathArray[pathArray.length - 2] = "retailerlogin";
-    window.location.pathname = pathArray.join('/');
-    alert("Please log in first.");
+  if (session_no == null || typeof(session_no) === "undefined" || session_no.length !== 25) {
+    //pathArray = window.location.pathname.split( '/' );
+    // pathArray[pathArray.length - 2] = "retailerlogin";
+    // window.location.pathname = pathArray.join('/');
+    // alert("Please log in first.");
+    localStorage.setItem('browsing', "looky-loo");
   }
 }
 
