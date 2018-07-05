@@ -103,7 +103,8 @@ function createUser()
          cust_no: userNumber,
          contact_name: userContactName,
          email: userEmail,
-         loc_no: 800
+         loc_no: 800,
+         price_level: 1
        },
        success: function(response) {
          if ( response === response.toUpperCase() ) {
@@ -1720,11 +1721,11 @@ function sessionNumber()
 {
   session_no = localStorage.getItem('session_no');
   if (session_no == null || typeof(session_no) === "undefined" || session_no.length !== 25) {
-    //pathArray = window.location.pathname.split( '/' );
-    // pathArray[pathArray.length - 2] = "retailerlogin";
-    // window.location.pathname = pathArray.join('/');
-    // alert("Please log in first.");
-    localStorage.setItem('browsing', "looky-loo");
+     pathArray = window.location.pathname.split( '/' );
+     pathArray[pathArray.length - 2] = "retailerlogin";
+     window.location.pathname = pathArray.join('/');
+     alert("Please log in first.");
+   // localStorage.setItem('browsing', "looky-loo");
   }
 }
 
