@@ -3,20 +3,11 @@ layout: split
 title: Fall 2018 - Laura Janelle 
 ---
 
-
-	<!-- eCommerce Demo Specific Stylesheet -->
-	
-	<link rel="stylesheet" href="{{ site.baseurl }}/css/swiper.css" type="text/css" />
-	<link rel="stylesheet" href="{{ site.baseurl }}/demos/ecommerce/ecommerce.css" type="text/css" />
-	<link rel="stylesheet" href="{{ site.baseurl }}/demos/ecommerce/css/fonts.css" type="text/css" />
-	<!-- / -->
-
-	<link rel="stylesheet" type="text/css" href="{{ "/include/rs-plugin/css/settings.css" | prepend: site.baseurl }}" media="screen"/>
-	<link rel="stylesheet" type="text/css" href="{{ "/include/rs-plugin/css/layers.css" | prepend: site.baseurl }}" />
-	<link rel="stylesheet" type="text/css" href="{{ "/include/rs-plugin/css/navigation.css" | prepend: site.baseurl }}" />
+<link rel="stylesheet" href="{{ site.baseurl }}/demos/ecommerce/ecommerce.css" type="text/css" />
+<link rel="stylesheet" href="{{ site.baseurl }}/demos/ecommerce/css/fonts.css" type="text/css" />
 
 
-	<style>
+<style>
 		
 	@media (min-width: 992px) {
 		#primary-menu > ul > li > a {
@@ -28,42 +19,23 @@ title: Fall 2018 - Laura Janelle
 		font-size: 13px;
 	}
 	</style>
+	<!-- eCommerce Demo Specific Stylesheet -->
+	
+	<link rel="stylesheet" href="{{ site.baseurl }}/css/swiper.css" type="text/css" />
 
-		<!-- Slider
-		============================================= -->
-		<section id="slider" class="revslider-wrap clearfix">
+	<section id="slider" class="boxed-slider">
+		<div class="container clearfix">
+			<div id="oc-slider" class="owl-carousel carousel-widget" data-items="1" data-loop="true" data-nav="false" data-autoplay="5000" data-animate-in="fadeIn" data-animate-out="fadeOut" data-speed="800">
+				
+				<a href="#"><img src="../img/fall2018/ban-add/INTRO.jpg" alt="Slider"></a>
+				<a href="#"><img src="../img/fall2018/ban-add/Apparel.jpg" alt="Slider"></a>
+				<a href="#"><img src="../img/fall2018/ban-add/RGLB.jpg" alt="Slider"></a>
+				<a href="#"><img src="../img/fall2018/color/Mantra.jpg" alt="Slider"></a>
+			</div>
+		</div>
+	</section>
 
-				<div class="rev_slider_wrapper">
-					<!-- START REVOLUTION SLIDER 5.0 auto mode -->
-					<div id="rev_slider" class="rev_slider"  data-version="5.0">
-						<ul>
-							<!-- SLIDE  -->
-							<li data-transition="fade">
-	
-								<!-- MAIN IMAGE -->
-								<img src="../img/fall2018/intro-2.jpg"  alt=""  width="1400" height="600">
-	
-							</li>
-	
-							<!-- SLIDE  -->
-							<li data-transition="fade">
-								<!-- MAIN IMAGE -->
-								<img src="../img/fall2018/mantra-color.jpg"  alt=""  width="1400" height="600">
-							</li>
-	
-							<!-- SLIDE  -->
-							<li data-transition="fade">
-	
-								<!-- MAIN IMAGE -->
-								<img src="../img/fall2018/apparel-color.jpg"  alt=""  width="1920" height="1280">
-	
-			
-							</li>
-						</ul>
-					</div><!-- END REVOLUTION SLIDER -->
-				</div><!-- END REVOLUTION SLIDER WRAPPER -->
-	
-			</section>
+	<div class="clearfix bottommargin"></div>
 			<!-- Content
 		============================================= -->
 		<section id="content">
