@@ -104,7 +104,9 @@ function createUser()
          contact_name: userContactName,
          email: userEmail,
          loc_no: 800,
-         price_level: 1
+         price_level: 1, 
+         terms_code: "H",
+         cust_type: "LJ"
        },
        success: function(response) {
          if ( response === response.toUpperCase() ) {
