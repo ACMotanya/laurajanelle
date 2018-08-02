@@ -405,10 +405,6 @@ div.widget.clearfix form {
 	#logo.page-logo a img {
 		height: 85px;
 	}
-/*	 index rotator Styles */
-	.tp-caption {
-		white-space: nowrap;
-	}
 }
 
 @media (max-width: 479px) {
@@ -490,101 +486,38 @@ div.team-title h4 a:hover {
 	transform: skewY(-10deg);
 }
 
-
-
-/* The scroller on the bottom Empower Entice and Stuff */
-
-.rotator {
-  width: 80%;
-  list-style: none;
-  padding: 0;
-  margin: 10%;
-	text-align: center;
-}
-
-.rotator > li {
-  font-weight: 800;
-  opacity: 0;
-  margin: 0 auto;
+.owl-container {
   width: 100%;
+  /*
+  padding-right: 15px;
+  padding-left: 15px;
+    */
+  margin-right: auto;
+  margin-left: auto;
+
 }
 
-.rotator > li:first-child {
-	animation: loop 11s infinite;
-  -webkit-animation: loop 11s infinite;
+@media (min-width: 576px) {
+.owl-container {
+    max-width: 100%
+}
 }
 
-.rotator > li:nth-child(2) {
-	animation: opsecond 11s infinite;
-  -webkit-animation: opsecond 11s infinite;
+@media (min-width: 768px) {
+.owl-container {
+    max-width: 100%
+}
 }
 
-.rotator > li:nth-child(3) {
-	animation: opthird 11s infinite;
-  -webkit-animation: opthird 11s infinite;
+@media (min-width: 992px) {
+.owl-container {
+    max-width: 100%
+}
 }
 
-.rotator > li:last-child {
-	animation: oplast 11s infinite;
-  -webkit-animation: oplast 11s infinite;
+@media (min-width: 1200px) {
+.owl-container {
+    max-width: 1400px;
+}
 }
 
-
-@-webkit-keyframes loop {
-  0% { opacity: 0; }
-  10% { opacity: 1; }
-	17% { opacity: 1; }
-  25% { opacity: 0; }
-}
-
-@-webkit-keyframes opsecond {
-  17% { opacity: 0; }
-  25% { opacity: 1; }
-  35% { opacity: 1; }
-  55% { opacity: 0; }
-}
-
-@-webkit-keyframes opthird {
-  35% { opacity: 0; }
-  55% { opacity: 1; }
-  65% { opacity: 1; }
-  77% { opacity: 0; }
-}
-
-@-webkit-keyframes oplast {
-  66% { opacity: 0; }
-  77% { opacity: 1; }
-  100% { opacity: 1; }
-  0% { opacity: 1; }
-  10% { opacity: 0; }
-}
-
-
-@keyframes loop {
-  0% { opacity: 0; }
-  10% { opacity: 1; }
-	17% { opacity: 1; }
-  25% { opacity: 0; }
-}
-
-@keyframes opsecond {
-  17% { opacity: 0; }
-  25% { opacity: 1; }
-  35% { opacity: 1; }
-  55% { opacity: 0; }
-}
-
-@keyframes opthird {
-  35% { opacity: 0; }
-  55% { opacity: 1; }
-  65% { opacity: 1; }
-  77% { opacity: 0; }
-}
-
-@keyframes oplast {
-  66% { opacity: 0; }
-  77% { opacity: 1; }
-  100% { opacity: 1; }
-  0% { opacity: 1; }
-  10% { opacity: 0; }
-}
