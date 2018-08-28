@@ -2688,3 +2688,43 @@ specPrice = {
 };
 
 special_item_numbers = Object.keys(specPrice);
+
+
+document.addEventListener('DOMContentLoaded',function() {
+  document.getElementsByClassName('sku_wrapper').onchange=prodDetails;
+},false);
+
+function prodDetails() {
+  jQuery('span.sku_wrapper').on('DOMSubtreeModified',function(){
+    var item = jQuery(".sku_wrapper").text();
+    item = item.slice(5);
+    item = item.substr(0, item.indexOf('-'));
+  jQuery.ajax({
+    type: "GET",
+    url: "https://netlink.laurajanelle.com:444/nlhelpers/laurajanelle-api/prod-details.php?",
+    data: {
+      data: item,
+      location: 800
+    },
+    success: function (response) {
+      console.log(response);
+      jQuery("#single-product-custom-details").empty();
+      Object.keys(response).forEach(function(k){
+
+        details =  '<div class="product-detail-list"><strong class="text-uppercase">Materials:</strong> ' + response[k].materialdesc + '</div>';
+        details += '<div class="product-detail-list"><strong class="text-uppercase">Features:</strong> ' + response[k].featuredesc + '</div>';
+        details += '<div class="product-detail-list"><strong class="text-uppercase">Details:</strong> ' + response[k].detaildesc + '</div>';
+        
+        jQuery("#single-product-custom-details").html(details);
+      });
+      }
+    });
+  });
+}
+
+
+jQuery("ol.flex-control-nav").after('<img src="https://img.youtube.com/vi/ffUDdog0zOs/default.jpg" draggable="false">');
+
+jQuery( "ol.flex-control-nav:last-child" ).on("click", function () {
+  jQuery('span.sku_wrapper').hide();
+});
