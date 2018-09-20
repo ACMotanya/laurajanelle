@@ -1,8 +1,6 @@
 var cartheader;
 var cartitems;
 var colors = [];
-//var country;
-//var countrylines;
 var employee;
 var fields;
 var filters = {};
@@ -158,28 +156,31 @@ function login()
              loc_no: "800"},
       success: function(response) {
         if (response.replace(/\s+/g,'').length === 25) {
+          /*
           $.get("https://www.laurajanelle.com/phphelper/savecart/session.php?customer=" + username.toLowerCase() + "", function(answer){
             if (answer === "0") {
               $.get("https://www.laurajanelle.com/phphelper/savecart/session.php?customer=" + username.toLowerCase() + "&sessid=" + response + "");
               session_no = response.replace(/\s+/g,'');
               localStorage.setItem('session_no', session_no);
             } else {
-              localStorage.setItem('session_no', answer);
-            }
+              */
+              localStorage.setItem('session_no', response);
+         //   }
             localStorage.setItem('username', username);
-          }).done(function() {
+        
+        //  }).done(function() {
             
             windowHash("shop");
             redirect("store");
             
-          });
+         // });
         } else {
           alert("Login credentials are incorrect, try again.");
         }
         
       }
-    });
   });
+});
 }
 
 
@@ -409,14 +410,14 @@ function cartHelper()
   if ( cartitems.length > 2 ) {
     for (i=1; i<cartitems.length - 1; i++) {
       data = cartitems[i].split("|");
-      miniitem = '<div class="top-cart-item clearfix"><div class="top-cart-item-image"><a href="#"><img src="https://www.laurajanelle.com/ljjpgimages/' + data[2].replace(/\s+/g,'') + '-sm.jpg" alt="' + data[3] + '" /></a></div>';
+      miniitem = '<div class="top-cart-item clearfix"><div class="top-cart-item-image"><a href="#"><img src="https://www.laurajanelle.com/ljimg/' + data[2].replace(/\s+/g,'') + '.jpg" alt="' + data[3] + '" /></a></div>';
       miniitem += '<div class="top-cart-item-desc"><a href="#">' + data[3] + '</a><span class="top-cart-item-price">$' + data[7].substring(0, data[7].length - 3) + '</span><span class="top-cart-item-quantity">x ' + data[6].replace(/\s+/g,'') + '</span></div></div>';
       html2.push(miniitem);
 
       if ( window.location.hash === "#cart" ) {
         if  (min2.indexOf(data[2].replace(/\s+/g,'')) != -1 ) {
           item = '<tr class="cart_item products"><td class="cart-product-remove"><a href="#cart" class="remove" onclick="removeItem(this.id); return false;" id="' + data[1].replace(/\s+/g,'') + '" title="Remove this item"><i class="icon-trash2"></i></a></td>';
-          item += '<td class="cart-product-thumbnail"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="https://www.laurajanelle.com/ljjpgimages/' + data[2].replace(/\s+/g,'') + '-sm.jpg" alt="' + data[3] + '"></a></td>';
+          item += '<td class="cart-product-thumbnail"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="https://www.laurajanelle.com/ljimg/' + data[2].replace(/\s+/g,'') + '.jpg" alt="' + data[3] + '"></a></td>';
           item += '<td class="cart-product-name"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '">' + data[3] + '</a></td>';
           item += '<td class="cart-product-price"><span class="amount">$' + data[7].substring(0, data[7].length - 3) + '</span></td>';
           item += '<td class="cart-product-quantity"><div class="quantity clearfix">';
@@ -426,7 +427,7 @@ function cartHelper()
           item += '<td class="cart-product-subtotal"><span class="amount">$' + data[8].substring(0, data[8].length - 4) + '</span></td></tr>';
         } else {
           item = '<tr class="cart_item products"><td class="cart-product-remove"><a href="#cart" class="remove" onclick="removeItem(this.id); return false;" id="' + data[1].replace(/\s+/g,'') + '" title="Remove this item"><i class="icon-trash2"></i></a></td>';
-          item += '<td class="cart-product-thumbnail"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="https://www.laurajanelle.com/ljjpgimages/' + data[2].replace(/\s+/g,'') + '-sm.jpg" alt="' + data[3] + '"></a></td>';
+          item += '<td class="cart-product-thumbnail"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="https://www.laurajanelle.com/ljimg/' + data[2].replace(/\s+/g,'') + '.jpg" alt="' + data[3] + '"></a></td>';
           item += '<td class="cart-product-name"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '">' + data[3] + '</a></td>';
           item += '<td class="cart-product-price"><span class="amount">$' + data[7].substring(0, data[7].length - 3) + '</span></td>';
           item += '<td class="cart-product-quantity"><div class="quantity clearfix">';
@@ -438,7 +439,7 @@ function cartHelper()
         html.push(item);
         $("#updateCartButton").show();
       } else if ( window.location.hash === "#checkout" ) {
-        item1 =  '<tr class="cart_item"><td class="cart-product-thumbnail"><a href=#detail-view+' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="https://www.laurajanelle.com/ljjpgimages/' + data[2].replace(/\s+/g,'') + '-sm.jpg" alt="' + data[3] + '"></a></td>';
+        item1 =  '<tr class="cart_item"><td class="cart-product-thumbnail"><a href=#detail-view+' + data[2].replace(/\s+/g,'') + '"><img width="64" height="64" src="https://www.laurajanelle.com/ljimg/' + data[2].replace(/\s+/g,'') + '.jpg" alt="' + data[3] + '"></a></td>';
         item1 += '<td class="cart-product-name"><a href="#detail-view+' + data[2].replace(/\s+/g,'') + '">' + data[3] + '</a></td>';
         item1 += '<td class="cart-product-quantity"><div class="quantity clearfix">' + data[6].replace(/\s+/g,'') + '</div></td>';
         item1 += '<td class="cart-product-subtotal"><span class="amount">$' + data[8].substring(0, data[8].length - 4) + '</span></td></tr>';
@@ -614,7 +615,7 @@ function itemRender2(div,response)
       } else {
 
        // stringOfDetails = lines[k].itemnum;
-        prod =  '<div class="product clearfix ' + lines[k].color.toLowerCase() +"omg "+ lines[k].func.toLowerCase() +" "+ lines[k].metalcolor.toLowerCase() +'"><div class="product-image"><a href="#detail-view+' + lines[k].itemnum + '"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/' + lines[k].itemnum + '-sm.jpg" alt="' + lines[k].shortdescription + '"></a>';
+        prod =  '<div class="product clearfix ' + lines[k].color.toLowerCase() +"omg "+ lines[k].func.toLowerCase() +" "+ lines[k].metalcolor.toLowerCase() +'"><div class="product-image"><a href="#detail-view+' + lines[k].itemnum + '"><img class="shopimg" src="https://www.laurajanelle.com/ljimg/' + lines[k].itemnum + '.jpg" alt="' + lines[k].shortdescription + '"></a>';
         if (lines[k].featured === 'Y') {
           prod += '<div class="sale-flash">NEW!</div>';
         }
@@ -703,7 +704,7 @@ function quickView(clicked_id)
       var prodtype = fields[1].split(/(\s+)/);
 					prodtype = prodtype[2];
 
-			document.getElementById("quickViewimages").innerHTML = '<div class="slide" style="display: block;"><a href="#shop"><img src="https://www.laurajanelle.com/ljjpgimages/' + stock_no + '-md.jpg" alt="' + fields[1] + '"></a></div>';
+			document.getElementById("quickViewimages").innerHTML = '<div class="slide" style="display: block;"><a href="#shop"><img src="https://www.laurajanelle.com/ljimg/' + stock_no + '.jpg" alt="' + fields[1] + '"></a></div>';
      //brand logo
      // jQuery( "#secondColumn").prepend('<div><a href="#shop" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="https://www.laurajanelle.com/img/logos/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div><div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;"><br><br>ITEM # <span class="sku">' + stock_no + '</span></span></div><div class="line"></div><div class="product-price col_half" style="font-size: 16px; font-weight: 400;">COST:&nbsp;' + fields[4] + '</div>');
       jQuery( "#secondColumn").prepend('<div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;"><br><br>ITEM # <span class="sku">' + stock_no + '</span></span></div><div class="line"></div><div class="product-price col_half" style="font-size: 16px; font-weight: 400;">COST:&nbsp;' + fields[4] + '</div>');
@@ -732,10 +733,10 @@ function detailView2(callback, callback2) {
   var hash = window.location.hash.split("+");
   var stock_no = hash[1];
   var productRating = [];
-  url = "../ljjpgimages-2/" + stock_no + "-2-sm.jpg";
+  url = "../ljimg-2/" + stock_no + "-2.jpg";
   $.get(url)
   .done(function () {
-    secondImage = '<div class="slide" data-thumb="https://www.laurajanelle.com/ljjpgimages-2/' + stock_no + '-2-sm.jpg"><a href="https://www.laurajanelle.com/ljjpgimages-2/' + stock_no + '-2-lg.jpg" data-lightbox="gallery-item"><span class="zoom ex1"><img src="https://www.laurajanelle.com/ljjpgimages-2/' + stock_no + '-2-md.jpg"></span></a></div>';
+    secondImage = '<div class="slide" data-thumb="https://www.laurajanelle.com/ljimg/' + stock_no + '-2.jpg"><a href="https://www.laurajanelle.com/ljimg/' + stock_no + '-2-lg.jpg" data-lightbox="gallery-item"><span class="zoom ex1"><img src="https://www.laurajanelle.com/ljimg/' + stock_no + '-2.jpg"></span></a></div>';
     populateDetailView2(secondImage, callback, callback2, stock_no);
   }).fail(function () {
     // not exists code
@@ -744,6 +745,8 @@ function detailView2(callback, callback2) {
     populateDetailView2(noSecondImage, callback, callback2, stock_no);
   });
 }
+
+
 
 function populateDetailView2(secondImage, callback, callback2, stock_no) {
    var relateColor;
@@ -786,13 +789,13 @@ function populateDetailView2(secondImage, callback, callback2, stock_no) {
             formData =  '<div class="quantity clearfix"><input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant[1]" onclick="changeQuantity2(this)">';
             formData += '<input type="text" name="quant[1]" step="2" min="2" name="quantity" value="2" title="Qty" size="4" class="qty form-control input-number" id="' + response[k].itemnum + '-dtview" />';
             formData += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant[1]" onclick="changeQuantity2(this)"></div>';
-            formData += '<button type="button" id="add-item" class="add-to-cart button-3d button button-small" onclick="stock_no=\'' + response[k].itemnum + '\'; addItemDetailView2();">Add to cart</button>';
+            formData += '<button type="button" id="add-item" class="add-to-cart button-3d button buttonall" onclick="stock_no=\'' + response[k].itemnum + '\'; addItemDetailView2();">Add to cart</button>';
             formData += '<a id="addReviewButton" href="#" data-toggle="modal" data-target="#reviewFormModal" class="add-to-cart button button-3d button-mini hidden-xs" onclick="populateReviewModal(); return false;">Add Review</a>';
           } else {
             formData =  '<div class="quantity clearfix"><input type="button" value="-" class="minus btn-number" data-type="minus" data-field="quant[1]" onclick="changeQuantity(this)">';
             formData += '<input type="text" name="quant[1]" step="1" min="1" name="quantity" value="1" title="Qty" size="4" class="qty form-control input-number" id="' + response[k].itemnum + '-dtview" />';
             formData += '<input type="button" value="+" class="plus btn-number" data-type="plus" data-field="quant[1]" onclick="changeQuantity(this)"></div>';
-            formData += '<button type="button" id="add-item" class="add-to-cart button-3d button button-small" onclick="stock_no=\'' + response[k].itemnum + '\'; addItemDetailView2();">Add to cart</button>';
+            formData += '<button type="button" id="add-item" class="add-to-cart button-3d button buttonall" onclick="stock_no=\'' + response[k].itemnum + '\'; addItemDetailView2();">Add to cart</button>';
             formData += '<a id="addReviewButton" href="#" data-toggle="modal" data-target="#reviewFormModal" class="add-to-cart button button-3d button-mini hidden-xs" onclick="populateReviewModal(); return false;">Add Review</a>';
           }
           $("#add-qty-form").html(formData);
@@ -839,7 +842,7 @@ function populateDetailView2(secondImage, callback, callback2, stock_no) {
         }
         /* Fill in the pictures for the product */
         var pics = '<div class="fslider" data-pagi="false" data-arrows="false" data-thumbs="true"><div class="flexslider"><div class="slider-wrap" data-lightbox="gallery">';
-        pics += '<div class="slide" data-thumb="https://www.laurajanelle.com/ljjpgimages/' + response[k].itemnum + '-sm.jpg"><a href="https://www.laurajanelle.com/ljjpgimages/' + response[k].itemnum + '-lg.jpg" title="' + response[k].shortdescription + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="https://www.laurajanelle.com/ljjpgimages/' + response[k].itemnum + '-md.jpg" alt="' + response[k].shortdescription + '"></span></a></div>';
+        pics += '<div class="slide" data-thumb="https://www.laurajanelle.com/ljimg/' + response[k].itemnum + '.jpg"><a href="https://www.laurajanelle.com/ljimg/' + response[k].itemnum + '-lg.jpg" title="' + response[k].shortdescription + '" data-lightbox="gallery-item"><span class="zoom ex1"><img src="https://www.laurajanelle.com/ljimg/' + response[k].itemnum + '.jpg" alt="' + response[k].shortdescription + '"></span></a></div>';
         pics += secondImage;
         pics += '</div></div></div>';
         
@@ -886,7 +889,7 @@ function relatedItems(color)
   $.get("https://netlink.laurajanelle.com:444/nlhelpers/laurajanelle-api/related.php?color="+ color +"&location=800", function ( items ) {
 
     Object.keys(items).forEach(function(i){
-      relate =  '<div class="product clearfix"><div class="product-image"><a href="#detail-view+' + items[i].itemnum + '"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/' + items[i].itemnum + '-sm.jpg" alt="'+ items[i].shortdescription +'"></a>';
+      relate =  '<div class="product clearfix"><div class="product-image"><a href="#detail-view+' + items[i].itemnum + '"><img class="shopimg" src="https://www.laurajanelle.com/ljimg/' + items[i].itemnum + '.jpg" alt="'+ items[i].shortdescription +'"></a>';
             
       if (items[i].onsale === "Y") {
         relate += '<div class="sale-flash" style="background-color: #cc0000">SPECIAL!</div>';
@@ -944,9 +947,9 @@ function populateQuestionModal()
   qLines += '<input type="hidden" name="item" value="'+ stock_no +'" /><input type="hidden" name="customer" value="'+ cust_name +'" />';
   qLines += '<input type="hidden" name="customer_no" value="'+ cust_no +'" /><input type="hidden" name="loc_no" value="800" /><input type="hidden" name="email" value="'+ email_addr +'" />';                        
   qLines += '<input type="text" class="required sm-form-control input-block-level" id="questionEditField" name="question" value="'+ question +'" readonly="readonly" />';                         
-  qLines += '<a class="button button-small button-dark button-rounded" onclick="$(\'#questionEditField\').removeAttr(\'readonly\');"></i>EDIT</a> | <a href="" class="button button-small button-dark button-rounded" data-dismiss="modal"></i>DELETE</a>';
+  qLines += '<a class="button buttonall button-dark button-rounded" onclick="$(\'#questionEditField\').removeAttr(\'readonly\');"></i>EDIT</a> | <a href="" class="button buttonall button-dark button-rounded" data-dismiss="modal"></i>DELETE</a>';
   qLines += '<input type="text" class="hidden" id="quick-contact-form-botcheck" name="quick-contact-form-botcheck" value="" />';
-  qLines += '<button type="submit" id="question-submit" name="question-submit" class="button button-small button-3d nomargin" value="submit" onclick="$(\'#fakeSubQuestion\').click();" style="float: right;">Send Email</button></form></div></div>';
+  qLines += '<button type="submit" id="question-submit" name="question-submit" class="button buttonall button-3d nomargin" value="submit" onclick="$(\'#fakeSubQuestion\').click();" style="float: right;">Send Email</button></form></div></div>';
 
   $("#myModalBody").html(qLines);
   $('#questionField').val("");
@@ -959,7 +962,7 @@ function getQuestions(stock_no)
   $.get("https://netlink.laurajanelle.com:444/nlhelpers/mailer/questionSubmitEmail.php?item="+ stock_no +"&question&customer&customer_no&loc_no&email", function ( questdata ) {
     qdata = questdata.split("\n");
     if (qdata.length < 2) {
-      custqLines =  '<p class="questionSection lead topmargin-sm">No questions have been submitted for this item.</>';
+      custqLines =  '<p class="questionSection lead topmargin">No questions have been submitted for this item.</>';
       $("#questionWidget").after(custqLines);
     } else {
       for (i=0; i<qdata.length - 1; i++) {
@@ -996,7 +999,7 @@ function populateReviewModal()
 
   $("#reviewModalBody").empty();
 
-  rLines  = '<form class="nobottommargin" id="template-reviewform" target="dummyframe" name="template-reviewform" action="https://netlink.laurajanelle.com:444/nlhelpers/mailer/review.php" method="GET"><div class="bottommargin-sm">';
+  rLines  = '<form class="nobottommargin" id="template-reviewform" target="dummyframe" name="template-reviewform" action="https://netlink.laurajanelle.com:444/nlhelpers/mailer/review.php" method="GET"><div class="bottommargin">';
   rLines += '<div class="white-section"><label>Rating:</label><input id="cust-rating" name="rating" class="rating-loading" data-size="sm"></div></div><div class="clear"></div>';
   rLines += '<div class="col_full"><label for="template-reviewform-comment">Comment <small>*</small></label><input type="hidden" name="custname" value="'+ cust_name +'" />';
   rLines += '<textarea class="required form-control" id="template-reviewform-comment" name="comment" rows="6" cols="30"></textarea></div><input type="hidden" name="custnum" value="'+ cust_no +'" />';
@@ -1024,7 +1027,7 @@ function getReviews(stock_no)
   $.get("https://netlink.laurajanelle.com:444/nlhelpers/mailer/review.php?comment=&custname=&custnum=&rating=&item="+ stock_no +"&email=&source=", function ( reviewdata ) {
     rdata = reviewdata.split("\n");
     if (rdata.length < 2) {
-      custrLines = '<p class="reviewSection lead topmargin-sm">No reviews have been submitted for this item.</p>';
+      custrLines = '<p class="reviewSection lead topmargin">No reviews have been submitted for this item.</p>';
       $("#listOfReviews").prepend(custrLines);
       $("#mainRatingDiv").html('<a href="#" onclick="$(\'#addReviewButton\').click(); return false;">Be the first to review this item</a>');
     } else {
@@ -1722,10 +1725,10 @@ function sessionNumber()
 {
   session_no = localStorage.getItem('session_no');
   if (session_no == null || typeof(session_no) === "undefined" || session_no.length !== 25) {
-     pathArray = window.location.pathname.split( '/' );
-     pathArray[pathArray.length - 2] = "retailerlogin";
-     window.location.pathname = pathArray.join('/');
-     alert("Please log in first.");
+   //  pathArray = window.location.pathname.split( '/' );
+   //  pathArray[pathArray.length - 2] = "retailerlogin";
+   //  window.location.pathname = pathArray.join('/');
+   //  alert("Please log in first.");
    // localStorage.setItem('browsing', "looky-loo");
   }
 }
@@ -1793,7 +1796,7 @@ function reviewOrder()
     orderItems.forEach(function(element) {
       console.log(element);
 
-      reviewHTML =  '<div class="entry clearfix"><div class="entry-image"><a href="https://www.laurajanelle.com/ljjpgimages/10584-lg.jpg" data-lightbox="image"><img class="image_fade" src="https://www.laurajanelle.com/ljjpgimages/10584-sm.jpg" alt="Image of item"></a>';
+      reviewHTML =  '<div class="entry clearfix"><div class="entry-image"><a href="https://www.laurajanelle.com/ljimg/10584-lg.jpg" data-lightbox="image"><img class="image_fade" src="https://www.laurajanelle.com/ljimg/10584.jpg" alt="Image of item"></a>';
       reviewHTML += '</div><div class="entry-c"><form class="nobottommargin" id="template-reviewform" name="template-reviewform" action="#" method="post"><div class="col_full col_last"><div class="white-section"><label>Rating:</label><input id="cust-rating" name="rating" class="rating" data-size="sm">';
       reviewHTML += '</div></div><div class="clear"></div><div class="col_three_fifth"><label for="template-reviewform-comment">Comment <small>*</small></label><textarea class="required form-control" id="template-reviewform-comment" name="template-reviewform-comment" rows="6" cols="30">';
       reviewHTML += '</textarea></div><div class="col_full nobottommargin"><button class="button button-3d nomargin" type="submit" id="template-reviewform-submit" name="template-reviewform-submit" value="submit">Submit Review</button></div></form></div></div>';
@@ -2195,9 +2198,9 @@ function ljPink()
   $('#shopItems').empty();
 
   $('#shopItems').before('<img id="breast-cancer-banner" src="../img/lj-pink-banner.jpg">');
-  breastprod =  '<div class="product clearfix GLB 11 800 1"><div class="product-image"><a href="#detail-view+1238AST+11+800+"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/1238AST-sm.jpg" alt="RGLB BRACELET BC ASSORTMENT"></a><div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 1238AST has been added to your cart!" onclick="stock_no=\'1238AST\';  addItemDetailView2(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a><a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'1238AST\'; quickView(this.id);" id="1238AST+11+800+"><i class="icon-zoom-in2"></i><span id="1238AST+11+800+">Quick View</span></a></div></div><div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+1238AST+11+800+">RGLB BRACELET BREAST CANCER ASSORTMENT</a></h3></div><div class="product-price">cost &nbsp;$225.75</div></div></div>';
-  breastprod += '<div class="product clearfix MAN 11 1000 1"><div class="product-image"><a href="#detail-view+12330+11+1000+"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/12330-sm.jpg" alt="MANTRA SCARF"></a><div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 12330 has been added to your cart!" onclick="stock_no=\'12330\'; addItemDetailView2(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a><a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'12330\'; quickView(this.id);" id="12330+11+1000+"><i class="icon-zoom-in2"></i><span id="12330+11+1000+">Quick View</span></a></div></div><div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+12330+11+1000+">MANTRA BREAST CANCER AWARENESS SCARF</a></h3></div><div class="product-price">cost &nbsp;$8.75</div></div></div>';
-  breastprod += '<div class="product clearfix GLB 800 1"><div class="product-image"><a href="#detail-view+12100B++800+"><img class="shopimg" src="https://www.laurajanelle.com/ljjpgimages/12100B-sm.jpg" alt="AWARENESS BRACELET ASSORTMENT"></a><div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 12100B has been added to your cart!" onclick="stock_no=\'12100B\'; addItemDetailView2(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a><a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'12100B\'; quickView(this.id);" id="12100B++800+"><i class="icon-zoom-in2"></i><span id="12100B++800+">Quick View</span></a></div></div><div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+12100B++800+">KNOT BRACELET BREAST CANCER AWARENESS ASSORTMENT</a></h3></div><div class="product-price">cost &nbsp;$232.00</div></div></div>';
+  breastprod =  '<div class="product clearfix GLB 11 800 1"><div class="product-image"><a href="#detail-view+1238AST+11+800+"><img class="shopimg" src="https://www.laurajanelle.com/ljimg/1238AST.jpg" alt="RGLB BRACELET BC ASSORTMENT"></a><div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 1238AST has been added to your cart!" onclick="stock_no=\'1238AST\';  addItemDetailView2(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a><a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'1238AST\'; quickView(this.id);" id="1238AST+11+800+"><i class="icon-zoom-in2"></i><span id="1238AST+11+800+">Quick View</span></a></div></div><div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+1238AST+11+800+">RGLB BRACELET BREAST CANCER ASSORTMENT</a></h3></div><div class="product-price">cost &nbsp;$225.75</div></div></div>';
+  breastprod += '<div class="product clearfix MAN 11 1000 1"><div class="product-image"><a href="#detail-view+12330+11+1000+"><img class="shopimg" src="https://www.laurajanelle.com/ljimg/12330.jpg" alt="MANTRA SCARF"></a><div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 12330 has been added to your cart!" onclick="stock_no=\'12330\'; addItemDetailView2(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a><a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'12330\'; quickView(this.id);" id="12330+11+1000+"><i class="icon-zoom-in2"></i><span id="12330+11+1000+">Quick View</span></a></div></div><div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+12330+11+1000+">MANTRA BREAST CANCER AWARENESS SCARF</a></h3></div><div class="product-price">cost &nbsp;$8.75</div></div></div>';
+  breastprod += '<div class="product clearfix GLB 800 1"><div class="product-image"><a href="#detail-view+12100B++800+"><img class="shopimg" src="https://www.laurajanelle.com/ljimg/12100B.jpg" alt="AWARENESS BRACELET ASSORTMENT"></a><div class="product-overlay"><a href="#shop" class="add-to-cart" data-notify-position="top-right" data-notify-type="info" data-notify-msg="<i class=icon-info-sign></i>Item 12100B has been added to your cart!" onclick="stock_no=\'12100B\'; addItemDetailView2(); shopPage(); SEMICOLON.widget.notifications(this); return false;"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a><a href="../shop-item.html" class="item-quick-view" data-lightbox="ajax" onclick="stock_no=\'12100B\'; quickView(this.id);" id="12100B++800+"><i class="icon-zoom-in2"></i><span id="12100B++800+">Quick View</span></a></div></div><div class="product-desc center"><div class="product-title"><h3><a href="#detail-view+12100B++800+">KNOT BRACELET BREAST CANCER AWARENESS ASSORTMENT</a></h3></div><div class="product-price">cost &nbsp;$232.00</div></div></div>';
   $('#shopItems').html(breastprod);
 
 }
@@ -2237,7 +2240,7 @@ function peekView(clicked_id)
       var prodtype = fields[1].split(/(\s+)/);
 					prodtype = prodtype[2];
 
-			document.getElementById("quickViewimages").innerHTML = '<div class="slide" style="display: block;"><a href="#shop"><img src="https://www.laurajanelle.com/ljjpgimages/' + stock_no + '-md.jpg" alt="' + fields[1] + '"></a></div>';
+			document.getElementById("quickViewimages").innerHTML = '<div class="slide" style="display: block;"><a href="#shop"><img src="https://www.laurajanelle.com/ljimg/' + stock_no + '.jpg" alt="' + fields[1] + '"></a></div>';
 
       jQuery( "#secondColumn").prepend('<div><a href="#shop" title="Brand Logo" class="hidden-xs"><img class="image_fade" src="../img/logos/'+ fields[2] +'-logo.png" alt="Brand Logo"></a></div><div><span itemprop="productID" class="sku_wrapper" style="font-size: 24px; font-weight: 600;">ITEM # <span class="sku">' + stock_no + '</span></span></div>');
       secondColumnQuick = '<a href="#" class="button button-black t300" onclick="showSidePanel();">login to see pricing</a><div class="line"></div>';
@@ -2637,8 +2640,8 @@ specPrice = {
 "1625PM":" $12.00 ",
 "1625RS":" $12.00 ",
 "1625SL":" $12.00 ",
-"1627G":" $15.00 ",
-"1627S":" $15.00 ",
+"1627G" :" $15.00 ",
+"1627S" :" $15.00 ",
 "1701MG":" $10.00 ",
 "1701MS":" $10.00 ",
 "1702MG":" $7.50 ",
