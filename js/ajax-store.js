@@ -109,7 +109,7 @@ function createUser()
        success: function(response) {
          if ( response === response.toUpperCase() ) {
            alert("Laura Janelle user has been created. Double check SouthWare and make sure everything was entered correctly.");
-           $.get("https://netlink.laurajanelle.com:444/mailer/logincred.php?username="+ newUserName +"&email="+ userEmail +"&password="+ userPassword +"&name="+userContactName+"");
+         //  $.get("https://netlink.laurajanelle.com:444/mailer/logincred.php?username="+ newUserName +"&email="+ userEmail +"&password="+ userPassword +"&name="+userContactName+"");
          } else {
            alert("User not created, try again.");
          }
